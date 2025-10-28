@@ -54,7 +54,7 @@ local function turret_install_event(installEvent, sysName, shipManager, eventMan
 				if not hookedEvents[removeEvent.eventName] then
 					hookedEvents[removeEvent.eventName] = true
 					script.on_game_event(removeEvent.eventName, false, function()
-						Hyperspace.playerVariables[sysName..systemBlueprintVarName] = index
+						Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] = index
 						return
 					end)
 				end
@@ -77,7 +77,7 @@ local function turret_install_event(installEvent, sysName, shipManager, eventMan
 			if not hookedEvents[removeEvent.eventName] then
 				hookedEvents[removeEvent.eventName] = true
 				script.on_game_event(removeEvent.eventName, false, function()
-					Hyperspace.playerVariables[sysName..systemBlueprintVarName] = index
+					Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] = index
 					return
 				end)
 			end
@@ -98,7 +98,7 @@ script.on_internal_event(Defines.InternalEvents.PRE_CREATE_CHOICEBOX, function(e
 		for _, sysName in ipairs(systemNameList) do
 			if shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) then
 				local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
-				if Hyperspace.playerVariables[sysName..systemBlueprintVarName] < 0 then
+				if Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] < 0 then
 					local installEvent = eventManager:CreateEvent("STORAGE_CHECK_OG_TURRET_INSTALL", 0, false)
 					turret_install_event(installEvent, sysName, shipManager, eventManager)
 					event:AddChoice(installEvent, "Manage Empty Turret.", emptyReq, false)
@@ -111,10 +111,10 @@ script.on_internal_event(Defines.InternalEvents.PRE_CREATE_CHOICEBOX, function(e
 					if not hookedEvents[removeEvent.eventName] then
 						hookedEvents[removeEvent.eventName] = true
 						script.on_game_event(removeEvent.eventName, false, function()
-							Hyperspace.playerVariables[sysName..systemBlueprintVarName] = -1
+							Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] = -1
 							system.table.currentTarget = nil
-							Hyperspace.playerVariables[sysName..systemChargesVarName] = 0
-							Hyperspace.playerVariables[sysName..systemTimeVarName] = 0
+							Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] = 0
+							Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemTimeVarName] = 0
 							system.table.chargeTime = 0
 							system.table.firingTime = 0
 							system.table.currentShot = 0
@@ -122,7 +122,7 @@ script.on_internal_event(Defines.InternalEvents.PRE_CREATE_CHOICEBOX, function(e
 							return
 						end)
 					end
-					local blueprint = Hyperspace.Blueprints:GetWeaponBlueprint(turretBlueprintsList[Hyperspace.playerVariables[sysName..systemBlueprintVarName] ])
+					local blueprint = Hyperspace.Blueprints:GetWeaponBlueprint(turretBlueprintsList[Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] ])
 					removeEvent.stuff.weapon = blueprint
 					event:AddChoice(removeEvent, "Uninstall Turret:", emptyReq, false)
 				end
