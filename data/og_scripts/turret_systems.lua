@@ -421,7 +421,7 @@ turrets["OG_TURRET_FOCUS_1"] = {
 	glow_images = {},
 	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_focus_1_charge.png", -24, -8, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
 	fire_points = {{x = 0, y = -7, fire_delay = 0.7}},
-	defense_type = defense_types.ALL,
+	defense_type = defense_types.PROJECTILES,
 	blueprint_type = 3,
 	blueprint = "OG_FOCUS_PROJECTILE",
 	blueprint_fake = "OG_FOCUS_PROJECTILE_FAKE",
