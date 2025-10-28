@@ -1,0 +1,196 @@
+<FTL>
+<animSheet name="og_turret_laser_error" w="110" h="110" fw="110" fh="110">og_turrets/turret_laser_error.png</animSheet>
+<anim name="og_turret_laser_error">
+	<sheet>og_turret_laser_error</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+
+<animSheet name="og_turret_laser_1_icon" w="81" h="38" fw="81" fh="38">og_turrets/turret_laser_1_icon.png</animSheet>
+<anim name="og_turret_laser_1_icon">
+	<sheet>og_turret_laser_1_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_laser_1" w="770" h="110" fw="110" fh="110">og_turrets/turret_laser_1.png</animSheet>
+<anim name="og_turret_laser_1">
+	<sheet>og_turret_laser_1</sheet>
+	<desc length="7" x="0" y="0" />
+	<time>0.7</time>
+</anim>
+<animSheet name="og_turret_laser_2_icon" w="99" h="30" fw="99" fh="30">og_turrets/turret_laser_2_icon.png</animSheet>
+<anim name="og_turret_laser_2_icon">
+	<sheet>og_turret_laser_2_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_laser_2" w="840" h="140" fw="140" fh="140">og_turrets/turret_laser_2.png</animSheet>
+<anim name="og_turret_laser_2">
+	<sheet>og_turret_laser_2</sheet>
+	<desc length="6" x="0" y="0" />
+	<time>0.9</time>
+</anim>
+<animSheet name="og_turret_laser_rusty_1_icon" w="81" h="38" fw="81" fh="38">og_turrets/turret_laser_rusty_1_icon.png</animSheet>
+<anim name="og_turret_laser_rusty_1_icon">
+	<sheet>og_turret_laser_rusty_1_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_laser_rusty_1" w="770" h="110" fw="110" fh="110">og_turrets/turret_laser_rusty_1.png</animSheet>
+<anim name="og_turret_laser_rusty_1">
+	<sheet>og_turret_laser_rusty_1</sheet>
+	<desc length="7" x="0" y="0" />
+	<time>0.7</time>
+</anim>
+<animSheet name="og_turret_laser_ancient_icon" w="118" h="62" fw="118" fh="62">og_turrets/turret_laser_ancient_icon.png</animSheet>
+<anim name="og_turret_laser_ancient_icon">
+	<sheet>og_turret_laser_ancient_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_laser_ancient" w="592" h="148" fw="148" fh="148">og_turrets/turret_laser_ancient.png</animSheet>
+<anim name="og_turret_laser_ancient">
+	<sheet>og_turret_laser_ancient</sheet>
+	<desc length="4" x="0" y="0" />
+	<time>0.4</time>
+</anim>
+
+<animSheet name="og_turret_ion_1_icon" w="60" h="28" fw="60" fh="28">og_turrets/turret_ion_1_icon.png</animSheet>
+<anim name="og_turret_ion_1_icon">
+	<sheet>og_turret_ion_1_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_ion_1" w="78" h="78" fw="78" fh="78">og_turrets/turret_ion_1.png</animSheet>
+<anim name="og_turret_ion_1">
+	<sheet>og_turret_ion_1</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_ion_2_icon" w="60" h="34" fw="60" fh="34">og_turrets/turret_ion_2_icon.png</animSheet>
+<anim name="og_turret_ion_2_icon">
+	<sheet>og_turret_ion_2_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_ion_2" w="74" h="74" fw="74" fh="74">og_turrets/turret_ion_2.png</animSheet>
+<anim name="og_turret_ion_2">
+	<sheet>og_turret_ion_2</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+
+<animSheet name="og_turret_missile_1_icon" w="46" h="38" fw="46" fh="38">og_turrets/turret_missile_1_icon.png</animSheet>
+<anim name="og_turret_missile_1_icon">
+	<sheet>og_turret_missile_1_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_missile_1" w="62" h="62" fw="62" fh="62">og_turrets/turret_missile_1.png</animSheet>
+<anim name="og_turret_missile_1">
+	<sheet>og_turret_missile_1</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_missile_2_icon" w="56" h="62" fw="56" fh="62">og_turrets/turret_missile_2_icon.png</animSheet>
+<anim name="og_turret_missile_2_icon">
+	<sheet>og_turret_missile_2_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_missile_2" w="62" h="62" fw="62" fh="62">og_turrets/turret_missile_2.png</animSheet>
+<anim name="og_turret_missile_2">
+	<sheet>og_turret_missile_2</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+
+<animSheet name="og_turret_flak_1_icon" w="53" h="52" fw="53" fh="52">og_turrets/turret_flak_1_icon.png</animSheet>
+<anim name="og_turret_flak_1_icon">
+	<sheet>og_turret_flak_1_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_flak_1" w="330" h="66" fw="66" fh="66">og_turrets/turret_flak_1.png</animSheet>
+<anim name="og_turret_flak_1">
+	<sheet>og_turret_flak_1</sheet>
+	<desc length="5" x="0" y="0" />
+	<time>0.75</time>
+</anim>
+
+<animSheet name="og_turret_focus_1_icon" w="82" h="34" fw="82" fh="34">og_turrets/turret_focus_1_icon.png</animSheet>
+<anim name="og_turret_focus_1_icon">
+	<sheet>og_turret_focus_1_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_focus_1" w="880" h="110" fw="110" fh="110">og_turrets/turret_focus_1.png</animSheet>
+<anim name="og_turret_focus_1">
+	<sheet>og_turret_focus_1</sheet>
+	<desc length="8" x="0" y="0" />
+	<time>0.4</time>
+</anim>
+
+<animSheet name="og_turret_laser_mini_1_icon" w="32" h="14" fw="32" fh="14">og_turrets/turret_laser_mini_1_icon.png</animSheet>
+<anim name="og_turret_laser_mini_1_icon">
+	<sheet>og_turret_laser_mini_1_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_laser_mini_1" w="176" h="44" fw="44" fh="44">og_turrets/turret_laser_mini_1.png</animSheet>
+<anim name="og_turret_laser_mini_1">
+	<sheet>og_turret_laser_mini_1</sheet>
+	<desc length="4" x="0" y="0" />
+	<time>0.4</time>
+</anim>
+<animSheet name="og_turret_laser_rusty_mini_1_icon" w="32" h="14" fw="32" fh="14">og_turrets/turret_laser_rusty_mini_1_icon.png</animSheet>
+<anim name="og_turret_laser_rusty_mini_1_icon">
+	<sheet>og_turret_laser_rusty_mini_1_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_laser_rusty_mini_1" w="176" h="44" fw="44" fh="44">og_turrets/turret_laser_rusty_mini_1.png</animSheet>
+<anim name="og_turret_laser_rusty_mini_1">
+	<sheet>og_turret_laser_rusty_mini_1</sheet>
+	<desc length="4" x="0" y="0" />
+	<time>0.4</time>
+</anim>
+<animSheet name="og_turret_laser_mini_2_icon" w="43" h="16" fw="43" fh="16">og_turrets/turret_laser_mini_2_icon.png</animSheet>
+<anim name="og_turret_laser_mini_2_icon">
+	<sheet>og_turret_laser_mini_2_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_laser_mini_2" w="270" h="54" fw="54" fh="54">og_turrets/turret_laser_mini_2.png</animSheet>
+<anim name="og_turret_laser_mini_2">
+	<sheet>og_turret_laser_mini_2</sheet>
+	<desc length="5" x="0" y="0" />
+	<time>0.5</time>
+</anim>
+
+<animSheet name="og_turret_ion_mini_1_icon" w="30" h="18" fw="30" fh="18">og_turrets/turret_ion_mini_1_icon.png</animSheet>
+<anim name="og_turret_ion_mini_1_icon">
+	<sheet>og_turret_ion_mini_1_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_ion_mini_1" w="42" h="42" fw="42" fh="42">og_turrets/turret_ion_mini_1.png</animSheet>
+<anim name="og_turret_ion_mini_1">
+	<sheet>og_turret_ion_mini_1</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+
+<animSheet name="og_turret_focus_mini_1_icon" w="41" h="22" fw="41" fh="22">og_turrets/turret_focus_mini_1_icon.png</animSheet>
+<anim name="og_turret_focus_mini_1_icon">
+	<sheet>og_turret_focus_mini_1_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_focus_mini_1" w="300" h="50" fw="50" fh="50">og_turrets/turret_focus_mini_1.png</animSheet>
+<anim name="og_turret_focus_mini_1">
+	<sheet>og_turret_focus_mini_1</sheet>
+	<desc length="6" x="0" y="0" />
+	<time>0.4</time>
+</anim>
+</FTL>

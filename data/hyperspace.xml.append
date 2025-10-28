@@ -1,0 +1,178 @@
+<FTL>
+<mod:findLike type="scripts" reverse="false">
+	<mod-append:script>data/og_scripts/turret_systems.lua</mod-append:script>
+	<mod-append:script>data/og_scripts/turret_menu_temp.lua</mod-append:script>
+</mod:findLike>
+<shieldWithoutSystem enabled="true"/>
+<mod:findLike type="customSystems" reverse="false">
+	<mod-append:customSystem id="og_turret"/>
+	<mod-append:customSystem id="og_turret_alt"/>
+	<mod-append:customSystem id="og_turret_mini"/>
+	<mod-append:customSystem id="og_turret_mini_alt"/>
+
+	<mod-append:exclusivityGroup>
+		<og_turret/>
+	</mod-append:exclusivityGroup>
+	<mod-append:exclusivityGroup>
+		<og_turret_alt/>
+	</mod-append:exclusivityGroup>
+	<mod-append:exclusivityGroup>
+		<og_turret_mini/>
+	</mod-append:exclusivityGroup>
+	<mod-append:exclusivityGroup>
+		<og_turret_mini_alt/>
+	</mod-append:exclusivityGroup>
+
+	<mod:findLike type="systemPositions" reverse="false">
+		<mod-append:og_turret position="7"/>
+		<mod-append:og_turret_alt position="7"/>
+		<mod-append:og_turret_mini position="7"/>
+		<mod-append:og_turret_mini_alt position="7"/>
+	</mod:findLike>
+
+	<mod-append:systemPositions subSystemOffset="1015"> 
+		<shields position="0"/>
+		<engines position="1"/>
+		<medbay position="2"/>
+		<clonebay position="3"/>
+		<oxygen position="4"/>
+		<teleporter position="5"/>
+		<cloaking position="6"/>
+		<artillery position="7"/>
+		<og_turret position="7"/>
+		<og_turret_alt position="7"/>
+		<og_turret_mini position="7"/>
+		<og_turret_mini_alt position="7"/>
+		<mind position="8"/>
+		<hacking position="9"/>
+		<temporal position="10"/>
+		<weapons position="2147483646"/>
+		<drones position="2147483647"/>
+
+		<pilot staticOffset="0"/>
+		<sensors staticOffset="36"/>
+		<doors staticOffset="72"/>
+		<battery staticOffset="123"/>
+	</mod-append:systemPositions>
+
+	<mod:findLike type="systemPositions" start="1" reverse="false">
+		<mod:removeTag />
+	</mod:findLike>
+</mod:findLike>
+<mod:findLike type="ships" limit="1" reverse="false">
+	<mod:findLike type="shipOrder">
+		<mod-append:ship>PLAYER_SHIP_OG_RAIDER</mod-append:ship>
+		<mod-append:ship>PLAYER_SHIP_OG_EXECUTOR</mod-append:ship>
+		<mod-append:empty/>
+		<mod-append:empty/>
+		
+		<mod-append:empty/>
+		<mod-append:empty/>
+		<mod-append:empty/>
+		<mod-append:empty/>
+
+		<mod-append:empty/>
+		<mod-append:empty/>
+	</mod:findLike>
+
+	<mod-append:ship name="PLAYER_SHIP_OG_RAIDER" b="true" c="true" >
+		<arrow variant="a" direction="right" tooltip="ship_unlock_og_two_wins" image="arrow_5_right.png" unlockedImage="arrow_5_right_on.png">PLAYER_SHIP_OG_EXECUTOR</arrow>
+		<unlock variant="b" silent="false">
+            <type>1</type>
+            <shipReq>PLAYER_SHIP_AEA_JUSTICE</shipReq>
+            <value>5</value>
+        </unlock>
+		<unlock variant="c" silent="false">
+            <type>1</type>
+            <shipReq>PLAYER_SHIP_AEA_JUSTICE_2</shipReq>
+            <value>5</value>
+        </unlock>
+		<unlock variant="c" silent="false">
+            <type>2</type>
+            <shipReq>PLAYER_SHIP_AEA_JUSTICE</shipReq>
+        </unlock>
+	</mod-append:ship>
+	<mod-append:customShip name="PLAYER_SHIP_OG_RAIDER">
+		<hiddenAug>SHIP_LANIUS</hiddenAug>
+		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
+		<crewLimit>8</crewLimit>
+		<systemLimit>8</systemLimit>
+	</mod-append:customShip>
+	<mod-append:customShip name="PLAYER_SHIP_OG_RAIDER_2">
+		<hiddenAug>SHIP_LANIUS</hiddenAug>
+		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
+		<crewLimit>8</crewLimit>
+		<systemLimit>8</systemLimit>
+	</mod-append:customShip>
+	<mod-append:customShip name="PLAYER_SHIP_OG_RAIDER_3">
+		<hiddenAug>SHIP_LANIUS</hiddenAug>
+		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
+		<crewLimit>8</crewLimit>
+		<systemLimit>9</systemLimit>
+	</mod-append:customShip>
+
+	<mod-append:ship name="PLAYER_SHIP_OG_EXECUTOR" b="false" c="false" >
+		<unlock variant="a">
+            <type>5</type>
+            <victories>
+				<victory>PLAYER_SHIP_OG_RAIDER_2</victory>
+				<victory>PLAYER_SHIP_OG_RAIDER_3</victory>
+			</victories>
+        </unlock>
+		<unlock variant="a">
+            <type>5</type>
+            <victories>
+				<victory>PLAYER_SHIP_OG_RAIDER</victory>
+				<victory>PLAYER_SHIP_OG_RAIDER_3</victory>
+			</victories>
+        </unlock>
+		<unlock variant="a">
+            <type>5</type>
+            <victories>
+				<victory>PLAYER_SHIP_OG_RAIDER</victory>
+				<victory>PLAYER_SHIP_OG_RAIDER_2</victory>
+			</victories>
+        </unlock>
+	</mod-append:ship>
+	<mod-append:customShip name="PLAYER_SHIP_OG_EXECUTOR">
+		<hiddenAug>SHIP_LANIUS</hiddenAug>
+		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
+		<crewLimit>11</crewLimit>
+		<systemLimit>10</systemLimit>
+	</mod-append:customShip>
+
+</mod:findLike>
+
+<mod:findLike type="augments" limit="1" reverse="false">
+	<mod-append:aug name="EX_OG_TURRET_ROTATION">
+		<function name="UPG_OG_TURRET_ROTATION" value="0.5" useForReqs="true" warning="false"/>
+	</mod-append:aug>
+	<mod-append:aug name="EX_OG_TURRET_SPEED">
+		<function name="UPG_OG_TURRET_SPEED" value="1" useForReqs="true" warning="true"/>
+	</mod-append:aug>
+	<mod-append:aug name="EX_OG_TURRET_MANUAL">
+		<function name="UPG_OG_TURRET_MANUAL" value="180" useForReqs="true" warning="false"/>
+	</mod-append:aug>
+</mod:findLike>
+<events>
+	<variable name="og_turret_blueprint" op="set" val="-1"/>
+	<variable name="og_turret_state" op="set" val="0"/>
+	<variable name="og_turret_charges" op="set" val="0"/>
+	<variable name="og_turret_time" op="set" val="0"/>
+
+	<variable name="og_turret_alt_blueprint" op="set" val="-1"/>
+	<variable name="og_turret_alt_state" op="set" val="0"/>
+	<variable name="og_turret_alt_charges" op="set" val="0"/>
+	<variable name="og_turret_alt_time" op="set" val="0"/>
+
+	<variable name="og_turret_mini_blueprint" op="set" val="-1"/>
+	<variable name="og_turret_mini_state" op="set" val="0"/>
+	<variable name="og_turret_mini_charges" op="set" val="0"/>
+	<variable name="og_turret_mini_time" op="set" val="0"/>
+
+	<variable name="og_turret_mini_alt_blueprint" op="set" val="-1"/>
+	<variable name="og_turret_mini_alt_state" op="set" val="0"/>
+	<variable name="og_turret_mini_alt_charges" op="set" val="0"/>
+	<variable name="og_turret_mini_alt_time" op="set" val="0"/>
+</events>
+</FTL>

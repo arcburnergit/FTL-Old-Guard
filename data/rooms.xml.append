@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<FTL>
+<roomLayout name="og_turret">
+	<computerGlow name="computer1_glow" x="2" y="35" dir="RIGHT" />
+</roomLayout>
+<roomLayout name="og_turret_2">
+	<computerGlow name="computer1_glow" x="37" y="3" dir="RIGHT" />
+</roomLayout>
+<roomLayout name="og_turret_3">
+	<computerGlow name="computer1_glow" x="2" y="3" dir="RIGHT"/>
+</roomLayout>
+<roomLayout name="og_turret_4">
+	<computerGlow name="computer1_glow" x="3" y="-2" dir="UP"/>
+</roomLayout>
+</FTL>

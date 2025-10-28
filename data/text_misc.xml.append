@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<FTL>
+<text name="ship_unlock_og_two_wins">Win with any two layouts of the \1 to unlock the \2</text>  
+
+<text name="ship_PLAYER_SHIP_OG_RAIDER_unlock">TO BE ADDED.</text>
+<text name="ship_PLAYER_SHIP_OG_RAIDER_2_unlock">Get to Sector 5 with The Type A to unlock this ship.</text>
+<text name="ship_PLAYER_SHIP_OG_RAIDER_3_unlock">Get to Sector 5 with The Type B or beat the game with The Type A to unlock this ship.</text>
+    
+<text name="ship_PLAYER_SHIP_OG_EXECUTOR_unlock">Win with any 2 Raider-Class ships.</text>
+<text name="ship_PLAYER_SHIP_OG_EXECUTOR_2_unlock">Get to Sector 5 with The Type A to unlock this ship.</text>
+<text name="ship_PLAYER_SHIP_OG_EXECUTOR_3_unlock">Get to Sector 5 with The Type B or beat the game with The Type A to unlock this ship.</text>
+
+<text name="og_turret">Turret Control</text>
+<text name="og_turret_installed">Turret Control System installed</text>
+<text name="og_turret_alt">Turret Control</text>
+<text name="og_turret_alt_installed">Turret Control System installed</text>
+<text name="og_turret_mini">Turret Control</text>
+<text name="og_turret_mini_installed">Turret Control System installed</text>
+<text name="og_turret_mini_alt">Turret Control</text>
+<text name="og_turret_mini_alt_installed">Turret Control System installed</text>
+</FTL>

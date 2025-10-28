@@ -1,0 +1,1340 @@
+<!--Turret Control System-->
+<FTL>
+<augBlueprint name="UPG_OG_TURRET_ROTATION">
+	<title>Overclocked Motors</title>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<cost>0</cost>
+	<rarity>0</rarity>
+	<stackable>true</stackable>
+	<value>0.5</value>
+</augBlueprint>
+<augBlueprint name="EX_OG_TURRET_ROTATION">
+	<title>Overclocked Motors [X]</title>
+	<desc>Turrets Rotate 50% faster.
+    
+	[X] - As an external system upgrade, this augment will provide its normal effect but take up an augment slot. Can be converted for free to the internal version under the internal upgrade menu if you have the Modified Clone Bay system.</desc>
+	<cost>80</cost>
+	<rarity>0</rarity>
+	<stackable>true</stackable>
+	<value>1</value>
+</augBlueprint>
+
+<augBlueprint name="UPG_OG_TURRET_SPEED">
+	<title>Accelerators</title>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<cost>0</cost>
+	<rarity>0</rarity>
+	<stackable>false</stackable>
+	<value>1</value>
+</augBlueprint>
+<augBlueprint name="EX_OG_TURRET_SPEED">
+	<title>Accelerators [X]</title>
+	<desc>Turret projectiles move 50% faster.
+    
+	[X] - As an external system upgrade, this augment will provide its normal effect but take up an augment slot. Can be converted for free to the internal version under the internal upgrade menu if you have the Modified Clone Bay system.</desc>
+	<cost>80</cost>
+	<rarity>0</rarity>
+	<stackable>false</stackable>
+	<value>1</value>
+</augBlueprint>
+
+<augBlueprint name="UPG_OG_TURRET_MANUAL">
+	<title>Manual Dexterity</title>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<cost>0</cost>
+	<rarity>0</rarity>
+	<stackable>true</stackable>
+	<value>180</value>
+</augBlueprint>
+<augBlueprint name="EX_OG_TURRET_MANUAL">
+	<title>Manual Dexterity [X]</title>
+	<desc>Turrets gain 180 rotation speed when manually targetted.
+    
+	[X] - As an external system upgrade, this augment will provide its normal effect but take up an augment slot. Can be converted for free to the internal version under the internal upgrade menu if you have the Modified Clone Bay system.</desc>
+	<cost>80</cost>
+	<rarity>0</rarity>
+	<stackable>true</stackable>
+	<value>1</value>
+</augBlueprint>
+
+<systemBlueprint name="og_turret">
+	<type>og_turret</type>
+	<title>Turret Control</title>
+	<desc>Powers you ship's turret. Upgrading increase the power of your turret.</desc>
+	<startPower>2</startPower>
+	<maxPower>5</maxPower>
+	<rarity>0</rarity>
+	<upgradeCost>
+		<level>35</level>
+		<level>55</level>
+		<level>70</level>
+		<level>100</level>
+		<level>999</level>
+		<level>120</level>
+		<level>140</level>
+	</upgradeCost>
+	<cost>45</cost>
+</systemBlueprint>
+<systemBlueprint name="og_turret_alt">
+	<type>og_turret_alt</type>
+	<title>Turret Control</title>
+	<desc>Powers you ship's turret. Upgrading increase the power of your turret.</desc>
+	<startPower>2</startPower>
+	<maxPower>5</maxPower>
+	<rarity>0</rarity>
+	<upgradeCost>
+		<level>35</level>
+		<level>55</level>
+		<level>70</level>
+		<level>100</level>
+		<level>999</level>
+		<level>120</level>
+		<level>140</level>
+	</upgradeCost>
+	<cost>45</cost>
+</systemBlueprint>
+<systemBlueprint name="og_turret_mini">
+	<type>og_turret_mini</type>
+	<title>Micro Turret Control</title>
+	<desc>Powers you ship's turret. Upgrading increase the power of your turret.</desc>
+	<startPower>1</startPower>
+	<maxPower>3</maxPower>
+	<rarity>0</rarity>
+	<upgradeCost>
+		<level>55</level>
+		<level>75</level>
+		<level>90</level>
+		<level>120</level>
+	</upgradeCost>
+	<cost>45</cost>
+</systemBlueprint>
+<systemBlueprint name="og_turret_mini_alt">
+	<type>og_turret_mini_alt</type>
+	<title>Micro Turret Control</title>
+	<desc>Powers you ship's turret. Upgrading increase the power of your turret.</desc>
+	<startPower>1</startPower>
+	<maxPower>3</maxPower>
+	<rarity>0</rarity>
+	<upgradeCost>
+		<level>55</level>
+		<level>75</level>
+		<level>90</level>
+		<level>120</level>
+	</upgradeCost>
+	<cost>45</cost>
+</systemBlueprint>
+</FTL>
+
+<!--Turrets-->
+<FTL>
+<weaponBlueprint name="OG_TURRET_UNKNOWN">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>??? Turret</title>
+	<short>???</short>
+	<desc>You'll need more crafting components to decipher this blueprint.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>140</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>invisible</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_LASER_1">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Burst Laser Turret</title>
+	<short>Burst L.</short>
+	<desc>Standard Burst Laser Turret. A cheap and efficient middleground between offense and defense.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>140</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_laser_1_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_LASER_2">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Heavy Laser Turret</title>
+	<short>Heavy L.</short>
+	<desc>Heavy Laser Turrets make for poor defensive turrets with their slow rotation speed and high damage per shot, but are excellent against enemy ships.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>140</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_laser_2_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_LASER_RUSTY_1">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Old Burst Laser Turret</title>
+	<short>O. Burst L.</short>
+	<desc>Standard Burst Laser Turret. A cheap and efficient middleground between offense and defense. Very old and has worse aim.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>140</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_laser_rusty_1_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_LASER_ANCIENT">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Harbinger Turret</title>
+	<short>Harbinger</short>
+	<desc>An incredibly powerful Laser Turret manufactured by the Obelisks that can cause much more havoc than your average Turret.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>200</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_laser_ancient_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_ION_1">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Ion Barrage Turret</title>
+	<short>Ion B.</short>
+	<desc>Ion Turrets are excellent drone suppression aswell as being able to disable systems without causing hull damage. This one charges and fires very quuckly.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>140</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_ion_1_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_ION_2">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Fire Ion Turret</title>
+	<short>Fire I.</short>
+	<desc>Ion Turrets are excellent drone suppression aswell as being able to disable systems without causing hull damage. This one starts fires in the system it hits.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>140</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_ion_2_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_MISSILE_1">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Swarm Missile Turret</title>
+	<short>Swarm M.</short>
+	<desc>Fires a swarm of small fast missiles capable of homing in on their target, excellent defense but does not do well against enemy systems.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>140</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_missile_1_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_MISSILE_2">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Quad Missile Turret</title>
+	<short>Quad M.</short>
+	<desc>Slow to charge but capable of delivering high damage to the enemy ship, decent against enemy drones and solid projectiles.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>140</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_missile_2_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_FLAK_1">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Flak Turret</title>
+	<short>Flak</short>
+	<desc>A powerful Flak turret, can build up an incredible volley to be fired in both defense and offense.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>140</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_flak_1_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_FOCUS_1">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Pinpoint Turret</title>
+	<short>Pinpoint</short>
+	<desc>Pinpoint Turrets prove extremely effective against enemy lasers due to their almost instantaneous time to kill.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>140</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_focus_1_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_LASER_MINI_1">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret_mini</tip>
+	<title>Micro Laser Turret</title>
+	<short>Micro L.</short>
+	<desc>This Laser Turret is unlikely to be able to deal with an enemy ship on it's own, but its high rotation speed makes it a defensive unit.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>80</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_laser_mini_1_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_LASER_RUSTY_MINI_1">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret_mini</tip>
+	<title>Old Micro Laser Turret</title>
+	<short>O. Micro L.</short>
+	<desc>This Laser Turret is unlikely to be able to deal with an enemy ship on it's own, but its high rotation speed makes it a defensive unit.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>80</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_laser_rusty_mini_1_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_LASER_MINI_2">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret_mini</tip>
+	<title>Light Laser Turret</title>
+	<short>Light L.</short>
+	<desc>Incapable of doing system damage, this Light Laser Turret is much better suited for shield suppression and defense.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>80</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_laser_mini_2_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_ION_MINI_1">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret_mini</tip>
+	<title>Micro Ion Turret</title>
+	<short>Micro I.</short>
+	<desc>This Ion Turret is effective drone defense while still being able to support the ships offense.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>80</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_ion_mini_1_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_FOCUS_MINI_1">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret_mini</tip>
+	<title>Micro Pinpoint Turret</title>
+	<short>Micro P.</short>
+	<desc>This small Pinpoint Turret requires support to damage the enemy ship, but remains capable against enemy lasers.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>80</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_focus_mini_1_icon</iconReplace>
+</weaponBlueprint>
+</FTL>
+
+<!--TURRET PROJECTILES-->
+<FTL>
+<weaponBlueprint name="OG_LASER_PROJECTILE_BASE">
+	<type>LASER</type>
+	<title>Laser</title>
+	<short>Laser</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>1</damage>
+	<shots>1</shots>
+	<sp>0</sp>
+	<fireChance>1</fireChance>
+	<breachChance>0</breachChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>laser_burst</image>
+	<launchSounds>
+		<sound>lightLaser1</sound>
+		<sound>lightLaser2</sound>
+		<sound>lightLaser3</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>hitHull2</sound>
+		<sound>hitHull3</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>laser_burst_1</weaponArt>
+	<iconImage>laser</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_LASER_PROJECTILE_HEAVY">
+	<type>LASER</type>
+	<title>Laser</title>
+	<short>Laser</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>2</damage>
+	<shots>1</shots>
+	<sp>0</sp>
+	<fireChance>1</fireChance>
+	<breachChance>3</breachChance>
+	<stunChance>3</stunChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>laser_heavy</image>
+	<launchSounds>
+		<sound>heavyLaser1</sound>
+		<sound>heavyLaser2</sound>
+		<sound>heavyLaser3</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>hitHull1</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>laser_burst_1</weaponArt>
+	<iconImage>laser</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_LASER_PROJECTILE_LIGHT">
+	<type>LASER</type>
+	<title>Laser</title>
+	<short>Laser</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>1</damage>
+	<sysDamage>-1</sysDamage>
+	<persDamage>-1</persDamage>
+	<shots>1</shots>
+	<sp>0</sp>
+	<fireChance>0</fireChance>
+	<breachChance>7</breachChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>laser_light</image>
+	<launchSounds>
+		<sound>laser_light</sound>
+		<sound>laser_light</sound>
+		<sound>laser_light</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>hitHull2</sound>
+		<sound>hitHull3</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>laser_burst_1</weaponArt>
+	<iconImage>laser</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_LASER_PROJECTILE_ANCIENT">
+	<type>LASER</type>
+	<title>Laser</title>
+	<short>Laser</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>1</damage>
+	<shots>1</shots>
+	<sp>0</sp>
+	<fireChance>0</fireChance>
+	<breachChance>0</breachChance>
+	<cooldown>10</cooldown>
+	<erosionChance>10</erosionChance>
+	<erosion>
+		<speed>2.125</speed>
+		<maxSpeed>2.125</maxSpeed>
+		<time>3</time>
+		<maxTime>12</maxTime>
+		<systemRepairMultiplier>1</systemRepairMultiplier>
+		<erodeShields>false</erodeShields>
+		<roomAnim renderLayer="2">
+			<anim animType="default" animBorder="0">invisible</anim>
+            <tileAnim>erosion_tile</tileAnim>
+			<wallAnim>erosion_wall</wallAnim>
+		</roomAnim>
+	</erosion>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>laser_ancient</image>
+	<launchSounds>
+		<sound>ancient_laser</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>hitHull1</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>ancient_laser</weaponArt>
+	<iconImage>heavyL</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_ION_PROJECTILE_BASE">
+	<type>LASER</type>
+	<title>Ion</title>
+	<short>Ion</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>0</damage>
+	<spin>720</spin>
+	<ion>2</ion>
+	<speed>30</speed>
+	<shots>1</shots>
+	<sp>0</sp>
+	<fireChance>0</fireChance>
+	<breachChance>0</breachChance>
+	<stunChance>1</stunChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>ion_barrage</image>
+	<explosion>explosion_small_ion</explosion>
+	<launchSounds>
+		<sound>ionShoot1</sound>
+		<sound>ionShoot2</sound>
+		<sound>ionShoot3</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>ionHit1</sound>
+		<sound>ionHit2</sound>
+		<sound>ionHit3</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>ionShields1</sound>
+		<sound>ionShields2</sound>
+		<sound>ionShields3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>ion_1</weaponArt>
+	<iconImage>ion</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_ION_PROJECTILE_FIRE">
+	<type>LASER</type>
+	<title>Ion</title>
+	<short>Ion</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>0</damage>
+	<spin>720</spin>
+	<ion>1</ion>
+	<speed>40</speed>
+	<shots>1</shots>
+	<sp>0</sp>
+	<fireChance>10</fireChance>
+	<breachChance>0</breachChance>
+	<stunChance>1</stunChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>ion_fire</image>
+	<explosion>explosion_small_ion_fire</explosion>
+	<launchSounds>
+		<sound>ionShoot1</sound>
+		<sound>ionShoot2</sound>
+		<sound>ionShoot3</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>ionHit1</sound>
+		<sound>ionHit2</sound>
+		<sound>ionHit3</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>ionShields1</sound>
+		<sound>ionShields2</sound>
+		<sound>ionShields3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>ion_1</weaponArt>
+	<iconImage>ion</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_ION_PROJECTILE_WEAK">
+	<type>LASER</type>
+	<title>Ion</title>
+	<short>Ion</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>0</damage>
+	<spin>720</spin>
+	<ion>1</ion>
+	<speed>30</speed>
+	<shots>1</shots>
+	<sp>0</sp>
+	<fireChance>0</fireChance>
+	<breachChance>0</breachChance>
+	<stunChance>1</stunChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>ion_1_shot</image>
+	<explosion>explosion_small_ion</explosion>
+	<launchSounds>
+		<sound>ionShoot1</sound>
+		<sound>ionShoot2</sound>
+		<sound>ionShoot3</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>ionHit1</sound>
+		<sound>ionHit2</sound>
+		<sound>ionHit3</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>ionShields1</sound>
+		<sound>ionShields2</sound>
+		<sound>ionShields3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>ion_1</weaponArt>
+	<iconImage>ion</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_MISSILE_PROJECTILE_SWARM">
+	<type>MISSILE</type>
+	<title>Laser</title>
+	<short>Laser</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>1</damage>
+	<sysDamage>-1</sysDamage>
+	<missiles>0</missiles>
+	<accuracyMod>10</accuracyMod>
+	<speed>70</speed>
+	<shots>1</shots>
+	<sp>10</sp>
+	<fireChance>3</fireChance>
+	<breachChance>0</breachChance>
+	<stunChance>2</stunChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>missile_1</image>
+	<launchSounds>
+		<sound>smallMissile1</sound>
+		<sound>smallMissile2</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>smallExplosion</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>missiles_1</weaponArt>
+	<iconImage>missile</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_MISSILE_PROJECTILE_HEAVY">
+	<type>LASER</type>
+	<title>Laser</title>
+	<short>Laser</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>2</damage>
+	<missiles>0</missiles>
+	<accuracyMod>10</accuracyMod>
+	<speed>50</speed>
+	<shots>1</shots>
+	<sp>10</sp>
+	<fireChance>2</fireChance>
+	<breachChance>2</breachChance>
+	<stunChance>1</stunChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>missile_heavy_2</image>
+	<launchSounds>
+		<sound>smallMissile1</sound>
+		<sound>smallMissile2</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>explosion_heavy</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>missiles_1</weaponArt>
+	<iconImage>missile</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_FLAK_PROJECTILE">
+	<type>LASER</type>
+	<drone_targetable>1</drone_targetable>
+	<title>Flak</title>
+	<short>Flak</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>1</damage>
+	<spin>720</spin>
+	<shots>1</shots>
+	<sp>0</sp>
+	<fireChance>0</fireChance>
+	<breachChance>1</breachChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<speed>26</speed>
+	<image>debris_large</image>
+	<launchSounds>
+		<sound>flak</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>flakImpact1</sound>
+		<sound>flakImpact2</sound>
+		<sound>flakImpact3</sound>
+		<sound>flakImpact4</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>laser_burst_1</weaponArt>
+	<iconImage>laser</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_FOCUS_PROJECTILE">
+	<type>BEAM</type>
+	<title>Focus</title>
+	<short>Focus</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>2</damage>
+	<sp>0</sp>
+	<fireChance>0</fireChance>
+	<breachChance>2</breachChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<speed>1</speed>
+	<image>beam_contact</image>
+	<length>1</length>
+	<launchSounds>
+		<sound>focus_weak</sound>
+	</launchSounds>
+	<weaponArt>focus_1</weaponArt>
+	<iconImage>beam</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_FOCUS_PROJECTILE">
+	<type>BEAM</type>
+	<title>Focus</title>
+	<short>Focus</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>2</damage>
+	<sp>0</sp>
+	<fireChance>0</fireChance>
+	<breachChance>2</breachChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<speed>1</speed>
+	<image>beam_contact</image>
+	<length>1</length>
+	<launchSounds>
+		<sound>focus_weak</sound>
+	</launchSounds>
+	<weaponArt>focus_1</weaponArt>
+	<iconImage>beam</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_FOCUS_PROJECTILE_FAKE">
+	<type>BEAM</type>
+	<title>Focus</title>
+	<short>Focus</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>2</damage>
+	<sp>20</sp>
+	<fireChance>0</fireChance>
+	<breachChance>0</breachChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<speed>1</speed>
+	<image>beam_contact</image>
+	<length>1</length>
+	<launchSounds>
+		<sound>focus_weak</sound>
+	</launchSounds>
+	<weaponArt>focus_1</weaponArt>
+	<iconImage>beam</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_FOCUS_PROJECTILE_WEAK">
+	<type>BEAM</type>
+	<title>Focus</title>
+	<short>Focus</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>1</damage>
+	<sp>0</sp>
+	<fireChance>0</fireChance>
+	<breachChance>1</breachChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<speed>1</speed>
+	<image>beam_contact</image>
+	<length>1</length>
+	<launchSounds>
+		<sound>focus_weak</sound>
+	</launchSounds>
+	<weaponArt>focus_1</weaponArt>
+	<iconImage>beam</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_FOCUS_PROJECTILE_WEAK_FAKE">
+	<type>BEAM</type>
+	<title>Focus</title>
+	<short>Focus</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>1</damage>
+	<sp>20</sp>
+	<fireChance>0</fireChance>
+	<breachChance>0</breachChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<speed>1</speed>
+	<image>beam_contact</image>
+	<length>1</length>
+	<launchSounds>
+		<sound>focus_weak</sound>
+	</launchSounds>
+	<weaponArt>focus_1</weaponArt>
+	<iconImage>beam</iconImage>
+</weaponBlueprint>
+</FTL>
+
+<!--SHIPS-->
+<FTL>
+<shipBlueprint name="PLAYER_SHIP_OG_RAIDER" layout="og_raider_a" img="og_raider_a">
+	<class>Raider-Class</class>
+	<name>The Wasp</name>
+	<desc>Raider-Class vessels are defined by their centrally mounted Turrets, however the turret on this ship has seen some better days. With an improved turret in place, this ship will pose a serious threat to the rebel fleet.</desc>
+	<unlock id="ship_PLAYER_SHIP_OG_RAIDER_unlock"/>
+	<systemList>
+		<og_turret power="2" room="1" start="true" img="room_og_turret" turret="OG_TURRET_LASER_RUSTY_1">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</og_turret>
+		<battery power="1" room="21" start="false" img="room_battery" />
+		<cloaking power="1" room="16" start="false" img="room_cloaking" />
+		<clonebay power="1" room="8" start="true">
+			<slot>
+				<number>3</number>
+			</slot>
+		</clonebay>
+		<doors power="1" room="19" start="false" img="room_doors_3">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</doors>
+		<drones max="8" power="2" room="4" start="false" img="room_drones" />
+		<engines power="2" room="2" start="true" img="room_engines_7">
+			<slot>
+				<direction>right</direction>
+				<number>3</number>
+			</slot>
+		</engines>
+		<hacking power="1" room="17" start="false" img="room_hacking_8" />
+		<medbay power="1" room="8" start="false" img="room_medbay_3">
+			<slot>
+				<number>3</number>
+			</slot>
+		</medbay>
+		<mind power="1" room="14" start="false" img="room_mind_3" />
+		<oxygen power="1" room="12" start="true" img="room_oxygen" />
+		<pilot power="1" room="0" start="true" img="room_pilot_6">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</pilot>
+		<sensors power="1" room="20" start="true" img="room_sensors_3">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</sensors>
+		<shields max="8" power="2" room="7" start="true" img="room_shields_7">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</shields>
+		<teleporter power="1" room="11" start="false" />
+		<weapons max="8" power="2" room="15" start="true" img="room_weapons_10">
+			<slot>
+				<direction>up</direction>
+				<number>0</number>
+			</slot>
+		</weapons>
+	</systemList>
+	<weaponSlots>3</weaponSlots>
+	<droneSlots>3</droneSlots>
+	<weaponList missiles="5" count="3">
+		<weapon name="FOCUS_1" />
+		<weapon name="LASER_BURST_2" />
+	</weaponList>
+	<droneList drones="5" count="3" />
+	<health amount="30" />
+	<maxPower amount="8" />
+	<crewCount amount="1" class="human_engineer" />
+	<crewCount amount="1" class="human_engineer" />
+	<crewCount amount="1" class="phantom" />
+	<shieldImage>mup_small_long1</shieldImage>
+	<mv-mapImage>map_icon_og_raider</mv-mapImage>
+</shipBlueprint>
+
+<shipBlueprint name="PLAYER_SHIP_OG_RAIDER_2" layout="og_raider_b" img="og_raider_b">
+	<class>Raider-Class</class>
+	<name>The Hornet</name>
+	<desc>This Raider-Class vessel packs a powerful laser cannon alongside a fast drone, allowing it to tear into enemy ships, however it's defensive capabilities are rather limited compared to other ships of it's class.</desc>
+	<unlock id="ship_PLAYER_SHIP_OG_RAIDER_2_unlock"/>
+	<systemList>
+		<og_turret power="2" room="4" start="true" img="room_og_turret_2" turret="OG_TURRET_LASER_2">
+			<slot>
+				<direction>right</direction>
+				<number>2</number>
+			</slot>
+		</og_turret>
+		<battery power="1" room="12" start="false" img="room_battery_13" />
+		<cloaking power="1" room="15" start="false" img="room_cloaking_2" />
+		<clonebay power="1" room="16" start="false">
+			<slot>
+				<number>1</number>
+			</slot>
+		</clonebay>
+		<doors power="1" room="9" start="true" img="room_doors_7">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</doors>
+		<drones max="8" power="3" room="14" start="true" img="room_drones_13" />
+		<engines power="1" room="2" start="true" img="room_engines_2">
+			<slot>
+				<direction>down</direction>
+				<number>2</number>
+			</slot>
+		</engines>
+		<hacking power="1" room="7" start="false" img="room_hacking_4" />
+		<medbay power="1" room="16" start="true" img="room_medbay">
+			<slot>
+				<number>1</number>
+			</slot>
+		</medbay>
+		<mind power="1" room="17" start="false" img="room_mind_3" />
+		<oxygen power="1" room="20" start="true" img="room_oxygen_13" />
+		<pilot power="1" room="0" start="true" img="room_pilot">
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</pilot>
+		<sensors power="1" room="1" start="true" img="room_sensors_6">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</sensors>
+		<shields max="8" power="2" room="13" start="true" img="room_shields_13">
+			<slot>
+				<direction>down</direction>
+				<number>3</number>
+			</slot>
+		</shields>
+		<teleporter power="1" room="19" start="false" />
+		<weapons max="8" power="2" room="3" start="false" img="room_weapons">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</weapons>
+	</systemList>
+	<weaponSlots>2</weaponSlots>
+	<droneSlots>4</droneSlots>
+	<weaponList missiles="2" count="2" />
+	<droneList drones="12" count="4">
+		<drone name="COMBAT_2_LASER" />
+	</droneList>
+	<health amount="30" />
+	<maxPower amount="9" />
+	<crewCount amount="1" class="human" />
+	<crewCount amount="1" class="rock" />
+	<crewCount amount="1" class="mantis" />
+	<aug name="SYSTEM_CASING_NEW" />
+	<shieldImage>mup_small_long1</shieldImage>
+	<mv-mapImage>map_icon_og_raider</mv-mapImage>
+</shipBlueprint>
+<shipBlueprint name="PLAYER_SHIP_OG_RAIDER_3" layout="og_raider_c" img="og_raider_c">
+	<class>Raider-Class</class>
+	<name>The Snitch</name>
+	<desc>With a powerful boarding crew and a turret deadly to both systems and crew alike, this vessel specializes in leaving the enemy's hull intact.</desc>
+	<unlock id="ship_PLAYER_SHIP_OG_RAIDER_3_unlock"/>
+	<systemList>
+		<og_turret power="2" room="6" start="true" img="room_og_turret_4" turret="OG_TURRET_ION_2" >
+			<slot>
+				<direction>up</direction>
+				<number>0</number>
+			</slot>
+		</og_turret>
+		<battery power="1" room="10" start="false" img="room_battery" />
+		<cloaking power="1" room="17" start="false" img="room_cloaking_3" />
+		<clonebay power="1" room="2" start="true">
+			<slot>
+				<number>1</number>
+			</slot>
+		</clonebay>
+		<doors power="1" room="13" start="false" img="room_doors_3">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</doors>
+		<drones power="2" max="8" room="14" start="false" img="room_drones_3" />
+		<engines power="2" room="1" start="true" img="room_engines_6">
+			<slot>
+				<direction>down</direction>
+				<number>3</number>
+			</slot>
+		</engines>
+		<hacking power="1" room="8" start="false" img="room_hacking_4" />
+		<medbay power="1" room="2" start="false" img="room_medbay">
+			<slot>
+				<number>1</number>
+			</slot>
+		</medbay>
+		<mind power="1" room="7" start="false" img="room_mind_3" />
+		<oxygen power="1" room="19" start="true" img="room_oxygen_17" />
+		<pilot power="1" room="0" start="true" img="room_pilot_3">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</pilot>
+		<sensors power="2" room="3" start="true" img="room_sensors_6">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</sensors>
+		<shields power="2" max="8" room="15" start="true" img="room_shields_5">
+			<slot>
+				<direction>up</direction>
+				<number>0</number>
+			</slot>
+		</shields>
+		<teleporter power="1" room="5" start="true" />
+		<weapons power="2" max="8" room="9" start="false" img="room_weapons_8">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</weapons>
+	</systemList>
+	<weaponSlots>2</weaponSlots>
+	<droneSlots>3</droneSlots>
+	<weaponList missiles="4" count="2" />
+	<droneList drones="7" count="3" />
+	<health amount="30" />
+	<maxPower amount="8" />
+	<crewCount amount="1" class="human" />
+	<crewCount amount="1" class="human_soldier" />
+	<crewCount amount="1" class="human_soldier" />
+	<aug name="BACKUP_DNA" />
+	<shieldImage>mup_small_long1</shieldImage>
+	<mv-mapImage>map_icon_og_raider</mv-mapImage>
+</shipBlueprint>
+
+<shipBlueprint name="PLAYER_SHIP_OG_EXECUTOR" layout="og_executor_a" img="og_executor_a">
+	<class>Executor-Class</class>
+	<name>The Bastion</name>
+	<desc>The Executor-Class vessels are armed with four seperate turrets, whether the ship has a powerful defensive specialization, or an impressive volley will be determined by the turrets installed.</desc>
+	<unlock id="ship_PLAYER_SHIP_OG_EXECUTOR_unlock"/>
+	<systemList>
+		<og_turret power="2" room="8" start="true" img="room_og_turret_3" turret="OG_TURRET_LASER_RUSTY_1">
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</og_turret>
+		<og_turret_alt power="2" room="1" start="true" img="room_og_turret_3" turret="OG_TURRET_ION_1" >
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</og_turret_alt>
+		<og_turret_mini power="1" room="5" start="true" img="room_og_turret_2_noman" turret="OG_TURRET_LASER_RUSTY_MINI_1" />
+		<og_turret_mini_alt power="1" room="28" start="true" img="room_og_turret_2_noman" turret="OG_TURRET_LASER_RUSTY_MINI_1" />
+		<battery power="1" room="24" start="false" img="room_battery_14" />
+		<cloaking power="1" room="11" start="false" img="room_cloaking_3" />
+		<clonebay power="1" room="16" start="false">
+			<slot>
+				<number>1</number>
+			</slot>
+		</clonebay>
+		<doors power="1" room="21" start="true" img="room_doors_8">
+			<slot>
+				<direction>left</direction>
+				<number>0</number>
+			</slot>
+		</doors>
+		<drones max="8" power="2" room="12" start="false" img="room_drones_15" />
+		<engines power="3" room="2" start="true" img="room_engines">
+			<slot>
+				<direction>down</direction>
+				<number>2</number>
+			</slot>
+		</engines>
+		<hacking power="1" room="26" start="false" img="room_hacking_7" />
+		<medbay power="1" room="16" start="true" img="room_medbay">
+			<slot>
+				<number>1</number>
+			</slot>
+		</medbay>
+		<mind power="1" room="25" start="false" img="room_mind_4" />
+		<oxygen power="1" room="30" start="true" img="room_oxygen_17" />
+		<pilot power="1" room="0" start="true" img="room_pilot">
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</pilot>
+		<sensors power="1" room="22" start="true" img="room_sensors_4">
+			<slot>
+				<direction>left</direction>
+				<number>1</number>
+			</slot>
+		</sensors>
+		<shields power="2" max="6" room="15" start="false" img="room_shields_5">
+			<slot>
+				<direction>up</direction>
+				<number>0</number>
+			</slot>
+		</shields>
+		<teleporter power="1" room="9" start="false" />
+		<weapons max="8" power="2" room="29" start="false" img="room_weapons_12">
+			<slot>
+				<direction>right</direction>
+				<number>2</number>
+			</slot>
+		</weapons>
+	</systemList>
+	<weaponSlots>2</weaponSlots>
+	<droneSlots>2</droneSlots>
+	<weaponList missiles="8" count="2" />
+	<droneList drones="3" count="2" />
+	<health amount="45" />
+	<maxPower amount="10" />
+	<crewCount amount="1" class="human" />
+	<crewCount amount="1" class="human" />
+	<crewCount amount="1" class="rock" />
+	<crewCount amount="1" class="engi_separatist" />
+	<shieldImage>mup_long2</shieldImage>
+	<mv-mapImage>map_icon_og_executor</mv-mapImage>
+</shipBlueprint>
+</FTL>
+
+<!--WEAPONS-->
+<FTL>
+</FTL>
+
+<!--CREW-->
+<FTL>
+</FTL>

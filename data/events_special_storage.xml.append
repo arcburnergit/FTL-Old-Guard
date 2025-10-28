@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FTL>
+<mod:findName type="event" name="STORAGE_CHECK_BUTTON">
+	<mod-append:choice req="OG_HAS_TURRET" blue="false" hidden="true">
+		<text>Turret Control.</text>
+		<event load="STORAGE_CHECK_OG_TURRET" />
+	</mod-append:choice>
+</mod:findName>
+
+<event name="STORAGE_CHECK_OG_TURRET">
+	<text>Do something with your Turret Control system.</text>
+	<choice>
+		<text>Nevermind.</text>
+		<event load="STORAGE_CHECK" />
+	</choice>
+	<choice>
+		<text>Turret Manufacturing.</text>
+		<event load="OG_CRAFT_MAIN_MENU" />
+	</choice>
+</event>
+
+<event name="STORAGE_CHECK_OG_TURRET_INSTALL">
+	<text>Which Turret to install?</text>
+	<choice>
+		<text>Nevermind.</text>
+		<event load="STORAGE_CHECK" />
+	</choice>
+</event>
+
+<event name="STORAGE_CHECK_OG_TURRET_REMOVE">
+	<text>Replace the Turret?</text>
+	<choice>
+		<text>Leave it empty.</text>
+		<event/>
+	</choice>
+</event>
+
+<event name="STORAGE_CHECK_OG_TURRET_EMPTY">
+</event>
+
+<event name="OG_CRAFT_MAIN_MENU_LOAD">
+    <loadEvent>OG_CRAFT_MAIN_MENU</loadEvent>
+</event>
+
+<event name="OG_CRAFT_MAIN_MENU">
+    <text>Available Blueprints.</text>
+    <choice hidden="true">
+        <text>Nevermind.</text>
+        <event load="STORAGE_CHECK"/>
+    </choice>
+</event>
+
+<event name="OG_CRAFT_CRAFT">
+    <text>Requires:</text>
+    <choice hidden="false">
+        <text>Nevermind.</text>
+        <event load="OG_CRAFT_MAIN_MENU_LOAD"/>
+    </choice>
+</event>
+
+<event name="OG_CRAFT_CRAFT_STEP">
+    <text>Choose Crafting Component.</text>
+</event>
+
+<mod:findName type="event" name="STORAGE_CHECK_SYSTEM">
+	<mod-append:choice req="HAS_OG_TURRET" blue="false" hidden="true">
+	  <text>Turret Control.</text>
+	  <event load="STORAGE_CHECK_SYSTEM_OG_TURRET" />
+	</mod-append:choice>
+</mod:findName>
+
+<event name="STORAGE_CHECK_SYSTEM_OG_TURRET">
+	<text>What upgrade do you want to install?</text>
+	<choice req="UPG_OG_TURRET_ROTATION" lvl="2" max_group="0" blue="false" hidden="true">
+		<text>Overclocked Motors. [UNAVAILABLE: You already have the max of this upgrade]</text>
+		<event load="OPTION_INVALID" />
+	</choice>
+	<choice req="UPG_OG_TURRET_ROTATION" lvl="1" max_lvl="2" max_group="0" blue="false" hidden="true">
+		<text>Overclocked Motors LvL 2. [Cost: 35~, 3|]</text>
+		<event load="STORAGE_CHECK_SYSTEM_OG_TURRET_ROTATION" />
+	</choice>
+	<choice req="UPG_OG_TURRET_ROTATION" lvl="0" max_lvl="2" max_group="0" blue="false" hidden="true">
+		<text>Overclocked Motors LvL 1. [Cost: 35~, 3|]</text>
+		<event load="STORAGE_CHECK_SYSTEM_OG_TURRET_ROTATION" />
+	</choice>
+	<choice req="UPG_OG_TURRET_SPEED" lvl="1" max_group="1" blue="false" hidden="true">
+		<text>Accelerators. [ALREADY INSTALLED]</text>
+		<event load="OPTION_INVALID" />
+	</choice>
+	<choice req="UPG_OG_TURRET_SPEED" lvl="0" max_group="1" blue="false" hidden="true">
+		<text>Accelerators. [Cost: 40~, 5}]</text>
+		<event load="STORAGE_CHECK_SYSTEM_OG_TURRET_SPEED" />
+	</choice>
+	<choice req="UPG_OG_TURRET_MANUAL" lvl="1" max_group="2" blue="false" hidden="true">
+		<text>Manual Dexterity. [ALREADY INSTALLED]</text>
+		<event load="OPTION_INVALID" />
+	</choice>
+	<choice req="UPG_OG_TURRET_MANUAL" lvl="0" max_group="2" blue="false" hidden="true">
+		<text>Manual Dexterity. [Cost: 30~, 5|]</text>
+		<event load="STORAGE_CHECK_SYSTEM_OG_TURRET_MANUAL" />
+	</choice>
+	<choice>
+		<text>Nevermind.</text>
+		<event load="STORAGE_CHECK_SYSTEM_LOAD" />
+	</choice>
+</event>
+<event name="STORAGE_CHECK_SYSTEM_OG_TURRET_ROTATION">
+	<text>You are about to install the Overclocked Motors upgrade.
+	[Effects: Turrets Rotate 50% faster. Can be installed 2 times.]</text>
+	<choice max_group="0" blue="false" hidden="true">
+		<text>Perform the upgrade. [Cost: 35~, 3|]</text>
+		<event>
+			<text>You install the upgrade.</text>
+			<item_modify>
+				<item type="drones" min="-3" max="-3" />
+				<item type="scrap" min="-35" max="-35" />
+			</item_modify>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="INSTALL_OG_TURRET_ROTATION" />
+			</choice>
+		</event>
+	</choice> 
+	<choice req="EX_OG_TURRET_ROTATION" max_group="1" blue="false" hidden="true">
+		<text>Install the External Augment internally.</text>
+		<event>
+			<text>You install the upgrade.</text>
+			<remove name="EX_OG_TURRET_ROTATION" />
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="INSTALL_OG_TURRET_ROTATION" />
+			</choice>
+		</event>
+	</choice>
+	<choice req="pilot" lvl="1" max_group="2" blue="false" hidden="true">
+		<text>Nevermind.</text>
+		<event load="STORAGE_CHECK_SYSTEM_LOAD" />
+	</choice>
+</event>
+<event name="INSTALL_OG_TURRET_ROTATION">
+	<variable name="loc_internal_upgrades" op="add" val="1" />
+	<hiddenAug>UPG_OG_TURRET_ROTATION</hiddenAug>
+	<loadEvent>STORAGE_CHECK_SYSTEM</loadEvent>
+</event>
+
+<event name="STORAGE_CHECK_SYSTEM_OG_TURRET_SPEED">
+	<text>You are about to install the Accelerators upgrade.
+	[Effects: Turret projectiles move 50% faster.]</text>
+	<choice max_group="0" blue="false" hidden="true">
+		<text>Perform the upgrade. [Cost: 40~, 5}]</text>
+		<event>
+			<text>You install the upgrade.</text>
+			<item_modify>
+				<item type="missiles" min="-5" max="-5" />
+				<item type="scrap" min="-40" max="-40" />
+			</item_modify>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="INSTALL_OG_TURRET_SPEED" />
+			</choice>
+		</event>
+	</choice> 
+	<choice req="EX_OG_TURRET_SPEED" max_group="1" blue="false" hidden="true">
+		<text>Install the External Augment internally.</text>
+		<event>
+			<text>You install the upgrade.</text>
+			<remove name="EX_OG_TURRET_SPEED" />
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="INSTALL_OG_TURRET_SPEED" />
+			</choice>
+		</event>
+	</choice>
+	<choice req="pilot" lvl="1" max_group="2" blue="false" hidden="true">
+		<text>Nevermind.</text>
+		<event load="STORAGE_CHECK_SYSTEM_LOAD" />
+	</choice>
+</event>
+<event name="INSTALL_OG_TURRET_SPEED">
+	<variable name="loc_internal_upgrades" op="add" val="1" />
+	<hiddenAug>UPG_OG_TURRET_SPEED</hiddenAug>
+	<loadEvent>STORAGE_CHECK_SYSTEM</loadEvent>
+</event>
+
+<event name="STORAGE_CHECK_SYSTEM_OG_TURRET_MANUAL">
+	<text>You are about to install the Manual Dexterity upgrade.
+	[Effects: Turrets gain 180 rotation speed when manually targetted.]</text>
+	<choice max_group="0" blue="false" hidden="true">
+		<text>Perform the upgrade. [Cost: 30~, 5|]</text>
+		<event>
+			<text>You install the upgrade.</text>
+			<item_modify>
+				<item type="drones" min="-5" max="-5" />
+				<item type="scrap" min="-30" max="-30" />
+			</item_modify>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="INSTALL_OG_TURRET_MANUAL" />
+			</choice>
+		</event>
+	</choice> 
+	<choice req="EX_OG_TURRET_MANUAL" max_group="1" blue="false" hidden="true">
+		<text>Install the External Augment internally.</text>
+		<event>
+			<text>You install the upgrade.</text>
+			<remove name="EX_OG_TURRET_MANUAL" />
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="INSTALL_OG_TURRET_MANUAL" />
+			</choice>
+		</event>
+	</choice>
+	<choice req="pilot" lvl="1" max_group="2" blue="false" hidden="true">
+		<text>Nevermind.</text>
+		<event load="STORAGE_CHECK_SYSTEM_LOAD" />
+	</choice>
+</event>
+<event name="INSTALL_OG_TURRET_MANUAL">
+	<variable name="loc_internal_upgrades" op="add" val="1" />
+	<hiddenAug>UPG_OG_TURRET_MANUAL</hiddenAug>
+	<loadEvent>STORAGE_CHECK_SYSTEM</loadEvent>
+</event>
+</FTL>

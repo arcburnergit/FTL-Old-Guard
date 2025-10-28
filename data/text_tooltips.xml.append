@@ -1,0 +1,13 @@
+<FTL>
+<text name="tip_og_turret">Tip: Turrets have to be equiped to the Turret Control system.</text>
+<text name="tip_og_turret_mini">Tip: Turrets have to be equiped to the Turret Control system. Micro turrets cannot be equiped on larger turret slots.</text>
+
+<text name="tooltip_og_turret">Turret Control: Click on the turret to set its mode, or target it. Manning reduces charge time.</text>
+<text name="tooltip_og_turret_enemy">Turret Control: Powers the enemy turret.</text>
+<text name="tooltip_og_turret_alt">Turret Control: Click on the turret to set its mode, or target it. Manning reduces charge time.</text>
+<text name="tooltip_og_turret_alt_enemy">Turret Control: Powers the enemy turret.</text>
+<text name="tooltip_og_turret_mini">Turret Control: Click on the turret to set its mode, or target it.</text>
+<text name="tooltip_og_turret_mini_enemy">Turret Control: Powers the enemy turret.</text>
+<text name="tooltip_og_turret_mini_alt">Turret Control: Click on the turret to set its mode, or target it.</text>
+<text name="tooltip_og_turret_mini_alt_enemy">Turret Control: Powers the enemy turret.</text>
+</FTL>
