@@ -542,6 +542,9 @@ local function add_stat_text(desc, currentTurret, chargeMax)
 		desc = desc.."\nMissile Consumption: "..tostring(currentTurret.ammo_consumption)
 	end
 	desc = desc.."\n\nRotation Speed: "..math.floor(currentTurret.rotation_speed)
+	if currentTurret.shot_radius then
+		desc = desc.."\nShot Radius: "..math.floor(currentTurret.shot_radius)
+	end
 	desc = desc.."\nFire Rate: "
 	for i, t in ipairs(currentTurret.fire_points) do
 		desc = desc..t.fire_delay.."s"
