@@ -1044,7 +1044,7 @@ local function system_render(systemBox, ignoreStatus)
 
 		local currentTurret = turrets[ turretBlueprintsList[ Hyperspace.playerVariables[shipId..systemId..systemBlueprintVarName] ] ]
 		local maxCharges = currentTurret.charges
-		print(turretBlueprintsList[ Hyperspace.playerVariables[shipId..systemId..systemBlueprintVarName] ].." "..tostring(shipId..systemId..systemBlueprintVarName))
+		--print(turretBlueprintsList[ Hyperspace.playerVariables[shipId..systemId..systemBlueprintVarName] ].." "..tostring(shipId..systemId..systemBlueprintVarName))
 		local charges = Hyperspace.playerVariables[shipId..systemId..systemChargesVarName]
 		local chargeTime = currentTurret.charge_time[system:GetEffectivePower()]/(1 + system.iActiveManned * 0.1)
 		local chargeTimeDisplay = math.ceil(chargeTime)
@@ -1638,7 +1638,7 @@ script.on_render_event(Defines.RenderEvents.SHIP_MANAGER, function(shipManager) 
 				--print(id)
 			elseif Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] >= 0 then
 				currentTurret = turrets[ turretBlueprintsList[ Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] ] ]
-				print("render "..turretBlueprintsList[ Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] ].." "..tostring(shipManager.iShipId..sysName..systemBlueprintVarName))
+				--print("render "..turretBlueprintsList[ Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] ].." "..tostring(shipManager.iShipId..sysName..systemBlueprintVarName))
 			end
 			if currentTurret then
 				local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
