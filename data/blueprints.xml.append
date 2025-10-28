@@ -60,7 +60,7 @@
 <systemBlueprint name="og_turret">
 	<type>og_turret</type>
 	<title>Turret Control</title>
-	<desc>Powers you ship's turret. Upgrading increase the power of your turret.</desc>
+	<desc>Powers your ship's turret. Upgrading lowers the charge time of the turret.</desc>
 	<startPower>2</startPower>
 	<maxPower>5</maxPower>
 	<rarity>0</rarity>
@@ -78,7 +78,7 @@
 <systemBlueprint name="og_turret_alt">
 	<type>og_turret_alt</type>
 	<title>Turret Control</title>
-	<desc>Powers you ship's turret. Upgrading increase the power of your turret.</desc>
+	<desc>Powers your ship's turret. Upgrading lowers the charge time of the turret.</desc>
 	<startPower>2</startPower>
 	<maxPower>5</maxPower>
 	<rarity>0</rarity>
@@ -96,7 +96,7 @@
 <systemBlueprint name="og_turret_mini">
 	<type>og_turret_mini</type>
 	<title>Micro Turret Control</title>
-	<desc>Powers you ship's turret. Upgrading increase the power of your turret.</desc>
+	<desc>Powers your ship's turret. Upgrading lowers the charge time of the turret.</desc>
 	<startPower>1</startPower>
 	<maxPower>3</maxPower>
 	<rarity>0</rarity>
@@ -111,7 +111,7 @@
 <systemBlueprint name="og_turret_mini_alt">
 	<type>og_turret_mini_alt</type>
 	<title>Micro Turret Control</title>
-	<desc>Powers you ship's turret. Upgrading increase the power of your turret.</desc>
+	<desc>Powers your ship's turret. Upgrading lowers the charge time of the turret.</desc>
 	<startPower>1</startPower>
 	<maxPower>3</maxPower>
 	<rarity>0</rarity>

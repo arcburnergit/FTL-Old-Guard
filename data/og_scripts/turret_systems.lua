@@ -842,6 +842,7 @@ local function system_click(systemBox, shift)
 		if offenseButton.bHover and offenseButton.bActive then
 			local shipManager = Hyperspace.ships.player
 			systemBox.pSystem.table.currentTarget = nil
+			systemBox.pSystem.table.currentlyTargetted = false
 			systemBox.pSystem.table.currentTargetTemp = nil
 			Hyperspace.playerVariables[Hyperspace.ShipSystem.SystemIdToName(systemBox.pSystem.iSystemType)..systemStateVarName] = 0
 		end
@@ -849,6 +850,7 @@ local function system_click(systemBox, shift)
 		if defenseButton.bHover and defenseButton.bActive then
 			local shipManager = Hyperspace.ships.player
 			systemBox.pSystem.table.currentTarget = nil
+			systemBox.pSystem.table.currentlyTargetted = false
 			systemBox.pSystem.table.currentTargetTemp = nil
 			Hyperspace.playerVariables[Hyperspace.ShipSystem.SystemIdToName(systemBox.pSystem.iSystemType)..systemStateVarName] = 1
 		end
@@ -1133,6 +1135,7 @@ local function resetTurrets(shipManager)
 		if shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) then
 			local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
 			system.table.currentTarget = nil
+			system.table.currentlyTargetted = false
 			Hyperspace.playerVariables[sysName..systemChargesVarName] = 0
 			Hyperspace.playerVariables[sysName..systemTimeVarName] = 0
 			system.table.chargeTime = 0
@@ -1280,8 +1283,9 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 			userdata_table(projectile, "mods.og").homing = {target = system.table.currentTarget, turn_rate = currentTurret.homing}
 		end
 	end
-	if not offensive and currentShot.fire_delay > 0 or Hyperspace.playerVariables[sysName..systemChargesVarName] == 1 then
+	if (not offensive) and (currentShot.fire_delay > 0 or Hyperspace.playerVariables[sysName..systemChargesVarName] == 1) then
 		system.table.currentTarget = nil
+		system.table.currentlyTargetted = false
 	end
 	if shipManager:HasAugmentation("UPG_OG_TURRET_SPEED") > 0 then
 		projectile.speed_magnitude = projectile.speed_magnitude * 1.5
@@ -1320,7 +1324,10 @@ local function findTurretTarget(system, currentTurret, shipManager, pos, speed)
 	for projectile in vter(spaceManager.projectiles) do
 		--print(projectile.extend.name.." type:"..tostring(projectile:GetType()))
 		local blueprint = Hyperspace.Blueprints:GetWeaponBlueprint(projectile.extend.name)
-		if (not projectile.table.og_targeted or (projectile.table.og_targeted < 2 and not currentTurret.homing) or projectile.table.og_targeted < 1) and checkValidTarget(projectile._targetable, currentTurret.defense_type, shipManager) and not projectile.missed and not projectile.passedTarget and blueprint.typeName ~= "BEAM" then
+		local validTarget = checkValidTarget(projectile._targetable, currentTurret.defense_type, shipManager)
+		local notTargeted = (not projectile.table.og_targeted) or (projectile.table.og_targeted < 2 and not currentTurret.homing) or projectile.table.og_targeted < 1
+		local projectileActive = not (projectile.missed or projectile.passedTarget or projectile.death_animation.tracker.running)
+		if validTarget and notTargeted and projectileActive then
 			local targetPos = projectile._targetable:GetRandomTargettingPoint(true)
 			local targetVelocity = projectile._targetable:GetSpeed()
 			targetVelocity = Hyperspace.Pointf(targetVelocity.x/(18.333*time_increment(true)), targetVelocity.y/(18.333*time_increment(true)))
@@ -1335,7 +1342,10 @@ local function findTurretTarget(system, currentTurret, shipManager, pos, speed)
 	end
 	--print("drones")
 	for drone in vter(spaceManager.drones) do
-		if (not drone.table.og_targeted or (drone.table.og_targeted < 2 and not currentTurret.homing) or drone.table.og_targeted < 1) and checkValidTarget(drone._targetable, currentTurret.defense_type, shipManager) and not drone.bDead and not drone.arrived and not drone.explosion.tracker.running then
+		local validTarget = checkValidTarget(drone._targetable, currentTurret.defense_type, shipManager)
+		local notTargeted = (not drone.table.og_targeted) or (drone.table.og_targeted < 2 and not currentTurret.homing) or drone.table.og_targeted < 1
+		local droneActive = not (drone.bDead or drone.arrived or drone.explosion.tracker.running)
+		if validTarget and notTargeted and droneActive then
 			local targetPos = drone._targetable:GetRandomTargettingPoint(true)
 			local targetVelocity = drone._targetable:GetSpeed()
 			targetVelocity = Hyperspace.Pointf(targetVelocity.x/(18.333*time_increment(true)), targetVelocity.y/(18.333*time_increment(true)))
@@ -1462,18 +1472,21 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 					system.table.entryAngle = math.random(360)
 					system.table.currentTargetTemp = nil
 				end
+
 				if system.table.currentTarget then
 					if math.abs(angle_diff(system.table.currentAimingAngle, 0)) > 0.01 then
 						system.table.currentAimingAngle = move_angle_to(system.table.currentAimingAngle, 0, currentMaxRotationSpeed * time_increment(true))
 					end
 					if shipManager.iShipId == 0 and not ( Hyperspace.ships.enemy and Hyperspace.ships.enemy._targetable.hostile ) then
 						system.table.currentTarget = nil
+						system.table.currentlyTargetted = false
 					end
 				else
 					if math.abs(angle_diff(system.table.currentAimingAngle, turretRestAngle)) > 0.01 then
 						system.table.currentAimingAngle = move_angle_to(system.table.currentAimingAngle, turretRestAngle, currentMaxRotationSpeed * time_increment(true))
 					end
 				end
+
 				if math.abs(angle_diff(system.table.currentAimingAngle, 0)) < (currentTurret.aim_cone or 1) and system.table.currentTarget and system.table.firingTime <= 0 and Hyperspace.playerVariables[sysName..systemChargesVarName] > 0 and not (otherManager and otherManager.ship.bCloaked) then
 					local roomPosition = otherManager:GetRoomCenter(system.table.currentTarget)
 					fireTurret(system, currentTurret, shipManager, otherManager, sysName, blueprint, pos, true, roomPosition, manningCrew)
@@ -1483,36 +1496,50 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 					system.table.currentTarget = system.table.currentTargetTemp
 					system.table.currentTargetTemp = nil
 				end
-				if system.table.currentTarget and not checkValidTarget(system.table.currentTarget._targetable, currentTurret.defense_type, shipManager) then
-					--print("RESET")
-					system.table.currentTarget = nil
-					if system.table.currentlyTargetted then
+				--Precheck target
+				if system.table.currentTarget then
+					local projectileDead = system.table.currentTarget.death_animation and system.table.currentTarget.death_animation.tracker.running
+					local droneDead = (system.table.currentTarget.explosion and system.table.currentTarget.explosion.tracker.running) or system.table.currentTarget.bDead
+					local targetDead = projectileDead or droneDead
+
+					local projectileInactive = system.table.currentTarget.missed or system.table.currentTarget.passedTarget
+
+					local targetInvalid = not checkValidTarget(system.table.currentTarget._targetable, currentTurret.defense_type, shipManager)
+					local tryRetarget = Hyperspace.playerVariables[sysName..systemChargesVarName] <= 0 and not system.table.currentlyTargetted
+					if targetDead or targetInvalid or tryRetarget or projectileInactive then
+						system.table.currentTarget = nil
 						system.table.currentlyTargetted = false
-						return
 					end
 				end
+				--Find New Target
 				if not system.table.currentTarget then
 					system.table.currentTarget = findTurretTarget(system, currentTurret, shipManager, pos, speed)
 				end
+				--Targeting Logic
 				if system.table.currentTarget then
+					--Get Target Info
 					local targetPos = system.table.currentTarget._targetable:GetRandomTargettingPoint(true)
 					local targetVelocity = system.table.currentTarget._targetable:GetSpeed()
 					targetVelocity = Hyperspace.Pointf(targetVelocity.x/(18.333*time_increment(true)), targetVelocity.y/(18.333*time_increment(true)))
+					
+					--Find Targetting Point
 					local target_angle, int_point, t
 					if currentTurret.blueprint_type ~= 3  then
 						target_angle, int_point, t = find_intercept_angle(pos, speed, targetPos, targetVelocity)
 					end
-
 					if not target_angle then 
 						target_angle = get_angle_between_points(pos, targetPos)
 						int_point = targetPos
 						t = 1 -- calculate properly
 					end
 
+					--Rotate Turret
 					if math.abs(angle_diff(system.table.currentAimingAngle, target_angle)) > 0.01 then
 						system.table.currentAimingAngle = move_angle_to(system.table.currentAimingAngle, target_angle, currentMaxRotationSpeed * time_increment(true))
 					end
-					if math.abs(angle_diff(system.table.currentAimingAngle, target_angle)) < (currentTurret.aim_cone or 1) and system.table.firingTime <= 0 and Hyperspace.playerVariables[sysName..systemChargesVarName] > 0 then
+
+					--Fire if within aim cone
+					if math.abs(angle_diff(system.table.currentAimingAngle, target_angle)) < (currentTurret.aim_cone or 0.5) and system.table.firingTime <= 0 and Hyperspace.playerVariables[sysName..systemChargesVarName] > 0 then
 						fireTurret(system, currentTurret, shipManager, otherManager, sysName, blueprint, pos, false, Hyperspace.Pointf(int_point.x, int_point.y), manningCrew)
 					end
 				else -- if no possible target
