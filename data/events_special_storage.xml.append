@@ -63,7 +63,7 @@
 </event>
 
 <mod:findName type="event" name="STORAGE_CHECK_SYSTEM">
-	<mod-append:choice req="HAS_OG_TURRET" blue="false" hidden="true">
+	<mod-append:choice req="OG_HAS_TURRET" blue="false" hidden="true">
 	  <text>Turret Control.</text>
 	  <event load="STORAGE_CHECK_SYSTEM_OG_TURRET" />
 	</mod-append:choice>

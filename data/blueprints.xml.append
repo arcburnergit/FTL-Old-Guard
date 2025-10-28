@@ -13,7 +13,7 @@
 	<desc>Turrets Rotate 50% faster.
     
 	[X] - As an external system upgrade, this augment will provide its normal effect but take up an augment slot. Can be converted for free to the internal version under the internal upgrade menu if you have the Modified Clone Bay system.</desc>
-	<cost>80</cost>
+	<cost>60</cost>
 	<rarity>0</rarity>
 	<stackable>true</stackable>
 	<value>1</value>
@@ -32,7 +32,7 @@
 	<desc>Turret projectiles move 50% faster.
     
 	[X] - As an external system upgrade, this augment will provide its normal effect but take up an augment slot. Can be converted for free to the internal version under the internal upgrade menu if you have the Modified Clone Bay system.</desc>
-	<cost>80</cost>
+	<cost>50</cost>
 	<rarity>0</rarity>
 	<stackable>false</stackable>
 	<value>1</value>
@@ -51,7 +51,7 @@
 	<desc>Turrets gain 180 rotation speed when manually targetted.
     
 	[X] - As an external system upgrade, this augment will provide its normal effect but take up an augment slot. Can be converted for free to the internal version under the internal upgrade menu if you have the Modified Clone Bay system.</desc>
-	<cost>80</cost>
+	<cost>40</cost>
 	<rarity>0</rarity>
 	<stackable>true</stackable>
 	<value>1</value>
@@ -142,7 +142,7 @@
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>140</cost>
+	<cost>100</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>invisible</iconReplace>
@@ -163,7 +163,7 @@
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>140</cost>
+	<cost>100</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_laser_1_icon</iconReplace>
@@ -184,7 +184,7 @@
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>140</cost>
+	<cost>100</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_laser_2_icon</iconReplace>
@@ -205,7 +205,7 @@
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>140</cost>
+	<cost>50</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_laser_rusty_1_icon</iconReplace>
@@ -226,7 +226,7 @@
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>200</cost>
+	<cost>150</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_laser_ancient_icon</iconReplace>
@@ -247,7 +247,7 @@
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>140</cost>
+	<cost>100</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_ion_1_icon</iconReplace>
@@ -268,7 +268,7 @@
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>140</cost>
+	<cost>100</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_ion_2_icon</iconReplace>
@@ -289,7 +289,7 @@
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>140</cost>
+	<cost>100</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_missile_1_icon</iconReplace>
@@ -310,7 +310,7 @@
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>140</cost>
+	<cost>100</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_missile_2_icon</iconReplace>
@@ -331,7 +331,7 @@
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>140</cost>
+	<cost>100</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_flak_1_icon</iconReplace>
@@ -352,7 +352,7 @@
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>140</cost>
+	<cost>100</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_focus_1_icon</iconReplace>
@@ -373,7 +373,7 @@
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>80</cost>
+	<cost>60</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_laser_mini_1_icon</iconReplace>
@@ -394,7 +394,7 @@
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>80</cost>
+	<cost>30</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_laser_rusty_mini_1_icon</iconReplace>
@@ -415,7 +415,7 @@
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>80</cost>
+	<cost>60</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_laser_mini_2_icon</iconReplace>
@@ -436,7 +436,7 @@
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>80</cost>
+	<cost>60</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_ion_mini_1_icon</iconReplace>
@@ -457,7 +457,7 @@
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>80</cost>
+	<cost>60</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_focus_mini_1_icon</iconReplace>
