@@ -79,17 +79,17 @@
 		<arrow variant="a" direction="right" tooltip="ship_unlock_og_two_wins" image="arrow_v_right.png" unlockedImage="arrow_v_right_on.png">PLAYER_SHIP_OG_EXECUTOR</arrow>
 		<unlock variant="b" silent="false">
             <type>1</type>
-            <shipReq>PLAYER_SHIP_AEA_JUSTICE</shipReq>
+            <shipReq>PLAYER_SHIP_OG_RAIDER</shipReq>
             <value>5</value>
         </unlock>
 		<unlock variant="c" silent="false">
             <type>1</type>
-            <shipReq>PLAYER_SHIP_AEA_JUSTICE_2</shipReq>
+            <shipReq>PLAYER_SHIP_OG_RAIDER_2</shipReq>
             <value>5</value>
         </unlock>
 		<unlock variant="c" silent="false">
             <type>2</type>
-            <shipReq>PLAYER_SHIP_AEA_JUSTICE</shipReq>
+            <shipReq>PLAYER_SHIP_OG_RAIDER</shipReq>
         </unlock>
 	</mod-append:ship>
 	<mod-append:customShip name="PLAYER_SHIP_OG_RAIDER">
