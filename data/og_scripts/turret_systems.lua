@@ -277,7 +277,7 @@ turrets["OG_TURRET_LASER_1"] = {
 	glow_name = "og_turrets/turret_laser_1_glow",
 	glow_images = {},
 	fire_points = {{x = 12, y = -42, fire_delay = 0.5}, {x = -12, y = -42, fire_delay = 0.5}},
-	defense_type = defense_types.ALL,
+	defense_type = defense_types.PROJECTILES,
 	blueprint_type = 1,
 	blueprint = "OG_LASER_PROJECTILE_BASE",
 	charges = 6,
@@ -293,7 +293,7 @@ turrets["OG_TURRET_LASER_RUSTY_1"] = {
 	glow_name = "og_turrets/turret_laser_1_glow",
 	glow_images = {},
 	fire_points = {{x = 12, y = -42, fire_delay = 0.5}, {x = -12, y = -42, fire_delay = 0.5}},
-	defense_type = defense_types.ALL,
+	defense_type = defense_types.PROJECTILES,
 	blueprint_type = 1,
 	blueprint = "OG_LASER_PROJECTILE_BASE",
 	charges = 6,
@@ -403,7 +403,7 @@ turrets["OG_TURRET_FLAK_1"] = {
 	glow_name = "og_turrets/turret_flak_1_glow",
 	glow_images = {},
 	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_flak_1_charge.png", -33, -33, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
-	fire_points = {{x = 0, y = -30, fire_delay = 0}},
+	fire_points = {{x = 0, y = -30, fire_delay = 0}, {x = 0, y = -30, fire_delay = 0}, {x = 0, y = -30, fire_delay = 0.25}},
 	defense_type = defense_types.ALL,
 	blueprint_type = 1,
 	blueprint = "OG_FLAK_PROJECTILE",
@@ -421,7 +421,7 @@ turrets["OG_TURRET_FOCUS_1"] = {
 	glow_images = {},
 	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_focus_1_charge.png", -24, -8, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
 	fire_points = {{x = 0, y = -7, fire_delay = 0.7}},
-	defense_type = defense_types.PROJECTILES,
+	defense_type = defense_types.MISSILES,
 	blueprint_type = 3,
 	blueprint = "OG_FOCUS_PROJECTILE",
 	blueprint_fake = "OG_FOCUS_PROJECTILE_FAKE",
@@ -470,13 +470,13 @@ turrets["OG_TURRET_LASER_MINI_2"] = {
 	glow_name = "og_turrets/turret_laser_mini_2_glow",
 	glow_images = {},
 	fire_points = {{x = 0, y = -16, fire_delay = 0.4}},
-	defense_type = defense_types.MISSILES,
+	defense_type = defense_types.PROJECTILES,
 	blueprint_type = 1,
 	blueprint = "OG_LASER_PROJECTILE_LIGHT",
 	charges = 3,
 	charges_per_charge = 1,
 	rotation_speed = 240,
-	charge_time = {[0] = 5.5, 5.5, 4, 2.5, 2, 1.75, 1.5, 1.25, 1},
+	charge_time = {[0] = 5, 5, 3.5, 2.5, 2, 1.75, 1.5, 1.25, 1},
 } -- add mini ion (anti drone) and mini focus (anti laser)
 turrets["OG_TURRET_ION_MINI_1"] = {
 	mini = true,
@@ -504,7 +504,7 @@ turrets["OG_TURRET_FOCUS_MINI_1"] = {
 	glow_images = {},
 	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_focus_mini_1_charge.png", -17, -6, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
 	fire_points = {{x = 0, y = -4, fire_delay = 0.7}},
-	defense_type = defense_types.PROJECTILES,
+	defense_type = defense_types.MISSILES,
 	blueprint_type = 3,
 	blueprint = "OG_FOCUS_PROJECTILE_WEAK",
 	blueprint_fake = "OG_FOCUS_PROJECTILE_WEAK_FAKE",
@@ -772,7 +772,7 @@ local function checkValidTarget(targetable, defense_type, shipManager)
 	--local targeted = targetable.targeted -- bool
 	local otherManager = Hyperspace.ships(1 - shipManager.iShipId)
 	local hasHackingDrone = otherManager and otherManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId("hacking")) and otherManager.hackingSystem.drone
-	local hackingDrone = hasHackingDrone and otherManager.hackingSystem.drone._targetable:GetSelfId() == system.table.currentTarget._targetable:GetSelfId() and not otherManager.hackingSystem.drone.arrived 
+	local hackingDrone = hasHackingDrone and otherManager.hackingSystem.drone._targetable:GetSelfId() == targetable:GetSelfId() and not otherManager.hackingSystem.drone.arrived 
 	--if ppp then
 	--print("target: isDying"..tostring(isDying).." ownerId"..tostring(ownerId).." space"..tostring(space).." valid"..tostring(valid)--[[.." hostile"..tostring(hostile)]].." type"..tostring(type).." validType"..tostring(defense_type[type]).." hackingdrone:"..tostring((defense_type[6] and hackingDrone)).." defense_type"..tostring(defense_type.name))
 	--end
@@ -1478,6 +1478,7 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 					system.table.currentTarget = system.table.currentTargetTemp
 					system.table.entryAngle = math.random(360)
 					system.table.currentTargetTemp = nil
+					system.table.currentlyTargetted = false
 				end
 
 				if system.table.currentTarget then

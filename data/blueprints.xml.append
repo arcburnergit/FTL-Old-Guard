@@ -1090,7 +1090,7 @@
 		<og_turret power="2" room="4" start="true" img="room_og_turret_2" turret="OG_TURRET_LASER_2">
 			<slot>
 				<direction>right</direction>
-				<number>2</number>
+				<number>1</number>
 			</slot>
 		</og_turret>
 		<battery power="1" room="12" start="false" img="room_battery_13" />
