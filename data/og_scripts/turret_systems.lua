@@ -1,8 +1,3 @@
-local version = {major = 1, minor = 20}
-if not (Hyperspace.version and Hyperspace.version.major == version.major and Hyperspace.version.minor >= version.minor) then
-	error("Incorrect Hyperspace version detected! The Outer Expansion requires Hyperspace "..version.major.."."..version.minor.."+")
-end
-mods.og = {}
 local vter = mods.multiverse.vter
 local time_increment = mods.multiverse.time_increment
 local userdata_table = mods.multiverse.userdata_table
@@ -158,9 +153,9 @@ local function find_intercept_angle(current_pos, speed, target_pos, target_veloc
 end
 
 local systemName = "og_turret"
-mods.og.microTurrets = {["og_turret_mini"] = true, ["og_turret_mini_alt"] = true}
+mods.og.microTurrets = {["og_turret_mini"] = true, ["og_turret_mini_2"] = true, ["og_turret_mini_3"] = true, ["og_turret_mini_4"] = true}
 local microTurrets = mods.og.microTurrets
-mods.og.systemNameList = {systemName, "og_turret_alt", "og_turret_mini", "og_turret_mini_alt"}
+mods.og.systemNameList = {systemName, "og_turret_alt", "og_turret_mini", "og_turret_mini_2", "og_turret_mini_3", "og_turret_mini_4"}
 local systemNameList = mods.og.systemNameList
 local systemNameCheck = {}
 for _, sysName in ipairs(systemNameList) do
@@ -172,16 +167,24 @@ local turret_directions = {
 	right = 0,
 	down = 1,
 	left = -2,
-	up_right = -0.5,
-	down_right = 0.5,
+	upright = -0.5,
+	downright = 0.5,
+	upleft = -1.5,
+	downleft = 1.5,
 }
 
 local turret_location = {}
 local starting_turrets = {}
 
 do
+	local blueprintFiles = {
+		"data/blueprints.xml",
+		"data/dlcBlueprints.xml",
+		"data/autoBlueprints.xml",
+	}
 	local xmlFilesToCheck = {}
-	for _, file in ipairs(mods.multiverse.blueprintFiles) do
+	for _, file in ipairs(blueprintFiles) do
+		--print("check file:"..file)
 		local doc = RapidXML.xml_document(file)
 		for node in node_child_iter(doc:first_node("FTL") or doc) do
 			if node:name() == "shipBlueprint" then
@@ -211,6 +214,7 @@ do
 			if node:name() == "ogTurretMounts" then
 				turret_location[fileTable.xml] = {}
 				for turretNode in node_child_iter(node) do
+					--print(fileTable.xml)
 					local t_x = node_get_number_default(turretNode:first_attribute("x"), 0)
 					local t_y = node_get_number_default(turretNode:first_attribute("y"), 0)
 					local t_direction = turret_directions[turretNode:first_attribute("direction"):value()]
@@ -271,6 +275,7 @@ turrets["OG_EMPTY_TURRET"] = {
 	charge_time = {[0] = 9, 9, 8, 7, 6, 5, 4, 3, 2, 1},
 }
 turrets["OG_TURRET_LASER_1"] = {
+	enemy_burst = 2,
 	image = Hyperspace.Animations:GetAnimation("og_turret_laser_1"),
 	multi_anim = {frames = 3},
 	glow_offset = {x = -11, y = -6},
@@ -286,6 +291,7 @@ turrets["OG_TURRET_LASER_1"] = {
 	charge_time = {[0] = 14, 14, 12, 9, 7, 6, 5, 4, 3},
 }
 turrets["OG_TURRET_LASER_RUSTY_1"] = {
+	enemy_burst = 2,
 	shot_radius = 42,
 	image = Hyperspace.Animations:GetAnimation("og_turret_laser_rusty_1"),
 	multi_anim = {frames = 3},
@@ -302,6 +308,7 @@ turrets["OG_TURRET_LASER_RUSTY_1"] = {
 	charge_time = {[0] = 16, 16, 13, 11, 9, 7, 6, 5, 4},
 }
 turrets["OG_TURRET_LASER_2"] = {
+	enemy_burst = 1,
 	image = Hyperspace.Animations:GetAnimation("og_turret_laser_2"),
 	glow_offset = {x = -9, y = -4},
 	glow_name = "og_turrets/turret_laser_2_glow",
@@ -316,6 +323,7 @@ turrets["OG_TURRET_LASER_2"] = {
 	charge_time = {[0] = 9, 9, 7.5, 6, 5, 4.5, 4, 3.75, 3.5},
 }
 turrets["OG_TURRET_LASER_ANCIENT"] = {
+	enemy_burst = 3,
 	image = Hyperspace.Animations:GetAnimation("og_turret_laser_ancient"),
 	glow_offset = {x = -74, y = -74},
 	glow_name = "og_turrets/turret_laser_ancient_glow",
@@ -331,6 +339,7 @@ turrets["OG_TURRET_LASER_ANCIENT"] = {
 	charge_time = {[0] = 14, 14, 12, 9, 7, 6, 5, 4, 3},
 }
 turrets["OG_TURRET_ION_1"] = {
+	enemy_burst = 1,
 	image = Hyperspace.Animations:GetAnimation("og_turret_ion_1"),
 	glow_offset = {x = -39, y = -10},
 	glow_name = "og_turrets/turret_ion_1_glow",
@@ -346,6 +355,7 @@ turrets["OG_TURRET_ION_1"] = {
 	charge_time = {[0] = 9, 9, 7.5, 6, 5, 4.5, 4, 3.75, 3.5},
 }
 turrets["OG_TURRET_ION_2"] = {
+	enemy_burst = 2,
 	image = Hyperspace.Animations:GetAnimation("og_turret_ion_2"),
 	glow_offset = {x = -30, y = -11},
 	glow_name = "og_turrets/turret_ion_2_glow",
@@ -361,6 +371,7 @@ turrets["OG_TURRET_ION_2"] = {
 	charge_time = {[0] = 17, 17, 14, 11, 9, 7, 5, 5, 4},
 }
 turrets["OG_TURRET_MISSILE_1"] = {
+	enemy_burst = 3,
 	homing = 720,
 	aim_cone = 45,
 	image = Hyperspace.Animations:GetAnimation("og_turret_missile_1"),
@@ -378,6 +389,7 @@ turrets["OG_TURRET_MISSILE_1"] = {
 	charge_time = {[0] = 8.5, 8.5, 7, 6, 5, 4, 3.5, 3, 2.5},
 }
 turrets["OG_TURRET_MISSILE_2"] = {
+	enemy_burst = 2,
 	homing = 480,
 	aim_cone = 30,
 	image = Hyperspace.Animations:GetAnimation("og_turret_missile_2"),
@@ -396,6 +408,7 @@ turrets["OG_TURRET_MISSILE_2"] = {
 	charge_time = {[0] = 20, 20, 17, 14, 12, 10, 8.5, 7, 6},
 }
 turrets["OG_TURRET_FLAK_1"] = {
+	enemy_burst = 3,
 	shot_radius = 42,
 	aim_cone = 1,
 	image = Hyperspace.Animations:GetAnimation("og_turret_flak_1"),
@@ -413,6 +426,7 @@ turrets["OG_TURRET_FLAK_1"] = {
 	charge_time = {[0] = 14, 14, 12, 9, 7, 6, 5, 4, 3},
 }
 turrets["OG_TURRET_FOCUS_1"] = {
+	enemy_burst = 1,
 	hold_time = 0.4,
 	speed_reduction = 0.5,
 	image = Hyperspace.Animations:GetAnimation("og_turret_focus_1"),
@@ -464,6 +478,7 @@ turrets["OG_TURRET_LASER_RUSTY_MINI_1"] = {
 	charge_time = {[0] = 12, 12, 10, 8, 6, 5, 4, 3.5, 3},
 }
 turrets["OG_TURRET_LASER_MINI_2"] = {
+	enemy_burst = 1,
 	mini = true,
 	image = Hyperspace.Animations:GetAnimation("og_turret_laser_mini_2"),
 	glow_offset = {x = -6, y = -4},
@@ -479,6 +494,7 @@ turrets["OG_TURRET_LASER_MINI_2"] = {
 	charge_time = {[0] = 5, 5, 3.5, 2.5, 2, 1.75, 1.5, 1.25, 1},
 } -- add mini ion (anti drone) and mini focus (anti laser)
 turrets["OG_TURRET_ION_MINI_1"] = {
+	enemy_burst = 1,
 	mini = true,
 	image = Hyperspace.Animations:GetAnimation("og_turret_ion_mini_1"),
 	glow_offset = {x = -17, y = -6},
@@ -495,6 +511,7 @@ turrets["OG_TURRET_ION_MINI_1"] = {
 	charge_time = {[0] = 7, 7, 6, 5, 4, 3.5, 3, 2.75, 2.5},
 }
 turrets["OG_TURRET_FOCUS_MINI_1"] = {
+	enemy_burst = 1,
 	mini = true,
 	hold_time = 0.4,
 	speed_reduction = 0.5,
@@ -604,12 +621,21 @@ local function findStartingTurret(shipManager, sysName)
 	local shipName = shipManager.myBlueprint.blueprintName
 	if starting_turrets[shipName] and starting_turrets[shipName][sysName] then
 		local weapon_id = starting_turrets[shipName][sysName]
+		--print(weapon_id..":"..Hyperspace.Blueprints:GetBlueprintList(weapon_id):size())
+		if Hyperspace.Blueprints:GetBlueprintList(weapon_id):size() > 0 then
+			--print("WEAPON DOESN'T EXIST:"..weapon_id)
+			local list = Hyperspace.Blueprints:GetBlueprintList(weapon_id)
+			local r = math.random(list:size()) - 1
+			weapon_id = list[r]
+			--print("Selected Random Item:"..weapon_id)
+		end
 		--print("findStartingTurret: "..shipName.." "..sysName.." "..weapon_id)
 		for i, id in ipairs(turretBlueprintsList) do
 			if weapon_id == id then
 				return id, i
 			end
 		end
+		print("Failed to find starting turret")
 	end
 	return "", -1
 end
@@ -646,7 +672,7 @@ local function is_system_enemy(systemBox)
 			isSystemName = true
 		end
 	end
-	return systemId == systemName and not systemBox.bPlayerUI
+	return isSystemName and not systemBox.bPlayerUI
 end
 
 local function get_level_description_system(currentId, level, tooltip)
@@ -715,10 +741,10 @@ local function system_construct_system_box(systemBox)
 		local systemId = Hyperspace.ShipSystem.SystemIdToName(systemBox.pSystem.iSystemType)
 		if microTurrets[systemId] then
 			systemBox.pSystem.table.micro = true
-			systemBox.pSystem.bBoostable = false
+			--systemBox.pSystem.bBoostable = false
 		end
 
-		systemBox.pSystem.table.currentAimingAngle = 0
+		systemBox.pSystem.table.currentAimingAngle = -90
 		systemBox.pSystem.table.currentTarget = nil
 		systemBox.pSystem.table.currentTargetTemp = nil
 		systemBox.pSystem.table.ammo_consumed = 0
@@ -1165,8 +1191,10 @@ script.on_init(function(newGame)
 	if newGame then
 		local shipManager = Hyperspace.ships.player
 		for _, sysName in ipairs(systemNameList) do
-			local id, i = findStartingTurret(Hyperspace.ships.player, sysName)
-			Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] = i
+			if shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) then
+				local id, i = findStartingTurret(shipManager, sysName)
+				Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] = i
+			end
 		end
 	else
 		needSetValues = true
@@ -1185,6 +1213,21 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 	end
 end)
 
+script.on_internal_event(Defines.InternalEvents.GENERATOR_CREATE_SHIP_POST, function(name, sector, event, bp, shipManager)
+	--print(shipManager.myBlueprint.blueprintName)
+	resetTurrets(shipManager)
+	for _, sysName in ipairs(systemNameList) do
+		if shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) then
+			local id, i = findStartingTurret(shipManager, sysName)
+			--print(sysName.." "..tostring(id).." "..tostring(i))
+			Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] = i
+			local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
+			system.table.currentAimingAngle = -90
+		end
+	end
+	return Defines.Chain.CONTINUE
+end)
+
 local function fireTurret(system, currentTurret, shipManager, otherManager, sysName, blueprint, pos, offensive, targetPosition, manningCrew)
 	local spaceManager = Hyperspace.App.world.space
 	local currentShotNumber =(Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] - 1) % #currentTurret.fire_points + 1
@@ -1194,8 +1237,10 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 		--currentShot = currentTurret.fire_points[system.table.currentShot]
 	--end
 	local firingPosition = targetPosition
-	if offensive then
+	if offensive and shipManager.iShipId == 0 then
 		firingPosition = Hyperspace.Pointf(10000, pos.y)
+	elseif offensive and shipManager.iShipId == 1 then
+		firingPosition = Hyperspace.Pointf(pos.x, -10000)
 	elseif currentTurret.shot_radius then
 		firingPosition = get_random_point_in_radius(firingPosition, currentTurret.shot_radius/2)
 	end
@@ -1401,7 +1446,7 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 			local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
 			if not system.table.firingTime then return end
 			local turretLoc = turret_location[shipManager.ship.shipName] and turret_location[shipManager.ship.shipName][sysName] or {x = 0, y = 0, direction = turret_directions.RIGHT}
-			local turretRestAngle = 90 * turretLoc.direction
+			local turretRestAngle = 90 * (turretLoc.direction or 0)
 			local pos = {x = shipCorner.x + turretLoc.x, y = shipCorner.y + turretLoc.y}
 
 			local currentTurret = turrets[ turretBlueprintsList[ Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] ] ]
@@ -1425,7 +1470,7 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 				end
 			end
 			local chargeTime = currentTurret.charge_time[system:GetEffectivePower()]/(1 + system.iActiveManned * 0.1)
-
+			
 			local otherManager = Hyperspace.ships(1 - shipManager.iShipId)
 			system.table.firingTime = system.table.firingTime - time_increment(true)
 			if Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] > currentTurret.charges then
@@ -1466,7 +1511,11 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 				speed = speed * 1.5
 			end
 
-			if system.table.currentlyTargetting then 
+			if system:GetEffectivePower() <= 0 then
+				currentTurret.image.tracker:Stop(true)
+				currentTurret.image:SetCurrentFrame(0)
+				return
+			elseif system.table.currentlyTargetting then 
 				local mousePosPlayer = worldToPlayerLocation(Hyperspace.Mouse.position)
 				local target_angle = get_angle_between_points(pos, mousePosPlayer)
 				if math.abs(angle_diff(system.table.currentAimingAngle, target_angle)) > 0.01 then
@@ -1481,13 +1530,17 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 					system.table.currentlyTargetted = false
 				end
 
-				if system.table.currentTarget then
-					if math.abs(angle_diff(system.table.currentAimingAngle, 0)) > 0.01 then
+				if shipManager.iShipId == 0 and system.table.currentTarget then
+					if math.abs(angle_diff(system.table.currentAimingAngle, 0)) > 0.01  then
 						system.table.currentAimingAngle = move_angle_to(system.table.currentAimingAngle, 0, currentMaxRotationSpeed * time_increment(true))
 					end
-					if shipManager.iShipId == 0 and not ( Hyperspace.ships.enemy and Hyperspace.ships.enemy._targetable.hostile ) then
+					if not ( Hyperspace.ships.enemy and Hyperspace.ships.enemy._targetable.hostile ) then
 						system.table.currentTarget = nil
 						system.table.currentlyTargetted = false
+					end
+				elseif shipManager.iShipId == 1 then
+					if math.abs(angle_diff(system.table.currentAimingAngle, -90)) > 0.01 then
+						system.table.currentAimingAngle = move_angle_to(system.table.currentAimingAngle, -90, currentMaxRotationSpeed * time_increment(true))
 					end
 				else
 					if math.abs(angle_diff(system.table.currentAimingAngle, turretRestAngle)) > 0.01 then
@@ -1495,8 +1548,16 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 					end
 				end
 
-				if math.abs(angle_diff(system.table.currentAimingAngle, 0)) < (currentTurret.aim_cone or 1) and system.table.currentTarget and system.table.firingTime <= 0 and Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] > 0 and not (otherManager and otherManager.ship.bCloaked) then
-					local roomPosition = otherManager:GetRoomCenter(system.table.currentTarget)
+				local hasTarget = system.table.currentTarget or shipManager.iShipId == 1
+				local readyFire = system.table.firingTime <= 0 and Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] > 0 
+				local otherShipTargetable = otherManager and not otherManager.ship.bCloaked
+				local notCloaked = not shipManager.ship.bCloaked
+
+				local aimedAheadPlayer = shipManager.iShipId == 0 and math.abs(angle_diff(system.table.currentAimingAngle, 0)) < (currentTurret.aim_cone or 1)
+				local aimedAheadEnemy = shipManager.iShipId == 1 and math.abs(angle_diff(system.table.currentAimingAngle, -90)) < (currentTurret.aim_cone or 1)
+				local shouldFire = hasTarget and readyFire and otherShipTargetable and notCloaked
+				if (aimedAheadPlayer or aimedAheadEnemy) and shouldFire then
+					local roomPosition = (system.table.currentTarget and otherManager:GetRoomCenter(system.table.currentTarget)) or otherManager:GetRandomRoomCenter()
 					fireTurret(system, currentTurret, shipManager, otherManager, sysName, blueprint, pos, true, roomPosition, manningCrew)
 				end
 			elseif Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemStateVarName] == 1 or system.table.currentlyTargetted then
@@ -1547,7 +1608,8 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 					end
 
 					--Fire if within aim cone
-					if math.abs(angle_diff(system.table.currentAimingAngle, target_angle)) < (currentTurret.aim_cone or 0.5) and system.table.firingTime <= 0 and Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] > 0 then
+					local notCloaked = not shipManager.ship.bCloaked
+					if math.abs(angle_diff(system.table.currentAimingAngle, target_angle)) < (currentTurret.aim_cone or 0.5) and system.table.firingTime <= 0 and Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] > 0 and notCloaked then
 						fireTurret(system, currentTurret, shipManager, otherManager, sysName, blueprint, pos, false, Hyperspace.Pointf(int_point.x, int_point.y), manningCrew)
 					end
 				else -- if no possible target
@@ -1557,13 +1619,19 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 				end
 			end
 			currentTurret.image:Update()
-			--local currentShotNumber =(Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] - 1) % #currentTurret.fire_points + 1
-			--if lastShot == 0 then lastShot = #currentTurret.fire_points end
-			--print(tostring(currentTurret.image.currentFrame).." lastShot:"..tostring(lastShot).." frames"..tostring(1 + currentTurret.multi_anim.frames * lastShot))
 			if (currentTurret.image:Done() and currentTurret.image.currentFrame ~= 0) or (currentTurret.multi_anim and currentTurret.image.currentFrame > currentTurret.multi_anim.frames * lastShot) then
-				--print("RESET ANIMATION")
 				currentTurret.image.tracker:Stop(true)
 				currentTurret.image:SetCurrentFrame(0)
+			end
+
+			if shipManager.iShipId == 1 and (not system.table.currentTarget) and Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] >= currentTurret.charges and (currentTurret.enemy_burst or 1) > 0 then
+				Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemStateVarName] = 0
+				system.table.entryAngle = math.random(360)
+			elseif shipManager.iShipId == 1 and Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] <= currentTurret.charges - (currentTurret.enemy_burst or 1) then
+				Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemStateVarName] = 1
+			end
+			if shipManager.iShipId == 1 and Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemStateVarName] == 0 and Hyperspace.ships.enemy._targetable.hostile then
+				Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemStateVarName] = 1
 			end
 		end
 	end
@@ -1574,16 +1642,24 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(s)
 	local spaceManager = Hyperspace.App.world.space
 	for projectile in vter(spaceManager.projectiles) do
 		local shipManager = Hyperspace.ships(projectile.currentSpace)
+		if not shipManager then return end
 		local ship = shipManager.ship
 		local shipGraph = Hyperspace.ShipGraph.GetShipInfo(shipManager.iShipId)
 		local shipBound_x = ship.shipImage.x + shipGraph.shipBox.x + ship.shipImage.w
+		local shipBound_y = ship.shipImage.y + shipGraph.shipBox.y
 		--if userdata_table(projectile, "mods.og").turret_projectile then print("PROJECTILE EXISTS") end
-		if userdata_table(projectile, "mods.og").turret_projectile and projectile.position.x > shipBound_x then
+		local playerFired = projectile.currentSpace == 0 and projectile.position.x > shipBound_x
+		local enemyFired = projectile.currentSpace == 1 and projectile.position.y < shipBound_y
+		if userdata_table(projectile, "mods.og").turret_projectile and (playerFired or enemyFired) then
 			--print("UPDATE PROJECTILE DESTINATION"..tostring(shipBound_x))
 			projectile:SetDestinationSpace(userdata_table(projectile, "mods.og").turret_projectile.destination_space)
 			projectile.target = userdata_table(projectile, "mods.og").turret_projectile.target
 			projectile:ComputeHeading()
-			projectile.heading = 0
+			if projectile.currentSpace == 0 then
+				projectile.heading = 0
+			else
+				projectile.heading = -90
+			end
 			userdata_table(projectile, "mods.og").turret_projectile = nil
 		end
 
@@ -1633,13 +1709,15 @@ script.on_render_event(Defines.RenderEvents.SHIP_MANAGER, function(shipManager) 
 	for _, sysName in ipairs(systemNameList) do
 		if shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) then
 			local currentTurret = nil
+			local overRideTurretAngle = false
 			if Hyperspace.App.menu.shipBuilder.bOpen then
 				local id, i = findStartingTurret(shipManager, sysName)
 				if id then currentTurret = turrets[id] end
+				overRideTurretAngle = true
 				--print(id)
 			elseif Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] >= 0 then
 				currentTurret = turrets[ turretBlueprintsList[ Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] ] ]
-				--print("render "..turretBlueprintsList[ Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] ].." "..tostring(shipManager.iShipId..sysName..systemBlueprintVarName))
+				--print(shipManager.iShipId.."render "..turretBlueprintsList[ Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] ].." "..tostring(shipManager.iShipId..sysName..systemBlueprintVarName))
 			end
 			if currentTurret then
 				local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
@@ -1648,13 +1726,14 @@ script.on_render_event(Defines.RenderEvents.SHIP_MANAGER, function(shipManager) 
 
 				local turretLoc = turret_location[ship.shipName] and turret_location[ship.shipName][sysName] or {x = 0, y = 0}
 				local shipCorner = {x = ship.shipImage.x + shipGraph.shipBox.x, y = ship.shipImage.y + shipGraph.shipBox.y}
+				local angleSet = (overRideTurretAngle and 90 * turretLoc.direction) or (system.table.currentAimingAngle or 0)
 
 				local charges = Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName]
 				local glowImage = currentTurret.glow_images[charges]
 				--print(tostring(glowImage).." "..tostring(charges))
 				Graphics.CSurface.GL_PushMatrix()
 				Graphics.CSurface.GL_Translate(shipCorner.x + turretLoc.x, shipCorner.y + turretLoc.y, 0)
-				Graphics.CSurface.GL_Rotate(system.table.currentAimingAngle or 0, 0, 0, 1)
+				Graphics.CSurface.GL_Rotate(angleSet, 0, 0, 1)
 				currentTurret.image:OnRender(1, Graphics.GL_Color(1,1,1,1), false)
 				--Graphics.CSurface.GL_RenderPrimitive(currentTurret.image)
 				if currentTurret.charge_image then

@@ -1,0 +1,1680 @@
+
+<FTL>
+<blueprintList name="BLUELIST_CREW_OG_IRON">
+	<name>human_og_raider</name>
+</blueprintList>
+<blueprintList name="BLUELIST_CREW_OG_DAWN">
+</blueprintList>
+<blueprintList name="SHOP_TURRETS_ALL">
+	<name>OG_TURRET_LASER_1</name>
+	<name>OG_TURRET_LASER_2</name>
+	<name>OG_TURRET_ION_1</name>
+	<name>OG_TURRET_ION_2</name>
+	<name>OG_TURRET_MISSILE_1</name>
+	<name>OG_TURRET_MISSILE_2</name>
+	<name>OG_TURRET_FLAK_1</name>
+	<name>OG_TURRET_FOCUS_1</name>
+	<name>OG_TURRET_LASER_MINI_1</name>
+	<name>OG_TURRET_LASER_MINI_2</name>
+	<name>OG_TURRET_ION_MINI_1</name>
+	<name>OG_TURRET_FOCUS_MINI_1</name>
+</blueprintList>
+<blueprintList name="SHOP_TURRETS_LARGE">
+	<name>OG_TURRET_LASER_1</name>
+	<name>OG_TURRET_LASER_2</name>
+	<name>OG_TURRET_ION_1</name>
+	<name>OG_TURRET_ION_2</name>
+	<name>OG_TURRET_MISSILE_1</name>
+	<name>OG_TURRET_MISSILE_2</name>
+	<name>OG_TURRET_FLAK_1</name>
+	<name>OG_TURRET_FOCUS_1</name>
+</blueprintList>
+<blueprintList name="SHOP_TURRETS_MINI">
+	<name>OG_TURRET_LASER_MINI_1</name>
+	<name>OG_TURRET_LASER_MINI_2</name>
+	<name>OG_TURRET_ION_MINI_1</name>
+	<name>OG_TURRET_FOCUS_MINI_1</name>
+</blueprintList>
+<blueprintList name="GIFTLIST_OG_IRON">
+	<name>OG_TURRET_LASER_MINI_1</name>
+	<name>OG_TURRET_LASER_MINI_2</name>
+	<name>OG_TURRET_ION_MINI_1</name>
+	<name>OG_TURRET_FOCUS_MINI_1</name>
+</blueprintList>
+</FTL>
+<!--Iron Watch Ships-->
+<FTL>
+<blueprintList name="LIST_WEAPONS_OG_IRON">
+	<name>LASER_BURST_1</name>
+	<name>LASER_BURST_2_ENEMY</name>
+	<name>LASER_BURST_3</name>
+	<name>LASER_BURST_5</name>
+	<name>LASER_HEAVY_1</name>
+	<name>LASER_HEAVY_2</name>
+	<name>LASER_HULL_1_ENEMY</name>
+	<name>LASER_HULL_2</name>
+	<name>BEAM_1</name>
+	<name>BEAM_2</name>
+	<name>BEAM_FIRE</name>
+	<name>BOMB_1_ENEMY</name>
+	
+	<name>SHOTGUN_1_ENEMY</name>
+	<name>SHOTGUN_2</name>
+	<name>SHOTGUN_3</name>
+	
+	<name>ION_CHAINGUN</name>
+	<name>LASER_CHARGEGUN_ENEMY</name>
+	<name>LASER_CHARGEGUN_2</name>
+	<name>ION_STUN</name>
+	<name>ION_STUN_2</name>
+	<name>ION_STUN_HEAVY</name>
+	<name>ION_STUN_CHARGEGUN</name>
+	
+	<name>LASER_LIGHT</name>
+	<name>LASER_PIERCE_ENEMY</name>
+	<name>LASER_HEAVY_3</name>
+	<name>LASER_PARTICLE</name>
+	<name>LASER_HULL_CHAINGUN</name>
+	<name>LASER_STUN</name>
+	<name>ION_BIO</name>
+	<name>ION_FIRE</name>
+	<name>ION_TRI</name>
+	<name>BEAM_BREACH</name>
+	<name>BEAM_PARTICLE</name>
+	<name>SHOTGUN_CHARGE</name>
+</blueprintList>
+<blueprintList name="LIST_TURRETS_BIG_ATTACK">
+	<name>OG_TURRET_LASER_1</name>
+	<name>OG_TURRET_LASER_2</name>
+	<name>OG_TURRET_MISSILE_2</name>
+	<name>OG_TURRET_FLAK_1</name>
+	<name>OG_TURRET_FOCUS_1</name>
+</blueprintList>
+<blueprintList name="LIST_TURRETS_BIG_DEFENSE">
+	<name>OG_TURRET_LASER_1</name>
+	<name>OG_TURRET_MISSILE_1</name>
+	<name>OG_TURRET_FLAK_1</name>
+</blueprintList>
+<blueprintList name="LIST_CREW_OG_IRON">
+	<name>human_og_raider</name>
+	<name>human_og_raider</name>
+	<name>human</name>
+	<name>engi_separatist</name>
+	<name>orchid_vampweed</name>
+</blueprintList>
+
+<blueprintList name="LIST_SHIPS_OG_IRON_ALL">
+	<name>OG_IRON_SCOUT</name>
+	<name>OG_IRON_INFILTRATOR</name>
+	<name>OG_IRON_OUTRIDER</name>
+	<name>OG_IRON_BOMBER</name>
+	<name>OG_IRON_CORVETTE</name>
+	<name>OG_IRON_FIGHTER</name>
+	<name>OG_IRON_RAIDER</name>
+	<name>OG_IRON_TRANSPORT</name>
+	<name>OG_IRON_GUARD</name>
+</blueprintList>
+<blueprintList name="LIST_SHIPS_OG_IRON_GENERIC">
+	<name>OG_IRON_SCOUT</name>
+	<name>OG_IRON_INFILTRATOR</name>
+	<name>OG_IRON_OUTRIDER</name>
+	<name>OG_IRON_BOMBER</name>
+	<name>OG_IRON_CORVETTE</name>
+	<name>OG_IRON_FIGHTER</name>
+	<name>OG_IRON_TRANSPORT</name>
+</blueprintList>
+<blueprintList name="LIST_SHIPS_OG_IRON_FIGHT">
+	<name>OG_IRON_SCOUT</name>
+	<name>OG_IRON_INFILTRATOR</name>
+	<name>OG_IRON_OUTRIDER</name>
+	<name>OG_IRON_BOMBER</name>
+	<name>OG_IRON_CORVETTE</name>
+	<name>OG_IRON_FIGHTER</name>
+</blueprintList>
+<shipBlueprint name="OG_IRON_SCOUT" layout="og_iron_scout" img="og_iron_scout">
+	<class>Iron Watch Scout</class>
+	<minSector>1</minSector>
+	<maxSector>4</maxSector>
+	<systemList>
+		<og_turret_mini power="2" max="4" room="3" start="true" turret="OG_TURRET_LASER_MINI_2" />
+		<cloaking power="1" max="2" room="1" start="true" />
+		<engines power="2" max="3" room="5" start="true" />
+		<medbay power="1" max="1" room="2" start="true" />
+		<oxygen power="1" max="1" room="4" start="true" />
+		<pilot power="1" max="2" room="0" start="true" />
+		<weapons power="2" max="6" room="6" start="true" />
+	</systemList>
+	<weaponSlots>2</weaponSlots>
+	<droneSlots>2</droneSlots>
+	<weaponList missiles="8" count="2" load="LIST_WEAPONS_OG_IRON" />
+	<droneList drones="20" count="0" />
+	<health amount="8" />
+	<maxPower amount="9" />
+	<crewCount amount="3" max="4" class="LIST_CREW_OG_IRON" />
+	<boardingAI>sabotage</boardingAI>
+	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
+	<aug name="OG_REFLECTIVE_PLATING" />
+</shipBlueprint>
+<shipBlueprint name="OG_IRON_INFILTRATOR" layout="og_iron_infiltrator" img="og_iron_infiltrator">
+	<class>Iron Watch Infiltrator</class>
+	<minSector>1</minSector>
+	<maxSector>6</maxSector>
+	<systemList>
+		<og_turret_mini power="1" max="3" room="0" start="true" turret="OG_TURRET_ION_MINI_1" />
+		<og_turret_mini_2 power="1" max="3" room="2" start="true" turret="OG_TURRET_LASER_MINI_2" />
+		<og_turret_mini_3 power="1" max="3" room="1" start="true" turret="OG_TURRET_FOCUS_MINI_1" />
+		<cloaking power="1" max="2" room="3" start="true" />
+		<drones power="2" max="6" room="5" start="true" />
+		<engines power="2" max="3" room="6" start="true" />
+		<oxygen power="1" max="1" room="7" start="true" />
+		<pilot power="2" max="2" room="4" start="true" />
+	</systemList>
+	<weaponSlots>2</weaponSlots>
+	<droneSlots>2</droneSlots>
+	<weaponList missiles="2" count="2" />
+	<droneList drones="9" count="2" load="LIST_DRONES_ENEMY_COMBAT" />
+	<health amount="9" />
+	<maxPower amount="9" />
+	<crewCount amount="3" max="4" class="LIST_CREW_OG_IRON" />
+	<boardingAI>sabotage</boardingAI>
+	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
+	<aug name="OG_REFLECTIVE_PLATING" />
+</shipBlueprint>
+<shipBlueprint name="OG_IRON_OUTRIDER" layout="og_iron_outrider" img="og_iron_outrider">
+	<class>Iron Watch Outrider</class>
+	<minSector>1</minSector>
+	<maxSector>7</maxSector>
+	<systemList>
+		<og_turret_mini power="2" max="4" room="2" start="true" turret="OG_TURRET_LASER_MINI_1" />
+		<og_turret_mini_2 power="1" max="4" room="1" start="true" turret="OG_TURRET_LASER_MINI_2" />
+		<cloaking power="1" max="2" room="6" start="true" />
+		<doors power="1" max="2" room="7" start="true" />
+		<engines power="2" max="2" room="4" start="true" />
+		<oxygen power="1" max="1" room="3" start="true" />
+		<pilot power="1" max="2" room="0" start="true" />
+		<weapons power="1" max="7" room="5" start="true" />
+	</systemList>
+	<weaponSlots>3</weaponSlots>
+	<droneSlots>0</droneSlots>
+	<weaponList missiles="16" count="3" load="LIST_WEAPONS_OG_IRON" />
+	<droneList drones="0" count="0" />
+	<health amount="9" />
+	<maxPower amount="9" />
+	<crewCount amount="3" max="5" class="LIST_CREW_OG_IRON" />
+	<boardingAI>sabotage</boardingAI>
+	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
+	<aug name="OG_REFLECTIVE_PLATING" />
+</shipBlueprint>
+<shipBlueprint name="OG_IRON_BOMBER" layout="og_iron_bomber" img="og_iron_bomber">
+	<class>Iron Watch Bomber</class>
+	<minSector>1</minSector>
+	<maxSector>8</maxSector>
+	<systemList>
+		<og_turret power="2" max="5" room="0" start="true" turret="OG_TURRET_MISSILE_1" />
+		<cloaking power="1" max="2" room="9" start="true" />
+		<doors power="1" max="1" room="10" start="true" />
+		<drones power="2" max="6" room="8" start="true" />
+		<engines power="1" max="2" room="1" start="true" />
+		<medbay power="1" max="1" room="5" start="true" />
+		<oxygen power="1" max="1" room="6" start="true" />
+		<pilot power="1" max="2" room="2" start="true" />
+		<weapons power="2" max="6" room="7" start="true" />
+	</systemList>
+	<weaponSlots>2</weaponSlots>
+	<droneSlots>3</droneSlots>
+	<weaponList missiles="25" count="2" load="LIST_WEAPONS_OG_IRON" />
+	<droneList drones="6" count="3" load="LIST_DRONES_ENEMY_COMBAT" />
+	<health amount="13" />
+	<maxPower amount="10" />
+	<crewCount amount="3" max="6" class="LIST_CREW_OG_IRON" />
+	<boardingAI>sabotage</boardingAI>
+	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
+	<aug name="OG_REFLECTIVE_PLATING" />
+</shipBlueprint>
+<shipBlueprint name="OG_IRON_CORVETTE" layout="og_iron_corvette" img="og_iron_corvette">
+	<class>Iron Watch Corvette</class>
+	<minSector>3</minSector>
+	<maxSector>8</maxSector>
+	<systemList>
+		<og_turret power="2" max="5" room="10" start="true" turret="LIST_TURRETS_BIG_ATTACK" />
+		<og_turret_mini power="1" max="4" room="3" start="true" turret="OG_TURRET_FOCUS_MINI_1" />
+		<og_turret_mini_2 power="1" max="4" room="2" start="true" turret="OG_TURRET_LASER_MINI_2" />
+		<cloaking power="1" max="2" room="0" start="true" />
+		<doors power="1" max="2" room="7" start="true" />
+		<engines power="1" max="2" room="4" start="true" />
+		<medbay power="1" max="1" room="11" start="true" />
+		<oxygen power="1" max="1" room="8" start="true" />
+		<pilot power="1" max="2" room="9" start="true" />
+		<weapons power="2" max="8" room="1" start="true" />
+	</systemList>
+	<weaponSlots>3</weaponSlots>
+	<droneSlots>0</droneSlots>
+	<weaponList missiles="14" count="3" load="LIST_WEAPONS_OG_IRON" />
+	<droneList drones="0" count="0" />
+	<health amount="15" />
+	<maxPower amount="10" />
+	<crewCount amount="3" max="7" class="LIST_CREW_OG_IRON" />
+	<boardingAI>sabotage</boardingAI>
+	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
+	<aug name="OG_REFLECTIVE_PLATING" />
+</shipBlueprint>
+<shipBlueprint name="OG_IRON_FIGHTER" layout="og_iron_fighter" img="og_iron_fighter">
+	<class>Iron Watch Fighter</class>
+	<minSector>1</minSector>
+	<maxSector>8</maxSector>
+	<systemList>
+		<og_turret power="2" max="5" room="2" start="true" turret="LIST_TURRETS_BIG_ATTACK" />
+		<og_turret_mini power="1" max="4" room="4" start="true" turret="OG_TURRET_LASER_MINI_1" />
+		<og_turret_mini_2 power="1" max="4" room="0" start="true" turret="OG_TURRET_LASER_MINI_2" />
+		<cloaking power="1" max="2" room="5" start="true" />
+		<doors power="1" max="2" room="10" start="false" />
+		<drones power="2" max="6" room="6" start="false" />
+		<engines power="2" max="2" room="8" start="true" />
+		<medbay power="1" max="1" room="7" start="false" />
+		<oxygen power="1" max="1" room="9" start="true" />
+		<pilot power="1" max="1" room="1" start="true" />
+		<weapons power="2" max="8" room="3" start="true" />
+	</systemList>
+	<weaponSlots>2</weaponSlots>
+	<droneSlots>3</droneSlots>
+	<weaponList missiles="12" count="2" load="LIST_WEAPONS_OG_IRON" />
+	<droneList drones="12" count="3" load="LIST_DRONES_ENEMY_COMBAT" />
+	<health amount="13" />
+	<maxPower amount="9" />
+	<crewCount amount="3" max="7" class="LIST_CREW_OG_IRON" />
+	<boardingAI>sabotage</boardingAI>
+	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
+	<aug name="OG_REFLECTIVE_PLATING" />
+</shipBlueprint>
+<shipBlueprint name="OG_IRON_TRANSPORT" layout="og_iron_transport" img="og_iron_transport">
+	<class>Iron Watch Transport</class>
+	<minSector>1</minSector>
+	<maxSector>8</maxSector>
+	<systemList>
+		<og_turret_mini power="1" max="4" room="1" start="true" turret="OG_TURRET_LASER_MINI_1" />
+		<og_turret_mini_2 power="1" max="4" room="2" start="true" turret="OG_TURRET_LASER_MINI_1" />
+		<og_turret_mini_3 power="1" max="4" room="3" start="true" turret="OG_TURRET_LASER_MINI_2" />
+		<og_turret_mini_4 power="1" max="4" room="4" start="true" turret="OG_TURRET_LASER_MINI_2" />
+		<cloaking power="1" max="2" room="7" start="true" />
+		<doors power="2" max="2" room="14" start="true" />
+		<drones power="2" max="6" room="13" start="false" />
+		<engines power="2" max="2" room="5" start="true" />
+		<medbay power="2" max="2" room="6" start="true" />
+		<oxygen power="1" max="1" room="12" start="true" />
+		<pilot power="1" max="2" room="0" start="true" />
+		<teleporter power="1" max="2" room="9" start="false" />
+		<weapons power="2" max="7" room="8" start="true" />
+	</systemList>
+	<weaponSlots>3</weaponSlots>
+	<droneSlots>2</droneSlots>
+	<weaponList missiles="12" count="3" load="LIST_WEAPONS_OG_IRON" />
+	<droneList drones="9" count="2" load="LIST_DRONES_ENEMY_COMBAT" />
+	<health amount="15" />
+	<maxPower amount="12" />
+	<crewCount amount="6" max="9" class="LIST_CREW_OG_IRON" />
+	<boardingAI>sabotage</boardingAI>
+	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
+	<aug name="OG_REFLECTIVE_PLATING" />
+</shipBlueprint>
+<shipBlueprint name="OG_IRON_RAIDER" layout="og_iron_raider" img="og_iron_raider">
+	<class>Iron Watch Raider</class>
+	<minSector>1</minSector>
+	<maxSector>8</maxSector>
+	<systemList>
+		<og_turret power="2" max="5" room="4" start="true" turret="LIST_TURRETS_BIG_ATTACK" />
+		<og_turret_mini power="1" max="4" room="1" start="true" turret="OG_TURRET_ION_MINI_1" />
+		<og_turret_mini_2 power="1" max="4" room="2" start="true" turret="OG_TURRET_FOCUS_MINI_1" />
+		<og_turret_mini_3 power="1" max="4" room="0" start="true" turret="OG_TURRET_LASER_MINI_2" />
+		<cloaking power="1" max="1" room="13" start="false" />
+		<doors power="1" max="1" room="6" start="true" />
+		<drones power="2" max="6" room="12" start="false" />
+		<engines power="2" max="2" room="5" start="true" />
+		<medbay power="1" max="2" room="10" start="true" />
+		<oxygen power="1" max="1" room="9" start="true" />
+		<pilot power="1" max="2" room="20" start="true" />
+		<teleporter power="1" max="1" room="7" start="false" />
+		<weapons power="2" max="8" room="3" start="true" />
+	</systemList>
+	<weaponSlots>2</weaponSlots>
+	<droneSlots>2</droneSlots>
+	<weaponList missiles="14" count="2" load="LIST_WEAPONS_OG_IRON" />
+	<droneList drones="12" count="2" load="LIST_DRONES_ENEMY_COMBAT" />
+	<health amount="20" />
+	<maxPower amount="11" />
+	<crewCount amount="4" max="8" class="LIST_CREW_OG_IRON" />
+	<boardingAI>sabotage</boardingAI>
+	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
+	<aug name="OG_REFLECTIVE_PLATING" />
+</shipBlueprint>
+<shipBlueprint name="OG_IRON_GUARD" layout="og_iron_guard" img="og_iron_guard">
+	<class>Iron Watch Guard</class>
+	<minSector>1</minSector>
+	<maxSector>8</maxSector>
+	<systemList>
+		<og_turret power="2" max="5" room="2" start="true" turret="LIST_TURRETS_BIG_ATTACK" />
+		<og_turret_alt power="2" max="5" room="1" start="true" turret="OG_TURRET_MISSILE_1" />
+		<og_turret_mini power="1" max="4" room="0" start="true" turret="OG_TURRET_LASER_MINI_2" />
+		<cloaking power="1" max="1" room="13" start="false" />
+		<doors power="1" max="2" room="16" start="false" />
+		<drones power="1" max="6" room="7" start="false" />
+		<engines power="2" max="2" room="9" start="true" />
+		<medbay power="1" max="1" room="5" start="true" />
+		<oxygen power="1" max="1" room="4" start="true" />
+		<pilot power="1" max="2" room="8" start="true" />
+		<teleporter power="1" max="1" room="6" start="false" />
+		<weapons power="2" max="8" room="10" start="true" />
+	</systemList>
+	<weaponSlots>3</weaponSlots>
+	<droneSlots>2</droneSlots>
+	<weaponList missiles="22" count="3" load="LIST_WEAPONS_OG_IRON" />
+	<droneList drones="8" count="2" load="LIST_DRONES_ENEMY_COMBAT" />
+	<health amount="17" />
+	<maxPower amount="11" />
+	<crewCount amount="4" max="8" class="LIST_CREW_OG_IRON" />
+	<boardingAI>sabotage</boardingAI>
+	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
+	<aug name="OG_REFLECTIVE_PLATING" />
+</shipBlueprint>
+</FTL>
+<!--MV Crew Blueprint Lists-->
+<FTL>
+<mod:findName type="blueprintList" name="LIST_CREW_UNIQUE">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_PARAGON_UNIQUE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_CREW_GAS"> <!-- Shell Gas whitelist-->
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_CREW_ALIENS"> <!-- Rebel store option -->
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_CREW_PETS"> <!-- Rebel store option -->
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_CREW_HARMONY_FUGITIVE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_CREW_SEPARATIST_FUGITIVE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_CREW_METAL"> <!-- used by welders/tonysr, don't add lanius-->
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_CREW_POWER"> <!-- used by tonysr-->
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_CREW_ELITE"> <!-- used for blue options-->
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_ELITE_FIRE"> <!-- because mantises, orchids and royal definitely suck at dealing with fires -->
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_ELITE_RHYME"> <!--crew The One Who Rhymes can give as a gift-->
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_CREW_MADNESS_IMMUNE"> <!--madness whitelist-->
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_CREW_ELDRITCH">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_CREW_ERROR">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_CREW_INSECTOID"> <!-- Haynes phobia-->
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_CREW_MEDICAL">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_CREW_FEDERATION">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_FEDERATION_ELITE">
+</mod:findName>
+
+<!--human-->
+<mod:findName type="blueprintList" name="LIST_CREW_HUMAN">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_CREW_ENGINEER">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_CREW_REBEL">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_REBEL_ALL"> <!--two lists depending on if jerry should have his own option(s) or not-->
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_CREW_MEDIC">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_CREW_SOLDIER">
+</mod:findName>
+
+<!--engi-->
+<mod:findName type="blueprintList" name="LIST_CREW_ENGI">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_HARMONY">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_DEFENDER">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_VARIANT_SEPARATIST">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_NOTHARMONY">
+</mod:findName>
+
+<!--zoltan-->
+<mod:findName type="blueprintList" name="LIST_CREW_ZOLTAN">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_ZOLTAN_CAPITAL">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_MONK">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_DUSK">
+</mod:findName>
+
+<!--orchid-->
+<mod:findName type="blueprintList" name="LIST_CREW_ORCHID">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_FLORAL">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_CARETAKER">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_VAMPWEED">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_ORCHID_UNIQUE">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_ORCHID_O2"> <!-- Crew that can keep a room filled with O2 on their own -->
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_ORCHID_O2_LAB"> <!-- Crew that need the lab upgrade to keep a room filled with O2 -->
+</mod:findName>
+
+<!--shell-->
+<mod:findName type="blueprintList" name="LIST_CREW_SHELL">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_SHELL_NOELITE">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_SHELL_SCIENTIST">
+</mod:findName>
+
+<!--mantis-->
+<mod:findName type="blueprintList" name="LIST_CREW_MANTIS">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_SUZERAIN">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_HIVE">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_FREEMAN">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_FREEMAN_DUMB"> <!--since freddy would definitely be smarter than this-->
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_CREW_FREDDY">
+</mod:findName>
+
+<!--rock-->
+<mod:findName type="blueprintList" name="LIST_CREW_ROCK">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_ROCK_FAITHFUL">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_ROCK_UNFAITHFUL">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_ROCK_UNFAITHFUL_ALL">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_ROCK_OUTCAST_ALLIED">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_CRUSADER">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_LOSTSUN">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_ROCK_CULTIST">
+</mod:findName>
+
+<!--crystal-->
+<mod:findName type="blueprintList" name="LIST_CREW_CRYSTAL">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_CRYSTAL_BASIC">
+</mod:findName>
+
+<!--lanius-->
+<mod:findName type="blueprintList" name="LIST_CREW_LANIUS">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_CREW_LANIUS_SWARM">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_CREW_AUGMENTED">
+</mod:findName>
+
+<!--siren-->
+<mod:findName type="blueprintList" name="LIST_CREW_SIREN">
+</mod:findName>
+
+<!--ghost-->
+<mod:findName type="blueprintList" name="LIST_CREW_GHOST">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_PHANTOM">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_GOUL">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_MARE">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_WRAITH">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_VAGABOND">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_GHOST_NOALPHA">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_VAGABOND_NOALPHA">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_ALPHA">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_VAGABOND_ALPHA">
+</mod:findName>
+
+
+<!--slug-->
+<mod:findName type="blueprintList" name="LIST_CREW_SLUG">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_CLAN">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_HEKTAR">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_SLUG_KING">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_CREW_SABOTEUR">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_VARIANT_HEKTAR">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_VARIANT_BILLY">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_CREW_SYLVAN">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_SYLVAN_START">
+</mod:findName>
+
+<!--leech-->
+<mod:findName type="blueprintList" name="LIST_CREW_LEECH">
+</mod:findName>
+
+<!--obelisk-->
+<mod:findName type="blueprintList" name="LIST_CREW_ANCIENT">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_COGNITIVE">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_RCOGNITIVE">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_COGNITIVE_ALL">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_ANCIENT_ALL">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_VARIANT_COGNITIVE">
+</mod:findName>
+
+<!--spider-->
+<mod:findName type="blueprintList" name="LIST_CREW_SPIDER">
+</mod:findName>
+<!--horse-->
+<mod:findName type="blueprintList" name="LIST_CREW_PONY">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_PONY_ENGI">
+</mod:findName>
+<!--lizard-->
+<mod:findName type="blueprintList" name="LIST_CREW_LIZARD">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_CREW_OBYN">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_CREW_QUEEN">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_BUTLER">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_YINYANG">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_HOLODRONE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_SYMBIONT">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_SYMBIONT_DRONES">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_SYMBIONT_CHAOS">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_SYMBIONT_CHAOS_DRONES">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_A55">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_DOCTOR_DRONES">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_SURGEON_DRONES">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_SURGEON_DRONES_CHAOS">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_FOREMAN_DRONES">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_GANA">
+</mod:findName>
+
+<!--
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+			CREW LISTS - STORAGE CHECK
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+-->
+
+<mod:findName type="blueprintList" name="LIST_CREW_MORPH">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_MORPH_TRANSFORMED">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_MORPH_ONLY">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_TECHNO">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_GOLD">
+</mod:findName>
+<!--
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+			SHIP CREW LISTS
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+-->
+
+<mod:findName type="blueprintList" name="LIST_CREW_LEGION">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_MALFORM_RANDOM">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_UNION_RANDOM">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_GATHERING_RANDOM">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_REBEL_RANDOM">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_FEDERATION_RANDOM">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_FEDERATION_ELITE_RANDOM">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_MILITIA_RANDOM">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_MILITIA_ELITE_RANDOM">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_MILITIA_ELITE_RANDOM_PLAYER">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_EXOTIC_RANDOM_PLAYER">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_EXOTIC_ELITE_RANDOM_PLAYER">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_DUSKBRINGER_RANDOM">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_INFERNUM_RANDOM">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_PIRATE_RANDOM">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_PIRATE_ELITE_RANDOM">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_SLAVER_RANDOM">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_MERCENARY_RANDOM">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_SMUGGLER_RANDOM">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_SPIDER_RANDOM">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_MORPH_RANDOM">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_MORPH_RANDOM_ONLY">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_TECHNO_RANDOM_ONLY">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_GHOST_RANDOM">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_GHOST_ALPHA_RANDOM">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_SIREN_SLAVE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_SLAVES_GENERIC"> <!--never sells ghosts, lanius, shells, or separatists-->
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_SLAVES_GOOD">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_SLAVES_GREAT">
+</mod:findName>
+</FTL>
+<!--WEAPON AND DRONE LISTS-->
+<FTL>
+<mod:findName type="blueprintList" name="LIST_CONTRABAND_WEP_SMUGGLER">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CONTRABAND_DRONE_SMUGGLER">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CONTRABAND_AUGMENT_SMUGGLER">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CONTRABAND_WEP_SMUGGLER_DELUXE">
+</mod:findName>
+
+<!--
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+			DRONE CONTROL LISTS
+			these are for the random gift drones - see hyperspace.xml
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+-->
+<mod:findName type="blueprintList" name="DRONE_CONTROL_COMBAT">
+</mod:findName>
+<mod:findName type="blueprintList" name="DRONE_CONTROL_DEFENSE">
+</mod:findName>
+<mod:findName type="blueprintList" name="DRONE_CONTROL_CREW">
+</mod:findName>
+
+<!--
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+			STORAGE CHECK LISTS
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+-->
+
+<mod:findName type="blueprintList" name="LIST_CHECK_RECYCLER">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_CHECK_PROTONPACK">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_CHECK_BLESSING">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_CHECK_CRATES">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_CHECK_WEAPONS">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_SYSTEMS_SPECIAL">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_PARTS_GATLING">
+</mod:findName>
+
+<!--
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+			JUMPSPACE LISTS
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+-->
+<mod:findName type="blueprintList" name="LIST_JUMPSPACE_EQUIPMENT">
+</mod:findName>
+</FTL>
+<!--GIFT LISTS-->
+<FTL>
+<mod:findName type="blueprintList" name="GIFTLIST_FREE"> <!--used in the FIND_WEAPON event-->
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_ANCIENT">
+</mod:findName>
+<mod:findName type="blueprintList" name="GIFTLIST_ANCIENT_BASIC">
+</mod:findName>
+<mod:findName type="blueprintList" name="GIFTLIST_ANCIENT_BIG">
+</mod:findName>
+<mod:findName type="blueprintList" name="GIFTLIST_ROYAL">
+</mod:findName>
+<mod:findName type="blueprintList" name="GIFTLIST_ANCIENT_DRONE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_CRYSTAL">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_CRYSTAL_ELITE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_KERNEL">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_KERNEL_ELITE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_SPORE">
+</mod:findName>
+<mod:findName type="blueprintList" name="GIFTLIST_SPORE_ELITE">
+</mod:findName>
+<mod:findName type="blueprintList" name="GIFTLIST_VAMPDRONE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_RUSTY">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_WEAPONS_MATH">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_WEAPONS_ANCIENTS_USELESS"> <!--not actually useless, these are the really strong ones-->
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_ION">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_MINELAUNCHERS_TRAPPER">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_ANTIBIO">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_FIRE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_EXPLOSIVES">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_MISSILES">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_BOMBS">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_WEAPONS_MEDICAL">  
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_BALLISTIC">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_FLAK">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_BEAM_DRONE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_BIG_BEAM">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_ENERGY">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_CREW_DRONES">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_COMBAT_DRONES">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_AUGMENT_COMBAT">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_MODULES">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_BURST_LASER">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_UTILITY">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_CREW_COALITION">
+</mod:findName>
+
+<!--FACTION GIFTLISTS-->
+<mod:findName type="blueprintList" name="GIFTLIST_UNION">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_FEDERATION">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_FEDERATION_AUGMENTS">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_REBEL">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_ENGI">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_ZOLTAN">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_ZOLTAN_BEAM">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_DUSK">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_MANTIS">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_FREEMANTIS">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_ROCK">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_LOSTSUN">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_SLUG">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_LANIUS">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_DYNASTY">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_SHELL">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_LEECH">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_COALITION">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_ESTATE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_HEKTAR">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="GIFTLIST_KNIGHT">
+</mod:findName>
+</FTL>
+<!--BLUE OPTION LISTS-->
+<FTL>
+<mod:findName type="blueprintList" name="LIST_WEAPONS_ALL">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_WEAPONS_ALL_CRAPBUCKET"> <!--doesnt include enemy weapons, god killer, or alternative variants of weapons with multiple kinds-->
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_WEAPONS_MISSILES"> <!-- blast proof augment -->
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_KERNEL">
+</mod:findName>
+<mod:findName type="blueprintList" name="BLUELIST_CRYSTAL">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_DRONES_ALL">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_DRONES_ALL_CRAPBUCKET">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_CREW_ALL_CRAPBUCKET">
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_CREW_UNIQUE_CRAPBUCKET">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_CREW_HOLODRONE_CHAOS">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_WEAPONS_PLAYER">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_MINISTRY_ROCK">
+</mod:findName>
+<mod:findName type="blueprintList" name="BLUELIST_MINISTRY_ZOLTAN">
+</mod:findName>
+<mod:findName type="blueprintList" name="BLUELIST_MINISTRY_ENGI">
+</mod:findName>
+<mod:findName type="blueprintList" name="BLUELIST_MINISTRY_ORCHID">
+</mod:findName>
+
+<!--
+//////////////////////////////////
+JUDGE LISTS
+//////////////////////////////////
+-->
+<mod:findName type="blueprintList" name="JUDGELIST_ZOLTAN_UNIQUE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="JUDGELIST_ZOLTAN_UNIQUEMECH">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="JUDGELIST_ZOLTAN_ALPHAGHOSTS">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="JUDGELIST_ZOLTAN_EASYELITE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="JUDGELIST_ZOLTAN_RAREELITE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="JUDGELIST_ZOLTAN_SELITE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="JUDGELIST_ROCK_START">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="JUDGELIST_ROCK_MADNESS">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="JUDGELIST_ROCK_CHAINGUN_GOLD"> <!-- unused? -->
+</mod:findName>
+
+<mod:findName type="blueprintList" name="JUDGELIST_ROCK_TRANSPORT_LOOT">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="JUDGELIST_ROCK_MATH_LOOT">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="JUDGELIST_ROCK_RENEGADE_LOOT">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="JUDGELIST_ROCK_CURA_LOOT">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="JUDGELIST_ROCK_NEXUS_LOOT">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="JUDGELIST_ROCK_SPECIAL_LOOT">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="JUDGELIST_ELITE">
+</mod:findName>
+
+<!--
+//////////////////////////////////
+WEAPONS
+//////////////////////////////////
+-->
+<mod:findName type="blueprintList" name="BLUELIST_AETHER">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_OBELISK">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_GATLINGS">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_RIFT">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_ION">
+</mod:findName>
+<mod:findName type="blueprintList" name="BLUELIST_ENERGY">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_MISSILES_ALL">
+</mod:findName>
+<mod:findName type="blueprintList" name="BLUELIST_MISSILES_DAMAGE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_MISSILES_POWERFUL">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_ACCURATE_BALLISTIC">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_MINELAUNCHERS_ALL">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_BOMBS"> <!-- only used by miners event, commented out bombs make no sense for it-->
+</mod:findName>
+<mod:findName type="blueprintList" name="BLUELIST_BOMBS_CREWDAMAGE">
+</mod:findName>
+<mod:findName type="blueprintList" name="BLUELIST_BOMBS_HEAL">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_SUPPORT">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_WEAPONS_RECYCLER">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_BEAMS_ALL"> <!--does not include pinpoints-->
+</mod:findName>
+<mod:findName type="blueprintList" name="BLUELIST_BEAMS_DAMAGE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_FOCUS_ALL">
+</mod:findName>
+<mod:findName type="blueprintList" name="BLUELIST_FOCUS_DAMAGE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_WEAPONS_BEAM_POWERFUL">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_WEAPONS_HEAVY">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_WEAPONS_FIRE_ALL">
+</mod:findName>
+<mod:findName type="blueprintList" name="BLUELIST_WEAPONS_FIRE_NODAMAGE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_ANTIBIO">
+</mod:findName>
+<mod:findName type="blueprintList" name="BLUELIST_ANTIBIO_NOMISSILE">
+</mod:findName>
+<mod:findName type="blueprintList" name="BLUELIST_ANTIBIO_NODAMAGE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_BOMB_REPAIR">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_PARTICLE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_FIRE_ALL">
+</mod:findName>
+<mod:findName type="blueprintList" name="BLUELIST_FIRE_NONBALLISTIC">
+</mod:findName>
+<mod:findName type="blueprintList" name="BLUELIST_FIRE_BALLISTIC">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_WEAPONS_CRYSTAL">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_WEAPONS_HACK">
+</mod:findName>
+
+
+<mod:findName type="blueprintList" name="BLUELIST_WEAPONS_MIND_AFFECT"> <!--maddening, irrational effects-->
+</mod:findName>
+<mod:findName type="blueprintList" name="BLUELIST_WEAPONS_MIND_CONTROL">
+</mod:findName>
+
+<!--
+//////////////////////////////////
+DRONES
+//////////////////////////////////
+-->
+
+<mod:findName type="blueprintList" name="BLUELIST_DRONES_BEAM">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_DRONES_DEFENSE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_DRONES_OVERCHARGER">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_DRONES_SHIPREPAIR">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_DRONES_REPAIR_ALL">
+</mod:findName>
+<mod:findName type="blueprintList" name="BLUELIST_DRONES_REPAIR_CREW">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_DRONES_BOARDING">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_DRONES_BOARDING_DAMAGE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_DRONES_MEDICAL">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_DRONES_SYSTEM_CREW">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_BOARDING_SUPPORT">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_MID_LEVEL_BOARDING">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_POWERFUL_BOARDING_NO_A55">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_HOLODRONE_CHAOS">
+</mod:findName>
+
+<!--
+//////////////////////////////////
+AUGMENTS
+//////////////////////////////////
+-->
+<mod:findName type="blueprintList" name="BLUELIST_ARMOR">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_ARM">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_OBSIDIAN">
+</mod:findName>
+<mod:findName type="blueprintList" name="BLUELIST_OBSIDIAN_UPGRADE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_GAS">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_PHEROMONES">
+</mod:findName>
+</FTL>
+<!--STORE LISTS-->
+<FTL>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYSTEMS_ESSENTIAL">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYSTEMS_BONUS">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_ITEM_WEAPONS_LASERS">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_WEAPONS_BALLISTICS">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_WEAPONS_ION">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_WEAPONS_ENERGY">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_WEAPONS_FOCUS">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_ENGI_ITEM_WEAPONS">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ENGI_ITEM_WEAPONS_ION">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_ZOLTAN_ITEM_WEAPONS">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ZOLTAN_ITEM_WEAPONS_BEAM">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_ORCHID_ITEM_WEAPONS">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ORCHID_ITEM_WEAPONS_KERNEL">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_VAMPWEED_ITEM_WEAPONS_SPORE">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_VAMPWEED_ITEM_DRONES">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_CRYSTAL_ITEM_WEAPONS">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_CRYSTAL_ITEM_WEAPONS_CRYSTAL">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_FREEMANTIS_ITEM_WEAPONS">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_FREEMANTIS_ITEM_WEAPONS_PARTICLE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_ROCK_ITEM_WEAPONS_MISSILES">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_MANTIS_ITEM_WEAPONS_BOMB">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_DUSK_ITEM_WEAPONS_ENERGY">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_REBEL_ITEM_WEAPONS_LASERS">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_REBEL_ITEM_CREW">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_COALITION_ITEM_CREW">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_DYNASTY_ITEM_WEAPONS_BREACH_AND_PIERCE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_SLUG_ITEM_WEAPONS_BIO">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_LEECH_ITEM_WEAPONS_STUN">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_SHELL_ITEM_WEAPONS_HULL">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_SHELL_ITEM_CREW">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_LANIUS_ITEM_WEAPONS_FLAK">
+</mod:findName>
+
+
+<mod:findName type="blueprintList" name="SHOP_HARDSCIFI">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_HULL">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_HULL_STRONG">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_HULL_ALL">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_CONSERVATIVE">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_CHAIN">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_CHARGE">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_RECYCLER">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_PIERCE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_FIRE">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_BREACH">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_SYSTEM">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_BIO">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_STUN">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_LOCKDOWN">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_LASERS_BURST">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_LASERS_BURST_AND_LIGHT">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_LASERS_HEAVY">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_LASERS_HULL">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_LASERS_HEAVY_AND_HULL">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_LASERS_SPECIAL">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_LASERS_CHAIN_AND_CHARGE">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_LASERS_PIERCE_AND_LIGHT">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_BEAM_STANDARD">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_BEAM_STRONG">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_BEAM_UTILITY">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_BEAM_BIO">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_FOCUS_STANDARD">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_FOCUS_SPECIAL">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_ION_STANDARD">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_ION_ATTRIBUTE">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_ION_STUN">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_ION_SPECIAL">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_ENERGY_STANDARD">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_ENERGY_ATTRIBUTE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_MISSILES_HEAVY">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_MISSILES_BURST">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_MISSILES_SPECIAL">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_BOMB">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_BOMB_SPECIAL">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_UTILITY"> <!--now a list for Extra Equipment-->
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_MINELAUNCHER">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_FLAK">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_FLAK_ELEMENTAL">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_ATTRIBUTE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_RUSTY_LASER">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_RUSTY_MISSILES">
+	<!--<name>RUSTY_MISSILES_1</name>-->
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_KERNEL_STANDARD">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_KERNEL_SPECIAL">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_KERNEL_ELITE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_SPORE">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_SPORE_SPECIAL">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_SPORE_ELITE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_CRYSTAL_STANDARD">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_CRYSTAL_SPECIAL">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_CRYSTAL_ELITE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_MINELAUNCHER_STANDARD">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_MINELAUNCHER_SPECIAL">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_MINELAUNCHER_UNIQUE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_BOSSLOOT">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_BOSSLOOT_DRONES">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_UNIQUE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_LOOT"> <!--no augmented, KoN, or CoEE-->
+	<!--<name>LOOT_ZOLTAN_2</name>-->
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_LOOT_DRONES">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_UNIQUE_DRONES">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_DRONES_COMBAT">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_DRONES_COMBAT_AMP">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_DRONES_COMBAT_SPECIAL">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_DRONES_DEFENDER">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_DRONES_GUARDIAN">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_DRONES_CREW">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_AUGMENTS_COMBAT_1">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_AUGMENTS_COMBAT_2">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_AUGMENTS_COMBAT_3">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_AUGMENTS_HYPERSPEED">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_ANCIENT_LASERS">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_ANCIENT_BEAM">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_ANCIENT_MISSILE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_ANCIENT_DRONE_COMBAT">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_ANCIENT_DRONE_DEFENSE">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_ANCIENT_DRONE_CREW">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_MODULES_ATTRIBUTE">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_MODULES_STATUS">
+</mod:findName>
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_MODULES_ALL">
+</mod:findName>
+</FTL>
+<!--HEKTAR LISTS-->
+<FTL>
+<mod:findName type="blueprintList" name="HEKTAR_MODULAR_WEAPONS">
+</mod:findName>
+<mod:findName type="blueprintList" name="HEKTAR_MODULAR_LASERS">
+</mod:findName>
+<mod:findName type="blueprintList" name="HEKTAR_MODULAR_BEAMS">
+</mod:findName>
+<mod:findName type="blueprintList" name="HEKTAR_MODULAR_MISSILES">
+</mod:findName>
+<mod:findName type="blueprintList" name="HEKTAR_MODULAR_IONS">
+</mod:findName>
+<mod:findName type="blueprintList" name="HEKTAR_MODULAR_CHARGE"> <!--add blue options when ready-->
+</mod:findName>
+<mod:findName type="blueprintList" name="HEKTAR_MODULAR_CHARGE_CHAOS">
+</mod:findName>
+<mod:findName type="blueprintList" name="HEKTAR_MODULAR_CHARGE_REWARD">
+</mod:findName>
+<mod:findName type="blueprintList" name="HEKTAR_MODULAR_CHARGE_CHAOS_REWARD">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_ITEM_HEKTAR_MODULES">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_ITEM_HEKTAR_BASE">
+</mod:findName>
+</FTL>
+<!--MISC ENEMY EQUIPMENT LISTS-->
+<FTL>
+<!--weapons-->
+<mod:findName type="blueprintList" name="LIST_WEAPONS_TRAPPER">
+</mod:findName>
+
+<!--drones-->
+<mod:findName type="blueprintList" name="LIST_DRONES_ENEMY_STANDARD">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_DRONES_ENEMY_COMBAT">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_DRONES_ENEMY_COMBAT_BORING">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_DRONES_ENEMY_BEAM">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_DRONES_ENEMY_DEFENSE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_DRONES_ENEMY_CREW">
+</mod:findName>
+</FTL>
+<!--LOOT LISTS-->
+<FTL>
+<mod:findName type="blueprintList" name="LIST_LOOT_UNION">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_LOOT_MILITIA"> 
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_LOOT_FEDERATION">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_LOOT_REBEL">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_LOOT_AUTO">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_LOOT_ENGI">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_LOOT_SEPARATIST">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_LOOT_ZOLTAN">
+	<!--<name>LOOT_ZOLTAN_2</name>-->
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_LOOT_DUSKBRINGER">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_LOOT_MANTIS">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_LOOT_FREEMANTIS">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_LOOT_ROCK">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_LOOT_LOSTSUN">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_LOOT_CRYSTAL">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_LOOT_SLUG">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_LOOT_CLAN">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_LOOT_LANIUS">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_LOOT_DYNASTY">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_LOOT_ORCHID">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_LOOT_VAMPWEED">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_LOOT_SHELL">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_LOOT_LEECH">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_LOOT_COALITION">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_LOOT_STARGROVE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_LOOT_ESTATE">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_LOOT_CULTIST">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_LOOT_KNIGHT">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="LIST_LOOT_AUG">
+</mod:findName>
+</FTL>

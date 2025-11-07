@@ -1,0 +1,74 @@
+<FTL>
+<mod:findName type="event" name="ATLAS_MENU">
+	<mod-append:choice hidden="true" req="SEC SECTOR_OG_IRON" blue="false">
+		<text>Proceed to the Iron Watch Sector.</text>
+		<event load="OG_IRON_WARP" />
+	</mod-append:choice>
+</mod:findName>
+
+<mod:findName type="event" name="ATLAS_MENU_NOEQUIPMENT">
+	<mod-append:choice hidden="true" req="SEC SECTOR_OG_IRON" blue="false">
+		<text>Proceed to the Iron Watch Sector.</text>
+		<event load="OG_IRON_WARP" />
+	</mod-append:choice>
+</mod:findName>
+
+<mod:findName type="event" name="REROUTE_MENU">
+</mod:findName>
+
+<mod:findName type="event" name="REROUTE_MENU_LASTSTAND">
+</mod:findName>
+
+<mod:findName type="event" name="REROUTE_MENU_HAT">
+</mod:findName>
+
+<mod:findName type="event" name="REROUTE_MENU_ASTROMETRICS">
+	<mod-append:choice req="ASTRO_OG_IRON" max_group="2" blue="false" hidden="true">
+		<text>Go to an Iron Watch Controlled Sector.</text>
+		<event load="ASTROMETRIC_WARP_OG_IRON"/>
+	</mod-append:choice>
+</mod:findName>
+
+<event name="ENTER_OG_IRON">
+	<text load="TEXT_LIGHTSPEED" />
+	<img back="BACKGROUND_LIGHTSPEED" planet="NONE" />
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="LOAD_ATLAS_MARKER" />
+	</choice>
+</event>
+<event name="OG_IRON_WARP">
+	<text id="atlas_og_iron_generic"/>
+	<choice hidden="true">
+		<text>Exit hyperspeed.</text>
+		<event load="START_OG_IRON" />
+	</choice>
+	<choice hidden="true" req="COORDS" blue="false">
+		<text>Reroute.</text>
+		<event load="REROUTE_MENU" />
+	</choice>
+</event>
+<event name="ASTROMETRIC_WARP_OG_IRON">
+	<text id="atlas_og_iron_generic"/>
+	<choice hidden="true">
+		<text>Continue with the jump.</text>
+		<event>
+			<text>You prepare to jump to the new co-ordinates, and change your flight path accordingly.</text>
+			<variable name="loc_astrometrics_active" op="set" val="-1"/>
+			<variable name="loc_sector_count" op="add" val="-1"/>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event><secretSector>SECTOR_OG_IRON</secretSector></event>
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true">
+		<text>Nevermind.</text>
+		<event>
+			<loadEvent>ATLAS_MENU_NOEQUIPMENT</loadEvent>
+		</event>
+	</choice>
+</event>
+
+
+</FTL>

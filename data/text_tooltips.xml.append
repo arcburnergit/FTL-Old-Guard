@@ -8,6 +8,6 @@
 <text name="tooltip_og_turret_alt_enemy">Turret Control: Powers the enemy turret.</text>
 <text name="tooltip_og_turret_mini">Turret Control: Click on the turret to set its mode, or target it.</text>
 <text name="tooltip_og_turret_mini_enemy">Turret Control: Powers the enemy turret.</text>
-<text name="tooltip_og_turret_mini_alt">Turret Control: Click on the turret to set its mode, or target it.</text>
-<text name="tooltip_og_turret_mini_alt_enemy">Turret Control: Powers the enemy turret.</text>
+<text name="tooltip_og_turret_mini_2">Turret Control: Click on the turret to set its mode, or target it.</text>
+<text name="tooltip_og_turret_mini_2_enemy">Turret Control: Powers the enemy turret.</text>
 </FTL>

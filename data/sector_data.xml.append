@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--SECTOR COLOURS AND SPAWNING-->
+<FTL>
+<!-- SPAWNING -->
+<mod:findName type="sectorType" name="ZONE_SAFE">
+</mod:findName>
+
+<mod:findName type="sectorType" name="SECTOR_LIST_ALLIED">
+</mod:findName>
+<mod:findName type="sectorType" name="SECTOR_LIST_NEUTRAL">
+	<mod-append:name>SECTOR_OG_IRON</mod-append:name>
+</mod:findName>
+<mod:findName type="sectorType" name="SECTOR_LIST_HOSTILE">
+</mod:findName>
+<mod:findName type="sectorType" name="SECTOR_LIST_GENERIC">
+</mod:findName>
+
+<mod:findName type="sectorType" name="SECTOR_LIST_UNIQUE_SAFE">
+</mod:findName>
+<mod:findName type="sectorType" name="SECTOR_LIST_UNIQUE_DEADLY">
+	<mod-append:name>SECTOR_OG_IRON</mod-append:name>
+</mod:findName>
+
+<!-- COLOURS -->
+<mod:findName type="sectorType" name="CIVILIAN">
+</mod:findName>
+<mod:findName type="sectorType" name="NEUTRAL">
+	<mod-append:name>SECTOR_OG_IRON</mod-append:name>
+</mod:findName>
+<mod:findName type="sectorType" name="HOSTILE">
+</mod:findName>
+<mod:findName type="sectorType" name="NEBULA">
+</mod:findName>
+
+<mod:findName type="sectorType" name="SECRET">
+</mod:findName>
+</FTL>
+<!--SECTORS-->
+<FTL>
+<sectorDescription name="SECTOR_OG_IRON" unique="false">
+	<nameList>
+		<name>Iron Watch Sector</name>
+		<name>Iron Watch Space</name>
+		<name>Iron Watch Frontier</name>
+		<name>Iron Watch Territory</name>
+		<name>Iron Watch Domain</name>
+		<name>Iron Watch Rimworlds</name>
+		<name>Iron Watch Regions</name>
+		<name>Iron Watch Parts</name>
+		<name>Iron Watch Dominion</name>
+		<name>Iron Watch Turf</name>
+		<name>Iron Watch Realm</name>
+		<name>Iron Watch Outreaches</name>
+	</nameList>
+	<trackList>
+		<track>colonial</track>
+		<track>lostship</track>
+		<track>insurgence</track>
+		<track>hacking</track>
+	</trackList>
+	<rarityList>
+		<blueprint name="human_og_raider" rarity="1"/>
+		<blueprint name="human" rarity="1"/>
+		<blueprint name="human_medic" rarity="5"/>
+		<blueprint name="human_engineer" rarity="5"/>
+		<blueprint name="engi" rarity="5"/>
+		<blueprint name="engi_separatist" rarity="1"/>
+		<blueprint name="zoltan" rarity="0"/>
+		<blueprint name="zoltan_monk" rarity="0"/>
+		<blueprint name="zoltan_devotee" rarity="0"/>
+		<blueprint name="rock" rarity="3"/>
+		<blueprint name="rock_outcast" rarity="1"/>
+		<blueprint name="rock_commando" rarity="0"/>
+		<blueprint name="mantis" rarity="1"/>
+		<blueprint name="mantis_free" rarity="2"/>
+		<blueprint name="slug" rarity="4"/>
+		<blueprint name="slug_clansman" rarity="5"/>
+		<blueprint name="shell" rarity="0"/>
+		<blueprint name="shell_scientist" rarity="0"/>
+		<blueprint name="shell_mechanic" rarity="0"/>
+		<blueprint name="shell_guardian" rarity="0"/>
+		<blueprint name="crystal" rarity="5"/>
+		<blueprint name="crystal_liberator" rarity="0"/>
+		<blueprint name="orchid" rarity="5"/>
+		<blueprint name="orchid_vampweed" rarity="1"/>
+		<blueprint name="leech" rarity="4"/>
+		<blueprint name="lanius" rarity="5"/>
+		<blueprint name="phantom" rarity="4"/>
+		<blueprint name="phantom_goul" rarity="5"/>
+		<blueprint name="phantom_mare" rarity="5"/>
+		<blueprint name="phantom_wraith" rarity="3"/>
+		<blueprint name="phantom_wraith_alpha" rarity="5"/>
+	</rarityList>
+	<startEvent>ENTER_OG_IRON</startEvent>
+	<removeFirstBeaconNebula/>
+	<exitBeacon event="FINISH_BEACON_OG_IRON" nebulaEvent="FINISH_BEACON_NEBULA" rebelEvent="FINISH_BEACON_FLEET_ELITE"/>
+	<rebelBeacon event="FLEET_THREAT_MEDIUM" nebulaEvent="NEBULA_LIGHT_FLEET_THREAT_MEDIUM"/>
+	<priorityEvent name="ANOMALY_SPAWNER" min="1" max="1" priority="1" req="ANOMALY_SPAWN_CHECK" lvl="1"/>
+	<event name="MV_TRAVELER" min="1" max="1"/>
+	<event name="SYLVAN" min="1" max="1"/>
+	<priorityEvent name="NEMESIS_ENCOUNTER" min="0" max="1" req="prof_finalsector" lvl="1"/>
+	
+	<event name="STORELIST_OG_IRON" min="2" max="2"/>
+	<event name="STORE_HOSTILE_PIRATE" min="0" max="1"/>
+	
+	<event name="ITEMS_OG_IRON" min="3" max="4"/>
+	<event name="NEUTRAL_PIRATE_MV" min="4" max="5"/>
+	<event name="DISTRESS_PIRATE_MV" min="2" max="3"/>
+	<event name="QUESTS_PIRATE_MV" min="1" max="1"/>
+	
+	<event name="HOSTILE_PIRATE_MV" min="3" max="7"/>
+	
+	<event name="PIRACY_LIST" min="2" max="3"/>
+	<event name="FILLER_LIST" min="5" max="5"/>
+</sectorDescription>
+</FTL>
+<!--MV SECTORS-->
+<FTL>
+<mod:findName type="sectorDescription" name="SECTOR_FEDERATION">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_FEDERATION_UNIQUE">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_UNION">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_UNION_UNIQUE">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_HACKER_UNIQUE">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_MILITIA_UNIQUE">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_HARMONY">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_HARMONY_UNIQUE">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_MINISTRY">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_MINISTRY_UNIQUE">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_GATHERING">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_GATHERING_UNIQUE">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_FREEMANTIS">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_FREEMANTIS_UNIQUE">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_OUTCAST">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_OUTCAST_UNIQUE">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_IMPERIAL">
+</mod:findName>
+<!--HOSTILE-->
+<mod:findName type="sectorDescription" name="SECTOR_CONFEDERATE">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_CONFEDERATE_UNIQUE">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_SEPARATIST">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_SEPARATIST_UNIQUE">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_LOSTSUN_UNIQUE">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_PIRATE">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_PIRATE_HEKTAR">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_PIRATE_UNIQUE">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_LANIUS_UNIQUE">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_ABANDONED_GENERIC">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_ABANDONED_GENERIC_HEKTAR">
+</mod:findName>
+<!--HOSTILE-->
+<mod:findName type="sectorDescription" name="SECTOR_REBEL">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_REBEL_UNIQUE">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_HIVE">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_HIVE_UNIQUE">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_THEOCRACY">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_THEOCRACY_UNIQUE">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_IMPERIAL_UNIQUE">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_DUSKBRINGER">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_DUSKBRINGER_UNIQUE">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_COALITION">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_AUTO">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_AUTO_UNIQUE">
+</mod:findName>
+<!--NEBULA-->
+<mod:findName type="sectorDescription" name="SECTOR_UNEXPLORED_GENERIC">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_STARGROVE_UNIQUE">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_KLEPTOCRACY">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_KLEPTOCRACY_HEKTAR">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_KLEPTOCRACY_UNIQUE">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_CLAN_UNIQUE">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_GENIOCRACY">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_GENIOCRACY_UNIQUE">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_MORPH_UNIQUE">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_VAGABOND">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_VAGABOND_UNIQUE">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_DYNASTY">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_DYNASTY_UNIQUE">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_REPUBLIC">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_REPUBLIC_HEKTAR">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_REPUBLIC_UNIQUE">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_COALITION_UNIQUE">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_MONK_UNIQUE">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECTOR_ASTEROID_GENERIC">
+</mod:findName>
+<!--SECRET-->
+<mod:findName type="sectorDescription" name="SECRET_SPIDER">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECRET_JERRY">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECRET_ESTATE">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECRET_NIGHTS">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECRET_HEKTAR">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECRET_AUGMENTED">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECRET_ORIGINS">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECRET_ORIGINS_RUWEN">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECRET_ANCIENT">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECRET_ROYAL">
+</mod:findName>
+<mod:findName type="sectorDescription" name="SECRET_SYLVAN">
+</mod:findName>
+</FTL>

@@ -1,5 +1,12 @@
 <!--Turret Control System-->
 <FTL>
+<augBlueprint name="UPG_OG_TURRET_ROTATION_ENEMY">
+	<title>Overclocked Motors</title>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<cost>0</cost>
+	<rarity>0</rarity>
+	<stackable>true</stackable>
+</augBlueprint>
 <augBlueprint name="UPG_OG_TURRET_ROTATION">
 	<title>Overclocked Motors</title>
 	<desc>YOU SHOULD NEVER SEE THIS</desc>
@@ -108,8 +115,8 @@
 	</upgradeCost>
 	<cost>45</cost>
 </systemBlueprint>
-<systemBlueprint name="og_turret_mini_alt">
-	<type>og_turret_mini_alt</type>
+<systemBlueprint name="og_turret_mini_2">
+	<type>og_turret_mini_2</type>
 	<title>Micro Turret Control</title>
 	<desc>Powers your ship's turret. Upgrading lowers the charge time of the turret.</desc>
 	<startPower>1</startPower>
@@ -123,6 +130,76 @@
 	</upgradeCost>
 	<cost>45</cost>
 </systemBlueprint>
+<systemBlueprint name="og_turret_mini_3">
+	<type>og_turret_mini_3</type>
+	<title>Micro Turret Control</title>
+	<desc>Powers your ship's turret. Upgrading lowers the charge time of the turret.</desc>
+	<startPower>1</startPower>
+	<maxPower>3</maxPower>
+	<rarity>0</rarity>
+	<upgradeCost>
+		<level>55</level>
+		<level>75</level>
+		<level>90</level>
+		<level>120</level>
+	</upgradeCost>
+	<cost>45</cost>
+</systemBlueprint>
+<systemBlueprint name="og_turret_mini_4">
+	<type>og_turret_mini_4</type>
+	<title>Micro Turret Control</title>
+	<desc>Powers your ship's turret. Upgrading lowers the charge time of the turret.</desc>
+	<startPower>1</startPower>
+	<maxPower>3</maxPower>
+	<rarity>0</rarity>
+	<upgradeCost>
+		<level>55</level>
+		<level>75</level>
+		<level>90</level>
+		<level>120</level>
+	</upgradeCost>
+	<cost>45</cost>
+</systemBlueprint>
+</FTL>
+
+<!--Crew-->
+<FTL>
+<crewBlueprint name="human_og_raider">
+	<desc>An Iron Watch technician skilled in repairs.
+
+	Inherited Human stats: minor suffocation resistance, learns skills faster</desc>
+	<cost>40</cost>
+	<title>Iron Watch Raider</title>
+	<short>Raider</short>
+	<rarity>0</rarity>
+	<powerList>
+		<power>Provides 2 power to the occupied system while in the presence of a pulsar</power>
+		<power>1.5x repair speed</power>
+		<power>Takes 0.6x damage from fires</power>
+		<power>Learns repairs even faster</power>
+	</powerList>
+	<colorList>
+		<layer> <!--skin-->
+			<color r="255" g="150" b="150" a="0.4" /> <!--white-->
+			<color r="90" g="60" b="40" a="0.7" /> <!--black-->
+			<color r="255" g="124" b="89" a="0" /> <!--other white-->
+			<color r="255" g="255" b="255" a="0.2" /> <!--yellow-->
+		</layer>
+		<layer> <!--hair-->
+			<color r="224" g="180" b="5" a="0.6" /> <!--blond-->
+			<color r="61" g="59" b="53" a="0.9" /> <!--black-->
+			<color r="189" g="187" b="178" a="0.6" /> <!--grey-->
+			<color r="121" g="96" b="56" a="0.2" /> <!--brown-->
+			<color r="109" g="70" b="65" a="0.8" /> <!--reddish-brown-->
+			<color r="201" g="127" b="11" a="0.7" /> <!--orange-->
+			
+			<color r="217" g="0" b="0" a="0.8" /> <!--red-->
+			<color r="46" g="147" b="60" a="0.7" /> <!--green-->
+			<color r="255" g="0" b="174" a="0.9" /> <!--pink-->
+			<color r="113" g="57" b="205" a="0.7" /> <!--purple-->
+		</layer>
+	</colorList>
+</crewBlueprint>
 </FTL>
 
 <!--Turrets-->
@@ -999,6 +1076,13 @@
 
 <!--SHIPS-->
 <FTL>
+<augBlueprint name="SHIP_OG_GUARD">
+	<title>Iron Watch Ship</title>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<cost>0</cost>
+	<rarity>0</rarity>
+	<stackable>true</stackable>
+</augBlueprint>
 <shipBlueprint name="PLAYER_SHIP_OG_RAIDER" layout="og_raider_a" img="og_raider_a">
 	<class>Raider-Class</class>
 	<name>The Wasp</name>
@@ -1074,8 +1158,8 @@
 	<droneList drones="5" count="3" />
 	<health amount="30" />
 	<maxPower amount="8" />
-	<crewCount amount="1" class="human_engineer" />
-	<crewCount amount="1" class="human_engineer" />
+	<crewCount amount="1" class="human_og_raider" />
+	<crewCount amount="1" class="human_og_raider" />
 	<crewCount amount="1" class="phantom" />
 	<shieldImage>mup_small_long1</shieldImage>
 	<mv-mapImage>map_icon_og_raider</mv-mapImage>
@@ -1155,9 +1239,9 @@
 	</droneList>
 	<health amount="30" />
 	<maxPower amount="9" />
-	<crewCount amount="1" class="human" />
-	<crewCount amount="1" class="rock" />
-	<crewCount amount="1" class="mantis" />
+	<crewCount amount="1" class="human_og_raider" />
+	<crewCount amount="1" class="orchid_vampweed" />
+	<crewCount amount="1" class="engi_separatist" />
 	<aug name="SYSTEM_CASING_NEW" />
 	<shieldImage>mup_small_long1</shieldImage>
 	<mv-mapImage>map_icon_og_raider</mv-mapImage>
@@ -1234,7 +1318,7 @@
 	<droneList drones="7" count="3" />
 	<health amount="30" />
 	<maxPower amount="8" />
-	<crewCount amount="1" class="human" />
+	<crewCount amount="1" class="human_og_raider" />
 	<crewCount amount="1" class="human_soldier" />
 	<crewCount amount="1" class="human_soldier" />
 	<aug name="BACKUP_DNA" />
@@ -1261,7 +1345,7 @@
 			</slot>
 		</og_turret_alt>
 		<og_turret_mini power="1" room="5" start="true" img="room_og_turret_2_noman" turret="OG_TURRET_LASER_RUSTY_MINI_1" />
-		<og_turret_mini_alt power="1" room="28" start="true" img="room_og_turret_2_noman" turret="OG_TURRET_LASER_RUSTY_MINI_1" />
+		<og_turret_mini_2 power="1" room="28" start="true" img="room_og_turret_2_noman" turret="OG_TURRET_LASER_RUSTY_MINI_1" />
 		<battery power="1" room="24" start="false" img="room_battery_14" />
 		<cloaking power="1" room="11" start="false" img="room_cloaking_3" />
 		<clonebay power="1" room="16" start="false">
@@ -1322,10 +1406,11 @@
 	<droneList drones="3" count="2" />
 	<health amount="45" />
 	<maxPower amount="10" />
-	<crewCount amount="1" class="human" />
+	<crewCount amount="1" class="human_og_raider" />
 	<crewCount amount="1" class="human" />
 	<crewCount amount="1" class="rock" />
 	<crewCount amount="1" class="engi_separatist" />
+	<aug name="OG_REFLECTIVE_PLATING" />
 	<shieldImage>mup_long2</shieldImage>
 	<mv-mapImage>map_icon_og_executor</mv-mapImage>
 </shipBlueprint>
@@ -1335,6 +1420,14 @@
 <FTL>
 </FTL>
 
-<!--CREW-->
+<!--EQUIPMENT-->
 <FTL>
+<augBlueprint name="OG_REFLECTIVE_PLATING">
+	<title>Reflective Plating</title>
+	<desc>Halves the damage of beams hitting this ship, rounding down.</desc>
+	<cost>80</cost>
+	<rarity>0</rarity>
+	<stackable>true</stackable>
+	<value>0.5</value>
+</augBlueprint>
 </FTL>

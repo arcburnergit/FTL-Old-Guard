@@ -1,5 +1,6 @@
 <FTL>
 <mod:findLike type="scripts" reverse="false">
+	<mod-append:script>data/og_scripts/core.lua</mod-append:script>
 	<mod-append:script>data/og_scripts/turret_systems.lua</mod-append:script>
 	<mod-append:script>data/og_scripts/turret_menu_temp.lua</mod-append:script>
 </mod:findLike>
@@ -8,7 +9,9 @@
 	<mod-append:customSystem id="og_turret"/>
 	<mod-append:customSystem id="og_turret_alt"/>
 	<mod-append:customSystem id="og_turret_mini"/>
-	<mod-append:customSystem id="og_turret_mini_alt"/>
+	<mod-append:customSystem id="og_turret_mini_2"/>
+	<mod-append:customSystem id="og_turret_mini_3"/>
+	<mod-append:customSystem id="og_turret_mini_4"/>
 
 	<mod-append:exclusivityGroup>
 		<og_turret/>
@@ -20,14 +23,22 @@
 		<og_turret_mini/>
 	</mod-append:exclusivityGroup>
 	<mod-append:exclusivityGroup>
-		<og_turret_mini_alt/>
+		<og_turret_mini_2/>
+	</mod-append:exclusivityGroup>
+	<mod-append:exclusivityGroup>
+		<og_turret_mini_3/>
+	</mod-append:exclusivityGroup>
+	<mod-append:exclusivityGroup>
+		<og_turret_mini_4/>
 	</mod-append:exclusivityGroup>
 
 	<mod:findLike type="systemPositions" reverse="false">
 		<mod-append:og_turret position="7"/>
 		<mod-append:og_turret_alt position="7"/>
 		<mod-append:og_turret_mini position="7"/>
-		<mod-append:og_turret_mini_alt position="7"/>
+		<mod-append:og_turret_mini_2 position="7"/>
+		<mod-append:og_turret_mini_3 position="7"/>
+		<mod-append:og_turret_mini_4 position="7"/>
 	</mod:findLike>
 
 	<mod-append:systemPositions subSystemOffset="1015"> 
@@ -42,7 +53,9 @@
 		<og_turret position="7"/>
 		<og_turret_alt position="7"/>
 		<og_turret_mini position="7"/>
-		<og_turret_mini_alt position="7"/>
+		<og_turret_mini_2 position="7"/>
+		<og_turret_mini_3 position="7"/>
+		<og_turret_mini_4 position="7"/>
 		<mind position="8"/>
 		<hacking position="9"/>
 		<temporal position="10"/>
@@ -59,7 +72,20 @@
 		<mod:removeTag />
 	</mod:findLike>
 </mod:findLike>
+
 <mod:findLike type="ships" limit="1" reverse="false">
+	<mod:findLike type="shipIcons">
+		<mod-append:shipIcon>
+			<name>icon_og_rotation</name>
+            <tooltip>OVERCLOCKED MOTORS:
+Enemy Turrets rotate 100% faster.</tooltip>
+		</mod-append:shipIcon>
+		<mod-append:shipIcon>
+			<name>icon_og_reflective_plating</name>
+            <tooltip>REFLECTIVE PLATING:
+Halves the damage of beams hitting this ship, rounding down.</tooltip>
+		</mod-append:shipIcon>
+	</mod:findLike>
 	<mod:findLike type="shipOrder">
 		<mod-append:ship>PLAYER_SHIP_OG_RAIDER</mod-append:ship>
 		<mod-append:ship>PLAYER_SHIP_OG_EXECUTOR</mod-append:ship>
@@ -93,19 +119,19 @@
         </unlock>
 	</mod-append:ship>
 	<mod-append:customShip name="PLAYER_SHIP_OG_RAIDER">
-		<hiddenAug>SHIP_LANIUS</hiddenAug>
+		<hiddenAug>SHIP_OG_GUARD</hiddenAug>
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 		<crewLimit>8</crewLimit>
 		<systemLimit>8</systemLimit>
 	</mod-append:customShip>
 	<mod-append:customShip name="PLAYER_SHIP_OG_RAIDER_2">
-		<hiddenAug>SHIP_LANIUS</hiddenAug>
+		<hiddenAug>SHIP_OG_GUARD</hiddenAug>
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 		<crewLimit>8</crewLimit>
 		<systemLimit>8</systemLimit>
 	</mod-append:customShip>
 	<mod-append:customShip name="PLAYER_SHIP_OG_RAIDER_3">
-		<hiddenAug>SHIP_LANIUS</hiddenAug>
+		<hiddenAug>SHIP_OG_GUARD</hiddenAug>
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 		<crewLimit>8</crewLimit>
 		<systemLimit>9</systemLimit>
@@ -113,29 +139,23 @@
 
 	<mod-append:ship name="PLAYER_SHIP_OG_EXECUTOR" b="false" c="false" >
 		<unlock variant="a">
-            <type>5</type>
-            <victories>
-				<victory>PLAYER_SHIP_OG_RAIDER_2</victory>
-				<victory>PLAYER_SHIP_OG_RAIDER_3</victory>
-			</victories>
+            <type>2</type>
+			<shipReq>PLAYER_SHIP_OG_RAIDER_2</shipReq>
+			<shipReq>PLAYER_SHIP_OG_RAIDER_3</shipReq>
         </unlock>
 		<unlock variant="a">
-            <type>5</type>
-            <victories>
-				<victory>PLAYER_SHIP_OG_RAIDER</victory>
-				<victory>PLAYER_SHIP_OG_RAIDER_3</victory>
-			</victories>
+            <type>2</type>
+			<shipReq>PLAYER_SHIP_OG_RAIDER</shipReq>
+			<shipReq>PLAYER_SHIP_OG_RAIDER_3</shipReq>
         </unlock>
 		<unlock variant="a">
-            <type>5</type>
-            <victories>
-				<victory>PLAYER_SHIP_OG_RAIDER</victory>
-				<victory>PLAYER_SHIP_OG_RAIDER_2</victory>
-			</victories>
+            <type>2</type>
+			<shipReq>PLAYER_SHIP_OG_RAIDER</shipReq>
+			<shipReq>PLAYER_SHIP_OG_RAIDER_2</shipReq>
         </unlock>
 	</mod-append:ship>
 	<mod-append:customShip name="PLAYER_SHIP_OG_EXECUTOR">
-		<hiddenAug>SHIP_LANIUS</hiddenAug>
+		<hiddenAug>SHIP_OG_GUARD</hiddenAug>
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 		<crewLimit>11</crewLimit>
 		<systemLimit>10</systemLimit>
@@ -144,6 +164,13 @@
 </mod:findLike>
 
 <mod:findLike type="augments" limit="1" reverse="false">
+	<mod-append:aug name="OG_REFLECTIVE_PLATING">
+		<icon>icon_og_reflective_plating</icon>
+	</mod-append:aug>
+	<mod-append:aug name="UPG_OG_TURRET_ROTATION_ENEMY">
+		<function name="UPG_OG_TURRET_ROTATION" value="1" useForReqs="true" warning="false"/>
+		<icon>icon_og_rotation</icon>
+	</mod-append:aug>
 	<mod-append:aug name="EX_OG_TURRET_ROTATION">
 		<function name="UPG_OG_TURRET_ROTATION" value="0.5" useForReqs="true" warning="false"/>
 	</mod-append:aug>
@@ -155,24 +182,38 @@
 	</mod-append:aug>
 </mod:findLike>
 <events>
-	<variable name="og_turret_blueprint" op="set" val="-1"/>
-	<variable name="og_turret_state" op="set" val="0"/>
-	<variable name="og_turret_charges" op="set" val="0"/>
-	<variable name="og_turret_time" op="set" val="0"/>
+	<eventFile>sector_og_iron</eventFile>
+	<variable name="rep_og_iron" op="set" val="0"/>
+	<variable name="rep_og_dawn" op="set" val="0"/>
+	<variable name="rep_comb_og_iron" op="set" val="0"/>
 
-	<variable name="og_turret_alt_blueprint" op="set" val="-1"/>
-	<variable name="og_turret_alt_state" op="set" val="0"/>
-	<variable name="og_turret_alt_charges" op="set" val="0"/>
-	<variable name="og_turret_alt_time" op="set" val="0"/>
+	<metaVariable name="juke_og_iron" op="set" val="0"/>
 
-	<variable name="og_turret_mini_blueprint" op="set" val="-1"/>
-	<variable name="og_turret_mini_state" op="set" val="0"/>
-	<variable name="og_turret_mini_charges" op="set" val="0"/>
-	<variable name="og_turret_mini_time" op="set" val="0"/>
-
-	<variable name="og_turret_mini_alt_blueprint" op="set" val="-1"/>
-	<variable name="og_turret_mini_alt_state" op="set" val="0"/>
-	<variable name="og_turret_mini_alt_charges" op="set" val="0"/>
-	<variable name="og_turret_mini_alt_time" op="set" val="0"/>
+	<req name="ASTRO_OG_IRON" type="all">
+		<name>loc_astrometrics_neutral_og</name>
+		<req lvl="0" max_lvl="0">
+			<name>loc_astrometrics_neutral</name>
+		</req>
+	</req>
 </events>
+<crew>
+	<race name="human_og_raider">
+		<repairSpeed>1.5</repairSpeed>
+		<suffocationModifier>0.83</suffocationModifier>
+		<fireDamageMultiplier>0.60</fireDamageMultiplier>
+		<animBase>human</animBase>
+		<deathSounds>
+			<deathSound>death1</deathSound>
+			<deathSound>death2</deathSound>
+		</deathSounds>
+		<skills>
+			<piloting req="13"/>
+			<engines req="13"/>
+			<shields req="50"/>
+			<weapons req="58"/>
+			<repair req="12"/>
+			<combat req="7"/>
+		</skills>
+	</race>
+</crew>
 </FTL>
