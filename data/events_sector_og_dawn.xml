@@ -1,0 +1,205 @@
+<FTL>
+<!--START-->
+<ship name="SHIP_GUARD_OG_DAWN" auto_blueprint="OG_DAWN_GUARD">
+	<surrender min="7" max="8" load="GUARD_SIGNAL"/>
+	<destroyed load="GUARD_OG_DAWN_DESTROY"/>
+	<deadCrew load="GUARD_OG_DAWN_DEADCREW"/>
+</ship>
+
+<event name="GUARD_OG_DAWN_DESTROY">
+	<text>You have defeated the Iron Watch guard. Whatever might have been in their cargo has for certain been destroyed, but you can at least salvage some supplies from the ship.</text>
+	<autoReward level="MED">standard</autoReward>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="GUARD_OG_DAWN_FOLLOWUP"/>
+	</choice>
+</event>
+<event name="GUARD_OG_DAWN_DEADCREW">
+	<text>You have defeated the Iron Watch guard. Without crew on board to stop you, you can investigate their cargo. You find a weapon to bring back to the ship, and move on to scrap their hull.</text>
+	<autoReward level="MED">standard</autoReward>
+	<weapon name="GIFTLIST_OG_DAWN"/>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="GUARD_OG_DAWN_FOLLOWUP"/>
+	</choice>
+</event>
+<ship name="SHIP_OG_DAWN_REINFORCEMENTS" auto_blueprint="LIST_SHIPS_OG_DAWN_FIGHT">
+	<destroyed load="DESTROYED_REINFORCEMENTS"/>
+	<deadCrew load="DEADCREW_REINFORCEMENTS"/>
+</ship>
+<event name="GUARD_OG_DAWN_FOLLOWUP">
+	<noQuestText/>
+	<removeHazards/>
+	<clearCustomFleet/>
+	<text>By killing the Iron Watch guard, you have no doubt caused them to dispatch reinforcements to track you down. Watch your step as you explore the sector.</text>
+	<quest event="REINFORCEMENTS_OG_DAWN">
+		<nebulaBeacon>true</nebulaBeacon>
+		<nextSector>false</nextSector>
+		<nebulaEvent>NEBULA_LIGHT_REINFORCEMENTS_OG_DAWN</nebulaEvent>
+		<createNebula>false</createNebula>
+		<aggressive>2</aggressive>
+	</quest>
+	<choice>
+		<text>Do something onboard the ship.</text>
+		<event load="STORAGE_CHECK"/>
+	</choice>
+	<choice>
+		<text>Do nothing.</text>
+		<event/>
+	</choice>
+</event>
+<event name="REINFORCEMENTS_OG_DAWN">
+	<preventQuest/>
+	<beaconType id="map_icon_reinforcements" global="true" req="LOOT_COMPASS">
+		<color r="200" g="55" b="82" a="1"/>
+		<unvisitedTooltip>An unvisited location.</unvisitedTooltip>
+		<visitedTooltip>Explored location. Nothing left of interest.</visitedTooltip>
+		<undiscoveredTooltip>An unvisited location.</undiscoveredTooltip>
+	</beaconType>
+	<text>A Iron Watch ship moves in to attack! Based on the vengeful look in their captain's eye, this is no doubt the ship dispatched by the guard to hunt you down!</text>
+	<ship load="SHIP_OG_DAWN_REINFORCEMENTS" hostile="true"/>
+	<environment type="PDS" target="player"/>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="COMBAT_CHECK"/>
+	</choice>
+</event>
+<event name="NEBULA_LIGHT_REINFORCEMENTS_OG_DAWN">
+	<preventQuest/>
+	<beaconType id="map_icon_reinforcements" global="true" req="LOOT_COMPASS">
+		<color r="200" g="55" b="82" a="1"/>
+		<unvisitedTooltip>An unvisited location.</unvisitedTooltip>
+		<visitedTooltip>Explored location. Nothing left of interest.</visitedTooltip>
+		<undiscoveredTooltip>An unvisited location.</undiscoveredTooltip>
+	</beaconType>
+	<text>A Iron Watch ship moves in to attack! Based on the vengeful look in their captain's eye, this is no doubt the ship dispatched by the guard to hunt you down!</text>
+	<ship load="SHIP_OG_DAWN_REINFORCEMENTS" hostile="true"/>
+	<img back="BACK_EVENT_STARS_SPARSE"/>
+	<status type="loss" target="player" system="sensors" amount="1"/>
+	<environment type="PDS" target="player"/>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="COMBAT_CHECK"/>
+	</choice>
+</event>
+
+<!--REPUTATION-->
+<event name="REPUTATION_UPDATE_OG_DAWN">
+	<text>[REPUTATION INCREASED - NEW DAWN]
+	Your actions here have improved your reputation within the New Dawn, at the cost of your reputation with the Iron Watch. Certain members might be more willing to interact with you.
+
+[NOTORIETY INCREASED - GENERAL]
+Your actions here, justifiable or not, will not reflect well in the eyes of the Federation or its citizens. Continuously perform actions like this and you might start to see negative reactions from the Federation and its allies.</text>
+	<variable name="rep_general" op="add" val="1"/>
+	<variable name="rep_og_dawn" op="add" val="1"/>
+</event>
+<event name="REPUTATION_UPDATE_OG_DAWN_COMBAT">
+	<text>[REPUTATION INCREASED - NEW DAWN]
+	Your actions here have improved your reputation within the New Dawn, at the cost of your reputation with the Iron Watch. Certain members might be more willing to interact with you.
+
+[NOTORIETY INCREASED - GENERAL]
+Your actions here, justifiable or not, will not reflect well in the eyes of the Federation or its citizens. Continuously perform actions like this and you might start to see negative reactions from the Federation and its allies.</text>
+	<variable name="rep_general" op="add" val="1"/>
+	<variable name="rep_og_dawn" op="add" val="1"/>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="COMBAT_CHECK"/>
+	</choice>
+</event>
+<event name="REPUTATION_DECREASE_OG_DAWN">
+	<text>[REPUTATION DECREASED - NEW DAWN]
+	Your actions here will reflect poorly within the New Dawn. They might no longer feel comfortable around you, if you had previously gained reputation before.</text>
+	<variable name="rep_og_dawn" op="add" val="-1"/>
+</event>
+<event name="REPUTATION_DECREASE_OG_DAWN_COMBAT">
+	<text>[REPUTATION DECREASED - NEW DAWN]
+	Your actions here will reflect poorly within the New Dawn. They might no longer feel comfortable around you, if you had previously gained reputation before.</text>
+	<variable name="rep_og_dawn" op="add" val="-1"/>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="COMBAT_CHECK"/>
+	</choice>
+</event>
+
+
+<!--FINISH-->
+<event name="FINISH_BEACON_OG_DAWN">
+	<text id="finish_beacon"/>
+	<choice hidden="true">
+		<text>Explore.</text>
+		<event load="EXIT_FILLER_LIST"/>
+	</choice>
+	<choice hidden="true">
+		<text>Do something onboard the ship.</text>
+		<event load="STORAGE_CHECK"/>
+	</choice>
+	<choice hidden="true">
+		<text>Do nothing.</text>
+		<event/>
+	</choice>
+</event>
+
+
+<!--SHIP STUFF-->
+<event name="DESTROYED_OG_DAWN">
+	<text load="TEXT_DESTROYED_OG_DAWN"/>
+	<autoReward level="MED">standard</autoReward>
+</event>
+<textList name="TEXT_DESTROYED_OG_DAWN">
+    <text>The Iron Watch captain lets out one final expletive as the ship is obliterated.</text>
+    <text>The hull of the Iron Watch vessel is dispersed out into space. You swoop in to salvage the remains.</text>
+    <text>The Iron Watch ship explodes, extinguishing all lives within. Your crew avoids their remains as they salvage the ship pieces.</text>
+    <text>One of the turrets is launched off into empty space as the ship explodes, throwing valuable debris in every direction.</text>
+</textList>
+
+<event name="DEAD_CREW_OG_DAWN">
+	<text load="TEXT_DEAD_CREW_OG_DAWN"/>
+	<autoReward level="HIGH">standard</autoReward>
+</event>
+<textList name="TEXT_DEAD_CREW_OG_DAWN">
+	<text>"Your bloodlust... will be your downfall someday, Renegade. You are only proof... the Federation... is no better than the Rebellion..."</text>
+	<text>Without a word, the Iron Watch captain falls to the ground, gasping for air as the life is extinguished from their eyes. You salvage the hull of their ship.</text>
+	<text>"You will regret this! Karma always comes back to people like you. Damn you Renegades... the Iron Watch would have been better off with the Rebellion..."</text>
+</textList>
+
+<event name="ESCAPE_OG_DAWN">
+	<text>Scans show that the Iron Watch ship is trying to escape. Destroy it before it can get away!</text>
+</event>
+
+<eventList name="GOTAWAY_OG_DAWN">
+	<event load="GOTAWAY_OG_DAWN_GENERIC"/>
+	<event load="GOTAWAY_OG_DAWN_GENERIC"/>
+	
+	<event load="GOTAWAY_OG_DAWN_REMAINS"/>
+</eventList>
+<event name="GOTAWAY_OG_DAWN_GENERIC">
+	<text load="TEXT_GOTAWAY_OG_DAWN"/>
+</event>
+<textList name="TEXT_GOTAWAY_OG_DAWN">
+	<text>The Iron Watch vessel has slipped from your grasp, abandoning you at the beacon.</text>
+	<text>Your attempts at destroying the Iron Watch vessel have failed, and the ship has escaped.</text>
+</textList>
+<event name="GOTAWAY_OG_DAWN_REMAINS">
+	<text>The Iron Watch vessel may have escaped, but not everything has gone wrong. A trail of scrap from the wreckage has been left behind, which you collect.</text>
+	<autoReward level="LOW">scrap_only</autoReward>
+</event>
+
+<ship name="SHIP_OG_DAWN_ALL" auto_blueprint="LIST_SHIPS_OG_DAWN_ALL">
+	<escape  chance="0.3" min="3" max="4" load="ESCAPE_OG_DAWN"/>
+	<gotaway load="GOTAWAY_OG_DAWN"/>
+	<destroyed load="DESTROYED_OG_DAWN"/>
+	<deadCrew load="DEAD_CREW_OG_DAWN"/>
+</ship>
+<ship name="SHIP_OG_DAWN_GENERIC" auto_blueprint="LIST_SHIPS_OG_DAWN_GENERIC">
+	<escape  chance="0.3" min="3" max="4" load="ESCAPE_OG_DAWN"/>
+	<gotaway load="GOTAWAY_OG_DAWN"/>
+	<destroyed load="DESTROYED_OG_DAWN"/>
+	<deadCrew load="DEAD_CREW_OG_DAWN"/>
+</ship>
+<ship name="SHIP_OG_DAWN_FIGHT" auto_blueprint="LIST_SHIPS_OG_DAWN_FIGHT">
+	<escape  chance="0.3" min="3" max="4" load="ESCAPE_OG_DAWN"/>
+	<gotaway load="GOTAWAY_OG_DAWN"/>
+	<destroyed load="DESTROYED_OG_DAWN"/>
+	<deadCrew load="DEAD_CREW_OG_DAWN"/>
+</ship>
+</FTL>

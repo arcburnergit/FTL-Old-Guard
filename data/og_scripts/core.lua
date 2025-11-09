@@ -3,6 +3,7 @@ if not (Hyperspace.version and Hyperspace.version.major == version.major and Hyp
 	error("Incorrect Hyperspace version detected! The Outer Expansion requires Hyperspace "..version.major.."."..version.minor.."+")
 end
 mods.og = {}
+local time_increment = mods.multiverse.time_increment
 
 mods.multiverse.astrometricsSectors.og = {
 	civilian = 0,
@@ -28,6 +29,25 @@ script.on_internal_event(Defines.InternalEvents.CALCULATE_STAT_POST, function(cr
 		amount = amount + pulsar_power[crewmem]
 	end
 	return Defines.Chain.CONTINUE, amount, value
+end)
+
+script.on_internal_event(Defines.InternalEvents.HAS_EQUIPMENT, function(shipManager, equipment, value)
+	if equipment == "LIST_CREW_POWER" then
+		local spaceManager = Hyperspace.App.world.space
+		if spaceManager.pulsarLevel > 0 then
+			for crewmem in vter(Hyperspace.ships.player.vCrewList) do
+				if pulsar_power[crewmem.type] and crewmem.iShipId == shipManager.iShipId then
+					value = value + 1
+				end
+			end
+			for crewmem in vter(Hyperspace.ships.enemy.vCrewList) do
+				if pulsar_power[crewmem.type] and crewmem.iShipId == shipManager.iShipId then
+					value = value + 1
+				end
+			end
+		end
+	end
+	return Defines.Chain.CONTINUE, value
 end)
 
 local create_damage_message = mods.multiverse.create_damage_message
@@ -67,4 +87,22 @@ script.on_internal_event(Defines.InternalEvents.DAMAGE_BEAM, function(ship, proj
 	if beamHitType == Defines.BeamHit.NEW_ROOM then
 		handle_reduction_armor(ship, projectile, location, damage, true)
 	end
+end)
+
+script.on_internal_event(Defines.InternalEvents.POWER_ON_UPDATE, function(power)
+	if power.temporaryPowerActive then
+		local crewmem = power.crew
+		if crewmem.type == "human_og_dawn" then
+			if crewmem.bFighting then
+				--power.temporaryPowerDuration.first = power.temporaryPowerDuration.first + time_increment(true)
+			elseif crewmem:Repairing() then
+				power.temporaryPowerDuration.first = power.temporaryPowerDuration.first + 0.25 * time_increment(true)
+			elseif not crewmem:AtGoal() then
+				power.temporaryPowerDuration.first = power.temporaryPowerDuration.first + 0.75 * time_increment(true)
+			else
+				power.temporaryPowerDuration.first = math.min(power.temporaryPowerDuration.first, power.temporaryPowerDuration.first + 1.25 * time_increment(true))
+			end
+		end
+	end
+	return Defines.Chain.CONTINUE
 end)

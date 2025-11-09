@@ -34,9 +34,8 @@
 
 <mod:findName type="sectorType" name="SECRET">
 </mod:findName>
-</FTL>
+
 <!--SECTORS-->
-<FTL>
 <sectorDescription name="SECTOR_OG_IRON" unique="false">
 	<nameList>
 		<name>Iron Watch Sector</name>
@@ -59,7 +58,7 @@
 		<track>hacking</track>
 	</trackList>
 	<rarityList>
-		<blueprint name="human_og_raider" rarity="1"/>
+		<blueprint name="human_og_raider" rarity="2"/>
 		<blueprint name="human" rarity="1"/>
 		<blueprint name="human_medic" rarity="5"/>
 		<blueprint name="human_engineer" rarity="5"/>
@@ -104,8 +103,9 @@
 	<event name="STORE_HOSTILE_PIRATE" min="0" max="1"/>
 	
 	<event name="ITEMS_OG_IRON" min="3" max="4"/>
-	<event name="NEUTRAL_PIRATE_MV" min="4" max="5"/>
+	<event name="NEUTRAL_OG_IRON" min="3" max="4"/>
 	<event name="DISTRESS_PIRATE_MV" min="2" max="3"/>
+	<event name="QUESTS_PIRATE_MV" min="1" max="2"/>
 	<event name="QUESTS_PIRATE_MV" min="1" max="1"/>
 	
 	<event name="HOSTILE_PIRATE_MV" min="3" max="7"/>

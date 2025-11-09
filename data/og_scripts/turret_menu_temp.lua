@@ -143,6 +143,11 @@ local hideName = mods.og.hideName
 for item in vter(Hyperspace.Blueprints:GetBlueprintList("BLUELIST_OBELISK")) do
 	hideName[item] = "Something Old"
 end
+hideName["PRIME_LASER"] = "Let it hit you and you're already dead."
+hideName["DEFENSE_PRIME"] = "Let it hit you and you're already dead."
+hideName["COMBAT_PRIME"] = "Let it hit you and you're already dead."
+hideName["BEAM_HARDSCIFI"] = "REAL SCIENCE"
+hideName["GATLING_SYLVAN"] = "You greedy, murdering traitor you"
 
 mods.og.craftedWeapons = {}
 local craftedWeapons = mods.og.craftedWeapons
@@ -163,6 +168,8 @@ table.insert(craftedWeapons, {weapon = "OG_TURRET_FOCUS_MINI_1", component_amoun
 table.insert(craftedWeapons, {weapon = "OG_TURRET_LASER_ANCIENT", component_amounts = {1, 1}, components = {{"ANCIENT_DEFENSE_1"}, {"LASER_BURST_2", "LASER_BURST_3", "LASER_BURST_5", "LASER_CHAINGUN", "LASER_CHAINGUN_2", "LASER_CHAINGUN_DAMAGE", "LASER_CHARGEGUN", "LASER_CHARGEGUN_2", "LASER_CHARGEGUN_3", "LASER_CHARGE_CHAIN"}}} )
 table.insert(craftedWeapons, {weapon = "OG_TURRET_LASER_ANCIENT", component_amounts = {1, 1}, components = {defense_drones, {"ANCIENT_LASER", "ANCIENT_LASER_2", "ANCIENT_LASER_3", "ANCIENT_BEAM", "ANCIENT_BEAM_2", "ANCIENT_BEAM_3"}}} )
 
+table.insert(craftedWeapons, {weapon = "OG_TURRET_LASER_ANCIENT", component_amounts = {1, 1}, components = {{"DEFENSE_PRIME"}, {"LASER_BURST_2", "LASER_BURST_3", "LASER_BURST_5", "LASER_CHAINGUN", "LASER_CHAINGUN_2", "LASER_CHAINGUN_DAMAGE", "LASER_CHARGEGUN", "LASER_CHARGEGUN_2", "LASER_CHARGEGUN_3", "LASER_CHARGE_CHAIN"}}} )
+table.insert(craftedWeapons, {weapon = "OG_TURRET_LASER_ANCIENT", component_amounts = {1, 1}, components = {defense_drones, {"PRIME_LASER", "COMBAT_PRIME", "BEAM_HARDSCIFI", "GATLING_SYLVAN"}}} )
 local craftedItemsVisible = {}
 
 function TEST(needed)

@@ -85,6 +85,11 @@ Enemy Turrets rotate 100% faster.</tooltip>
             <tooltip>REFLECTIVE PLATING:
 Halves the damage of beams hitting this ship, rounding down.</tooltip>
 		</mod-append:shipIcon>
+		<mod-append:shipIcon>
+			<name>icon_og_turret_preignite</name>
+            <tooltip>TURRET PRE-IGNITER:
+This enemy's turrets will be fully charged at the start of combat.</tooltip>
+		</mod-append:shipIcon>
 	</mod:findLike>
 	<mod:findLike type="shipOrder">
 		<mod-append:ship>PLAYER_SHIP_OG_RAIDER</mod-append:ship>
@@ -167,6 +172,9 @@ Halves the damage of beams hitting this ship, rounding down.</tooltip>
 	<mod-append:aug name="OG_REFLECTIVE_PLATING">
 		<icon>icon_og_reflective_plating</icon>
 	</mod-append:aug>
+	<mod-append:aug name="OG_TURRET_PREIGNITE">
+		<icon>icon_og_turret_preignite</icon>
+	</mod-append:aug>
 	<mod-append:aug name="UPG_OG_TURRET_ROTATION_ENEMY">
 		<function name="UPG_OG_TURRET_ROTATION" value="1" useForReqs="true" warning="false"/>
 		<icon>icon_og_rotation</icon>
@@ -183,6 +191,7 @@ Halves the damage of beams hitting this ship, rounding down.</tooltip>
 </mod:findLike>
 <events>
 	<eventFile>sector_og_iron</eventFile>
+	<eventFile>sector_og_dawn</eventFile>
 	<variable name="rep_og_iron" op="set" val="0"/>
 	<variable name="rep_og_dawn" op="set" val="0"/>
 	<variable name="rep_comb_og_iron" op="set" val="0"/>
@@ -212,6 +221,58 @@ Halves the damage of beams hitting this ship, rounding down.</tooltip>
 			<shields req="50"/>
 			<weapons req="58"/>
 			<repair req="12"/>
+			<combat req="7"/>
+		</skills>
+	</race>
+	<race name="human_og_dawn">
+		<damageMultiplier>1.2</damageMultiplier>
+		<damageTakenMultiplier>0.7</damageTakenMultiplier>
+		<fireDamageMultiplier>0.6</fireDamageMultiplier>
+		<suffocationModifier>0.83</suffocationModifier>
+		<animBase>human</animBase>
+		<deathSounds>
+			<deathSound>death1</deathSound>
+			<deathSound>death2</deathSound>
+		</deathSounds>
+		<powerEffect>
+			<cooldown>30</cooldown>
+			<jumpCooldown>full</jumpCooldown>
+			<powerSounds>
+				<powerSound>cloak</powerSound>
+			</powerSounds>
+			<activateWhenReady enemiesOnly="true">true</activateWhenReady>
+			<buttonText>CLOAK</buttonText>
+			<tooltip>[COOLDOWN:30s  DURATION: 15s]
+				Grants the following effects:
+				-Avoids being targetted by crew.
+				-Damage reduced by 25%
+				-Sabotage Speed reduced by 50%
+				-Cloak duration passively regenerates
+				-Cloak duration reduces from the following actions:
+					-Attacking, 1x
+					-Repairing, 0.75x
+					-Moving, 0.25x</tooltip>
+			<cooldownColor r="38" g="130" b="152"/>
+			<temporaryEffect>
+				<duration>15</duration>
+				<cooldownColor r="198" g="198" b="198"/>
+				<finishSounds>
+					<finishSound>decloak</finishSound>
+				</finishSounds>
+				<damageMultiplier>0.6</damageMultiplier>
+				<animSheet baseVisible="false">human_og_dawn_cloak</animSheet>
+				<canFight>true</canFight>
+				<canSabotage>true</canSabotage>
+				<validTarget>false</validTarget>
+				<sabotageSpeedMultiplier>0.5</sabotageSpeedMultiplier>
+			</temporaryEffect>
+		</powerEffect>
+		<skills>
+			<piloting req="13"/>
+			<engines req="13"/>
+			<shields req="50"/>
+			<weapons req="58"/>
+			<repair req="16"/>
 			<combat req="7"/>
 		</skills>
 	</race>

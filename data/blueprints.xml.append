@@ -200,6 +200,41 @@
 		</layer>
 	</colorList>
 </crewBlueprint>
+<crewBlueprint name="human_og_dawn">
+	<desc>A New Dawn Soldier, equiped with a personal cloaking device that has it's charge drained by performing actions.
+
+	Inherited Human stats: minor suffocation resistance, learns skills faster</desc>
+	<cost>40</cost>
+	<title>New Dawn Soldier</title>
+	<short>Dawn Soldier</short>
+	<rarity>0</rarity>
+	<powerList>
+		<power>Active Ability: Cloaks to hide from enemy crew, has reduced damage while cloaked, cloaking duration reduces based on actions performed rather than time.</power>
+        <power>Inflicts 1.2x damage in crew combat</power>
+		<power>Takes 0.7x damage from crew combat and 0.6x from fires</power>
+	</powerList>
+	<colorList>
+		<layer> <!--skin-->
+			<color r="255" g="150" b="150" a="0.4" /> <!--white-->
+			<color r="90" g="60" b="40" a="0.7" /> <!--black-->
+			<color r="255" g="124" b="89" a="0" /> <!--other white-->
+			<color r="255" g="255" b="255" a="0.2" /> <!--yellow-->
+		</layer>
+		<layer> <!--hair-->
+			<color r="224" g="180" b="5" a="0.6" /> <!--blond-->
+			<color r="61" g="59" b="53" a="0.9" /> <!--black-->
+			<color r="189" g="187" b="178" a="0.6" /> <!--grey-->
+			<color r="121" g="96" b="56" a="0.2" /> <!--brown-->
+			<color r="109" g="70" b="65" a="0.8" /> <!--reddish-brown-->
+			<color r="201" g="127" b="11" a="0.7" /> <!--orange-->
+			
+			<color r="217" g="0" b="0" a="0.8" /> <!--red-->
+			<color r="46" g="147" b="60" a="0.7" /> <!--green-->
+			<color r="255" g="0" b="174" a="0.9" /> <!--pink-->
+			<color r="113" g="57" b="205" a="0.7" /> <!--purple-->
+		</layer>
+	</colorList>
+</crewBlueprint>
 </FTL>
 
 <!--Turrets-->
@@ -307,6 +342,27 @@
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_laser_ancient_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_LASER_CEL_1">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Vindicator Turret</title>
+	<short>Vindicator</short>
+	<desc>Let it hit you and you're already dead.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>150</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_laser_cel_1_icon</iconReplace>
 </weaponBlueprint>
 
 <weaponBlueprint name="OG_TURRET_ION_1">
@@ -539,6 +595,175 @@
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_focus_mini_1_icon</iconReplace>
 </weaponBlueprint>
+
+
+<weaponBlueprint name="OG_TURRET_LASER_DAWN">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Dawn Heavy Laser Turret</title>
+	<short>€ Heavy L.</short>
+	<desc>Heavy Laser Turrets make for poor defensive turrets with their slow rotation speed and high damage per shot, but are excellent against enemy ships.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>100</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_laser_dawn_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_ION_DAWN">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Dawn Fire Ion Turret</title>
+	<short>€ Fire I.</short>
+	<desc>Ion Turrets are excellent drone suppression aswell as being able to disable systems without causing hull damage. This one starts fires in the system it hits.</desc>
+	<tooltip>€ Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>100</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_ion_dawn_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_MISSILE_DAWN">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Dawn Quad Missile Turret</title>
+	<short>€ Quad M.</short>
+	<desc>Slow to charge but capable of delivering high damage to the enemy ship, decent against enemy drones and solid projectiles.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>100</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_missile_dawn_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_FLAK_DAWN">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Dawn Flak Turret</title>
+	<short>€ Flak</short>
+	<desc>A powerful Flak turret, can build up an incredible volley to be fired in both defense and offense.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>100</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_flak_dawn_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_FOCUS_DAWN">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Dawn Pinpoint Turret</title>
+	<short>€ Pinpoint</short>
+	<desc>Pinpoint Turrets prove extremely effective against enemy lasers due to their almost instantaneous time to kill.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>100</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_focus_dawn_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_LASER_MINI_DAWN_1">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret_mini</tip>
+	<title>Dawn Micro Laser Turret</title>
+	<short>€ Micro L.</short>
+	<desc>This Laser Turret is unlikely to be able to deal with an enemy ship on it's own, but its high rotation speed makes it a defensive unit.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>60</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_laser_mini_dawn_1_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_LASER_MINI_DAWN_2">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret_mini</tip>
+	<title>Dawn Light Laser Turret</title>
+	<short>€ Light L.</short>
+	<desc>Incapable of doing system damage, this Light Laser Turret is much better suited for shield suppression and defense.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>60</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_laser_mini_dawn_2_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_FOCUS_MINI_DAWN">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret_mini</tip>
+	<title>Dawn Micro Pinpoint Turret</title>
+	<short>€ Micro P.</short>
+	<desc>This small Pinpoint Turret requires support to damage the enemy ship, but remains capable against enemy lasers.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>60</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_focus_mini_dawn_icon</iconReplace>
+</weaponBlueprint>
 </FTL>
 
 <!--TURRET PROJECTILES-->
@@ -703,6 +928,41 @@
 	</missSounds>
 	<weaponArt>ancient_laser</weaponArt>
 	<iconImage>heavyL</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_LASER_PROJECTILE_CEL">
+	<type>LASER</type>
+	<title>Laser</title>
+	<short>Laser</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>2</damage>
+	<shots>1</shots>
+	<sp>1</sp>
+	<fireChance>0</fireChance>
+	<breachChance>10</breachChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>laser_prime</image>
+	<explosion>explosion_random</explosion>
+	<launchSounds>
+		<sound>ancient_laser</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>smallExplosion</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>prime_laser</weaponArt>
+	<iconImage>laser</iconImage>
 </weaponBlueprint>
 <weaponBlueprint name="OG_ION_PROJECTILE_BASE">
 	<type>LASER</type>
@@ -1429,5 +1689,13 @@
 	<rarity>0</rarity>
 	<stackable>true</stackable>
 	<value>0.5</value>
+</augBlueprint>
+
+<augBlueprint name="OG_TURRET_PREIGNITE">
+	<title>Turret Pre-igniter</title>
+	<desc>Turrets are made immediately available after an FTL jump.</desc>
+	<cost>120</cost>
+	<rarity>0</rarity>
+	<stackable>true</stackable>
 </augBlueprint>
 </FTL>

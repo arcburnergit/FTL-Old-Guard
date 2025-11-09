@@ -347,43 +347,6 @@
 	</choice>
 </event>
 
-<event name="REPUTATION_UPDATE_OG_DAWN">
-	<text>[REPUTATION INCREASED - NEW DAWN]
-	Your actions here have improved your reputation within the New Dawn, at the cost of your reputation with the Iron Watch. Certain members might be more willing to interact with you.
-
-[NOTORIETY INCREASED - GENERAL]
-Your actions here, justifiable or not, will not reflect well in the eyes of the Federation or its citizens. Continuously perform actions like this and you might start to see negative reactions from the Federation and its allies.</text>
-	<variable name="rep_general" op="add" val="1"/>
-	<variable name="rep_og_dawn" op="add" val="1"/>
-</event>
-<event name="REPUTATION_UPDATE_OG_DAWN_COMBAT">
-	<text>[REPUTATION INCREASED - NEW DAWN]
-	Your actions here have improved your reputation within the New Dawn, at the cost of your reputation with the Iron Watch. Certain members might be more willing to interact with you.
-
-[NOTORIETY INCREASED - GENERAL]
-Your actions here, justifiable or not, will not reflect well in the eyes of the Federation or its citizens. Continuously perform actions like this and you might start to see negative reactions from the Federation and its allies.</text>
-	<variable name="rep_general" op="add" val="1"/>
-	<variable name="rep_og_dawn" op="add" val="1"/>
-	<choice hidden="true">
-		<text>Continue...</text>
-		<event load="COMBAT_CHECK"/>
-	</choice>
-</event>
-<event name="REPUTATION_DECREASE_OG_DAWN">
-	<text>[REPUTATION DECREASED - NEW DAWN]
-	Your actions here will reflect poorly within the New Dawn. They might no longer feel comfortable around you, if you had previously gained reputation before.</text>
-	<variable name="rep_og_dawn" op="add" val="-1"/>
-</event>
-<event name="REPUTATION_DECREASE_OG_DAWN_COMBAT">
-	<text>[REPUTATION DECREASED - NEW DAWN]
-	Your actions here will reflect poorly within the New Dawn. They might no longer feel comfortable around you, if you had previously gained reputation before.</text>
-	<variable name="rep_og_dawn" op="add" val="-1"/>
-	<choice hidden="true">
-		<text>Continue...</text>
-		<event load="COMBAT_CHECK"/>
-	</choice>
-</event>
-
 
 <!--FINISH-->
 <event name="FINISH_BEACON_OG_IRON">
@@ -559,7 +522,7 @@ Your actions here, justifiable or not, will not reflect well in the eyes of the 
 			</choice>
 		</event>
 	</choice>
-	<choice req="LIST_CREW_OG_IRON" hidden="true">
+	<choice req="BLUELIST_CREW_OG_IRON" hidden="true">
 		<text>(Iron Watch Crew) Negotiate an even lower price.</text>
 		<event>
 			<text>You stock up on fuel then check out the store.</text>
@@ -597,9 +560,9 @@ Your actions here, justifiable or not, will not reflect well in the eyes of the 
 <eventList name="ITEMS_OG_IRON">
 	<event load="OG_IRON_DEFENSE_DRONE"/>
 	<event load="OG_IRON_FOR_SCIENCE"/>
+	<event load="OG_IRON_DAWN_WRECK"/>
 	
 	<event load="FILLER_FUEL_FOR_DRONE"/>
-	<event load="FILLER_TAVERN_HIRE"/>
 </eventList>
 
 <event name="OG_IRON_DEFENSE_DRONE" unique="true">
@@ -647,10 +610,10 @@ Your actions here, justifiable or not, will not reflect well in the eyes of the 
 		<text>Agree to help.</text>
 		<event>
 			<environment type="asteroid"/>
-			<text>You move in behind the Iron Watch ship and head into the asteroid field. "We're just calibrating the turret, it shouldn't take more than a minute."</text>
-			<triggeredEvent name="OG_IRON_FOR_SCIENCE_TURRET" event="OPTION_INVALID" time="60" clearOnJump="true" thisFight="false">
+			<text>You move in behind the Iron Watch ship and head into the asteroid field. "We're just calibrating the turret, it shouldn't take more than half a minute."</text>
+			<triggeredEvent name="OG_IRON_FOR_SCIENCE_TURRET" event="OG_IRON_FOR_SCIENCE_PASS" time="30" clearOnJump="true" thisFight="false">
 				<triggeredEventBox load="DEFAULT_TIMER" pos="default">
-					<warning time="10.0" flash="true"/>
+					<warning time="5.0" flash="false"/>
 					<tooltip>Time until the Iron Watch's turret is calibrated.</tooltip>
 				</triggeredEventBox>
 				<timerSounds load="DEFAULT_TIMER_SOUNDS"/>
@@ -676,19 +639,139 @@ Your actions here, justifiable or not, will not reflect well in the eyes of the 
 
 <event name="OG_IRON_FOR_SCIENCE_ION_BLAST">
 	<text>"Come in, Come in, something has gone terribly wrong, our turrets have shut down."</text>
-	<status type="limit" target="enemy" system="og_turret" amount="0"/>
-	<status type="limit" target="enemy" system="og_turret_alt" amount="0"/>
-	<status type="limit" target="enemy" system="og_turret_mini" amount="0"/>
-	<status type="limit" target="enemy" system="og_turret_mini_2" amount="0"/>
-	<status type="limit" target="enemy" system="og_turret_mini_3" amount="0"/>
-	<status type="limit" target="enemy" system="og_turret_mini_4" amount="0"/>
-	<triggeredEvent event="OG_IRON_FOR_SCIENCE_BLAST" time="12" clearOnJump="true" thisFight="false"/>
+	<choice hidden="true" req="LIST_CREW_POWER">
+		<text>(Bonus Power Crew) Send your crewman to overcharge their systems.</text>
+		<event load="OG_IRON_FOR_SCIENCE_PASS_ION"/>
+	</choice>
+	<choice hidden="true" req="battery">
+		<text>(Backup Battery) Use your extra power to overcharge their systems.</text>
+		<event load="OG_IRON_FOR_SCIENCE_PASS_ION"/>
+	</choice>
+	<choice hidden="true">
+		<text>There's nothing you can do...</text>
+		<event>
+			<status type="limit" target="enemy" system="og_turret" amount="0"/>
+			<status type="limit" target="enemy" system="og_turret_alt" amount="0"/>
+			<status type="limit" target="enemy" system="og_turret_mini" amount="0"/>
+			<status type="limit" target="enemy" system="og_turret_mini_2" amount="0"/>
+			<status type="limit" target="enemy" system="og_turret_mini_3" amount="0"/>
+			<status type="limit" target="enemy" system="og_turret_mini_4" amount="0"/>
+			<triggeredEvent event="OG_IRON_FOR_SCIENCE_BLAST" time="12" clearOnJump="true" thisFight="false"/>
+		</event>
+	</choice>
+</event>
+
+<event name="OG_IRON_FOR_SCIENCE_PASS_ION">
+	<text>You manage to restore power to their turrets.</text>
+</event>
+
+<event name="OG_IRON_FOR_SCIENCE_PASS">
+	<text>"We're finished, thanks for the help captain." The ship sends over some supplies in payment for your escort.</text>
+	<instantEscape/>
+	<autoReward level="MED">standard</autoReward>
 </event>
 
 <event name="OG_IRON_FOR_SCIENCE_BLAST">
 	<text>You watch helplessly as a large asteroid rips through the Iron Watch ship. It fragments into a cloud of debris which quickly diffuse into the asteroid field, you're able to collect some of the wreckage before you leave.</text>
-	<autoReward level="MED">standard</autoReward>
+	<autoReward level="LOW">stuff</autoReward>
 	<enemyDamage amount="999"/>
 	<clearTriggeredEvent name="OG_IRON_FOR_SCIENCE_TURRET"/>
+</event>
+
+<ship name="SHIP_OG_IRON_DAWN_WRECK" auto_blueprint="LIST_SHIPS_OG_DAWN_FIGHT">
+	<destroyed load="DESTROYED_OG_DAWN"/>
+	<deadCrew load="DEAD_CREW_OG_DAWN"/>
+	<weaponOverride count="1">
+		<name>RUSTY_MISSILES_1</name>
+	</weaponOverride>
+	<crew>
+		<crewMember type="phantom_goul" prop="0.33"/>
+		<crewMember type="phantom_wraith" prop="0.33"/>
+		<crewMember type="phantom_mare" prop="0.33"/>
+	</crew>
+</ship>
+
+<event name="OG_IRON_DAWN_WRECK" unique="true">
+	<environment type="pulsar"/>
+	<ship load="SHIP_OG_IRON_DAWN_WRECK" hostile="false"/>
+	<text>You've come across the wreck of a strange ship. It appears to be one the New Dawn ships you've heard of around here, a splinter group of the iron watch who appear to have allied with the rebellion.</text>
+	<choice hidden="true">
+		<text>Investigate.</text>
+		<event>
+			<text>The ship appears stripped bare, all but a few sections have anything salvageable. You collect whatever you can before returning to your own ship.</text>
+			<autoReward level="LOW">standard</autoReward>
+		</event>
+	</choice>
+	<choice hidden="true">
+		<text>Ignore the ship.</text>
+		<event>
+			<text>You avoid the ship and prepare for your next jump.</text>
+			<choice>
+				<text>Do something onboard the ship.</text>
+				<event load="STORAGE_CHECK"/>
+			</choice>
+			<choice>
+				<text>Do nothing.</text>
+				<event/>
+			</choice>
+		</event>
+	</choice>
+</event>
+
+<!--Neutral-->
+<eventList name="NEUTRAL_OG_IRON">
+	<event load="REFUGEE_PIRATE_MV"/>
+	<event load="OG_IRON_CIVILIAN_PIRATE"/>
+	<event load="PIRATE_BRIBER_MV"/>
+	<event load="PIRATE_NAME"/>
+	
+	<event load="SLAVER_BETRAYAL"/>
+	
+	<event load="REBEL_AUTO_SPY"/>
+	<event load="FILLER_EXPLORE"/>
+</eventList>
+
+
+<ship name="SHIP_OG_IRON_RESCUE" auto_blueprint="LIST_SHIPS_OG_IRON_FIGHT">
+	<destroyed>
+		<text>The Iron Watch ship breaks apart. You hasten to contact the civilian ship.</text>
+		<autoReward level="MED">standard</autoReward>
+		<choice hidden="true">
+			<text>Contact the civilian ship.</text>
+			<event load="CIVILIAN_GIFT_LIST_MV"/>    
+		</choice>
+	</destroyed>
+	<deadCrew>
+		<text>No more life signs detected on the Iron Watch ship. You hasten to contact the civilian ship.</text>
+		<autoReward level="HIGH">standard</autoReward>
+		<choice hidden="true">
+			<text>Contact the civilian ship.</text>
+			<event load="CIVILIAN_GIFT_LIST_MV"/>    
+		</choice>
+	</deadCrew>
+</ship>
+<event name="OG_IRON_CIVILIAN_PIRATE" unique="true">
+	<ship load="SHIP_OG_IRON_RESCUE" hostile="false"/>
+	<img back="BACKGROUND" planet="PLANET_POPULATED"/>
+	<text>You arrive at the beacon to discover an Iron Watch ship in pursuit of a civilian, it appears the rules must be especially relaxed in this part of Iron Watch space for their own ships to be turning to piracy.</text>
+	<choice hidden="true">
+		<text>Aid the civilian ship.</text>
+		<event load="COMBAT_CHECK"/>
+	</choice>
+	<choice>
+		<text>Stay out of it.</text>
+		<event>
+			<instantEscape/>
+			<text>The fight brings them out of your immediate scanning range. After a time the distress calls stop.</text>
+			<choice>
+				<text>Do something onboard the ship.</text>
+				<event load="STORAGE_CHECK"/>
+			</choice>
+			<choice>
+				<text>Do nothing.</text>
+				<event/>
+			</choice>
+		</event>
+	</choice>
 </event>
 </FTL>

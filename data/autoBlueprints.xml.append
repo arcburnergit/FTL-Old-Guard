@@ -376,6 +376,351 @@
 	<aug name="OG_REFLECTIVE_PLATING" />
 </shipBlueprint>
 </FTL>
+
+<!--New Dawn Ships-->
+<FTL>
+<blueprintList name="LIST_WEAPONS_OG_DAWN">
+	<name>LASER_BURST_2</name>
+	<name>LASER_BURST_3</name>
+	<name>LASER_BURST_5</name>
+	<name>LASER_HULL_2</name>
+	<name>MISSILES_2_ENEMY</name>
+	<name>MISSILES_3_ENEMY</name>
+	<name>MISSILES_BURST_ENEMY</name>
+	<name>MISSILES_BURST_2_ENEMY</name>
+	<name>BEAM_2</name>
+	<name>BEAM_3</name>
+	<name>BEAM_FIRE</name>
+	<name>BOMB_FIRE_ENEMY</name>
+	<name>BOMB_BREACH_1_ENEMY</name>
+	
+	<name>SHOTGUN_2</name>
+	<name>SHOTGUN_3</name>
+	
+	<name>ION_CHAINGUN</name>
+	<name>LASER_CHAINGUN_2</name>
+	<name>LASER_CHARGEGUN_2</name>
+	<name>LASER_CHARGEGUN_3</name>
+	<name>ION_STUN</name>
+	<name>ION_STUN_2</name>
+	<name>ION_STUN_HEAVY</name>
+	<name>ION_STUN_CHARGEGUN</name>
+	
+	<name>LASER_LIGHT</name>
+	<name>LASER_PIERCE_ENEMY</name>
+	<name>LASER_HEAVY_3</name>
+	<name>LASER_PARTICLE</name>
+	<name>LASER_HULL_CHAINGUN</name>
+	<name>LASER_STUN</name>
+	<name>ION_BIO</name>
+	<name>ION_FIRE</name>
+	<name>ION_TRI</name>
+	<name>BEAM_BREACH</name>
+	<name>BEAM_PARTICLE</name>
+	<name>SHOTGUN_CHARGE</name>
+</blueprintList>
+<blueprintList name="LIST_TURRETS_DAWN">
+	<name>OG_TURRET_LASER_DAWN</name>
+	<name>OG_TURRET_ION_DAWN</name>
+	<name>OG_TURRET_MISSILE_DAWN</name>
+	<name>OG_TURRET_FLAK_DAWN</name>
+	<name>OG_TURRET_FOCUS_DAWN</name>
+</blueprintList>
+<blueprintList name="LIST_TURRETS_DAWN_SMALL">
+	<name>OG_TURRET_LASER_MINI_DAWN_1</name>
+	<name>OG_TURRET_LASER_MINI_DAWN_2</name>
+	<name>OG_TURRET_FOCUS_MINI_DAWN</name>
+</blueprintList>
+<blueprintList name="LIST_CREW_OG_DAWN">
+	<name>human_og_dawn</name>
+	<name>human_og_dawn</name>
+	<name>human_engineer</name>
+	<name>human_rebel</name>
+	<name>human_rebel_medic</name>
+</blueprintList>
+
+<blueprintList name="LIST_SHIPS_OG_DAWN_ALL">
+	<name>OG_DAWN_SCOUT</name>
+	<name>OG_DAWN_INFILTRATOR</name>
+	<name>OG_DAWN_OUTRIDER</name>
+	<name>OG_DAWN_BOMBER</name>
+	<name>OG_DAWN_CORVETTE</name>
+	<name>OG_DAWN_FIGHTER</name>
+	<name>OG_DAWN_RAIDER</name>
+	<name>OG_DAWN_TRANSPORT</name>
+	<name>OG_DAWN_GUARD</name>
+</blueprintList>
+<blueprintList name="LIST_SHIPS_OG_DAWN_GENERIC">
+	<name>OG_DAWN_SCOUT</name>
+	<name>OG_DAWN_INFILTRATOR</name>
+	<name>OG_DAWN_OUTRIDER</name>
+	<name>OG_DAWN_BOMBER</name>
+	<name>OG_DAWN_CORVETTE</name>
+	<name>OG_DAWN_FIGHTER</name>
+	<name>OG_DAWN_TRANSPORT</name>
+</blueprintList>
+<blueprintList name="LIST_SHIPS_OG_DAWN_FIGHT">
+	<name>OG_DAWN_SCOUT</name>
+	<name>OG_DAWN_INFILTRATOR</name>
+	<name>OG_DAWN_OUTRIDER</name>
+	<name>OG_DAWN_BOMBER</name>
+	<name>OG_DAWN_CORVETTE</name>
+	<name>OG_DAWN_FIGHTER</name>
+</blueprintList>
+<shipBlueprint name="OG_DAWN_SCOUT" layout="og_iron_scout" img="og_dawn_scout">
+	<class>New Dawn Scout</class>
+	<minSector>1</minSector>
+	<maxSector>4</maxSector>
+	<systemList>
+		<og_turret_mini power="2" max="4" room="3" start="true" turret="LIST_TURRETS_DAWN_SMALL" />
+		<cloaking power="1" max="2" room="1" start="true" />
+		<engines power="2" max="3" room="5" start="true" />
+		<medbay power="1" max="1" room="2" start="true" />
+		<oxygen power="1" max="1" room="4" start="true" />
+		<pilot power="1" max="2" room="0" start="true" />
+		<weapons power="2" max="6" room="6" start="true" />
+	</systemList>
+	<weaponSlots>2</weaponSlots>
+	<droneSlots>2</droneSlots>
+	<weaponList missiles="8" count="2" load="LIST_WEAPONS_OG_DAWN" />
+	<droneList drones="20" count="0" />
+	<health amount="8" />
+	<maxPower amount="9" />
+	<crewCount amount="3" max="4" class="LIST_CREW_OG_DAWN" />
+	<boardingAI>sabotage</boardingAI>
+	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
+	<aug name="OG_REFLECTIVE_PLATING" />
+	<aug name="OG_TURRET_PREIGNITE" />
+</shipBlueprint>
+<shipBlueprint name="OG_DAWN_INFILTRATOR" layout="og_iron_infiltrator" img="og_dawn_infiltrator">
+	<class>New Dawn Infiltrator</class>
+	<minSector>1</minSector>
+	<maxSector>6</maxSector>
+	<systemList>
+		<og_turret_mini power="1" max="3" room="0" start="true" turret="LIST_TURRETS_DAWN_SMALL" />
+		<og_turret_mini_2 power="1" max="3" room="2" start="true" turret="LIST_TURRETS_DAWN_SMALL" />
+		<og_turret_mini_3 power="1" max="3" room="1" start="true" turret="LIST_TURRETS_DAWN_SMALL" />
+		<cloaking power="1" max="2" room="3" start="true" />
+		<drones power="2" max="6" room="5" start="true" />
+		<engines power="2" max="3" room="6" start="true" />
+		<oxygen power="1" max="1" room="7" start="true" />
+		<pilot power="2" max="2" room="4" start="true" />
+	</systemList>
+	<weaponSlots>2</weaponSlots>
+	<droneSlots>2</droneSlots>
+	<weaponList missiles="2" count="2" />
+	<droneList drones="9" count="2" load="LIST_DRONES_ENEMY_COMBAT" />
+	<health amount="9" />
+	<maxPower amount="9" />
+	<crewCount amount="3" max="4" class="LIST_CREW_OG_DAWN" />
+	<boardingAI>sabotage</boardingAI>
+	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
+	<aug name="OG_REFLECTIVE_PLATING" />
+	<aug name="OG_TURRET_PREIGNITE" />
+</shipBlueprint>
+<shipBlueprint name="OG_DAWN_OUTRIDER" layout="og_iron_outrider" img="og_dawn_outrider">
+	<class>New Dawn Outrider</class>
+	<minSector>1</minSector>
+	<maxSector>7</maxSector>
+	<systemList>
+		<og_turret_mini power="2" max="4" room="2" start="true" turret="LIST_TURRETS_DAWN_SMALL" />
+		<og_turret_mini_2 power="1" max="4" room="1" start="true" turret="LIST_TURRETS_DAWN_SMALL" />
+		<cloaking power="1" max="2" room="6" start="true" />
+		<doors power="1" max="2" room="7" start="true" />
+		<engines power="2" max="2" room="4" start="true" />
+		<oxygen power="1" max="1" room="3" start="true" />
+		<pilot power="1" max="2" room="0" start="true" />
+		<weapons power="1" max="7" room="5" start="true" />
+	</systemList>
+	<weaponSlots>3</weaponSlots>
+	<droneSlots>0</droneSlots>
+	<weaponList missiles="16" count="3" load="LIST_WEAPONS_OG_DAWN" />
+	<droneList drones="0" count="0" />
+	<health amount="9" />
+	<maxPower amount="9" />
+	<crewCount amount="3" max="5" class="LIST_CREW_OG_DAWN" />
+	<boardingAI>sabotage</boardingAI>
+	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
+	<aug name="OG_REFLECTIVE_PLATING" />
+	<aug name="OG_TURRET_PREIGNITE" />
+</shipBlueprint>
+<shipBlueprint name="OG_DAWN_BOMBER" layout="og_iron_bomber" img="og_dawn_bomber">
+	<class>New Dawn Bomber</class>
+	<minSector>1</minSector>
+	<maxSector>8</maxSector>
+	<systemList>
+		<og_turret power="2" max="5" room="0" start="true" turret="LIST_TURRETS_DAWN" />
+		<cloaking power="1" max="2" room="9" start="true" />
+		<doors power="1" max="1" room="10" start="true" />
+		<drones power="2" max="6" room="8" start="true" />
+		<engines power="1" max="2" room="1" start="true" />
+		<medbay power="1" max="1" room="5" start="true" />
+		<oxygen power="1" max="1" room="6" start="true" />
+		<pilot power="1" max="2" room="2" start="true" />
+		<weapons power="2" max="6" room="7" start="true" />
+	</systemList>
+	<weaponSlots>2</weaponSlots>
+	<droneSlots>3</droneSlots>
+	<weaponList missiles="25" count="2" load="LIST_WEAPONS_OG_DAWN" />
+	<droneList drones="6" count="3" load="LIST_DRONES_ENEMY_COMBAT" />
+	<health amount="13" />
+	<maxPower amount="10" />
+	<crewCount amount="3" max="6" class="LIST_CREW_OG_DAWN" />
+	<boardingAI>sabotage</boardingAI>
+	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
+	<aug name="OG_REFLECTIVE_PLATING" />
+	<aug name="OG_TURRET_PREIGNITE" />
+</shipBlueprint>
+<shipBlueprint name="OG_DAWN_CORVETTE" layout="og_iron_corvette" img="og_dawn_corvette">
+	<class>New Dawn Corvette</class>
+	<minSector>3</minSector>
+	<maxSector>8</maxSector>
+	<systemList>
+		<og_turret power="2" max="5" room="10" start="true" turret="LIST_TURRETS_DAWN" />
+		<og_turret_mini power="1" max="4" room="3" start="true" turret="LIST_TURRETS_DAWN_SMALL" />
+		<og_turret_mini_2 power="1" max="4" room="2" start="true" turret="LIST_TURRETS_DAWN_SMALL" />
+		<cloaking power="1" max="2" room="0" start="true" />
+		<doors power="1" max="2" room="7" start="true" />
+		<engines power="1" max="2" room="4" start="true" />
+		<medbay power="1" max="1" room="11" start="true" />
+		<oxygen power="1" max="1" room="8" start="true" />
+		<pilot power="1" max="2" room="9" start="true" />
+		<weapons power="2" max="8" room="1" start="true" />
+	</systemList>
+	<weaponSlots>3</weaponSlots>
+	<droneSlots>0</droneSlots>
+	<weaponList missiles="14" count="3" load="LIST_WEAPONS_OG_DAWN" />
+	<droneList drones="0" count="0" />
+	<health amount="15" />
+	<maxPower amount="10" />
+	<crewCount amount="3" max="7" class="LIST_CREW_OG_DAWN" />
+	<boardingAI>sabotage</boardingAI>
+	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
+	<aug name="OG_REFLECTIVE_PLATING" />
+	<aug name="OG_TURRET_PREIGNITE" />
+</shipBlueprint>
+<shipBlueprint name="OG_DAWN_FIGHTER" layout="og_iron_fighter" img="og_dawn_fighter">
+	<class>New Dawn Fighter</class>
+	<minSector>1</minSector>
+	<maxSector>8</maxSector>
+	<systemList>
+		<og_turret power="2" max="5" room="2" start="true" turret="LIST_TURRETS_DAWN" />
+		<og_turret_mini power="1" max="4" room="4" start="true" turret="LIST_TURRETS_DAWN_SMALL" />
+		<og_turret_mini_2 power="1" max="4" room="0" start="true" turret="LIST_TURRETS_DAWN_SMALL" />
+		<cloaking power="1" max="2" room="5" start="true" />
+		<doors power="1" max="2" room="10" start="false" />
+		<drones power="2" max="6" room="6" start="false" />
+		<engines power="2" max="2" room="8" start="true" />
+		<medbay power="1" max="1" room="7" start="false" />
+		<oxygen power="1" max="1" room="9" start="true" />
+		<pilot power="1" max="1" room="1" start="true" />
+		<weapons power="2" max="8" room="3" start="true" />
+	</systemList>
+	<weaponSlots>2</weaponSlots>
+	<droneSlots>3</droneSlots>
+	<weaponList missiles="12" count="2" load="LIST_WEAPONS_OG_DAWN" />
+	<droneList drones="12" count="3" load="LIST_DRONES_ENEMY_COMBAT" />
+	<health amount="13" />
+	<maxPower amount="9" />
+	<crewCount amount="3" max="7" class="LIST_CREW_OG_DAWN" />
+	<boardingAI>sabotage</boardingAI>
+	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
+	<aug name="OG_REFLECTIVE_PLATING" />
+	<aug name="OG_TURRET_PREIGNITE" />
+</shipBlueprint>
+<shipBlueprint name="OG_DAWN_TRANSPORT" layout="og_iron_transport" img="og_dawn_transport">
+	<class>New Dawn Transport</class>
+	<minSector>1</minSector>
+	<maxSector>8</maxSector>
+	<systemList>
+		<og_turret_mini power="1" max="4" room="1" start="true" turret="LIST_TURRETS_DAWN_SMALL" />
+		<og_turret_mini_2 power="1" max="4" room="2" start="true" turret="LIST_TURRETS_DAWN_SMALL" />
+		<og_turret_mini_3 power="1" max="4" room="3" start="true" turret="LIST_TURRETS_DAWN_SMALL" />
+		<og_turret_mini_4 power="1" max="4" room="4" start="true" turret="LIST_TURRETS_DAWN_SMALL" />
+		<cloaking power="1" max="2" room="7" start="true" />
+		<doors power="2" max="2" room="14" start="true" />
+		<drones power="2" max="6" room="13" start="false" />
+		<engines power="2" max="2" room="5" start="true" />
+		<medbay power="2" max="2" room="6" start="true" />
+		<oxygen power="1" max="1" room="12" start="true" />
+		<pilot power="1" max="2" room="0" start="true" />
+		<teleporter power="1" max="2" room="9" start="false" />
+		<weapons power="2" max="7" room="8" start="true" />
+	</systemList>
+	<weaponSlots>3</weaponSlots>
+	<droneSlots>2</droneSlots>
+	<weaponList missiles="12" count="3" load="LIST_WEAPONS_OG_DAWN" />
+	<droneList drones="9" count="2" load="LIST_DRONES_ENEMY_COMBAT" />
+	<health amount="15" />
+	<maxPower amount="12" />
+	<crewCount amount="6" max="9" class="LIST_CREW_OG_DAWN" />
+	<boardingAI>sabotage</boardingAI>
+	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
+	<aug name="OG_REFLECTIVE_PLATING" />
+	<aug name="OG_TURRET_PREIGNITE" />
+</shipBlueprint>
+<shipBlueprint name="OG_DAWN_RAIDER" layout="og_iron_raider" img="og_dawn_raider">
+	<class>New Dawn Raider</class>
+	<minSector>1</minSector>
+	<maxSector>8</maxSector>
+	<systemList>
+		<og_turret power="2" max="5" room="4" start="true" turret="LIST_TURRETS_DAWN" />
+		<og_turret_mini power="1" max="4" room="1" start="true" turret="LIST_TURRETS_DAWN_SMALL" />
+		<og_turret_mini_2 power="1" max="4" room="2" start="true" turret="LIST_TURRETS_DAWN_SMALL" />
+		<og_turret_mini_3 power="1" max="4" room="0" start="true" turret="LIST_TURRETS_DAWN_SMALL" />
+		<cloaking power="1" max="1" room="13" start="false" />
+		<doors power="1" max="1" room="6" start="true" />
+		<drones power="2" max="6" room="12" start="false" />
+		<engines power="2" max="2" room="5" start="true" />
+		<medbay power="1" max="2" room="10" start="true" />
+		<oxygen power="1" max="1" room="9" start="true" />
+		<pilot power="1" max="2" room="20" start="true" />
+		<teleporter power="1" max="1" room="7" start="false" />
+		<weapons power="2" max="8" room="3" start="true" />
+	</systemList>
+	<weaponSlots>2</weaponSlots>
+	<droneSlots>2</droneSlots>
+	<weaponList missiles="14" count="2" load="LIST_WEAPONS_OG_DAWN" />
+	<droneList drones="12" count="2" load="LIST_DRONES_ENEMY_COMBAT" />
+	<health amount="20" />
+	<maxPower amount="11" />
+	<crewCount amount="4" max="8" class="LIST_CREW_OG_DAWN" />
+	<boardingAI>sabotage</boardingAI>
+	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
+	<aug name="OG_REFLECTIVE_PLATING" />
+	<aug name="OG_TURRET_PREIGNITE" />
+</shipBlueprint>
+<shipBlueprint name="OG_DAWN_GUARD" layout="og_iron_guard" img="og_dawn_guard">
+	<class>New Dawn Guard</class>
+	<minSector>1</minSector>
+	<maxSector>8</maxSector>
+	<systemList>
+		<og_turret power="2" max="5" room="2" start="true" turret="LIST_TURRETS_DAWN" />
+		<og_turret_alt power="2" max="5" room="1" start="true" turret="LIST_TURRETS_DAWN" />
+		<og_turret_mini power="1" max="4" room="0" start="true" turret="LIST_TURRETS_DAWN_SMALL" />
+		<cloaking power="1" max="1" room="13" start="false" />
+		<doors power="1" max="2" room="16" start="false" />
+		<drones power="1" max="6" room="7" start="false" />
+		<engines power="2" max="2" room="9" start="true" />
+		<medbay power="1" max="1" room="5" start="true" />
+		<oxygen power="1" max="1" room="4" start="true" />
+		<pilot power="1" max="2" room="8" start="true" />
+		<teleporter power="1" max="1" room="6" start="false" />
+		<weapons power="2" max="8" room="10" start="true" />
+	</systemList>
+	<weaponSlots>3</weaponSlots>
+	<droneSlots>2</droneSlots>
+	<weaponList missiles="22" count="3" load="LIST_WEAPONS_OG_DAWN" />
+	<droneList drones="8" count="2" load="LIST_DRONES_ENEMY_COMBAT" />
+	<health amount="17" />
+	<maxPower amount="11" />
+	<crewCount amount="4" max="8" class="LIST_CREW_OG_DAWN" />
+	<boardingAI>sabotage</boardingAI>
+	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
+	<aug name="OG_REFLECTIVE_PLATING" />
+	<aug name="OG_TURRET_PREIGNITE" />
+</shipBlueprint>
+</FTL>
 <!--MV Crew Blueprint Lists-->
 <FTL>
 <mod:findName type="blueprintList" name="LIST_CREW_UNIQUE">
