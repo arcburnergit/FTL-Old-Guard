@@ -190,7 +190,7 @@ local function addComponentStep(currentEvent, weapon, craftingData, itemLevel, i
 			if neededBlueprint.desc.title:GetText() == "" then
 				neededBlueprint = Hyperspace.Blueprints:GetDroneBlueprint(needed)
 			end
-			currentEvent:AddChoice(tempEvent, "Use your "..neededBlueprint.desc.title:GetText(), emptyReq, false)
+			currentEvent:AddChoice(tempEvent, "Use your "..neededBlueprint.desc.title:GetText(), emptyReq, true)
 			if itemAmount >= craftingData.component_amounts[itemLevel] then
 				if itemLevel >= #craftingData.components then
 					tempEvent.stuff.weapon = Hyperspace.Blueprints:GetWeaponBlueprint(weapon)

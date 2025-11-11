@@ -658,6 +658,16 @@ turrets["OG_TURRET_FOCUS_MINI_DAWN"] = {
 	charge_time = {[0] = 6, 6, 5, 4, 3.5, 3, 2.75, 2.5},
 }
 
+script.on_internal_event(Defines.InternalEvents.HAS_EQUIPMENT, function(shipManager, equipment, value)
+	if equipment == "BLUELIST_DRONES_DEFENSE" then
+		for _, sysName in ipairs(systemNameList) do
+			if Hyperspace.ships.player:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) and Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] > 0 then
+				value = value + 1
+			end
+		end
+	end
+	return Defines.Chain.CONTINUE, value
+end)
 
 for turretId, currentTurret in pairs(turrets) do
 	currentTurret.image.position.x = -1 * currentTurret.image.info.frameWidth/2
@@ -1295,7 +1305,12 @@ local function resetTurrets(shipManager)
 			local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
 			system.table.currentTarget = nil
 			system.table.currentlyTargetted = false
-			Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] = 0
+			if shipManager:HasAugmentation("OG_TURRET_PREIGNITE") > 0 then
+				local currentTurret = turrets[ turretBlueprintsList[ Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] ] ]
+				Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] = currentTurret.charges
+			else
+				Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] = 0
+			end
 			Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemTimeVarName] = 0
 			system.table.chargeTime = 0
 			system.table.firingTime = 0
@@ -1307,6 +1322,16 @@ local function resetTurrets(shipManager)
 end
 
 script.on_internal_event(Defines.InternalEvents.JUMP_ARRIVE, resetTurrets)
+
+script.on_internal_event(Defines.InternalEvents.JUMP_LEAVE, function(shipManager)
+	if shipManager.iShipId == 1 then
+		for _, sysName in ipairs(systemNameList) do
+			if Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] > 0 then
+				Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemTimeVarName] = -1
+			end
+		end
+	end
+end)
 
 script.on_game_event("STORAGE_CHECK_OG_TURRET", false, function()
 	local shipManager = Hyperspace.ships.player
@@ -1757,7 +1782,7 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 			elseif shipManager.iShipId == 1 and Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] <= currentTurret.charges - (currentTurret.enemy_burst or 1) then
 				Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemStateVarName] = 1
 			end
-			if shipManager.iShipId == 1 and Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemStateVarName] == 0 and Hyperspace.ships.enemy._targetable.hostile then
+			if shipManager.iShipId == 1 and Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemStateVarName] == 0 and not Hyperspace.ships.enemy._targetable.hostile then
 				Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemStateVarName] = 1
 			end
 		end

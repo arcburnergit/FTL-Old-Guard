@@ -168,15 +168,15 @@
 	<desc>An Iron Watch technician skilled in repairs.
 
 	Inherited Human stats: minor suffocation resistance, learns skills faster</desc>
-	<cost>40</cost>
+	<cost>50</cost>
 	<title>Iron Watch Raider</title>
 	<short>Raider</short>
 	<rarity>0</rarity>
 	<powerList>
-		<power>Provides 2 power to the occupied system while in the presence of a pulsar</power>
-		<power>1.5x repair speed</power>
+		<power>Provides 2 power to the occupied system while in the presence of a pulsar or ion storm</power>
+		<power>Reveals adjacent rooms while in a nebula</power>
+		<power>1.25x repair speed</power>
 		<power>Takes 0.6x damage from fires</power>
-		<power>Learns repairs even faster</power>
 	</powerList>
 	<colorList>
 		<layer> <!--skin-->
@@ -204,7 +204,7 @@
 	<desc>A New Dawn Soldier, equiped with a personal cloaking device that has it's charge drained by performing actions.
 
 	Inherited Human stats: minor suffocation resistance, learns skills faster</desc>
-	<cost>40</cost>
+	<cost>75</cost>
 	<title>New Dawn Soldier</title>
 	<short>Dawn Soldier</short>
 	<rarity>0</rarity>
@@ -1695,6 +1695,14 @@
 	<title>Turret Pre-igniter</title>
 	<desc>Turrets are made immediately available after an FTL jump.</desc>
 	<cost>120</cost>
+	<rarity>0</rarity>
+	<stackable>true</stackable>
+</augBlueprint>
+
+<augBlueprint name="OG_DAWN_INITIATE">
+	<title>New Dawn Initiate</title>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<cost>0</cost>
 	<rarity>0</rarity>
 	<stackable>true</stackable>
 </augBlueprint>

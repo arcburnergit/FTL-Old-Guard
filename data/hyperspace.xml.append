@@ -1,4 +1,5 @@
 <FTL>
+<multiShipFix enabled="true"/>
 <mod:findLike type="scripts" reverse="false">
 	<mod-append:script>data/og_scripts/core.lua</mod-append:script>
 	<mod-append:script>data/og_scripts/turret_systems.lua</mod-append:script>
@@ -207,7 +208,7 @@ This enemy's turrets will be fully charged at the start of combat.</tooltip>
 </events>
 <crew>
 	<race name="human_og_raider">
-		<repairSpeed>1.5</repairSpeed>
+		<repairSpeed>1.25</repairSpeed>
 		<suffocationModifier>0.83</suffocationModifier>
 		<fireDamageMultiplier>0.60</fireDamageMultiplier>
 		<animBase>human</animBase>
@@ -220,7 +221,7 @@ This enemy's turrets will be fully charged at the start of combat.</tooltip>
 			<engines req="13"/>
 			<shields req="50"/>
 			<weapons req="58"/>
-			<repair req="12"/>
+			<repair req="16"/>
 			<combat req="7"/>
 		</skills>
 	</race>

@@ -9,6 +9,7 @@
 </mod:findName>
 <mod:findName type="sectorType" name="SECTOR_LIST_NEUTRAL">
 	<mod-append:name>SECTOR_OG_IRON</mod-append:name>
+	<mod-append:name>SECTOR_OG_IRON_HEKTAR</mod-append:name>
 </mod:findName>
 <mod:findName type="sectorType" name="SECTOR_LIST_HOSTILE">
 </mod:findName>
@@ -18,7 +19,6 @@
 <mod:findName type="sectorType" name="SECTOR_LIST_UNIQUE_SAFE">
 </mod:findName>
 <mod:findName type="sectorType" name="SECTOR_LIST_UNIQUE_DEADLY">
-	<mod-append:name>SECTOR_OG_IRON</mod-append:name>
 </mod:findName>
 
 <!-- COLOURS -->
@@ -26,6 +26,7 @@
 </mod:findName>
 <mod:findName type="sectorType" name="NEUTRAL">
 	<mod-append:name>SECTOR_OG_IRON</mod-append:name>
+	<mod-append:name>SECTOR_OG_IRON_HEKTAR</mod-append:name>
 </mod:findName>
 <mod:findName type="sectorType" name="HOSTILE">
 </mod:findName>
@@ -104,11 +105,88 @@
 	
 	<event name="ITEMS_OG_IRON" min="3" max="4"/>
 	<event name="NEUTRAL_OG_IRON" min="3" max="4"/>
-	<event name="DISTRESS_PIRATE_MV" min="2" max="3"/>
-	<event name="QUESTS_PIRATE_MV" min="1" max="2"/>
-	<event name="QUESTS_PIRATE_MV" min="1" max="1"/>
+	<event name="DISTRESS_OG_IRON" min="2" max="3"/>
+	<event name="QUESTS_OG_IRON" min="1" max="1"/>
+	<event name="QUESTS_OG_IRON_DAWN" min="1" max="1"/>
 	
-	<event name="HOSTILE_PIRATE_MV" min="3" max="7"/>
+	<event name="HOSTILE_OG_IRON" min="3" max="7"/>
+	
+	<event name="PIRACY_LIST" min="2" max="3"/>
+	<event name="FILLER_LIST" min="5" max="5"/>
+</sectorDescription>
+<sectorDescription name="SECTOR_OG_IRON_HEKTAR" unique="false">
+	<nameList>
+		<name>Iron Watch Sector [Sale!]</name>
+		<name>Iron Watch Space [Sale!]</name>
+		<name>Iron Watch Frontier [Sale!]</name>
+		<name>Iron Watch Territory [Sale!]</name>
+		<name>Iron Watch Domain [Sale!]</name>
+		<name>Iron Watch Rimworlds [Sale!]</name>
+		<name>Iron Watch Regions [Sale!]</name>
+		<name>Iron Watch Parts [Sale!]</name>
+		<name>Iron Watch Dominion [Sale!]</name>
+		<name>Iron Watch Turf [Sale!]</name>
+		<name>Iron Watch Realm [Sale!]</name>
+		<name>Iron Watch Outreaches [Sale!]</name>
+	</nameList>
+	<trackList>
+		<track>colonial</track>
+		<track>lostship</track>
+		<track>insurgence</track>
+		<track>hacking</track>
+	</trackList>
+	<rarityList>
+		<blueprint name="human_og_raider" rarity="2"/>
+		<blueprint name="human" rarity="1"/>
+		<blueprint name="human_medic" rarity="5"/>
+		<blueprint name="human_engineer" rarity="5"/>
+		<blueprint name="engi" rarity="5"/>
+		<blueprint name="engi_separatist" rarity="1"/>
+		<blueprint name="zoltan" rarity="0"/>
+		<blueprint name="zoltan_monk" rarity="0"/>
+		<blueprint name="zoltan_devotee" rarity="0"/>
+		<blueprint name="rock" rarity="3"/>
+		<blueprint name="rock_outcast" rarity="1"/>
+		<blueprint name="rock_commando" rarity="0"/>
+		<blueprint name="mantis" rarity="1"/>
+		<blueprint name="mantis_free" rarity="2"/>
+		<blueprint name="slug" rarity="4"/>
+		<blueprint name="slug_clansman" rarity="5"/>
+		<blueprint name="shell" rarity="0"/>
+		<blueprint name="shell_scientist" rarity="0"/>
+		<blueprint name="shell_mechanic" rarity="0"/>
+		<blueprint name="shell_guardian" rarity="0"/>
+		<blueprint name="crystal" rarity="5"/>
+		<blueprint name="crystal_liberator" rarity="0"/>
+		<blueprint name="orchid" rarity="5"/>
+		<blueprint name="orchid_vampweed" rarity="1"/>
+		<blueprint name="leech" rarity="4"/>
+		<blueprint name="lanius" rarity="5"/>
+		<blueprint name="phantom" rarity="4"/>
+		<blueprint name="phantom_goul" rarity="5"/>
+		<blueprint name="phantom_mare" rarity="5"/>
+		<blueprint name="phantom_wraith" rarity="3"/>
+		<blueprint name="phantom_wraith_alpha" rarity="5"/>
+	</rarityList>
+	<startEvent>ENTER_SALE_OG_IRON</startEvent>
+	<removeFirstBeaconNebula/>
+	<exitBeacon event="FINISH_BEACON_OG_IRON" nebulaEvent="FINISH_BEACON_NEBULA" rebelEvent="FINISH_BEACON_FLEET_ELITE"/>
+	<rebelBeacon event="FLEET_THREAT_MEDIUM" nebulaEvent="NEBULA_LIGHT_FLEET_THREAT_MEDIUM"/>
+	<priorityEvent name="ANOMALY_SPAWNER" min="1" max="1" priority="1" req="ANOMALY_SPAWN_CHECK" lvl="1"/>
+	<event name="MV_TRAVELER" min="1" max="1"/>
+	<event name="SYLVAN" min="1" max="1"/>
+	<priorityEvent name="NEMESIS_ENCOUNTER" min="0" max="1" req="prof_finalsector" lvl="1"/>
+	
+	<priorityEvent name="STOREEVENT_HEKTAR" min="5" max="5" priority="1"/>
+	<event name="STORE_HOSTILE_PIRATE" min="0" max="1"/>
+	
+	<event name="ITEMS_OG_IRON" min="3" max="4"/>
+	<event name="NEUTRAL_OG_IRON" min="3" max="4"/>
+	<event name="DISTRESS_OG_IRON" min="2" max="3"/>
+	<event name="QUESTS_OG_IRON" min="1" max="1"/>
+	<event name="QUESTS_OG_IRON_DAWN" min="1" max="1"/>
+	
+	<event name="HOSTILE_OG_IRON" min="3" max="7"/>
 	
 	<event name="PIRACY_LIST" min="2" max="3"/>
 	<event name="FILLER_LIST" min="5" max="5"/>

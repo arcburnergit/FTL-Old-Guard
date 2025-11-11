@@ -4,12 +4,20 @@
 		<text>Proceed to the Iron Watch Sector.</text>
 		<event load="OG_IRON_WARP" />
 	</mod-append:choice>
+	<mod-append:choice hidden="true" req="SEC SECTOR_OG_IRON_HEKTAR" blue="false">
+		<text>Proceed to the Iron Watch Sector.</text>
+		<event load="SALE_OG_IRON_WARP" />
+	</mod-append:choice>
 </mod:findName>
 
 <mod:findName type="event" name="ATLAS_MENU_NOEQUIPMENT">
 	<mod-append:choice hidden="true" req="SEC SECTOR_OG_IRON" blue="false">
 		<text>Proceed to the Iron Watch Sector.</text>
 		<event load="OG_IRON_WARP" />
+	</mod-append:choice>
+	<mod-append:choice hidden="true" req="SEC SECTOR_OG_IRON_HEKTAR" blue="false">
+		<text>Proceed to the Iron Watch Sector.</text>
+		<event load="SALE_OG_IRON_WARP" />
 	</mod-append:choice>
 </mod:findName>
 
@@ -69,6 +77,41 @@
 		</event>
 	</choice>
 </event>
-
+<event name="ENTER_SALE_OG_IRON">
+	<text load="TEXT_LIGHTSPEED"/>
+	<img back="BACKGROUND_LIGHTSPEED" planet="NONE"/>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="LOAD_ATLAS_MARKER"/>
+	</choice>
+</event>
+<event name="SALE_OG_IRON_WARP">
+	<text id="atlas_og_iron_hektar"/>
+	<choice hidden="true" req="loc_beentomarket" lvl="0" max_group="0" blue="false">
+		<text>Exit hyperspeed.</text>
+		<event>
+			<text>Before you can finish exiting Hyperspeed, you're greeted by an unusual advertisement; "Greetingsss valued Hektar customer! Thiss isss Billy Hektar, CEO of the Hektar Corporation ssspeaking to you. Asss part of our new cussstomer loyalty program, I am proud to introduce our new 'Unwavering Wage Utility Points'! Each time you vissit a Hektar(tm) brand ssstore, our friendly cussstomer support vesssselss will add an extra U.W.U. point to your account! Collect enough, and you'll be able to enter our reward program! Happy ssshopping!" The advertisement concludes, and a cheerful jingle plays over your computer, followed by the motto "Satisfaction guaranteed, because you aren't getting your money back!"</text>
+			<variable name="loc_beentomarket" op="set" val="1"/>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="START_OG_IRON"/>
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true" req="loc_beentomarket" lvl="1" max_group="0" blue="false">
+		<text>Exit hyperspeed.</text>
+		<event>
+			<text>Before you can finish exiting Hyperspeed, you're greeted by the same advertisement as before. Looks like this is yet another Hektar market sector.</text>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="START_OG_IRON"/>
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true" req="COORDS" max_group="1" blue="false">
+		<text>Reroute.</text>
+		<event load="REROUTE_MENU"/>
+	</choice>
+</event>
 
 </FTL>

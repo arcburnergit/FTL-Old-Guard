@@ -25,8 +25,10 @@ pulsar_power["human_og_raider"] = 2
 
 script.on_internal_event(Defines.InternalEvents.CALCULATE_STAT_POST, function(crewmem, stat, def, amount, value)
 	local spaceManager = Hyperspace.App.world.space
-	if pulsar_power[crewmem] and stat == Hyperspace.CrewStat.BONUS_POWER and spaceManager.pulsarLevel > 0 then
+	if pulsar_power[crewmem] and stat == Hyperspace.CrewStat.BONUS_POWER and (spaceManager.pulsarLevel or spaceManager.bStorm) then
 		amount = amount + pulsar_power[crewmem]
+	elseif pulsar_power[crewmem] and stat == Hyperspace.CrewStat.IS_TELEPATHIC and spaceManager.bNebula or spaceManager.bStorm then
+		value = true
 	end
 	return Defines.Chain.CONTINUE, amount, value
 end)
@@ -34,7 +36,7 @@ end)
 script.on_internal_event(Defines.InternalEvents.HAS_EQUIPMENT, function(shipManager, equipment, value)
 	if equipment == "LIST_CREW_POWER" then
 		local spaceManager = Hyperspace.App.world.space
-		if spaceManager.pulsarLevel > 0 then
+		if spaceManager.pulsarLevel then
 			for crewmem in vter(Hyperspace.ships.player.vCrewList) do
 				if pulsar_power[crewmem.type] and crewmem.iShipId == shipManager.iShipId then
 					value = value + 1
@@ -105,4 +107,24 @@ script.on_internal_event(Defines.InternalEvents.POWER_ON_UPDATE, function(power)
 		end
 	end
 	return Defines.Chain.CONTINUE
+end)
+
+local repToShow = {
+	{id = "rep_comb_og_iron", name = "Iron Watch Reputation"},
+	{id = "rep_og_dawn", name = "New Dawn Reputation", hidden = true},
+}
+
+local emptyReq = Hyperspace.ChoiceReq()
+script.on_internal_event(Defines.InternalEvents.PRE_CREATE_CHOICEBOX, function(event)
+	if event.eventName == "STORAGE_CHECK_STATUS_NOTORIETY" then
+		local eventManager = Hyperspace.Event
+		for _, rep in ipairs(repToShow) do
+			if not rep.hidden or Hyperspace.playerVariables[rep.id] ~= 0 then
+				local repVal = Hyperspace.playerVariables[rep.id]
+				local s = rep.name.." ["..math.floor(repVal).."]"
+				local invalidEvent = eventManager:CreateEvent("OPTION_INVALID", 0, false)
+				event:AddChoice(invalidEvent, s, emptyReq, true)
+			end
+		end
+	end
 end)
