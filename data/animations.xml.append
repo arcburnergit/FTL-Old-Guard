@@ -326,6 +326,12 @@
 	<desc length="1" x="0" y="0" />
 	<time>1</time>
 </anim>
+<animSheet name="og_turret_missile_dawn_glow" w="124" h="62" fw="62" fh="62">og_turrets/turret_missile_dawn_glow.png</animSheet>
+<anim name="og_turret_missile_dawn_glow">
+	<sheet>og_turret_missile_dawn_glow</sheet>
+	<desc length="2" x="0" y="0" />
+	<time>1</time>
+</anim>
 <animSheet name="og_turret_flak_dawn_icon" w="53" h="52" fw="53" fh="52">og_turrets/turret_flak_dawn_icon.png</animSheet>
 <anim name="og_turret_flak_dawn_icon">
 	<sheet>og_turret_flak_dawn_icon</sheet>

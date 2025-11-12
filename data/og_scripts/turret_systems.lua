@@ -563,7 +563,7 @@ turrets["OG_TURRET_MISSILE_DAWN"] = {
 	homing = 480,
 	aim_cone = 30,
 	image = Hyperspace.Animations:GetAnimation("og_turret_missile_dawn"),
-	glow = Hyperspace.Animations:GetAnimation("og_turret_missile_2_glow"),
+	glow = Hyperspace.Animations:GetAnimation("og_turret_missile_dawn_glow"),
 	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_missile_2_charge.png", -6, -4, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
 	fire_points = {{x = 26, y = -48, fire_delay = 0.5}, {x = 15, y = -48, fire_delay = 0.5}, {x = -15, y = -48, fire_delay = 0.5}, {x = -26, y = -48, fire_delay = 0.5}},
 	defense_type = defense_types.DRONES_MISSILES,
@@ -1367,7 +1367,6 @@ end)
 
 script.on_internal_event(Defines.InternalEvents.GENERATOR_CREATE_SHIP_POST, function(name, sector, event, bp, shipManager)
 	--print(shipManager.myBlueprint.blueprintName)
-	resetTurrets(shipManager)
 	for _, sysName in ipairs(systemNameList) do
 		if shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) then
 			local id, i = findStartingTurret(shipManager, sysName)
@@ -1377,6 +1376,7 @@ script.on_internal_event(Defines.InternalEvents.GENERATOR_CREATE_SHIP_POST, func
 			system.table.currentAimingAngle = -90
 		end
 	end
+	resetTurrets(shipManager)
 	return Defines.Chain.CONTINUE
 end)
 
@@ -1590,7 +1590,7 @@ end
 
 -- handle ship loop
 script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
-	if Hyperspace.App.menu.shipBuilder.bOpen then return end
+	if Hyperspace.App.menu.shipBuilder.bOpen or (shipManager.bJumping and shipManager.iShipId == 1) then return end
 	local shipGraph = Hyperspace.ShipGraph.GetShipInfo(shipManager.iShipId)
 	local shipCorner = {x = shipManager.ship.shipImage.x + shipGraph.shipBox.x, y = shipManager.ship.shipImage.y + shipGraph.shipBox.y}
 	for _, sysName in ipairs(systemNameList) do
@@ -1666,6 +1666,7 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 			if system:GetEffectivePower() <= 0 then
 				currentTurret.image.tracker:Stop(true)
 				currentTurret.image:SetCurrentFrame(0)
+				system.table.currentTarget = nil
 				return
 			elseif system.table.currentlyTargetting then 
 				local mousePosPlayer = worldToPlayerLocation(Hyperspace.Mouse.position)
@@ -1853,47 +1854,55 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(s)
 	end
 end)
 
+local function renderTurret(shipManager, ship, spaceManager, shipGraph, sysName)
+	--print("ship:"..shipManager.iShipId.." jump first:"..shipManager.jump_timer.first.." second:"..shipManager.jump_timer.second.." bJumping"..tostring(shipManager.bJumping))
+	if shipManager.bJumping and shipManager.iShipId == 1 then return end
+	local currentTurret = nil
+	local overRideTurretAngle = false
+	if Hyperspace.App.menu.shipBuilder.bOpen then
+		local id, i = findStartingTurret(shipManager, sysName)
+		if id then currentTurret = turrets[id] end
+		overRideTurretAngle = true
+	elseif Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] >= 0 then
+		currentTurret = turrets[ turretBlueprintsList[ Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] ] ]
+	end
+	if currentTurret then
+		local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
+		if not currentTurret then return Defines.Chain.CONTINUE end
+
+		local turretLoc = turret_location[ship.shipName] and turret_location[ship.shipName][sysName] or {x = 0, y = 0}
+		local shipCorner = {x = ship.shipImage.x + shipGraph.shipBox.x, y = ship.shipImage.y + shipGraph.shipBox.y}
+		local angleSet = (overRideTurretAngle and 90 * turretLoc.direction) or (system.table.currentAimingAngle or 0)
+
+		local charges = Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName]
+		Graphics.CSurface.GL_PushMatrix()
+		Graphics.CSurface.GL_Translate(shipCorner.x + turretLoc.x, shipCorner.y + turretLoc.y, 0)
+		Graphics.CSurface.GL_Rotate(angleSet, 0, 0, 1)
+		currentTurret.image:OnRender(1, Graphics.GL_Color(1,1,1,1), false)
+		if currentTurret.charge_image then
+			Graphics.CSurface.GL_RenderPrimitiveWithAlpha(currentTurret.charge_image, system.table.chargeTime or 1)
+		end
+		if currentTurret.glow and charges > 0 then
+			currentTurret.glow:SetCurrentFrame(charges - 1)
+			currentTurret.glow:OnRender(1, Graphics.GL_Color(1,1,1,1), false)
+		end
+		Graphics.CSurface.GL_PopMatrix()
+	end
+end
+
 script.on_render_event(Defines.RenderEvents.SHIP_MANAGER, function(shipManager) end, function(shipManager) 
 	--local shipManager = Hyperspace.ships(ship.iShipId)
 	local ship = shipManager.ship
 	local spaceManager = Hyperspace.App.world.space
 	local shipGraph = Hyperspace.ShipGraph.GetShipInfo(shipManager.iShipId)
 	for _, sysName in ipairs(systemNameList) do
-		if shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) then
-			local currentTurret = nil
-			local overRideTurretAngle = false
-			if Hyperspace.App.menu.shipBuilder.bOpen then
-				local id, i = findStartingTurret(shipManager, sysName)
-				if id then currentTurret = turrets[id] end
-				overRideTurretAngle = true
-				--print(id)
-			elseif Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] >= 0 then
-				currentTurret = turrets[ turretBlueprintsList[ Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] ] ]
-				--print(shipManager.iShipId.."render "..turretBlueprintsList[ Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] ].." "..tostring(shipManager.iShipId..sysName..systemBlueprintVarName))
-			end
-			if currentTurret then
-				local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
-				--local currentTurret = turrets[ turretBlueprintsList[ Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] ] ]
-				if not currentTurret then return Defines.Chain.CONTINUE end
-
-				local turretLoc = turret_location[ship.shipName] and turret_location[ship.shipName][sysName] or {x = 0, y = 0}
-				local shipCorner = {x = ship.shipImage.x + shipGraph.shipBox.x, y = ship.shipImage.y + shipGraph.shipBox.y}
-				local angleSet = (overRideTurretAngle and 90 * turretLoc.direction) or (system.table.currentAimingAngle or 0)
-
-				local charges = Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName]
-				Graphics.CSurface.GL_PushMatrix()
-				Graphics.CSurface.GL_Translate(shipCorner.x + turretLoc.x, shipCorner.y + turretLoc.y, 0)
-				Graphics.CSurface.GL_Rotate(angleSet, 0, 0, 1)
-				currentTurret.image:OnRender(1, Graphics.GL_Color(1,1,1,1), false)
-				if currentTurret.charge_image then
-					Graphics.CSurface.GL_RenderPrimitiveWithAlpha(currentTurret.charge_image, system.table.chargeTime or 1)
-				end
-				if currentTurret.glow and charges > 0 then
-					currentTurret.glow:SetCurrentFrame(charges - 1)
-					currentTurret.glow:OnRender(1, Graphics.GL_Color(1,1,1,1), false)
-				end
-				Graphics.CSurface.GL_PopMatrix()
-			end
+		if shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) and microTurrets[sysName] then
+			renderTurret(shipManager, ship, spaceManager, shipGraph, sysName)		
+		end
+	end
+	for _, sysName in ipairs(systemNameList) do
+		if shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) and not microTurrets[sysName] then
+			renderTurret(shipManager, ship, spaceManager, shipGraph, sysName)		
 		end
 	end
 end)

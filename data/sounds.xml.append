@@ -1,0 +1,9 @@
+<FTL>
+<music>
+	<track>
+		<name>og_iron</name> <!--Music by lizzard-->
+		<explore>og_MUS_IronExplore.ogg</explore>
+		<combat>og_MUS_IronBattle.ogg</combat>
+	</track>
+</music>
+</FTL>

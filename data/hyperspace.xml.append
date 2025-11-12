@@ -1,4 +1,5 @@
 <FTL>
+<customTextStyle enabled="true" />
 <multiShipFix enabled="true"/>
 <mod:findLike type="scripts" reverse="false">
 	<mod-append:script>data/og_scripts/core.lua</mod-append:script>
@@ -261,7 +262,7 @@ This enemy's turrets will be fully charged at the start of combat.</tooltip>
 					<finishSound>decloak</finishSound>
 				</finishSounds>
 				<damageMultiplier>0.6</damageMultiplier>
-				<animSheet baseVisible="false">human_og_dawn_cloak</animSheet>
+				<animSheet baseVisible="true">human_og_dawn_cloak</animSheet>
 				<canFight>true</canFight>
 				<canSabotage>true</canSabotage>
 				<validTarget>false</validTarget>
@@ -278,4 +279,20 @@ This enemy's turrets will be fully charged at the start of combat.</tooltip>
 		</skills>
 	</race>
 </crew>
+
+<mod:findLike type="achievements" limit="1">
+	<mod-append:page>
+		<section text="The Old Guard" hidden="false">
+			<achievement name="MUSIC_OG_IRON">
+				<name>Iron Watch</name>
+				<description id="jukebox_unlocked" />
+				<secretDescription id="jukebox_locked" />
+				<header id="jukebox_header" />
+				<icon>music_unlocked</icon>
+				<variable name="juke_og_iron" amount="1" />
+				<multiDifficulty>false</multiDifficulty>
+			</achievement>
+		</section>
+	</mod-append:page>
+</mod:findLike>
 </FTL>

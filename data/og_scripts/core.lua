@@ -23,11 +23,81 @@ repCombos.rep_comb_all.rep_og_iron = {buffer = 0}
 local pulsar_power = {}
 pulsar_power["human_og_raider"] = 2
 
+local crewStatName = {
+	[0] = "MAX_HEALTH",
+	"STUN_MULTIPLIER",
+	"MOVE_SPEED_MULTIPLIER",
+	"REPAIR_SPEED_MULTIPLIER",
+	"DAMAGE_MULTIPLIER",
+	"RANGED_DAMAGE_MULTIPLIER",
+	"DOOR_DAMAGE_MULTIPLIER",
+	"FIRE_REPAIR_MULTIPLIER",
+	"SUFFOCATION_MODIFIER",
+	"FIRE_DAMAGE_MULTIPLIER",
+	"OXYGEN_CHANGE_SPEED",
+	"DAMAGE_TAKEN_MULTIPLIER",
+	"CLONE_SPEED_MULTIPLIER",
+	"PASSIVE_HEAL_AMOUNT",
+	"TRUE_PASSIVE_HEAL_AMOUNT",
+	"TRUE_HEAL_AMOUNT",
+	"PASSIVE_HEAL_DELAY",
+	"ACTIVE_HEAL_AMOUNT",
+	"SABOTAGE_SPEED_MULTIPLIER",
+	"ALL_DAMAGE_TAKEN_MULTIPLIER",
+	"HEAL_SPEED_MULTIPLIER",
+	"HEAL_CREW_AMOUNT",
+	"DAMAGE_ENEMIES_AMOUNT",
+	"BONUS_POWER",
+	"POWER_DRAIN",
+	"ESSENTIAL",
+	"CAN_FIGHT",
+	"CAN_REPAIR",
+	"CAN_SABOTAGE",
+	"CAN_MAN",
+	"CAN_TELEPORT",
+	"CAN_SUFFOCATE",
+	"CONTROLLABLE",
+	"CAN_BURN",
+	"IS_TELEPATHIC",
+	"RESISTS_MIND_CONTROL",
+	"IS_ANAEROBIC",
+	"CAN_PHASE_THROUGH_DOORS",
+	"DETECTS_LIFEFORMS",
+	"CLONE_LOSE_SKILLS",
+	"POWER_DRAIN_FRIENDLY",
+	"DEFAULT_SKILL_LEVEL",
+	"POWER_RECHARGE_MULTIPLIER",
+	"HACK_DOORS",
+	"NO_CLONE",
+	"NO_SLOT",
+	"NO_AI",
+	"VALID_TARGET",
+	"CAN_MOVE",
+	"TELEPORT_MOVE",
+	"TELEPORT_MOVE_OTHER_SHIP",
+	"SILENCED",
+	"LOW_HEALTH_THRESHOLD",
+	"NO_WARNING",
+
+	"CREW_SLOTS", 
+	"ACTIVATE_WHEN_READY",
+	"STAT_BOOST",
+	"DEATH_EFFECT",
+	"POWER_EFFECT",
+	"POWER_MAX_CHARGES",
+	"POWER_CHARGES_PER_JUMP",
+	"POWER_COOLDOWN",
+	"TRANSFORM_RACE"
+}
+
 script.on_internal_event(Defines.InternalEvents.CALCULATE_STAT_POST, function(crewmem, stat, def, amount, value)
 	local spaceManager = Hyperspace.App.world.space
-	if pulsar_power[crewmem] and stat == Hyperspace.CrewStat.BONUS_POWER and (spaceManager.pulsarLevel or spaceManager.bStorm) then
-		amount = amount + pulsar_power[crewmem]
-	elseif pulsar_power[crewmem] and stat == Hyperspace.CrewStat.IS_TELEPATHIC and spaceManager.bNebula or spaceManager.bStorm then
+	--[[if pulsar_power[crewmem.type] then 
+		print(stat.." "..Hyperspace.CrewStat[stat].." "..crewStatName[stat])
+	end]]
+	if pulsar_power[crewmem.type] and stat == Hyperspace.CrewStat.BONUS_POWER and (spaceManager.pulsarLevel or spaceManager.bStorm) then
+		amount = amount + pulsar_power[crewmem.type]
+	elseif pulsar_power[crewmem.type] and stat == Hyperspace.CrewStat.IS_TELEPATHIC and (spaceManager.bNebula or spaceManager.bStorm or Hyperspace.playerVariables.loc_environment_lightnebula >= 1) then
 		value = true
 	end
 	return Defines.Chain.CONTINUE, amount, value
@@ -102,7 +172,7 @@ script.on_internal_event(Defines.InternalEvents.POWER_ON_UPDATE, function(power)
 			elseif not crewmem:AtGoal() then
 				power.temporaryPowerDuration.first = power.temporaryPowerDuration.first + 0.75 * time_increment(true)
 			else
-				power.temporaryPowerDuration.first = math.min(power.temporaryPowerDuration.first, power.temporaryPowerDuration.first + 1.25 * time_increment(true))
+				power.temporaryPowerDuration.first = math.min(power.temporaryPowerDuration.second, power.temporaryPowerDuration.first + 1.25 * time_increment(true))
 			end
 		end
 	end
