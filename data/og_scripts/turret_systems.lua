@@ -1311,7 +1311,7 @@ local function resetTurrets(shipManager)
 			end
 			Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemTimeVarName] = 0
 			system.table.chargeTime = 0
-			system.table.firingTime = 0
+			system.table.firingTime = 0.1
 			--system.table.currentShot = 0
 			system.table.ammo_consumed = 0
 			system.table.currentlyTargetting = false

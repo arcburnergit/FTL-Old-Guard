@@ -120,20 +120,20 @@ This enemy's turrets will be fully charged at the start of combat.</tooltip>
 			<type>4</type>
 		</unlock>
 		<achievement name="SHIP_ACH_OG_RAIDER_1" layout="all">
-			<name>Upgrades</name>
-			<description>As a Raider-Class vessel, fabricate a new turret.</description>
+			<name>War Economy</name>
+			<description>As a Raider-Class vessel, create a new turret of your own.</description>
 			<icon>ogp_raider_1_icon</icon>
 			<lockImage>ogp_raider_1_icon_locked</lockImage>
 		</achievement>
 		<achievement name="SHIP_ACH_OG_RAIDER_2" layout="all">
-			<name>Nemesis</name>
-			<description>Destroy a New Dawn ship with a Raider-Class vessel.</description>
+			<name>Treading on the Rattlesnake</name>
+			<description>Defeat a New Dawn ship using a Raider-Class vessel.</description>
 			<icon>ogp_raider_2_icon</icon>
 			<lockImage>ogp_raider_2_icon_locked</lockImage>
 		</achievement>
 		<achievement name="SHIP_ACH_OG_RAIDER_3" layout="all">
-			<name>Multipurpose Turrets</name>
-			<description>Reach sector 8 while never having installed or upgraded weapons or shields on a Raider-Class vessel.</description>
+			<name>Heavy Lifting</name>
+			<description>As a Raider Class Vessel: Reach Sector 8 without buying weapons or shields' systems (or upgrading them as ship starting systems).</description>
 			<icon>ogp_raider_3_icon</icon>
 			<lockImage>ogp_raider_3_icon_locked</lockImage>
 		</achievement>
