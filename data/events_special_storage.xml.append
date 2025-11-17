@@ -39,27 +39,27 @@
 </event>
 
 <event name="OG_CRAFT_MAIN_MENU_LOAD">
-    <loadEvent>OG_CRAFT_MAIN_MENU</loadEvent>
+	<loadEvent>OG_CRAFT_MAIN_MENU</loadEvent>
 </event>
 
 <event name="OG_CRAFT_MAIN_MENU">
-    <text>Available Blueprints.</text>
-    <choice hidden="true">
-        <text>Nevermind.</text>
-        <event load="STORAGE_CHECK"/>
-    </choice>
+	<text>Available Blueprints.</text>
+	<choice hidden="true">
+		<text>Nevermind.</text>
+		<event load="STORAGE_CHECK"/>
+	</choice>
 </event>
 
 <event name="OG_CRAFT_CRAFT">
-    <text>Requires:</text>
-    <choice hidden="false">
-        <text>Nevermind.</text>
-        <event load="OG_CRAFT_MAIN_MENU_LOAD"/>
-    </choice>
+	<text>Requires:</text>
+	<choice hidden="false">
+		<text>Nevermind.</text>
+		<event load="OG_CRAFT_MAIN_MENU_LOAD"/>
+	</choice>
 </event>
 
 <event name="OG_CRAFT_CRAFT_STEP">
-    <text>Choose Crafting Component.</text>
+	<text>Choose Crafting Component.</text>
 </event>
 
 <mod:findName type="event" name="STORAGE_CHECK_SYSTEM">

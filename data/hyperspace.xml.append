@@ -5,6 +5,7 @@
 	<mod-append:script>data/og_scripts/core.lua</mod-append:script>
 	<mod-append:script>data/og_scripts/turret_systems.lua</mod-append:script>
 	<mod-append:script>data/og_scripts/turret_menu_temp.lua</mod-append:script>
+	<mod-append:script>data/og_scripts/ship_ach.lua</mod-append:script>
 </mod:findLike>
 <shieldWithoutSystem enabled="true"/>
 <mod:findLike type="customSystems" reverse="false">
@@ -79,17 +80,17 @@
 	<mod:findLike type="shipIcons">
 		<mod-append:shipIcon>
 			<name>icon_og_rotation</name>
-            <tooltip>OVERCLOCKED MOTORS:
+			<tooltip>OVERCLOCKED MOTORS:
 Enemy Turrets rotate 100% faster.</tooltip>
 		</mod-append:shipIcon>
 		<mod-append:shipIcon>
 			<name>icon_og_reflective_plating</name>
-            <tooltip>REFLECTIVE PLATING:
+			<tooltip>REFLECTIVE PLATING:
 Halves the damage of beams hitting this ship, rounding down.</tooltip>
 		</mod-append:shipIcon>
 		<mod-append:shipIcon>
 			<name>icon_og_turret_preignite</name>
-            <tooltip>TURRET PRE-IGNITER:
+			<tooltip>TURRET PRE-IGNITER:
 This enemy's turrets will be fully charged at the start of combat.</tooltip>
 		</mod-append:shipIcon>
 	</mod:findLike>
@@ -111,19 +112,31 @@ This enemy's turrets will be fully charged at the start of combat.</tooltip>
 	<mod-append:ship name="PLAYER_SHIP_OG_RAIDER" b="true" c="true" >
 		<arrow variant="a" direction="right" tooltip="ship_unlock_og_two_wins" image="arrow_v_right.png" unlockedImage="arrow_v_right_on.png">PLAYER_SHIP_OG_EXECUTOR</arrow>
 		<unlock variant="b" silent="false">
-            <type>1</type>
-            <shipReq>PLAYER_SHIP_OG_RAIDER</shipReq>
-            <value>5</value>
-        </unlock>
+			<type>1</type>
+			<shipReq>PLAYER_SHIP_OG_RAIDER</shipReq>
+			<value>8</value>
+		</unlock>
 		<unlock variant="c" silent="false">
-            <type>1</type>
-            <shipReq>PLAYER_SHIP_OG_RAIDER_2</shipReq>
-            <value>5</value>
-        </unlock>
-		<unlock variant="c" silent="false">
-            <type>2</type>
-            <shipReq>PLAYER_SHIP_OG_RAIDER</shipReq>
-        </unlock>
+			<type>4</type>
+		</unlock>
+		<achievement name="SHIP_ACH_OG_RAIDER_1" layout="all">
+			<name>Upgrades</name>
+			<description>As a Raider-Class vessel, fabricate a new turret.</description>
+			<icon>ogp_raider_1_icon</icon>
+			<lockImage>ogp_raider_1_icon_locked</lockImage>
+		</achievement>
+		<achievement name="SHIP_ACH_OG_RAIDER_2" layout="all">
+			<name>Nemesis</name>
+			<description>Destroy a New Dawn ship with a Raider-Class vessel.</description>
+			<icon>ogp_raider_2_icon</icon>
+			<lockImage>ogp_raider_2_icon_locked</lockImage>
+		</achievement>
+		<achievement name="SHIP_ACH_OG_RAIDER_3" layout="all">
+			<name>Multipurpose Turrets</name>
+			<description>Reach sector 8 while never having installed or upgraded weapons or shields on a Raider-Class vessel.</description>
+			<icon>ogp_raider_3_icon</icon>
+			<lockImage>ogp_raider_3_icon_locked</lockImage>
+		</achievement>
 	</mod-append:ship>
 	<mod-append:customShip name="PLAYER_SHIP_OG_RAIDER">
 		<hiddenAug>SHIP_OG_GUARD</hiddenAug>
@@ -146,20 +159,20 @@ This enemy's turrets will be fully charged at the start of combat.</tooltip>
 
 	<mod-append:ship name="PLAYER_SHIP_OG_EXECUTOR" b="false" c="false" >
 		<unlock variant="a">
-            <type>2</type>
+			<type>2</type>
 			<shipReq>PLAYER_SHIP_OG_RAIDER_2</shipReq>
 			<shipReq>PLAYER_SHIP_OG_RAIDER_3</shipReq>
-        </unlock>
+		</unlock>
 		<unlock variant="a">
-            <type>2</type>
+			<type>2</type>
 			<shipReq>PLAYER_SHIP_OG_RAIDER</shipReq>
 			<shipReq>PLAYER_SHIP_OG_RAIDER_3</shipReq>
-        </unlock>
+		</unlock>
 		<unlock variant="a">
-            <type>2</type>
+			<type>2</type>
 			<shipReq>PLAYER_SHIP_OG_RAIDER</shipReq>
 			<shipReq>PLAYER_SHIP_OG_RAIDER_2</shipReq>
-        </unlock>
+		</unlock>
 	</mod-append:ship>
 	<mod-append:customShip name="PLAYER_SHIP_OG_EXECUTOR">
 		<hiddenAug>SHIP_OG_GUARD</hiddenAug>

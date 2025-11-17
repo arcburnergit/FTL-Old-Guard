@@ -18,7 +18,7 @@
 <augBlueprint name="EX_OG_TURRET_ROTATION">
 	<title>Overclocked Motors [X]</title>
 	<desc>Turrets Rotate 50% faster.
-    
+	
 	[X] - As an external system upgrade, this augment will provide its normal effect but take up an augment slot. Can be converted for free to the internal version under the internal upgrade menu if you have the Modified Clone Bay system.</desc>
 	<cost>60</cost>
 	<rarity>0</rarity>
@@ -37,7 +37,7 @@
 <augBlueprint name="EX_OG_TURRET_SPEED">
 	<title>Accelerators [X]</title>
 	<desc>Turret projectiles move 50% faster.
-    
+	
 	[X] - As an external system upgrade, this augment will provide its normal effect but take up an augment slot. Can be converted for free to the internal version under the internal upgrade menu if you have the Modified Clone Bay system.</desc>
 	<cost>50</cost>
 	<rarity>0</rarity>
@@ -56,7 +56,7 @@
 <augBlueprint name="EX_OG_TURRET_MANUAL">
 	<title>Manual Dexterity [X]</title>
 	<desc>Turrets gain 180 rotation speed when manually targetted.
-    
+	
 	[X] - As an external system upgrade, this augment will provide its normal effect but take up an augment slot. Can be converted for free to the internal version under the internal upgrade menu if you have the Modified Clone Bay system.</desc>
 	<cost>40</cost>
 	<rarity>0</rarity>
@@ -210,7 +210,7 @@
 	<rarity>0</rarity>
 	<powerList>
 		<power>Active Ability: Cloaks to hide from enemy crew, has reduced damage while cloaked, cloaking duration reduces based on actions performed rather than time.</power>
-        <power>Inflicts 1.2x damage in crew combat</power>
+		<power>Inflicts 1.2x damage in crew combat</power>
 		<power>Takes 0.7x damage from crew combat and 0.6x from fires</power>
 	</powerList>
 	<colorList>
@@ -903,7 +903,7 @@
 		<erodeShields>false</erodeShields>
 		<roomAnim renderLayer="2">
 			<anim animType="default" animBorder="0">invisible</anim>
-            <tileAnim>erosion_tile</tileAnim>
+			<tileAnim>erosion_tile</tileAnim>
 			<wallAnim>erosion_wall</wallAnim>
 		</roomAnim>
 	</erosion>
@@ -1343,7 +1343,7 @@
 	<rarity>0</rarity>
 	<stackable>true</stackable>
 </augBlueprint>
-<shipBlueprint name="PLAYER_SHIP_OG_RAIDER" layout="og_raider_a" img="og_raider_a">
+<shipBlueprint name="PLAYER_SHIP_OG_RAIDER" layout="ogp_raider_a" img="ogp_raider_a">
 	<class>Raider-Class</class>
 	<name>The Wasp</name>
 	<desc>Raider-Class vessels are defined by their centrally mounted Turrets, however the turret on this ship has seen some better days. With an improved turret in place, this ship will pose a serious threat to the rebel fleet.</desc>
@@ -1425,7 +1425,7 @@
 	<mv-mapImage>map_icon_og_raider</mv-mapImage>
 </shipBlueprint>
 
-<shipBlueprint name="PLAYER_SHIP_OG_RAIDER_2" layout="og_raider_b" img="og_raider_b">
+<shipBlueprint name="PLAYER_SHIP_OG_RAIDER_2" layout="ogp_raider_b" img="ogp_raider_b">
 	<class>Raider-Class</class>
 	<name>The Hornet</name>
 	<desc>This Raider-Class vessel packs a powerful laser cannon alongside a fast drone, allowing it to tear into enemy ships, however it's defensive capabilities are rather limited compared to other ships of it's class.</desc>
@@ -1506,7 +1506,7 @@
 	<shieldImage>mup_small_long1</shieldImage>
 	<mv-mapImage>map_icon_og_raider</mv-mapImage>
 </shipBlueprint>
-<shipBlueprint name="PLAYER_SHIP_OG_RAIDER_3" layout="og_raider_c" img="og_raider_c">
+<shipBlueprint name="PLAYER_SHIP_OG_RAIDER_3" layout="ogp_raider_c" img="ogp_raider_c">
 	<class>Raider-Class</class>
 	<name>The Snitch</name>
 	<desc>With a powerful boarding crew and a turret deadly to both systems and crew alike, this vessel specializes in leaving the enemy's hull intact.</desc>
@@ -1586,7 +1586,7 @@
 	<mv-mapImage>map_icon_og_raider</mv-mapImage>
 </shipBlueprint>
 
-<shipBlueprint name="PLAYER_SHIP_OG_EXECUTOR" layout="og_executor_a" img="og_executor_a">
+<shipBlueprint name="PLAYER_SHIP_OG_EXECUTOR" layout="ogp_executor_a" img="ogp_executor_a">
 	<class>Executor-Class</class>
 	<name>The Bastion</name>
 	<desc>The Executor-Class vessels are armed with four seperate turrets, whether the ship has a powerful defensive specialization, or an impressive volley will be determined by the turrets installed.</desc>

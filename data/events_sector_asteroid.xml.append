@@ -1,0 +1,42 @@
+<FTL>
+<mod:findName type="eventList" name="HOSTILE_ASTEROID">
+	<mod-append:event load="ENCOUNTER_OG_IRON_ASTEROID"/>
+</mod:findName>
+
+<event name="ENCOUNTER_OG_IRON_ASTEROID" unique="true">
+	<environment type="asteroid"/>
+	<text>An Iron Watch vessel is exploring this beacon when you arrive, it appears they aren't taking any chances out here and immediately activate their weapons.</text>
+	<ship load="SHIP_OG_IRON_FIGHT" hostile="true"/>
+	<choice blue="false" req="rep_comb_og_iron" lvl="-999" max_lvl="1" hidden="true">
+		<text>Continue...</text>
+		<event load="COMBAT_CHECK"/>
+	</choice>
+	<choice blue="false" req="rep_comb_og_iron" lvl="2" max_lvl="999" hidden="true">
+		<text>Continue...</text>
+		<event>
+			<ship hostile="false"/>
+			<text>Luckily they quickly recognise you due to your positive reputation. They offer to split some of salvage they've found.</text>
+			<autoReward level="LOW">standard</autoReward>
+			<choice hidden="true">
+				<text>Attack them anyway.</text>
+				<event>
+					<text>You power on your weapons after receiving the salvage, the Iron Watch are clearly outraged by your betrayal by the number of expletives you can hear over your comms.</text>
+					<ship hostile="true"/>
+					<choice hidden="true">
+						<text>Continue...</text>
+						<event load="REPUTATION_DECREASE_OG_IRON_COMBAT"/>
+					</choice>
+				</event>
+			</choice>
+			<choice>
+				<text>Do something onboard the ship.</text>
+				<event load="STORAGE_CHECK"/>
+			</choice>
+			<choice>
+				<text>Do nothing.</text>
+				<event/>
+			</choice>
+		</event>
+	</choice>
+</event>
+</FTL>

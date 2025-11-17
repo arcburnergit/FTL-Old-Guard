@@ -1491,13 +1491,13 @@ They don't immediately respond and they keep their jump drive ready.</text>
 		<event name="ENCOUNTER_PIRATE_ASTEROID"/>
 		<event name="ENCOUNTER_OG_PIRATE_PULSAR"/>
 		<event name="ENCOUNTER_OG_PIRATE_PULSAR" req="rep_comb_og_iron" lvl="0" max_lvl="999"/>
-		<event name="ENCOUNTER_OG_IRON" req="rep_comb_og_iron" lvl="-999" max_lvl="-2"/>
-		<event name="ENCOUNTER_OG_IRON" req="rep_comb_og_iron" lvl="-999" max_lvl="0"/>
-		<event name="ENCOUNTER_OG_IRON" req="rep_comb_og_iron" lvl="-999" max_lvl="2"/>
+		<event name="ENCOUNTER_OG_IRON_SHIP" req="rep_comb_og_iron" lvl="-999" max_lvl="-2"/>
+		<event name="ENCOUNTER_OG_IRON_SHIP" req="rep_comb_og_iron" lvl="-999" max_lvl="0"/>
+		<event name="ENCOUNTER_OG_IRON_SHIP" req="rep_comb_og_iron" lvl="-999" max_lvl="2"/>
 		<event name="ENCOUNTER_OG_IRON_PULSAR" req="rep_comb_og_iron" lvl="-999" max_lvl="4"/>
 	</loadEventList>
 </event>
-<event name="ENCOUNTER_OG_IRON">
+<event name="ENCOUNTER_OG_IRON_SHIP">
 	<text load="TEXT_ENCOUNTER_OG_IRON"/>
 	<ship load="SHIP_OG_IRON_FIGHT" hostile="true"/> 
 	<choice hidden="true">

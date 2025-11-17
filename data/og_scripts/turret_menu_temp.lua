@@ -193,6 +193,7 @@ local function addComponentStep(currentEvent, weapon, craftingData, itemLevel, i
 			currentEvent:AddChoice(tempEvent, "Use your "..neededBlueprint.desc.title:GetText(), emptyReq, true)
 			if itemAmount >= craftingData.component_amounts[itemLevel] then
 				if itemLevel >= #craftingData.components then
+					tempEvent.eventName = "OG_CRAFT_FINISH_ITEM"
 					tempEvent.stuff.weapon = Hyperspace.Blueprints:GetWeaponBlueprint(weapon)
 					tempEvent.text.data = "You follow the supplied blueprint and eventually come away with a new item."
 					tempEvent.text.isLiteral = true
@@ -250,17 +251,17 @@ script.on_internal_event(Defines.InternalEvents.PRE_CREATE_CHOICEBOX, function(e
 				for i, components in ipairs(craftingData.components) do
 					eventString = eventString.."\n  Atleast "..craftingData.component_amounts[i]..":"
 					if components == defense_drones then
-						eventString = eventString.."\n    Any Defense Drone"
+						eventString = eventString.."\n	Any Defense Drone"
 					else
 						for _, needed in ipairs(components) do
 							if hideName[needed] and not (player:HasEquipment(needed, true) > 0) then
-								eventString = eventString.."\n    "..hideName[needed]
+								eventString = eventString.."\n	"..hideName[needed]
 							else
 								local tempBlueprint = Hyperspace.Blueprints:GetWeaponBlueprint(needed)
 								if tempBlueprint.desc.title:GetText() == "" then
 									tempBlueprint = Hyperspace.Blueprints:GetDroneBlueprint(needed)
 								end
-								eventString = eventString.."\n    "..tempBlueprint.desc.title:GetText()
+								eventString = eventString.."\n	"..tempBlueprint.desc.title:GetText()
 							end
 						end
 					end

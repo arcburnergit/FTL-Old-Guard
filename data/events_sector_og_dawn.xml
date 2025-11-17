@@ -146,10 +146,10 @@ Your actions here, justifiable or not, will not reflect well in the eyes of the 
 	<autoReward level="MED">standard</autoReward>
 </event>
 <textList name="TEXT_DESTROYED_OG_DAWN">
-    <text>The Iron Watch captain lets out one final expletive as the ship is obliterated.</text>
-    <text>The hull of the Iron Watch vessel is dispersed out into space. You swoop in to salvage the remains.</text>
-    <text>The Iron Watch ship explodes, extinguishing all lives within. Your crew avoids their remains as they salvage the ship pieces.</text>
-    <text>One of the turrets is launched off into empty space as the ship explodes, throwing valuable debris in every direction.</text>
+	<text>The Iron Watch captain lets out one final expletive as the ship is obliterated.</text>
+	<text>The hull of the Iron Watch vessel is dispersed out into space. You swoop in to salvage the remains.</text>
+	<text>The Iron Watch ship explodes, extinguishing all lives within. Your crew avoids their remains as they salvage the ship pieces.</text>
+	<text>One of the turrets is launched off into empty space as the ship explodes, throwing valuable debris in every direction.</text>
 </textList>
 
 <event name="DEAD_CREW_OG_DAWN">

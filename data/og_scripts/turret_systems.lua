@@ -883,7 +883,6 @@ local function system_construct_system_box(systemBox)
 
 		systemBox.pSystem.table.currentAimingAngle = -90
 		systemBox.pSystem.table.currentTarget = nil
-		systemBox.pSystem.table.currentTargetTemp = nil
 		systemBox.pSystem.table.ammo_consumed = 0
 	end
 end
@@ -1080,7 +1079,8 @@ script.on_render_event(Defines.RenderEvents.SHIP_SPARKS, function(ship) end, fun
 	end
 end)
 
-script.on_render_event(Defines.RenderEvents.SHIP, function() end, function(ship) 
+script.on_render_event(Defines.RenderEvents.SHIP, function() end, function(ship)
+	if ship.iShipId == 1 then return end
 	local shipManager = Hyperspace.ships(ship.iShipId)
 	local combatControl = Hyperspace.App.gui.combatControl
 	for _, sysName in ipairs(systemNameList) do
@@ -1163,8 +1163,6 @@ end)
 local function system_ready(shipSystem)
 	return not shipSystem:GetLocked() and shipSystem:Functioning() and shipSystem.iHackEffect <= 1
 end
-
-
 
 local targetButtonOn2
 local buttonBase
@@ -1590,13 +1588,17 @@ end
 
 -- handle ship loop
 script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
-	if Hyperspace.App.menu.shipBuilder.bOpen or (shipManager.bJumping and shipManager.iShipId == 1) then return end
+	if Hyperspace.App.menu.shipBuilder.bOpen or (shipManager.bJumping and shipManager.iShipId == 1) or shipManager.ship.hullIntegrity.first <= 0 then return end
+	--log("START SHIP_LOOP TURRETS"..shipManager.iShipId)
 	local shipGraph = Hyperspace.ShipGraph.GetShipInfo(shipManager.iShipId)
 	local shipCorner = {x = shipManager.ship.shipImage.x + shipGraph.shipBox.x, y = shipManager.ship.shipImage.y + shipGraph.shipBox.y}
 	for _, sysName in ipairs(systemNameList) do
 		if shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) and Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] >= 0 then
 			local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
-			if not system.table.firingTime then return end
+			if not system.table.firingTime then 
+				--log("GOTO 1 SHIP_LOOP TURRETS"..shipManager.iShipId..sysName)
+				goto END_SYSTEM_LOOP
+			end
 			local turretLoc = turret_location[shipManager.ship.shipName] and turret_location[shipManager.ship.shipName][sysName] or {x = 0, y = 0, direction = turret_directions.RIGHT}
 			local turretRestAngle = 90 * (turretLoc.direction or 0)
 			local pos = {x = shipCorner.x + turretLoc.x, y = shipCorner.y + turretLoc.y}
@@ -1663,11 +1665,12 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 				speed = speed * 1.5
 			end
 
-			if system:GetEffectivePower() <= 0 then
+			if not system_ready(system) then
 				currentTurret.image.tracker:Stop(true)
 				currentTurret.image:SetCurrentFrame(0)
 				system.table.currentTarget = nil
-				return
+				--log("GOTO 2 SHIP_LOOP TURRETS"..shipManager.iShipId..sysName)
+				goto END_SYSTEM_LOOP
 			elseif system.table.currentlyTargetting then 
 				local mousePosPlayer = worldToPlayerLocation(Hyperspace.Mouse.position)
 				local target_angle = get_angle_between_points(pos, mousePosPlayer)
@@ -1787,15 +1790,21 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 				Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemStateVarName] = 1
 			end
 		end
+		::END_SYSTEM_LOOP::
 	end
+	--log("END SHIP_LOOP TURRETS"..shipManager.iShipId)
 end)
 
 script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(s)
 	if s.iShipId == 1 then return end
+	--log("START SHIP_LOOP PROJECTILES")
 	local spaceManager = Hyperspace.App.world.space
 	for projectile in vter(spaceManager.projectiles) do
 		local shipManager = Hyperspace.ships(projectile.currentSpace)
-		if not shipManager then return end
+		if not shipManager then 
+			--log("GOTO 1 SHIP_LOOP PROJECTILES")
+			goto END_PROJECTILE_LOOP 
+		end
 		local ship = shipManager.ship
 		local shipGraph = Hyperspace.ShipGraph.GetShipInfo(shipManager.iShipId)
 		local shipBound_x = ship.shipImage.x + shipGraph.shipBox.x + ship.shipImage.w
@@ -1851,7 +1860,9 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(s)
 			--print("end homing, invalid proj")
 			userdata_table(projectile, "mods.og").homing = nil
 		end
+		::END_PROJECTILE_LOOP::
 	end
+	--log("END SHIP_LOOP PROJECTILES")
 end)
 
 local function renderTurret(shipManager, ship, spaceManager, shipGraph, sysName)
@@ -1868,7 +1879,7 @@ local function renderTurret(shipManager, ship, spaceManager, shipGraph, sysName)
 	end
 	if currentTurret then
 		local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
-		if not currentTurret then return Defines.Chain.CONTINUE end
+		if not currentTurret then return end
 
 		local turretLoc = turret_location[ship.shipName] and turret_location[ship.shipName][sysName] or {x = 0, y = 0}
 		local shipCorner = {x = ship.shipImage.x + shipGraph.shipBox.x, y = ship.shipImage.y + shipGraph.shipBox.y}
@@ -1892,6 +1903,7 @@ end
 
 script.on_render_event(Defines.RenderEvents.SHIP_MANAGER, function(shipManager) end, function(shipManager) 
 	--local shipManager = Hyperspace.ships(ship.iShipId)
+	--log("START RENDER SHIP_MANAGER TURRETS"..shipManager.iShipId)
 	local ship = shipManager.ship
 	local spaceManager = Hyperspace.App.world.space
 	local shipGraph = Hyperspace.ShipGraph.GetShipInfo(shipManager.iShipId)
@@ -1900,11 +1912,13 @@ script.on_render_event(Defines.RenderEvents.SHIP_MANAGER, function(shipManager) 
 			renderTurret(shipManager, ship, spaceManager, shipGraph, sysName)		
 		end
 	end
+	--log("MIDDLE RENDER SHIP_MANAGER TURRETS")
 	for _, sysName in ipairs(systemNameList) do
 		if shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) and not microTurrets[sysName] then
 			renderTurret(shipManager, ship, spaceManager, shipGraph, sysName)		
 		end
 	end
+	--log("END RENDER SHIP_MANAGER TURRETS"..shipManager.iShipId)
 end)
 
 for _, sysName in ipairs(systemNameList) do

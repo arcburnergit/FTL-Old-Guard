@@ -1,0 +1,54 @@
+<FTL>
+<mod:findName type="eventList" name="ITEMS_DROPPOINT">
+	<mod-append:event load="DROPPOINT_OG_IRON"/>
+</mod:findName>
+
+<event name="DROPPOINT_OG_IRON" unique="true">
+	<text>You're surprised to see an Iron Watch vessel in such populated space, usually they keep to the outer edges of civilised space.</text>
+	<ship load="SHIP_OG_IRON_GENERIC" hostile="false"/>
+	<choice hidden="true">
+		<text>Contact the ship.</text>
+		<event>
+			<text>"Our navigation system broke and it appears we've gotten lost, could you point us in the direction of the exit beacon?"</text>
+			<choice hidden="true">
+				<text>Direct them to the exit.</text>
+				<event>
+					<text>They thank you with a small donation of supplies before heading off.</text>
+					<autoReward level="LOW">stuff</autoReward>
+					<instantEscape/>
+				</event>
+			</choice>
+			<choice hidden="true" req="LIST_CREW_ENGINEER">
+				<text>(Engineer Crew) Offer to repair their navigation system.</text>
+				<event name="DROPPOINT_OG_IRON_REPAIR">
+					<text>They're very thankful for your help and give you a donation of supplies in thanks.</text>
+					<autoReward level="MED">stuff</autoReward>
+					<instantEscape/>
+					<choice>
+						<text>Continue...</text>
+						<event load="REPUTATION_UPDATE_OG_IRON"/>
+					</choice>
+				</event>
+			</choice>
+			<choice hidden="true" req="LIST_CREW_ENGI">
+				<text>(Engi Crew) Offer to repair their navigation system.</text>
+				<event load="DROPPOINT_OG_IRON_REPAIR"/>
+			</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>Ignore the ship.</text>
+		<event>
+			<text>You prepare for your next jump.</text>
+			<choice>
+				<text>Do something onboard the ship.</text>
+				<event load="STORAGE_CHECK"/>
+			</choice>
+			<choice>
+				<text>Do nothing.</text>
+				<event/>
+			</choice>
+		</event>
+	</choice>
+</event>
+</FTL>
