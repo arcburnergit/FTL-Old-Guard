@@ -1410,12 +1410,12 @@
 		</weapons>
 	</systemList>
 	<weaponSlots>3</weaponSlots>
-	<droneSlots>3</droneSlots>
+	<droneSlots>2</droneSlots>
 	<weaponList missiles="5" count="3">
 		<weapon name="FOCUS_1" />
 		<weapon name="LASER_BURST_2" />
 	</weaponList>
-	<droneList drones="5" count="3" />
+	<droneList drones="5" count="2" />
 	<health amount="30" />
 	<maxPower amount="8" />
 	<crewCount amount="1" class="human_og_raider" />
@@ -1424,7 +1424,6 @@
 	<shieldImage>mup_small_long1</shieldImage>
 	<mv-mapImage>map_icon_og_raider</mv-mapImage>
 </shipBlueprint>
-
 <shipBlueprint name="PLAYER_SHIP_OG_RAIDER_2" layout="ogp_raider_b" img="ogp_raider_b">
 	<class>Raider-Class</class>
 	<name>The Hornet</name>
@@ -1492,9 +1491,9 @@
 		</weapons>
 	</systemList>
 	<weaponSlots>2</weaponSlots>
-	<droneSlots>4</droneSlots>
+	<droneSlots>3</droneSlots>
 	<weaponList missiles="2" count="2" />
-	<droneList drones="12" count="4">
+	<droneList drones="12" count="3">
 		<drone name="COMBAT_2_LASER" />
 	</droneList>
 	<health amount="30" />
@@ -1660,10 +1659,10 @@
 			</slot>
 		</weapons>
 	</systemList>
-	<weaponSlots>2</weaponSlots>
-	<droneSlots>2</droneSlots>
-	<weaponList missiles="8" count="2" />
-	<droneList drones="3" count="2" />
+	<weaponSlots>1</weaponSlots>
+	<droneSlots>1</droneSlots>
+	<weaponList missiles="8" count="1" />
+	<droneList drones="3" count="1" />
 	<health amount="45" />
 	<maxPower amount="10" />
 	<crewCount amount="1" class="human_og_raider" />

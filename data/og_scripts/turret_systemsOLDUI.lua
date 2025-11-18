@@ -4,10 +4,6 @@ local userdata_table = mods.multiverse.userdata_table
 local node_child_iter = mods.multiverse.node_child_iter
 local node_get_number_default = mods.multiverse.node_get_number_default
 
-local function xor(a, b)
-	return (a and not b) or (not a and b)
-end
-
 local function worldToPlayerLocation(location)
 	local cApp = Hyperspace.App
 	local combatControl = cApp.gui.combatControl
@@ -825,33 +821,33 @@ local function get_level_description_system(currentId, level, tooltip)
 end
 script.on_internal_event(Defines.InternalEvents.GET_LEVEL_DESCRIPTION, get_level_description_system)
 
-local UIOffset_x = 32
-local UIOffset_y = -44
+local UIOffset_x = 36
+local UIOffset_y = -65
 
 local function system_construct_system_box(systemBox)
 	if is_system(systemBox) then
-		systemBox.extend.xOffset = 113
+		systemBox.extend.xOffset = 54
 
 		local targetButton = Hyperspace.Button()
-		targetButton:OnInit("systemUI/button_og_turret_target", Hyperspace.Point(UIOffset_x, UIOffset_y))
-		targetButton.hitbox.x = 16
-		targetButton.hitbox.y = 16
-		targetButton.hitbox.w = 75
-		targetButton.hitbox.h = 39
+		targetButton:OnInit("systemUI/button_og_turret_target", Hyperspace.Point(UIOffset_x + 9, UIOffset_y + 35))
+		targetButton.hitbox.x = 0
+		targetButton.hitbox.y = 0
+		targetButton.hitbox.w = 22
+		targetButton.hitbox.h = 22
 		systemBox.table.targetButton = targetButton
 		local offenseButton = Hyperspace.Button()
-		offenseButton:OnInit("systemUI/button_og_turret_toggle_o", Hyperspace.Point(UIOffset_x, UIOffset_y))
-		offenseButton.hitbox.x = 74
-		offenseButton.hitbox.y = 37
-		offenseButton.hitbox.w = 17
-		offenseButton.hitbox.h = 18
+		offenseButton:OnInit("systemUI/button_og_turret_defense", Hyperspace.Point(UIOffset_x + 9, UIOffset_y + 61))
+		offenseButton.hitbox.x = 0
+		offenseButton.hitbox.y = 0
+		offenseButton.hitbox.w = 22
+		offenseButton.hitbox.h = 22
 		systemBox.table.offenseButton = offenseButton
 		local defenseButton = Hyperspace.Button()
-		defenseButton:OnInit("systemUI/button_og_turret_toggle_d", Hyperspace.Point(UIOffset_x, UIOffset_y))
-		defenseButton.hitbox.x = 74
-		defenseButton.hitbox.y = 37
-		defenseButton.hitbox.w = 17
-		defenseButton.hitbox.h = 18
+		defenseButton:OnInit("systemUI/button_og_turret_offense", Hyperspace.Point(UIOffset_x + 9, UIOffset_y + 61))
+		defenseButton.hitbox.x = 0
+		defenseButton.hitbox.y = 0
+		defenseButton.hitbox.w = 22
+		defenseButton.hitbox.h = 22
 		systemBox.table.defenseButton = defenseButton
 
 		local systemId = Hyperspace.ShipSystem.SystemIdToName(systemBox.pSystem.iSystemType)
@@ -868,7 +864,6 @@ local function system_construct_system_box(systemBox)
 		systemBox.pSystem.table.currentlyTargetted = false
 
 		systemBox.pSystem.table.currentAimingAngle = 0
-		systemBox.pSystem.table.autoFireInvert = false
 		systemBox.pSystem.table.currentTarget = nil
 		systemBox.pSystem.table.currentTargetTemp = nil
 		systemBox.pSystem.table.ammo_consumed = 0
@@ -903,19 +898,23 @@ local function system_mouse_move(systemBox, x, y)
 	if is_system(systemBox) then
 		local systemId = Hyperspace.ShipSystem.SystemIdToName(systemBox.pSystem.iSystemType)
 		local targetButton = systemBox.table.targetButton
-		targetButton:MouseMove(x - (UIOffset_x), y - (UIOffset_y), false)
+		targetButton:MouseMove(x - (UIOffset_x + 9), y - (UIOffset_y + 35), false)
 		local offenseButton = systemBox.table.offenseButton
-		offenseButton:MouseMove(x - (UIOffset_x), y - (UIOffset_y), false)
+		offenseButton:MouseMove(x - (UIOffset_x + 9), y - (UIOffset_y + 61), false)
 		local defenseButton = systemBox.table.defenseButton
-		defenseButton:MouseMove(x - (UIOffset_x), y - (UIOffset_y), false)
-		--local x_hb = x - (UIOffset_x + hoverBox.x)
-		--local y_hb = y - (UIOffset_y + hoverBox.y)
+		defenseButton:MouseMove(x - (UIOffset_x + 9), y - (UIOffset_y + 61), false)
+		local x_hb = x - (UIOffset_x + hoverBox.x)
+		local y_hb = y - (UIOffset_y + hoverBox.y)
 		local shipId = (systemBox.bPlayerUI and 0) or 1
-		if offenseButton.bHover and Hyperspace.playerVariables[shipId..systemId..systemStateVarName] == 1 then
+		if targetButton.bHover and Hyperspace.playerVariables[shipId..systemId..systemStateVarName] == 0 then
+			Hyperspace.Mouse.tooltip = "Target the turret at the enemy ship or enemy projectiles and drones."
+		elseif targetButton.bHover and Hyperspace.playerVariables[shipId..systemId..systemStateVarName] == 1 then
+			Hyperspace.Mouse.tooltip = "Target the turret at enemy projectiles and drones."
+		elseif offenseButton.bHover and Hyperspace.playerVariables[shipId..systemId..systemStateVarName] == 1 then
 			Hyperspace.Mouse.tooltip = "Set the turret to offensive mode."
 		elseif defenseButton.bHover and Hyperspace.playerVariables[shipId..systemId..systemStateVarName] == 0 then
 			Hyperspace.Mouse.tooltip = "Set the turret to defensive mode."
-		elseif targetButton.bHover then
+		elseif x_hb >= 0 and x_hb <= hoverBox.w and y_hb >= 0 and y_hb <= hoverBox.h then
 			local currentTurret = turrets[ turretBlueprintsList[ Hyperspace.playerVariables[shipId..systemId..systemBlueprintVarName] ] ]
 			Hyperspace.Mouse.tooltip = add_stat_text("", currentTurret, systemBox.pSystem:GetMaxPower())
 		end
@@ -995,29 +994,30 @@ local function system_click(systemBox, shift)
 				end
 			end
 		end
+		if targetButton.bHover and targetButton.bActive then
+			local shipManager = Hyperspace.ships.player
+			systemBox.pSystem.table.currentTarget = nil
+			systemBox.pSystem.table.currentTargetTemp = nil
+			systemBox.pSystem.table.currentlyTargetted = false
+			systemBox.pSystem.table.currentlyTargetting = true
+			Hyperspace.Mouse.validPointer = cursorValid
+			Hyperspace.Mouse.invalidPointer = cursorValid2
+		end
 		local offenseButton = systemBox.table.offenseButton
-		local defenseButton = systemBox.table.defenseButton
 		if offenseButton.bHover and offenseButton.bActive then
 			local shipManager = Hyperspace.ships.player
 			systemBox.pSystem.table.currentTarget = nil
 			systemBox.pSystem.table.currentlyTargetted = false
 			systemBox.pSystem.table.currentTargetTemp = nil
 			Hyperspace.playerVariables[shipId..Hyperspace.ShipSystem.SystemIdToName(systemBox.pSystem.iSystemType)..systemStateVarName] = 0
-		elseif defenseButton.bHover and defenseButton.bActive then
+		end
+		local defenseButton = systemBox.table.defenseButton
+		if defenseButton.bHover and defenseButton.bActive then
 			local shipManager = Hyperspace.ships.player
 			systemBox.pSystem.table.currentTarget = nil
 			systemBox.pSystem.table.currentlyTargetted = false
 			systemBox.pSystem.table.currentTargetTemp = nil
 			Hyperspace.playerVariables[shipId..Hyperspace.ShipSystem.SystemIdToName(systemBox.pSystem.iSystemType)..systemStateVarName] = 1
-		elseif targetButton.bHover and targetButton.bActive then
-			local shipManager = Hyperspace.ships.player
-			systemBox.pSystem.table.currentTarget = nil
-			systemBox.pSystem.table.autoFireInvert = shift 
-			systemBox.pSystem.table.currentTargetTemp = nil
-			systemBox.pSystem.table.currentlyTargetted = false
-			systemBox.pSystem.table.currentlyTargetting = true
-			Hyperspace.Mouse.validPointer = cursorValid
-			Hyperspace.Mouse.invalidPointer = cursorValid2
 		end
 	end
 	return Defines.Chain.CONTINUE
@@ -1164,22 +1164,28 @@ local function system_ready(shipSystem)
 	return not shipSystem:GetLocked() and shipSystem:Functioning() and shipSystem.iHackEffect <= 1
 end
 
-local turretBox
-local turretBoxInner
-local turretBoxInnerBack
-local turretBoxInnerHover
-local turretBoxOffense
-local turretBoxDefense
-local turretBoxToggleHover
+local targetButtonOn2
+local buttonBase
+local buttonBaseOff
+local chargeBar
+local chargeIcon
 script.on_init(function()
-	local c = Graphics.GL_Color(1, 1, 1, 1)
-	turretBox = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/box_og_turret.png", UIOffset_x, UIOffset_y, 0, c, 1, false)
-	turretBoxInner = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/box_inner_og_turret.png", UIOffset_x, UIOffset_y, 0, c, 1, false)
-	turretBoxInnerHover = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/box_inner_og_turret_hover.png", UIOffset_x, UIOffset_y, 0, c, 1, false)
-	turretBoxInnerBack = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/box_inner_og_turret_back.png", UIOffset_x, UIOffset_y, 0, c, 1, false)
-	turretBoxOffense = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/button_og_turret_toggle_o_on.png", UIOffset_x, UIOffset_y, 0, c, 1, false)
-	turretBoxDefense = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/button_og_turret_toggle_d_on.png", UIOffset_x, UIOffset_y, 0, c, 1, false)
-	turretBoxToggleHover = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/button_og_turret_toggle_hover.png", UIOffset_x, UIOffset_y, 0, c, 1, false)
+	targetButtonOn2 = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/button_og_turret_target_on_2.png", UIOffset_x+9, UIOffset_y+35, 0, Graphics.GL_Color(1, 1, 1, 1), 1, false)
+	buttonBase = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/button_og_turret_base.png", UIOffset_x, UIOffset_y, 0, Graphics.GL_Color(1, 1, 1, 1), 1, false)
+	buttonBaseOff = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/button_og_turret_base_off.png", UIOffset_x, UIOffset_y, 0, Graphics.GL_Color(1, 1, 1, 1), 1, false)
+	chargeBar = {
+		x = 10,
+		y = 32,
+		mid = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/button_og_turret_charge_stack.png", UIOffset_x, UIOffset_y, 0, Graphics.GL_Color(1, 1, 1, 1), 1, false),
+		top = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/button_og_turret_charge_stack_top.png", UIOffset_x, UIOffset_y, 0, Graphics.GL_Color(1, 1, 1, 1), 1, false),
+	}
+	chargeIcon = {
+		x = 21,
+		y = 32,
+		back = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/button_og_turret_charge_back.png", UIOffset_x, UIOffset_y, 0, Graphics.GL_Color(1, 1, 1, 1), 1, false),
+		off = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/button_og_turret_charge_off.png", UIOffset_x, UIOffset_y, 0, Graphics.GL_Color(1, 1, 1, 1), 1, false),
+		on = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/button_og_turret_charge_on.png", UIOffset_x, UIOffset_y, 0, Graphics.GL_Color(1, 1, 1, 1), 1, false),
+	}
 end)
 
 local function system_render(systemBox, ignoreStatus)
@@ -1191,11 +1197,11 @@ local function system_render(systemBox, ignoreStatus)
 		local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(systemId))
 
 		local targetButton = systemBox.table.targetButton
-		targetButton.bActive = system_ready(system) and not system.table.currentlyTargetting
+		targetButton.bActive = system_ready(systemBox.pSystem) and not systemBox.pSystem.table.currentlyTargetting
 		local offenseButton = systemBox.table.offenseButton
-		offenseButton.bActive = system_ready(system) and Hyperspace.playerVariables[shipId..systemId..systemStateVarName] ~= 0
+		offenseButton.bActive = system_ready(systemBox.pSystem) and Hyperspace.playerVariables[shipId..systemId..systemStateVarName] ~= 0
 		local defenseButton = systemBox.table.defenseButton
-		defenseButton.bActive = system_ready(system) and Hyperspace.playerVariables[shipId..systemId..systemStateVarName] ~= 1
+		defenseButton.bActive = system_ready(systemBox.pSystem) and Hyperspace.playerVariables[shipId..systemId..systemStateVarName] ~= 1
 
 		local currentTurret = turrets[ turretBlueprintsList[ Hyperspace.playerVariables[shipId..systemId..systemBlueprintVarName] ] ]
 		local maxCharges = currentTurret.charges
@@ -1206,144 +1212,80 @@ local function system_render(systemBox, ignoreStatus)
 		--print(currentTurret.charge_time[system:GetEffectivePower()].." "..chargeTime.." "..system.iActiveManned)
 		local time = math.floor(0.5 + system.table.chargeTime * chargeTimeDisplay * 2)
 
-		--[[local lastTint = Graphics.CSurface.GetColorTint()
-		if lastTint then
-			print("lastTint r:"..lastTint.r.." g:"..lastTint.g.." b:"..lastTint.b.." a:"..lastTint.a)
-			Graphics.CSurface.GL_SetColorTint(lastTint)
-		end
-		local lastColor = Graphics.CSurface.GL_GetColor()
-		if lastColor then
-			print("lastColor r:"..lastColor.r.." g:"..lastColor.g.." b:"..lastColor.b.." a:"..lastColor.a)
-			Graphics.CSurface.GL_SetColor(lastColor)
-		end]]
-		--Graphics.CSurface.GL_RemoveColorTint()
-
-		Graphics.CSurface.GL_RenderPrimitive(turretBox)
-		--Graphics.freetype.easy_print(62, UIOffset_x + 17, UIOffset_y + 61, "A")
-		Graphics.CSurface.GL_RenderPrimitive(turretBoxInnerBack)
-
-		local c_off = Graphics.GL_Color(150/255, 150/255, 150/255, 1)
-		local c_on = Graphics.GL_Color(243/255, 255/255, 230/255, 1)
-		local c_charged = Graphics.GL_Color(120/255, 255/255, 120/255, 1)
-		local c_single = Graphics.GL_Color(255/255, 120/255, 120/255, 1)
-		local c_auto = Graphics.GL_Color(255/255, 255/255, 50/255, 1)
-		local cApp = Hyperspace.App
-		local combatControl = cApp.gui.combatControl
-		local weapControl = combatControl.weapControl
-
-		local renderColour = c_on
-		if not system_ready(system) then
-			renderColour = c_off
-		elseif system.table.currentlyTargetting and xor(weapControl.autoFiring, system.table.autoFireInvert) then
-			renderColour = c_auto
-		elseif system.table.currentlyTargetting then
-			renderColour = c_single
-		elseif charges == maxCharges then
-			renderColour = c_charged
-		end
-		if targetButton.bHover and not (systemBox.table.offenseButton.bHover or systemBox.table.defenseButton.bHover) then
-			Graphics.CSurface.GL_RenderPrimitiveWithColor(turretBoxInnerHover, renderColour)
-		end
-
-		if Hyperspace.playerVariables[shipId..systemId..systemStateVarName] == 1 then
-			if systemBox.table.offenseButton.bHover then
-				Graphics.CSurface.GL_RenderPrimitiveWithColor(turretBoxToggleHover, renderColour)
-			end
-			Graphics.CSurface.GL_RenderPrimitiveWithColor(turretBoxDefense, renderColour)
-		elseif Hyperspace.playerVariables[shipId..systemId..systemStateVarName] == 0 then
-			if systemBox.table.defenseButton.bHover then
-				Graphics.CSurface.GL_RenderPrimitiveWithColor(turretBoxToggleHover, renderColour)
-			end
-			Graphics.CSurface.GL_RenderPrimitiveWithColor(turretBoxOffense, renderColour)
-		end
-		Graphics.CSurface.GL_RenderPrimitiveWithColor(turretBoxInner, renderColour)
-
+		Graphics.CSurface.GL_RenderPrimitive(buttonBase)
 
 		Graphics.CSurface.GL_PushMatrix()
-		Graphics.CSurface.GL_Translate(UIOffset_x, UIOffset_y, 0)
+		Graphics.CSurface.GL_Translate(chargeBar.x, chargeBar.y, 0)
 
-		if maxCharges < 6 then
-			local chargeDiff = 6 - maxCharges
-			Graphics.CSurface.GL_DrawRect(
-				18, 
-				22, 
-				6, 
-				5 * chargeDiff, 
-				renderColour
-				)
+		for i = 1, 2 * chargeTimeDisplay + 2 do
+			Graphics.CSurface.GL_PushMatrix()
+			Graphics.CSurface.GL_Translate(0, - i, 0)
+			Graphics.CSurface.GL_RenderPrimitive(chargeBar.mid)
+			Graphics.CSurface.GL_PopMatrix()
 		end
+		Graphics.CSurface.GL_PushMatrix()
+		Graphics.CSurface.GL_Translate(0, - 2 * chargeTimeDisplay - 3, 0)
+		Graphics.CSurface.GL_RenderPrimitive(chargeBar.top)
+		Graphics.CSurface.GL_PopMatrix()
 
-		local blueprint = Hyperspace.Blueprints:GetWeaponBlueprint(turretBlueprintsList[ Hyperspace.playerVariables[shipId..systemId..systemBlueprintVarName] ])
-		local barColour = renderColour
-		Graphics.CSurface.GL_SetColor(renderColour)
-		Graphics.freetype.easy_printAutoNewlines(6, 40, 19, 43, blueprint.desc.shortTitle:GetText())
-
-		if system_ready(system) and not system.table.currentlyTargetting and (system.table.currentTarget or system.table.currentTargetTemp) then
-			if xor(weapControl.autoFiring, system.table.autoFireInvert) then
-				barColour = c_auto
-				--Graphics.CSurface.GL_SetColorTint(c_auto)
-			else
-				barColour = c_single
-				--Graphics.CSurface.GL_SetColorTint(c_single)
-			end
-		end
-
-		Graphics.CSurface.GL_SetColor(Graphics.GL_Color(1, 1, 1, 1))
-		if maxCharges == charges then
-			Graphics.freetype.easy_printNewlinesCentered(51, 53, -2, 80, tostring(math.floor(0.5 + chargeTime * 10)/10).."/"..tostring(math.floor(0.5 + chargeTime * 10)/10))
-		else
-			Graphics.freetype.easy_printNewlinesCentered(51, 53, -2, 80, tostring(math.floor(0.5 + system.table.chargeTime * chargeTime * 10)/10).."/"..tostring(math.floor(0.5 + chargeTime * 10)/10))
-		end
-		
-		--Graphics.CSurface.GL_RemoveColorTint()
-
-		local timePercent = math.floor(0.5 + system.table.chargeTime * 33)
 		Graphics.CSurface.GL_DrawRect(
-			27, 
-			19 + (33 - timePercent), 
-			4, 
-			timePercent, 
-			barColour
+			UIOffset_x + 2, 
+			UIOffset_y - 1 - time, 
+			5, 
+			time, 
+			Graphics.GL_Color(1, 1, 1, 1)
 			)
 		if maxCharges == charges then
 			Graphics.CSurface.GL_DrawRect(
-				27, 
-				19, 
-				4, 
-				33, 
-				barColour
-				)
+			UIOffset_x + 2, 
+			UIOffset_y - 1 - chargeTimeDisplay * 2, 
+			5, 
+			chargeTimeDisplay * 2, 
+			Graphics.GL_Color(1, 1, 1, 1)
+			)
 		end
-		if maxCharges <= 6 then
-			for i = 1, charges do
-				Graphics.CSurface.GL_DrawRect(
-					19, 
-					53 - (5 * i), 
-					4, 
-					4, 
-					barColour
-					)
-			end
-		else
-			local chargePercent = math.floor(0.5 + (charges/maxCharges) * 29)
-			Graphics.CSurface.GL_DrawRect(
-				19, 
-				23 + (29 - chargePercent), 
-				4, 
-				chargePercent, 
-				barColour
-				)
-		end
-
 		Graphics.CSurface.GL_PopMatrix()
-		Graphics.CSurface.GL_SetColor(Graphics.GL_Color(1, 1, 1, 1))
 
-		if lastTint then 
-			--Graphics.CSurface.GL_SetColorTint(lastTint)
+		if maxCharges > 1 then
+			Graphics.CSurface.GL_PushMatrix()
+			Graphics.CSurface.GL_Translate(chargeIcon.x, chargeIcon.y, 0)
+			
+			for i = 1, maxCharges do
+				Graphics.CSurface.GL_PushMatrix()
+				Graphics.CSurface.GL_Translate(0, i * -8, 0)
+				Graphics.CSurface.GL_RenderPrimitive(chargeIcon.back)
+				Graphics.CSurface.GL_PopMatrix()
+			end
+
+			for i = 1, charges do
+				Graphics.CSurface.GL_PushMatrix()
+				Graphics.CSurface.GL_Translate(0, i * -8, 0)
+				Graphics.CSurface.GL_RenderPrimitive(chargeIcon.on)
+				Graphics.CSurface.GL_PopMatrix()
+			end
+			Graphics.CSurface.GL_PopMatrix()
 		end
 
+		systemBox.table.targetButton:OnRender()
+		if not systemBox.table.targetButton.bHover and (systemBox.pSystem.table.currentlyTargetted or ((systemBox.pSystem.table.currentTarget or systemBox.pSystem.table.currentTargetTemp) and Hyperspace.playerVariables[shipId..systemId..systemStateVarName] == 0)) then
+			Graphics.CSurface.GL_RenderPrimitive(targetButtonOn2)
+		end
+
+		if Hyperspace.playerVariables[shipId..systemId..systemStateVarName] == 1 then
+			systemBox.table.offenseButton:OnRender()
+		elseif Hyperspace.playerVariables[shipId..systemId..systemStateVarName] == 0 then
+			systemBox.table.defenseButton:OnRender()
+		end
+		local offsetText = math.max(2 * chargeTimeDisplay + 3, maxCharges * 8)
+		if maxCharges <= 1 then
+			offsetText = 2 * chargeTimeDisplay + 2
+		end
+
+		local blueprint = Hyperspace.Blueprints:GetWeaponBlueprint(turretBlueprintsList[ Hyperspace.playerVariables[shipId..systemId..systemBlueprintVarName] ])
+		Graphics.freetype.easy_printNewlinesCentered(51, UIOffset_x + 20, UIOffset_y + 12 - offsetText, 80, blueprint.desc.shortTitle:GetText().."\n"..tostring(math.floor(0.5 + system.table.chargeTime * chargeTime * 10)/10).."/"..tostring(math.floor(0.5 + chargeTime * 10)/10))
+		--Graphics.CSurface.GL_DrawCircle(UIOffset_x + 20, UIOffset_y - 3, 1, Graphics.GL_Color(1, 0, 0, 1))
 	elseif is_system(systemBox) then
-		Graphics.CSurface.GL_RenderPrimitive(turretBox)
+		Graphics.CSurface.GL_RenderPrimitive(buttonBaseOff)
 	end
 end
 script.on_render_event(Defines.RenderEvents.SYSTEM_BOX, 

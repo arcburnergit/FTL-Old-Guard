@@ -124,7 +124,7 @@
 <animSheet name="og_turret_ion_2_glow" w="240" h="22" fw="60" fh="22">og_turrets/turret_ion_2_glow.png</animSheet>
 <anim name="og_turret_ion_2_glow">
 	<sheet>og_turret_ion_2_glow</sheet>
-	<desc length="1" x="0" y="0" />
+	<desc length="4" x="0" y="0" />
 	<time>1</time>
 </anim>
 
