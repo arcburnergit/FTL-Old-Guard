@@ -924,7 +924,7 @@ local function system_mouse_move(systemBox, x, y)
 end
 script.on_internal_event(Defines.InternalEvents.SYSTEM_BOX_MOUSE_MOVE, system_mouse_move)
 
-script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function() end, function()
+script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function() 
 	local shipManager = Hyperspace.ships.player
 	for _, sysName in ipairs(systemNameList) do
 		if shipManager and shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) then
@@ -936,11 +936,11 @@ script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function() end, funct
 				Hyperspace.Mouse.tooltip = "Set the turret to defensive mode."
 			elseif system.table.tooltip_type == 0 then
 				local currentTurret = turrets[ turretBlueprintsList[ Hyperspace.playerVariables[shipId..sysName..systemBlueprintVarName] ] ]
-				Hyperspace.Mouse.tooltip = add_stat_text("", currentTurret, systemBox.pSystem:GetMaxPower())
+				Hyperspace.Mouse.tooltip = add_stat_text("", currentTurret, system:GetMaxPower())
 			end
 		end
 	end
-end)
+end, function() end)
 
 local function checkValidTarget(targetable, defense_type, shipManager)
 	if not targetable then return false end

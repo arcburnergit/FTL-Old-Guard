@@ -247,7 +247,7 @@ script.on_internal_event(Defines.InternalEvents.PRE_CREATE_CHOICEBOX, function(e
 					weaponEvent:AddChoice(weaponEvent, "Blueprint:", emptyReq, false)
 				end
 
-				local eventString = weaponBlueprint.desc.title:GetText().." Requires:"
+				local eventString = ((showBlueprint and weaponBlueprint.desc.title:GetText()) or "???") .." Requires:"
 				for i, components in ipairs(craftingData.components) do
 					eventString = eventString.."\n  Atleast "..craftingData.component_amounts[i]..":"
 					if components == defense_drones then

@@ -476,7 +476,7 @@
 	<tip>tip_og_turret</tip>
 	<title>Pinpoint Turret</title>
 	<short>Pinpoint</short>
-	<desc>Pinpoint Turrets prove extremely effective against enemy lasers due to their almost instantaneous time to kill.</desc>
+	<desc>Pinpoint Turrets prove extremely effective against enemy missiles due to their almost instantaneous time to kill.</desc>
 	<tooltip>Turret</tooltip>
 	<damage>0</damage>
 	<sp>0</sp>
@@ -581,7 +581,7 @@
 	<tip>tip_og_turret_mini</tip>
 	<title>Micro Pinpoint Turret</title>
 	<short>Micro P.</short>
-	<desc>This small Pinpoint Turret requires support to damage the enemy ship, but remains capable against enemy lasers.</desc>
+	<desc>This small Pinpoint Turret requires support to damage the enemy ship, but remains capable against enemy missiles.</desc>
 	<tooltip>Turret</tooltip>
 	<damage>0</damage>
 	<sp>0</sp>
@@ -687,7 +687,7 @@
 	<tip>tip_og_turret</tip>
 	<title>Dawn Pinpoint Turret</title>
 	<short>€ Pinpoint</short>
-	<desc>Pinpoint Turrets prove extremely effective against enemy lasers due to their almost instantaneous time to kill.</desc>
+	<desc>Pinpoint Turrets prove extremely effective against enemy missiles due to their almost instantaneous time to kill.</desc>
 	<tooltip>Turret</tooltip>
 	<damage>0</damage>
 	<sp>0</sp>
@@ -750,7 +750,7 @@
 	<tip>tip_og_turret_mini</tip>
 	<title>Dawn Micro Pinpoint Turret</title>
 	<short>€ Micro P.</short>
-	<desc>This small Pinpoint Turret requires support to damage the enemy ship, but remains capable against enemy lasers.</desc>
+	<desc>This small Pinpoint Turret requires support to damage the enemy ship, but remains capable against enemy missiles.</desc>
 	<tooltip>Turret</tooltip>
 	<damage>0</damage>
 	<sp>0</sp>
