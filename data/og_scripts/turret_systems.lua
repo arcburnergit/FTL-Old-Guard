@@ -860,6 +860,7 @@ local function system_construct_system_box(systemBox)
 			systemBox.pSystem.bBoostable = false
 		end
 
+		systemBox.pSystem.table.index = -1
 		systemBox.pSystem.table.chargeTime = 0
 		systemBox.pSystem.table.firingTime = 0
 		--systemBox.pSystem.table.currentShot = 1
@@ -908,21 +909,38 @@ local function system_mouse_move(systemBox, x, y)
 		offenseButton:MouseMove(x - (UIOffset_x), y - (UIOffset_y), false)
 		local defenseButton = systemBox.table.defenseButton
 		defenseButton:MouseMove(x - (UIOffset_x), y - (UIOffset_y), false)
-		--local x_hb = x - (UIOffset_x + hoverBox.x)
-		--local y_hb = y - (UIOffset_y + hoverBox.y)
 		local shipId = (systemBox.bPlayerUI and 0) or 1
 		if offenseButton.bHover and Hyperspace.playerVariables[shipId..systemId..systemStateVarName] == 1 then
-			Hyperspace.Mouse.tooltip = "Set the turret to offensive mode."
+			systemBox.pSystem.table.tooltip_type = 1
 		elseif defenseButton.bHover and Hyperspace.playerVariables[shipId..systemId..systemStateVarName] == 0 then
-			Hyperspace.Mouse.tooltip = "Set the turret to defensive mode."
+			systemBox.pSystem.table.tooltip_type = 2
 		elseif targetButton.bHover then
-			local currentTurret = turrets[ turretBlueprintsList[ Hyperspace.playerVariables[shipId..systemId..systemBlueprintVarName] ] ]
-			Hyperspace.Mouse.tooltip = add_stat_text("", currentTurret, systemBox.pSystem:GetMaxPower())
+			systemBox.pSystem.table.tooltip_type = 0
+		else
+			systemBox.pSystem.table.tooltip_type = -1
 		end
 	end
 	return Defines.Chain.CONTINUE
 end
 script.on_internal_event(Defines.InternalEvents.SYSTEM_BOX_MOUSE_MOVE, system_mouse_move)
+
+script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function() end, function()
+	local shipManager = Hyperspace.ships.player
+	for _, sysName in ipairs(systemNameList) do
+		if shipManager and shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) then
+			local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
+			local shipId = 0
+			if system.table.tooltip_type == 1 then
+				Hyperspace.Mouse.tooltip = "Set the turret to offensive mode."
+			elseif system.table.tooltip_type == 2 then
+				Hyperspace.Mouse.tooltip = "Set the turret to defensive mode."
+			elseif system.table.tooltip_type == 0 then
+				local currentTurret = turrets[ turretBlueprintsList[ Hyperspace.playerVariables[shipId..sysName..systemBlueprintVarName] ] ]
+				Hyperspace.Mouse.tooltip = add_stat_text("", currentTurret, systemBox.pSystem:GetMaxPower())
+			end
+		end
+	end
+end)
 
 local function checkValidTarget(targetable, defense_type, shipManager)
 	if not targetable then return false end
@@ -1026,13 +1044,15 @@ script.on_internal_event(Defines.InternalEvents.SYSTEM_BOX_MOUSE_CLICK, system_c
 
 script.on_internal_event(Defines.InternalEvents.ON_MOUSE_R_BUTTON_DOWN, function(x,y) 
 	local shipManager = Hyperspace.ships.player
-	for _, sysName in ipairs(systemNameList) do
-		if shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) then
-			local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
-			if system.table.currentlyTargetting then
-				system.table.currentlyTargetting = false
-				Hyperspace.Mouse.validPointer = cursorDefault
-				Hyperspace.Mouse.invalidPointer = cursorDefault2
+	if shipManager then
+		for _, sysName in ipairs(systemNameList) do
+			if shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) then
+				local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
+				if system.table.currentlyTargetting then
+					system.table.currentlyTargetting = false
+					Hyperspace.Mouse.validPointer = cursorDefault
+					Hyperspace.Mouse.invalidPointer = cursorDefault2
+				end
 			end
 		end
 	end
@@ -1054,6 +1074,8 @@ script.on_render_event(Defines.RenderEvents.SHIP_SPARKS, function(ship) end, fun
 	for _, sysName in ipairs(systemNameList) do
 		if otherManager and otherManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) then
 			local system = otherManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
+			local currentTurret = turrets[ turretBlueprintsList[ Hyperspace.playerVariables[math.floor(otherManager.iShipId)..sysName..systemBlueprintVarName] ] ]
+			--print("render"..turretBlueprintsList[ Hyperspace.playerVariables[math.floor(otherManager.iShipId)..sysName..systemBlueprintVarName] ].." "..math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName)
 			if system.table.currentlyTargetting then
 				for room in vter(ship.vRoomList) do
 					if room.iRoomId == combatControl.selectedRoom then
@@ -1065,12 +1087,18 @@ script.on_render_event(Defines.RenderEvents.SHIP_SPARKS, function(ship) end, fun
 				local targetPos = shipManager:GetRoomCenter(system.table.currentTarget)
 				Graphics.CSurface.GL_PushMatrix()
 				Graphics.CSurface.GL_Translate(targetPos.x, targetPos.y, 0)
+				if currentTurret.shot_radius then
+					Graphics.CSurface.GL_DrawCircle(0, 0, currentTurret.shot_radius, Graphics.GL_Color(1, 0, 0, 0.25))
+				end
 				Graphics.CSurface.GL_RenderPrimitive(targetingImage.full)
 				Graphics.CSurface.GL_PopMatrix()
 			elseif system.table.currentTargetTemp and Hyperspace.playerVariables[math.floor(otherManager.iShipId)..sysName..systemStateVarName] == 0 and not system.table.currentlyTargetted then
 				local targetPos = shipManager:GetRoomCenter(system.table.currentTargetTemp)
 				Graphics.CSurface.GL_PushMatrix()
 				Graphics.CSurface.GL_Translate(targetPos.x, targetPos.y, 0)
+				if currentTurret.shot_radius then
+					Graphics.CSurface.GL_DrawCircle(0, 0, currentTurret.shot_radius, Graphics.GL_Color(1, 0, 0, 0.25))
+				end
 				Graphics.CSurface.GL_RenderPrimitive(targetingImage.temp)
 				Graphics.CSurface.GL_PopMatrix()
 			end
@@ -1114,6 +1142,9 @@ script.on_render_event(Defines.RenderEvents.SHIP, function() end, function(ship)
 					local targetPos = currentClosest.target:GetRandomTargettingPoint(true)
 					Graphics.CSurface.GL_PushMatrix()
 					Graphics.CSurface.GL_Translate(targetPos.x, targetPos.y, 0)
+					if currentTurret.shot_radius then
+						Graphics.CSurface.GL_DrawCircle(0, 0, currentTurret.shot_radius/2, Graphics.GL_Color(1, 0, 0, 0.25))
+					end
 					Graphics.CSurface.GL_RenderPrimitive(targetingImage.hover)
 					Graphics.CSurface.GL_PopMatrix()
 				end
@@ -1123,6 +1154,9 @@ script.on_render_event(Defines.RenderEvents.SHIP, function() end, function(ship)
 						local targetPos = system.table.currentTarget._targetable:GetRandomTargettingPoint(true)
 						Graphics.CSurface.GL_PushMatrix()
 						Graphics.CSurface.GL_Translate(targetPos.x, targetPos.y, 0)
+						if currentTurret.shot_radius then
+							Graphics.CSurface.GL_DrawCircle(0, 0, currentTurret.shot_radius/2, Graphics.GL_Color(1, 0, 0, 0.25))
+						end
 						Graphics.CSurface.GL_RenderPrimitive(targetingImage.full)
 						Graphics.CSurface.GL_PopMatrix()
 					end
@@ -1132,6 +1166,9 @@ script.on_render_event(Defines.RenderEvents.SHIP, function() end, function(ship)
 						local targetPos = system.table.currentTarget._targetable:GetRandomTargettingPoint(true)
 						Graphics.CSurface.GL_PushMatrix()
 						Graphics.CSurface.GL_Translate(targetPos.x, targetPos.y, 0)
+						if currentTurret.shot_radius then
+							Graphics.CSurface.GL_DrawCircle(0, 0, currentTurret.shot_radius/2, Graphics.GL_Color(1, 0, 0, 0.25))
+						end
 						Graphics.CSurface.GL_RenderPrimitive(targetingImage.full)
 						Graphics.CSurface.GL_PopMatrix()
 					end
@@ -1142,6 +1179,9 @@ script.on_render_event(Defines.RenderEvents.SHIP, function() end, function(ship)
 						local targetPos = system.table.currentTargetTemp._targetable:GetRandomTargettingPoint(true)
 						Graphics.CSurface.GL_PushMatrix()
 						Graphics.CSurface.GL_Translate(targetPos.x, targetPos.y, 0)
+						if currentTurret.shot_radius then
+							Graphics.CSurface.GL_DrawCircle(0, 0, currentTurret.shot_radius/2, Graphics.GL_Color(1, 0, 0, 0.25))
+						end
 						Graphics.CSurface.GL_RenderPrimitive(targetingImage.temp)
 						Graphics.CSurface.GL_PopMatrix()
 					end
@@ -1151,6 +1191,9 @@ script.on_render_event(Defines.RenderEvents.SHIP, function() end, function(ship)
 						local targetPos = system.table.currentTargetTemp._targetable:GetRandomTargettingPoint(true)
 						Graphics.CSurface.GL_PushMatrix()
 						Graphics.CSurface.GL_Translate(targetPos.x, targetPos.y, 0)
+						if currentTurret.shot_radius then
+							Graphics.CSurface.GL_DrawCircle(0, 0, currentTurret.shot_radius/2, Graphics.GL_Color(1, 0, 0, 0.25))
+						end
 						Graphics.CSurface.GL_RenderPrimitive(targetingImage.temp)
 						Graphics.CSurface.GL_PopMatrix()
 					end
@@ -1219,7 +1262,9 @@ local function system_render(systemBox, ignoreStatus)
 		--Graphics.CSurface.GL_RemoveColorTint()
 
 		Graphics.CSurface.GL_RenderPrimitive(turretBox)
-		--Graphics.freetype.easy_print(62, UIOffset_x + 17, UIOffset_y + 61, "A")
+		Graphics.CSurface.GL_SetColor(Graphics.GL_Color(40/255, 78/255, 82/255, 1))
+		Graphics.freetype.easy_print(62, UIOffset_x + 19, UIOffset_y + 61, math.floor(system.table.index))
+		Graphics.CSurface.GL_SetColor(Graphics.GL_Color(1, 1, 1, 1))
 		Graphics.CSurface.GL_RenderPrimitive(turretBoxInnerBack)
 
 		local c_off = Graphics.GL_Color(150/255, 150/255, 150/255, 1)
@@ -1942,12 +1987,16 @@ local function renderTurret(shipManager, ship, spaceManager, shipGraph, sysName)
 		local turretLoc = turret_location[ship.shipName] and turret_location[ship.shipName][sysName] or {x = 0, y = 0}
 		local shipCorner = {x = ship.shipImage.x + shipGraph.shipBox.x, y = ship.shipImage.y + shipGraph.shipBox.y}
 		local angleSet = (overRideTurretAngle and 90 * turretLoc.direction) or (system.table.currentAimingAngle or 0)
+		local colour = Graphics.GL_Color(1,1,1,1)
+		if shipManager.ship.bCloaked then
+			colour = Graphics.GL_Color(1,1,1,0.5)
+		end
 
 		local charges = Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName]
 		Graphics.CSurface.GL_PushMatrix()
 		Graphics.CSurface.GL_Translate(shipCorner.x + turretLoc.x, shipCorner.y + turretLoc.y, 0)
 		Graphics.CSurface.GL_Rotate(angleSet, 0, 0, 1)
-		currentTurret.image:OnRender(1, Graphics.GL_Color(1,1,1,1), false)
+		currentTurret.image:OnRender(1, colour, false)
 		if currentTurret.charge_image then
 			Graphics.CSurface.GL_RenderPrimitiveWithAlpha(currentTurret.charge_image, system.table.chargeTime or 1)
 		end
@@ -1959,15 +2008,32 @@ local function renderTurret(shipManager, ship, spaceManager, shipGraph, sysName)
 	end
 end
 
+local player_jump_timer = 0
+local player_arrive_timer = 0
 script.on_render_event(Defines.RenderEvents.SHIP_MANAGER, function(shipManager) end, function(shipManager) 
-	--local shipManager = Hyperspace.ships(ship.iShipId)
-	--log("START RENDER SHIP_MANAGER TURRETS"..shipManager.iShipId)
+	local cApp = Hyperspace.App
+	if shipManager.iShipId == 0 and (not cApp.gui.jumpComplete) and shipManager.bJumping then
+		player_jump_timer = player_jump_timer + time_increment(true)
+		if player_jump_timer > 1.1 then return end
+	elseif shipManager.iShipId == 0 and cApp.gui.jumpComplete and shipManager.bJumping then
+		player_arrive_timer = player_arrive_timer + time_increment(true)
+		if player_arrive_timer < 0.9 then return end
+	elseif shipManager.iShipId == 0 then
+		player_jump_timer = 0
+		player_arrive_timer = 0
+	end
 	local ship = shipManager.ship
 	local spaceManager = Hyperspace.App.world.space
 	local shipGraph = Hyperspace.ShipGraph.GetShipInfo(shipManager.iShipId)
+	local index_counter = 0
 	for _, sysName in ipairs(systemNameList) do
-		if shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) and microTurrets[sysName] then
-			renderTurret(shipManager, ship, spaceManager, shipGraph, sysName)		
+		if shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) then
+			index_counter = index_counter + 1
+			local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
+			system.table.index = index_counter
+			if microTurrets[sysName] then
+				renderTurret(shipManager, ship, spaceManager, shipGraph, sysName)	
+			end	
 		end
 	end
 	--log("MIDDLE RENDER SHIP_MANAGER TURRETS")
