@@ -220,4 +220,64 @@
 	<hiddenAug>UPG_OG_TURRET_MANUAL</hiddenAug>
 	<loadEvent>STORAGE_CHECK_SYSTEM</loadEvent>
 </event>
+
+<mod:findName type="event" name="COMBAT_CHECK_HOTKEYS">
+	<mod-append:choice blue="false" req="og_turret_count" lvl="1" hidden="true">
+		<text>OG: Select Turret 1</text>
+		<event name="COMBAT_CHECK_HOTKEYS_OG_TURRET_1_START">
+			<text>Press any key to set the hotkey, press escape to reset.
+			Currently setting hotkey: Select Turret 1</text>
+		</event>
+	</mod-append:choice>
+	<mod-append:choice blue="false" req="og_turret_count" lvl="2" hidden="true">
+		<text>OG: Select Turret 2</text>
+		<event name="COMBAT_CHECK_HOTKEYS_OG_TURRET_2_START">
+			<text>Press any key to set the hotkey, press escape to reset.
+			Currently setting hotkey: Select Turret 2</text>
+		</event>
+	</mod-append:choice>
+	<mod-append:choice blue="false" req="og_turret_count" lvl="3" hidden="true">
+		<text>OG: Select Turret 3</text>
+		<event name="COMBAT_CHECK_HOTKEYS_OG_TURRET_3_START">
+			<text>Press any key to set the hotkey, press escape to reset.
+			Currently setting hotkey: Select Turret 3</text>
+		</event>
+	</mod-append:choice>
+	<mod-append:choice blue="false" req="og_turret_count" lvl="4" hidden="true">
+		<text>OG: Select Turret 4</text>
+		<event name="COMBAT_CHECK_HOTKEYS_OG_TURRET_4_START">
+			<text>Press any key to set the hotkey, press escape to reset.
+			Currently setting hotkey: Select Turret 4</text>
+		</event>
+	</mod-append:choice>
+	<mod-append:choice blue="false" req="og_turret_count" lvl="5" hidden="true">
+		<text>OG: Select Turret 5</text>
+		<event name="COMBAT_CHECK_HOTKEYS_OG_TURRET_5_START">
+			<text>Press any key to set the hotkey, press escape to reset.
+			Currently setting hotkey: Select Turret 5</text>
+		</event>
+	</mod-append:choice>
+	<mod-append:choice blue="false" req="og_turret_count" lvl="6" hidden="true">
+		<text>OG: Select Turret 6</text>
+		<event name="COMBAT_CHECK_HOTKEYS_OG_TURRET_6_START">
+			<text>Press any key to set the hotkey, press escape to reset.
+			Currently setting hotkey: Select Turret 6</text>
+		</event>
+	</mod-append:choice>
+	<mod-append:choice blue="false" req="og_turret_count" lvl="7" hidden="true">
+		<text>OG: Select Turret 7</text>
+		<event name="COMBAT_CHECK_HOTKEYS_OG_TURRET_7_START">
+			<text>Press any key to set the hotkey, press escape to reset.
+			Currently setting hotkey: Select Turret 7</text>
+		</event>
+	</mod-append:choice>
+	<mod-append:choice blue="false" req="og_turret_count" lvl="8" hidden="true">
+		<text>OG: Select Turret 8</text>
+		<event name="COMBAT_CHECK_HOTKEYS_OG_TURRET_8_START">
+			<text>Press any key to set the hotkey, press escape to reset.
+			Currently setting hotkey: Select Turret 8</text>
+		</event>
+	</mod-append:choice>
+</mod:findName>
+
 </FTL>

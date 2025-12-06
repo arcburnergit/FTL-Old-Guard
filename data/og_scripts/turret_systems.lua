@@ -924,23 +924,26 @@ local function system_mouse_move(systemBox, x, y)
 end
 script.on_internal_event(Defines.InternalEvents.SYSTEM_BOX_MOUSE_MOVE, system_mouse_move)
 
-script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function() 
+script.on_internal_event(Defines.InternalEvents.ON_TICK, function() 
 	local shipManager = Hyperspace.ships.player
 	for _, sysName in ipairs(systemNameList) do
 		if shipManager and shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) then
 			local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
 			local shipId = 0
 			if system.table.tooltip_type == 1 then
+				Hyperspace.Mouse.bForceTooltip = true
 				Hyperspace.Mouse.tooltip = "Set the turret to offensive mode."
 			elseif system.table.tooltip_type == 2 then
+				Hyperspace.Mouse.bForceTooltip = true
 				Hyperspace.Mouse.tooltip = "Set the turret to defensive mode."
 			elseif system.table.tooltip_type == 0 then
+				Hyperspace.Mouse.bForceTooltip = true
 				local currentTurret = turrets[ turretBlueprintsList[ Hyperspace.playerVariables[shipId..sysName..systemBlueprintVarName] ] ]
 				Hyperspace.Mouse.tooltip = add_stat_text("", currentTurret, system:GetMaxPower())
 			end
 		end
 	end
-end, function() end)
+end)
 
 local function checkValidTarget(targetable, defense_type, shipManager)
 	if not targetable then return false end
@@ -968,6 +971,17 @@ local cursorValid2 = Hyperspace.Resources:GetImageId("mouse/mouse_og_turret_vali
 
 local cursorDefault = Hyperspace.Resources:GetImageId("mouse/pointerValid.png")
 local cursorDefault2 = Hyperspace.Resources:GetImageId("mouse/pointerInvalid.png")
+
+local function select_turret(system, shift)
+	local shipManager = Hyperspace.ships.player
+	system.table.currentTarget = nil
+	system.table.autoFireInvert = shift 
+	system.table.currentTargetTemp = nil
+	system.table.currentlyTargetted = false
+	system.table.currentlyTargetting = true
+	Hyperspace.Mouse.validPointer = cursorValid
+	Hyperspace.Mouse.invalidPointer = cursorValid2
+end
 
 local function system_click(systemBox, shift)
 	local systemId = Hyperspace.ShipSystem.SystemIdToName(systemBox.pSystem.iSystemType)
@@ -1028,14 +1042,7 @@ local function system_click(systemBox, shift)
 			systemBox.pSystem.table.currentTargetTemp = nil
 			Hyperspace.playerVariables[shipId..Hyperspace.ShipSystem.SystemIdToName(systemBox.pSystem.iSystemType)..systemStateVarName] = 1
 		elseif targetButton.bHover and targetButton.bActive then
-			local shipManager = Hyperspace.ships.player
-			systemBox.pSystem.table.currentTarget = nil
-			systemBox.pSystem.table.autoFireInvert = shift 
-			systemBox.pSystem.table.currentTargetTemp = nil
-			systemBox.pSystem.table.currentlyTargetted = false
-			systemBox.pSystem.table.currentlyTargetting = true
-			Hyperspace.Mouse.validPointer = cursorValid
-			Hyperspace.Mouse.invalidPointer = cursorValid2
+			select_turret(systemBox.pSystem, false)
 		end
 	end
 	return Defines.Chain.CONTINUE
@@ -2036,6 +2043,7 @@ script.on_render_event(Defines.RenderEvents.SHIP_MANAGER, function(shipManager) 
 			end	
 		end
 	end
+	Hyperspace.playerVariables.og_turret_count = index_counter
 	--log("MIDDLE RENDER SHIP_MANAGER TURRETS")
 	for _, sysName in ipairs(systemNameList) do
 		if shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) and not microTurrets[sysName] then
@@ -2048,3 +2056,256 @@ end)
 for _, sysName in ipairs(systemNameList) do
 	mods.multiverse.systemIcons[Hyperspace.ShipSystem.NameToSystemId(sysName)] = mods.multiverse.register_system_icon(sysName)
 end
+
+local key_names = {
+	SDLK_UNKNOWN = {index = 0, name = "Unknown"},
+	SDLK_0 = {index = 48, name = "0"},
+	SDLK_1 = {index = 49, name = "1"},
+	SDLK_2 = {index = 50, name = "2"},
+	SDLK_3 = {index = 51, name = "3"},
+	SDLK_4 = {index = 52, name = "4"},
+	SDLK_5 = {index = 53, name = "5"},
+	SDLK_6 = {index = 54, name = "6"},
+	SDLK_7 = {index = 55, name = "7"},
+	SDLK_8 = {index = 56, name = "8"},
+	SDLK_9 = {index = 57, name = "9"},
+	SDLK_AT = {index = 64, name = "@"},
+	SDLK_AMPERSAND = {index = 38, name = "&"},
+	SDLK_ASTERISK = {index = 42, name = "*"},
+	SDLK_BACKQUOTE = {index = 96, name = "`"},
+	SDLK_BACKSLASH = {index = 92, name = "\\"},
+	SDLK_BACKSPACE = {index = 8, name = "Backspace"},
+	SDLK_BREAK = {index = 318, name = "Break"},
+	SDLK_CAPSLOCK = {index = 301, name = "Caps Lock"},
+	SDLK_CARET = {index = 94, name = "^"},
+	SDLK_CLEAR = {index = 12, name = "Clear"},
+	SDLK_COLON = {index = 58, name = ":"},
+	SDLK_COMMA = {index = 44, name = ","},
+	SDLK_COMPOSE = {index = 314, name = "Compose"},
+	SDLK_DELETE = {index = 127, name = "Delete"},
+	SDLK_DOLLAR = {index = 36, name = "$"},
+	SDLK_DOWN = {index = 274, name = "Down"},
+	SDLK_END = {index = 279, name = "End"},
+	SDLK_EQUALS = {index = 61, name = "="},
+	SDLK_ESCAPE = {index = 27, name = "Escape"},
+	SDLK_EURO = {index = 321, name = "Euro"},
+	SDLK_EXCLAIM = {index = 33, name = "!"},
+	SDLK_F1 = {index = 282, name = "F1"},
+	SDLK_F10 = {index = 291, name = "F10"},
+	SDLK_F11 = {index = 292, name = "F11"},
+	SDLK_F12 = {index = 293, name = "F12"},
+	SDLK_F13 = {index = 294, name = "F13"},
+	SDLK_F14 = {index = 295, name = "F14"},
+	SDLK_F15 = {index = 296, name = "F15"},
+	SDLK_F2 = {index = 283, name = "F2"},
+	SDLK_F3 = {index = 284, name = "F3"},
+	SDLK_F4 = {index = 285, name = "F4"},
+	SDLK_F5 = {index = 286, name = "F5"},
+	SDLK_F6 = {index = 287, name = "F6"},
+	SDLK_F7 = {index = 288, name = "F7"},
+	SDLK_F8 = {index = 289, name = "F8"},
+	SDLK_F9 = {index = 290, name = "F9"},
+	SDLK_GREATER = {index = 62, name = ">"},
+	SDLK_HASH = {index = 36, name = "#"}, -- Note: Value 0x24 is shared with SDLK_DOLLAR
+	SDLK_HELP = {index = 315, name = "Help"},
+	SDLK_HOME = {index = 278, name = "Home"},
+	SDLK_INSERT = {index = 277, name = "Insert"},
+	SDLK_KP0 = {index = 256, name = "Numpad 0"},
+	SDLK_KP1 = {index = 257, name = "Numpad 1"},
+	SDLK_KP2 = {index = 258, name = "Numpad 2"},
+	SDLK_KP3 = {index = 259, name = "Numpad 3"},
+	SDLK_KP4 = {index = 260, name = "Numpad 4"},
+	SDLK_KP5 = {index = 261, name = "Numpad 5"},
+	SDLK_KP6 = {index = 262, name = "Numpad 6"},
+	SDLK_KP7 = {index = 263, name = "Numpad 7"},
+	SDLK_KP8 = {index = 264, name = "Numpad 8"},
+	SDLK_KP9 = {index = 265, name = "Numpad 9"},
+	SDLK_KP_PERIOD = {index = 266, name = "Numpad ."},
+	SDLK_KP_DIVIDE = {index = 267, name = "Numpad /"},
+	SDLK_KP_MULTIPLY = {index = 268, name = "Numpad *"},
+	SDLK_KP_MINUS = {index = 269, name = "Numpad -"},
+	SDLK_KP_PLUS = {index = 270, name = "Numpad +"},
+	SDLK_KP_ENTER = {index = 271, name = "Numpad Enter"},
+	SDLK_KP_EQUALS = {index = 272, name = "Numpad ="},
+	SDLK_LALT = {index = 308, name = "Left Alt"},
+	SDLK_LCTRL = {index = 306, name = "Left Ctrl"},
+	SDLK_LEFT = {index = 276, name = "Left"},
+	SDLK_LEFTBRACKET = {index = 91, name = "["},
+	SDLK_LEFTPAREN = {index = 40, name = "("},
+	SDLK_LESS = {index = 60, name = "<"},
+	SDLK_LMETA = {index = 310, name = "Left Meta"},
+	SDLK_LSHIFT = {index = 304, name = "Left Shift"},
+	SDLK_LSUPER = {index = 311, name = "Left Super"},
+	SDLK_MENU = {index = 319, name = "Menu"},
+	SDLK_MINUS = {index = 45, name = "-"},
+	SDLK_MODE = {index = 313, name = "Mode"},
+	SDLK_NUMLOCK = {index = 300, name = "Num Lock"},
+	SDLK_PAGEDOWN = {index = 281, name = "Page Down"},
+	SDLK_PAGEUP = {index = 280, name = "Page Up"},
+	SDLK_PAUSE = {index = 19, name = "Pause"},
+	SDLK_PERIOD = {index = 46, name = "."},
+	SDLK_PLUS = {index = 43, name = "+"},
+	SDLK_POWER = {index = 320, name = "Power"},
+	SDLK_PRINTSCREEN = {index = 316, name = "Print Screen"},
+	SDLK_QUESTION = {index = 63, name = "?"},
+	SDLK_QUOTEDBL = {index = 34, name = "\""},
+	SDLK_QUOTE = {index = 39, name = "'"},
+	SDLK_RALT = {index = 307, name = "Right Alt"},
+	SDLK_RCTRL = {index = 305, name = "Right Ctrl"},
+	SDLK_RETURN = {index = 13, name = "Return"},
+	SDLK_RIGHT = {index = 275, name = "Right"},
+	SDLK_RIGHTBRACKET = {index = 93, name = "]"},
+	SDLK_RIGHTPAREN = {index = 41, name = ")"},
+	SDLK_RMETA = {index = 309, name = "Right Meta"},
+	SDLK_RSHIFT = {index = 303, name = "Right Shift"},
+	SDLK_RSUPER = {index = 312, name = "Right Super"},
+	SDLK_SCROLLOCK = {index = 302, name = "Scroll Lock"},
+	SDLK_SEMICOLON = {index = 59, name = ";"},
+	SDLK_SLASH = {index = 47, name = "/"},
+	SDLK_SPACE = {index = 32, name = "Space"},
+	SDLK_SYSREQ = {index = 317, name = "Sys Req"},
+	SDLK_TAB = {index = 9, name = "Tab"},
+	SDLK_UNDERSCORE = {index = 95, name = "_"},
+	SDLK_UNDO = {index = 322, name = "Undo"},
+	SDLK_UP = {index = 273, name = "Up"},
+	SDLK_a = {index = 97, name = "a"},
+	SDLK_b = {index = 98, name = "b"},
+	SDLK_c = {index = 99, name = "c"},
+	SDLK_d = {index = 100, name = "d"},
+	SDLK_e = {index = 101, name = "e"},
+	SDLK_f = {index = 102, name = "f"},
+	SDLK_g = {index = 103, name = "g"},
+	SDLK_h = {index = 104, name = "h"},
+	SDLK_i = {index = 105, name = "i"},
+	SDLK_j = {index = 106, name = "j"},
+	SDLK_k = {index = 107, name = "k"},
+	SDLK_l = {index = 108, name = "l"},
+	SDLK_m = {index = 109, name = "m"},
+	SDLK_n = {index = 110, name = "n"},
+	SDLK_o = {index = 111, name = "o"},
+	SDLK_p = {index = 112, name = "p"},
+	SDLK_q = {index = 113, name = "q"},
+	SDLK_r = {index = 114, name = "r"},
+	SDLK_s = {index = 115, name = "s"},
+	SDLK_t = {index = 116, name = "t"},
+	SDLK_u = {index = 117, name = "u"},
+	SDLK_v = {index = 118, name = "v"},
+	SDLK_w = {index = 119, name = "w"},
+	SDLK_x = {index = 120, name = "x"},
+	SDLK_y = {index = 121, name = "y"},
+	SDLK_z = {index = 122, name = "z"},
+	SDLK_LAST = {index = 323, name = "Last"},
+}
+
+local hotkeys = {
+	"prof_hotkey_og_turret_1",
+	"prof_hotkey_og_turret_2",
+	"prof_hotkey_og_turret_3",
+	"prof_hotkey_og_turret_4",
+	"prof_hotkey_og_turret_5",
+	"prof_hotkey_og_turret_6",
+	"prof_hotkey_og_turret_7",
+	"prof_hotkey_og_turret_8",
+}
+
+-- Initialize hotkeys
+script.on_init(function()
+	for _, var in ipairs(hotkeys) do
+		if Hyperspace.metaVariables[var] == 0 then Hyperspace.metaVariables[var] = -1 end
+	end
+end)
+
+-- Track when the hotkeys are being configured
+local settingTurret = nil
+script.on_game_event("COMBAT_CHECK_HOTKEYS_OG_TURRET_1_START", false, function() settingTurret = 1 end)
+script.on_game_event("COMBAT_CHECK_HOTKEYS_OG_TURRET_2_START", false, function() settingTurret = 2 end)
+script.on_game_event("COMBAT_CHECK_HOTKEYS_OG_TURRET_3_START", false, function() settingTurret = 3 end)
+script.on_game_event("COMBAT_CHECK_HOTKEYS_OG_TURRET_4_START", false, function() settingTurret = 4 end)
+script.on_game_event("COMBAT_CHECK_HOTKEYS_OG_TURRET_5_START", false, function() settingTurret = 5 end)
+script.on_game_event("COMBAT_CHECK_HOTKEYS_OG_TURRET_6_START", false, function() settingTurret = 6 end)
+script.on_game_event("COMBAT_CHECK_HOTKEYS_OG_TURRET_7_START", false, function() settingTurret = 7 end)
+script.on_game_event("COMBAT_CHECK_HOTKEYS_OG_TURRET_8_START", false, function() settingTurret = 8 end)
+script.on_game_event("COMBAT_CHECK_HOTKEYS", false, function() settingTurret = nil end)
+
+local emptyReq = Hyperspace.ChoiceReq()
+local hotkey_events = {}
+hotkey_events["COMBAT_CHECK_HOTKEYS_OG_TURRET_1_START"] = true
+hotkey_events["COMBAT_CHECK_HOTKEYS_OG_TURRET_2_START"] = true
+hotkey_events["COMBAT_CHECK_HOTKEYS_OG_TURRET_3_START"] = true
+hotkey_events["COMBAT_CHECK_HOTKEYS_OG_TURRET_4_START"] = true
+hotkey_events["COMBAT_CHECK_HOTKEYS_OG_TURRET_5_START"] = true
+hotkey_events["COMBAT_CHECK_HOTKEYS_OG_TURRET_6_START"] = true
+hotkey_events["COMBAT_CHECK_HOTKEYS_OG_TURRET_7_START"] = true
+hotkey_events["COMBAT_CHECK_HOTKEYS_OG_TURRET_8_START"] = true
+script.on_internal_event(Defines.InternalEvents.PRE_CREATE_CHOICEBOX, function(event)
+	if hotkey_events[event.eventName] then
+		event.choices:clear()
+		--print(Hyperspace.metaVariables[hotkeys[settingTurret]].." "..hotkeys[settingTurret].." "..settingTurret)
+		local key = Hyperspace.metaVariables[hotkeys[settingTurret]]
+		local s = ""
+		for _, key_table in pairs(key_names) do
+			--print(key_table.name.." i:"..key_table.index)
+			if key == key_table.index then
+				s = key_table.name
+			end
+		end
+		if key == -1 then
+			s = "Unset"
+		end
+		event:AddChoice(event, "Current key: "..s, emptyReq, false)
+	end
+end)
+
+script.on_internal_event(Defines.InternalEvents.ON_KEY_DOWN, function(key)
+	-- Allow player to reconfigure the hotkeys
+	if settingTurret then
+		if key == key_names.SDLK_ESCAPE.index then
+			Hyperspace.metaVariables[hotkeys[settingTurret]] = -1
+		else
+			Hyperspace.metaVariables[hotkeys[settingTurret]] = key
+		end
+		local world = Hyperspace.App.world
+        Hyperspace.CustomEventsParser.GetInstance():LoadEvent(world, "COMBAT_CHECK_HOTKEYS", false, -1)
+		return Defines.Chain.PREEMPT
+	end
+	
+	-- Do stuff if a hotkey is pressed
+	local cmdGui = Hyperspace.App.gui
+	if Hyperspace.ships.player and not (Hyperspace.ships.player.bJumping or cmdGui.event_pause or cmdGui.menu_pause) then
+		for i, var in ipairs(hotkeys) do
+			if key == Hyperspace.metaVariables[var] then
+				local shipManager = Hyperspace.ships.player
+				for _, sysName in ipairs(systemNameList) do
+					local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
+					if system.table.index == i and shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) then
+						select_turret(system, false)
+					elseif system.table.currentlyTargetting then
+						system.table.currentlyTargetting = false
+					end
+				end
+			end
+		end
+	end
+	return Defines.Chain.CONTINUE
+end)
+
+script.on_internal_event(Defines.InternalEvents.POST_CREATE_CHOICEBOX, function(choiceBox, event)
+	if event.eventName == "COMBAT_CHECK_HOTKEYS" then
+		for choice in vter(choiceBox:GetChoices()) do
+			if string.sub(choice.text, 1, 2) == "OG" then
+				local i = tonumber(string.sub(choice.text, -1))
+				local key = Hyperspace.metaVariables[hotkeys[i]]
+				local s = ""
+				for _, key_table in pairs(key_names) do
+					if key == key_table.index then
+						s = key_table.name
+					end
+				end
+				if key == -1 then
+					s = "Unset"
+				end
+				choice.text = choice.text.." (currently is the \""..s.."\" key)"
+			end
+		end
+	end
+end)

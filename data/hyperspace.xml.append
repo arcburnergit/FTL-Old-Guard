@@ -219,6 +219,17 @@ This enemy's turrets will be fully charged at the start of combat.</tooltip>
 			<name>loc_astrometrics_neutral</name>
 		</req>
 	</req>
+
+	<variable name="og_turret_count" op="set" val="0"/>
+
+	<metaVariable name="prof_hotkey_og_turret_1" op="set" val="-1"/>
+	<metaVariable name="prof_hotkey_og_turret_2" op="set" val="-1"/>
+	<metaVariable name="prof_hotkey_og_turret_3" op="set" val="-1"/>
+	<metaVariable name="prof_hotkey_og_turret_4" op="set" val="-1"/>
+	<metaVariable name="prof_hotkey_og_turret_5" op="set" val="-1"/>
+	<metaVariable name="prof_hotkey_og_turret_6" op="set" val="-1"/>
+	<metaVariable name="prof_hotkey_og_turret_7" op="set" val="-1"/>
+	<metaVariable name="prof_hotkey_og_turret_8" op="set" val="-1"/>
 </events>
 <crew>
 	<race name="human_og_raider">
