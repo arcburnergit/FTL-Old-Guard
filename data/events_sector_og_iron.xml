@@ -337,6 +337,12 @@
 	Your actions here, justifiable or not, will not reflect well in the eyes of the Iron Watch or its citizens. Continuously perform actions like this and you might start to see negative reactions from the Iron Watch and its allies.</text>
 	<variable name="rep_og_iron" op="add" val="-1"/>
 </event>
+<event name="REPUTATION_DECREASE_DOUBLE_OG_IRON">
+	<text>[REPUTATION DECREASED X2 - IRON WATCH]
+	Your actions here, justifiable or not, will not reflect well in the eyes of the Iron Watch or its citizens. Continuously perform actions like this and you might start to see negative reactions from the Iron Watch and its allies.
+	For your extra egregious actions, your reputation was decreased twice.</text>
+	<variable name="rep_og_iron" op="add" val="-2"/>
+</event>
 <event name="REPUTATION_DECREASE_OG_IRON_COMBAT">
 	<text>[REPUTATION DECREASED - IRON WATCH]
 	Your actions here, justifiable or not, will not reflect well in the eyes of the Iron Watch or its citizens. Continuously perform actions like this and you might start to see negative reactions from the Iron Watch and its allies.</text>
@@ -583,7 +589,7 @@
 	<choice hidden="true">
 		<text>Continue Listening.</text>
 		<event>
-			<text>Eventually the captain's angry reaches a crescendo and orders the would-be turret thrown out the airlock. "I want it out of sight, get us OUT OF HERE!" With that the Iron Watch ship jumps away. Now on you're on you have time to scoop up the "turret" and examine it yourself, it turns out it was just a simple defense drone.</text>
+			<text>Eventually the captain's angry reaches a crescendo and orders the would-be turret thrown out the airlock. "I want it out of sight, get us OUT OF HERE!" With that the Iron Watch ship jumps away. Now on you're on you have time to scoop up the "turret" and examine it yourself, it turns out it was just a simple defence drone.</text>
 			<instantEscape/>
 			<drone name="DEFENSE_1"/>
 			<choice>
@@ -1532,4 +1538,302 @@ They don't immediately respond and they keep their jump drive ready.</text>
 	</choice>
 </event>
 
+<!--UNIQUE-->
+
+<ship name="SHIP_OG_IRON_PROTOTYPE" auto_blueprint="OG_IRON_RAIDER">
+	<destroyed>
+		<text load="TEXT_DESTROYED_OG_IRON"/>
+		<autoReward level="MED">standard</autoReward>
+	</destroyed>
+	<deadCrew>
+		<text load="TEXT_DEAD_CREW_OG_IRON"/>
+		<autoReward level="HIGH">standard</autoReward>
+	</deadCrew>
+</ship>
+
+<event name="OG_IRON_PROTOTYPE" unique="true">
+	<img back="BACKGROUND" planet="PLANET_POPULATED"/>
+	<text>You've arrived at a rather desolate beacon, there is very little of note here apart from the Iron Watch outpost you detect in orbit around a nearby planet.</text>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event>
+			<text>Just as you were getting bored another ship jumps into the system, its unlike any Iron Watch ship you've seen before, it appears to be some type of new cruiser, possibly a prototype.</text>
+			<ship load="SHIP_OG_IRON_PROTOTYPE" hostile="false" />
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event>
+					<text>You watch as the prototype docks with the distant outpost. It's only a few minutes later when the ship undocks and jumps away before you can do anything.</text>
+					<instantEscape/>
+					<choice hidden="true" req="rep_comb_og_iron" lvl="2" max_lvl="999" blue="false">
+						<text>(Friendly Reputation) Inquire about the ship with the outpost.</text>
+						<event load="OG_IRON_PROTOTYPE_OUTPOST_FRIENDLY" />
+					</choice>
+					<choice hidden="true" req="rep_comb_og_iron" lvl="0" max_lvl="1" blue="false">
+						<text>(Neutral Reputation) Inquire about the ship with the outpost.</text>
+						<event load="OG_IRON_PROTOTYPE_OUTPOST" />
+					</choice>
+					<choice hidden="true" req="rep_comb_og_iron" lvl="-999" max_lvl="-1" blue="false">
+						<text>(Negative Reputation) Inquire about the ship with the outpost.</text>
+						<event load="OG_IRON_PROTOTYPE_OUTPOST_CRIMINAL" />
+					</choice>
+					<choice req="sensors" lvl="3" hidden="true">
+						<text>(Adv. Sensors) Scan the jump wake created by the ship.</text>
+						<event>
+							<text>By scanning the radiation emitted by the jump you're able to triangulate the approximate destination for the prototype.</text>
+							<quest event="OG_IRON_PROTOTYPE_DESTINATION"/>
+						</event>
+					</choice>
+					<choice hidden="true">
+						<text>Move on.</text>
+						<event>
+							<text>You keep your distance and prepare for your next jump.</text>
+							<choice>
+								<text>Do something onboard the ship.</text>
+								<event load="STORAGE_CHECK"/>
+							</choice>
+							<choice>
+								<text>Do nothing.</text>
+								<event/>
+							</choice>
+						</event>
+					</choice>
+				</event>
+			</choice>
+		</event>
+	</choice>
+</event>
+
+<event name="OG_IRON_PROTOTYPE_OUTPOST_FRIENDLY">
+	<text>It's a moment before the the outpost greets you, "We're not really supposed to give out this information, but we'll make an exception for you."</text>
+	<quest event="OG_IRON_PROTOTYPE_DESTINATION"/>
+	<choice>
+		<text>Do something onboard the ship.</text>
+		<event load="STORAGE_CHECK"/>
+	</choice>
+	<choice>
+		<text>Do nothing.</text>
+		<event/>
+	</choice>
+</event>
+<event name="OG_IRON_PROTOTYPE_OUTPOST">
+	<text>It's a moment before the the outpost greets you, and when they do you're met with an immediate wall, "I'm sorry, we can't provide any information on that ship."</text>
+	<choice hidden="false">
+		<text>Would this change your mind?</text>
+		<event>
+			<item_modify>
+				<item type="scrap" min="-10" max="-10" />
+			</item_modify>
+			<text>The outpost recieves your scrap, "While your donation is very kind, we still can't tell you anything about that ship."</text>
+			<choice hidden="false">
+				<text>Offer a larger bribe.</text>
+				<event>
+					<item_modify>
+						<item type="scrap" min="-30" max="-30" />
+					</item_modify>
+					<text>The outpost recieves your scrap, "Now that's something, we can't tell you, but recently our communications have actually been malfunctioning and sending secure information on public channels, it really needs to be looked into..." A moment later your crew pickups the location of a ship being broadcast on one of the public channels.</text>
+					<quest event="OG_IRON_PROTOTYPE_DESTINATION"/>
+				</event>
+			</choice>
+			<choice hidden="true">
+				<text>Threaten the outpost for the information.</text>
+				<event>
+					<text>The outpost is effectively defenseless against your weapons, they quickly capitulate to your demands, uploading the data on the prototype. They also kindly return your donation.</text>
+					<item_modify>
+						<item type="scrap" min="10" max="10" />
+					</item_modify>
+					<quest event="OG_IRON_PROTOTYPE_DESTINATION"/>
+					<choice>
+						<text>Continue...</text>
+						<event load="REPUTATION_DECREASE_DOUBLE_OG_IRON" />
+					</choice>
+				</event>
+			</choice>
+			<choice hidden="true">
+				<text>Move on without the information.</text>
+				<event>
+					<text>You move away from the outpost and prepare for your next jump.</text>
+					<choice>
+						<text>Do something onboard the ship.</text>
+						<event load="STORAGE_CHECK"/>
+					</choice>
+					<choice>
+						<text>Do nothing.</text>
+						<event/>
+					</choice>
+				</event>
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="false">
+		<text>Offer a larger bribe.</text>
+		<event>
+			<item_modify>
+				<item type="scrap" min="-40" max="-40" />
+			</item_modify>
+			<text>The outpost recieves your scrap, "Now that's something, we can't tell you, but recently our communications have actually been malfunctioning and sending secure information on public channels, it really needs to be looked into..." A moment later your crew pickups the location of a ship being broadcast on one of the public channels.</text>
+			<quest event="OG_IRON_PROTOTYPE_DESTINATION"/>
+		</event>
+	</choice>
+	<choice hidden="true">
+		<text>Threaten the outpost for the information.</text>
+		<event>
+			<text>The outpost is effectively defenseless against your weapons, they quickly capitulate to your demands, uploading the data on the prototype.</text>
+			<quest event="OG_IRON_PROTOTYPE_DESTINATION"/>
+			<choice>
+				<text>Continue...</text>
+				<event load="REPUTATION_DECREASE_DOUBLE_OG_IRON" />
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true" req="hacking" lvl="1" max_lvl="2">
+		<text>(Hacking) Remotely access their data storage.</text>
+		<event>
+			<text>While you make small talk with the outpost, you configure the Hacking system to get a read of their data storage, and download their recent communications data. Once the download is complete, you bid farewell with the location of the prototype in hand. Unfortunately your hack is detected just as you're leaving.</text>
+			<quest event="OG_IRON_PROTOTYPE_DESTINATION"/>
+			<choice>
+				<text>Continue...</text>
+				<event load="REPUTATION_DECREASE_OG_IRON" />
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true" req="hacking" lvl="3">
+		<text>(Adv. Hacking) Remotely access their data storage.</text>
+		<event>
+			<text>While you make small talk with the outpost, you configure the Hacking system to get a read of their data storage, and download their recent communications data. Once the download is complete, you bid farewell with the location of the prototype in hand.</text>
+			<quest event="OG_IRON_PROTOTYPE_DESTINATION"/>
+		</event>
+	</choice>
+	<choice hidden="true">
+		<text>Move on without the information.</text>
+		<event>
+			<text>You move away from the outpost and prepare for your next jump.</text>
+			<choice>
+				<text>Do something onboard the ship.</text>
+				<event load="STORAGE_CHECK"/>
+			</choice>
+			<choice>
+				<text>Do nothing.</text>
+				<event/>
+			</choice>
+		</event>
+	</choice>
+</event>
+
+<event name="OG_IRON_PROTOTYPE_OUTPOST_CRIMINAL">
+	<text>It's a moment before the the outpost greets you, and when they do you're met with an immediate wall, "Even if we could tell you we wouldn't."</text>
+	<choice hidden="true">
+		<text>Threaten the outpost for the information.</text>
+		<event>
+			<text>The outpost is effectively defenseless against your weapons, they quickly capitulate to your demands, uploading the data on the prototype.</text>
+			<quest event="OG_IRON_PROTOTYPE_DESTINATION"/>
+			<choice>
+				<text>Continue...</text>
+				<event load="REPUTATION_DECREASE_DOUBLE_OG_IRON" />
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true" req="hacking" lvl="1" max_lvl="2">
+		<text>(Hacking) Remotely access their data storage.</text>
+		<event>
+			<text>You configure the Hacking system to get a read of their data storage, and download their recent communications data. Once the download is complete, you bid farewell with the location of the prototype in hand. Unfortunately your hack is detected just as you're leaving and you detect them reporting it to nearby Iron Watch outposts.</text>
+			<quest event="OG_IRON_PROTOTYPE_DESTINATION"/>
+			<choice>
+				<text>Continue...</text>
+				<event load="REPUTATION_DECREASE_OG_IRON" />
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true" req="hacking" lvl="3">
+		<text>(Adv. Hacking) Remotely access their data storage.</text>
+		<event>
+			<text>You configure the Hacking system to get a read of their data storage, and download their recent communications data. Once the download is complete, you bid farewell with the location of the prototype in hand.</text>
+			<quest event="OG_IRON_PROTOTYPE_DESTINATION"/>
+		</event>
+	</choice>
+	<choice hidden="true">
+		<text>Move on without the information.</text>
+		<event>
+			<text>You move away from the outpost and prepare for your next jump.</text>
+			<choice>
+				<text>Do something onboard the ship.</text>
+				<event load="STORAGE_CHECK"/>
+			</choice>
+			<choice>
+				<text>Do nothing.</text>
+				<event/>
+			</choice>
+		</event>
+	</choice>
+</event>
+
+<ship name="SHIP_OG_IRON_PROTOTYPE_QUEST" auto_blueprint="LIST_SHIPS_OG_DAWN_FIGHT">
+	<destroyed>
+		<text load="TEXT_DESTROYED_OG_DAWN"/>
+		<autoReward level="MED">standard_no_item</autoReward>
+		<weapon name="GIFTLIST_OG_DAWN" />
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event load="OG_IRON_PROTOTYPE_WIN"/>
+		</choice>
+	</destroyed>
+	<deadCrew>
+		<text load="TEXT_DEAD_CREW_OG_DAWN"/>
+		<autoReward level="HIGH">standard_no_item</autoReward>
+		<weapon name="GIFTLIST_OG_DAWN" />
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event load="OG_IRON_PROTOTYPE_WIN"/>
+		</choice>
+	</deadCrew>
+</ship>
+<event name="OG_IRON_PROTOTYPE_DESTINATION">
+	<beaconType id="map_icon_quest" global="true">
+		<color r="69" g="168" b="235" a="1"/>
+		<unvisitedTooltip>Location of the prototype Iron Watch vessel.</unvisitedTooltip>
+	</beaconType>
+	<environment type="pulsar"/>
+	<img back="BACKGROUND" planet="PLANET_UNPOPULATED"/>
+	<ship load="SHIP_OG_IRON_PROTOTYPE" hostile="false"/>
+	<text>You arrive at the beacon to discover the Iron Watch vessel in orbit around the pulsar here, it appears they're testing their weapon systems on a nearby asteroid.</text>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event>
+			<text>As you watch a large wave from the pulsar sweeps across the prototype, your sensors indicate several of the systems onboard are immediately disabled by the pulsar.
+If that's not bad enough a new ship reveals itself from behind a nearby asteroid, It appears to be one of those New Dawn ships, and it's moving in on the prototype.</text>
+			<ship load="SHIP_OG_IRON_PROTOTYPE_QUEST" hostile="true"/>
+			<choice hidden="true">
+				<text>Move in and defend the Iron Watch prototype.</text>
+				<event load="REPUTATION_DECREASE_OG_DAWN_COMBAT" />
+			</choice>
+			<choice hidden="true">
+				<text>Aid the New Dawn ship in it's attack on the heavily armed prototype. (COMING SOON)</text>
+				<event load="OPTION_INVALID"/>
+			</choice>
+			<choice>
+				<text>Retreat to a safe distance and stay out of the fight.</text>
+				<event>
+					<text>You move away from the two ships and prepare for your next jump.</text>
+					<instantEscape/>
+					<choice>
+						<text>Do something onboard the ship.</text>
+						<event load="STORAGE_CHECK"/>
+					</choice>
+					<choice>
+						<text>Do nothing.</text>
+						<event/>
+					</choice>
+				</event>
+			</choice>
+		</event>
+	</choice>
+</event>
+
+<event name="OG_IRON_PROTOTYPE_WIN">
+	<text>The Iron Watch ship has mostly recovered from the attack, they contact you. "We're grateful for your help Captain, we're not sure we would have survived that without you help. Perhaps it's time we took a more active presence in your war with the rebellion. We'll send the blueprints for the prototype along to the federation, perhaps they'll be able to use it."</text>
+	<unlockCustomShip silent="false">PLAYER_SHIP_OG_RAIDER</unlockCustomShip>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="REPUTATION_UPDATE_OG_IRON" />
+	</choice>
+</event>
 </FTL>

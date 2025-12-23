@@ -1,6 +1,7 @@
 <FTL>
 <text name="tip_og_turret">Tip: Turrets have to be equiped to the Turret Control system.</text>
-<text name="tip_og_turret_mini">Tip: Turrets have to be equiped to the Turret Control system. Micro turrets cannot be equiped on larger turret slots.</text>
+<text name="tip_og_turret_mini">Tip: Turrets have to be equiped to the Turret Control system. Micro turrets can be equiped on both small and large turret slots.</text>
+<text name="tip_og_turret_base">Tip: Turret bases can be used in place of a defence drone during turret manufacturing.</text>
 
 <text name="tooltip_og_turret">Turret Control: Click on the turret to set its mode, or target it. Manning reduces charge time.</text>
 <text name="tooltip_og_turret_enemy">Turret Control: Powers the enemy turret.</text>

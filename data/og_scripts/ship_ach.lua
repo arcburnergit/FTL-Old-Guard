@@ -72,11 +72,11 @@ script.on_internal_event(Defines.InternalEvents.ON_TICK, ach_check_raider_2)
 
  local function check_no_shields_or_weapons_ach(ship)
  	local noWeapons = (not ship:HasSystem(3)) or (ship:GetSystem(3):GetMaxPower() <= ship.myBlueprint.systemInfo[3].powerLevel)
- 	local noShields = (not ship:HasSystem(0)) or (ship:GetSystem(0):GetMaxPower() <= ship.myBlueprint.systemInfo[0].powerLevel)
+ 	local noDrones = (not ship:HasSystem(4)) or (ship:GetSystem(4):GetMaxPower() <= ship.myBlueprint.systemInfo[4].powerLevel)
 	return ship.iShipId == 0 and
 		   current_sector() >= 8 and
 		   noWeapons and
-		   noShields and
+		   noDrones and
 		   should_track_achievement("SHIP_ACH_OG_RAIDER_3", ship, "PLAYER_SHIP_OG_RAIDER")
 end
 script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(ship)

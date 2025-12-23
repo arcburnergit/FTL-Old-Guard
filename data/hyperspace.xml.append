@@ -95,22 +95,25 @@ This enemy's turrets will be fully charged at the start of combat.</tooltip>
 		</mod-append:shipIcon>
 	</mod:findLike>
 	<mod:findLike type="shipOrder">
+		<mod-append:ship>PLAYER_SHIP_OG_KESTREL</mod-append:ship>
+		<mod-append:ship>PLAYER_SHIP_OG_REBEL</mod-append:ship>
+		<mod-append:ship>PLAYER_SHIP_OG_CURA</mod-append:ship>
+		<mod-append:ship>PLAYER_SHIP_OG_SEPARATIST</mod-append:ship>
+
+		<mod-append:ship>PLAYER_SHIP_OG_ANGEL</mod-append:ship>
+		<mod-append:ship>PLAYER_SHIP_OG_ROCK</mod-append:ship>
+		<mod-append:ship>PLAYER_SHIP_OG_PEACEKEEPER</mod-append:ship>
+		<mod-append:ship>PLAYER_SHIP_OG_KNIGHT</mod-append:ship>
+
 		<mod-append:ship>PLAYER_SHIP_OG_RAIDER</mod-append:ship>
 		<mod-append:ship>PLAYER_SHIP_OG_EXECUTOR</mod-append:ship>
-		<mod-append:empty/>
-		<mod-append:empty/>
-		
-		<mod-append:empty/>
-		<mod-append:empty/>
-		<mod-append:empty/>
-		<mod-append:empty/>
-
-		<mod-append:empty/>
-		<mod-append:empty/>
 	</mod:findLike>
 
 	<mod-append:ship name="PLAYER_SHIP_OG_RAIDER" b="true" c="true" >
-		<arrow variant="a" direction="right" tooltip="ship_unlock_og_two_wins" image="arrow_v_right.png" unlockedImage="arrow_v_right_on.png">PLAYER_SHIP_OG_EXECUTOR</arrow>
+		<arrow variant="a" direction="down" tooltip="ship_unlock_og_two_wins" image="arrow_v_down.png" unlockedImage="arrow_v_down_on.png">PLAYER_SHIP_OG_EXECUTOR</arrow>
+		<unlock variant="a" silent="false">
+			<type>4</type>
+		</unlock>
 		<unlock variant="b" silent="false">
 			<type>1</type>
 			<shipReq>PLAYER_SHIP_OG_RAIDER</shipReq>
@@ -133,7 +136,7 @@ This enemy's turrets will be fully charged at the start of combat.</tooltip>
 		</achievement>
 		<achievement name="SHIP_ACH_OG_RAIDER_3" layout="all">
 			<name>Heavy Lifting</name>
-			<description>As a Raider Class Vessel: Reach Sector 8 without buying weapons or shields' systems (or upgrading them as ship starting systems).</description>
+			<description>As a Raider Class Vessel: Reach Sector 8 without buying weapons or drones' systems (or upgrading them as ship starting systems).</description>
 			<icon>ogp_raider_3_icon</icon>
 			<lockImage>ogp_raider_3_icon_locked</lockImage>
 		</achievement>
@@ -181,6 +184,119 @@ This enemy's turrets will be fully charged at the start of combat.</tooltip>
 		<systemLimit>10</systemLimit>
 	</mod-append:customShip>
 
+	<mod-append:ship name="PLAYER_SHIP_OG_KESTREL" b="false" c="false" >
+		<arrow variant="a" direction="right" tooltip="ship_unlock_sector5" image="arrow_5_right.png" unlockedImage="arrow_5_right.png">PLAYER_SHIP_OG_REBEL</arrow>
+	</mod-append:ship>
+	<mod-append:customShip name="PLAYER_SHIP_OG_KESTREL">
+		<hiddenAug>SHIP_KESTREL</hiddenAug>
+		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
+		<crewLimit>8</crewLimit>
+		<systemLimit>10</systemLimit>
+	</mod-append:customShip>
+
+	<mod-append:ship name="PLAYER_SHIP_OG_REBEL" b="false" c="false" >
+		<arrow variant="a" direction="right" tooltip="ship_unlock_sector5" image="arrow_5_right.png" unlockedImage="arrow_5_right.png">PLAYER_SHIP_OG_CURA</arrow>
+		<unlock variant="a" silent="false">
+			<type>1</type>
+			<shipReq>PLAYER_SHIP_OG_KESTREL</shipReq>
+			<value>5</value>
+		</unlock>
+	</mod-append:ship>
+	<mod-append:customShip name="PLAYER_SHIP_OG_REBEL">
+		<hiddenAug>SHIP_REBEL</hiddenAug>
+		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
+		<crewLimit>8</crewLimit>
+		<systemLimit>10</systemLimit>
+	</mod-append:customShip>
+
+	<mod-append:ship name="PLAYER_SHIP_OG_CURA" b="false" c="false" >
+		<arrow variant="a" direction="right" tooltip="ship_unlock_sector5" image="arrow_5_right.png" unlockedImage="arrow_5_right.png">PLAYER_SHIP_OG_SEPARATIST</arrow>
+		<unlock variant="a" silent="false">
+			<type>1</type>
+			<shipReq>PLAYER_SHIP_OG_REBEL</shipReq>
+			<value>5</value>
+		</unlock>
+	</mod-append:ship>
+	<mod-append:customShip name="PLAYER_SHIP_OG_CURA">
+		<hiddenAug>SHIP_CURA</hiddenAug>
+		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
+		<crewLimit>6</crewLimit>
+		<systemLimit>9</systemLimit>
+	</mod-append:customShip>
+
+	<mod-append:ship name="PLAYER_SHIP_OG_SEPARATIST" b="false" c="false" >
+		<arrow variant="a" direction="down" tooltip="ship_unlock_sector5" image="arrow_5_down.png" unlockedImage="arrow_5_down_on.png">PLAYER_SHIP_OG_ANGEL</arrow>
+		<unlock variant="a" silent="false">
+			<type>1</type>
+			<shipReq>PLAYER_SHIP_OG_CURA</shipReq>
+			<value>5</value>
+		</unlock>
+	</mod-append:ship>
+	<mod-append:customShip name="PLAYER_SHIP_OG_SEPARATIST">
+		<hiddenAug>SHIP_ENGI</hiddenAug>
+		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
+		<crewLimit>6</crewLimit>
+		<systemLimit>8</systemLimit>
+	</mod-append:customShip>
+
+	<mod-append:ship name="PLAYER_SHIP_OG_ANGEL" b="false" c="false" >
+		<arrow variant="a" direction="left" tooltip="ship_unlock_sector5" image="arrow_5_left.png" unlockedImage="arrow_5_left_on.png">PLAYER_SHIP_OG_ROCK</arrow>
+		<unlock variant="a" silent="false">
+			<type>1</type>
+			<shipReq>PLAYER_SHIP_OG_SEPARATIST</shipReq>
+			<value>5</value>
+		</unlock>
+	</mod-append:ship>
+	<mod-append:customShip name="PLAYER_SHIP_OG_ANGEL">
+		<hiddenAug>SHIP_PIRATE</hiddenAug>
+		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
+		<crewLimit>6</crewLimit>
+		<systemLimit>9</systemLimit>
+	</mod-append:customShip>
+
+	<mod-append:ship name="PLAYER_SHIP_OG_ROCK" b="false" c="false" >
+		<arrow variant="a" direction="left" tooltip="ship_unlock_sector5" image="arrow_5_left.png" unlockedImage="arrow_5_left_on.png">PLAYER_SHIP_OG_PEACEKEEPER</arrow>
+		<unlock variant="a" silent="false">
+			<type>1</type>
+			<shipReq>PLAYER_SHIP_OG_ANGEL</shipReq>
+			<value>5</value>
+		</unlock>
+	</mod-append:ship>
+	<mod-append:customShip name="PLAYER_SHIP_OG_ROCK">
+		<hiddenAug>SHIP_ROCK</hiddenAug>
+		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
+		<crewLimit>8</crewLimit>
+		<systemLimit>9</systemLimit>
+	</mod-append:customShip>
+
+	<mod-append:ship name="PLAYER_SHIP_OG_PEACEKEEPER" b="false" c="false" >
+		<arrow variant="a" direction="left" tooltip="ship_unlock_sector5" image="arrow_5_left.png" unlockedImage="arrow_5_left_on.png">PLAYER_SHIP_OG_KNIGHT</arrow>
+		<unlock variant="a" silent="false">
+			<type>1</type>
+			<shipReq>PLAYER_SHIP_OG_ROCK</shipReq>
+			<value>5</value>
+		</unlock>
+	</mod-append:ship>
+	<mod-append:customShip name="PLAYER_SHIP_OG_PEACEKEEPER">
+		<hiddenAug>SHIP_DUSKBRINGER</hiddenAug>
+		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
+		<crewLimit>8</crewLimit>
+		<systemLimit>10</systemLimit>
+	</mod-append:customShip>
+
+	<mod-append:ship name="PLAYER_SHIP_OG_KNIGHT" b="false" c="false" >
+		<unlock variant="a" silent="false">
+			<type>1</type>
+			<shipReq>PLAYER_SHIP_OG_PEACEKEEPER</shipReq>
+			<value>5</value>
+		</unlock>
+	</mod-append:ship>
+	<mod-append:customShip name="PLAYER_SHIP_OG_KNIGHT">
+		<hiddenAug>SHIP_SLUG</hiddenAug>
+		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
+		<crewLimit>8</crewLimit>
+		<systemLimit>9</systemLimit>
+	</mod-append:customShip>
 </mod:findLike>
 
 <mod:findLike type="augments" limit="1" reverse="false">
@@ -318,5 +434,33 @@ This enemy's turrets will be fully charged at the start of combat.</tooltip>
 			</achievement>
 		</section>
 	</mod-append:page>
+</mod:findLike>
+
+<mod:findLike type="store">
+	<mod:findWithChildLike type="customStore" child-type="category">
+		<mod:selector type="SYSTEMS"/>
+		<mod:setAttributes og="extra"/>
+	</mod:findWithChildLike>
+	<mod:findLike type="customStore">
+		<mod:selector og="extra" />
+		<mod-append:category type="SYSTEMS">
+			<customTitle>TURRET SYSTEMS</customTitle>
+			<guaranteedSystems>
+                <og_turret/>
+				<og_turret_alt/>
+            </guaranteedSystems>
+			<item>
+				<blueprint>OG_SHOP_ITEM_TURRET_SYSTEMS</blueprint>
+			</item>
+			<item>
+				<blueprint>OG_SHOP_ITEM_TURRET_SYSTEMS</blueprint>
+			</item>
+			<item>
+				<blueprint>OG_SHOP_ITEM_TURRET_SYSTEMS</blueprint>
+			</item>
+			<chance>65</chance>
+		</mod-append:category>
+		<mod:removeAttributes aea="" />
+	</mod:findLike>
 </mod:findLike>
 </FTL>

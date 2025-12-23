@@ -1,5 +1,15 @@
 
 <FTL>
+<blueprintList name="OG_SHOP_ITEM_TURRET_SYSTEMS">
+	<name>og_turret</name>
+	<name>og_turret_alt</name>
+	<name>og_turret_3</name>
+	<name>og_turret_4</name>
+	<name>og_turret_mini</name>
+	<name>og_turret_mini_2</name>
+	<name>og_turret_mini_3</name>
+	<name>og_turret_mini_4</name>
+</blueprintList>
 <blueprintList name="LIST_CREW_OG_IRON">
 	<name>human_og_raider</name>
 </blueprintList>
@@ -89,7 +99,7 @@
 	<name>OG_TURRET_MISSILE_2</name>
 	<name>OG_TURRET_FOCUS_1</name>
 </blueprintList>
-<blueprintList name="LIST_TURRETS_BIG_DEFENSE">
+<blueprintList name="LIST_TURRETS_BIG_DEFENCE">
 	<name>OG_TURRET_LASER_1</name>
 	<name>OG_TURRET_MISSILE_1</name>
 	<name>OG_TURRET_FLAK_1</name>
@@ -212,7 +222,7 @@
 		<og_turret power="2" max="5" room="0" start="true" turret="OG_TURRET_MISSILE_1" />
 		<cloaking power="1" max="2" room="9" start="true" />
 		<doors power="1" max="1" room="10" start="true" />
-		<drones power="2" max="6" room="8" start="true" />
+		<drones power="2" max="6" room="8" start="false" />
 		<engines power="1" max="2" room="1" start="true" />
 		<medbay power="1" max="1" room="5" start="true" />
 		<oxygen power="1" max="1" room="6" start="true" />
@@ -352,7 +362,7 @@
 	<systemList>
 		<og_turret power="2" max="5" room="2" start="true" turret="LIST_TURRETS_BIG_ATTACK" />
 		<og_turret_alt power="1" max="5" room="1" start="true" turret="OG_TURRET_MISSILE_1" />
-		<og_turret_mini power="1" max="4" room="0" start="true" turret="OG_TURRET_ION_MINI_1" />
+		<og_turret_mini power="1" max="4" room="0" start="false" turret="OG_TURRET_ION_MINI_1" />
 		<cloaking power="1" max="1" room="13" start="false" />
 		<doors power="1" max="2" room="16" start="false" />
 		<drones power="1" max="6" room="7" start="false" />
@@ -368,7 +378,7 @@
 	<weaponList missiles="22" count="3" load="LIST_WEAPONS_OG_IRON" />
 	<droneList drones="8" count="2" load="LIST_DRONES_ENEMY_COMBAT" />
 	<health amount="17" />
-	<maxPower amount="11" />
+	<maxPower amount="10" />
 	<crewCount amount="4" max="8" class="LIST_CREW_OG_IRON_RANDOM" />
 	<boardingAI>sabotage</boardingAI>
 	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
@@ -556,7 +566,7 @@
 		<og_turret power="2" max="5" room="0" start="true" turret="LIST_TURRETS_DAWN" />
 		<cloaking power="1" max="2" room="9" start="true" />
 		<doors power="1" max="1" room="10" start="true" />
-		<drones power="2" max="6" room="8" start="true" />
+		<drones power="2" max="6" room="8" start="false" />
 		<engines power="1" max="2" room="1" start="true" />
 		<medbay power="1" max="1" room="5" start="true" />
 		<oxygen power="1" max="1" room="6" start="true" />
@@ -567,8 +577,8 @@
 	<droneSlots>3</droneSlots>
 	<weaponList missiles="25" count="2" load="LIST_WEAPONS_OG_DAWN" />
 	<droneList drones="6" count="3" load="LIST_DRONES_ENEMY_COMBAT" />
-	<health amount="13" />
-	<maxPower amount="10" />
+	<health amount="12" />
+	<maxPower amount="8" />
 	<crewCount amount="3" max="6" class="LIST_CREW_OG_DAWN" />
 	<boardingAI>sabotage</boardingAI>
 	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
@@ -701,7 +711,7 @@
 	<systemList>
 		<og_turret power="2" max="5" room="2" start="true" turret="LIST_TURRETS_DAWN" />
 		<og_turret_alt power="2" max="5" room="1" start="true" turret="LIST_TURRETS_DAWN" />
-		<og_turret_mini power="1" max="4" room="0" start="true" turret="LIST_TURRETS_DAWN_SMALL" />
+		<og_turret_mini power="1" max="4" room="0" start="false" turret="LIST_TURRETS_DAWN_SMALL" />
 		<cloaking power="1" max="1" room="13" start="false" />
 		<doors power="1" max="2" room="16" start="false" />
 		<drones power="1" max="6" room="7" start="false" />

@@ -131,7 +131,7 @@ table.insert(turretBlueprintsList, "OG_TURRET_ION_1")
 table.insert(turretBlueprintsList, "OG_TURRET_ION_2")
 
 --1 = MISSILES, 2 = FLAK, 3 = DRONES, 4 = PROJECTILES, 5 = HACKING 
-local defense_types = {
+local defence_types = {
 	DRONES = {[3] = true, [5] = true},
 	MISSILES = {[1] = true, [2] = true, [5] = true},
 	DRONES_MISSILES = {[1] = true, [2] = true, [3] = true, [5] = true},
@@ -149,7 +149,7 @@ turrets["OG_EMPTY_TURRET"] = {
 	glow_name = "og_turrets/turret_laser_1_glow",
 	glow_images = {},
 	fire_points = {{x = -12, y = -42, fire_delay = 0.1}, {x = 12, y = -42, fire_delay = 0.5}},
-	defense_type = defense_types.ALL,
+	defence_type = defence_types.ALL,
 	blueprint_type = 1,
 	blueprint = "LASER_BURST_1",
 	charges = 1,
@@ -164,7 +164,7 @@ turrets["OG_TURRET_LASER_1"] = {
 	glow_name = "og_turrets/turret_laser_1_glow",
 	glow_images = {},
 	fire_points = {{x = -12, y = -42, fire_delay = 0.5}, {x = 12, y = -42, fire_delay = 0.5}},
-	defense_type = defense_types.ALL,
+	defence_type = defence_types.ALL,
 	blueprint_type = 1,
 	blueprint = "LASER_BURST_1",
 	charges = 6,
@@ -179,7 +179,7 @@ turrets["OG_TURRET_LASER_2"] = {
 	glow_name = "og_turrets/turret_laser_2_glow",
 	glow_images = {},
 	fire_points = {{x = 0, y = -42, fire_delay = 1}},
-	defense_type = defense_types.DRONES_MISSILES,
+	defence_type = defence_types.DRONES_MISSILES,
 	blueprint_type = 1,
 	blueprint = "LASER_HEAVY_1",
 	charges = 3,
@@ -194,7 +194,7 @@ turrets["OG_TURRET_ION_1"] = {
 	glow_name = "og_turrets/turret_laser_1_glow",
 	glow_images = {},
 	fire_points = {{x = 0, y = -42, fire_delay = 0.1}},
-	defense_type = defense_types.DRONES,
+	defence_type = defence_types.DRONES,
 	blueprint_type = 1,
 	blueprint = "ION_1",
 	charges = 1,
@@ -209,7 +209,7 @@ turrets["OG_TURRET_ION_2"] = {
 	glow_name = "og_turrets/turret_laser_1_glow",
 	glow_images = {},
 	fire_points = {{x = 0, y = -42, fire_delay = 0.5}},
-	defense_type = defense_types.DRONES,
+	defence_type = defence_types.DRONES,
 	blueprint_type = 1,
 	blueprint = "ION_STUN",
 	charges = 5,
@@ -286,13 +286,13 @@ local function system_construct_system_box(systemBox)
 		offenseButton.hitbox.w = 22
 		offenseButton.hitbox.h = 22
 		systemBox.table.offenseButton = offenseButton
-		local defenseButton = Hyperspace.Button()
-		defenseButton:OnInit("systemUI/button_og_turret_defense", Hyperspace.Point(UIOffset_x + 9, UIOffset_y + 61))
-		defenseButton.hitbox.x = 0
-		defenseButton.hitbox.y = 0
-		defenseButton.hitbox.w = 22
-		defenseButton.hitbox.h = 22
-		systemBox.table.defenseButton = defenseButton
+		local defenceButton = Hyperspace.Button()
+		defenceButton:OnInit("systemUI/button_og_turret_defence", Hyperspace.Point(UIOffset_x + 9, UIOffset_y + 61))
+		defenceButton.hitbox.x = 0
+		defenceButton.hitbox.y = 0
+		defenceButton.hitbox.w = 22
+		defenceButton.hitbox.h = 22
+		systemBox.table.defenceButton = defenceButton
 	end
 end
 script.on_internal_event(Defines.InternalEvents.CONSTRUCT_SYSTEM_BOX, system_construct_system_box)
@@ -303,8 +303,8 @@ local function system_mouse_move(systemBox, x, y)
 		targetButton:MouseMove(x - (UIOffset_x + 9), y - (UIOffset_y + 9), false)
 		local offenseButton = systemBox.table.offenseButton
 		offenseButton:MouseMove(x - (UIOffset_x + 9), y - (UIOffset_y + 35), false)
-		local defenseButton = systemBox.table.defenseButton
-		defenseButton:MouseMove(x - (UIOffset_x + 9), y - (UIOffset_y + 61), false)
+		local defenceButton = systemBox.table.defenceButton
+		defenceButton:MouseMove(x - (UIOffset_x + 9), y - (UIOffset_y + 61), false)
 	end
 	return Defines.Chain.CONTINUE
 end
@@ -324,9 +324,9 @@ local function system_click(systemBox, shift)
 			local shipManager = Hyperspace.ships.player
 			Hyperspace.playerVariables[systemStateVarName] = 0
 		end
-		local defenseButton = systemBox.table.defenseButton
-		if defenseButton.bHover and defenseButton.bActive then
-			--print("DEFENSE CLICK")
+		local defenceButton = systemBox.table.defenceButton
+		if defenceButton.bHover and defenceButton.bActive then
+			--print("DEFENCE CLICK")
 			local shipManager = Hyperspace.ships.player
 			Hyperspace.playerVariables[systemStateVarName] = 1
 		end
@@ -364,8 +364,8 @@ local function system_render(systemBox, ignoreStatus)
 		targetButton.bActive = system_ready(systemBox.pSystem)
 		local offenseButton = systemBox.table.offenseButton
 		offenseButton.bActive = system_ready(systemBox.pSystem) and Hyperspace.playerVariables[systemStateVarName] ~= 0
-		local defenseButton = systemBox.table.defenseButton
-		defenseButton.bActive = system_ready(systemBox.pSystem) and Hyperspace.playerVariables[systemStateVarName] ~= 1
+		local defenceButton = systemBox.table.defenceButton
+		defenceButton.bActive = system_ready(systemBox.pSystem) and Hyperspace.playerVariables[systemStateVarName] ~= 1
 
 		if targetButton.bHover and Hyperspace.playerVariables[systemStateVarName] == 0 then
 			Hyperspace.Mouse.tooltip = "Target the turret at the enemy ship."
@@ -373,7 +373,7 @@ local function system_render(systemBox, ignoreStatus)
 			Hyperspace.Mouse.tooltip = "Target the turret at enemy projectiles and drones."
 		elseif offenseButton.bHover then
 			Hyperspace.Mouse.tooltip = "Set the turret to offensive mode."
-		elseif defenseButton.bHover then
+		elseif defenceButton.bHover then
 			Hyperspace.Mouse.tooltip = "Set the turret to defensive mode."
 		end
 
@@ -439,7 +439,7 @@ local function system_render(systemBox, ignoreStatus)
 		Graphics.CSurface.GL_PopMatrix()
 		systemBox.table.targetButton:OnRender()
 		systemBox.table.offenseButton:OnRender()
-		systemBox.table.defenseButton:OnRender()
+		systemBox.table.defenceButton:OnRender()
 		Graphics.freetype.easy_printNewlinesCentered(51, UIOffset_x + 20, UIOffset_y - 3, 50, tostring(math.floor(0.5 + systemTime * chargeTime * 10)/10).."/"..tostring(math.floor(0.5 + chargeTime * 10)/10))
 		--Graphics.CSurface.GL_DrawCircle(UIOffset_x + 20, UIOffset_y - 3, 1, Graphics.GL_Color(1, 0, 0, 1))
 	end
@@ -504,7 +504,7 @@ local function checkValidTarget(targetable, turret, shipManager)
 	local type = targetable.type -- int
 	local targeted = targetable.targeted -- bool
 	--print("target: isDying"..tostring(isDying).." ownerId"..tostring(ownerId).." space"..tostring(space).." valid"..tostring(valid).." hostile"..tostring(hostile).." type"..tostring(type).." targeted"..tostring(targeted))
-	if not isDying and ownerId ~= shipManager.iShipId and space == shipManager.iShipId and valid and hostile and turret.defense_type[type] and not targeted then
+	if not isDying and ownerId ~= shipManager.iShipId and space == shipManager.iShipId and valid and hostile and turret.defence_type[type] and not targeted then
 		return true
 	end
 	return false

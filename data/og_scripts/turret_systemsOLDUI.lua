@@ -259,7 +259,7 @@ table.insert(turretBlueprintsList, "OG_TURRET_LASER_MINI_DAWN_2")
 table.insert(turretBlueprintsList, "OG_TURRET_FOCUS_MINI_DAWN")
 
 --1 = MISSILES, 2 = FLAK, 3 = DRONES, 4 = PROJECTILES, 5 = HACKING 
-local defense_types = {
+local defence_types = {
 	DRONES = {[3] = true, [7] = true, name = "Drones"},
 	MISSILES = {[1] = true, [2] = true, [7] = true, name = "All Solid Projectiles"},
 	DRONES_MISSILES = {[1] = true, [2] = true, [3] = true, [7] = true, name = "All Solid Projectiles and Drones"},
@@ -275,7 +275,7 @@ turrets["OG_EMPTY_TURRET"] = {
 	multi_anim = {frames = 3},
 	glow = Hyperspace.Animations:GetAnimation("og_turret_laser_1_glow"),
 	fire_points = {{x = 12, y = -42, fire_delay = 0.1}, {x = -12, y = -42, fire_delay = 0.5}},
-	defense_type = defense_types.ALL,
+	defence_type = defence_types.ALL,
 	blueprint_type = 1,
 	blueprint = "OG_LASER_PROJECTILE_BASE",
 	charges = 1,
@@ -289,7 +289,7 @@ turrets["OG_TURRET_LASER_1"] = {
 	multi_anim = {frames = 3},
 	glow = Hyperspace.Animations:GetAnimation("og_turret_laser_1_glow"),
 	fire_points = {{x = 12, y = -42, fire_delay = 0.5}, {x = -12, y = -42, fire_delay = 0.5}},
-	defense_type = defense_types.PROJECTILES,
+	defence_type = defence_types.PROJECTILES,
 	blueprint_type = 1,
 	blueprint = "OG_LASER_PROJECTILE_BASE",
 	charges = 6,
@@ -304,7 +304,7 @@ turrets["OG_TURRET_LASER_RUSTY_1"] = {
 	multi_anim = {frames = 3},
 	glow = Hyperspace.Animations:GetAnimation("og_turret_laser_1_glow"),
 	fire_points = {{x = 12, y = -42, fire_delay = 0.5}, {x = -12, y = -42, fire_delay = 0.5}},
-	defense_type = defense_types.PROJECTILES,
+	defence_type = defence_types.PROJECTILES,
 	blueprint_type = 1,
 	blueprint = "OG_LASER_PROJECTILE_BASE",
 	charges = 6,
@@ -317,7 +317,7 @@ turrets["OG_TURRET_LASER_2"] = {
 	image = Hyperspace.Animations:GetAnimation("og_turret_laser_2"),
 	glow = Hyperspace.Animations:GetAnimation("og_turret_laser_2_glow"),
 	fire_points = {{x = 0, y = -60, fire_delay = 1}},
-	defense_type = defense_types.DRONES_MISSILES,
+	defence_type = defence_types.DRONES_MISSILES,
 	blueprint_type = 1,
 	blueprint = "OG_LASER_PROJECTILE_HEAVY",
 	charges = 3,
@@ -331,7 +331,7 @@ turrets["OG_TURRET_LASER_ANCIENT"] = {
 	glow = Hyperspace.Animations:GetAnimation("og_turret_laser_ancient_glow"),
 	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_laser_ancient_charge.png", -74, -74, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
 	fire_points = {{x = 0, y = 0, fire_delay = 0.3}},
-	defense_type = defense_types.PROJECTILES_MISSILES,
+	defence_type = defence_types.PROJECTILES_MISSILES,
 	blueprint_type = 1,
 	blueprint = "OG_LASER_PROJECTILE_ANCIENT",
 	charges = 6,
@@ -345,7 +345,7 @@ turrets["OG_TURRET_LASER_CEL_1"] = {
 	glow = Hyperspace.Animations:GetAnimation("og_turret_laser_cel_1_glow"),
 	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_laser_cel_1_charge.png", -13, -28, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
 	fire_points = {{x = 0, y = -40, fire_delay = 0.25}},
-	defense_type = defense_types.ALL,
+	defence_type = defence_types.ALL,
 	blueprint_type = 1,
 	blueprint = "OG_LASER_PROJECTILE_CEL",
 	charges = 8,
@@ -359,7 +359,7 @@ turrets["OG_TURRET_ION_1"] = {
 	glow = Hyperspace.Animations:GetAnimation("og_turret_ion_1_glow"),
 	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_ion_1_charge.png", -39, -10, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
 	fire_points = {{x = 0, y = -42, fire_delay = 0.5}},
-	defense_type = defense_types.DRONES,
+	defence_type = defence_types.DRONES,
 	blueprint_type = 1,
 	blueprint = "OG_ION_PROJECTILE_BASE",
 	charges = 1,
@@ -373,7 +373,7 @@ turrets["OG_TURRET_ION_2"] = {
 	glow = Hyperspace.Animations:GetAnimation("og_turret_ion_2_glow"),
 	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_ion_2_charge.png", -30, -11, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
 	fire_points = {{x = 5, y = -32, fire_delay = 0.25}, {x = -5, y = -32, fire_delay = 0.5}},
-	defense_type = defense_types.DRONES,
+	defence_type = defence_types.DRONES,
 	blueprint_type = 1,
 	blueprint = "OG_ION_PROJECTILE_FIRE",
 	charges = 4,
@@ -388,7 +388,7 @@ turrets["OG_TURRET_MISSILE_1"] = {
 	image = Hyperspace.Animations:GetAnimation("og_turret_missile_1"),
 	glow = Hyperspace.Animations:GetAnimation("og_turret_missile_1_glow"),
 	fire_points = {{x = 0, y = -30, fire_delay = 0.4}},
-	defense_type = defense_types.ALL,
+	defence_type = defence_types.ALL,
 	blueprint_type = 2,
 	ammo_consumption = 0.2,
 	blueprint = "OG_MISSILE_PROJECTILE_SWARM",
@@ -405,7 +405,7 @@ turrets["OG_TURRET_MISSILE_2"] = {
 	glow = Hyperspace.Animations:GetAnimation("og_turret_missile_2_glow"),
 	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_missile_2_charge.png", -6, -4, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
 	fire_points = {{x = 26, y = -48, fire_delay = 0.5}, {x = 15, y = -48, fire_delay = 0.5}, {x = -15, y = -48, fire_delay = 0.5}, {x = -26, y = -48, fire_delay = 0.5}},
-	defense_type = defense_types.DRONES_MISSILES,
+	defence_type = defence_types.DRONES_MISSILES,
 	blueprint_type = 2,
 	ammo_consumption = 0.5,
 	blueprint = "OG_MISSILE_PROJECTILE_HEAVY",
@@ -422,7 +422,7 @@ turrets["OG_TURRET_FLAK_1"] = {
 	glow = Hyperspace.Animations:GetAnimation("og_turret_flak_1_glow"),
 	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_flak_1_charge.png", -33, -33, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
 	fire_points = {{x = 0, y = -30, fire_delay = 0}, {x = 0, y = -30, fire_delay = 0}, {x = 0, y = -30, fire_delay = 0.25}},
-	defense_type = defense_types.ALL,
+	defence_type = defence_types.ALL,
 	blueprint_type = 1,
 	blueprint = "OG_FLAK_PROJECTILE",
 	charges = 9,
@@ -438,7 +438,7 @@ turrets["OG_TURRET_FOCUS_1"] = {
 	glow = Hyperspace.Animations:GetAnimation("og_turret_focus_1_glow"),
 	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_focus_1_charge.png", -24, -8, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
 	fire_points = {{x = 0, y = -7, fire_delay = 0.7}},
-	defense_type = defense_types.MISSILES,
+	defence_type = defence_types.MISSILES,
 	blueprint_type = 3,
 	blueprint = "OG_FOCUS_PROJECTILE",
 	blueprint_fake = "OG_FOCUS_PROJECTILE_FAKE",
@@ -453,7 +453,7 @@ turrets["OG_TURRET_LASER_MINI_1"] = {
 	glow = Hyperspace.Animations:GetAnimation("og_turret_laser_mini_1_glow"),
 	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_laser_mini_1_charge.png", -4, -3, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
 	fire_points = {{x = 0, y = -12, fire_delay = 0.25}},
-	defense_type = defense_types.PROJECTILES_MISSILES,
+	defence_type = defence_types.PROJECTILES_MISSILES,
 	blueprint_type = 1,
 	blueprint = "OG_LASER_PROJECTILE_BASE",
 	charges = 1,
@@ -468,7 +468,7 @@ turrets["OG_TURRET_LASER_RUSTY_MINI_1"] = {
 	glow = Hyperspace.Animations:GetAnimation("og_turret_laser_mini_1_glow"),
 	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_laser_mini_1_charge.png", -4, -3, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
 	fire_points = {{x = 0, y = -12, fire_delay = 0.25}},
-	defense_type = defense_types.PROJECTILES_MISSILES,
+	defence_type = defence_types.PROJECTILES_MISSILES,
 	blueprint_type = 1,
 	blueprint = "OG_LASER_PROJECTILE_BASE",
 	charges = 1,
@@ -485,7 +485,7 @@ turrets["OG_TURRET_LASER_MINI_2"] = {
 	glow_name = "og_turrets/turret_laser_mini_2_glow",
 	glow_images = {},
 	fire_points = {{x = 0, y = -16, fire_delay = 0.4}},
-	defense_type = defense_types.PROJECTILES,
+	defence_type = defence_types.PROJECTILES,
 	blueprint_type = 1,
 	blueprint = "OG_LASER_PROJECTILE_LIGHT",
 	charges = 3,
@@ -503,7 +503,7 @@ turrets["OG_TURRET_ION_MINI_1"] = {
 	glow_images = {},
 	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_ion_mini_1_charge.png", -17, -6, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
 	fire_points = {{x = 0, y = -12, fire_delay = 0.25}},
-	defense_type = defense_types.DRONES,
+	defence_type = defence_types.DRONES,
 	blueprint_type = 1,
 	blueprint = "OG_ION_PROJECTILE_WEAK",
 	charges = 1,
@@ -520,7 +520,7 @@ turrets["OG_TURRET_FOCUS_MINI_1"] = {
 	glow = Hyperspace.Animations:GetAnimation("og_turret_focus_mini_1_glow"),
 	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_focus_mini_1_charge.png", -17, -6, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
 	fire_points = {{x = 0, y = -4, fire_delay = 0.7}},
-	defense_type = defense_types.MISSILES,
+	defence_type = defence_types.MISSILES,
 	blueprint_type = 3,
 	blueprint = "OG_FOCUS_PROJECTILE_WEAK",
 	blueprint_fake = "OG_FOCUS_PROJECTILE_WEAK_FAKE",
@@ -536,7 +536,7 @@ turrets["OG_TURRET_LASER_DAWN"] = {
 	image = Hyperspace.Animations:GetAnimation("og_turret_laser_dawn"),
 	glow = Hyperspace.Animations:GetAnimation("og_turret_laser_2_glow"),
 	fire_points = {{x = 0, y = -60, fire_delay = 1}},
-	defense_type = defense_types.DRONES_MISSILES,
+	defence_type = defence_types.DRONES_MISSILES,
 	blueprint_type = 1,
 	blueprint = "OG_LASER_PROJECTILE_HEAVY",
 	charges = 3,
@@ -550,7 +550,7 @@ turrets["OG_TURRET_ION_DAWN"] = {
 	glow = Hyperspace.Animations:GetAnimation("og_turret_ion_2_glow"),
 	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_ion_2_charge.png", -30, -11, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
 	fire_points = {{x = 5, y = -32, fire_delay = 0.25}, {x = -5, y = -32, fire_delay = 0.5}},
-	defense_type = defense_types.DRONES,
+	defence_type = defence_types.DRONES,
 	blueprint_type = 1,
 	blueprint = "OG_ION_PROJECTILE_FIRE",
 	charges = 4,
@@ -566,7 +566,7 @@ turrets["OG_TURRET_MISSILE_DAWN"] = {
 	glow = Hyperspace.Animations:GetAnimation("og_turret_missile_dawn_glow"),
 	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_missile_2_charge.png", -6, -4, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
 	fire_points = {{x = 26, y = -48, fire_delay = 0.5}, {x = 15, y = -48, fire_delay = 0.5}, {x = -15, y = -48, fire_delay = 0.5}, {x = -26, y = -48, fire_delay = 0.5}},
-	defense_type = defense_types.DRONES_MISSILES,
+	defence_type = defence_types.DRONES_MISSILES,
 	blueprint_type = 2,
 	ammo_consumption = 0.5,
 	blueprint = "OG_MISSILE_PROJECTILE_HEAVY",
@@ -583,7 +583,7 @@ turrets["OG_TURRET_FLAK_DAWN"] = {
 	glow = Hyperspace.Animations:GetAnimation("og_turret_flak_1_glow"),
 	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_flak_1_charge.png", -33, -33, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
 	fire_points = {{x = 0, y = -30, fire_delay = 0}, {x = 0, y = -30, fire_delay = 0}, {x = 0, y = -30, fire_delay = 0.25}},
-	defense_type = defense_types.ALL,
+	defence_type = defence_types.ALL,
 	blueprint_type = 1,
 	blueprint = "OG_FLAK_PROJECTILE",
 	charges = 9,
@@ -599,7 +599,7 @@ turrets["OG_TURRET_FOCUS_DAWN"] = {
 	glow = Hyperspace.Animations:GetAnimation("og_turret_focus_1_glow"),
 	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_focus_1_charge.png", -24, -8, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
 	fire_points = {{x = 0, y = -7, fire_delay = 0.7}},
-	defense_type = defense_types.MISSILES,
+	defence_type = defence_types.MISSILES,
 	blueprint_type = 3,
 	blueprint = "OG_FOCUS_PROJECTILE",
 	blueprint_fake = "OG_FOCUS_PROJECTILE_FAKE",
@@ -614,7 +614,7 @@ turrets["OG_TURRET_LASER_MINI_DAWN_1"] = {
 	glow = Hyperspace.Animations:GetAnimation("og_turret_laser_mini_1_glow"),
 	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_laser_mini_1_charge.png", -4, -3, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
 	fire_points = {{x = 0, y = -12, fire_delay = 0.25}},
-	defense_type = defense_types.PROJECTILES_MISSILES,
+	defence_type = defence_types.PROJECTILES_MISSILES,
 	blueprint_type = 1,
 	blueprint = "OG_LASER_PROJECTILE_BASE",
 	charges = 1,
@@ -631,7 +631,7 @@ turrets["OG_TURRET_LASER_MINI_DAWN_2"] = {
 	glow_name = "og_turrets/turret_laser_mini_2_glow",
 	glow_images = {},
 	fire_points = {{x = 0, y = -16, fire_delay = 0.4}},
-	defense_type = defense_types.PROJECTILES,
+	defence_type = defence_types.PROJECTILES,
 	blueprint_type = 1,
 	blueprint = "OG_LASER_PROJECTILE_LIGHT",
 	charges = 3,
@@ -648,7 +648,7 @@ turrets["OG_TURRET_FOCUS_MINI_DAWN"] = {
 	glow = Hyperspace.Animations:GetAnimation("og_turret_focus_mini_1_glow"),
 	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_focus_mini_1_charge.png", -17, -6, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
 	fire_points = {{x = 0, y = -4, fire_delay = 0.7}},
-	defense_type = defense_types.MISSILES,
+	defence_type = defence_types.MISSILES,
 	blueprint_type = 3,
 	blueprint = "OG_FOCUS_PROJECTILE_WEAK",
 	blueprint_fake = "OG_FOCUS_PROJECTILE_WEAK_FAKE",
@@ -706,7 +706,7 @@ local function add_stat_text(desc, currentTurret, chargeMax)
 			desc = desc.."/"
 		end
 	end
-	desc = desc.."\nProjectile Target: "..currentTurret.defense_type.name
+	desc = desc.."\nProjectile Target: "..currentTurret.defence_type.name
 	local shotBlueprint = Hyperspace.Blueprints:GetWeaponBlueprint(currentTurret.blueprint)
 	local damage = shotBlueprint.damage
 	desc = desc.."\n"
@@ -836,19 +836,19 @@ local function system_construct_system_box(systemBox)
 		targetButton.hitbox.h = 22
 		systemBox.table.targetButton = targetButton
 		local offenseButton = Hyperspace.Button()
-		offenseButton:OnInit("systemUI/button_og_turret_defense", Hyperspace.Point(UIOffset_x + 9, UIOffset_y + 61))
+		offenseButton:OnInit("systemUI/button_og_turret_defence", Hyperspace.Point(UIOffset_x + 9, UIOffset_y + 61))
 		offenseButton.hitbox.x = 0
 		offenseButton.hitbox.y = 0
 		offenseButton.hitbox.w = 22
 		offenseButton.hitbox.h = 22
 		systemBox.table.offenseButton = offenseButton
-		local defenseButton = Hyperspace.Button()
-		defenseButton:OnInit("systemUI/button_og_turret_offense", Hyperspace.Point(UIOffset_x + 9, UIOffset_y + 61))
-		defenseButton.hitbox.x = 0
-		defenseButton.hitbox.y = 0
-		defenseButton.hitbox.w = 22
-		defenseButton.hitbox.h = 22
-		systemBox.table.defenseButton = defenseButton
+		local defenceButton = Hyperspace.Button()
+		defenceButton:OnInit("systemUI/button_og_turret_offense", Hyperspace.Point(UIOffset_x + 9, UIOffset_y + 61))
+		defenceButton.hitbox.x = 0
+		defenceButton.hitbox.y = 0
+		defenceButton.hitbox.w = 22
+		defenceButton.hitbox.h = 22
+		systemBox.table.defenceButton = defenceButton
 
 		local systemId = Hyperspace.ShipSystem.SystemIdToName(systemBox.pSystem.iSystemType)
 		if microTurrets[systemId] then
@@ -901,8 +901,8 @@ local function system_mouse_move(systemBox, x, y)
 		targetButton:MouseMove(x - (UIOffset_x + 9), y - (UIOffset_y + 35), false)
 		local offenseButton = systemBox.table.offenseButton
 		offenseButton:MouseMove(x - (UIOffset_x + 9), y - (UIOffset_y + 61), false)
-		local defenseButton = systemBox.table.defenseButton
-		defenseButton:MouseMove(x - (UIOffset_x + 9), y - (UIOffset_y + 61), false)
+		local defenceButton = systemBox.table.defenceButton
+		defenceButton:MouseMove(x - (UIOffset_x + 9), y - (UIOffset_y + 61), false)
 		local x_hb = x - (UIOffset_x + hoverBox.x)
 		local y_hb = y - (UIOffset_y + hoverBox.y)
 		local shipId = (systemBox.bPlayerUI and 0) or 1
@@ -912,7 +912,7 @@ local function system_mouse_move(systemBox, x, y)
 			Hyperspace.Mouse.tooltip = "Target the turret at enemy projectiles and drones."
 		elseif offenseButton.bHover and Hyperspace.playerVariables[shipId..systemId..systemStateVarName] == 1 then
 			Hyperspace.Mouse.tooltip = "Set the turret to offensive mode."
-		elseif defenseButton.bHover and Hyperspace.playerVariables[shipId..systemId..systemStateVarName] == 0 then
+		elseif defenceButton.bHover and Hyperspace.playerVariables[shipId..systemId..systemStateVarName] == 0 then
 			Hyperspace.Mouse.tooltip = "Set the turret to defensive mode."
 		elseif x_hb >= 0 and x_hb <= hoverBox.w and y_hb >= 0 and y_hb <= hoverBox.h then
 			local currentTurret = turrets[ turretBlueprintsList[ Hyperspace.playerVariables[shipId..systemId..systemBlueprintVarName] ] ]
@@ -923,7 +923,7 @@ local function system_mouse_move(systemBox, x, y)
 end
 script.on_internal_event(Defines.InternalEvents.SYSTEM_BOX_MOUSE_MOVE, system_mouse_move)
 
-local function checkValidTarget(targetable, defense_type, shipManager)
+local function checkValidTarget(targetable, defence_type, shipManager)
 	if not targetable then return false end
 	local isDying = targetable.GetIsDying and targetable:GetIsDying()
 	local ownerId = targetable.GetOwnerId and targetable:GetOwnerId()
@@ -936,9 +936,9 @@ local function checkValidTarget(targetable, defense_type, shipManager)
 	local hasHackingDrone = otherManager and otherManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId("hacking")) and otherManager.hackingSystem.drone
 	local hackingDrone = hasHackingDrone and otherManager.hackingSystem.drone._targetable:GetSelfId() == targetable:GetSelfId() and not otherManager.hackingSystem.drone.arrived 
 	--if ppp then
-	--print("target: isDying"..tostring(isDying).." ownerId"..tostring(ownerId).." space"..tostring(space).." valid"..tostring(valid)--[[.." hostile"..tostring(hostile)]].." type"..tostring(type).." validType"..tostring(defense_type[type]).." hackingdrone:"..tostring((defense_type[6] and hackingDrone)).." defense_type"..tostring(defense_type.name))
+	--print("target: isDying"..tostring(isDying).." ownerId"..tostring(ownerId).." space"..tostring(space).." valid"..tostring(valid)--[[.." hostile"..tostring(hostile)]].." type"..tostring(type).." validType"..tostring(defence_type[type]).." hackingdrone:"..tostring((defence_type[6] and hackingDrone)).." defence_type"..tostring(defence_type.name))
 	--end
-	if (not isDying) and (ownerId ~= shipManager.iShipId) and (space == shipManager.iShipId) and valid and (defense_type[type] or (defense_type[7] and hackingDrone)) then
+	if (not isDying) and (ownerId ~= shipManager.iShipId) and (space == shipManager.iShipId) and valid and (defence_type[type] or (defence_type[7] and hackingDrone)) then
 		return true
 	end
 	return false
@@ -971,7 +971,7 @@ local function system_click(systemBox, shift)
 				local currentClosest = nil
 				for projectile in vter(spaceManager.projectiles) do
 					local blueprint = Hyperspace.Blueprints:GetWeaponBlueprint(projectile.extend.name)
-					if checkValidTarget(projectile._targetable, currentTurret.defense_type, shipManager) and not projectile.missed and not projectile.passedTarget and blueprint.typeName ~= "BEAM" then
+					if checkValidTarget(projectile._targetable, currentTurret.defence_type, shipManager) and not projectile.missed and not projectile.passedTarget and blueprint.typeName ~= "BEAM" then
 						local targetPos = projectile._targetable:GetRandomTargettingPoint(true)
 						local dist = get_distance(mousePosPlayer, targetPos)
 						if (not currentClosest and dist < 20) or (currentClosest and dist < 20 and dist < currentClosest.dist) then
@@ -980,7 +980,7 @@ local function system_click(systemBox, shift)
 					end
 				end
 				for drone in vter(spaceManager.drones) do
-					if checkValidTarget(drone._targetable, currentTurret.defense_type, shipManager) and not drone.bDead then
+					if checkValidTarget(drone._targetable, currentTurret.defence_type, shipManager) and not drone.bDead then
 						local targetPos = drone._targetable:GetRandomTargettingPoint(true)
 						local dist = get_distance(mousePosPlayer, targetPos)
 						if (not currentClosest and dist < 20) or (currentClosest and dist < 20 and dist < currentClosest.dist) then
@@ -1011,8 +1011,8 @@ local function system_click(systemBox, shift)
 			systemBox.pSystem.table.currentTargetTemp = nil
 			Hyperspace.playerVariables[shipId..Hyperspace.ShipSystem.SystemIdToName(systemBox.pSystem.iSystemType)..systemStateVarName] = 0
 		end
-		local defenseButton = systemBox.table.defenseButton
-		if defenseButton.bHover and defenseButton.bActive then
+		local defenceButton = systemBox.table.defenceButton
+		if defenceButton.bHover and defenceButton.bActive then
 			local shipManager = Hyperspace.ships.player
 			systemBox.pSystem.table.currentTarget = nil
 			systemBox.pSystem.table.currentlyTargetted = false
@@ -1093,7 +1093,7 @@ script.on_render_event(Defines.RenderEvents.SHIP, function() end, function(ship)
 				local currentClosest = nil
 				for projectile in vter(spaceManager.projectiles) do
 					local blueprint = Hyperspace.Blueprints:GetWeaponBlueprint(projectile.extend.name)
-					if checkValidTarget(projectile._targetable, currentTurret.defense_type, shipManager) and not projectile.missed and not projectile.passedTarget and blueprint.typeName ~= "BEAM" then
+					if checkValidTarget(projectile._targetable, currentTurret.defence_type, shipManager) and not projectile.missed and not projectile.passedTarget and blueprint.typeName ~= "BEAM" then
 						local targetPos = projectile._targetable:GetRandomTargettingPoint(true)
 						local dist = get_distance(mousePosPlayer, targetPos)
 						if (not currentClosest and dist < 20) or (currentClosest and dist < 20 and dist < currentClosest.dist) then
@@ -1102,7 +1102,7 @@ script.on_render_event(Defines.RenderEvents.SHIP, function() end, function(ship)
 					end
 				end
 				for drone in vter(spaceManager.drones) do
-					if checkValidTarget(drone._targetable, currentTurret.defense_type, shipManager) and not drone.bDead then
+					if checkValidTarget(drone._targetable, currentTurret.defence_type, shipManager) and not drone.bDead then
 						local targetPos = drone._targetable:GetRandomTargettingPoint(true)
 						local dist = get_distance(mousePosPlayer, targetPos)
 						if (not currentClosest and dist < 20) or (currentClosest and dist < 20 and dist < currentClosest.dist) then
@@ -1200,8 +1200,8 @@ local function system_render(systemBox, ignoreStatus)
 		targetButton.bActive = system_ready(systemBox.pSystem) and not systemBox.pSystem.table.currentlyTargetting
 		local offenseButton = systemBox.table.offenseButton
 		offenseButton.bActive = system_ready(systemBox.pSystem) and Hyperspace.playerVariables[shipId..systemId..systemStateVarName] ~= 0
-		local defenseButton = systemBox.table.defenseButton
-		defenseButton.bActive = system_ready(systemBox.pSystem) and Hyperspace.playerVariables[shipId..systemId..systemStateVarName] ~= 1
+		local defenceButton = systemBox.table.defenceButton
+		defenceButton.bActive = system_ready(systemBox.pSystem) and Hyperspace.playerVariables[shipId..systemId..systemStateVarName] ~= 1
 
 		local currentTurret = turrets[ turretBlueprintsList[ Hyperspace.playerVariables[shipId..systemId..systemBlueprintVarName] ] ]
 		local maxCharges = currentTurret.charges
@@ -1274,7 +1274,7 @@ local function system_render(systemBox, ignoreStatus)
 		if Hyperspace.playerVariables[shipId..systemId..systemStateVarName] == 1 then
 			systemBox.table.offenseButton:OnRender()
 		elseif Hyperspace.playerVariables[shipId..systemId..systemStateVarName] == 0 then
-			systemBox.table.defenseButton:OnRender()
+			systemBox.table.defenceButton:OnRender()
 		end
 		local offsetText = math.max(2 * chargeTimeDisplay + 3, maxCharges * 8)
 		if maxCharges <= 1 then
@@ -1481,7 +1481,7 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 		system.table.currentTarget.table.og_targeted = (system.table.currentTarget.table.og_targeted or 0) + 1
 		if currentTurret.homing then
 			--print("start homing")
-			--checkValidTarget(system.table.currentTarget._targetable, defense_types.ALL, shipManager, true)
+			--checkValidTarget(system.table.currentTarget._targetable, defence_types.ALL, shipManager, true)
 			userdata_table(projectile, "mods.og").homing = {target = system.table.currentTarget, turn_rate = currentTurret.homing}
 		end
 	end
@@ -1526,7 +1526,7 @@ local function findTurretTarget(system, currentTurret, shipManager, pos, speed)
 	for projectile in vter(spaceManager.projectiles) do
 		--print(projectile.extend.name.." type:"..tostring(projectile:GetType()))
 		local blueprint = Hyperspace.Blueprints:GetWeaponBlueprint(projectile.extend.name)
-		local validTarget = checkValidTarget(projectile._targetable, currentTurret.defense_type, shipManager)
+		local validTarget = checkValidTarget(projectile._targetable, currentTurret.defence_type, shipManager)
 		local notTargeted = (not projectile.table.og_targeted) or (projectile.table.og_targeted < 2 and not currentTurret.homing) or projectile.table.og_targeted < 1
 		local projectileActive = not (projectile.missed or projectile.passedTarget or projectile.death_animation.tracker.running)
 		if validTarget and notTargeted and projectileActive then
@@ -1544,7 +1544,7 @@ local function findTurretTarget(system, currentTurret, shipManager, pos, speed)
 	end
 	--print("drones")
 	for drone in vter(spaceManager.drones) do
-		local validTarget = checkValidTarget(drone._targetable, currentTurret.defense_type, shipManager)
+		local validTarget = checkValidTarget(drone._targetable, currentTurret.defence_type, shipManager)
 		local notTargeted = (not drone.table.og_targeted) or (drone.table.og_targeted < 2 and not currentTurret.homing) or drone.table.og_targeted < 1
 		local droneActive = not (drone.bDead or drone.arrived or drone.explosion.tracker.running)
 		if validTarget and notTargeted and droneActive then
@@ -1729,7 +1729,7 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 
 					local projectileInactive = system.table.currentTarget.missed or system.table.currentTarget.passedTarget
 
-					local targetInvalid = not checkValidTarget(system.table.currentTarget._targetable, currentTurret.defense_type, shipManager)
+					local targetInvalid = not checkValidTarget(system.table.currentTarget._targetable, currentTurret.defence_type, shipManager)
 					local tryRetarget = Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] <= 0 and not system.table.currentlyTargetted
 					if targetDead or targetInvalid or tryRetarget or projectileInactive then
 						system.table.currentTarget = nil
@@ -1830,7 +1830,7 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(s)
 			userdata_table(projectile, "mods.og").targeted = nil
 		end
 
-		if userdata_table(projectile, "mods.og").homing and checkValidTarget(userdata_table(projectile, "mods.og").homing.target._targetable, defense_types.ALL, shipManager) then
+		if userdata_table(projectile, "mods.og").homing and checkValidTarget(userdata_table(projectile, "mods.og").homing.target._targetable, defence_types.ALL, shipManager) then
 			local target = userdata_table(projectile, "mods.og").homing.target
 			local currentAngle = get_angle_between_points(projectile.position, projectile.target)
 

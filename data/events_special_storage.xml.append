@@ -48,6 +48,10 @@
 		<text>Nevermind.</text>
 		<event load="STORAGE_CHECK"/>
 	</choice>
+	<choice hidden="false">
+		<text>Craft a turret base.</text>
+		<event load="OG_CRAFT_TURRET_BASE"/>
+	</choice>
 </event>
 
 <event name="OG_CRAFT_CRAFT">
@@ -60,6 +64,84 @@
 
 <event name="OG_CRAFT_CRAFT_STEP">
 	<text>Choose Crafting Component.</text>
+</event>
+
+<event name="OG_CRAFT_TURRET_BASE">
+	<text>Turret bases can take place instead of a defence drone when manufacturing a turret, however it is often cheaper to use defence drones over turret bases if you have them available.</text>
+	<choice hidden="true">
+		<text>Nevermind.</text>
+		<event load="OG_CRAFT_MAIN_MENU_LOAD"/>
+	</choice>
+	<choice hidden="false">
+		<text>Construct a Laser Turret Base.</text>
+		<event>
+			<text>You create the turret base.</text>
+			<item_modify>
+				<item type="scrap" min="-40" max="-40" />
+			</item_modify>
+			<weapon name="OG_TURRET_BASE_LASER"/>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="OG_CRAFT_MAIN_MENU_LOAD"/>
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="false">
+		<text>Construct a Ion Turret Base.</text>
+		<event>
+			<text>You create the turret base.</text>
+			<item_modify>
+				<item type="scrap" min="-40" max="-40" />
+			</item_modify>
+			<weapon name="OG_TURRET_BASE_ION"/>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="OG_CRAFT_MAIN_MENU_LOAD"/>
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="false">
+		<text>Construct a Missile Turret Base.</text>
+		<event>
+			<text>You create the turret base.</text>
+			<item_modify>
+				<item type="scrap" min="-40" max="-40" />
+			</item_modify>
+			<weapon name="OG_TURRET_BASE_MISSILE"/>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="OG_CRAFT_MAIN_MENU_LOAD"/>
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="false">
+		<text>Construct a Focus Turret Base.</text>
+		<event>
+			<text>You create the turret base.</text>
+			<item_modify>
+				<item type="scrap" min="-40" max="-40" />
+			</item_modify>
+			<weapon name="OG_TURRET_BASE_FOCUS"/>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="OG_CRAFT_MAIN_MENU_LOAD"/>
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="false">
+		<text>Construct a Micro Turret Base.</text>
+		<event>
+			<text>You create the turret base.</text>
+			<item_modify>
+				<item type="scrap" min="-30" max="-30" />
+			</item_modify>
+			<weapon name="OG_TURRET_BASE_MINI"/>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="OG_CRAFT_MAIN_MENU_LOAD"/>
+			</choice>
+		</event>
+	</choice>
 </event>
 
 <mod:findName type="event" name="STORAGE_CHECK_SYSTEM">

@@ -1,4 +1,36 @@
 <FTL>
+<animSheet name="og_turret_base_laser" w="78" h="78" fw="78" fh="78">og_turrets/turret_laser_base.png</animSheet>
+<anim name="og_turret_base_laser">
+	<sheet>og_turret_base_laser</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_base_ion" w="78" h="78" fw="78" fh="78">og_turrets/turret_ion_base.png</animSheet>
+<anim name="og_turret_base_ion">
+	<sheet>og_turret_base_ion</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_base_missile" w="78" h="78" fw="78" fh="78">og_turrets/turret_missile_base.png</animSheet>
+<anim name="og_turret_base_missile">
+	<sheet>og_turret_base_missile</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_base_focus" w="78" h="78" fw="78" fh="78">og_turrets/turret_focus_base.png</animSheet>
+<anim name="og_turret_base_focus">
+	<sheet>og_turret_base_focus</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+
+<animSheet name="og_turret_base_mini" w="44" h="44" fw="44" fh="44">og_turrets/turret_mini_base.png</animSheet>
+<anim name="og_turret_base_mini">
+	<sheet>og_turret_base_mini</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+
 <animSheet name="og_turret_laser_error" w="110" h="110" fw="110" fh="110">og_turrets/turret_laser_error.png</animSheet>
 <anim name="og_turret_laser_error">
 	<sheet>og_turret_laser_error</sheet>

@@ -13,4 +13,10 @@
 <roomLayout name="og_turret_4">
 	<computerGlow name="computer1_glow" x="3" y="-2" dir="UP"/>
 </roomLayout>
+<roomLayout name="og_turret_5">
+	<computerGlow name="computer1_glow" x="37" y="3" dir="RIGHT"/>
+</roomLayout>
+<roomLayout name="og_turret_6">
+	<computerGlow name="computer1_glow" x="37" y="32" dir="RIGHT"/>
+</roomLayout>
 </FTL>

@@ -1,6 +1,6 @@
 <FTL>
 <mod:findName type="event" name="STORAGE_CHECK_JUKEBOX">
-	<mod-append:choice hidden="true" req="juke_og_iron">
+	<mod-append:choice hidden="true" req="juke_og_iron" blue="false">
 		<text>[style[color:F64B2D]]OG: Iron Watch[[/style]]
 Composed by: Lizzard</text>
 		<event>

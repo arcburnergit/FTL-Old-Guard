@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--Copyright (c) 2012 by Subset Games. All rights reserved.-->
+<img x="-69" y="-66" w="551" h="412" />
+<offsets>
+	<floor x="63" y="60" />
+	<cloak x="0" y="0" />
+</offsets>
+<weaponMounts>
+	<mount x="423" y="88" rotate="true" mirror="true" gib="-1" slide="up" />
+	<mount x="423" y="325" rotate="true" mirror="false" gib="-1" slide="down" />
+	<mount x="287" y="22" rotate="true" mirror="true" gib="-1" slide="up" />
+	<mount x="322" y="391" rotate="true" mirror="false" gib="-1" slide="down" />
+</weaponMounts>
+<ogTurretMounts>
+	<og_turret x="476" y="206" direction="right"/>
+	<og_turret_mini x="157" y="206" direction="left"/>
+	<og_turret_mini_2 x="297" y="293" direction="up"/>
+	<og_turret_mini_3 x="297" y="119" direction="down"/>
+</ogTurretMounts>
+<explosion />
+

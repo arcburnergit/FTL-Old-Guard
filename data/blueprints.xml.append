@@ -80,7 +80,7 @@
 		<level>120</level>
 		<level>140</level>
 	</upgradeCost>
-	<cost>45</cost>
+	<cost>55</cost>
 </systemBlueprint>
 <systemBlueprint name="og_turret_alt">
 	<type>og_turret_alt</type>
@@ -98,7 +98,43 @@
 		<level>120</level>
 		<level>140</level>
 	</upgradeCost>
-	<cost>45</cost>
+	<cost>55</cost>
+</systemBlueprint>
+<systemBlueprint name="og_turret_3">
+	<type>og_turret_3</type>
+	<title>Turret Control</title>
+	<desc>Powers your ship's turret. Upgrading lowers the charge time of the turret.</desc>
+	<startPower>2</startPower>
+	<maxPower>5</maxPower>
+	<rarity>0</rarity>
+	<upgradeCost>
+		<level>35</level>
+		<level>55</level>
+		<level>70</level>
+		<level>100</level>
+		<level>999</level>
+		<level>120</level>
+		<level>140</level>
+	</upgradeCost>
+	<cost>55</cost>
+</systemBlueprint>
+<systemBlueprint name="og_turret_4">
+	<type>og_turret_4</type>
+	<title>Turret Control</title>
+	<desc>Powers your ship's turret. Upgrading lowers the charge time of the turret.</desc>
+	<startPower>2</startPower>
+	<maxPower>5</maxPower>
+	<rarity>0</rarity>
+	<upgradeCost>
+		<level>35</level>
+		<level>55</level>
+		<level>70</level>
+		<level>100</level>
+		<level>999</level>
+		<level>120</level>
+		<level>140</level>
+	</upgradeCost>
+	<cost>55</cost>
 </systemBlueprint>
 <systemBlueprint name="og_turret_mini">
 	<type>og_turret_mini</type>
@@ -239,6 +275,121 @@
 
 <!--Turrets-->
 <FTL>
+<weaponBlueprint name="OG_TURRET_BASE_LASER">
+	<type>BEAM</type>
+	<flavorType>Turret Base</flavorType>
+	<tip>tip_og_turret_base</tip>
+	<title>Laser Turret Base</title>
+	<short>Laser Base</short>
+	<desc>Can be used to fabricate:
+[Burst Laser Turret]
+[Heavy Laser Turret]
+[???]
+[???]</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>80</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_base_laser</iconReplace>
+</weaponBlueprint>
+<weaponBlueprint name="OG_TURRET_BASE_ION">
+	<type>BEAM</type>
+	<flavorType>Turret Base</flavorType>
+	<tip>tip_og_turret_base</tip>
+	<title>Ion Turret Base</title>
+	<short>Ion Base</short>
+	<desc>Can be used to fabricate:
+[Ion Barrage Turret]
+[Fire Ion Turret]</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>80</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_base_ion</iconReplace>
+</weaponBlueprint>
+<weaponBlueprint name="OG_TURRET_BASE_MISSILE">
+	<type>BEAM</type>
+	<flavorType>Turret Base</flavorType>
+	<tip>tip_og_turret_base</tip>
+	<title>Missile Turret Base</title>
+	<short>Missile Base</short>
+	<desc>Can be used to fabricate:
+[Swarm Missile Turret]
+[Quad Missile Turret]
+[Flak Turret]</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>80</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_base_missile</iconReplace>
+</weaponBlueprint>
+<weaponBlueprint name="OG_TURRET_BASE_FOCUS">
+	<type>BEAM</type>
+	<flavorType>Turret Base</flavorType>
+	<tip>tip_og_turret_base</tip>
+	<title>Focus Turret Base</title>
+	<short>Focus Base</short>
+	<desc>Can be used to fabricate:
+[Pinpoint Turret]</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>80</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_base_focus</iconReplace>
+</weaponBlueprint>
+<weaponBlueprint name="OG_TURRET_BASE_MINI">
+	<type>BEAM</type>
+	<flavorType>Turret Base</flavorType>
+	<tip>tip_og_turret_base</tip>
+	<title>Micro Turret Base</title>
+	<short>Micro Base</short>
+	<desc>Can be used to fabricate:
+[Micro Laser Turret]
+[Light Laser Turret]
+[Micro Ion Turret]
+[Micro Pinpoint Turret]</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>60</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_base_mini</iconReplace>
+</weaponBlueprint>
+
 <weaponBlueprint name="OG_TURRET_UNKNOWN">
 	<type>BEAM</type>
 	<flavorType>Turret</flavorType>
@@ -266,7 +417,7 @@
 	<tip>tip_og_turret</tip>
 	<title>Burst Laser Turret</title>
 	<short>Burst L.</short>
-	<desc>Standard Burst Laser Turret. A cheap and efficient middleground between offense and defense.</desc>
+	<desc>Standard Burst Laser Turret. A cheap and efficient middleground between offense and defence.</desc>
 	<tooltip>Turret</tooltip>
 	<damage>0</damage>
 	<sp>0</sp>
@@ -308,7 +459,7 @@
 	<tip>tip_og_turret</tip>
 	<title>Old Burst Laser Turret</title>
 	<short>O. Burst L.</short>
-	<desc>Standard Burst Laser Turret. A cheap and efficient middleground between offense and defense. Very old and has worse aim.</desc>
+	<desc>Standard Burst Laser Turret. A cheap and efficient middleground between offense and defence. Very old and has worse aim.</desc>
 	<tooltip>Turret</tooltip>
 	<damage>0</damage>
 	<sp>0</sp>
@@ -413,7 +564,7 @@
 	<tip>tip_og_turret</tip>
 	<title>Swarm Missile Turret</title>
 	<short>Swarm M.</short>
-	<desc>Fires a swarm of small fast missiles capable of homing in on their target, excellent defense but does not do well against enemy systems.</desc>
+	<desc>Fires a swarm of small fast missiles capable of homing in on their target, excellent defence but does not do well against enemy systems.</desc>
 	<tooltip>Turret</tooltip>
 	<damage>0</damage>
 	<sp>0</sp>
@@ -455,7 +606,7 @@
 	<tip>tip_og_turret</tip>
 	<title>Flak Turret</title>
 	<short>Flak</short>
-	<desc>A powerful Flak turret, can build up an incredible volley to be fired in both defense and offense.</desc>
+	<desc>A powerful Flak turret, can build up an incredible volley to be fired in both defence and offense.</desc>
 	<tooltip>Turret</tooltip>
 	<damage>0</damage>
 	<sp>0</sp>
@@ -506,7 +657,7 @@
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>60</cost>
+	<cost>80</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_laser_mini_1_icon</iconReplace>
@@ -539,7 +690,7 @@
 	<tip>tip_og_turret_mini</tip>
 	<title>Light Laser Turret</title>
 	<short>Light L.</short>
-	<desc>Incapable of doing system damage, this Light Laser Turret is much better suited for shield suppression and defense.</desc>
+	<desc>Incapable of doing system damage, this Light Laser Turret is much better suited for shield suppression and defence.</desc>
 	<tooltip>Turret</tooltip>
 	<damage>0</damage>
 	<sp>0</sp>
@@ -548,7 +699,7 @@
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>60</cost>
+	<cost>80</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_laser_mini_2_icon</iconReplace>
@@ -560,7 +711,7 @@
 	<tip>tip_og_turret_mini</tip>
 	<title>Micro Ion Turret</title>
 	<short>Micro I.</short>
-	<desc>This Ion Turret is effective drone defense while still being able to support the ships offense.</desc>
+	<desc>This Ion Turret is effective drone defence while still being able to support the ships offense.</desc>
 	<tooltip>Turret</tooltip>
 	<damage>0</damage>
 	<sp>0</sp>
@@ -569,7 +720,7 @@
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>60</cost>
+	<cost>80</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_ion_mini_1_icon</iconReplace>
@@ -590,7 +741,7 @@
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>60</cost>
+	<cost>80</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_focus_mini_1_icon</iconReplace>
@@ -666,7 +817,7 @@
 	<tip>tip_og_turret</tip>
 	<title>Dawn Flak Turret</title>
 	<short>€ Flak</short>
-	<desc>A powerful Flak turret, can build up an incredible volley to be fired in both defense and offense.</desc>
+	<desc>A powerful Flak turret, can build up an incredible volley to be fired in both defence and offense.</desc>
 	<tooltip>Turret</tooltip>
 	<damage>0</damage>
 	<sp>0</sp>
@@ -717,7 +868,7 @@
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>60</cost>
+	<cost>80</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_laser_mini_dawn_1_icon</iconReplace>
@@ -729,7 +880,7 @@
 	<tip>tip_og_turret_mini</tip>
 	<title>Dawn Light Laser Turret</title>
 	<short>€ Light L.</short>
-	<desc>Incapable of doing system damage, this Light Laser Turret is much better suited for shield suppression and defense.</desc>
+	<desc>Incapable of doing system damage, this Light Laser Turret is much better suited for shield suppression and defence.</desc>
 	<tooltip>Turret</tooltip>
 	<damage>0</damage>
 	<sp>0</sp>
@@ -738,7 +889,7 @@
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>60</cost>
+	<cost>80</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_laser_mini_dawn_2_icon</iconReplace>
@@ -759,7 +910,7 @@
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>60</cost>
+	<cost>80</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_focus_mini_dawn_icon</iconReplace>
@@ -1672,6 +1823,662 @@
 	<aug name="OG_REFLECTIVE_PLATING" />
 	<shieldImage>mup_long2</shieldImage>
 	<mv-mapImage>map_icon_og_executor</mv-mapImage>
+</shipBlueprint>
+
+<shipBlueprint name="PLAYER_SHIP_OG_KESTREL" layout="ogp_kestrel_a" img="ogp_kestrel_a">
+	<class>Iron Kestrel Cruiser</class>
+	<name>Superluminal</name>
+	<desc>An iconic Kestrel-model cruiser, this vessel is well rounded and well suited to both experienced and inexperienced captains.</desc>
+	<systemList>
+		<og_turret power="2" room="16" start="true" img="room_og_turret_5" turret="OG_TURRET_LASER_1">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</og_turret>
+		<og_turret_mini power="1" room="14" start="false" img="room_og_turret_2_noman" turret="OG_TURRET_LASER_RUSTY_MINI_1" />
+		<og_turret_mini_2 power="1" room="13" start="false" img="room_og_turret_2_noman" turret="OG_TURRET_LASER_RUSTY_MINI_1" />
+		<battery power="1" room="21" start="false" img="room_battery_6" />
+		<cloaking power="1" room="11" start="false" img="room_cloaking_3" />
+		<clonebay power="1" room="15" start="false">
+			<slot>
+				<number>1</number>
+			</slot>
+		</clonebay>
+		<doors power="1" room="4" start="true" img="room_doors_2">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</doors>
+		<drones power="2" max="8" room="8" start="false" img="room_drones_19" />
+		<engines power="2" room="2" start="true" img="room_engines">
+			<slot>
+				<direction>down</direction>
+				<number>2</number>
+			</slot>
+		</engines>
+		<hacking power="1" room="1" start="false" img="room_hacking_8" />
+		<medbay power="1" room="15" start="true" img="room_medbay">
+			<slot>
+				<number>1</number>
+			</slot>
+		</medbay>
+		<mind power="1" room="9" start="false" img="room_mind_6" />
+		<oxygen power="1" room="20" start="true" img="room_oxygen_13" />
+		<pilot power="2" room="0" start="true" img="room_pilot">
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</pilot>
+		<sensors power="1" room="3" start="true" img="room_sensors_2">
+			<slot>
+				<direction>up</direction>
+				<number>0</number>
+			</slot>
+		</sensors>
+		<shields power="2" max="8" room="17" start="true" img="room_shields">
+			<slot>
+				<direction>left</direction>
+				<number>0</number>
+			</slot>
+		</shields>
+		<teleporter power="1" room="5" start="false" />
+		<weapons power="2" room="7" start="true" img="room_weapons">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</weapons>
+	</systemList>
+	<weaponSlots>2</weaponSlots>
+	<droneSlots>2</droneSlots>
+	<weaponList missiles="3" count="2">
+		<weapon name="LASER_PIERCE" />
+	</weaponList>
+	<droneList drones="5" count="2" />
+	<health amount="30" />
+	<maxPower amount="7" />
+	<crewCount amount="1" class="human" />
+	<crewCount amount="1" class="orchid_vampweed" />
+	<crewCount amount="1" class="engi_separatist" />
+	<aug name="EX_OG_TURRET_ROTATION" />
+	<shieldImage>mup_standard1</shieldImage>
+</shipBlueprint>
+
+<shipBlueprint name="PLAYER_SHIP_OG_REBEL" layout="ogp_rebel_a" img="ogp_rebel_a">
+	<class>Iron Rebel Cruiser</class>
+	<name>Ajaccio</name>
+	<unlock id="ship_PLAYER_SHIP_OG_REBEL_unlock"/>
+	<desc>Using reverse engineered Federation artillery tech and weaponry similar to that of the Flagship, this powerful cruiser packs a serious punch.</desc>
+	<systemList>
+		<og_turret power="3" room="1" start="true" img="room_og_turret_5" turret="OG_TURRET_MISSILE_2">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</og_turret>
+		<og_turret_mini power="1" room="4" start="true" img="room_og_turret_3_noman" turret="OG_TURRET_FOCUS_MINI_1" />
+		<og_turret_mini_2 power="1" room="7" start="false" img="room_og_turret_2_noman" turret="OG_TURRET_LASER_RUSTY_MINI_1" />
+		<og_turret_mini_3 power="1" room="6" start="false" img="room_og_turret_2_noman" turret="OG_TURRET_LASER_RUSTY_MINI_1" />
+		<battery power="1" room="22" start="false" img="room_battery_3" />
+		<cloaking power="1" room="9" start="false" img="room_cloaking_2" />
+		<clonebay power="1" room="17" start="false">
+			<slot>
+				<number>1</number>
+			</slot>
+		</clonebay>
+		<doors power="1" room="14" start="true" img="room_doors">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</doors>
+		<drones power="2" room="3" start="false" img="room_drones_15" />
+		<engines power="2" room="5" start="true" img="room_engines_2">
+			<slot>
+				<direction>down</direction>
+				<number>2</number>
+			</slot>
+		</engines>
+		<hacking power="1" room="12" start="false" img="room_hacking_2" />
+		<medbay power="1" room="17" start="true" img="room_medbay">
+			<slot>
+				<number>1</number>
+			</slot>
+		</medbay>
+		<mind power="1" room="11" start="false" img="room_mind_5" />
+		<oxygen power="1" room="10" start="true" img="room_oxygen_19" />
+		<pilot power="1" room="0" start="true" img="room_pilot">
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</pilot>
+		<sensors power="1" room="13" start="true" img="room_sensors">
+			<slot>
+				<direction>down</direction>
+				<number>1</number>
+			</slot>
+		</sensors>
+		<shields power="2" room="18" start="true" img="room_shields_13">
+			<slot>
+				<direction>down</direction>
+				<number>3</number>
+			</slot>
+		</shields>
+		<teleporter power="1" room="8" start="false" />
+		<weapons power="2" room="2" start="false" img="room_weapons_12">
+			<slot>
+				<direction>right</direction>
+				<number>2</number>
+			</slot>
+		</weapons>
+	</systemList>
+	<weaponSlots>2</weaponSlots>
+	<droneSlots>2</droneSlots>
+	<weaponList missiles="16" count="2" />
+	<droneList drones="0" count="2" />
+	<health amount="30" />
+	<maxPower amount="8" />
+	<crewCount amount="1" class="human" />
+	<crewCount amount="1" class="human" />
+	<crewCount amount="1" class="human" />
+	<aug name="DISTRACTION_BUOY" />
+	<shieldImage>mup_standard2</shieldImage>
+	<mv-mapImage>map_icon_mup_rebel_a</mv-mapImage>
+</shipBlueprint>
+
+<shipBlueprint name="PLAYER_SHIP_OG_CURA" layout="ogp_cura_a" img="ogp_cura_a">
+	<class>Iron Innovation Cruiser</class>
+	<name>C.U.R.A.</name>
+	<unlock id="ship_PLAYER_SHIP_OG_CURA_unlock"/>
+	<desc>Powered with a neutered Rebel AI-core, this ship carries prototype equipment used for creating power surges.</desc>
+	<systemList>
+		<og_turret power="2" room="2" start="true" img="room_og_turret_5" turret="OG_TURRET_LASER_2">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</og_turret>
+		<og_turret_alt power="2" room="1" start="true" img="room_og_turret_6" turret="OG_TURRET_LASER_2">
+			<slot>
+				<direction>right</direction>
+				<number>3</number>
+			</slot>
+		</og_turret_alt>
+		<battery power="1" room="10" start="false" img="room_battery_3" />
+		<cloaking power="1" room="19" start="false" img="room_cloaking_10" />
+		<clonebay power="1" room="5" start="false">
+			<slot>
+				<number>2</number>
+			</slot>
+		</clonebay>
+		<doors power="2" room="16" start="true" img="room_doors_9">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</doors>
+		<drones power="2" max="8" room="18" start="true" img="room_drones_12" />
+		<engines power="3" room="3" start="true" img="room_engines">
+			<slot>
+				<direction>down</direction>
+				<number>2</number>
+			</slot>
+		</engines>
+		<hacking power="1" room="22" start="false" img="room_hacking_2" />
+		<medbay power="1" room="5" start="false" img="room_medbay_13">
+			<slot>
+				<number>-2</number>
+			</slot>
+		</medbay>
+		<mind power="1" room="11" start="false" img="room_mind_3" />
+		<oxygen power="1" room="23" start="false" img="room_oxygen_17" />
+		<pilot power="2" room="0" start="true" img="room_pilot">
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</pilot>
+		<sensors power="1" room="17" start="true" img="room_sensors_3">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</sensors>
+		<shields power="3" max="8" room="13" start="true" img="room_shields_14">
+			<slot>
+				<direction>up</direction>
+				<number>0</number>
+			</slot>
+		</shields>
+		<teleporter power="1" room="4" start="false" />
+		<weapons power="2" room="12" start="false" img="room_weapons_4">
+			<slot>
+				<direction>up</direction>
+				<number>0</number>
+			</slot>
+		</weapons>
+	</systemList>
+	<weaponSlots>2</weaponSlots>
+	<droneSlots>2</droneSlots>
+	<weaponList missiles="6" count="2" />
+	<droneList drones="9" count="2">
+		<drone name="REPAIR" />
+		<drone name="REPAIR" />
+	</droneList>
+	<health amount="30" />
+	<maxPower amount="8" />
+	<aug name="NO_GHOST" />
+	<aug name="CURA_SURGES_DRONES" />
+	<shieldImage>mup_disk</shieldImage>
+	<mv-mapImage>map_icon_mup_cura_a</mv-mapImage>
+</shipBlueprint>
+
+<shipBlueprint name="PLAYER_SHIP_OG_SEPARATIST" layout="ogp_separatist_a" img="ogp_separatist_a">
+	<class>Iron Separatist Cruiser</class>
+	<name>The Solitude</name>
+	<unlock id="ship_PLAYER_SHIP_OG_SEPARATIST_unlock"/>
+	<desc>A lonesome Separatist Engi pilots this ship without aid of an extensive crew, but with the company of his personnel drones he can manage.</desc>
+	<systemList>
+		<og_turret power="2" room="3" start="true" img="room_og_turret_5" turret="OG_TURRET_FLAK_1">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</og_turret>
+		<battery power="1" room="10" start="false" img="room_battery_2" />
+		<cloaking power="1" room="11" start="false" img="room_cloaking_3" />
+		<clonebay power="1" room="12" start="true">
+			<slot>
+				<number>1</number>
+			</slot>
+		</clonebay>
+		<doors power="2" room="9" start="true" img="room_doors">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</doors>
+		<drones power="2" max="8" room="14" start="false" img="room_drones_15" />
+		<engines power="2" room="1" start="true" img="room_engines_2">
+			<slot>
+				<direction>down</direction>
+				<number>2</number>
+			</slot>
+		</engines>
+		<hacking power="1" room="6" start="false" img="room_hacking_4" />
+		<medbay power="1" room="12" start="false" img="room_medbay_2">
+			<slot>
+				<number>-2</number>
+			</slot>
+		</medbay>
+		<mind power="1" room="5" start="false" img="room_mind_9" />
+		<oxygen power="1" room="2" start="false" img="room_oxygen_23" />
+		<pilot power="1" room="0" start="true" img="room_pilot_2">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</pilot>
+		<sensors power="1" room="13" start="false" img="room_sensors_3">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</sensors>
+		<shields power="2" max="8" room="4" start="true" img="room_shields_13">
+			<slot>
+				<direction>down</direction>
+				<number>3</number>
+			</slot>
+		</shields>
+		<teleporter power="1" room="7" start="false" />
+		<weapons power="2" room="8" start="true" img="room_weapons_12">
+			<slot>
+				<direction>right</direction>
+				<number>2</number>
+			</slot>
+		</weapons>
+	</systemList>
+	<weaponSlots>3</weaponSlots>
+	<droneSlots>2</droneSlots>
+	<weaponList missiles="6" count="3">
+		<weapon name="LASER_CHAINGUN" />
+		<weapon name="BOMB_ION" />
+	</weaponList>
+	<droneList drones="8" count="2">
+		<drone name="REPAIR" />
+		<drone name="MANNING" />
+	</droneList>
+	<health amount="30" />
+	<maxPower amount="8" />
+	<crewCount amount="1" class="engi_separatist_nano" />
+	<aug name="LOCKED_NANOBOT_DEFENCE_SYSTEM" />
+	<shieldImage>mup_orb1</shieldImage>
+	<mv-mapImage>map_icon_mup_separatist_a</mv-mapImage>
+</shipBlueprint>
+
+<shipBlueprint name="PLAYER_SHIP_OG_ANGEL" layout="ogp_angel_a" img="ogp_angel_a">
+	<class>Iron Angelic Deathbringer</class>
+	<name>Lucifer</name>
+	<unlock id="ship_PLAYER_SHIP_OG_ANGEL_unlock"/>
+	<desc>The Angels are some of the finest mercenaries in the galaxy. This stealth ship must rely on its deadly crew to kill the enemy quickly before it takes too much damage.</desc>
+	<systemList>
+		<og_turret_mini power="1" room="2" start="true" img="room_og_turret_2_noman" turret="OG_TURRET_FOCUS_MINI_1" />
+		<og_turret_mini_2 power="1" room="3" start="true" img="room_og_turret_2_noman" turret="OG_TURRET_LASER_MINI_2" />
+		<og_turret_mini_3 power="1" room="4" start="false" img="room_og_turret_2_noman" turret="OG_TURRET_LASER_RUSTY_MINI_1" />
+		<og_turret_mini_4 power="1" room="5" start="false" img="room_og_turret_2_noman" turret="OG_TURRET_LASER_RUSTY_MINI_1" />
+		<battery power="1" room="18" start="false" img="room_battery_13" />
+		<cloaking power="2" room="6" start="true" img="room_cloaking_9" />
+		<clonebay power="1" room="9" start="false">
+			<slot>
+				<number>2</number>
+			</slot>
+		</clonebay>
+		<doors power="2" room="11" start="true" img="room_doors_7">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</doors>
+		<drones power="2" max="8" room="17" start="false" img="room_drones_18" />
+		<engines power="3" room="1" start="true" img="room_engines_8">
+			<slot>
+				<direction>left</direction>
+				<number>1</number>
+			</slot>
+		</engines>
+		<hacking power="1" room="10" start="false" img="room_hacking_2" />
+		<medbay power="1" room="9" start="true" img="room_medbay_15">
+			<slot>
+				<number>-2</number>
+			</slot>
+		</medbay>
+		<mind power="1" room="12" start="false" img="room_mind_7" />
+		<oxygen power="1" room="7" start="true" img="room_oxygen_13" />
+		<pilot power="1" room="0" start="true" img="room_pilot_2">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</pilot>
+		<sensors power="2" room="13" start="true" img="room_sensors_3">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</sensors>
+		<shields power="2" max="8" room="14" start="false" img="room_shields_11">
+			<slot>
+				<direction>down</direction>
+				<number>1</number>
+			</slot>
+		</shields>
+		<teleporter power="1" room="15" start="true" />
+		<weapons power="2" max="8" room="8" start="false" img="room_weapons_12">
+			<slot>
+				<direction>right</direction>
+				<number>2</number>
+			</slot>
+		</weapons>
+	</systemList>
+	<weaponSlots>2</weaponSlots>
+	<droneSlots>2</droneSlots>
+	<weaponList missiles="5" count="2" />
+	<droneList drones="13" count="2" />
+	<health amount="30" />
+	<maxPower amount="9" />
+	<crewCount amount="1" class="human_angel" />
+	<crewCount amount="1" class="rock" />
+	<crewCount amount="1" class="mantis" />
+	<aug name="OG_REFLECTIVE_PLATING" />
+	<shieldImage>mup_disk</shieldImage>
+	<mv-mapImage>map_icon_mup_angel_a</mv-mapImage>
+</shipBlueprint>
+
+<shipBlueprint name="PLAYER_SHIP_OG_ROCK" layout="ogp_rock_a" img="ogp_rock_a">
+	<class>Iron Rock Cruiser</class>
+	<name>Bulwark</name>
+	<unlock id="ship_PLAYER_SHIP_OG_ROCK_unlock"/>
+	<desc>Similar to its designers, this super-dense behemoth uses brute force to overwhelm its foes.</desc>
+	<systemList>
+		<og_turret power="2" room="12" start="true" img="room_og_turret_3" turret="OG_TURRET_MISSILE_1">
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</og_turret>
+		<og_turret_alt power="2" room="1" start="true" img="room_og_turret_3" turret="OG_TURRET_MISSILE_2">
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</og_turret_alt>
+		<battery power="1" room="10" start="false" img="room_battery_3" />
+		<cloaking power="1" room="9" start="false" img="room_cloaking_3" />
+		<clonebay power="1" room="14" start="false">
+			<slot>
+				<number>2</number>
+			</slot>
+		</clonebay>
+		<doors power="1" room="16" start="true" img="room_doors_3">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</doors>
+		<drones power="2" max="8" room="3" start="false" img="room_drones_7" />
+		<engines power="2" room="11" start="true" img="room_engines_5">
+			<slot>
+				<direction>up</direction>
+				<number>0</number>
+			</slot>
+		</engines>
+		<hacking power="1" room="6" start="true" img="room_hacking_2" />
+		<medbay power="1" room="14" start="true" img="room_medbay_7">
+			<slot>
+				<number>2</number>
+			</slot>
+		</medbay>
+		<mind power="1" room="7" start="false" img="room_mind_3" />
+		<oxygen power="1" room="0" start="true" img="room_oxygen_7" />
+		<pilot power="1" room="4" start="true" img="room_pilot">
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</pilot>
+		<sensors power="1" room="17" start="true" img="room_sensors_3_noman">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</sensors>
+		<shields power="2" max="8" room="2" start="false" img="room_shields_4">
+			<slot>
+				<direction>left</direction>
+				<number>0</number>
+			</slot>
+		</shields>
+		<teleporter power="1" room="8" start="false" />
+		<weapons power="3" room="13" start="false" img="room_weapons_5">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</weapons>
+	</systemList>
+	<weaponSlots>2</weaponSlots>
+	<droneSlots>2</droneSlots>
+	<weaponList missiles="18" count="2" />
+	<droneList drones="0" count="2" />
+	<health amount="30" />
+	<maxPower amount="10" />
+	<crewCount amount="1" class="rock" />
+	<crewCount amount="1" class="rock" />
+	<crewCount amount="1" class="rock" />
+	<aug name="LOCKED_ROCK_ARMOR" />
+	<shieldImage>mup_small_long2</shieldImage>
+	<mv-mapImage>map_icon_mup_rock_a</mv-mapImage>
+</shipBlueprint>
+
+<shipBlueprint name="PLAYER_SHIP_OG_PEACEKEEPER" layout="ogp_peace_a" img="ogp_peace_a">
+	<class>Iron Peacekeeping Cruiser</class>
+	<name>Lazarus</name>
+	<unlock id="ship_PLAYER_SHIP_OG_PEACEKEEPER_unlock"/>
+	<desc>A sleek and state of the art Zoltan vessel design. This model is iconic for being Devorak Rei's very own personal cruiser.</desc>
+	<systemList>
+		<og_turret_mini power="1" room="1" start="true" turret="OG_TURRET_FOCUS_MINI_1" img="room_og_turret_2_noman" />
+		<og_turret_mini_2 power="1" room="2" start="true" turret="OG_TURRET_ION_MINI_1" img="room_og_turret_2_noman" />
+		<og_turret_mini_3 power="1" room="3" start="true" turret="OG_TURRET_LASER_RUSTY_MINI_1" img="room_og_turret_3_noman" />
+		<battery power="1" room="14" start="true" img="room_battery_2" />
+		<cloaking power="1" room="10" start="false" img="room_cloaking_9" />
+		<clonebay power="1" room="12" start="true">
+			<slot>
+				<number>2</number>
+			</slot>
+		</clonebay>
+		<doors power="1" room="9" start="true" img="room_doors_7">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</doors>
+		<drones power="2" max="8" room="17" start="false" img="room_drones_18" />
+		<engines power="2" room="6" start="true" img="room_engines_10">
+			<slot>
+				<direction>left</direction>
+				<number>0</number>
+			</slot>
+		</engines>
+		<hacking power="1" room="11" start="false" img="room_hacking_3" />
+		<medbay power="1" room="12" start="false" img="room_medbay_7">
+			<slot>
+				<number>2</number>
+			</slot>
+		</medbay>
+		<mind power="1" room="16" start="false" img="room_mind_9" />
+		<oxygen power="1" room="7" start="true" img="room_oxygen" />
+		<pilot power="1" room="0" start="true" img="room_pilot_4">
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</pilot>
+		<sensors power="1" room="15" start="true" img="room_sensors_2">
+			<slot>
+				<direction>up</direction>
+				<number>0</number>
+			</slot>
+		</sensors>
+		<shields power="2" max="8" room="13" start="false" img="room_shields_5">
+			<slot>
+				<direction>up</direction>
+				<number>0</number>
+			</slot>
+		</shields>
+		<teleporter power="1" room="8" start="true" />
+		<weapons power="2" room="5" start="false" img="room_weapons_12">
+			<slot>
+				<direction>right</direction>
+				<number>2</number>
+			</slot>
+		</weapons>
+	</systemList>
+	<weaponSlots>2</weaponSlots>
+	<droneSlots>2</droneSlots>
+	<weaponList missiles="7" count="2" />
+	<droneList drones="0" count="2" />
+	<health amount="30" />
+	<maxPower amount="5" />
+	<crewCount amount="1" class="zoltan_peacekeeper" />
+	<crewCount amount="1" class="zoltan_peacekeeper" />
+	<crewCount amount="1" class="zoltan_devotee" />
+	<aug name="LOCKED_ENERGY_SHIELD" />
+	<aug name="LOCKED_GLOBAL_TELEPORT" />
+	<shieldImage>mup_small_long2</shieldImage>
+	<mv-mapImage>map_icon_mup_peace_a</mv-mapImage>
+</shipBlueprint>
+
+<shipBlueprint name="PLAYER_SHIP_OG_KNIGHT" layout="ogp_knight_a" img="ogp_knight_a">
+	<class>Iron Knighted Cruiser</class>
+	<name>The Black Raven</name>
+	<unlock id="ship_PLAYER_SHIP_OG_KNIGHT_unlock"/>
+	<desc>This small cruiser might have little hull, but it still exists as the KoN's flagship vessel. It's not the size that matters, but the way you use it.</desc>
+	<systemList>
+		<og_turret_mini power="1" room="4" start="true" turret="OG_TURRET_FOCUS_MINI_DAWN" img="room_og_turret_2_noman" />
+		<battery power="1" room="8" start="false" img="room_battery_2" />
+		<cloaking power="3" room="3" start="true" img="room_cloaking_9" />
+		<clonebay power="1" room="14" start="false">
+			<slot>
+				<number>0</number>
+			</slot>
+		</clonebay>
+		<doors power="1" room="10" start="true" img="room_computer">
+			<slot>
+				<direction>up</direction>
+				<number>0</number>
+			</slot>
+		</doors>
+		<drones power="2" max="8" room="2" start="false" img="room_drones_19" />
+		<engines power="4" room="11" start="true" img="room_engines_3">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</engines>
+		<hacking power="1" room="13" start="false" img="room_hacking_3" />
+		<medbay power="1" room="14" start="true" img="room_medbay_9">
+			<slot>
+				<number>-2</number>
+			</slot>
+		</medbay>
+		<mind power="1" room="12" start="false" img="room_mind_12" />
+		<oxygen power="1" room="9" start="true" img="room_oxygen_14" />
+		<pilot power="1" room="1" start="true" img="room_pilot_3">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</pilot>
+		<sensors power="1" room="0" start="false" img="room_sensors_8">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</sensors>
+		<shields power="2" max="8" room="7" start="false" img="room_shields_11">
+			<slot>
+				<direction>down</direction>
+				<number>1</number>
+			</slot>
+		</shields>
+		<teleporter power="1" room="6" start="false" />
+		<weapons power="2" room="5" start="true" img="room_weapons_3">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</weapons>
+	</systemList>
+	<weaponSlots>3</weaponSlots>
+	<droneSlots>2</droneSlots>
+	<weaponList missiles="3" count="3">
+		<weapon name="LASER_BURST_2" />
+		<weapon name="MISSILES_FREE" />
+	</weaponList>
+	<droneList drones="0" count="2" />
+	<health amount="15" />
+	<maxPower amount="9" />
+	<crewCount amount="1" class="slug_knight" />
+	<crewCount amount="1" class="slug_saboteur" />
+	<crewCount amount="1" class="slug" />
+	<aug name="LOCKED_SLUG_GEL" />
+	<shieldImage>mup_orb1</shieldImage>
+	<mv-mapImage>map_icon_mup_knight_a</mv-mapImage>
 </shipBlueprint>
 </FTL>
 
