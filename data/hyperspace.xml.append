@@ -4,6 +4,7 @@
 <mod:findLike type="scripts" reverse="false">
 	<mod-append:script>data/og_scripts/core.lua</mod-append:script>
 	<mod-append:script>data/og_scripts/turret_systems.lua</mod-append:script>
+	<mod-append:script>data/og_scripts/turret_systems_stats.lua</mod-append:script>
 	<mod-append:script>data/og_scripts/turret_menu_temp.lua</mod-append:script>
 	<mod-append:script>data/og_scripts/ship_ach.lua</mod-append:script>
 </mod:findLike>
@@ -328,6 +329,24 @@ This enemy's turrets will be fully charged at the start of combat.</tooltip>
 	<variable name="rep_comb_og_iron" op="set" val="0"/>
 
 	<metaVariable name="juke_og_iron" op="set" val="0"/>
+	<metaVariable name="og_turret_tutorial" op="set" val="0"/>
+
+	<req name="OG_TURRET_TUTORIAL_SHOW" type="all">
+		<req type="any">
+			<name>og_turret</name>
+			<name>og_turret_alt</name>
+			<name>og_turret_3</name>
+			<name>og_turret_4</name>
+			<name>og_turret_mini</name>
+			<name>og_turret_mini_2</name>
+			<name>og_turret_mini_3</name>
+			<name>og_turret_mini_4</name>
+			<name>og_turret_count</name>
+		</req>
+		<req lvl="0" max_lvl="0">
+			<name>og_turret_tutorial</name>
+		</req>
+	</req>
 
 	<req name="ASTRO_OG_IRON" type="all">
 		<name>loc_astrometrics_neutral_og</name>
@@ -446,9 +465,9 @@ This enemy's turrets will be fully charged at the start of combat.</tooltip>
 		<mod-append:category type="SYSTEMS">
 			<customTitle>TURRET SYSTEMS</customTitle>
 			<guaranteedSystems>
-                <og_turret/>
+				<og_turret/>
 				<og_turret_alt/>
-            </guaranteedSystems>
+			</guaranteedSystems>
 			<item>
 				<blueprint>OG_SHOP_ITEM_TURRET_SYSTEMS</blueprint>
 			</item>

@@ -244,32 +244,6 @@ beamDamageMods["OG_FOCUS_PROJECTILE_WEAK_FAKE"] = {iDamage = 0}
 
 mods.og.turretBlueprintsList = {}
 local turretBlueprintsList = mods.og.turretBlueprintsList 
-turretBlueprintsList[0] = "OG_EMPTY_TURRET"
-table.insert(turretBlueprintsList, "OG_TURRET_LASER_1")
-table.insert(turretBlueprintsList, "OG_TURRET_LASER_RUSTY_1")
-table.insert(turretBlueprintsList, "OG_TURRET_LASER_2")
-table.insert(turretBlueprintsList, "OG_TURRET_LASER_ANCIENT")
-table.insert(turretBlueprintsList, "OG_TURRET_LASER_CEL_1")
-table.insert(turretBlueprintsList, "OG_TURRET_ION_1")
-table.insert(turretBlueprintsList, "OG_TURRET_ION_2")
-table.insert(turretBlueprintsList, "OG_TURRET_MISSILE_1")
-table.insert(turretBlueprintsList, "OG_TURRET_MISSILE_2")
-table.insert(turretBlueprintsList, "OG_TURRET_FLAK_1")
-table.insert(turretBlueprintsList, "OG_TURRET_FOCUS_1")
-table.insert(turretBlueprintsList, "OG_TURRET_LASER_MINI_1")
-table.insert(turretBlueprintsList, "OG_TURRET_LASER_RUSTY_MINI_1")
-table.insert(turretBlueprintsList, "OG_TURRET_LASER_MINI_2")
-table.insert(turretBlueprintsList, "OG_TURRET_ION_MINI_1")
-table.insert(turretBlueprintsList, "OG_TURRET_FOCUS_MINI_1")
-
-table.insert(turretBlueprintsList, "OG_TURRET_LASER_DAWN")
-table.insert(turretBlueprintsList, "OG_TURRET_ION_DAWN")
-table.insert(turretBlueprintsList, "OG_TURRET_MISSILE_DAWN")
-table.insert(turretBlueprintsList, "OG_TURRET_FLAK_DAWN")
-table.insert(turretBlueprintsList, "OG_TURRET_FOCUS_DAWN")
-table.insert(turretBlueprintsList, "OG_TURRET_LASER_MINI_DAWN_1")
-table.insert(turretBlueprintsList, "OG_TURRET_LASER_MINI_DAWN_2")
-table.insert(turretBlueprintsList, "OG_TURRET_FOCUS_MINI_DAWN")
 
 --1 = MISSILES, 2 = FLAK, 3 = DRONES, 4 = PROJECTILES, 5 = HACKING 
 local defence_types = {
@@ -283,393 +257,6 @@ local defence_types = {
 
 mods.og.turrets = {}
 local turrets = mods.og.turrets
-turrets["OG_EMPTY_TURRET"] = {
-	image = Hyperspace.Animations:GetAnimation("og_turret_laser_error"),
-	multi_anim = {frames = 3},
-	glow = Hyperspace.Animations:GetAnimation("og_turret_laser_1_glow"),
-	fire_points = {{x = 12, y = -42, fire_delay = 0.1}, {x = -12, y = -42, fire_delay = 0.5}},
-	defence_type = defence_types.ALL,
-	blueprint_type = 1,
-	blueprint = "OG_LASER_PROJECTILE_BASE",
-	charges = 1,
-	charges_per_charge = 1,
-	rotation_speed = 360,
-	charge_time = {[0] = 9, 9, 8, 7, 6, 5, 4, 3, 2, 1},
-}
-turrets["OG_TURRET_LASER_1"] = {
-	enemy_burst = 2,
-	image = Hyperspace.Animations:GetAnimation("og_turret_laser_1"),
-	multi_anim = {frames = 3},
-	glow = Hyperspace.Animations:GetAnimation("og_turret_laser_1_glow"),
-	fire_points = {{x = 12, y = -42, fire_delay = 0.5}, {x = -12, y = -42, fire_delay = 0.5}},
-	defence_type = defence_types.PROJECTILES,
-	blueprint_type = 1,
-	blueprint = "OG_LASER_PROJECTILE_BASE",
-	charges = 6,
-	charges_per_charge = 2,
-	rotation_speed = 180,
-	charge_time = {[0] = 14, 14, 12, 9, 7, 6, 5, 4, 3},
-}
-turrets["OG_TURRET_LASER_RUSTY_1"] = {
-	enemy_burst = 2,
-	shot_radius = 42,
-	image = Hyperspace.Animations:GetAnimation("og_turret_laser_rusty_1"),
-	multi_anim = {frames = 3},
-	glow = Hyperspace.Animations:GetAnimation("og_turret_laser_1_glow"),
-	fire_points = {{x = 12, y = -42, fire_delay = 0.5}, {x = -12, y = -42, fire_delay = 0.5}},
-	defence_type = defence_types.PROJECTILES,
-	blueprint_type = 1,
-	blueprint = "OG_LASER_PROJECTILE_BASE",
-	charges = 6,
-	charges_per_charge = 2,
-	rotation_speed = 180,
-	charge_time = {[0] = 16, 16, 13, 11, 9, 7, 6, 5, 4},
-}
-turrets["OG_TURRET_LASER_2"] = {
-	enemy_burst = 1,
-	image = Hyperspace.Animations:GetAnimation("og_turret_laser_2"),
-	glow = Hyperspace.Animations:GetAnimation("og_turret_laser_2_glow"),
-	fire_points = {{x = 0, y = -60, fire_delay = 1}},
-	defence_type = defence_types.DRONES_MISSILES,
-	blueprint_type = 1,
-	blueprint = "OG_LASER_PROJECTILE_HEAVY",
-	charges = 3,
-	charges_per_charge = 1,
-	rotation_speed = 120,
-	charge_time = {[0] = 9, 9, 7.5, 6, 5, 4.5, 4, 3.75, 3.5},
-}
-turrets["OG_TURRET_LASER_ANCIENT"] = {
-	enemy_burst = 3,
-	image = Hyperspace.Animations:GetAnimation("og_turret_laser_ancient"),
-	glow = Hyperspace.Animations:GetAnimation("og_turret_laser_ancient_glow"),
-	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_laser_ancient_charge.png", -74, -74, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
-	fire_points = {{x = 0, y = 0, fire_delay = 0.3}},
-	defence_type = defence_types.PROJECTILES_MISSILES,
-	blueprint_type = 1,
-	blueprint = "OG_LASER_PROJECTILE_ANCIENT",
-	charges = 6,
-	charges_per_charge = 3,
-	rotation_speed = 180,
-	charge_time = {[0] = 14, 14, 12, 9, 7, 6, 5, 4, 3},
-}
-turrets["OG_TURRET_LASER_CEL_1"] = {
-	enemy_burst = 4,
-	image = Hyperspace.Animations:GetAnimation("og_turret_laser_cel_1"),
-	glow = Hyperspace.Animations:GetAnimation("og_turret_laser_cel_1_glow"),
-	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_laser_cel_1_charge.png", -13, -28, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
-	fire_points = {{x = 0, y = -40, fire_delay = 0.25}},
-	defence_type = defence_types.ALL,
-	blueprint_type = 1,
-	blueprint = "OG_LASER_PROJECTILE_CEL",
-	charges = 8,
-	charges_per_charge = 4,
-	rotation_speed = 240,
-	charge_time = {[0] = 24, 24, 20, 17, 14, 12, 10, 8, 7},
-}
-turrets["OG_TURRET_ION_1"] = {
-	enemy_burst = 1,
-	image = Hyperspace.Animations:GetAnimation("og_turret_ion_1"),
-	glow = Hyperspace.Animations:GetAnimation("og_turret_ion_1_glow"),
-	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_ion_1_charge.png", -39, -10, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
-	fire_points = {{x = 0, y = -42, fire_delay = 0.5}},
-	defence_type = defence_types.DRONES,
-	blueprint_type = 1,
-	blueprint = "OG_ION_PROJECTILE_BASE",
-	charges = 1,
-	charges_per_charge = 1,
-	rotation_speed = 180,
-	charge_time = {[0] = 9, 9, 7.5, 6, 5, 4.5, 4, 3.75, 3.5},
-}
-turrets["OG_TURRET_ION_2"] = {
-	enemy_burst = 2,
-	image = Hyperspace.Animations:GetAnimation("og_turret_ion_2"),
-	glow = Hyperspace.Animations:GetAnimation("og_turret_ion_2_glow"),
-	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_ion_2_charge.png", -30, -11, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
-	fire_points = {{x = 5, y = -32, fire_delay = 0.25}, {x = -5, y = -32, fire_delay = 0.5}},
-	defence_type = defence_types.DRONES,
-	blueprint_type = 1,
-	blueprint = "OG_ION_PROJECTILE_FIRE",
-	charges = 4,
-	charges_per_charge = 2,
-	rotation_speed = 180,
-	charge_time = {[0] = 17, 17, 14, 11, 9, 7, 5, 5, 4},
-}
-turrets["OG_TURRET_MISSILE_1"] = {
-	enemy_burst = 3,
-	homing = 720,
-	aim_cone = 45,
-	image = Hyperspace.Animations:GetAnimation("og_turret_missile_1"),
-	glow = Hyperspace.Animations:GetAnimation("og_turret_missile_1_glow"),
-	fire_points = {{x = 0, y = -30, fire_delay = 0.4}},
-	defence_type = defence_types.ALL,
-	blueprint_type = 2,
-	ammo_consumption = 0.2,
-	blueprint = "OG_MISSILE_PROJECTILE_SWARM",
-	charges = 7,
-	charges_per_charge = 1,
-	rotation_speed = 120,
-	charge_time = {[0] = 8.5, 8.5, 7, 6, 5, 4, 3.5, 3, 2.5},
-}
-turrets["OG_TURRET_MISSILE_2"] = {
-	enemy_burst = 2,
-	homing = 480,
-	aim_cone = 30,
-	image = Hyperspace.Animations:GetAnimation("og_turret_missile_2"),
-	glow = Hyperspace.Animations:GetAnimation("og_turret_missile_2_glow"),
-	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_missile_2_charge.png", -6, -4, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
-	fire_points = {{x = 26, y = -48, fire_delay = 0.5}, {x = 15, y = -48, fire_delay = 0.5}, {x = -15, y = -48, fire_delay = 0.5}, {x = -26, y = -48, fire_delay = 0.5}},
-	defence_type = defence_types.DRONES_MISSILES,
-	blueprint_type = 2,
-	ammo_consumption = 0.5,
-	blueprint = "OG_MISSILE_PROJECTILE_HEAVY",
-	charges = 4,
-	charges_per_charge = 4,
-	rotation_speed = 120,
-	charge_time = {[0] = 20, 20, 17, 14, 12, 10, 8.5, 7, 6},
-}
-turrets["OG_TURRET_FLAK_1"] = {
-	enemy_burst = 3,
-	shot_radius = 42,
-	aim_cone = 1,
-	image = Hyperspace.Animations:GetAnimation("og_turret_flak_1"),
-	glow = Hyperspace.Animations:GetAnimation("og_turret_flak_1_glow"),
-	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_flak_1_charge.png", -33, -33, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
-	fire_points = {{x = 0, y = -30, fire_delay = 0}, {x = 0, y = -30, fire_delay = 0}, {x = 0, y = -30, fire_delay = 0.25}},
-	defence_type = defence_types.ALL,
-	blueprint_type = 1,
-	blueprint = "OG_FLAK_PROJECTILE",
-	charges = 9,
-	charges_per_charge = 3,
-	rotation_speed = 180,
-	charge_time = {[0] = 14, 14, 12, 9, 7, 6, 5, 4, 3},
-}
-turrets["OG_TURRET_FOCUS_1"] = {
-	enemy_burst = 1,
-	hold_time = 0.4,
-	speed_reduction = 0.5,
-	image = Hyperspace.Animations:GetAnimation("og_turret_focus_1"),
-	glow = Hyperspace.Animations:GetAnimation("og_turret_focus_1_glow"),
-	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_focus_1_charge.png", -24, -8, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
-	fire_points = {{x = 0, y = -7, fire_delay = 0.7}},
-	defence_type = defence_types.MISSILES,
-	blueprint_type = 3,
-	blueprint = "OG_FOCUS_PROJECTILE",
-	blueprint_fake = "OG_FOCUS_PROJECTILE_FAKE",
-	charges = 3,
-	charges_per_charge = 1,
-	rotation_speed = 240,
-	charge_time = {[0] = 14, 14, 12, 9, 7, 6, 5, 4, 3},
-}
-turrets["OG_TURRET_LASER_MINI_1"] = {
-	mini = true,
-	image = Hyperspace.Animations:GetAnimation("og_turret_laser_mini_1"),
-	glow = Hyperspace.Animations:GetAnimation("og_turret_laser_mini_1_glow"),
-	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_laser_mini_1_charge.png", -4, -3, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
-	fire_points = {{x = 0, y = -12, fire_delay = 0.25}},
-	defence_type = defence_types.PROJECTILES_MISSILES,
-	blueprint_type = 1,
-	blueprint = "OG_LASER_PROJECTILE_BASE",
-	charges = 1,
-	charges_per_charge = 1,
-	rotation_speed = 240,
-	charge_time = {[0] = 10, 10, 8, 6, 5, 4, 3.5, 3, 2.5},
-}
-turrets["OG_TURRET_LASER_RUSTY_MINI_1"] = {
-	mini = true,
-	shot_radius = 21,
-	image = Hyperspace.Animations:GetAnimation("og_turret_laser_rusty_mini_1"),
-	glow = Hyperspace.Animations:GetAnimation("og_turret_laser_mini_1_glow"),
-	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_laser_mini_1_charge.png", -4, -3, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
-	fire_points = {{x = 0, y = -12, fire_delay = 0.25}},
-	defence_type = defence_types.PROJECTILES_MISSILES,
-	blueprint_type = 1,
-	blueprint = "OG_LASER_PROJECTILE_BASE",
-	charges = 1,
-	charges_per_charge = 1,
-	rotation_speed = 240,
-	charge_time = {[0] = 12, 12, 10, 8, 6, 5, 4, 3.5, 3},
-}
-turrets["OG_TURRET_LASER_MINI_2"] = {
-	enemy_burst = 1,
-	mini = true,
-	image = Hyperspace.Animations:GetAnimation("og_turret_laser_mini_2"),
-	glow = Hyperspace.Animations:GetAnimation("og_turret_laser_mini_2_glow"),
-	glow_offset = {x = -6, y = -4},
-	glow_name = "og_turrets/turret_laser_mini_2_glow",
-	glow_images = {},
-	fire_points = {{x = 0, y = -16, fire_delay = 0.4}},
-	defence_type = defence_types.PROJECTILES,
-	blueprint_type = 1,
-	blueprint = "OG_LASER_PROJECTILE_LIGHT",
-	charges = 3,
-	charges_per_charge = 1,
-	rotation_speed = 240,
-	charge_time = {[0] = 5, 5, 3.5, 2.5, 2, 1.75, 1.5, 1.25, 1},
-} -- add mini ion (anti drone) and mini focus (anti laser)
-turrets["OG_TURRET_ION_MINI_1"] = {
-	enemy_burst = 1,
-	mini = true,
-	image = Hyperspace.Animations:GetAnimation("og_turret_ion_mini_1"),
-	glow = Hyperspace.Animations:GetAnimation("og_turret_ion_mini_1_glow"),
-	glow_offset = {x = -17, y = -6},
-	glow_name = "og_turrets/turret_ion_mini_1_glow",
-	glow_images = {},
-	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_ion_mini_1_charge.png", -17, -6, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
-	fire_points = {{x = 0, y = -12, fire_delay = 0.25}},
-	defence_type = defence_types.DRONES,
-	blueprint_type = 1,
-	blueprint = "OG_ION_PROJECTILE_WEAK",
-	charges = 1,
-	charges_per_charge = 1,
-	rotation_speed = 240,
-	charge_time = {[0] = 7, 7, 6, 5, 4, 3.5, 3, 2.75, 2.5},
-}
-turrets["OG_TURRET_FOCUS_MINI_1"] = {
-	enemy_burst = 1,
-	mini = true,
-	hold_time = 0.4,
-	speed_reduction = 0.5,
-	image = Hyperspace.Animations:GetAnimation("og_turret_focus_mini_1"),
-	glow = Hyperspace.Animations:GetAnimation("og_turret_focus_mini_1_glow"),
-	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_focus_mini_1_charge.png", -17, -6, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
-	fire_points = {{x = 0, y = -4, fire_delay = 0.7}},
-	defence_type = defence_types.MISSILES,
-	blueprint_type = 3,
-	blueprint = "OG_FOCUS_PROJECTILE_WEAK",
-	blueprint_fake = "OG_FOCUS_PROJECTILE_WEAK_FAKE",
-	charges = 2,
-	charges_per_charge = 1,
-	rotation_speed = 240,
-	charge_time = {[0] = 7, 7, 6, 5, 4, 3.5, 3, 2.75, 2.5},
-}
-
-
-turrets["OG_TURRET_LASER_DAWN"] = {
-	enemy_burst = 1,
-	image = Hyperspace.Animations:GetAnimation("og_turret_laser_dawn"),
-	glow = Hyperspace.Animations:GetAnimation("og_turret_laser_2_glow"),
-	fire_points = {{x = 0, y = -60, fire_delay = 1}},
-	defence_type = defence_types.DRONES_MISSILES,
-	blueprint_type = 1,
-	blueprint = "OG_LASER_PROJECTILE_HEAVY",
-	charges = 3,
-	charges_per_charge = 1,
-	rotation_speed = 120,
-	charge_time = {[0] = 7.5, 7.5, 6, 5, 4.5, 4, 3.75, 3.5},
-}
-turrets["OG_TURRET_ION_DAWN"] = {
-	enemy_burst = 2,
-	image = Hyperspace.Animations:GetAnimation("og_turret_ion_dawn"),
-	glow = Hyperspace.Animations:GetAnimation("og_turret_ion_2_glow"),
-	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_ion_2_charge.png", -30, -11, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
-	fire_points = {{x = 5, y = -32, fire_delay = 0.25}, {x = -5, y = -32, fire_delay = 0.5}},
-	defence_type = defence_types.DRONES,
-	blueprint_type = 1,
-	blueprint = "OG_ION_PROJECTILE_FIRE",
-	charges = 4,
-	charges_per_charge = 2,
-	rotation_speed = 180,
-	charge_time = {[0] = 14, 14, 11, 9, 7, 5, 5, 4},
-}
-turrets["OG_TURRET_MISSILE_DAWN"] = {
-	enemy_burst = 2,
-	homing = 480,
-	aim_cone = 30,
-	image = Hyperspace.Animations:GetAnimation("og_turret_missile_dawn"),
-	glow = Hyperspace.Animations:GetAnimation("og_turret_missile_dawn_glow"),
-	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_missile_2_charge.png", -6, -4, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
-	fire_points = {{x = 26, y = -48, fire_delay = 0.5}, {x = 15, y = -48, fire_delay = 0.5}, {x = -15, y = -48, fire_delay = 0.5}, {x = -26, y = -48, fire_delay = 0.5}},
-	defence_type = defence_types.DRONES_MISSILES,
-	blueprint_type = 2,
-	ammo_consumption = 0.5,
-	blueprint = "OG_MISSILE_PROJECTILE_HEAVY",
-	charges = 4,
-	charges_per_charge = 4,
-	rotation_speed = 120,
-	charge_time = {[0] = 17, 17, 14, 12, 10, 8.5, 7, 6},
-}
-turrets["OG_TURRET_FLAK_DAWN"] = {
-	enemy_burst = 3,
-	shot_radius = 42,
-	aim_cone = 1,
-	image = Hyperspace.Animations:GetAnimation("og_turret_flak_dawn"),
-	glow = Hyperspace.Animations:GetAnimation("og_turret_flak_1_glow"),
-	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_flak_1_charge.png", -33, -33, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
-	fire_points = {{x = 0, y = -30, fire_delay = 0}, {x = 0, y = -30, fire_delay = 0}, {x = 0, y = -30, fire_delay = 0.25}},
-	defence_type = defence_types.ALL,
-	blueprint_type = 1,
-	blueprint = "OG_FLAK_PROJECTILE",
-	charges = 9,
-	charges_per_charge = 3,
-	rotation_speed = 180,
-	charge_time = {[0] = 12, 12, 9, 7, 6, 5, 4, 3},
-}
-turrets["OG_TURRET_FOCUS_DAWN"] = {
-	enemy_burst = 1,
-	hold_time = 0.4,
-	speed_reduction = 0.5,
-	image = Hyperspace.Animations:GetAnimation("og_turret_focus_dawn"),
-	glow = Hyperspace.Animations:GetAnimation("og_turret_focus_1_glow"),
-	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_focus_1_charge.png", -24, -8, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
-	fire_points = {{x = 0, y = -7, fire_delay = 0.7}},
-	defence_type = defence_types.MISSILES,
-	blueprint_type = 3,
-	blueprint = "OG_FOCUS_PROJECTILE",
-	blueprint_fake = "OG_FOCUS_PROJECTILE_FAKE",
-	charges = 3,
-	charges_per_charge = 1,
-	rotation_speed = 240,
-	charge_time = {[0] = 12, 12, 9, 7, 6, 5, 4, 3},
-}
-turrets["OG_TURRET_LASER_MINI_DAWN_1"] = {
-	mini = true,
-	image = Hyperspace.Animations:GetAnimation("og_turret_laser_mini_dawn_1"),
-	glow = Hyperspace.Animations:GetAnimation("og_turret_laser_mini_1_glow"),
-	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_laser_mini_1_charge.png", -4, -3, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
-	fire_points = {{x = 0, y = -12, fire_delay = 0.25}},
-	defence_type = defence_types.PROJECTILES_MISSILES,
-	blueprint_type = 1,
-	blueprint = "OG_LASER_PROJECTILE_BASE",
-	charges = 1,
-	charges_per_charge = 1,
-	rotation_speed = 240,
-	charge_time = {[0] = 8, 8, 6, 5, 4, 3.5, 3, 2.5},
-}
-turrets["OG_TURRET_LASER_MINI_DAWN_2"] = {
-	enemy_burst = 1,
-	mini = true,
-	image = Hyperspace.Animations:GetAnimation("og_turret_laser_mini_dawn_2"),
-	glow = Hyperspace.Animations:GetAnimation("og_turret_laser_mini_2_glow"),
-	glow_offset = {x = -6, y = -4},
-	glow_name = "og_turrets/turret_laser_mini_2_glow",
-	glow_images = {},
-	fire_points = {{x = 0, y = -16, fire_delay = 0.4}},
-	defence_type = defence_types.PROJECTILES,
-	blueprint_type = 1,
-	blueprint = "OG_LASER_PROJECTILE_LIGHT",
-	charges = 3,
-	charges_per_charge = 1,
-	rotation_speed = 240,
-	charge_time = {[0] = 3.5, 3.5, 2.5, 2, 1.75, 1.5, 1.25, 1},
-}
-turrets["OG_TURRET_FOCUS_MINI_DAWN"] = {
-	enemy_burst = 1,
-	mini = true,
-	hold_time = 0.4,
-	speed_reduction = 0.5,
-	image = Hyperspace.Animations:GetAnimation("og_turret_focus_mini_dawn"),
-	glow = Hyperspace.Animations:GetAnimation("og_turret_focus_mini_1_glow"),
-	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_focus_mini_1_charge.png", -17, -6, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
-	fire_points = {{x = 0, y = -4, fire_delay = 0.7}},
-	defence_type = defence_types.MISSILES,
-	blueprint_type = 3,
-	blueprint = "OG_FOCUS_PROJECTILE_WEAK",
-	blueprint_fake = "OG_FOCUS_PROJECTILE_WEAK_FAKE",
-	charges = 2,
-	charges_per_charge = 1,
-	rotation_speed = 240,
-	charge_time = {[0] = 6, 6, 5, 4, 3.5, 3, 2.75, 2.5},
-}
 
 script.on_internal_event(Defines.InternalEvents.HAS_EQUIPMENT, function(shipManager, equipment, value)
 	if equipment == "BLUELIST_DRONES_DEFENSE" then
@@ -681,17 +268,6 @@ script.on_internal_event(Defines.InternalEvents.HAS_EQUIPMENT, function(shipMana
 	end
 	return Defines.Chain.CONTINUE, value
 end)
-
-for turretId, currentTurret in pairs(turrets) do
-	currentTurret.image.position.x = -1 * currentTurret.image.info.frameWidth/2
-	currentTurret.image.position.y = -1 * currentTurret.image.info.frameHeight/2
-	currentTurret.image.tracker.loop = false
-	if currentTurret.glow then
-		currentTurret.glow.position.x = -1 * currentTurret.glow.info.frameWidth/2
-		currentTurret.glow.position.y = -1 * currentTurret.glow.info.frameHeight/2
-		currentTurret.glow.tracker.loop = false
-	end
-end
 
 local function add_stat_text(desc, currentTurret, chargeMax)
 	desc = desc.."Stats:\nCharge Time: "
@@ -1264,6 +840,46 @@ script.on_init(function()
 	turretBoxToggleHover = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/button_og_turret_toggle_hover.png", UIOffset_x, UIOffset_y, 0, c, 1, false)
 end)
 
+local tutorialEvents = {}
+tutorialEvents["OG_TURRET_ARROWS_1"] = 1
+tutorialEvents["OG_TURRET_ARROWS_2"] = 2
+tutorialEvents["OG_TURRET_ARROWS_3"] = 3
+tutorialEvents["OG_TURRET_ARROWS_4"] = 4
+tutorialEvents["OG_TURRET_ARROWS_5"] = 5
+tutorialEvents["OG_TURRET_ARROWS_6"] = 6
+local tutorialType = 0
+
+script.on_internal_event(Defines.InternalEvents.POST_CREATE_CHOICEBOX, function(choiceBox, event)
+	if tutorialEvents[event.eventName] then
+		tutorialType = tutorialEvents[event.eventName]
+	else
+		tutorialType = 0
+	end
+end)
+
+local toggleArrow = Hyperspace.TutorialArrow(Hyperspace.Pointf(158, 110), 180)
+toggleArrow.arrow = Hyperspace.Resources:GetImageId("tutorial_arrow.png")
+
+script.on_render_event(Defines.RenderEvents.CHOICE_BOX, function() end, function()
+	local commandGui = Hyperspace.App.gui
+	local eventManager = Hyperspace.Event
+	if commandGui.event_pause and tutorialType == 3 then
+		toggleArrow:OnRender()
+	end
+end)
+
+local sysArrow = Hyperspace.TutorialArrow(Hyperspace.Pointf(-50, -80), 90)
+sysArrow.arrow = Hyperspace.Resources:GetImageId("tutorial_arrow.png")
+local boxArrow = Hyperspace.TutorialArrow(Hyperspace.Pointf(4, -135), 90)
+boxArrow.arrow = Hyperspace.Resources:GetImageId("tutorial_arrow.png")
+local toggleModeArrow = Hyperspace.TutorialArrow(Hyperspace.Pointf(32, 70), 270)
+toggleModeArrow.arrow = Hyperspace.Resources:GetImageId("tutorial_arrow.png")
+local tut_colour = Graphics.GL_Color(1, 1, 0, 1)
+local back_tut = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/button_og_turret_toggle_back.png", UIOffset_x, UIOffset_y, 0, tut_colour, 1, false)
+local offensive_tut = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/button_og_turret_toggle_o_on.png", UIOffset_x, UIOffset_y, 0, tut_colour, 1, false)
+local defensive_tut = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/button_og_turret_toggle_d_on.png", UIOffset_x, UIOffset_y, 0, tut_colour, 1, false)
+
+
 local function system_render(systemBox, ignoreStatus)
 	local systemId = Hyperspace.ShipSystem.SystemIdToName(systemBox.pSystem.iSystemType)
 	local shipId = (systemBox.bPlayerUI and 0) or 1
@@ -1424,6 +1040,23 @@ local function system_render(systemBox, ignoreStatus)
 
 		if lastTint then 
 			--Graphics.CSurface.GL_SetColorTint(lastTint)
+		end
+
+		if tutorialType == 1 then
+			sysArrow:OnRender()
+		elseif tutorialType == 2 then
+			boxArrow:OnRender()
+		elseif tutorialType == 4 then
+			toggleModeArrow:OnRender()
+			Graphics.CSurface.GL_RenderPrimitiveWithColor(turretBoxToggleHover, Graphics.GL_Color(1,1,1,1))
+		elseif tutorialType == 5 then
+			toggleModeArrow:OnRender()
+			Graphics.CSurface.GL_RenderPrimitive(back_tut)
+			Graphics.CSurface.GL_RenderPrimitive(offensive_tut)
+		elseif tutorialType == 6 then
+			toggleModeArrow:OnRender()
+			Graphics.CSurface.GL_RenderPrimitive(back_tut)
+			Graphics.CSurface.GL_RenderPrimitive(defensive_tut)
 		end
 
 	elseif is_system(systemBox) then
@@ -1625,7 +1258,11 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 		if currentTurret.homing then
 			--print("start homing")
 			--checkValidTarget(system.table.currentTarget._targetable, defence_types.ALL, shipManager, true)
-			userdata_table(projectile, "mods.og").homing = {target = system.table.currentTarget, turn_rate = currentTurret.homing}
+			local home_rate = currentTurret.homing
+			if shipManager:HasAugmentation("UPG_OG_TURRET_SPEED") > 0 then
+				home_rate = home_rate * 1.5
+			end
+			userdata_table(projectile, "mods.og").homing = {target = system.table.currentTarget, turn_rate = home_rate}
 		end
 	end
 	if (not offensive) and (currentShot.fire_delay > 0 or Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] == 1) then
@@ -2084,7 +1721,9 @@ script.on_render_event(Defines.RenderEvents.SHIP_MANAGER, function(shipManager) 
 			end	
 		end
 	end
-	Hyperspace.playerVariables.og_turret_count = index_counter
+	if shipManager.iShipId == 0 then
+		Hyperspace.playerVariables.og_turret_count = index_counter
+	end
 	--log("MIDDLE RENDER SHIP_MANAGER TURRETS")
 	for _, sysName in ipairs(systemNameList) do
 		if shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) and not microTurrets[sysName] then
@@ -2362,3 +2001,4 @@ script.on_internal_event(Defines.InternalEvents.POST_CREATE_CHOICEBOX, function(
 		end
 	end
 end)
+

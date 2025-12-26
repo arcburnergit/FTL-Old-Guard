@@ -146,8 +146,8 @@
 
 <mod:findName type="event" name="STORAGE_CHECK_SYSTEM">
 	<mod-append:choice req="OG_HAS_TURRET" blue="false" hidden="true">
-	  <text>Turret Control.</text>
-	  <event load="STORAGE_CHECK_SYSTEM_OG_TURRET" />
+		<text>Turret Control.</text>
+		<event load="STORAGE_CHECK_SYSTEM_OG_TURRET" />
 	</mod-append:choice>
 </mod:findName>
 
@@ -361,5 +361,13 @@
 		</event>
 	</mod-append:choice>
 </mod:findName>
-
+<mod:findName type="event" name="COMBAT_CHECK_TOGGLE">
+	<mod-append:choice req="og_turret_tutorial" lvl="1" blue="false">
+		<text>Re-enable Turret Control Tutorial.</text>
+		<event>
+			<metaVariable name="og_turret_tutorial" op="set" val="0" />
+			<loadEvent>COMBAT_CHECK_TOGGLE</loadEvent>
+		</event>
+	</mod-append:choice>
+</mod:findName>
 </FTL>

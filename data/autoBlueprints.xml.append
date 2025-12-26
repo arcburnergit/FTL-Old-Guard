@@ -28,6 +28,7 @@
 	<name>OG_TURRET_LASER_MINI_2</name>
 	<name>OG_TURRET_ION_MINI_1</name>
 	<name>OG_TURRET_FOCUS_MINI_1</name>
+	<name>OG_TURRET_MISSILE_MINI_1</name>
 </blueprintList>
 <blueprintList name="SHOP_TURRETS_LARGE">
 	<name>OG_TURRET_LASER_1</name>
@@ -44,12 +45,14 @@
 	<name>OG_TURRET_LASER_MINI_2</name>
 	<name>OG_TURRET_ION_MINI_1</name>
 	<name>OG_TURRET_FOCUS_MINI_1</name>
+	<name>OG_TURRET_MISSILE_MINI_1</name>
 </blueprintList>
 <blueprintList name="GIFTLIST_OG_IRON">
 	<name>OG_TURRET_LASER_MINI_1</name>
 	<name>OG_TURRET_LASER_MINI_2</name>
 	<name>OG_TURRET_ION_MINI_1</name>
 	<name>OG_TURRET_FOCUS_MINI_1</name>
+	<name>OG_TURRET_MISSILE_MINI_1</name>
 </blueprintList>
 </FTL>
 <!--Iron Watch Ships-->

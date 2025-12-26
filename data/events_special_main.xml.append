@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FTL>
+<mod:findName type="event" name="START_BEACON_REAL" limit="1">
+	<mod-append:queueEvent>OG_TURRET_ARROWS_START</mod-append:queueEvent>
+</mod:findName>
+
+<event name="OG_TURRET_ARROWS_START">
+	<loadEventList seeded="false" first="true" generate="false" default="OG_TURRET_ARROWS_CANCEL">
+		<event name="OG_TURRET_ARROWS_1" req="OG_TURRET_TUTORIAL_SHOW" lvl="1"/>
+	</loadEventList>
+</event>
+<event name="OG_TURRET_ARROWS_1">
+	<text>You ship has one or more Turret Control Systems, would you like to see a short tutorial on their use?</text>
+	<choice hidden="true">
+		<text>Yes!</text>
+		<event name="OG_TURRET_ARROWS_2">
+			<text>Turret's work similarly to weapons, turrets can be selected from the system hotbar by clicking on the relavant box, or by using the turret hotkey.</text>
+			<choice>
+				<text>Continue...</text>
+				<event name="OG_TURRET_ARROWS_3">
+					<text>The turret hotkeys can be assigned in the toggle menu, and correspond to the number next to the turret system on your system hotbar.</text>
+					<choice>
+						<text>Continue...</text>
+						<event name="OG_TURRET_ARROWS_4">
+							<text>Each turret can be toggled between two modes using the button in the bottom right of the turret box.</text>
+							<choice>
+								<text>Continue...</text>
+								<event name="OG_TURRET_ARROWS_5">
+									<text>In offensive mode, turrets must be manually targetted against either the enemy ship, enemy projectiles, or enemy drones. You can target projectiles on either side of the battle, but the turret will only shoot projectiles once they reach your ship's side of the battlefield.</text>
+									<choice>
+										<text>Continue...</text>
+										<event name="OG_TURRET_ARROWS_6">
+											<text>In defensive mode, turrets will automatically target projectiles and drones, this is where the Turret Control's internal upgrades become more useful, the extra rotation and projectile speed allows turrets to more quickly respond to enemy threats.</text>
+											<choice hidden="true">
+												<text>Got it!</text>
+												<event/>
+											</choice>
+											<choice hidden="true">
+												<text>Got it and don't show again!</text>
+												<event>
+													<text>The turret tutorial has been disabled, you can reenable it in the toggle menu.</text>
+													<metaVariable name="og_turret_tutorial" op="set" val="1"/>
+												</event>
+											</choice>
+										</event>
+									</choice>
+								</event>
+							</choice>
+						</event>
+					</choice>
+				</event>
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true">
+		<text>No!</text>
+		<event/>
+	</choice>
+	<choice hidden="true">
+		<text>No and don't show again!</text>
+		<event>
+			<text>The turret tutorial has been disabled, you can reenable it in the toggle menu.</text>
+			<metaVariable name="og_turret_tutorial" op="set" val="1"/>
+		</event>
+	</choice>
+</event>
+<event name="OG_TURRET_ARROWS_CANCEL"/>
+</FTL>

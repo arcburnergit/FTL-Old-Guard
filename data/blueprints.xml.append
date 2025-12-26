@@ -747,6 +747,27 @@
 	<iconReplace>og_turret_focus_mini_1_icon</iconReplace>
 </weaponBlueprint>
 
+<weaponBlueprint name="OG_TURRET_MISSILE_MINI_1">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret_mini</tip>
+	<title>Micro Missile Turret</title>
+	<short>Micro M.</short>
+	<desc>This small Missile Turret is expensive to fire but provides powerful offensive and defensive support.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>80</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_missile_mini_1_icon</iconReplace>
+</weaponBlueprint>
+
 
 <weaponBlueprint name="OG_TURRET_LASER_DAWN">
 	<type>BEAM</type>
@@ -1731,7 +1752,7 @@
 	<crewCount amount="1" class="human_og_raider" />
 	<crewCount amount="1" class="human_soldier" />
 	<crewCount amount="1" class="human_soldier" />
-	<aug name="BACKUP_DNA" />
+	<aug name="EX_BACKUP_DNA" />
 	<shieldImage>mup_small_long1</shieldImage>
 	<mv-mapImage>map_icon_og_raider</mv-mapImage>
 </shipBlueprint>
@@ -2167,7 +2188,7 @@
 	<unlock id="ship_PLAYER_SHIP_OG_ANGEL_unlock"/>
 	<desc>The Angels are some of the finest mercenaries in the galaxy. This stealth ship must rely on its deadly crew to kill the enemy quickly before it takes too much damage.</desc>
 	<systemList>
-		<og_turret_mini power="1" room="2" start="true" img="room_og_turret_2_noman" turret="OG_TURRET_FOCUS_MINI_1" />
+		<og_turret_mini power="1" room="2" start="true" img="room_og_turret_2_noman" turret="OG_TURRET_MISSILE_MINI_1" />
 		<og_turret_mini_2 power="1" room="3" start="true" img="room_og_turret_2_noman" turret="OG_TURRET_LASER_MINI_2" />
 		<og_turret_mini_3 power="1" room="4" start="false" img="room_og_turret_2_noman" turret="OG_TURRET_LASER_RUSTY_MINI_1" />
 		<og_turret_mini_4 power="1" room="5" start="false" img="room_og_turret_2_noman" turret="OG_TURRET_LASER_RUSTY_MINI_1" />
@@ -2227,8 +2248,8 @@
 	</systemList>
 	<weaponSlots>2</weaponSlots>
 	<droneSlots>2</droneSlots>
-	<weaponList missiles="5" count="2" />
-	<droneList drones="13" count="2" />
+	<weaponList missiles="16" count="2" />
+	<droneList drones="2" count="2" />
 	<health amount="30" />
 	<maxPower amount="9" />
 	<crewCount amount="1" class="human_angel" />

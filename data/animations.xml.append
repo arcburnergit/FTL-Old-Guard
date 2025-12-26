@@ -322,6 +322,25 @@
 	<time>1</time>
 </anim>
 
+<animSheet name="og_turret_missile_mini_1_icon" w="40" h="22" fw="40" fh="22">og_turrets/turret_missile_mini_1_icon.png</animSheet>
+<anim name="og_turret_missile_mini_1_icon">
+	<sheet>og_turret_missile_mini_1_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_missile_mini_1" w="44" h="44" fw="44" fh="44">og_turrets/turret_missile_mini_1.png</animSheet>
+<anim name="og_turret_missile_mini_1">
+	<sheet>og_turret_missile_mini_1</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_missile_mini_1_glow" w="176" h="44" fw="44" fh="44">og_turrets/turret_missile_mini_1_glow.png</animSheet>
+<anim name="og_turret_missile_mini_1_glow">
+	<sheet>og_turret_missile_mini_1_glow</sheet>
+	<desc length="4" x="0" y="0" />
+	<time>1</time>
+</anim>
+
 <animSheet name="og_turret_laser_dawn_icon" w="99" h="30" fw="99" fh="30">og_turrets/turret_laser_dawn_icon.png</animSheet>
 <anim name="og_turret_laser_dawn_icon">
 	<sheet>og_turret_laser_dawn_icon</sheet>

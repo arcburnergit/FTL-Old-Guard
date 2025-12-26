@@ -195,7 +195,8 @@ table.insert(craftedWeapons, {weapon = "OG_TURRET_LASER_MINI_1", component_amoun
 table.insert(craftedWeapons, {weapon = "OG_TURRET_LASER_MINI_2", component_amounts = {1, 1}, components = {defence_drones_mini, {"LASER_LIGHT", "LASER_LIGHT_2", "LASER_LIGHT_BURST", "LASER_LIGHT_CHARGEGUN", "LASER_LIGHT_CHARGEGUN_CHAOS"}}} )
 table.insert(craftedWeapons, {weapon = "OG_TURRET_ION_MINI_1", component_amounts = {1, 1}, components = {defence_drones_mini, {"ION_1", "ION_2", "ION_3", "ION_4", "ION_CHAINGUN", "ION_CHARGEGUN", "ION_CHARGEGUN_2"}}} )
 table.insert(craftedWeapons, {weapon = "OG_TURRET_FOCUS_MINI_1", component_amounts = {1, 1}, components = {defence_drones_mini, {"FOCUS_1", "FOCUS_2", "FOCUS_3", "FOCUS_CHAIN", "FOCUS_BIO"}}} )
- 
+table.insert(craftedWeapons, {weapon = "OG_TURRET_MISSILE_MINI_1", component_amounts = {1, 1}, components = {defence_drones_mini, {"MISSILES_1", "MISSILES_2", "MISSILES_BURST", "MISSILES_BURST_2", "MISSILES_BURST_2_PLAYER", "MISSILES_FREE"}}} )
+
 table.insert(craftedWeapons, {weapon = "OG_TURRET_LASER_ANCIENT", component_amounts = {1, 1}, components = {{"ANCIENT_DEFENSE_1"}, {"LASER_BURST_2", "LASER_BURST_3", "LASER_BURST_5", "LASER_CHAINGUN", "LASER_CHAINGUN_2", "LASER_CHAINGUN_DAMAGE", "LASER_CHARGEGUN", "LASER_CHARGEGUN_2", "LASER_CHARGEGUN_3", "LASER_CHARGE_CHAIN"}}} )
 table.insert(craftedWeapons, {weapon = "OG_TURRET_LASER_ANCIENT", component_amounts = {1, 1}, components = {defence_drones_laser, {"ANCIENT_LASER", "ANCIENT_LASER_2", "ANCIENT_LASER_3", "ANCIENT_BEAM", "ANCIENT_BEAM_2", "ANCIENT_BEAM_3"}}} )
 
