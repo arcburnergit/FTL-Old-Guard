@@ -17,6 +17,10 @@
 		<text>Turret Manufacturing.</text>
 		<event load="OG_CRAFT_MAIN_MENU" />
 	</choice>
+	<choice req="og_turret_adaptive">
+		<text>Reposition your Adaptive Turret Slot.</text>
+		<event name="OG_TURRET_ADAPTIVE_POSITION" />
+	</choice>
 </event>
 
 <event name="STORAGE_CHECK_OG_TURRET_INSTALL">
@@ -165,12 +169,16 @@
 		<text>Overclocked Motors LvL 1. [Cost: 35~, 3|]</text>
 		<event load="STORAGE_CHECK_SYSTEM_OG_TURRET_ROTATION" />
 	</choice>
-	<choice req="UPG_OG_TURRET_SPEED" lvl="1" max_group="1" blue="false" hidden="true">
-		<text>Accelerators. [ALREADY INSTALLED]</text>
+	<choice req="UPG_OG_TURRET_SPEED" lvl="2" max_group="1" blue="false" hidden="true">
+		<text>Accelerators. [UNAVAILABLE: You already have the max of this upgrade]</text>
 		<event load="OPTION_INVALID" />
 	</choice>
-	<choice req="UPG_OG_TURRET_SPEED" lvl="0" max_group="1" blue="false" hidden="true">
-		<text>Accelerators. [Cost: 40~, 5}]</text>
+	<choice req="UPG_OG_TURRET_SPEED" lvl="1" max_lvl="2" max_group="1" blue="false" hidden="true">
+		<text>Accelerators LvL 2. [Cost: 30~, 5}]</text>
+		<event load="STORAGE_CHECK_SYSTEM_OG_TURRET_SPEED" />
+	</choice>
+	<choice req="UPG_OG_TURRET_SPEED" lvl="0" max_lvl="2" max_group="1" blue="false" hidden="true">
+		<text>Accelerators LvL 1. [Cost: 30~, 5}]</text>
 		<event load="STORAGE_CHECK_SYSTEM_OG_TURRET_SPEED" />
 	</choice>
 	<choice req="UPG_OG_TURRET_MANUAL" lvl="1" max_group="2" blue="false" hidden="true">
@@ -180,6 +188,14 @@
 	<choice req="UPG_OG_TURRET_MANUAL" lvl="0" max_group="2" blue="false" hidden="true">
 		<text>Manual Dexterity. [Cost: 30~, 5|]</text>
 		<event load="STORAGE_CHECK_SYSTEM_OG_TURRET_MANUAL" />
+	</choice>
+	<choice req="UPG_OG_TURRET_ADAPTIVE_BUY" lvl="1" max_group="2" blue="false" hidden="true">
+		<text>Expanded Circuitry. [ALREADY INSTALLED]</text>
+		<event load="OPTION_INVALID" />
+	</choice>
+	<choice req="UPG_OG_TURRET_ADAPTIVE_SHOW" lvl="1" max_group="2" blue="false" hidden="true">
+		<text>Expanded Circuitry. [Cost: 30~, 5|]</text>
+		<event load="STORAGE_CHECK_SYSTEM_OG_TURRET_ADAPTIVE_LARGE" />
 	</choice>
 	<choice>
 		<text>Nevermind.</text>
@@ -227,14 +243,14 @@
 
 <event name="STORAGE_CHECK_SYSTEM_OG_TURRET_SPEED">
 	<text>You are about to install the Accelerators upgrade.
-	[Effects: Turret projectiles move 50% faster.]</text>
+	[Effects: Turret projectiles move 50% faster. Can be installed 2 times.]</text>
 	<choice max_group="0" blue="false" hidden="true">
-		<text>Perform the upgrade. [Cost: 40~, 5}]</text>
+		<text>Perform the upgrade. [Cost: 30~, 5}]</text>
 		<event>
 			<text>You install the upgrade.</text>
 			<item_modify>
 				<item type="missiles" min="-5" max="-5" />
-				<item type="scrap" min="-40" max="-40" />
+				<item type="scrap" min="-30" max="-30" />
 			</item_modify>
 			<choice hidden="true">
 				<text>Continue...</text>
@@ -300,6 +316,45 @@
 <event name="INSTALL_OG_TURRET_MANUAL">
 	<variable name="loc_internal_upgrades" op="add" val="1" />
 	<hiddenAug>UPG_OG_TURRET_MANUAL</hiddenAug>
+	<loadEvent>STORAGE_CHECK_SYSTEM</loadEvent>
+</event>
+
+<event name="STORAGE_CHECK_SYSTEM_OG_TURRET_ADAPTIVE_LARGE">
+	<text>You are about to install the Expanded Circuitry upgrade.
+	[Effects: Expands the adaptive turret's slot to accept all sizes of turrets.]</text>
+	<choice max_group="0" blue="false" hidden="true">
+		<text>Perform the upgrade. [Cost: 30~, 5|]</text>
+		<event>
+			<text>You install the upgrade.</text>
+			<item_modify>
+				<item type="drones" min="-5" max="-5" />
+				<item type="scrap" min="-30" max="-30" />
+			</item_modify>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="INSTALL_OG_TURRET_ADAPTIVE_LARGE" />
+			</choice>
+		</event>
+	</choice> 
+	<choice req="EX_OG_TURRET_ADAPTIVE_LARGE" max_group="1" blue="false" hidden="true">
+		<text>Install the External Augment internally.</text>
+		<event>
+			<text>You install the upgrade.</text>
+			<remove name="EX_OG_TURRET_ADAPTIVE_LARGE" />
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="INSTALL_OG_TURRET_ADAPTIVE_LARGE" />
+			</choice>
+		</event>
+	</choice>
+	<choice req="pilot" lvl="1" max_group="2" blue="false" hidden="true">
+		<text>Nevermind.</text>
+		<event load="STORAGE_CHECK_SYSTEM_LOAD" />
+	</choice>
+</event>
+<event name="INSTALL_OG_TURRET_ADAPTIVE_LARGE">
+	<variable name="loc_internal_upgrades" op="add" val="1" />
+	<hiddenAug>UPG_OG_TURRET_ADAPTIVE_LARGE</hiddenAug>
 	<loadEvent>STORAGE_CHECK_SYSTEM</loadEvent>
 </event>
 

@@ -1,0 +1,11 @@
+<FTL>
+<mod:findLike type="ships" limit="1">
+	<mod:findLike type="customShip">
+		<mod:findLike type="exclusivityOverride">
+			<mod-append:exclusivityGroup>
+				<og_turret_adaptive/>
+			</mod-append:exclusivityGroup>
+		</mod:findLike>
+	</mod:findLike>
+</mod:findLike>
+</FTL>

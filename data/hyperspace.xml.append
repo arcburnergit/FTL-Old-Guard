@@ -9,19 +9,37 @@
 	<mod-append:script>data/og_scripts/ship_ach.lua</mod-append:script>
 </mod:findLike>
 <shieldWithoutSystem enabled="true"/>
+<mod:findLike type="ships" limit="1">
+	<mod:findLike type="customShip">
+		<mod:findLike type="exclusivityOverride">
+			<mod-append:exclusivityGroup>
+				<og_turret_adaptive/>
+			</mod-append:exclusivityGroup>
+		</mod:findLike>
+	</mod:findLike>
+</mod:findLike>
 <mod:findLike type="customSystems" reverse="false">
 	<mod-append:customSystem id="og_turret"/>
-	<mod-append:customSystem id="og_turret_alt"/>
+	<mod-append:customSystem id="og_turret_2"/>
+	<mod-append:customSystem id="og_turret_3"/>
+	<mod-append:customSystem id="og_turret_4"/>
 	<mod-append:customSystem id="og_turret_mini"/>
 	<mod-append:customSystem id="og_turret_mini_2"/>
 	<mod-append:customSystem id="og_turret_mini_3"/>
 	<mod-append:customSystem id="og_turret_mini_4"/>
+	<mod-append:customSystem id="og_turret_adaptive"/>
 
 	<mod-append:exclusivityGroup>
 		<og_turret/>
 	</mod-append:exclusivityGroup>
 	<mod-append:exclusivityGroup>
-		<og_turret_alt/>
+		<og_turret_2/>
+	</mod-append:exclusivityGroup>
+	<mod-append:exclusivityGroup>
+		<og_turret_3/>
+	</mod-append:exclusivityGroup>
+	<mod-append:exclusivityGroup>
+		<og_turret_4/>
 	</mod-append:exclusivityGroup>
 	<mod-append:exclusivityGroup>
 		<og_turret_mini/>
@@ -35,14 +53,20 @@
 	<mod-append:exclusivityGroup>
 		<og_turret_mini_4/>
 	</mod-append:exclusivityGroup>
+	<mod-append:exclusivityGroup>
+		<og_turret_adaptive/>
+	</mod-append:exclusivityGroup>
 
 	<mod:findLike type="systemPositions" reverse="false">
 		<mod-append:og_turret position="7"/>
-		<mod-append:og_turret_alt position="7"/>
+		<mod-append:og_turret_2 position="7"/>
+		<mod-append:og_turret_3 position="7"/>
+		<mod-append:og_turret_4 position="7"/>
 		<mod-append:og_turret_mini position="7"/>
 		<mod-append:og_turret_mini_2 position="7"/>
 		<mod-append:og_turret_mini_3 position="7"/>
 		<mod-append:og_turret_mini_4 position="7"/>
+		<mod-append:og_turret_adaptive position="7"/>
 	</mod:findLike>
 
 	<mod-append:systemPositions subSystemOffset="1015"> 
@@ -55,11 +79,14 @@
 		<cloaking position="6"/>
 		<artillery position="7"/>
 		<og_turret position="7"/>
-		<og_turret_alt position="7"/>
+		<og_turret_2 position="7"/>
+		<og_turret_3 position="7"/>
+		<og_turret_4 position="7"/>
 		<og_turret_mini position="7"/>
 		<og_turret_mini_2 position="7"/>
 		<og_turret_mini_3 position="7"/>
 		<og_turret_mini_4 position="7"/>
+		<og_turret_adaptive position="7"/>
 		<mind position="8"/>
 		<hacking position="9"/>
 		<temporal position="10"/>
@@ -320,6 +347,9 @@ This enemy's turrets will be fully charged at the start of combat.</tooltip>
 	<mod-append:aug name="EX_OG_TURRET_MANUAL">
 		<function name="UPG_OG_TURRET_MANUAL" value="180" useForReqs="true" warning="false"/>
 	</mod-append:aug>
+	<mod-append:aug name="EX_OG_TURRET_ADAPTIVE_LARGE">
+		<function name="UPG_OG_TURRET_ADAPTIVE_LARGE" value="1" useForReqs="true" warning="true"/>
+	</mod-append:aug>
 </mod:findLike>
 <events>
 	<eventFile>sector_og_iron</eventFile>
@@ -327,6 +357,9 @@ This enemy's turrets will be fully charged at the start of combat.</tooltip>
 	<variable name="rep_og_iron" op="set" val="0"/>
 	<variable name="rep_og_dawn" op="set" val="0"/>
 	<variable name="rep_comb_og_iron" op="set" val="0"/>
+	
+	<variable name="og_turret_adaptive_saved_x" op="set" val="0"/>
+	<variable name="og_turret_adaptive_saved_y" op="set" val="0"/>
 
 	<metaVariable name="juke_og_iron" op="set" val="0"/>
 	<metaVariable name="og_turret_tutorial" op="set" val="0"/>
@@ -334,17 +367,29 @@ This enemy's turrets will be fully charged at the start of combat.</tooltip>
 	<req name="OG_TURRET_TUTORIAL_SHOW" type="all">
 		<req type="any">
 			<name>og_turret</name>
-			<name>og_turret_alt</name>
+			<name>og_turret_2</name>
 			<name>og_turret_3</name>
 			<name>og_turret_4</name>
 			<name>og_turret_mini</name>
 			<name>og_turret_mini_2</name>
 			<name>og_turret_mini_3</name>
 			<name>og_turret_mini_4</name>
+			<name>og_turret_adaptive</name>
 			<name>og_turret_count</name>
 		</req>
 		<req lvl="0" max_lvl="0">
 			<name>og_turret_tutorial</name>
+		</req>
+	</req>
+
+	<req name="UPG_OG_TURRET_ADAPTIVE_SHOW" type="all">
+		<name>og_turret_adaptive</name>
+	</req>
+
+	<req name="UPG_OG_TURRET_ADAPTIVE_BUY" type="all">
+		<name>og_turret_adaptive</name>
+		<req lvl="1">
+			<name>UPG_OG_TURRET_ADAPTIVE_LARGE</name>
 		</req>
 	</req>
 
@@ -466,7 +511,8 @@ This enemy's turrets will be fully charged at the start of combat.</tooltip>
 			<customTitle>TURRET SYSTEMS</customTitle>
 			<guaranteedSystems>
 				<og_turret/>
-				<og_turret_alt/>
+				<og_turret_2/>
+				<og_turret_adaptive/>
 			</guaranteedSystems>
 			<item>
 				<blueprint>OG_SHOP_ITEM_TURRET_SYSTEMS</blueprint>

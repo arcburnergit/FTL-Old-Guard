@@ -5,8 +5,12 @@
 
 <text name="tooltip_og_turret">Turret Control: Click on the turret to set its mode, or target it. Manning reduces charge time.</text>
 <text name="tooltip_og_turret_enemy">Turret Control: Powers the enemy turret.</text>
-<text name="tooltip_og_turret_alt">Turret Control: Click on the turret to set its mode, or target it. Manning reduces charge time.</text>
-<text name="tooltip_og_turret_alt_enemy">Turret Control: Powers the enemy turret.</text>
+<text name="tooltip_og_turret_2">Turret Control: Click on the turret to set its mode, or target it. Manning reduces charge time.</text>
+<text name="tooltip_og_turret_2_enemy">Turret Control: Powers the enemy turret.</text>
+<text name="tooltip_og_turret_3">Turret Control: Click on the turret to set its mode, or target it. Manning reduces charge time.</text>
+<text name="tooltip_og_turret_3_enemy">Turret Control: Powers the enemy turret.</text>
+<text name="tooltip_og_turret_4">Turret Control: Click on the turret to set its mode, or target it. Manning reduces charge time.</text>
+<text name="tooltip_og_turret_4_enemy">Turret Control: Powers the enemy turret.</text>
 <text name="tooltip_og_turret_mini">Turret Control: Click on the turret to set its mode, or target it.</text>
 <text name="tooltip_og_turret_mini_enemy">Turret Control: Powers the enemy turret.</text>
 <text name="tooltip_og_turret_mini_2">Turret Control: Click on the turret to set its mode, or target it.</text>
@@ -15,4 +19,6 @@
 <text name="tooltip_og_turret_mini_3_enemy">Turret Control: Powers the enemy turret.</text>
 <text name="tooltip_og_turret_mini_4">Turret Control: Click on the turret to set its mode, or target it.</text>
 <text name="tooltip_og_turret_mini_4_enemy">Turret Control: Powers the enemy turret.</text>
+<text name="tooltip_og_turret_adaptive">Turret Control: Click on the turret to set its mode, or target it. Manning reduces charge time.</text>
+<text name="tooltip_og_turret_adaptive_enemy">Turret Control: Powers the enemy turret.</text>
 </FTL>

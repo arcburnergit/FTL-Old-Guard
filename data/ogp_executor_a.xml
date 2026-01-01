@@ -14,7 +14,7 @@
 </weaponMounts>
 <ogTurretMounts>
 	<og_turret x="427" y="182" direction="right"/>
-	<og_turret_alt x="322" y="182" direction="right"/>
+	<og_turret_2 x="322" y="182" direction="right"/>
 	<og_turret_mini x="270" y="94" direction="up"/>
 	<og_turret_mini_2 x="270" y="270" direction="down"/>
 </ogTurretMounts>

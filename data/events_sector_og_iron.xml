@@ -667,7 +667,7 @@
 		<text>There's nothing you can do...</text>
 		<event>
 			<status type="limit" target="enemy" system="og_turret" amount="0"/>
-			<status type="limit" target="enemy" system="og_turret_alt" amount="0"/>
+			<status type="limit" target="enemy" system="og_turret_2" amount="0"/>
 			<status type="limit" target="enemy" system="og_turret_mini" amount="0"/>
 			<status type="limit" target="enemy" system="og_turret_mini_2" amount="0"/>
 			<status type="limit" target="enemy" system="og_turret_mini_3" amount="0"/>
@@ -1076,7 +1076,7 @@
 	<enemyDamage amount="2" system="shields" effect="fire"/>
 	<enemyDamage amount="0" system="engines" effect="fire"/>
 	<enemyDamage amount="1" system="og_turret" effect="breach"/>
-	<enemyDamage amount="1" system="og_turret_alt" effect="breach"/>
+	<enemyDamage amount="1" system="og_turret_2" effect="breach"/>
 	<enemyDamage amount="0" system="og_turret_mini" effect="fire"/>
 	<enemyDamage amount="0" system="og_turret_mini_2" effect="fire"/>
 	<text>The Iron Watch has partially recovered from the fight earlier, they thank you for rescuing them.</text>

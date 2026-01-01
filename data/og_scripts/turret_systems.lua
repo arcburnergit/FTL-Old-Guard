@@ -7,6 +7,16 @@ local node_get_number_default = mods.multiverse.node_get_number_default
 local function xor(a, b)
 	return (a and not b) or (not a and b)
 end
+local function isPointInEllipse(point, ellipse)
+    if ellipse.a <= 0 or ellipse.b <= 0 then
+        return false
+    end
+    local dx = point.x - ellipse.center.x
+    local dy = point.y - ellipse.center.y
+    local result = (dx^2 / ellipse.a^2) + (dy^2 / ellipse.b^2)
+
+    return result <= 1
+end
 
 local function worldToPlayerLocation(location)
 	local cApp = Hyperspace.App
@@ -168,7 +178,7 @@ end
 local systemName = "og_turret"
 mods.og.microTurrets = {["og_turret_mini"] = true, ["og_turret_mini_2"] = true, ["og_turret_mini_3"] = true, ["og_turret_mini_4"] = true}
 local microTurrets = mods.og.microTurrets
-mods.og.systemNameList = {systemName, "og_turret_alt", "og_turret_mini", "og_turret_mini_2", "og_turret_mini_3", "og_turret_mini_4"}
+mods.og.systemNameList = {systemName, "og_turret_2", "og_turret_3", "og_turret_4", "og_turret_mini", "og_turret_mini_2", "og_turret_mini_3", "og_turret_mini_4", "og_turret_adaptive"}
 local systemNameList = mods.og.systemNameList
 local systemNameCheck = {}
 for _, sysName in ipairs(systemNameList) do
@@ -202,16 +212,18 @@ do
 		for node in node_child_iter(doc:first_node("FTL") or doc) do
 			if node:name() == "shipBlueprint" then
 				local shipClass = node:first_attribute("name"):value()
-				starting_turrets[shipClass] = {}
-				local xmlFile = node:first_attribute("layout"):value()
-				local imgFile = node:first_attribute("img"):value()
-				table.insert(xmlFilesToCheck, {xml=xmlFile, img=imgFile})
-				for systemListNode in node_child_iter(node) do
-					if systemListNode:name() == "systemList" then
-						for systemNode in node_child_iter(systemListNode) do
-							if systemNameCheck[systemNode:name()] then
-								--print(shipClass.." "..systemNode:name().." "..systemNode:first_attribute("turret"):value())
-								starting_turrets[shipClass][systemNode:name()] = systemNode:first_attribute("turret"):value()
+				if shipClass then
+					starting_turrets[shipClass] = {}
+					local xmlFile = node:first_attribute("layout"):value()
+					local imgFile = node:first_attribute("img"):value()
+					table.insert(xmlFilesToCheck, {xml=xmlFile, img=imgFile})
+					for systemListNode in node_child_iter(node) do
+						if systemListNode:name() == "systemList" then
+							for systemNode in node_child_iter(systemListNode) do
+								if systemNameCheck[systemNode:name()] then
+									--print(shipClass.." "..systemNode:name().." "..systemNode:first_attribute("turret"):value())
+									starting_turrets[shipClass][systemNode:name()] = systemNode:first_attribute("turret"):value() or "OG_TURRET_LASER_RUSTY_MINI_1"
+								end
 							end
 						end
 					end
@@ -222,10 +234,10 @@ do
 	end
 
 	for _, fileTable in ipairs(xmlFilesToCheck) do
+		turret_location[fileTable.xml] = {}
 		local doc = RapidXML.xml_document("data/"..fileTable.xml..".xml")
 		for node in node_child_iter(doc:first_node("FTL") or doc) do
 			if node:name() == "ogTurretMounts" then
-				turret_location[fileTable.xml] = {}
 				for turretNode in node_child_iter(node) do
 					--print(fileTable.xml)
 					local t_x = node_get_number_default(turretNode:first_attribute("x"), 0)
@@ -236,6 +248,7 @@ do
 				end
 			end
 		end
+		turret_location[fileTable.xml]["og_turret_adaptive"] = {x = 0, y = 0, direction = turret_directions.right}
 	end
 end
 local beamDamageMods = mods.multiverse.beamDamageMods
@@ -440,9 +453,31 @@ local function system_construct_system_box(systemBox)
 		systemBox.table.defenceButton = defenceButton
 
 		local systemId = Hyperspace.ShipSystem.SystemIdToName(systemBox.pSystem.iSystemType)
-		if microTurrets[systemId] then
+		if microTurrets[systemId] and not systemId == "og_turret_adaptive" then
 			systemBox.pSystem.table.micro = true
 			systemBox.pSystem.bBoostable = false
+		elseif systemId == "og_turret_adaptive" then
+			systemBox.pSystem.table.micro = true
+			microTurrets[systemId] = true
+			if Hyperspace.playerVariables.og_turret_adaptive_saved_x > 0 then
+				--print("load pos")
+				local shipManager = Hyperspace.ships.player
+				turret_location[shipManager.ship.shipName]["og_turret_adaptive"].x = Hyperspace.playerVariables.og_turret_adaptive_saved_x
+				turret_location[shipManager.ship.shipName]["og_turret_adaptive"].y = Hyperspace.playerVariables.og_turret_adaptive_saved_y
+				turret_location[shipManager.ship.shipName]["og_turret_adaptive"].direction = Hyperspace.playerVariables.og_turret_adaptive_saved_direction/2
+			else
+				local roomId = systemBox.pSystem.roomId
+				local shipManager = Hyperspace.ships.player
+				local pos = shipManager:GetRoomCenter(roomId)
+
+				local ship = shipManager.ship
+				local shipGraph = Hyperspace.ShipGraph.GetShipInfo(0)
+				local shipCorner = {x = ship.shipImage.x + shipGraph.shipBox.x, y = ship.shipImage.y + shipGraph.shipBox.y}
+				local posRelative = {x = pos.x - shipCorner.x, y = pos.y - shipCorner.y}
+
+				turret_location[shipManager.ship.shipName]["og_turret_adaptive"].x = posRelative.x
+				turret_location[shipManager.ship.shipName]["og_turret_adaptive"].y = posRelative.y
+			end
 		end
 
 		systemBox.pSystem.table.index = -1
@@ -777,7 +812,7 @@ script.on_render_event(Defines.RenderEvents.SHIP, function() end, function(ship)
 					end
 				end
 				for drone in vter(spaceManager.drones) do
-					if drone._targetable:GetSelfId() == system.table.currentTarget._targetable:GetSelfId() and projectile._targetable:GetSpaceId() == ship.iShipId then
+					if drone._targetable:GetSelfId() == system.table.currentTarget._targetable:GetSelfId() and drone._targetable:GetSpaceId() == ship.iShipId then
 						local targetPos = system.table.currentTarget._targetable:GetRandomTargettingPoint(true)
 						Graphics.CSurface.GL_PushMatrix()
 						Graphics.CSurface.GL_Translate(targetPos.x, targetPos.y, 0)
@@ -802,7 +837,7 @@ script.on_render_event(Defines.RenderEvents.SHIP, function() end, function(ship)
 					end
 				end
 				for drone in vter(spaceManager.drones) do
-					if drone._targetable:GetSelfId() == system.table.currentTargetTemp._targetable:GetSelfId() and projectile._targetable:GetSpaceId() == ship.iShipId then
+					if drone._targetable:GetSelfId() == system.table.currentTargetTemp._targetable:GetSelfId() and drone._targetable:GetSpaceId() == ship.iShipId then
 						local targetPos = system.table.currentTargetTemp._targetable:GetRandomTargettingPoint(true)
 						Graphics.CSurface.GL_PushMatrix()
 						Graphics.CSurface.GL_Translate(targetPos.x, targetPos.y, 0)
@@ -1260,7 +1295,7 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 			--checkValidTarget(system.table.currentTarget._targetable, defence_types.ALL, shipManager, true)
 			local home_rate = currentTurret.homing
 			if shipManager:HasAugmentation("UPG_OG_TURRET_SPEED") > 0 then
-				home_rate = home_rate * 1.5
+				home_rate = home_rate * (1.5 ^ shipManager:GetAugmentationValue("UPG_OG_TURRET_SPEED"))
 			end
 			userdata_table(projectile, "mods.og").homing = {target = system.table.currentTarget, turn_rate = home_rate}
 		end
@@ -1270,7 +1305,7 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 		system.table.currentlyTargetted = false
 	end
 	if shipManager:HasAugmentation("UPG_OG_TURRET_SPEED") > 0 then
-		projectile.speed_magnitude = projectile.speed_magnitude * 1.5
+		projectile.speed_magnitude = projectile.speed_magnitude * (1.5 ^ shipManager:GetAugmentationValue("UPG_OG_TURRET_SPEED"))
 	end
 	currentTurret.image:Start(true)
 	if currentTurret.image.info.numFrames > 1 then
@@ -1375,6 +1410,11 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 	for _, sysName in ipairs(systemNameList) do
 		if shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) and Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] >= 0 then
 			local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
+			if sysName == "og_turret_adaptive" and shipManager:HasAugmentation("UPG_OG_TURRET_ADAPTIVE_LARGE") > 0 then
+				microTurrets[sysName] = false
+			else
+				microTurrets[sysName] = true
+			end
 			if not system.table.firingTime then 
 				--log("GOTO 1 SHIP_LOOP TURRETS"..shipManager.iShipId..sysName)
 				goto END_SYSTEM_LOOP
@@ -1444,7 +1484,7 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 				end
 			end
 			if shipManager:HasAugmentation("UPG_OG_TURRET_SPEED") > 0 then
-				speed = speed * 1.5
+				speed = speed * (1.5 ^ shipManager:GetAugmentationValue("UPG_OG_TURRET_SPEED"))
 			end
 
 			if not system_ready(system) then
@@ -1653,11 +1693,82 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(s)
 	--log("END SHIP_LOOP PROJECTILES")
 end)
 
+local turret_mount = Hyperspace.Resources:CreateImagePrimitiveString("og_turrets/ship_turret_mount.png", -31, -31, 0, Graphics.GL_Color(1, 1, 1, 1) , 1, false)
+local turret_mount_mini = Hyperspace.Resources:CreateImagePrimitiveString("og_turrets/ship_turret_mount_mini.png", -14, -14, 0, Graphics.GL_Color(1, 1, 1, 1) , 1, false)
+local turret_mount_back = Hyperspace.Resources:CreateImagePrimitiveString("og_turrets/ship_turret_mount_back.png", -50, -50, 0, Graphics.GL_Color(1, 1, 1, 1) , 1, false)
+local turret_mount_mini_back = Hyperspace.Resources:CreateImagePrimitiveString("og_turrets/ship_turret_mount_mini_back.png", -23, -23, 0, Graphics.GL_Color(1, 1, 1, 1) , 1, false)
+local turret_mount_back_above = Hyperspace.Resources:CreateImagePrimitiveString("og_turrets/ship_turret_mount_back_above.png", -50, -50, 0, Graphics.GL_Color(1, 1, 1, 1) , 1, false)
+local turret_mount_mini_back_above = Hyperspace.Resources:CreateImagePrimitiveString("og_turrets/ship_turret_mount_mini_back_above.png", -23, -23, 0, Graphics.GL_Color(1, 1, 1, 1) , 1, false)
+
+local stencil_mode = {ignore = 0, set = 1, use = 2}
+
 local function renderTurret(shipManager, ship, spaceManager, shipGraph, sysName)
 	--print("ship:"..shipManager.iShipId.." jump first:"..shipManager.jump_timer.first.." second:"..shipManager.jump_timer.second.." bJumping"..tostring(shipManager.bJumping))
 	if shipManager.bJumping and shipManager.iShipId == 1 then return end
 	local currentTurret = nil
 	local overRideTurretAngle = false
+	if sysName == "og_turret_adaptive" then
+		local turretLoc = turret_location[ship.shipName] and turret_location[ship.shipName][sysName] or {x = 0, y = 0}
+		local shipCorner = {x = ship.shipImage.x + shipGraph.shipBox.x, y = ship.shipImage.y + shipGraph.shipBox.y}
+		local shipSize = {x = math.floor(ship.shipImage.w/2), y = math.floor(ship.shipImage.h/2)}
+
+		Graphics.CSurface.GL_PushStencilMode()
+		Graphics.CSurface.GL_SetStencilMode(stencil_mode.set, 1, 25)
+		Graphics.CSurface.GL_DrawRect(
+			-1280, 
+			-720, 
+			1280*3, 
+			720*3, 
+			Graphics.GL_Color(1, 1, 1, 1)
+		)
+		Graphics.CSurface.GL_SetStencilMode(stencil_mode.set, 0, 25)
+		Graphics.CSurface.GL_PushMatrix()
+		Graphics.CSurface.GL_Translate(shipGraph.shipBox.x + ship.shipImage.x + shipSize.x, shipGraph.shipBox.y + ship.shipImage.y + shipSize.y, 0)
+		--Graphics.CSurface.GL_Translate(shipGraph.shipBox.x, shipGraph.shipBox.y, 0)
+		Graphics.CSurface.GL_Scale(0.975, 0.975, 1)
+		Graphics.CSurface.GL_Translate(-1 * (ship.shipImage.x + shipSize.x), -1 * (ship.shipImage.y + shipSize.y), 0)
+		Graphics.CSurface.GL_RenderPrimitiveWithAlpha(ship.shipImagePrimitive, 1)
+		Graphics.CSurface.GL_PopMatrix()
+
+		Graphics.CSurface.GL_PushMatrix()
+		Graphics.CSurface.GL_Translate(shipGraph.shipBox.x, shipGraph.shipBox.y, 0)
+		Graphics.CSurface.GL_RenderPrimitiveWithAlpha(ship.floorPrimitive, 1)
+		Graphics.CSurface.GL_PopMatrix()
+
+		Graphics.CSurface.GL_SetStencilMode(stencil_mode.use, 1, 25)
+
+		Graphics.CSurface.GL_PushMatrix()
+		Graphics.CSurface.GL_Translate(shipCorner.x + turretLoc.x, shipCorner.y + turretLoc.y, 0)
+		if microTurrets[sysName] then
+			Graphics.CSurface.GL_RenderPrimitive(turret_mount_mini_back)
+		else
+			Graphics.CSurface.GL_RenderPrimitive(turret_mount_back)
+		end
+		Graphics.CSurface.GL_PopMatrix()
+
+		Graphics.CSurface.GL_SetStencilMode(stencil_mode.use, 0, 25)
+		
+		Graphics.CSurface.GL_PushMatrix()
+		Graphics.CSurface.GL_Translate(shipCorner.x + turretLoc.x, shipCorner.y + turretLoc.y, 0)
+		if microTurrets[sysName] then
+			Graphics.CSurface.GL_RenderPrimitive(turret_mount_mini_back_above)
+		else
+			Graphics.CSurface.GL_RenderPrimitive(turret_mount_back_above)
+		end
+		Graphics.CSurface.GL_PopMatrix()
+
+		Graphics.CSurface.GL_SetStencilMode(stencil_mode.ignore, 1, 25)
+		Graphics.CSurface.GL_PopStencilMode()
+
+		Graphics.CSurface.GL_PushMatrix()
+		Graphics.CSurface.GL_Translate(shipCorner.x + turretLoc.x, shipCorner.y + turretLoc.y, 0)
+		if microTurrets[sysName] then
+			Graphics.CSurface.GL_RenderPrimitive(turret_mount_mini)
+		else
+			Graphics.CSurface.GL_RenderPrimitive(turret_mount)
+		end
+		Graphics.CSurface.GL_PopMatrix()
+	end
 	if Hyperspace.App.menu.shipBuilder.bOpen then
 		local id, i = findStartingTurret(shipManager, sysName)
 		if id then currentTurret = turrets[id] end
@@ -1692,6 +1803,85 @@ local function renderTurret(shipManager, ship, spaceManager, shipGraph, sysName)
 		Graphics.CSurface.GL_PopMatrix()
 	end
 end
+
+
+local positioning_turret = false
+local lastPosition = {x = 0, y = 0, direction = turret_directions.right}
+script.on_game_event("OG_TURRET_ADAPTIVE_POSITION", false, function() 
+	positioning_turret = true
+	lastPosition = {}
+	lastPosition.x = turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive"].x
+	lastPosition.y = turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive"].y
+	lastPosition.direction = turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive"].direction
+end)
+
+script.on_internal_event(Defines.InternalEvents.ON_MOUSE_L_BUTTON_DOWN, function(x, y)
+	if positioning_turret then
+		positioning_turret = false
+		Hyperspace.playerVariables.og_turret_adaptive_saved_x = turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive"].x
+		Hyperspace.playerVariables.og_turret_adaptive_saved_y = turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive"].y
+		Hyperspace.playerVariables.og_turret_adaptive_saved_direction = 2 * turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive"].direction
+	end
+	return Defines.Chain.CONTINUE
+end)
+
+script.on_internal_event(Defines.InternalEvents.ON_MOUSE_R_BUTTON_DOWN, function(x, y)
+	if positioning_turret then
+		positioning_turret = false
+		turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive"] = lastPosition
+	end
+	return Defines.Chain.CONTINUE
+end)
+
+script.on_internal_event(Defines.InternalEvents.ON_KEY_DOWN, function(key)
+	if key == 114 and positioning_turret then --r key
+		local newDir = turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive"].direction + 0.5
+		if newDir >= 2 then newDir = -2 end
+		turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive"].direction = newDir
+	end
+	return Defines.Chain.CONTINUE
+end)
+
+script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
+	if positioning_turret then
+		local mousePosPlayer = worldToPlayerLocation(Hyperspace.Mouse.position)
+		local ship = Hyperspace.ships.player.ship
+		local shipGraph = Hyperspace.ShipGraph.GetShipInfo(0)
+		local shipCorner = {x = ship.shipImage.x + shipGraph.shipBox.x, y = ship.shipImage.y + shipGraph.shipBox.y}
+		local mousePosRelative = {x = mousePosPlayer.x - shipCorner.x, y = mousePosPlayer.y - shipCorner.y}
+		local withinRect = mousePosRelative.x > 0 and mousePosRelative.x < ship.shipImage.w and mousePosRelative.y > 0 and mousePosRelative.y < ship.shipImage.h
+		local mousePosMiddle = {x = mousePosRelative.x - ship.shipImage.w/2, y = mousePosRelative.y - ship.shipImage.h/2}
+		local withinShield = isPointInEllipse(mousePosMiddle, ship.baseEllipse)
+		--print("ellipse x:"..ship.baseEllipse.center.x.." y:"..ship.baseEllipse.center.y.." a:"..ship.baseEllipse.a.." b:"..ship.baseEllipse.b)
+		--print("mouse x:"..mousePosRelative.x.." y:"..mousePosRelative.y)
+		if withinRect and withinShield then
+			turret_location[ship.shipName]["og_turret_adaptive"].x = mousePosRelative.x
+			turret_location[ship.shipName]["og_turret_adaptive"].y = mousePosRelative.y
+		end
+	end
+	if Hyperspace.App.menu.shipBuilder.bOpen then
+		if Hyperspace.playerVariables.og_turret_adaptive_saved_x > 0 then
+			--print("load pos tick")
+			turret_location[shipManager.ship.shipName]["og_turret_adaptive"].x = Hyperspace.playerVariables.og_turret_adaptive_saved_x
+			turret_location[shipManager.ship.shipName]["og_turret_adaptive"].y = Hyperspace.playerVariables.og_turret_adaptive_saved_y
+			turret_location[shipManager.ship.shipName]["og_turret_adaptive"].direction = Hyperspace.playerVariables.og_turret_adaptive_saved_direction/2
+		else
+			local systemId = Hyperspace.ShipSystem.NameToSystemId("og_turret_adaptive")
+			local shipManager = Hyperspace.ships.player
+			local roomId = shipManager.myBlueprint.systemInfo.location[0]
+			local pos = shipManager:GetRoomCenter(roomId)
+
+			local ship = shipManager.ship
+			local shipGraph = Hyperspace.ShipGraph.GetShipInfo(0)
+			local shipCorner = {x = ship.shipImage.x + shipGraph.shipBox.x, y = ship.shipImage.y + shipGraph.shipBox.y}
+			local posRelative = {x = pos.x - shipCorner.x, y = pos.y - shipCorner.y}
+
+			turret_location[shipManager.ship.shipName]["og_turret_adaptive"].x = posRelative.x
+			turret_location[shipManager.ship.shipName]["og_turret_adaptive"].y = posRelative.y
+		end
+	end
+end)
+
 
 local player_jump_timer = 0
 local player_arrive_timer = 0
@@ -1734,6 +1924,7 @@ script.on_render_event(Defines.RenderEvents.SHIP_MANAGER, function(shipManager) 
 end)
 
 for _, sysName in ipairs(systemNameList) do
+	--print("set icon:"..sysName)
 	mods.multiverse.systemIcons[Hyperspace.ShipSystem.NameToSystemId(sysName)] = mods.multiverse.register_system_icon(sysName)
 end
 
@@ -1969,9 +2160,9 @@ script.on_internal_event(Defines.InternalEvents.ON_KEY_DOWN, function(key)
 				local shipManager = Hyperspace.ships.player
 				for _, sysName in ipairs(systemNameList) do
 					local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
-					if system.table.index == i and shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) then
+					if shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) and system.table.index == i then
 						select_turret(system, ctrl_held) -- enables targetting for a turret
-					elseif system.table.currentlyTargetting then
+					elseif shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) and system.table.currentlyTargetting then
 						system.table.currentlyTargetting = false -- disables targetting for other turrets if its active
 					end
 				end

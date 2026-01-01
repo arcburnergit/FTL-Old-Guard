@@ -2,13 +2,14 @@
 <FTL>
 <blueprintList name="OG_SHOP_ITEM_TURRET_SYSTEMS">
 	<name>og_turret</name>
-	<name>og_turret_alt</name>
+	<name>og_turret_2</name>
 	<name>og_turret_3</name>
 	<name>og_turret_4</name>
 	<name>og_turret_mini</name>
 	<name>og_turret_mini_2</name>
 	<name>og_turret_mini_3</name>
 	<name>og_turret_mini_4</name>
+	<name>og_turret_adaptive</name>
 </blueprintList>
 <blueprintList name="LIST_CREW_OG_IRON">
 	<name>human_og_raider</name>
@@ -364,7 +365,7 @@
 	<maxSector>8</maxSector>
 	<systemList>
 		<og_turret power="2" max="5" room="2" start="true" turret="LIST_TURRETS_BIG_ATTACK" />
-		<og_turret_alt power="1" max="5" room="1" start="true" turret="OG_TURRET_MISSILE_1" />
+		<og_turret_2 power="1" max="5" room="1" start="true" turret="OG_TURRET_MISSILE_1" />
 		<og_turret_mini power="1" max="4" room="0" start="false" turret="OG_TURRET_ION_MINI_1" />
 		<cloaking power="1" max="1" room="13" start="false" />
 		<doors power="1" max="2" room="16" start="false" />
@@ -713,7 +714,7 @@
 	<maxSector>8</maxSector>
 	<systemList>
 		<og_turret power="2" max="5" room="2" start="true" turret="LIST_TURRETS_DAWN" />
-		<og_turret_alt power="2" max="5" room="1" start="true" turret="LIST_TURRETS_DAWN" />
+		<og_turret_2 power="2" max="5" room="1" start="true" turret="LIST_TURRETS_DAWN" />
 		<og_turret_mini power="1" max="4" room="0" start="false" turret="LIST_TURRETS_DAWN_SMALL" />
 		<cloaking power="1" max="1" room="13" start="false" />
 		<doors power="1" max="2" room="16" start="false" />

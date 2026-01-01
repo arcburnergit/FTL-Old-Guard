@@ -51,7 +51,7 @@
 	<cost>0</cost>
 	<rarity>0</rarity>
 	<stackable>true</stackable>
-	<value>180</value>
+	<value>80</value>
 </augBlueprint>
 <augBlueprint name="EX_OG_TURRET_MANUAL">
 	<title>Manual Dexterity [X]</title>
@@ -62,6 +62,24 @@
 	<rarity>0</rarity>
 	<stackable>true</stackable>
 	<value>1</value>
+</augBlueprint>
+
+<augBlueprint name="UPG_OG_TURRET_ADAPTIVE_LARGE">
+	<title>Expanded Circuitry</title>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<cost>0</cost>
+	<rarity>0</rarity>
+	<stackable>false</stackable>
+	<value>80</value>
+</augBlueprint>
+<augBlueprint name="EX_OG_TURRET_ADAPTIVE_LARGE">
+	<title>Expanded Circuitry [X]</title>
+	<desc>Expands the adaptive turret's slot to accept all sizes of turrets.
+	
+	[X] - As an external system upgrade, this augment will provide its normal effect but take up an augment slot. Can be converted for free to the internal version under the internal upgrade menu if you have the Modified Clone Bay system.</desc>
+	<cost>40</cost>
+	<rarity>0</rarity>
+	<stackable>false</stackable>
 </augBlueprint>
 
 <systemBlueprint name="og_turret">
@@ -82,8 +100,8 @@
 	</upgradeCost>
 	<cost>55</cost>
 </systemBlueprint>
-<systemBlueprint name="og_turret_alt">
-	<type>og_turret_alt</type>
+<systemBlueprint name="og_turret_2">
+	<type>og_turret_2</type>
 	<title>Turret Control</title>
 	<desc>Powers your ship's turret. Upgrading lowers the charge time of the turret.</desc>
 	<startPower>2</startPower>
@@ -195,6 +213,24 @@
 		<level>120</level>
 	</upgradeCost>
 	<cost>45</cost>
+</systemBlueprint>
+<systemBlueprint name="og_turret_adaptive">
+	<type>og_turret_adaptive</type>
+	<title>Adaptive Turret Control</title>
+	<desc>Powers your ship's turret. Upgrading lowers the charge time of the turret. Turret position can be altered outside of combat to best fit the ship, can be upgraded to a large turret slot.</desc>
+	<startPower>1</startPower>
+	<maxPower>4</maxPower>
+	<rarity>0</rarity>
+	<upgradeCost>
+		<level>35</level>
+		<level>55</level>
+		<level>70</level>
+		<level>100</level>
+		<level>999</level>
+		<level>120</level>
+		<level>140</level>
+	</upgradeCost>
+	<cost>50</cost>
 </systemBlueprint>
 </FTL>
 
@@ -1344,6 +1380,46 @@
 	<weaponArt>missiles_1</weaponArt>
 	<iconImage>missile</iconImage>
 </weaponBlueprint>
+<weaponBlueprint name="OG_MISSILE_PROJECTILE_WEAK">
+	<type>MISSILE</type>
+	<title>Laser</title>
+	<short>Laser</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>1</damage>
+	<sysDamage>1</sysDamage>
+	<missiles>0</missiles>
+	<accuracyMod>10</accuracyMod>
+	<speed>60</speed>
+	<shots>1</shots>
+	<sp>10</sp>
+	<fireChance>3</fireChance>
+	<breachChance>0</breachChance>
+	<stunChance>2</stunChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>missile_1</image>
+	<launchSounds>
+		<sound>smallMissile1</sound>
+		<sound>smallMissile2</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>smallExplosion</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>missiles_1</weaponArt>
+	<iconImage>missile</iconImage>
+</weaponBlueprint>
 <weaponBlueprint name="OG_FLAK_PROJECTILE">
 	<type>LASER</type>
 	<drone_targetable>1</drone_targetable>
@@ -1769,12 +1845,12 @@
 				<number>0</number>
 			</slot>
 		</og_turret>
-		<og_turret_alt power="2" room="1" start="true" img="room_og_turret_3" turret="OG_TURRET_ION_1" >
+		<og_turret_2 power="2" room="1" start="true" img="room_og_turret_3" turret="OG_TURRET_ION_1" >
 			<slot>
 				<direction>right</direction>
 				<number>0</number>
 			</slot>
-		</og_turret_alt>
+		</og_turret_2>
 		<og_turret_mini power="1" room="5" start="true" img="room_og_turret_2_noman" turret="OG_TURRET_LASER_RUSTY_MINI_1" />
 		<og_turret_mini_2 power="1" room="28" start="true" img="room_og_turret_2_noman" turret="OG_TURRET_LASER_RUSTY_MINI_1" />
 		<battery power="1" room="24" start="false" img="room_battery_14" />
@@ -1868,8 +1944,8 @@
 		</clonebay>
 		<doors power="1" room="4" start="true" img="room_doors_2">
 			<slot>
-				<direction>right</direction>
-				<number>1</number>
+				<direction>down</direction>
+				<number>0</number>
 			</slot>
 		</doors>
 		<drones power="2" max="8" room="8" start="false" img="room_drones_19" />
@@ -2023,12 +2099,12 @@
 				<number>1</number>
 			</slot>
 		</og_turret>
-		<og_turret_alt power="2" room="1" start="true" img="room_og_turret_6" turret="OG_TURRET_LASER_2">
+		<og_turret_2 power="2" room="1" start="true" img="room_og_turret_6" turret="OG_TURRET_LASER_2">
 			<slot>
 				<direction>right</direction>
 				<number>3</number>
 			</slot>
-		</og_turret_alt>
+		</og_turret_2>
 		<battery power="1" room="10" start="false" img="room_battery_3" />
 		<cloaking power="1" room="19" start="false" img="room_cloaking_10" />
 		<clonebay power="1" room="5" start="false">
@@ -2272,12 +2348,12 @@
 				<number>0</number>
 			</slot>
 		</og_turret>
-		<og_turret_alt power="2" room="1" start="true" img="room_og_turret_3" turret="OG_TURRET_MISSILE_2">
+		<og_turret_2 power="2" room="1" start="true" img="room_og_turret_8" turret="OG_TURRET_MISSILE_2">
 			<slot>
 				<direction>right</direction>
 				<number>0</number>
 			</slot>
-		</og_turret_alt>
+		</og_turret_2>
 		<battery power="1" room="10" start="false" img="room_battery_3" />
 		<cloaking power="1" room="9" start="false" img="room_cloaking_3" />
 		<clonebay power="1" room="14" start="false">

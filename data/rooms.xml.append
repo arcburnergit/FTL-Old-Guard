@@ -17,6 +17,22 @@
 	<computerGlow name="computer1_glow" x="37" y="3" dir="RIGHT"/>
 </roomLayout>
 <roomLayout name="og_turret_6">
-	<computerGlow name="computer1_glow" x="37" y="32" dir="RIGHT"/>
+	<computerGlow name="computer1_glow" x="37" y="31" dir="RIGHT"/>
+</roomLayout>
+
+<roomLayout name="og_turret_7">
+	<computerGlow name="computer1_glow" x="32" y="-2" dir="UP"/>
+</roomLayout>
+<roomLayout name="og_turret_8">
+	<computerGlow name="computer1_glow" x="2" y="31" dir="RIGHT"/>
+</roomLayout>
+<roomLayout name="og_turret_9">
+	<computerGlow name="computer1_glow" x="32" y="2" dir="DOWN"/>
+</roomLayout>
+<roomLayout name="og_turret_10">
+	<computerGlow name="computer1_glow" x="4" y="2" dir="DOWN"/>
+</roomLayout>
+<roomLayout name="og_turret_11">
+	<computerGlow name="computer1_glow" x="3" y="-2" dir="UP"/>
 </roomLayout>
 </FTL>
