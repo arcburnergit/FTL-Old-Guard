@@ -40,8 +40,10 @@ end)
 
 local hookedEvents = {}
 local function turret_install_event(installEvent, sysName, shipManager, eventManager)
+	--print("turret_install_event"..installEvent.eventName.." sys:"..sysName)
 	if shipManager:HasSystem(3) then
 		for weapon in vter(shipManager.weaponSystem.weapons) do
+			--print("weapons:"..weapon.blueprint.name.." "..tostring((turrets[weapon.blueprint.name] and true) or false).." "..tostring((turrets[weapon.blueprint.name].mini and true) or false).." "..tostring((not microTurrets[sysName] and true) or false))
 			if turrets[weapon.blueprint.name] and (turrets[weapon.blueprint.name].mini or not microTurrets[sysName]) then
 				local removeEvent = eventManager:CreateEvent("STORAGE_CHECK_OG_TURRET_EMPTY", 0, false)
 				removeEvent.eventName = removeEvent.eventName.."_INSTALL_"..sysName.."_"..weapon.blueprint.name
@@ -61,10 +63,12 @@ local function turret_install_event(installEvent, sysName, shipManager, eventMan
 				removeEvent.stuff.removeItem = weapon.blueprint.name
 				removeEvent.stuff.weapon = weapon.blueprint
 				installEvent:AddChoice(removeEvent, "Install this:", emptyReq, false)
+				--print("added choice:"..weapon.blueprint.name)
 			end
 		end
 	end
 	for item in vter(Hyperspace.App.gui.equipScreen:GetCargoHold()) do
+		--print("items:"..item)
 		if turrets[item] and (turrets[item].mini or not microTurrets[sysName]) then
 			local removeEvent = eventManager:CreateEvent("STORAGE_CHECK_OG_TURRET_EMPTY", 0, false)
 			removeEvent.eventName = removeEvent.eventName.."_INSTALL_"..sysName.."_"..item
@@ -85,6 +89,7 @@ local function turret_install_event(installEvent, sysName, shipManager, eventMan
 			local blueprint = Hyperspace.Blueprints:GetWeaponBlueprint(item)
 			removeEvent.stuff.weapon = blueprint
 			installEvent:AddChoice(removeEvent, "Install this:", emptyReq, false)
+			--print("added item choice:"..item)
 		end
 	end
 
@@ -111,14 +116,19 @@ script.on_internal_event(Defines.InternalEvents.PRE_CREATE_CHOICEBOX, function(e
 					if not hookedEvents[removeEvent.eventName] then
 						hookedEvents[removeEvent.eventName] = true
 						script.on_game_event(removeEvent.eventName, false, function()
+							local sys = Hyperspace.ships.player:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
 							Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] = -1
-							system.table.currentTarget = nil
 							Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] = 0
 							Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemTimeVarName] = 0
-							system.table.chargeTime = 0
-							system.table.firingTime = 0
-							system.table.currentShot = 0
-							system.table.currentlyTargetting = false
+							if sys.table then
+								sys.table.currentTarget = nil
+								sys.table.chargeTime = 0
+								sys.table.firingTime = 0
+								sys.table.currentShot = 0
+								sys.table.currentlyTargetting = false
+							else
+								print("og: failed to get sys.table")
+							end
 							return
 						end)
 					end

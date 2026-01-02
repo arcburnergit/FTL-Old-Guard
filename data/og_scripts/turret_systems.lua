@@ -271,17 +271,6 @@ local defence_types = {
 mods.og.turrets = {}
 local turrets = mods.og.turrets
 
-script.on_internal_event(Defines.InternalEvents.HAS_EQUIPMENT, function(shipManager, equipment, value)
-	if equipment == "BLUELIST_DRONES_DEFENSE" then
-		for _, sysName in ipairs(systemNameList) do
-			if Hyperspace.ships.player:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) and Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] > 0 then
-				value = value + 1
-			end
-		end
-	end
-	return Defines.Chain.CONTINUE, value
-end)
-
 local function add_stat_text(desc, currentTurret, chargeMax)
 	desc = desc.."Stats:\nCharge Time: "
 	for i, t in ipairs(currentTurret.charge_time) do
@@ -1304,6 +1293,13 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 		system.table.currentTarget = nil
 		system.table.currentlyTargetted = false
 	end
+	local cApp = Hyperspace.App
+	local combatControl = cApp.gui.combatControl
+	local weapControl = combatControl.weapControl
+	if offensive and xor(weapControl.autoFiring, system.table.autoFireInvert) then
+		system.table.currentTarget = nil
+		system.table.currentlyTargetted = false
+	end
 	if shipManager:HasAugmentation("UPG_OG_TURRET_SPEED") > 0 then
 		projectile.speed_magnitude = projectile.speed_magnitude * (1.5 ^ shipManager:GetAugmentationValue("UPG_OG_TURRET_SPEED"))
 	end
@@ -1412,7 +1408,7 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 			local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
 			if sysName == "og_turret_adaptive" and shipManager:HasAugmentation("UPG_OG_TURRET_ADAPTIVE_LARGE") > 0 then
 				microTurrets[sysName] = false
-			else
+			elseif sysName == "og_turret_adaptive" then
 				microTurrets[sysName] = true
 			end
 			if not system.table.firingTime then 
@@ -1861,7 +1857,7 @@ script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
 	end
 	if Hyperspace.App.menu.shipBuilder.bOpen then
 		if Hyperspace.playerVariables.og_turret_adaptive_saved_x > 0 then
-			--print("load pos tick")
+			local shipManager = Hyperspace.ships.player
 			turret_location[shipManager.ship.shipName]["og_turret_adaptive"].x = Hyperspace.playerVariables.og_turret_adaptive_saved_x
 			turret_location[shipManager.ship.shipName]["og_turret_adaptive"].y = Hyperspace.playerVariables.og_turret_adaptive_saved_y
 			turret_location[shipManager.ship.shipName]["og_turret_adaptive"].direction = Hyperspace.playerVariables.og_turret_adaptive_saved_direction/2
@@ -2193,3 +2189,46 @@ script.on_internal_event(Defines.InternalEvents.POST_CREATE_CHOICEBOX, function(
 	end
 end)
 
+
+script.on_internal_event(Defines.InternalEvents.HAS_EQUIPMENT, function(shipManager, equipment, value)
+	if turrets[equipment] then
+		for _, sysName in ipairs(systemNameList) do
+			if shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) then
+				local currentTurretName = turretBlueprintsList[ Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] ]
+				if currentTurretName == equipment then
+					value = value + 1
+				end
+			end
+		end
+	else
+		local list = Hyperspace.Blueprints:GetBlueprintList(equipment)
+		if list:size() > 0 then
+			for item in vter(list) do
+				if turrets[item] then
+					for _, sysName in ipairs(systemNameList) do
+						if shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) then
+							local currentTurretName = turretBlueprintsList[ Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] ]
+							if currentTurretName == item then
+								value = value + 1
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+	return Defines.Chain.CONTINUE, value
+end)
+
+
+
+script.on_internal_event(Defines.InternalEvents.HAS_EQUIPMENT, function(shipManager, equipment, value)
+	if equipment == "BLUELIST_DRONES_DEFENSE" then
+		for _, sysName in ipairs(systemNameList) do
+			if Hyperspace.ships.player:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) and Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] > 0 then
+				value = value + 1
+			end
+		end
+	end
+	return Defines.Chain.CONTINUE, value
+end)

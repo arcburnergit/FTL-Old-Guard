@@ -10,12 +10,18 @@ end
 local systemsToAppend = {}
 systemsToAppend["og_turret_adaptive"] = {attributes = {power = 1, start = "false", turret = "OG_TURRET_LASER_RUSTY_MINI_1"}, manning = true, avoid = {"og_turret", "og_turret_2", "og_turret_3", "og_turret_4", "og_turret_mini", "og_turret_mini_2", "og_turret_mini_3", "og_turret_mini_4"},
     image_list = {
+        {room_image = "room_og_turret_5", w = 2, h = 2, top = "00", bottom = "00", left="00", right="10", manning_slot = 1, manning_direction = "right"},
+        {room_image = "room_og_turret_6", w = 2, h = 2, top = "00", bottom = "00", left="00", right="01", manning_slot = 3, manning_direction = "right"},
+
         {room_image = "room_og_turret", w = 1, h = 3, top = "0", bottom = "0", left="000", right="010", manning_slot = 1, manning_direction = "right"},
         {room_image = "room_og_turret_2", w = 2, h = 1, top = "00", bottom = "00", left="0", right="1", manning_slot = 1, manning_direction = "right"},
         {room_image = "room_og_turret_3", w = 1, h = 2, top = "0", bottom = "0", left="00", right="10", manning_slot = 0, manning_direction = "right"},
         {room_image = "room_og_turret_4", w = 2, h = 1, top = "10", bottom = "00", left="0", right="0", manning_slot = 0, manning_direction = "up"},
-        {room_image = "room_og_turret_5", w = 2, h = 2, top = "00", bottom = "00", left="00", right="10", manning_slot = 1, manning_direction = "right"},
-        {room_image = "room_og_turret_6", w = 2, h = 2, top = "00", bottom = "00", left="00", right="01", manning_slot = 3, manning_direction = "right"},
+        {room_image = "room_og_turret_7", w = 2, h = 1, top = "01", bottom = "00", left="0", right="0", manning_slot = 1, manning_direction = "up"},
+        {room_image = "room_og_turret_8", w = 1, h = 2, top = "0", bottom = "0", left="00", right="01", manning_slot = 1, manning_direction = "right"},
+        {room_image = "room_og_turret_9", w = 2, h = 1, top = "00", bottom = "01", left="0", right="0", manning_slot = 1, manning_direction = "down"},
+        {room_image = "room_og_turret_10", w = 2, h = 1, top = "00", bottom = "10", left="0", right="0", manning_slot = 0, manning_direction = "down"},
+        {room_image = "room_og_turret_11", w = 1, h = 1, top = "1", bottom = "0", left="0", right="0", manning_slot = 0, manning_direction = "up"},
     }
 }
 

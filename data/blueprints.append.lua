@@ -8,7 +8,7 @@ local function getRoomCount(file)
 end
 
 local systemsToAppend = {}
-systemsToAppend["og_turret_adaptive"] = {attributes = {power = 1, start = "true", turret = "OG_TURRET_LASER_RUSTY_MINI_1"}, manning = true, avoid = {"og_turret", "og_turret_2", "og_turret_3", "og_turret_4", "og_turret_mini", "og_turret_mini_2", "og_turret_mini_3", "og_turret_mini_4"},
+systemsToAppend["og_turret_adaptive"] = {attributes = {power = 1, start = "false", turret = "OG_TURRET_LASER_RUSTY_MINI_1"}, manning = true, avoid = {"og_turret", "og_turret_2", "og_turret_3", "og_turret_4", "og_turret_mini", "og_turret_mini_2", "og_turret_mini_3", "og_turret_mini_4"},
     image_list = {
         {room_image = "room_og_turret_5", w = 2, h = 2, top = "00", bottom = "00", left="00", right="10", manning_slot = 1, manning_direction = "right"},
         {room_image = "room_og_turret_6", w = 2, h = 2, top = "00", bottom = "00", left="00", right="01", manning_slot = 3, manning_direction = "right"},
