@@ -510,6 +510,49 @@
 	<iconReplace>og_turret_laser_rusty_1_icon</iconReplace>
 </weaponBlueprint>
 
+<weaponBlueprint name="OG_TURRET_LASER_BOSS_LIGHT">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Light Charger Turret</title>
+	<short>Light C.</short>
+	<desc>A specialized Light Laser Turret which is extremely effective at defending the ship with its high charge count and quick rotation speed.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>150</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_laser_boss_light_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_LASER_BOSS_LIGHT_CHAOS">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Chaotic Light Charger Turret</title>
+	<short>Light C.™</short>
+	<desc>A specialized Light Laser Turret which is extremely effective at defending the ship with its high charge count and quick rotation speed.
+Chaotic varient rotates 5x as fast and can target any projectile.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>150</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_laser_boss_light_chaos_icon</iconReplace>
+</weaponBlueprint>
+
 <weaponBlueprint name="OG_TURRET_LASER_ANCIENT">
 	<type>BEAM</type>
 	<flavorType>Turret</flavorType>
@@ -1060,6 +1103,7 @@
 	<sysDamage>-1</sysDamage>
 	<persDamage>-1</persDamage>
 	<shots>1</shots>
+	<speed>80</speed>
 	<sp>0</sp>
 	<fireChance>0</fireChance>
 	<breachChance>7</breachChance>

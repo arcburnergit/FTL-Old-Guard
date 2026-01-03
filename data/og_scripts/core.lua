@@ -97,8 +97,10 @@ script.on_internal_event(Defines.InternalEvents.CALCULATE_STAT_POST, function(cr
 	end]]
 	if pulsar_power[crewmem.type] and stat == Hyperspace.CrewStat.BONUS_POWER and (spaceManager.pulsarLevel or spaceManager.bStorm) then
 		amount = amount + pulsar_power[crewmem.type]
-	elseif pulsar_power[crewmem.type] and stat == Hyperspace.CrewStat.IS_TELEPATHIC and (spaceManager.bNebula or spaceManager.bStorm or Hyperspace.playerVariables.loc_environment_lightnebula >= 1) then
+	elseif pulsar_power[crewmem.type] and (stat == Hyperspace.CrewStat.IS_TELEPATHIC) and (spaceManager.bNebula or spaceManager.bStorm or Hyperspace.playerVariables.loc_environment_lightnebula >= 1) then
 		value = true
+	elseif pulsar_power[crewmem.type] and (stat == Hyperspace.CrewStat.DETECTS_LIFEFORMS or stat == Hyperspace.CrewStat.RESISTS_MIND_CONTROL) and (spaceManager.bNebula or spaceManager.bStorm or Hyperspace.playerVariables.loc_environment_lightnebula >= 1) then
+		value = false
 	end
 	return Defines.Chain.CONTINUE, amount, value
 end)

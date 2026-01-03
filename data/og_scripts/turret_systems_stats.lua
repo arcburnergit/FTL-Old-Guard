@@ -4,6 +4,8 @@ turretBlueprintsList[0] = "OG_EMPTY_TURRET"
 table.insert(turretBlueprintsList, "OG_TURRET_LASER_1")
 table.insert(turretBlueprintsList, "OG_TURRET_LASER_RUSTY_1")
 table.insert(turretBlueprintsList, "OG_TURRET_LASER_2")
+table.insert(turretBlueprintsList, "OG_TURRET_LASER_BOSS_LIGHT")
+table.insert(turretBlueprintsList, "OG_TURRET_LASER_BOSS_LIGHT_CHAOS")
 table.insert(turretBlueprintsList, "OG_TURRET_LASER_ANCIENT")
 table.insert(turretBlueprintsList, "OG_TURRET_LASER_CEL_1")
 table.insert(turretBlueprintsList, "OG_TURRET_ION_1")
@@ -94,6 +96,44 @@ turrets["OG_TURRET_LASER_2"] = {
 	charges_per_charge = 1,
 	rotation_speed = 120,
 	charge_time = {[0] = 9, 9, 7.5, 6, 5, 4.5, 4, 3.75, 3.5},
+}
+turrets["OG_TURRET_LASER_BOSS_LIGHT"] = {
+	enemy_burst = 4,
+	homing = 36,
+	image = Hyperspace.Animations:GetAnimation("og_turret_laser_boss_light"),
+	glow = Hyperspace.Animations:GetAnimation("og_turret_laser_boss_light_glow"),
+	fire_points = {
+		{x = 5, y = -32, fire_delay = 0.15}, {x = -5, y = -32, fire_delay = 0.15},
+		{x = 10, y = -32, fire_delay = 0.15}, {x = -10, y = -32, fire_delay = 0.15}, 
+		{x = 20, y = -32, fire_delay = 0.15}, {x = -20, y = -32, fire_delay = 0.15}, 
+		{x = 15, y = -32, fire_delay = 0.15}, {x = -15, y = -32, fire_delay = 0.15}
+	},
+	defence_type = defence_types.PROJECTILES,
+	blueprint_type = 1,
+	blueprint = "OG_LASER_PROJECTILE_LIGHT",
+	charges = 8,
+	charges_per_charge = 2,
+	rotation_speed = 360,
+	charge_time = {[0] = 5, 5, 3.5, 2.5, 2, 1.75, 1.5, 1.25, 1},
+}
+turrets["OG_TURRET_LASER_BOSS_LIGHT_CHAOS"] = {
+	enemy_burst = 4,
+	homing = 36,
+	image = Hyperspace.Animations:GetAnimation("og_turret_laser_boss_light_chaos"),
+	glow = Hyperspace.Animations:GetAnimation("og_turret_laser_boss_light_glow"),
+	fire_points = {
+		{x = 5, y = -32, fire_delay = 0.15}, {x = -5, y = -32, fire_delay = 0.15},
+		{x = 10, y = -32, fire_delay = 0.15}, {x = -10, y = -32, fire_delay = 0.15}, 
+		{x = 20, y = -32, fire_delay = 0.15}, {x = -20, y = -32, fire_delay = 0.15}, 
+		{x = 15, y = -32, fire_delay = 0.15}, {x = -15, y = -32, fire_delay = 0.15}
+	},
+	defence_type = defence_types.PROJECTILES_MISSILES,
+	blueprint_type = 1,
+	blueprint = "OG_LASER_PROJECTILE_LIGHT",
+	charges = 8,
+	charges_per_charge = 2,
+	rotation_speed = 1800,
+	charge_time = {[0] = 5, 5, 3.5, 2.5, 2, 1.75, 1.5, 1.25, 1},
 }
 turrets["OG_TURRET_LASER_ANCIENT"] = {
 	enemy_burst = 3,

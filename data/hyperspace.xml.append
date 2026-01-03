@@ -327,6 +327,37 @@ This enemy's turrets will be fully charged at the start of combat.</tooltip>
 	</mod-append:customShip>
 </mod:findLike>
 
+<mod:findLike type="ships" limit="1" reverse="false">
+	<mod-append:customShip name="OGT_BOSS_IRON_NORMAL">
+		<shipIcons>
+			<shipIcon>icon_threat</shipIcon>
+			<shipIcon>icon_specialwep</shipIcon>
+		</shipIcons>
+		<noFuelStalemate />
+	</mod-append:customShip>
+	<mod-append:customShip name="OGT_BOSS_IRON_CHALLENGE">
+		<shipIcons>
+			<shipIcon>icon_threat</shipIcon>
+			<shipIcon>icon_specialwep</shipIcon>
+		</shipIcons>
+		<noFuelStalemate />
+	</mod-append:customShip>
+	<mod-append:customShip name="OGT_BOSS_IRON_EXTREME">
+		<shipIcons>
+			<shipIcon>icon_threat</shipIcon>
+			<shipIcon>icon_specialwep</shipIcon>
+		</shipIcons>
+		<noFuelStalemate />
+	</mod-append:customShip>
+	<mod-append:customShip name="OGT_BOSS_IRON_CHAOS">
+		<shipIcons>
+			<shipIcon>icon_threat</shipIcon>
+			<shipIcon>icon_specialwep</shipIcon>
+		</shipIcons>
+		<noFuelStalemate />
+	</mod-append:customShip>
+</mod:findLike>
+
 <mod:findLike type="augments" limit="1" reverse="false">
 	<mod-append:aug name="OG_REFLECTIVE_PLATING">
 		<icon>icon_og_reflective_plating</icon>
@@ -410,6 +441,11 @@ This enemy's turrets will be fully charged at the start of combat.</tooltip>
 	<metaVariable name="prof_hotkey_og_turret_6" op="set" val="-1"/>
 	<metaVariable name="prof_hotkey_og_turret_7" op="set" val="-1"/>
 	<metaVariable name="prof_hotkey_og_turret_8" op="set" val="-1"/>
+
+	<bossShip>OGT_BOSS_IRON_NORMAL</bossShip>
+	<bossShip>OGT_BOSS_IRON_CHALLENGE</bossShip>
+	<bossShip>OGT_BOSS_IRON_EXTREME</bossShip>
+	<bossShip>OGT_BOSS_IRON_CHAOS</bossShip>
 </events>
 <crew>
 	<race name="human_og_raider">
@@ -495,6 +531,12 @@ This enemy's turrets will be fully charged at the start of combat.</tooltip>
 				<icon>music_unlocked</icon>
 				<variable name="juke_og_iron" amount="1" />
 				<multiDifficulty>false</multiDifficulty>
+			</achievement>
+			<achievement name="ACH_OG_REN_IRON">
+				<name>Turret Support</name>
+				<description>Defeat the Raider Class C Renegade and get the Light Charger Turret.</description>
+				<icon>renegade_og_iron</icon>
+				<header>Renegade Defeated</header>
 			</achievement>
 		</section>
 	</mod-append:page>

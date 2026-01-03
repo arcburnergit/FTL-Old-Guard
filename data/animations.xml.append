@@ -86,6 +86,36 @@
 	<desc length="7" x="0" y="0" />
 	<time>0.7</time>
 </anim>
+<animSheet name="og_turret_laser_boss_light_icon" w="48" h="44" fw="48" fh="44">og_turrets/turret_laser_boss_light_icon.png</animSheet>
+<anim name="og_turret_laser_boss_light_icon">
+	<sheet>og_turret_laser_boss_light_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_laser_boss_light" w="62" h="62" fw="62" fh="62">og_turrets/turret_laser_boss_light.png</animSheet>
+<anim name="og_turret_laser_boss_light">
+	<sheet>og_turret_laser_boss_light</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_laser_boss_light_glow" w="496" h="62" fw="62" fh="62">og_turrets/turret_laser_boss_light_glow.png</animSheet>
+<anim name="og_turret_laser_boss_light_glow">
+	<sheet>og_turret_laser_boss_light_glow</sheet>
+	<desc length="8" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_laser_boss_light_chaos_icon" w="48" h="44" fw="48" fh="44">og_turrets/turret_laser_boss_light_chaos_icon.png</animSheet>
+<anim name="og_turret_laser_boss_light_chaos_icon">
+	<sheet>og_turret_laser_boss_light_chaos_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_laser_boss_light_chaos" w="62" h="62" fw="62" fh="62">og_turrets/turret_laser_boss_light_chaos.png</animSheet>
+<anim name="og_turret_laser_boss_light_chaos">
+	<sheet>og_turret_laser_boss_light_chaos</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
 <animSheet name="og_turret_laser_ancient_icon" w="118" h="62" fw="118" fh="62">og_turrets/turret_laser_ancient_icon.png</animSheet>
 <anim name="og_turret_laser_ancient_icon">
 	<sheet>og_turret_laser_ancient_icon</sheet>

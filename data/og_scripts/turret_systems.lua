@@ -1404,13 +1404,14 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 	local shipGraph = Hyperspace.ShipGraph.GetShipInfo(shipManager.iShipId)
 	local shipCorner = {x = shipManager.ship.shipImage.x + shipGraph.shipBox.x, y = shipManager.ship.shipImage.y + shipGraph.shipBox.y}
 	for _, sysName in ipairs(systemNameList) do
+		if sysName == "og_turret_adaptive" and shipManager:HasAugmentation("UPG_OG_TURRET_ADAPTIVE_LARGE") > 0 then
+			microTurrets[sysName] = false
+		elseif sysName == "og_turret_adaptive" then
+			microTurrets[sysName] = true
+		end
 		if shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) and Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] >= 0 then
 			local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
-			if sysName == "og_turret_adaptive" and shipManager:HasAugmentation("UPG_OG_TURRET_ADAPTIVE_LARGE") > 0 then
-				microTurrets[sysName] = false
-			elseif sysName == "og_turret_adaptive" then
-				microTurrets[sysName] = true
-			end
+			
 			if not system.table.firingTime then 
 				--log("GOTO 1 SHIP_LOOP TURRETS"..shipManager.iShipId..sysName)
 				goto END_SYSTEM_LOOP
@@ -1439,7 +1440,8 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 					end
 				end
 			end
-			local chargeTime = currentTurret.charge_time[system:GetEffectivePower()]/(1 + system.iActiveManned * 0.1)
+			local hasMannedBonus = (system.iActiveManned > 0 and 0.05) or 0
+			local chargeTime = currentTurret.charge_time[system:GetEffectivePower()]/(1 + hasMannedBonus + system.iActiveManned * 0.05)
 			
 			local otherManager = Hyperspace.ships(1 - shipManager.iShipId)
 			system.table.firingTime = system.table.firingTime - time_increment(true)
@@ -2155,11 +2157,13 @@ script.on_internal_event(Defines.InternalEvents.ON_KEY_DOWN, function(key)
 			if key == Hyperspace.metaVariables[var] then
 				local shipManager = Hyperspace.ships.player
 				for _, sysName in ipairs(systemNameList) do
-					local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
-					if shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) and system.table.index == i then
-						select_turret(system, ctrl_held) -- enables targetting for a turret
-					elseif shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) and system.table.currentlyTargetting then
-						system.table.currentlyTargetting = false -- disables targetting for other turrets if its active
+					if shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) then
+						local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
+						if system.table.index == i then
+							select_turret(system, ctrl_held) -- enables targetting for a turret
+						elseif system.table.currentlyTargetting then
+							system.table.currentlyTargetting = false -- disables targetting for other turrets if its active
+						end
 					end
 				end
 			end
