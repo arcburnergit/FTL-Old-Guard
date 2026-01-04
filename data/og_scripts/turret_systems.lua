@@ -2292,8 +2292,8 @@ script.on_internal_event(Defines.InternalEvents.HAS_EQUIPMENT, function(shipMana
 	return Defines.Chain.CONTINUE, value
 end)
 
-script.on_internal_event(Defines.InternalEvents.POST_CREATE_CHOICEBOX, function(choiceBox, event)
-	local removeItem = choiceBox.rewards.removeItem
+script.on_internal_event(Defines.InternalEvents.PRE_CREATE_CHOICEBOX, function(event)
+	local removeItem = event.stuff.removeItem
 	--print(tostring(removeItem))
 	if turrets[removeItem] then
 		local hasItem = false
@@ -2313,10 +2313,30 @@ script.on_internal_event(Defines.InternalEvents.POST_CREATE_CHOICEBOX, function(
 		if not hasItem then
 			for _, sysName in ipairs(systemNameList) do
 				if shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) then
+					local currentTurretName = turretBlueprintsList[ Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] ]
+					if currentTurretName == removeItem then
+						event.stuff.removeItem = "OG_TURRET_REMOVE_"..event.stuff.removeItem
+					end
+				end
+			end
+		end
+	end
+end)
+
+script.on_internal_event(Defines.InternalEvents.POST_CREATE_CHOICEBOX, function(choiceBox, event)
+	local removeItem = event.stuff.removeItem
+	--print("removeItem:"..removeItem)
+	--print(string.sub(removeItem, 1, 14))
+	if string.sub(removeItem, 1, 17) == "OG_TURRET_REMOVE_" then
+		removeItem = string.sub(removeItem, 18)
+		local shipManager = Hyperspace.ships.player
+		if removeItem then
+			for _, sysName in ipairs(systemNameList) do
+				if shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) then
 					local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
 					local currentTurretName = turretBlueprintsList[ Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] ]
 					if currentTurretName == removeItem then
-						choiceBox.rewards.removeItem = "     "
+						event.stuff.removeItem = "     "
 						Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] = -1
 					end
 				end
