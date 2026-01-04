@@ -19,6 +19,7 @@ table.insert(turretBlueprintsList, "OG_TURRET_LASER_RUSTY_MINI_1")
 table.insert(turretBlueprintsList, "OG_TURRET_LASER_MINI_2")
 table.insert(turretBlueprintsList, "OG_TURRET_ION_MINI_1")
 table.insert(turretBlueprintsList, "OG_TURRET_FOCUS_MINI_1")
+table.insert(turretBlueprintsList, "OG_TURRET_FLAK_MINI_1")
 table.insert(turretBlueprintsList, "OG_TURRET_MISSILE_MINI_1")
 
 table.insert(turretBlueprintsList, "OG_TURRET_LASER_DAWN")
@@ -231,7 +232,7 @@ turrets["OG_TURRET_FLAK_1"] = {
 	image = Hyperspace.Animations:GetAnimation("og_turret_flak_1"),
 	glow = Hyperspace.Animations:GetAnimation("og_turret_flak_1_glow"),
 	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_flak_1_charge.png", -33, -33, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
-	fire_points = {{x = 0, y = -30, fire_delay = 0}, {x = 0, y = -30, fire_delay = 0}, {x = 0, y = -30, fire_delay = 0.25}},
+	fire_points = {{x = 0, y = -30, fire_delay = 0.25}, {x = 0, y = -30, fire_delay = 0, auto_burst = true}, {x = 0, y = -30, fire_delay = 0, auto_burst = true}},
 	defence_type = defence_types.ALL,
 	blueprint_type = 1,
 	blueprint = "OG_FLAK_PROJECTILE",
@@ -266,10 +267,10 @@ turrets["OG_TURRET_LASER_MINI_1"] = {
 	defence_type = defence_types.PROJECTILES_MISSILES,
 	blueprint_type = 1,
 	blueprint = "OG_LASER_PROJECTILE_BASE",
-	charges = 1,
-	charges_per_charge = 1,
+	charges = 2,
+	charges_per_charge = 2,
 	rotation_speed = 240,
-	charge_time = {[0] = 10, 10, 8, 6, 5, 4, 3.5, 3, 2.5},
+	charge_time = {[0] = 12, 12, 10, 8, 6, 5, 4, 3.5, 3},
 }
 turrets["OG_TURRET_LASER_RUSTY_MINI_1"] = {
 	mini = true,
@@ -281,10 +282,10 @@ turrets["OG_TURRET_LASER_RUSTY_MINI_1"] = {
 	defence_type = defence_types.PROJECTILES_MISSILES,
 	blueprint_type = 1,
 	blueprint = "OG_LASER_PROJECTILE_BASE",
-	charges = 1,
-	charges_per_charge = 1,
+	charges = 2,
+	charges_per_charge = 2,
 	rotation_speed = 240,
-	charge_time = {[0] = 12, 12, 10, 8, 6, 5, 4, 3.5, 3},
+	charge_time = {[0] = 15, 15, 12, 10, 8, 6, 5, 4, 3},
 }
 turrets["OG_TURRET_LASER_MINI_2"] = {
 	enemy_burst = 1,
@@ -338,6 +339,23 @@ turrets["OG_TURRET_FOCUS_MINI_1"] = {
 	charges_per_charge = 1,
 	rotation_speed = 240,
 	charge_time = {[0] = 7, 7, 6, 5, 4, 3.5, 3, 2.75, 2.5},
+}
+turrets["OG_TURRET_FLAK_MINI_1"] = {
+	enemy_burst = 2,
+	shot_radius = 42,
+	aim_cone = 1,
+	mini = true,
+	image = Hyperspace.Animations:GetAnimation("og_turret_flak_mini_1"),
+	glow = Hyperspace.Animations:GetAnimation("og_turret_flak_mini_1_glow"),
+	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_flak_mini_1_charge.png", -21, -21, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
+	fire_points = {{x = 0, y = -20, fire_delay = 0.25}, {x = 0, y = -20, fire_delay = 0, auto_burst = true}},
+	defence_type = defence_types.ALL,
+	blueprint_type = 1,
+	blueprint = "OG_FLAK_PROJECTILE",
+	charges = 4,
+	charges_per_charge = 2,
+	rotation_speed = 240,
+	charge_time = {[0] = 11.5, 11.5, 9, 7, 6, 5, 4, 3, 2},
 }
 turrets["OG_TURRET_MISSILE_MINI_1"] = {
 	enemy_burst = 1,
@@ -409,7 +427,7 @@ turrets["OG_TURRET_FLAK_DAWN"] = {
 	image = Hyperspace.Animations:GetAnimation("og_turret_flak_dawn"),
 	glow = Hyperspace.Animations:GetAnimation("og_turret_flak_1_glow"),
 	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_flak_1_charge.png", -33, -33, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
-	fire_points = {{x = 0, y = -30, fire_delay = 0}, {x = 0, y = -30, fire_delay = 0}, {x = 0, y = -30, fire_delay = 0.25}},
+	fire_points = {{x = 0, y = -30, fire_delay = 0.25}, {x = 0, y = -30, fire_delay = 0, auto_burst = true}, {x = 0, y = -30, fire_delay = 0, auto_burst = true}},
 	defence_type = defence_types.ALL,
 	blueprint_type = 1,
 	blueprint = "OG_FLAK_PROJECTILE",
@@ -444,8 +462,8 @@ turrets["OG_TURRET_LASER_MINI_DAWN_1"] = {
 	defence_type = defence_types.PROJECTILES_MISSILES,
 	blueprint_type = 1,
 	blueprint = "OG_LASER_PROJECTILE_BASE",
-	charges = 1,
-	charges_per_charge = 1,
+	charges = 2,
+	charges_per_charge = 2,
 	rotation_speed = 240,
 	charge_time = {[0] = 8, 8, 6, 5, 4, 3.5, 3, 2.5},
 }

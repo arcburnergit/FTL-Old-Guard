@@ -277,10 +277,10 @@
 	<desc length="4" x="0" y="0" />
 	<time>0.4</time>
 </anim>
-<animSheet name="og_turret_laser_mini_1_glow" w="8" h="6" fw="8" fh="6">og_turrets/turret_laser_mini_1_glow.png</animSheet>
+<animSheet name="og_turret_laser_mini_1_glow" w="16" h="6" fw="8" fh="6">og_turrets/turret_laser_mini_1_glow.png</animSheet>
 <anim name="og_turret_laser_mini_1_glow">
 	<sheet>og_turret_laser_mini_1_glow</sheet>
-	<desc length="1" x="0" y="0" />
+	<desc length="2" x="0" y="0" />
 	<time>1</time>
 </anim>
 <animSheet name="og_turret_laser_rusty_mini_1_icon" w="32" h="14" fw="32" fh="14">og_turrets/turret_laser_rusty_mini_1_icon.png</animSheet>
@@ -349,6 +349,25 @@
 <anim name="og_turret_focus_mini_1_glow">
 	<sheet>og_turret_focus_mini_1_glow</sheet>
 	<desc length="2" x="0" y="0" />
+	<time>1</time>
+</anim>
+
+<animSheet name="og_turret_flak_mini_1_icon" w="37" h="18" fw="37" fh="18">og_turrets/turret_flak_mini_1_icon.png</animSheet>
+<anim name="og_turret_flak_mini_1_icon">
+	<sheet>og_turret_flak_mini_1_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_flak_mini_1" w="336" h="42" fw="42" fh="42">og_turrets/turret_flak_mini_1.png</animSheet>
+<anim name="og_turret_flak_mini_1">
+	<sheet>og_turret_flak_mini_1</sheet>
+	<desc length="8" x="0" y="0" />
+	<time>0.6</time>
+</anim>
+<animSheet name="og_turret_flak_mini_1_glow" w="168" h="42" fw="42" fh="42">og_turrets/turret_flak_mini_1_glow.png</animSheet>
+<anim name="og_turret_flak_mini_1_glow">
+	<sheet>og_turret_flak_mini_1_glow</sheet>
+	<desc length="4" x="0" y="0" />
 	<time>1</time>
 </anim>
 

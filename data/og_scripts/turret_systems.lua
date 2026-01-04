@@ -415,6 +415,21 @@ script.on_internal_event(Defines.InternalEvents.GET_LEVEL_DESCRIPTION, get_level
 local UIOffset_x = 32
 local UIOffset_y = -44
 
+local autoFireX = 63
+local autoFireY = 61
+local autoFireOffButton = Hyperspace.Button()
+autoFireOffButton:OnInit("button_small_autofireOff", Hyperspace.Point(UIOffset_x + autoFireX, UIOffset_y + autoFireY))
+autoFireOffButton.hitbox.x = 9
+autoFireOffButton.hitbox.y = 2
+autoFireOffButton.hitbox.w = 22
+autoFireOffButton.hitbox.h = 24
+local autoFireOnButton = Hyperspace.Button()
+autoFireOnButton:OnInit("button_small_autofireOn", Hyperspace.Point(UIOffset_x + autoFireX, UIOffset_y + autoFireY))
+autoFireOnButton.hitbox.x = 9
+autoFireOnButton.hitbox.y = 2
+autoFireOnButton.hitbox.w = 22
+autoFireOnButton.hitbox.h = 24
+
 local function system_construct_system_box(systemBox)
 	if is_system(systemBox) then
 		systemBox.extend.xOffset = 113
@@ -442,10 +457,7 @@ local function system_construct_system_box(systemBox)
 		systemBox.table.defenceButton = defenceButton
 
 		local systemId = Hyperspace.ShipSystem.SystemIdToName(systemBox.pSystem.iSystemType)
-		if microTurrets[systemId] and not systemId == "og_turret_adaptive" then
-			systemBox.pSystem.table.micro = true
-			systemBox.pSystem.bBoostable = false
-		elseif systemId == "og_turret_adaptive" then
+		if systemId == "og_turret_adaptive" then
 			systemBox.pSystem.table.micro = true
 			microTurrets[systemId] = true
 			if Hyperspace.playerVariables.og_turret_adaptive_saved_x > 0 then
@@ -467,6 +479,9 @@ local function system_construct_system_box(systemBox)
 				turret_location[shipManager.ship.shipName]["og_turret_adaptive"].x = posRelative.x
 				turret_location[shipManager.ship.shipName]["og_turret_adaptive"].y = posRelative.y
 			end
+		elseif microTurrets[systemId] then
+			systemBox.pSystem.table.micro = true
+			systemBox.pSystem.bBoostable = false
 		end
 
 		systemBox.pSystem.table.index = -1
@@ -527,6 +542,20 @@ local function system_mouse_move(systemBox, x, y)
 			systemBox.pSystem.table.tooltip_type = 0
 		else
 			systemBox.pSystem.table.tooltip_type = -1
+		end
+
+		if systemBox.pSystem.table.index == Hyperspace.playerVariables.og_turret_count then
+			if Hyperspace.playerVariables.og_turret_autofire == 0 then
+				autoFireOffButton:MouseMove(x - (UIOffset_x + autoFireX), y - (UIOffset_y + autoFireY), false)
+				if autoFireOffButton.bHover then
+					systemBox.pSystem.table.tooltip_type = 3
+				end
+			else
+				autoFireOnButton:MouseMove(x - (UIOffset_x + autoFireX), y - (UIOffset_y + autoFireY), false)
+				if autoFireOnButton.bHover then
+					systemBox.pSystem.table.tooltip_type = 4
+				end
+			end
 		end
 	end
 	return Defines.Chain.CONTINUE
@@ -665,6 +694,14 @@ local function system_click(systemBox, shift)
 			Hyperspace.playerVariables[shipId..Hyperspace.ShipSystem.SystemIdToName(systemBox.pSystem.iSystemType)..systemStateVarName] = 1
 		elseif targetButton.bHover and targetButton.bActive then
 			select_turret(systemBox.pSystem, ctrl_held)
+		end
+
+		if systemBox.pSystem.table.index == Hyperspace.playerVariables.og_turret_count then
+			if Hyperspace.playerVariables.og_turret_autofire == 0 and autoFireOffButton.bHover and autoFireOffButton.bActive then
+				Hyperspace.playerVariables.og_turret_autofire = 1
+			elseif Hyperspace.playerVariables.og_turret_autofire == 1 and autoFireOnButton.bHover and autoFireOnButton.bActive then
+				Hyperspace.playerVariables.og_turret_autofire = 0
+			end
 		end
 	end
 	return Defines.Chain.CONTINUE
@@ -853,7 +890,7 @@ local turretBoxInnerHover
 local turretBoxOffense
 local turretBoxDefense
 local turretBoxToggleHover
-script.on_init(function()
+do
 	local c = Graphics.GL_Color(1, 1, 1, 1)
 	turretBox = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/box_og_turret.png", UIOffset_x, UIOffset_y, 0, c, 1, false)
 	turretBoxInner = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/box_inner_og_turret.png", UIOffset_x, UIOffset_y, 0, c, 1, false)
@@ -862,7 +899,7 @@ script.on_init(function()
 	turretBoxOffense = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/button_og_turret_toggle_o_on.png", UIOffset_x, UIOffset_y, 0, c, 1, false)
 	turretBoxDefense = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/button_og_turret_toggle_d_on.png", UIOffset_x, UIOffset_y, 0, c, 1, false)
 	turretBoxToggleHover = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/button_og_turret_toggle_hover.png", UIOffset_x, UIOffset_y, 0, c, 1, false)
-end)
+end
 
 local tutorialEvents = {}
 tutorialEvents["OG_TURRET_ARROWS_1"] = 1
@@ -871,6 +908,7 @@ tutorialEvents["OG_TURRET_ARROWS_3"] = 3
 tutorialEvents["OG_TURRET_ARROWS_4"] = 4
 tutorialEvents["OG_TURRET_ARROWS_5"] = 5
 tutorialEvents["OG_TURRET_ARROWS_6"] = 6
+tutorialEvents["OG_TURRET_ARROWS_7"] = 7
 local tutorialType = 0
 
 script.on_internal_event(Defines.InternalEvents.POST_CREATE_CHOICEBOX, function(choiceBox, event)
@@ -898,6 +936,8 @@ local boxArrow = Hyperspace.TutorialArrow(Hyperspace.Pointf(4, -135), 90)
 boxArrow.arrow = Hyperspace.Resources:GetImageId("tutorial_arrow.png")
 local toggleModeArrow = Hyperspace.TutorialArrow(Hyperspace.Pointf(32, 70), 270)
 toggleModeArrow.arrow = Hyperspace.Resources:GetImageId("tutorial_arrow.png")
+local autoFireArrow = Hyperspace.TutorialArrow(Hyperspace.Pointf(33, -80), 90)
+autoFireArrow.arrow = Hyperspace.Resources:GetImageId("tutorial_arrow.png")
 local tut_colour = Graphics.GL_Color(1, 1, 0, 1)
 local back_tut = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/button_og_turret_toggle_back.png", UIOffset_x, UIOffset_y, 0, tut_colour, 1, false)
 local offensive_tut = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/button_og_turret_toggle_o_on.png", UIOffset_x, UIOffset_y, 0, tut_colour, 1, false)
@@ -958,7 +998,7 @@ local function system_render(systemBox, ignoreStatus)
 		local renderColour = c_on
 		if not system_ready(system) then
 			renderColour = c_off
-		elseif system.table.currentlyTargetting and xor(weapControl.autoFiring, system.table.autoFireInvert) then
+		elseif system.table.currentlyTargetting and xor(Hyperspace.playerVariables.og_turret_autofire == 0, system.table.autoFireInvert) then
 			renderColour = c_auto
 		elseif system.table.currentlyTargetting then
 			renderColour = c_single
@@ -1003,7 +1043,7 @@ local function system_render(systemBox, ignoreStatus)
 		Graphics.freetype.easy_printAutoNewlines(6, 40, 19, 43, blueprint.desc.shortTitle:GetText())
 
 		if system_ready(system) and not system.table.currentlyTargetting and (system.table.currentTarget or system.table.currentTargetTemp) then
-			if xor(weapControl.autoFiring, system.table.autoFireInvert) then
+			if xor(Hyperspace.playerVariables.og_turret_autofire == 0, system.table.autoFireInvert) then
 				barColour = c_auto
 				--Graphics.CSurface.GL_SetColorTint(c_auto)
 			else
@@ -1066,6 +1106,14 @@ local function system_render(systemBox, ignoreStatus)
 			--Graphics.CSurface.GL_SetColorTint(lastTint)
 		end
 
+		if systemBox.pSystem.table.index == Hyperspace.playerVariables.og_turret_count then
+			if Hyperspace.playerVariables.og_turret_autofire == 0 and autoFireOffButton.bActive then
+				autoFireOffButton:OnRender()
+			elseif Hyperspace.playerVariables.og_turret_autofire == 1 and autoFireOnButton.bActive then
+				autoFireOnButton:OnRender()
+			end
+		end
+
 		if tutorialType == 1 then
 			sysArrow:OnRender()
 		elseif tutorialType == 2 then
@@ -1081,6 +1129,8 @@ local function system_render(systemBox, ignoreStatus)
 			toggleModeArrow:OnRender()
 			Graphics.CSurface.GL_RenderPrimitive(back_tut)
 			Graphics.CSurface.GL_RenderPrimitive(defensive_tut)
+		elseif tutorialType == 7 and systemBox.pSystem.table.index == Hyperspace.playerVariables.og_turret_count then
+			autoFireArrow:OnRender()
 		end
 
 	elseif is_system(systemBox) then
@@ -1289,14 +1339,14 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 			userdata_table(projectile, "mods.og").homing = {target = system.table.currentTarget, turn_rate = home_rate}
 		end
 	end
-	if (not offensive) and (currentShot.fire_delay > 0 or Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] == 1) then
+	if (not offensive) and ((not currentShot.auto_burst) or Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] == 1) then
 		system.table.currentTarget = nil
 		system.table.currentlyTargetted = false
 	end
 	local cApp = Hyperspace.App
 	local combatControl = cApp.gui.combatControl
 	local weapControl = combatControl.weapControl
-	if offensive and xor(weapControl.autoFiring, system.table.autoFireInvert) then
+	if offensive and xor(Hyperspace.playerVariables.og_turret_autofire == 0, system.table.autoFireInvert) and ((not currentShot.auto_burst) or Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] == 1) then
 		system.table.currentTarget = nil
 		system.table.currentlyTargetted = false
 	end
@@ -1306,6 +1356,7 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 	currentTurret.image:Start(true)
 	if currentTurret.image.info.numFrames > 1 then
 		if currentTurret.multi_anim then
+			print("set frame:"..tostring(1 + currentTurret.multi_anim.frames * (Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] - 1)))
 			currentTurret.image:SetCurrentFrame(1 + currentTurret.multi_anim.frames * (Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] - 1))
 		else
 			currentTurret.image:SetCurrentFrame(1)
@@ -1405,9 +1456,9 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 	local shipCorner = {x = shipManager.ship.shipImage.x + shipGraph.shipBox.x, y = shipManager.ship.shipImage.y + shipGraph.shipBox.y}
 	for _, sysName in ipairs(systemNameList) do
 		if sysName == "og_turret_adaptive" and shipManager:HasAugmentation("UPG_OG_TURRET_ADAPTIVE_LARGE") > 0 then
-			microTurrets[sysName] = false
+			microTurrets["og_turret_adaptive"] = false
 		elseif sysName == "og_turret_adaptive" then
-			microTurrets[sysName] = true
+			microTurrets["og_turret_adaptive"] = true
 		end
 		if shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) and Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] >= 0 then
 			local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
@@ -1425,7 +1476,6 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 			if (system.table.currentlyTargetted or system.table.currentlyTargetting) and shipManager:HasAugmentation("UPG_OG_TURRET_MANUAL") > 0 then
 				currentMaxRotationSpeed = currentMaxRotationSpeed + shipManager:GetAugmentationValue("UPG_OG_TURRET_MANUAL")
 			end
-			local lastShot = (Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName]) % #currentTurret.fire_points + 1
 			if currentTurret.hold_time and system.table.firingTime > currentTurret.hold_time then
 				currentMaxRotationSpeed = 0
 			elseif currentTurret.speed_reduction and system.table.firingTime > 0 then
@@ -1600,8 +1650,11 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 					end
 				end
 			end
+			local lastShot = ((Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName]) % #currentTurret.fire_points) + 1
+			--print("lastShot charges:"..tostring((Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName])).." % "..tostring(#currentTurret.fire_points).." + 1 = "..tostring(lastShot))
 			currentTurret.image:Update()
-			if (currentTurret.image:Done() and currentTurret.image.currentFrame ~= 0) or (currentTurret.multi_anim and currentTurret.image.currentFrame > currentTurret.multi_anim.frames * lastShot) then
+			if (currentTurret.image.currentFrame == currentTurret.image.info.numFrames - 1) or (currentTurret.multi_anim and currentTurret.image.currentFrame > currentTurret.multi_anim.frames * lastShot) then
+				print("reset:"..tostring(currentTurret.image.currentFrame).." > "..tostring(currentTurret.multi_anim.frames * lastShot))
 				currentTurret.image.tracker:Stop(true)
 				currentTurret.image:SetCurrentFrame(0)
 			end

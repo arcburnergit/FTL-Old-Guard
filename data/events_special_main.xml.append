@@ -31,15 +31,21 @@
 										<text>Continue...</text>
 										<event name="OG_TURRET_ARROWS_6">
 											<text>In defensive mode, turrets will automatically target projectiles and drones, this is where the Turret Control's internal upgrades become more useful, the extra rotation and projectile speed allows turrets to more quickly respond to enemy threats.</text>
-											<choice hidden="true">
-												<text>Got it!</text>
-												<event/>
-											</choice>
-											<choice hidden="true">
-												<text>Got it and don't show again!</text>
-												<event>
-													<text>The turret tutorial has been disabled, you can reenable it in the toggle menu.</text>
-													<metaVariable name="og_turret_tutorial" op="set" val="1"/>
+											<choice>
+												<text>Continue...</text>
+												<event name="OG_TURRET_ARROWS_7">
+													<text>Turrets have their own autofire button, this will toggle the default autofire setting for all of the turrets. When selecting a turret, holding control inverts the autofire setting for that turret.</text>
+													<choice hidden="true">
+														<text>Got it!</text>
+														<event/>
+													</choice>
+													<choice hidden="true">
+														<text>Got it and don't show again!</text>
+														<event>
+															<text>The turret tutorial has been disabled, you can reenable it in the toggle menu.</text>
+															<metaVariable name="og_turret_tutorial" op="set" val="1"/>
+														</event>
+													</choice>
 												</event>
 											</choice>
 										</event>

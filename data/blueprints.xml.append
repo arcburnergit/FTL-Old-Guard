@@ -162,10 +162,10 @@
 	<maxPower>3</maxPower>
 	<rarity>0</rarity>
 	<upgradeCost>
-		<level>55</level>
-		<level>75</level>
-		<level>90</level>
-		<level>120</level>
+		<level>45</level>
+		<level>65</level>
+		<level>80</level>
+		<level>100</level>
 	</upgradeCost>
 	<cost>45</cost>
 </systemBlueprint>
@@ -177,10 +177,10 @@
 	<maxPower>3</maxPower>
 	<rarity>0</rarity>
 	<upgradeCost>
-		<level>55</level>
-		<level>75</level>
-		<level>90</level>
-		<level>120</level>
+		<level>45</level>
+		<level>65</level>
+		<level>80</level>
+		<level>100</level>
 	</upgradeCost>
 	<cost>45</cost>
 </systemBlueprint>
@@ -192,10 +192,10 @@
 	<maxPower>3</maxPower>
 	<rarity>0</rarity>
 	<upgradeCost>
-		<level>55</level>
-		<level>75</level>
-		<level>90</level>
-		<level>120</level>
+		<level>45</level>
+		<level>65</level>
+		<level>80</level>
+		<level>100</level>
 	</upgradeCost>
 	<cost>45</cost>
 </systemBlueprint>
@@ -207,10 +207,10 @@
 	<maxPower>3</maxPower>
 	<rarity>0</rarity>
 	<upgradeCost>
-		<level>55</level>
-		<level>75</level>
-		<level>90</level>
-		<level>120</level>
+		<level>45</level>
+		<level>65</level>
+		<level>80</level>
+		<level>100</level>
 	</upgradeCost>
 	<cost>45</cost>
 </systemBlueprint>
@@ -824,6 +824,27 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_focus_mini_1_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_FLAK_MINI_1">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Micro Flak Turret</title>
+	<short>Micro F.</short>
+	<desc>A small Flak turret, can build up a volley to be fired in both defence and offense.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>100</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_flak_mini_1_icon</iconReplace>
 </weaponBlueprint>
 
 <weaponBlueprint name="OG_TURRET_MISSILE_MINI_1">
@@ -2052,7 +2073,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<class>Iron Rebel Cruiser</class>
 	<name>Ajaccio</name>
 	<unlock id="ship_PLAYER_SHIP_OG_REBEL_unlock"/>
-	<desc>Using reverse engineered Federation artillery tech and weaponry similar to that of the Flagship, this powerful cruiser packs a serious punch.</desc>
+	<desc>Using reverse engineered Iron Watch turret tech and weaponry similar to that of the Flagship, this powerful cruiser packs a serious punch.</desc>
 	<systemList>
 		<og_turret power="3" room="1" start="true" img="room_og_turret_5" turret="OG_TURRET_MISSILE_2">
 			<slot>
@@ -2076,7 +2097,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 				<number>1</number>
 			</slot>
 		</doors>
-		<drones power="2" room="3" start="false" img="room_drones_15" />
+		<drones power="2" max="8" room="3" start="false" img="room_drones_15" />
 		<engines power="2" room="5" start="true" img="room_engines_2">
 			<slot>
 				<direction>down</direction>
@@ -2103,7 +2124,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 				<number>1</number>
 			</slot>
 		</sensors>
-		<shields power="2" room="18" start="true" img="room_shields_13">
+		<shields power="2" max="8" room="18" start="true" img="room_shields_13">
 			<slot>
 				<direction>down</direction>
 				<number>3</number>
@@ -2196,7 +2217,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 			</slot>
 		</shields>
 		<teleporter power="1" room="4" start="false" />
-		<weapons power="2" room="12" start="false" img="room_weapons_4">
+		<weapons power="2" max="8" room="12" start="false" img="room_weapons_4">
 			<slot>
 				<direction>up</direction>
 				<number>0</number>
@@ -2243,7 +2264,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 				<number>1</number>
 			</slot>
 		</doors>
-		<drones power="2" max="8" room="14" start="false" img="room_drones_15" />
+		<drones power="2" max="8" room="14" start="true" img="room_drones_15" />
 		<engines power="2" room="1" start="true" img="room_engines_2">
 			<slot>
 				<direction>down</direction>
@@ -2286,11 +2307,11 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	</systemList>
 	<weaponSlots>3</weaponSlots>
 	<droneSlots>2</droneSlots>
-	<weaponList missiles="6" count="3">
+	<weaponList missiles="9" count="3">
 		<weapon name="LASER_CHAINGUN" />
 		<weapon name="BOMB_ION" />
 	</weaponList>
-	<droneList drones="8" count="2">
+	<droneList drones="12" count="2">
 		<drone name="REPAIR" />
 		<drone name="MANNING" />
 	</droneList>

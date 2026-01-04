@@ -747,6 +747,7 @@
 		<doors power="2" max="2" room="13" start="true" />
 		<engines power="1" max="2" room="1" start="true" />
 		<mind power="1" max="1" room="6" start="true" />
+		<oxygen power="1" max="2" room="11" start="true" />
 		<pilot power="3" max="3" room="0" start="true" />
 		<shields power="2" max="10" room="15" start="true" />
 		<teleporter power="3" max="3" room="8" start="true" />
@@ -760,7 +761,7 @@
 	</weaponList>
 	<droneList drones="6" count="0" />
 	<health amount="15" />
-	<maxPower amount="16" />
+	<maxPower amount="17" />
 	<crewCount amount="5" max="5" class="human_soldier" />
 	<boardingAI>sabotage</boardingAI>
 	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
@@ -774,6 +775,7 @@
 		<doors power="2" max="2" room="13" start="true" />
 		<engines power="1" max="2" room="1" start="true" />
 		<mind power="1" max="1" room="6" start="true" />
+		<oxygen power="1" max="2" room="11" start="true" />
 		<pilot power="3" max="3" room="0" start="true" />
 		<shields power="2" max="10" room="15" start="true" />
 		<teleporter power="3" max="3" room="8" start="true" />
@@ -787,7 +789,7 @@
 	</weaponList>
 	<droneList drones="6" count="0" />
 	<health amount="15" />
-	<maxPower amount="18" />
+	<maxPower amount="19" />
 	<crewCount amount="6" max="6" class="human_soldier" />
 	<boardingAI>sabotage</boardingAI>
 	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
@@ -801,6 +803,7 @@
 		<doors power="2" max="2" room="13" start="true" />
 		<engines power="1" max="2" room="1" start="true" />
 		<mind power="1" max="1" room="6" start="true" />
+		<oxygen power="1" max="2" room="11" start="true" />
 		<pilot power="3" max="3" room="0" start="true" />
 		<shields power="2" max="10" room="15" start="true" />
 		<teleporter power="3" max="3" room="8" start="true" />
@@ -814,7 +817,7 @@
 	</weaponList>
 	<droneList drones="6" count="0" />
 	<health amount="15" />
-	<maxPower amount="20" />
+	<maxPower amount="21" />
 	<crewCount amount="8" max="8" class="human_soldier" />
 	<boardingAI>sabotage</boardingAI>
 	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
@@ -824,10 +827,11 @@
 	<class>Renegade Cruiser</class>
 	<systemList>
 		<og_turret power="5" max="5" room="7" start="true" turret="OG_TURRET_LASER_BOSS_LIGHT" />
-		<clonebay power="2" max="3" room="9" start="true" />
+		<clonebay power="3" max="3" room="9" start="true" />
 		<doors power="2" max="2" room="13" start="true" />
 		<engines power="1" max="2" room="1" start="true" />
-		<mind power="1" max="1" room="6" start="true" />
+		<mind power="2" max="2" room="6" start="true" />
+		<oxygen power="1" max="2" room="11" start="true" />
 		<pilot power="3" max="3" room="0" start="true" />
 		<shields power="2" max="10" room="15" start="true" />
 		<teleporter power="3" max="3" room="8" start="true" />
@@ -841,7 +845,7 @@
 	</weaponList>
 	<droneList drones="6" count="0" />
 	<health amount="15" />
-	<maxPower amount="20" />
+	<maxPower amount="23" />
 	<crewCount amount="8" max="8" class="human_soldier" />
 	<boardingAI>sabotage</boardingAI>
 	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
