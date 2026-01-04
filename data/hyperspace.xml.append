@@ -213,7 +213,7 @@ This enemy's turrets will be fully charged at the start of combat.</tooltip>
 	</mod-append:customShip>
 
 	<mod-append:ship name="PLAYER_SHIP_OG_KESTREL" b="false" c="false" >
-		<arrow variant="a" direction="right" tooltip="ship_unlock_sector5" image="arrow_5_right.png" unlockedImage="arrow_5_right.png">PLAYER_SHIP_OG_REBEL</arrow>
+		<arrow variant="a" direction="right" tooltip="ship_unlock_sector5" image="arrow_5_right.png" unlockedImage="arrow_5_right_on.png">PLAYER_SHIP_OG_REBEL</arrow>
 	</mod-append:ship>
 	<mod-append:customShip name="PLAYER_SHIP_OG_KESTREL">
 		<hiddenAug>SHIP_KESTREL</hiddenAug>
@@ -223,7 +223,7 @@ This enemy's turrets will be fully charged at the start of combat.</tooltip>
 	</mod-append:customShip>
 
 	<mod-append:ship name="PLAYER_SHIP_OG_REBEL" b="false" c="false" >
-		<arrow variant="a" direction="right" tooltip="ship_unlock_sector5" image="arrow_5_right.png" unlockedImage="arrow_5_right.png">PLAYER_SHIP_OG_CURA</arrow>
+		<arrow variant="a" direction="right" tooltip="ship_unlock_sector5" image="arrow_5_right.png" unlockedImage="arrow_5_right_on.png">PLAYER_SHIP_OG_CURA</arrow>
 		<unlock variant="a" silent="false">
 			<type>1</type>
 			<shipReq>PLAYER_SHIP_OG_KESTREL</shipReq>
@@ -238,7 +238,7 @@ This enemy's turrets will be fully charged at the start of combat.</tooltip>
 	</mod-append:customShip>
 
 	<mod-append:ship name="PLAYER_SHIP_OG_CURA" b="false" c="false" >
-		<arrow variant="a" direction="right" tooltip="ship_unlock_sector5" image="arrow_5_right.png" unlockedImage="arrow_5_right.png">PLAYER_SHIP_OG_SEPARATIST</arrow>
+		<arrow variant="a" direction="right" tooltip="ship_unlock_sector5" image="arrow_5_right.png" unlockedImage="arrow_5_right_on.png">PLAYER_SHIP_OG_SEPARATIST</arrow>
 		<unlock variant="a" silent="false">
 			<type>1</type>
 			<shipReq>PLAYER_SHIP_OG_REBEL</shipReq>

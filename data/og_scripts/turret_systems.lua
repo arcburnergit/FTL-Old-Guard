@@ -564,6 +564,7 @@ script.on_internal_event(Defines.InternalEvents.SYSTEM_BOX_MOUSE_MOVE, system_mo
 
 script.on_internal_event(Defines.InternalEvents.ON_TICK, function() 
 	local shipManager = Hyperspace.ships.player
+	if not shipManager then return end
 	for _, sysName in ipairs(systemNameList) do
 		if shipManager and shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) then
 			local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
@@ -1654,7 +1655,7 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 			--print("lastShot charges:"..tostring((Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName])).." % "..tostring(#currentTurret.fire_points).." + 1 = "..tostring(lastShot))
 			currentTurret.image:Update()
 			if (currentTurret.image.currentFrame == currentTurret.image.info.numFrames - 1) or (currentTurret.multi_anim and currentTurret.image.currentFrame > currentTurret.multi_anim.frames * lastShot) then
-				print("reset:"..tostring(currentTurret.image.currentFrame).." > "..tostring(currentTurret.multi_anim.frames * lastShot))
+				--print("reset:"..tostring(currentTurret.image.currentFrame).." > "..tostring(currentTurret.multi_anim.frames * lastShot))
 				currentTurret.image.tracker:Stop(true)
 				currentTurret.image:SetCurrentFrame(0)
 			end
@@ -1894,6 +1895,7 @@ script.on_internal_event(Defines.InternalEvents.ON_KEY_DOWN, function(key)
 end)
 
 script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
+	if not Hyperspace.ships.player then return end
 	if positioning_turret then
 		local mousePosPlayer = worldToPlayerLocation(Hyperspace.Mouse.position)
 		local ship = Hyperspace.ships.player.ship
@@ -2288,4 +2290,37 @@ script.on_internal_event(Defines.InternalEvents.HAS_EQUIPMENT, function(shipMana
 		end
 	end
 	return Defines.Chain.CONTINUE, value
+end)
+
+script.on_internal_event(Defines.InternalEvents.POST_CREATE_CHOICEBOX, function(choiceBox, event)
+	local removeItem = choiceBox.rewards.removeItem
+	--print(tostring(removeItem))
+	if turrets[removeItem] then
+		local hasItem = false
+		for item in vter(Hyperspace.App.gui.equipScreen:GetCargoHold()) do
+			if item == removeItem then
+				hasItem = true
+			end
+		end
+		local shipManager = Hyperspace.ships.player
+		if shipManager:HasSystem(3) then
+			for weapon in vter(shipManager.weaponSystem.weapons) do
+				if weapon.blueprint.name == removeItem then
+					hasItem = true
+				end
+			end
+		end
+		if not hasItem then
+			for _, sysName in ipairs(systemNameList) do
+				if shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) then
+					local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
+					local currentTurretName = turretBlueprintsList[ Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] ]
+					if currentTurretName == removeItem then
+						choiceBox.rewards.removeItem = "     "
+						Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] = -1
+					end
+				end
+			end
+		end
+	end
 end)
