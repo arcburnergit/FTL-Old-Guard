@@ -4,6 +4,8 @@ local userdata_table = mods.multiverse.userdata_table
 local node_child_iter = mods.multiverse.node_child_iter
 local node_get_number_default = mods.multiverse.node_get_number_default
 
+local get_room_at_location = mods.og.get_room_at_location
+
 local function xor(a, b)
 	return (a and not b) or (not a and b)
 end
@@ -270,6 +272,7 @@ local defence_types = {
 
 mods.og.turrets = {}
 local turrets = mods.og.turrets
+local vunerable_weapons = mods.og.vunerable_weapons
 
 local function add_stat_text(desc, currentTurret, chargeMax)
 	desc = desc.."Stats:\nCharge Time: "
@@ -324,11 +327,15 @@ local function add_stat_text(desc, currentTurret, chargeMax)
 		desc = desc.."\nFire Chance: "..math.floor(damage.fireChance * 10).."%"
 	end
 	if damage.breachChance > 0 then
-		desc = desc.."\nFire Chance: "..math.floor(damage.breachChance * 10).."% (Adjusted: "..math.floor((100 - 10 * damage.fireChance) * (damage.breachChance/10)).."%)"
+		desc = desc.."\nBreach Chance: "..math.floor(damage.breachChance * 10).."% (Adjusted: "..math.floor((100 - 10 * damage.fireChance) * (damage.breachChance/10)).."%)"
 	end
 	if damage.stunChance > 0 then
 		desc = desc.."\nStun Chance: "..math.floor(damage.stunChance * 10).."% ("..math.floor((damage.iStun > 0 and damage.iStun) or 3).." seconds long)"
 	end
+	if vunerable_weapons[currentTurret.blueprint] then
+		desc = desc.."\nEffect Duration: "..math.floor(vunerable_weapons[currentTurret.blueprint]).." seconds long"
+	end
+
 	return desc
 end
 
@@ -579,6 +586,9 @@ script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
 				Hyperspace.Mouse.bForceTooltip = true
 				local currentTurret = turrets[ turretBlueprintsList[ Hyperspace.playerVariables[shipId..sysName..systemBlueprintVarName] ] ]
 				Hyperspace.Mouse.tooltip = add_stat_text("", currentTurret, system:GetMaxPower())
+			elseif system.table.tooltip_type == 3 or system.table.tooltip_type == 3 then
+				Hyperspace.Mouse.bForceTooltip = true
+				Hyperspace.Mouse.tooltip = "Toggle to activate/deactivate turrets automatically firing.\n\nLEFT CTRL + AIM can force a turret to do the opposite of current setting"
 			end
 		end
 	end
@@ -783,6 +793,7 @@ script.on_render_event(Defines.RenderEvents.SHIP, function() end, function(ship)
 			local currentTurret = turrets[ turretBlueprintsList[ Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] ] ]
 			local spaceManager = Hyperspace.App.world.space
 			if system.table.currentlyTargetting then
+				system.table.autoFireInvert = ctrl_held
 				local mousePosPlayer = worldToPlayerLocation(Hyperspace.Mouse.position)
 				local mousePosEnemy = worldToEnemyLocation(Hyperspace.Mouse.position)
 				local currentClosest = nil
@@ -990,8 +1001,8 @@ local function system_render(systemBox, ignoreStatus)
 		local c_off = Graphics.GL_Color(150/255, 150/255, 150/255, 1)
 		local c_on = Graphics.GL_Color(243/255, 255/255, 230/255, 1)
 		local c_charged = Graphics.GL_Color(120/255, 255/255, 120/255, 1)
-		local c_single = Graphics.GL_Color(255/255, 120/255, 120/255, 1)
-		local c_auto = Graphics.GL_Color(255/255, 255/255, 50/255, 1)
+		local c_single = Graphics.GL_Color(255/255, 255/255, 50/255, 1)
+		local c_auto = Graphics.GL_Color(255/255, 120/255, 120/255, 1)
 		local cApp = Hyperspace.App
 		local combatControl = cApp.gui.combatControl
 		local weapControl = combatControl.weapControl
@@ -1156,6 +1167,13 @@ local function resetTurrets(shipManager)
 			if shipManager:HasAugmentation("OG_TURRET_PREIGNITE") > 0 then
 				local currentTurret = turrets[ turretBlueprintsList[ Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] ] ]
 				Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] = currentTurret.charges
+			elseif shipManager:HasAugmentation("OG_TURRET_PREIGNITE_WEAK") > 0 then
+				local currentTurret = turrets[ turretBlueprintsList[ Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] ] ]
+				if shipManager.iShipId == 0 then
+					Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] = math.ceil(currentTurret.charges/2)
+				else
+					Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] = math.floor(currentTurret.charges/2)
+				end
 			else
 				Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] = 0
 			end
@@ -2340,6 +2358,53 @@ script.on_internal_event(Defines.InternalEvents.POST_CREATE_CHOICEBOX, function(
 						Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] = -1
 					end
 				end
+			end
+		end
+	end
+end)
+
+script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA, function(shipManager, projectile, location, damage, forceHit, shipFriendlyFire)
+	local room = get_room_at_location(shipManager, location, true)
+	local system = shipManager:GetSystemInRoom(room)
+	if system and systemNameList[Hyperspace.ShipSystem.SystemIdToName(system.iSystemType)] then
+		local sysName = Hyperspace.ShipSystem.SystemIdToName(system.iSystemType)
+		local currentTurret = turrets[ turretBlueprintsList[ Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] ] ]
+		if currentTurret.dawn and damage.iDamage + damage.iSystemDamage > 0 then
+			damage.iSystemDamage = damage.iSystemDamage + 1
+		end
+	end
+	return Defines.Chain.CONTINUE, forceHit, shipFriendlyFire
+end)
+
+
+script.on_internal_event(Defines.InternalEvents.DAMAGE_BEAM, function(shipManager, projectile, location, damage, realNewTile, beamHitType)
+	if beamHitType ~= Defines.BeamHit.NEW_ROOM then return Defines.Chain.CONTINUE, beamHitType end
+	local room = get_room_at_location(shipManager, location, true)
+	local system = shipManager:GetSystemInRoom(room)
+	if system and systemNameList[Hyperspace.ShipSystem.SystemIdToName(system.iSystemType)] then
+		local sysName = Hyperspace.ShipSystem.SystemIdToName(system.iSystemType)
+		local currentTurret = turrets[ turretBlueprintsList[ Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] ] ]
+		if currentTurret.dawn and damage.iDamage + damage.iSystemDamage > 0 then
+			damage.iSystemDamage = damage.iSystemDamage + 1
+		end
+	end
+	return Defines.Chain.CONTINUE, beamHitType
+end)
+
+local render_vunerable = mods.og.render_vunerable
+
+script.on_render_event(Defines.RenderEvents.SHIP_FLOOR, function() end, function(ship) 
+	local shipManager = Hyperspace.ships(ship.iShipId)
+	for room in vter(shipManager.ship.vRoomList) do
+		local system = shipManager:GetSystemInRoom(room.iRoomId)
+		--print("room:"..room.iRoomId.." sys:"..tostring(system))
+		if system and systemNameCheck[Hyperspace.ShipSystem.SystemIdToName(system.iSystemType)] then
+			--print("has system render")
+			local sysName = Hyperspace.ShipSystem.SystemIdToName(system.iSystemType)
+			local currentTurret = turrets[ turretBlueprintsList[ Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] ] ]
+			if currentTurret.dawn then
+				--print("render render_vunerable system")
+				render_vunerable(room)
 			end
 		end
 	end

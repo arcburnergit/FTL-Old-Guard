@@ -508,7 +508,7 @@
 	<boardingAI>sabotage</boardingAI>
 	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
 	<aug name="OG_REFLECTIVE_PLATING" />
-	<aug name="OG_TURRET_PREIGNITE" />
+	<aug name="OG_TURRET_PREIGNITE_WEAK" />
 </shipBlueprint>
 <shipBlueprint name="OG_DAWN_INFILTRATOR" layout="og_iron_infiltrator" img="og_dawn_infiltrator">
 	<class>New Dawn Infiltrator</class>
@@ -534,7 +534,7 @@
 	<boardingAI>sabotage</boardingAI>
 	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
 	<aug name="OG_REFLECTIVE_PLATING" />
-	<aug name="OG_TURRET_PREIGNITE" />
+	<aug name="OG_TURRET_PREIGNITE_WEAK" />
 </shipBlueprint>
 <shipBlueprint name="OG_DAWN_OUTRIDER" layout="og_iron_outrider" img="og_dawn_outrider">
 	<class>New Dawn Outrider</class>
@@ -560,7 +560,7 @@
 	<boardingAI>sabotage</boardingAI>
 	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
 	<aug name="OG_REFLECTIVE_PLATING" />
-	<aug name="OG_TURRET_PREIGNITE" />
+	<aug name="OG_TURRET_PREIGNITE_WEAK" />
 </shipBlueprint>
 <shipBlueprint name="OG_DAWN_BOMBER" layout="og_iron_bomber" img="og_dawn_bomber">
 	<class>New Dawn Bomber</class>
@@ -587,7 +587,7 @@
 	<boardingAI>sabotage</boardingAI>
 	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
 	<aug name="OG_REFLECTIVE_PLATING" />
-	<aug name="OG_TURRET_PREIGNITE" />
+	<aug name="OG_TURRET_PREIGNITE_WEAK" />
 </shipBlueprint>
 <shipBlueprint name="OG_DAWN_CORVETTE" layout="og_iron_corvette" img="og_dawn_corvette">
 	<class>New Dawn Corvette</class>
@@ -615,7 +615,7 @@
 	<boardingAI>sabotage</boardingAI>
 	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
 	<aug name="OG_REFLECTIVE_PLATING" />
-	<aug name="OG_TURRET_PREIGNITE" />
+	<aug name="OG_TURRET_PREIGNITE_WEAK" />
 </shipBlueprint>
 <shipBlueprint name="OG_DAWN_FIGHTER" layout="og_iron_fighter" img="og_dawn_fighter">
 	<class>New Dawn Fighter</class>
@@ -644,7 +644,7 @@
 	<boardingAI>sabotage</boardingAI>
 	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
 	<aug name="OG_REFLECTIVE_PLATING" />
-	<aug name="OG_TURRET_PREIGNITE" />
+	<aug name="OG_TURRET_PREIGNITE_WEAK" />
 </shipBlueprint>
 <shipBlueprint name="OG_DAWN_TRANSPORT" layout="og_iron_transport" img="og_dawn_transport">
 	<class>New Dawn Transport</class>
@@ -675,7 +675,7 @@
 	<boardingAI>sabotage</boardingAI>
 	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
 	<aug name="OG_REFLECTIVE_PLATING" />
-	<aug name="OG_TURRET_PREIGNITE" />
+	<aug name="OG_TURRET_PREIGNITE_WEAK" />
 </shipBlueprint>
 <shipBlueprint name="OG_DAWN_RAIDER" layout="og_iron_raider" img="og_dawn_raider">
 	<class>New Dawn Raider</class>
@@ -706,7 +706,7 @@
 	<boardingAI>sabotage</boardingAI>
 	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
 	<aug name="OG_REFLECTIVE_PLATING" />
-	<aug name="OG_TURRET_PREIGNITE" />
+	<aug name="OG_TURRET_PREIGNITE_WEAK" />
 </shipBlueprint>
 <shipBlueprint name="OG_DAWN_GUARD" layout="og_iron_guard" img="og_dawn_guard">
 	<class>New Dawn Guard</class>
@@ -736,7 +736,7 @@
 	<boardingAI>sabotage</boardingAI>
 	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
 	<aug name="OG_REFLECTIVE_PLATING" />
-	<aug name="OG_TURRET_PREIGNITE" />
+	<aug name="OG_TURRET_PREIGNITE_WEAK" />
 </shipBlueprint>
 
 <shipBlueprint name="OGT_BOSS_IRON_NORMAL" layout="ogt_boss_iron" img="ogt_boss_iron">

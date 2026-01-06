@@ -4,6 +4,11 @@ if not (Hyperspace.version and Hyperspace.version.major == version.major and Hyp
 end
 mods.og = {}
 local time_increment = mods.multiverse.time_increment
+local vter = mods.multiverse.vter
+function mods.og.get_room_at_location(shipManager, location, includeWalls)
+	return Hyperspace.ShipGraph.GetShipInfo(shipManager.iShipId):GetSelectedRoom(location.x, location.y, includeWalls)
+end
+local get_room_at_location = mods.og.get_room_at_location
 
 mods.multiverse.astrometricsSectors.og = {
 	civilian = 0,
@@ -201,3 +206,150 @@ script.on_internal_event(Defines.InternalEvents.PRE_CREATE_CHOICEBOX, function(e
 	end
 end)
 
+local roomIconImageString = "effects/og_vunerable_icon"
+local tileImageString = "effects/og_vunerable_back"
+local wallImageString = "effects/og_vunerable"
+roomIconImage =  Hyperspace.Resources:CreateImagePrimitiveString( (roomIconImageString..".png") , 0, 0, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false)
+tileImage =  Hyperspace.Resources:CreateImagePrimitiveString( (tileImageString..".png") , 0, 0, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false)
+wallImage =  {
+	up = Hyperspace.Resources:CreateImagePrimitiveString( (wallImageString.."_up.png") , 0, 0, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
+	right = Hyperspace.Resources:CreateImagePrimitiveString( (wallImageString.."_right.png") , 0, 0, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
+	down = Hyperspace.Resources:CreateImagePrimitiveString( (wallImageString.."_down.png") , 0, 0, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
+	left = Hyperspace.Resources:CreateImagePrimitiveString( (wallImageString.."_left.png") , 0, 0, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false)
+}
+
+function mods.og.render_vunerable(room)
+	--print("render_vunerable:"..room.iRoomId)
+	local opacity = 0.5
+	local x = room.rect.x
+	local y = room.rect.y
+	local w = math.floor(room.rect.w/35)
+	local h = math.floor(room.rect.h/35)
+	local size = w * h
+	--print("room:"..room.iRoomId.." gasLevel:"..gasLevel.." w:"..w.." h:"..h.." size:"..size)
+	for i = 0, size - 1 do
+		local xOff = x + (i%w) * 35
+		local yOff = y + math.floor(i/w) * 35
+		Graphics.CSurface.GL_PushMatrix()
+		Graphics.CSurface.GL_Translate(xOff, yOff, 0)
+		Graphics.CSurface.GL_RenderPrimitiveWithAlpha(tileImage, opacity)
+		Graphics.CSurface.GL_PopMatrix()
+	end
+	opacity = 1
+	-- top and bottom edge
+	for i = 0, w - 1 do
+		local xOff = x + i * 35
+		Graphics.CSurface.GL_PushMatrix()
+		Graphics.CSurface.GL_Translate(xOff, y, 0)
+		Graphics.CSurface.GL_RenderPrimitiveWithAlpha(wallImage.up, opacity)
+		Graphics.CSurface.GL_PopMatrix()
+
+		local yOff = y + (h-1) * 35
+		Graphics.CSurface.GL_PushMatrix()
+		Graphics.CSurface.GL_Translate(xOff, yOff, 0)
+		Graphics.CSurface.GL_RenderPrimitiveWithAlpha(wallImage.down, opacity)
+		Graphics.CSurface.GL_PopMatrix()
+	end
+	-- left and right edge
+	for i = 0, h - 1 do
+		local yOff = y + i * 35
+		Graphics.CSurface.GL_PushMatrix()
+		Graphics.CSurface.GL_Translate(x, yOff, 0)
+		Graphics.CSurface.GL_RenderPrimitiveWithAlpha(wallImage.left, opacity)
+		Graphics.CSurface.GL_PopMatrix()
+
+		local xOff = x + (w-1) * 35
+		Graphics.CSurface.GL_PushMatrix()
+		Graphics.CSurface.GL_Translate(xOff, yOff, 0)
+		Graphics.CSurface.GL_RenderPrimitiveWithAlpha(wallImage.right, opacity)
+		Graphics.CSurface.GL_PopMatrix()
+	end
+	Graphics.CSurface.GL_PushMatrix()
+	Graphics.CSurface.GL_Translate(x, y, 0)
+	Graphics.CSurface.GL_RenderPrimitive(roomIconImage)
+	Graphics.CSurface.GL_PopMatrix()
+end
+local render_vunerable = mods.og.render_vunerable
+
+mods.og.vunerable_weapons = {}
+local vunerable_weapons = mods.og.vunerable_weapons
+vunerable_weapons["OG_LASER_PROJECTILE_BASE_DAWN"] = 10
+vunerable_weapons["OG_LASER_PROJECTILE_HEAVY_DAWN"] = 10
+vunerable_weapons["OG_LASER_PROJECTILE_LIGHT_DAWN"] = 10
+vunerable_weapons["OG_ION_PROJECTILE_BASE_DAWN"] = 10
+vunerable_weapons["OG_MISSILE_PROJECTILE_HEAVY_DAWN"] = 10
+vunerable_weapons["OG_FLAK_PROJECTILE_DAWN"] = 10
+vunerable_weapons["OG_FOCUS_PROJECTILE_DAWN"] = 5
+vunerable_weapons["OG_FOCUS_PROJECTILE_WEAK_DAWN"] = 5
+
+local vunerable_rooms = {[0] = {}, [1] = {}}
+script.on_init(function()
+	vunerable_rooms = {[0] = {}, [1] = {}}
+end)
+
+script.on_internal_event(Defines.InternalEvents.JUMP_LEAVE, function(shipManager)
+	vunerable_rooms[1] = {}
+end)
+
+script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+	for room in vter(shipManager.ship.vRoomList) do
+		if vunerable_rooms[shipManager.iShipId][room.iRoomId] then
+			vunerable_rooms[shipManager.iShipId][room.iRoomId] = vunerable_rooms[shipManager.iShipId][room.iRoomId] - time_increment(true)
+			if vunerable_rooms[shipManager.iShipId][room.iRoomId] <= 0 then
+				vunerable_rooms[shipManager.iShipId][room.iRoomId] = nil
+			end
+		end
+	end
+end)
+
+script.on_render_event(Defines.RenderEvents.SHIP_FLOOR, function() end, function(ship) 
+	local shipManager = Hyperspace.ships(ship.iShipId)
+	for room in vter(shipManager.ship.vRoomList) do
+		if vunerable_rooms[shipManager.iShipId][room.iRoomId] then
+			render_vunerable(room)
+		end
+	end
+end)
+
+script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA, function(shipManager, projectile, location, damage, forceHit, shipFriendlyFire)
+	local room = get_room_at_location(shipManager, location, true)
+	if vunerable_rooms[shipManager.iShipId][room] then
+		if damage.iDamage + damage.iSystemDamage > 0 then
+			damage.iSystemDamage = damage.iSystemDamage + 1
+		end
+	end
+	return Defines.Chain.CONTINUE, forceHit, shipFriendlyFire
+end)
+
+
+script.on_internal_event(Defines.InternalEvents.DAMAGE_BEAM, function(shipManager, projectile, location, damage, realNewTile, beamHitType)
+	if beamHitType ~= Defines.BeamHit.NEW_ROOM then return Defines.Chain.CONTINUE, beamHitType end
+	local room = get_room_at_location(shipManager, location, true)
+	if vunerable_rooms[shipManager.iShipId][room] then
+		if damage.iDamage + damage.iSystemDamage > 0 then
+			damage.iSystemDamage = damage.iSystemDamage + 1
+		end
+	end
+	if projectile and projectile.extend.name and vunerable_weapons[projectile.extend.name] then
+		if vunerable_rooms[shipManager.iShipId][room] then
+			vunerable_rooms[shipManager.iShipId][room] = math.max(vunerable_rooms[shipManager.iShipId][room], vunerable_weapons[projectile.extend.name])
+		else
+			vunerable_rooms[shipManager.iShipId][room] = vunerable_weapons[projectile.extend.name]
+		end
+	end
+	return Defines.Chain.CONTINUE, beamHitType
+end)
+
+script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA_HIT, function(shipManager, projectile, location, damage, shipFriendlyFire)
+	local room = get_room_at_location(shipManager, location, true)
+	--if projectile and projectile.extend.name then print("attempt:"..projectile.extend.name) end
+	if projectile and projectile.extend.name and vunerable_weapons[projectile.extend.name] then
+		if vunerable_rooms[shipManager.iShipId][room] then
+			vunerable_rooms[shipManager.iShipId][room] = math.max(vunerable_rooms[shipManager.iShipId][room], vunerable_weapons[projectile.extend.name])
+		else
+			vunerable_rooms[shipManager.iShipId][room] = vunerable_weapons[projectile.extend.name]
+		end
+		--print("set:"..room.." t:"..tostring(vunerable_rooms[shipManager.iShipId][room]))
+	end
+	return Defines.Chain.CONTINUE
+end)

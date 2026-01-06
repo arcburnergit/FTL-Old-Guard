@@ -11,6 +11,10 @@
 <text name="ship_PLAYER_SHIP_OG_EXECUTOR_2_unlock">Get to Sector 8 with The Type A to unlock this ship.</text>
 <text name="ship_PLAYER_SHIP_OG_EXECUTOR_3_unlock">Complete 2/3 of this ship class's Achievements to unlock this ship.</text>
 
+<text name="ship_PLAYER_SHIP_OG_DAWN_SPEAR_unlock">REMEMBER TO ADD THIS TEXT.</text>
+<text name="ship_PLAYER_SHIP_OG_DAWN_SPEAR_2_unlock">Get to Sector 8 with The Type A to unlock this ship.</text>
+<text name="ship_PLAYER_SHIP_OG_DAWN_SPEAR_3_unlock">Complete 2/3 of this ship class's Achievements to unlock this ship.</text>
+
 <text name="ship_PLAYER_SHIP_OG_REBEL_unlock">Get to Sector 5 with the Iron Kestrel Cruiser to unlock this ship.</text>
 <text name="ship_PLAYER_SHIP_OG_CURA_unlock">Get to Sector 5 with the Iron Rebel Cruiser to unlock this ship.</text>
 <text name="ship_PLAYER_SHIP_OG_SEPARATIST_unlock">Get to Sector 5 with the Iron Innovation Cruiser to unlock this ship.</text>

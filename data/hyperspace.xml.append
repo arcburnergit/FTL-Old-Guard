@@ -121,6 +121,16 @@ Halves the damage of beams hitting this ship, rounding down.</tooltip>
 			<tooltip>TURRET PRE-IGNITER:
 This enemy's turrets will be fully charged at the start of combat.</tooltip>
 		</mod-append:shipIcon>
+		<mod-append:shipIcon>
+			<name>icon_og_turret_preignite_weak</name>
+			<tooltip>TURRET PRE-ENERGISER:
+This enemy's turrets will be half charged at the start of combat.</tooltip>
+		</mod-append:shipIcon>
+		<mod-append:shipIcon>
+			<name>icon_og_turret_dawn</name>
+			<tooltip>NEW DAWN TURRETS:
+This enemy possesses New Dawn turrets, when hit by these rooms will be temporarily made vunerable and recieve +1 system damage when hit, however these turrets also render their corresponding systems vunerable aswell.</tooltip>
+		</mod-append:shipIcon>
 	</mod:findLike>
 	<mod:findLike type="shipOrder">
 		<mod-append:ship>PLAYER_SHIP_OG_KESTREL</mod-append:ship>
@@ -135,6 +145,19 @@ This enemy's turrets will be fully charged at the start of combat.</tooltip>
 
 		<mod-append:ship>PLAYER_SHIP_OG_RAIDER</mod-append:ship>
 		<mod-append:ship>PLAYER_SHIP_OG_EXECUTOR</mod-append:ship>
+
+		<mod-append:ship>PLAYER_SHIP_OG_DAWN_SPEAR</mod-append:ship>
+		<mod-append:empty/>
+		<mod-append:empty/>
+		<mod-append:empty/>
+		
+		<mod-append:empty/>
+		<mod-append:empty/>
+		<mod-append:empty/>
+		<mod-append:empty/>
+		
+		<mod-append:empty/>
+		<mod-append:empty/>
 	</mod:findLike>
 
 	<mod-append:ship name="PLAYER_SHIP_OG_RAIDER" b="true" c="true" >
@@ -212,6 +235,58 @@ This enemy's turrets will be fully charged at the start of combat.</tooltip>
 		<systemLimit>10</systemLimit>
 	</mod-append:customShip>
 
+	<mod-append:ship name="PLAYER_SHIP_OG_DAWN_SPEAR" b="true" c="true" >
+		<!--arrow variant="a" direction="down" tooltip="ship_unlock_og_two_wins" image="arrow_v_down.png" unlockedImage="arrow_v_down_on.png">PLAYER_SHIP_OG_EXECUTOR</arrow-->
+		<unlock variant="a" silent="false">
+			<type>4</type>
+		</unlock>
+		<unlock variant="b" silent="false">
+			<type>1</type>
+			<shipReq>PLAYER_SHIP_OG_DAWN_SPEAR</shipReq>
+			<value>8</value>
+		</unlock>
+		<unlock variant="c" silent="false">
+			<type>4</type>
+		</unlock>
+		<achievement name="SHIP_ACH_OG_DAWN_SPEAR_1" layout="all">
+			<name>War Economy</name>
+			<description>As a Raider-Class vessel, create a new turret of your own.</description>
+			<icon>ogp_dawn_spear_1_icon</icon>
+			<lockImage>ogp_dawn_spear_1_icon_locked</lockImage>
+		</achievement>
+		<achievement name="SHIP_ACH_OG_DAWN_SPEAR_2" layout="all">
+			<name>Treading on the Rattlesnake</name>
+			<description>Defeat a New Dawn ship by destroying their hull using a Raider-Class vessel.</description>
+			<icon>ogp_dawn_spear_2_icon</icon>
+			<lockImage>ogp_dawn_spear_2_icon_locked</lockImage>
+		</achievement>
+		<achievement name="SHIP_ACH_OG_DAWN_SPEAR_3" layout="all">
+			<name>Heavy Lifting</name>
+			<description>As a Raider Class Vessel: Reach Sector 8 without buying weapons or drones' systems (or upgrading them as ship starting systems).</description>
+			<icon>ogp_dawn_spear_3_icon</icon>
+			<lockImage>ogp_dawn_spear_3_icon_locked</lockImage>
+		</achievement>
+	</mod-append:ship>
+	<mod-append:customShip name="PLAYER_SHIP_OG_DAWN_SPEAR">
+		<hiddenAug>SHIP_OG_DAWN</hiddenAug>
+		<hiddenAug>OG_DAWN_INITIATE</hiddenAug>
+		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
+		<crewLimit>6</crewLimit>
+		<systemLimit>9</systemLimit>
+	</mod-append:customShip>
+	<mod-append:customShip name="PLAYER_SHIP_OG_DAWN_SPEAR_2">
+		<hiddenAug>SHIP_OG_DAWN</hiddenAug>
+		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
+		<crewLimit>6</crewLimit>
+		<systemLimit>9</systemLimit>
+	</mod-append:customShip>
+	<mod-append:customShip name="PLAYER_SHIP_OG_DAWN_SPEAR_3">
+		<hiddenAug>SHIP_OG_DAWN</hiddenAug>
+		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
+		<crewLimit>8</crewLimit>
+		<systemLimit>9</systemLimit>
+	</mod-append:customShip>
+
 	<mod-append:ship name="PLAYER_SHIP_OG_KESTREL" b="false" c="false" >
 		<arrow variant="a" direction="right" tooltip="ship_unlock_sector5" image="arrow_5_right.png" unlockedImage="arrow_5_right_on.png">PLAYER_SHIP_OG_REBEL</arrow>
 	</mod-append:ship>
@@ -246,7 +321,7 @@ This enemy's turrets will be fully charged at the start of combat.</tooltip>
 		</unlock>
 	</mod-append:ship>
 	<mod-append:customShip name="PLAYER_SHIP_OG_CURA">
-		<hiddenAug>SHIP_CURA</hiddenAug>
+		<hiddenAug>SHIP_AUTO</hiddenAug>
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 		<crewLimit>6</crewLimit>
 		<systemLimit>9</systemLimit>
@@ -384,6 +459,52 @@ This enemy's turrets will be fully charged at the start of combat.</tooltip>
 			</room>
 		</rooms>
 	</mod-append:customShip>
+
+	<mod-append:customShip name="OG_DAWN_SCOUT">
+		<shipIcons>
+			<shipIcon>icon_og_turret_dawn</shipIcon>
+		</shipIcons>
+	</mod-append:customShip>
+	<mod-append:customShip name="OG_DAWN_INFILTRATOR">
+		<shipIcons>
+			<shipIcon>icon_og_turret_dawn</shipIcon>
+		</shipIcons>
+	</mod-append:customShip>
+	<mod-append:customShip name="OG_DAWN_OUTRIDER">
+		<shipIcons>
+			<shipIcon>icon_og_turret_dawn</shipIcon>
+		</shipIcons>
+	</mod-append:customShip>
+	<mod-append:customShip name="OG_DAWN_BOMBER">
+		<shipIcons>
+			<shipIcon>icon_og_turret_dawn</shipIcon>
+		</shipIcons>
+	</mod-append:customShip>
+	<mod-append:customShip name="OG_DAWN_CORVETTE">
+		<shipIcons>
+			<shipIcon>icon_og_turret_dawn</shipIcon>
+		</shipIcons>
+	</mod-append:customShip>
+	<mod-append:customShip name="OG_DAWN_FIGHTER">
+		<shipIcons>
+			<shipIcon>icon_og_turret_dawn</shipIcon>
+		</shipIcons>
+	</mod-append:customShip>
+	<mod-append:customShip name="OG_DAWN_RAIDER">
+		<shipIcons>
+			<shipIcon>icon_og_turret_dawn</shipIcon>
+		</shipIcons>
+	</mod-append:customShip>
+	<mod-append:customShip name="OG_DAWN_TRANSPORT">
+		<shipIcons>
+			<shipIcon>icon_og_turret_dawn</shipIcon>
+		</shipIcons>
+	</mod-append:customShip>
+	<mod-append:customShip name="OG_DAWN_GUARD">
+		<shipIcons>
+			<shipIcon>icon_og_turret_dawn</shipIcon>
+		</shipIcons>
+	</mod-append:customShip>
 </mod:findLike>
 
 <mod:findLike type="augments" limit="1" reverse="false">
@@ -392,6 +513,9 @@ This enemy's turrets will be fully charged at the start of combat.</tooltip>
 	</mod-append:aug>
 	<mod-append:aug name="OG_TURRET_PREIGNITE">
 		<icon>icon_og_turret_preignite</icon>
+	</mod-append:aug>
+	<mod-append:aug name="OG_TURRET_PREIGNITE_WEAK">
+		<icon>icon_og_turret_preignite_weak</icon>
 	</mod-append:aug>
 	<mod-append:aug name="UPG_OG_TURRET_ROTATION_ENEMY">
 		<function name="UPG_OG_TURRET_ROTATION" value="1" useForReqs="true" warning="false"/>

@@ -12,6 +12,16 @@
 					</choice>
 				</event>
 			</mod-append:choice>
+			<mod-append:choice hidden="true" max_group="1" req="SHIP_OG_DAWN" blue="false">
+				<text>Contact Federation command.</text>
+				<event>
+					<text>On the vidscreen appears several Federation and Engi officers, as well as Admiral Tully in the center. "I have not often seen how those turrets perform, it will be interesting to see the true effectiveness of such a weapon."</text>
+					<choice hidden="true">
+						<text>Continue...</text>
+						<event load="LAST_STAND_START_2" />
+					</choice>
+				</event>
+			</mod-append:choice>
 		</mod:findLike>
 	</mod:findLike>
 </mod:findName>
