@@ -37,7 +37,7 @@
 
 <mod:findName type="event" name="REROUTE_MENU_HAT">
 	<mod-append:choice hidden="true" req="sec_unique_og_dawn" lvl="0" max_lvl="0" blue="false">
-		<text>Proceed to the New Dawn Forward Operating Base.</text>
+		<text>Go to the New Dawn Forward Operating Base.</text>
 		<event load="LIGHTSPEED_SECTOR_WARP_OG_DAWN" />
 	</mod-append:choice>
 	<mod-append:choice hidden="true" req="sec_unique_og_dawn" lvl="1" blue="false">

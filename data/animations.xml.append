@@ -683,9 +683,9 @@
 	<firePoint  x="20" y="52"/>
 	<mountPoint x="5" y="89"/>
 </weaponAnim>
-<animSheet name="laser_pierce_og_dawn_1_icon" w="84" h="28" fw="84" fh="28">weapon_laser/laser_pierce_og_dawn_icon.png</animSheet>
-<anim name="laser_pierce_og_dawn_1_icon">
-	<sheet>laser_pierce_og_dawn_1_icon</sheet>
+<animSheet name="laser_pierce_og_dawn_icon" w="84" h="28" fw="84" fh="28">weapon_laser/laser_pierce_og_dawn_icon.png</animSheet>
+<anim name="laser_pierce_og_dawn_icon">
+	<sheet>laser_pierce_og_dawn_icon</sheet>
 	<desc length="1" x="0" y="0"/>
 	<time>1</time>
 </anim>

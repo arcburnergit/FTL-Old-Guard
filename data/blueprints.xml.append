@@ -261,7 +261,7 @@
 	<tip>loot_og_dawn_1</tip>
 	<desc>Special loot weapon. See tooltip in the inventory to check the improvements over the base version.</desc>
 	<tooltip>Pierce laser; 1 damage, 2 shots, pierces 1 shield. 14 second cooldown.</tooltip>
-	<iconReplace>laser_pierce_1_icon</iconReplace>
+	<iconReplace>laser_pierce_og_dawn_icon</iconReplace>
 	<damage>1</damage>
 	<accuracyMod>10</accuracyMod>
 	<mv-stealth/>
@@ -3793,7 +3793,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 			</slot>
 		</shields>
 		<teleporter power="1" room="8" start="false" />
-		<weapons power="3" room="13" start="false" img="room_weapons_5">
+		<weapons power="2" room="13" start="false" img="room_weapons_5">
 			<slot>
 				<direction>right</direction>
 				<number>1</number>
