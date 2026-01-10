@@ -5,7 +5,9 @@
   <version><![CDATA[ 2.0 ]]></version>
   <description>
 <![CDATA[ 
-Adds a new Turret Control system and the ships that have it. Adds the Iron Watch, a group of Explorers, Scientists and Pirates whom have formed a collective on the edge of explored space.
+Adds a new Turret Control system and the ships that have it. 
+Adds the Iron Watch, a group of Explorers, Scientists and Pirates whom have formed a collective on the edge of explored space.
+Adds the New Dawn, a splinter group of the Iron Watch unhappy with the current direction of the faction, and looking to change it with force.
 ]]>
   </description>
 </metadata>
