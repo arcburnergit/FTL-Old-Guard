@@ -19,6 +19,7 @@
 <mod:findName type="sectorType" name="SECTOR_LIST_UNIQUE_SAFE">
 </mod:findName>
 <mod:findName type="sectorType" name="SECTOR_LIST_UNIQUE_DEADLY">
+	<mod-append:name>SECTOR_OG_DAWN_UNIQUE</mod-append:name>
 </mod:findName>
 
 <!-- COLOURS -->
@@ -29,6 +30,7 @@
 	<mod-append:name>SECTOR_OG_IRON_HEKTAR</mod-append:name>
 </mod:findName>
 <mod:findName type="sectorType" name="HOSTILE">
+	<mod-append:name>SECTOR_OG_DAWN_UNIQUE</mod-append:name>
 </mod:findName>
 <mod:findName type="sectorType" name="NEBULA">
 </mod:findName>
@@ -191,6 +193,80 @@
 	<event name="HOSTILE_OG_IRON" min="3" max="7"/>
 	
 	<event name="PIRACY_LIST" min="2" max="3"/>
+	<event name="FILLER_LIST" min="5" max="5"/>
+</sectorDescription>
+
+
+<sectorDescription name="SECTOR_OG_DAWN_UNIQUE" unique="true">
+	<nameList>
+		<name>New Dawn Forward Operating Base [!]</name>
+	</nameList>
+	<trackList>
+		<track>og_dawn</track>
+		<track>og_iron</track>
+		<track>colonial</track>
+		<track>lostship</track>
+		<track>wasteland</track>
+	</trackList>
+	<rarityList>
+		<blueprint name="human_og_raider" rarity="4"/>
+		<blueprint name="human_og_dawn" rarity="3"/>
+		<blueprint name="human" rarity="1"/>
+		<blueprint name="human_medic" rarity="4"/>
+		<blueprint name="human_engineer" rarity="3"/>
+		<blueprint name="engi" rarity="5"/>
+		<blueprint name="engi_separatist" rarity="4"/>
+		<blueprint name="zoltan" rarity="5"/>
+		<blueprint name="zoltan_monk" rarity="0"/>
+		<blueprint name="zoltan_devotee" rarity="0"/>
+		<blueprint name="rock" rarity="5"/>
+		<blueprint name="rock_outcast" rarity="5"/>
+		<blueprint name="rock_commando" rarity="0"/>
+		<blueprint name="mantis" rarity="5"/>
+		<blueprint name="mantis_free" rarity="5"/>
+		<blueprint name="slug" rarity="5"/>
+		<blueprint name="slug_clansman" rarity="0"/>
+		<blueprint name="shell" rarity="5"/>
+		<blueprint name="shell_scientist" rarity="0"/>
+		<blueprint name="shell_mechanic" rarity="0"/>
+		<blueprint name="shell_guardian" rarity="0"/>
+		<blueprint name="crystal" rarity="0"/>
+		<blueprint name="crystal_liberator" rarity="0"/>
+		<blueprint name="orchid" rarity="0"/>
+		<blueprint name="orchid_vampweed" rarity="4"/>
+		<blueprint name="leech" rarity="0"/>
+		<blueprint name="lanius" rarity="0"/>
+		<blueprint name="phantom" rarity="5"/>
+		<blueprint name="phantom_goul" rarity="0"/>
+		<blueprint name="phantom_mare" rarity="0"/>
+		<blueprint name="phantom_wraith" rarity="0"/>
+		<blueprint name="OG_TURRET_PREIGNITE_WEAK" rarity="3"/>
+	</rarityList>
+	<startEvent>ENTER_OG_DAWN_UNIQUE</startEvent>
+	<removeFirstBeaconNebula/>
+	<exitBeacon event="FINISH_BEACON_OG_DAWN" nebulaEvent="FINISH_BEACON_NEBULA" rebelEvent="FINISH_BEACON_FLEET_ACE"/>
+	<rebelBeacon event="FLEET_THREAT_VHIGH" nebulaEvent="NEBULA_LIGHT_FLEET_THREAT_VHIGH"/>
+	<priorityEvent name="ANOMALY_SPAWNER" min="1" max="1" priority="1" req="ANOMALY_SPAWN_CHECK" lvl="1"/>
+	<event name="MV_TRAVELER" min="1" max="2"/>
+	<priorityEvent name="NEMESIS_ENCOUNTER" min="0" max="1" req="prof_finalsector" lvl="1"/>
+	
+	<!--event name="NEBULA_ANURAK" min="1" max="1"/> <!--REROUTE EVENT FOR IRON UNIQUE COMING SOON USES INITATE HIDDEN AUG-->
+	<event name="OG_DAWN_HEIST_START" min="1" max="1"/> <!--SHIP UNLOCK QUEST-->
+	
+	<event name="TRANSPORT_OG_DAWN_LOOT" min="1" max="1"/>
+	<!--event name="TRAPPER_DUSK" min="1" max="1"/-->
+	<event name="STOREEVENT_OG_DAWN_TURRET" min="1" max="1"/>
+	<event name="STORELIST_OG_DAWN" min="1" max="1"/>
+	
+	<event name="ITEMS_OG_DAWN" min="3" max="4"/>
+	<event name="NEUTRAL_OG_DAWN" min="4" max="5"/>
+	<event name="DISTRESS_OG_DAWN" min="2" max="3"/>
+	<event name="QUESTS_OG_DAWN" min="1" max="1"/>
+	
+	<event name="ENCOUNTER_REBEL_ELITE" min="1" max="1"/>
+	<event name="HOSTILE_OG_DAWN" min="3" max="7"/>
+	
+	<event name="PIRACY_LIST" min="1" max="3"/>
 	<event name="FILLER_LIST" min="5" max="5"/>
 </sectorDescription>
 </FTL>

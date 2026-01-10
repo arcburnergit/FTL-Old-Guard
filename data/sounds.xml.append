@@ -5,5 +5,10 @@
 		<explore>og_MUS_IronExplore.ogg</explore>
 		<combat>og_MUS_IronBattle.ogg</combat>
 	</track>
+	<track>
+		<name>og_dawn</name> <!--Music by lizzard-->
+		<explore>og_MUS_DawnExplore.ogg</explore>
+		<combat>og_MUS_DawnBattle.ogg</combat>
+	</track>
 </music>
 </FTL>

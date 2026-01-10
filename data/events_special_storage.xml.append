@@ -456,4 +456,26 @@
 		<event load="STORAGE_CHECK" />
 	</choice>
 </event>
+
+<mod:findName type="event" name="STORAGE_CHECK_REAL">
+	<mod-append:choice req="OG_CARGO_CRATE_PREIGN_WEAK">
+		<text>(Cargo Crate) Open the Cargo Crate.</text>
+		<event load="STORAGE_CHECK_OG_DAWN_CARGO_CRATE_PREIGN" />
+	</mod-append:choice>
+</mod:findName>
+<event name="STORAGE_CHECK_OG_DAWN_CARGO_CRATE_PREIGN">
+	<text>Are you sure you want to do this? It's unlikely the people you're delivering it to will be happy with you after this.</text>
+	<choice hidden="true">
+		<text>Do it!</text>
+		<event>
+			<text>You open the crate to discover a jumble of components and parts, the only thing useable is a half dismantled Turret Pre-energiser, which you're able to get back into working order, the rest is useless to you.</text>
+			<remove name="OG_CARGO_CRATE_PREIGN_WEAK"/>
+			<augment name="OG_TURRET_PREIGNITE_WEAK"/>
+		</event>
+	</choice>
+	<choice>
+		<text>Nevermind.</text>
+		<event load="STORAGE_CHECK"/>
+	</choice>
+</event>
 </FTL>

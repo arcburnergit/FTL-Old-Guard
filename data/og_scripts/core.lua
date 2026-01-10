@@ -281,21 +281,24 @@ vunerable_weapons["OG_MISSILE_PROJECTILE_HEAVY_DAWN"] = 10
 vunerable_weapons["OG_FLAK_PROJECTILE_DAWN"] = 10
 vunerable_weapons["OG_FOCUS_PROJECTILE_DAWN"] = 5
 vunerable_weapons["OG_FOCUS_PROJECTILE_WEAK_DAWN"] = 5
+vunerable_weapons["LOOT_OG_DAWN_1"] = 5
 
-local vunerable_rooms = {[0] = {}, [1] = {}}
+mods.og.vunerable_rooms = {[0] = {}, [1] = {}}
+local vunerable_rooms = mods.og.vunerable_rooms
 script.on_init(function()
-	vunerable_rooms = {[0] = {}, [1] = {}}
+	mods.og.vunerable_rooms = {[0] = {}, [1] = {}}
 end)
 
 script.on_internal_event(Defines.InternalEvents.JUMP_LEAVE, function(shipManager)
-	vunerable_rooms[1] = {}
+	mods.og.vunerable_rooms[1] = {}
 end)
 
 script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 	for room in vter(shipManager.ship.vRoomList) do
 		if vunerable_rooms[shipManager.iShipId][room.iRoomId] then
-			vunerable_rooms[shipManager.iShipId][room.iRoomId] = vunerable_rooms[shipManager.iShipId][room.iRoomId] - time_increment(true)
-			if vunerable_rooms[shipManager.iShipId][room.iRoomId] <= 0 then
+			--print("LOOP CORE:"..room.iRoomId)
+			vunerable_rooms[shipManager.iShipId][room.iRoomId].time = vunerable_rooms[shipManager.iShipId][room.iRoomId].time - time_increment(true)
+			if vunerable_rooms[shipManager.iShipId][room.iRoomId].time <= 0 then
 				vunerable_rooms[shipManager.iShipId][room.iRoomId] = nil
 			end
 		end
@@ -322,19 +325,21 @@ script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA, function(shipManage
 end)
 
 
+
 script.on_internal_event(Defines.InternalEvents.DAMAGE_BEAM, function(shipManager, projectile, location, damage, realNewTile, beamHitType)
 	if beamHitType ~= Defines.BeamHit.NEW_ROOM then return Defines.Chain.CONTINUE, beamHitType end
 	local room = get_room_at_location(shipManager, location, true)
 	if vunerable_rooms[shipManager.iShipId][room] then
 		if damage.iDamage + damage.iSystemDamage > 0 then
 			damage.iSystemDamage = damage.iSystemDamage + 1
+			vunerable_rooms[shipManager.iShipId][room].triggers = vunerable_rooms[shipManager.iShipId][room].triggers + 1
 		end
 	end
 	if projectile and projectile.extend.name and vunerable_weapons[projectile.extend.name] then
 		if vunerable_rooms[shipManager.iShipId][room] then
-			vunerable_rooms[shipManager.iShipId][room] = math.max(vunerable_rooms[shipManager.iShipId][room], vunerable_weapons[projectile.extend.name])
+			vunerable_rooms[shipManager.iShipId][room].time = math.max(vunerable_rooms[shipManager.iShipId][room].time, vunerable_weapons[projectile.extend.name])
 		else
-			vunerable_rooms[shipManager.iShipId][room] = vunerable_weapons[projectile.extend.name]
+			vunerable_rooms[shipManager.iShipId][room] = {time = vunerable_weapons[projectile.extend.name], triggers = 0}
 		end
 	end
 	return Defines.Chain.CONTINUE, beamHitType
@@ -345,11 +350,16 @@ script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA_HIT, function(shipMa
 	--if projectile and projectile.extend.name then print("attempt:"..projectile.extend.name) end
 	if projectile and projectile.extend.name and vunerable_weapons[projectile.extend.name] then
 		if vunerable_rooms[shipManager.iShipId][room] then
-			vunerable_rooms[shipManager.iShipId][room] = math.max(vunerable_rooms[shipManager.iShipId][room], vunerable_weapons[projectile.extend.name])
+			vunerable_rooms[shipManager.iShipId][room].time = math.max(vunerable_rooms[shipManager.iShipId][room].time, vunerable_weapons[projectile.extend.name])
 		else
-			vunerable_rooms[shipManager.iShipId][room] = vunerable_weapons[projectile.extend.name]
+			vunerable_rooms[shipManager.iShipId][room] = {time = vunerable_weapons[projectile.extend.name], triggers = 0}
 		end
 		--print("set:"..room.." t:"..tostring(vunerable_rooms[shipManager.iShipId][room]))
+	end
+	if vunerable_rooms[shipManager.iShipId][room] then
+		if damage.iDamage + damage.iSystemDamage > 0 then
+			vunerable_rooms[shipManager.iShipId][room].triggers = vunerable_rooms[shipManager.iShipId][room].triggers + 1
+		end
 	end
 	return Defines.Chain.CONTINUE
 end)

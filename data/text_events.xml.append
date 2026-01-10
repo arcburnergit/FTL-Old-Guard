@@ -15,3 +15,15 @@ Rebel Threat Level: Medium
 Safety varies within Iron Watch space, you'll find a wide range of groups here. The Iron Watch is a collective of Explorers, Scientists, and Pirates, all who have ventured into uncivilised space whether out of desperation or curiosity.
 At the bottom of your Atlas, you notice a small "H" logo... a sponsorship? It reads "Come visit the local Hektar Industries Market Places!" Huh...
 </text>
+<text name="atlas_og_dawn">Name: New Dawn Forward Operating Base
+Type: Hostile
+Unique: True
+Dominant Faction: The New Dawn
+Rebel Threat Level: Very High
+Locations of Interest: ???
+
+This sector is in the very center of Rebel space, and is a prime spot for the most prominent Rebel operations. If you had any hopes of seeing a friendly face from the Federation here, stifle it immediately. Only a fool could dream something like that here.
+</text>
+
+<text name="map_icon_store_og_iron">STORE [IRON WATCH]</text>
+<text name="map_icon_store_og_dawn">STORE [NEW DAWN]</text>

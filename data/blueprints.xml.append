@@ -232,6 +232,67 @@
 	</upgradeCost>
 	<cost>50</cost>
 </systemBlueprint>
+
+<weaponBlueprint name="OG_CARGO_CRATE_PREIGN_WEAK">
+	<type>BEAM</type>
+	<flavorType>Cargo Crate</flavorType>
+	<tip>tip_storage</tip>
+	<title>New Dawn Cargo Crate</title>
+	<short>Cargo Crate</short>
+	<desc>An unusual cargo crate, you're not sure what's inside, and if you had some spare time you could probably open it, but the people you're delivering it to wouldn't be happy about it.</desc>
+	<tooltip>Cargo Crate</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>0</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_cargo_crate</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="LOOT_OG_DAWN_1"> <!--.14 DPS-->
+	<type>LASER</type>
+	<title>Pierce Laser MK I</title>
+	<short>Pierce I</short>
+	<tip>loot_og_dawn_1</tip>
+	<desc>Special loot weapon. See tooltip in the inventory to check the improvements over the base version.</desc>
+	<tooltip>Pierce laser; 1 damage, 2 shots, pierces 1 shield. 14 second cooldown.</tooltip>
+	<iconReplace>laser_pierce_1_icon</iconReplace>
+	<damage>1</damage>
+	<accuracyMod>10</accuracyMod>
+	<mv-stealth/>
+	<shots>2</shots>
+	<sp>1</sp>
+	<fireChance>0</fireChance>
+	<breachChance>3</breachChance>
+	<cooldown>12</cooldown>
+	<power>2</power>
+	<cost>60</cost>
+	<bp>2</bp>
+	<rarity>3</rarity>
+	<image>laser_burst</image>
+	<launchSounds>
+		<sound>laser_pierce</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>hitHull2</sound>
+		<sound>hitHull3</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>laser_pierce_og_dawn</weaponArt>
+	<iconImage>laser</iconImage>
+</weaponBlueprint>
 </FTL>
 
 <!--Crew-->
@@ -281,8 +342,7 @@
 	<short>Dawn Soldier</short>
 	<rarity>0</rarity>
 	<powerList>
-		<power>Active Ability: Cloaks to hide from enemy crew, has reduced damage while cloaked, cloaking duration reduces based on actions performed rather than time.</power>
-		<power>Inflicts 1.2x damage in crew combat</power>
+		<power>Active Ability: Cloaks to hide from enemy crew, has increased damage while cloaked, cloaking duration reduces based on actions performed rather than time.</power>
 		<power>Takes 0.7x damage from crew combat and 0.6x from fires</power>
 	</powerList>
 	<colorList>
@@ -595,6 +655,111 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<iconReplace>og_turret_laser_cel_1_icon</iconReplace>
 </weaponBlueprint>
 
+<weaponBlueprint name="OG_TURRET_LASER_ZENITH">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Zenith Laser Turret</title>
+	<short>Zenith L.</short>
+	<desc>A deadly Aether-powered Laser Turret that deals massive damage even compared to standard Heavy Laser Turrets.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>100</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_laser_zenith_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_LASER_BIO">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Irradiation Laser Turret</title>
+	<short>Rad L.</short>
+	<desc>A specialized Laser Turret that does high bio damage and cripples crew, but no system or hull damage. This turret is also extremely capable in the defense role shooting down enemy lasers.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>100</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_laser_rad_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_LASER_PIERCE">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Pierce Laser Turret</title>
+	<short>Pierce L.</short>
+	<desc>A specialized Laser Turret that can pierce additional shield layers.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>100</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_laser_pierce_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_LASER_HULL">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Anti-Hull Laser Turret</title>
+	<short>Hull L.</short>
+	<desc>A specially designed military Laser Turret that does higher damage against rooms without systems.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>100</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_laser_hull_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_LASER_CHAINGUN">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Chain Vulcan Turret</title>
+	<short>Vulcan</short>
+	<desc>This Laser Turret takes a long time to warm up. Each time it fires it decreases the cooldown, eventually able to take down any amount of shields.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>100</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_laser_chaingun_icon</iconReplace>
+</weaponBlueprint>
+
 <weaponBlueprint name="OG_TURRET_ION_1">
 	<type>BEAM</type>
 	<flavorType>Turret</flavorType>
@@ -679,6 +844,49 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<iconReplace>og_turret_missile_2_icon</iconReplace>
 </weaponBlueprint>
 
+<weaponBlueprint name="OG_TURRET_KERNEL_HEAVY">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Heavy Kernel Turret</title>
+	<short>Heavy K.</short>
+	<desc>This weapon uses kernels of giant plants from the Orchid home planet as ammunition. Kernels behave like missiles, but also have halved ammunition cost.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>100</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_kernel_heavy_icon</iconReplace>
+</weaponBlueprint>
+<weaponBlueprint name="OG_TURRET_KERNEL_FIRE">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Solar Kernel Turret</title>
+	<short>Solar K.</short>
+	<desc>This weapon uses kernels of giant plants from the Orchid home planet as ammunition. This modified Kernel weapon creates fires instead of breaches.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>100</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_kernel_fire_icon</iconReplace>
+</weaponBlueprint>
+
+
+
 <weaponBlueprint name="OG_TURRET_FLAK_1">
 	<type>BEAM</type>
 	<flavorType>Turret</flavorType>
@@ -719,6 +927,27 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_focus_1_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_FOCUS_BIO">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Irradiation Pinpoint Turret</title>
+	<short>Rad P.</short>
+	<desc>A powerful modified Pinpoint turret that does massive crew damage and cripples enemy crew, but no hull damage. Pierces 2 shields.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>100</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_focus_bio_icon</iconReplace>
 </weaponBlueprint>
 
 <weaponBlueprint name="OG_TURRET_LASER_MINI_1">
@@ -1245,6 +1474,161 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<weaponArt>prime_laser</weaponArt>
 	<iconImage>laser</iconImage>
 </weaponBlueprint>
+<weaponBlueprint name="OG_LASER_PROJECTILE_BIO">
+	<type>LASER</type>
+	<title>Laser</title>
+	<short>Laser</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>0</damage>
+	<persDamage>3</persDamage>
+	<statBoosts>
+		<statBoost name="moveSpeedMultiplier" load="RAD_MOVE"/>
+		<statBoost name="stunMultiplier" load="RAD_STUN"/>
+		<statBoost name="repairSpeed" load="RAD_REPAIR"/>
+	</statBoosts>
+	<shots>1</shots>
+	<sp>1</sp>
+	<fireChance>0</fireChance>
+	<breachChance>3</breachChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>laser_bio</image>
+	<launchSounds>
+		<sound>lightLaser1</sound>
+		<sound>lightLaser2</sound>
+		<sound>lightLaser3</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>hitHull2</sound>
+		<sound>hitHull3</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>laser_bio</weaponArt>
+	<iconImage>laser</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_LASER_PROJECTILE_PIERCE">
+	<type>LASER</type>
+	<title>Laser</title>
+	<short>Laser</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>1</damage>
+	<accuracyMod>10</accuracyMod>
+	<shots>1</shots>
+	<sp>1</sp>
+	<fireChance>0</fireChance>
+	<breachChance>3</breachChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>laser_burst</image>
+	<launchSounds>
+		<sound>laser_pierce</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>hitHull2</sound>
+		<sound>hitHull3</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>laser_pierce</weaponArt>
+	<iconImage>laser</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_LASER_PROJECTILE_HULL">
+	<type>LASER</type>
+	<title>Laser</title>
+	<short>Laser</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>1</damage>
+	<hullBust>1</hullBust>
+	<shots>1</shots>
+	<sp>0</sp>
+	<fireChance>0</fireChance>
+	<breachChance>2</breachChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>laser_heavy1</image>
+	<launchSounds>
+		<sound>heavyLaser1</sound>
+		<sound>heavyLaser2</sound>
+		<sound>heavyLaser3</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>hitHull1</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>laser_hull</weaponArt>
+	<iconImage>laser</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_LASER_PROJECTILE_ZENITH">
+	<type>LASER</type>
+	<title>Laser</title>
+	<short>Laser</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>4</damage>
+	<shots>1</shots>
+	<sp>0</sp>
+	<fireChance>1</fireChance>
+	<breachChance>8</breachChance>
+	<stunChance>4</stunChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>laser_ancient</image>
+	<launchSounds>
+		<sound>ancient_laser</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>hitHull1</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>zenith_1</weaponArt>
+	<iconImage>laser</iconImage>
+</weaponBlueprint>
+
+
+
+
 <weaponBlueprint name="OG_ION_PROJECTILE_BASE">
 	<type>LASER</type>
 	<title>Ion</title>
@@ -1493,6 +1877,89 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<weaponArt>missiles_1</weaponArt>
 	<iconImage>missile</iconImage>
 </weaponBlueprint>
+<weaponBlueprint name="OG_KERNEL_PROJECTILE_HEAVY">
+	<type>LASER</type>
+	<title>Laser</title>
+	<short>Laser</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>3</damage>
+	<missiles>0</missiles>
+	<accuracyMod>10</accuracyMod>
+	<speed>70</speed>
+	<shots>1</shots>
+	<sp>10</sp>
+	<fireChance>0</fireChance>
+	<breachChance>10</breachChance>
+	<stunChance>6</stunChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>kernel_projectile</image>
+	<launchSounds>
+		<sound>kernel_launch1</sound>
+		<sound>kernel_launch2</sound>
+		<sound>kernel_launch3</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>smallExplosion</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>kernel_heavy</weaponArt>
+	<iconImage>missile</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_KERNEL_PROJECTILE_FIRE">
+	<type>LASER</type>
+	<title>Laser</title>
+	<short>Laser</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>2</damage>
+	<missiles>0</missiles>
+	<accuracyMod>10</accuracyMod>
+	<speed>70</speed>
+	<shots>1</shots>
+	<sp>10</sp>
+	<fireChance>5</fireChance>
+	<breachChance>0</breachChance>
+	<stunChance>1</stunChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>kernel_projectile</image>
+	<launchSounds>
+		<sound>kernel_launch1</sound>
+		<sound>kernel_launch2</sound>
+		<sound>kernel_launch3</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>smallExplosion</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>kernel_heavy</weaponArt>
+	<iconImage>missile</iconImage>
+</weaponBlueprint>
+
+
+
 <weaponBlueprint name="OG_FLAK_PROJECTILE">
 	<type>LASER</type>
 	<drone_targetable>1</drone_targetable>
@@ -1612,6 +2079,70 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<desc>YOU SHOULD NEVER SEE THIS</desc>
 	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
 	<damage>1</damage>
+	<sp>20</sp>
+	<fireChance>0</fireChance>
+	<breachChance>0</breachChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<speed>1</speed>
+	<image>beam_contact</image>
+	<length>1</length>
+	<launchSounds>
+		<sound>focus_weak</sound>
+	</launchSounds>
+	<weaponArt>focus_1</weaponArt>
+	<iconImage>beam</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_FOCUS_PROJECTILE_BIO">
+	<type>BEAM</type>
+	<title>Focus</title>
+	<short>Focus</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>2</damage>
+	<persDamage>4</persDamage>
+	<color>
+		<r>255</r>
+		<g>8</g>
+		<b>200</b>
+	</color>
+	<sp>3</sp>
+	<fireChance>0</fireChance>
+	<breachChance>5</breachChance>
+	<statBoosts>
+		<statBoost name="moveSpeedMultiplier" load="RAD_MOVE"/>
+		<statBoost name="stunMultiplier" load="RAD_STUN"/>
+		<statBoost name="repairSpeed" load="RAD_REPAIR"/>
+	</statBoosts>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<speed>1</speed>
+	<image>beam_contact</image>
+	<length>1</length>
+	<launchSounds>
+		<sound>focus_weak</sound>
+	</launchSounds>
+	<weaponArt>focus_1</weaponArt>
+	<iconImage>beam</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_FOCUS_PROJECTILE_BIO_FAKE">
+	<type>BEAM</type>
+	<title>Focus</title>
+	<short>Focus</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>2</damage>
+	<color>
+		<r>255</r>
+		<g>8</g>
+		<b>200</b>
+	</color>
 	<sp>20</sp>
 	<fireChance>0</fireChance>
 	<breachChance>0</breachChance>
@@ -2341,7 +2872,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<crewCount amount="1" class="human_og_dawn" />
 	<aug name="OG_TURRET_PREIGNITE_WEAK" />
 	<shieldImage>mup_disk</shieldImage>
-	<mv-mapImage>map_icon_og_executor</mv-mapImage>
+	<mv-mapImage>map_icon_og_dawn_spear</mv-mapImage>
 </shipBlueprint>
 
 <shipBlueprint name="PLAYER_SHIP_OG_DAWN_SPEAR_2" layout="ogp_dawn_spear_b" img="ogp_dawn_spear_b">
@@ -2414,8 +2945,8 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<weaponSlots>3</weaponSlots>
 	<droneSlots>2</droneSlots>
 	<weaponList missiles="5" count="3">
-		<weapon name="LASER_BURST_3" />
-		<weapon name="LASER_FIRE" />
+		<weapon name="LASER_BURST_2" />
+		<weapon name="BEAM_1" />
 	</weaponList>
 	<droneList drones="5" count="2" />
 	<health amount="30" />
@@ -2427,7 +2958,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<aug name="EX_OG_TURRET_ROTATION" />
 	<aug name="EX_OG_TURRET_SPEED" />
 	<shieldImage>mup_disk</shieldImage>
-	<mv-mapImage>map_icon_og_executor</mv-mapImage>
+	<mv-mapImage>map_icon_og_dawn_spear</mv-mapImage>
 </shipBlueprint>
 
 <shipBlueprint name="PLAYER_SHIP_OG_DAWN_SPEAR_3" layout="ogp_dawn_spear_c" img="ogp_dawn_spear_c">
@@ -2514,7 +3045,273 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<aug name="EX_O2_MASKS" />
 	<aug name="EX_LIFE_SCANNER" />
 	<shieldImage>mup_disk</shieldImage>
-	<mv-mapImage>map_icon_og_executor</mv-mapImage>
+	<mv-mapImage>map_icon_og_dawn_spear</mv-mapImage>
+</shipBlueprint>
+
+<shipBlueprint name="PLAYER_SHIP_OG_DAWN_BIG" layout="ogp_dawn_big_a" img="ogp_dawn_big_a">
+	<class>Colossus-Class</class>
+	<name>The Fortress</name>
+	<unlock id="ship_PLAYER_SHIP_OG_DAWN_BIG_unlock"/>
+	<desc>With a battery of four seperate mainline turrets, this ship is able to go toe to toe with any foe.</desc>
+	<systemList>
+		<og_turret power="2" room="1" start="true" turret="OG_TURRET_LASER_1" img="room_og_turret_3" >
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</og_turret>
+		<og_turret_2 power="1" room="2" start="true" turret="OG_TURRET_LASER_RUSTY_1" img="room_og_turret_3" >
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</og_turret_2>
+		<og_turret_3 power="1" room="3" start="true" turret="OG_TURRET_LASER_RUSTY_1" img="room_og_turret_3" >
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</og_turret_3>
+		<og_turret_4 power="1" room="4" start="true" turret="OG_TURRET_LASER_RUSTY_1" img="room_og_turret_3" >
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</og_turret_4>
+		<battery power="1" room="32" start="false" img="room_battery_3" />
+		<cloaking power="1" room="22" start="false" img="room_cloaking" />
+		<clonebay power="1" room="16" start="false">
+			<slot>
+				<number>3</number>
+			</slot>
+		</clonebay>
+		<doors power="1" room="24" start="true" img="room_doors">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</doors>
+		<drones power="2" max="8" room="31" start="false" img="room_drones_14" />
+		<engines power="3" room="5" start="true" img="room_engines_2">
+			<slot>
+				<direction>down</direction>
+				<number>2</number>
+			</slot>
+		</engines>
+		<hacking power="1" room="13" start="false" img="room_hacking_2" />
+		<medbay power="1" room="16" start="false" img="room_medbay_3">
+			<slot>
+				<number>3</number>
+			</slot>
+		</medbay>
+		<mind power="1" room="15" start="false" img="room_mind_5" />
+		<oxygen power="1" room="35" start="true" img="room_oxygen_20" />
+		<pilot power="1" room="0" start="true" img="room_pilot">
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</pilot>
+		<sensors power="1" room="23" start="true" img="room_sensors">
+			<slot>
+				<direction>down</direction>
+				<number>1</number>
+			</slot>
+		</sensors>
+		<shields power="2" max="8" room="14" start="false" img="room_shields_7">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</shields>
+		<teleporter power="1" room="21" start="false" />
+	</systemList>
+	<weaponSlots>0</weaponSlots>
+	<droneSlots>2</droneSlots>
+	<weaponList missiles="4" count="0" />
+	<droneList drones="4" count="2" />
+	<health amount="45" />
+	<maxPower amount="9" />
+	<crewCount amount="1" class="human_og_dawn" />
+	<crewCount amount="1" class="human_og_dawn" />
+	<crewCount amount="1" class="human_og_dawn" />
+	<crewCount amount="1" class="human_medic" />
+	<aug name="OG_REFLECTIVE_PLATING" />
+	<shieldImage>mup_long4</shieldImage>
+	<mv-mapImage>map_icon_og_dawn_big</mv-mapImage>
+</shipBlueprint>
+
+<shipBlueprint name="PLAYER_SHIP_OG_DAWN_BIG_2" layout="ogp_dawn_big_b" img="ogp_dawn_big_b">
+	<class>Colossus-Class</class>
+	<name>The Impervious</name>
+	<unlock id="ship_PLAYER_SHIP_OG_DAWN_BIG_2_unlock"/>
+	<desc>This ship cannot install shields or cloaking, and so has to rely on it's turrets for defence.</desc>
+	<systemList>
+		<og_turret power="2" room="1" start="true" turret="OG_TURRET_MISSILE_1" img="room_og_turret_3" >
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</og_turret>
+		<og_turret_2 power="1" room="2" start="true" turret="OG_TURRET_LASER_RUSTY_1" img="room_og_turret_3" >
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</og_turret_2>
+		<og_turret_3 power="1" room="3" start="true" turret="OG_TURRET_LASER_RUSTY_1" img="room_og_turret_3" >
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</og_turret_3>
+		<og_turret_4 power="1" room="4" start="true" turret="OG_TURRET_LASER_RUSTY_1" img="room_og_turret_3" >
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</og_turret_4>
+		<battery power="1" room="19" start="false" img="room_battery_8" />
+		<clonebay power="1" room="21" start="false">
+			<slot>
+				<number>3</number>
+			</slot>
+		</clonebay>
+		<doors power="1" room="24" start="true" img="room_doors">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</doors>
+		<drones power="2" max="8" room="27" start="false" img="room_drones_6" />
+		<engines power="2" room="5" start="true" img="room_engines_2">
+			<slot>
+				<direction>down</direction>
+				<number>2</number>
+			</slot>
+		</engines>
+		<hacking power="1" room="23" start="false" img="room_hacking_9" />
+		<medbay power="1" room="21" start="true" img="room_medbay_3">
+			<slot>
+				<number>3</number>
+			</slot>
+		</medbay>
+		<mind power="1" room="26" start="false" img="room_mind_5" />
+		<oxygen power="1" room="33" start="true" img="room_oxygen_7" />
+		<pilot power="2" room="0" start="true" img="room_pilot_4">
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</pilot>
+		<sensors power="1" room="22" start="true" img="room_sensors_3">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</sensors>
+		<teleporter power="1" room="25" start="false" />
+		<weapons power="2" room="28" start="true" img="room_weapons_4">
+			<slot>
+				<direction>up</direction>
+				<number>0</number>
+			</slot>
+		</weapons>
+	</systemList>
+	<weaponSlots>2</weaponSlots>
+	<droneSlots>1</droneSlots>
+	<weaponList missiles="20" count="2">
+		<weapon name="BEAM_LONG_PLAYER" />
+	</weaponList>
+	<droneList drones="0" count="1" />
+	<health amount="45" />
+	<maxPower amount="9" />
+	<crewCount amount="1" class="human_engineer" />
+	<crewCount amount="1" class="human_technician" />
+	<crewCount amount="1" class="human_technician" />
+	<aug name="OG_REFLECTIVE_PLATING" />
+	<aug name="EX_OG_TURRET_ROTATION" />
+	<aug name="EX_OG_TURRET_SPEED" />
+	<shieldImage>mup_long4</shieldImage>
+	<mv-mapImage>map_icon_og_dawn_big</mv-mapImage>
+</shipBlueprint>
+
+<shipBlueprint name="PLAYER_SHIP_OG_DAWN_BIG_3" layout="ogp_dawn_big_c" img="ogp_dawn_big_c">
+	<class>Colossus-Class</class>
+	<name>The Empire</name>
+	<unlock id="ship_PLAYER_SHIP_OG_DAWN_BIG_3_unlock"/>
+	<desc>An ancient battleship discovered in the deepest reaches of space. A team of engineers worked to restore it to it's former glory.</desc>
+	<systemList>
+		<og_turret power="1" room="1" start="true" turret="OG_TURRET_LASER_1" img="room_og_turret_3" >
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</og_turret>
+		<og_turret_2 power="1" room="2" start="true" turret="OG_TURRET_LASER_RUSTY_1" img="room_og_turret_3" >
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</og_turret_2>
+		<og_turret_3 power="1" room="3" start="true" turret="OG_TURRET_LASER_RUSTY_1" img="room_og_turret_3" >
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</og_turret_3>
+		<og_turret_4 power="1" room="4" start="true" turret="OG_TURRET_LASER_RUSTY_1" img="room_og_turret_3" >
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</og_turret_4>
+		<og_turret_mini power="1" room="6" start="true" turret="OG_TURRET_LASER_MINI_2" img="room_og_turret_3_noman" />
+		<og_turret_mini_2 power="1" room="5" start="true" turret="OG_TURRET_LASER_MINI_2" img="room_og_turret_3_noman" />
+		<og_turret_mini_3 power="1" room="7" start="true" turret="OG_TURRET_LASER_RUSTY_MINI_1" img="room_og_turret_9_noman" />
+		<og_turret_mini_4 power="1" room="8" start="true" turret="OG_TURRET_LASER_RUSTY_MINI_1" img="room_og_turret_7_noman" />
+		<battery power="1" room="33" start="true" img="room_battery" />
+		<doors power="1" room="30" start="true" img="room_doors">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</doors>
+		<engines power="2" room="10" start="true" img="room_engines_11">
+			<slot>
+				<direction>down</direction>
+				<number>3</number>
+			</slot>
+		</engines>
+		<oxygen power="1" room="32" start="true" img="room_oxygen_20" />
+		<pilot power="2" room="0" start="true" img="room_pilot">
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</pilot>
+		<sensors power="1" room="31" start="true" img="room_sensors">
+			<slot>
+				<direction>down</direction>
+				<number>1</number>
+			</slot>
+		</sensors>
+	</systemList>
+	<weaponSlots>0</weaponSlots>
+	<droneSlots>0</droneSlots>
+	<weaponList missiles="4" count="0" />
+	<droneList drones="4" count="0" />
+	<health amount="45" />
+	<maxPower amount="10" />
+	<crewCount amount="1" class="human_soldier" />
+	<crewCount amount="1" class="human_engineer" />
+	<crewCount amount="1" class="human_engineer" />
+	<crewCount amount="1" class="human_engineer" />
+	<crewCount amount="1" class="human_medic" />
+	<crewCount amount="1" class="human_medic" />
+	<aug name="OG_REFLECTIVE_PLATING" />
+	<shieldImage>mup_long4</shieldImage>
+	<mv-mapImage>map_icon_og_dawn_big</mv-mapImage>
 </shipBlueprint>
 
 <shipBlueprint name="PLAYER_SHIP_OG_KESTREL" layout="ogp_kestrel_a" img="ogp_kestrel_a">
@@ -2848,7 +3645,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<health amount="30" />
 	<maxPower amount="8" />
 	<crewCount amount="1" class="engi_separatist_nano" />
-	<aug name="LOCKED_NANOBOT_DEFENCE_SYSTEM" />
+	<aug name="LOCKED_NANOBOT_DEFENSE_SYSTEM" />
 	<shieldImage>mup_orb1</shieldImage>
 	<mv-mapImage>map_icon_mup_separatist_a</mv-mapImage>
 </shipBlueprint>

@@ -14,6 +14,10 @@
 			<text>Continue...</text>
 			<event load="REPUTATION_DECREASE_OG_IRON_COMBAT"/>
 		</mod-append:choice>
+		<mod-append:choice blue="false" req="SEC SECTOR_OG_DAWN">
+			<text>Continue...</text>
+			<event load="REPUTATION_DECREASE_OG_DAWN_COMBAT"/>
+		</mod-append:choice>
 	</mod:findLike>
 </mod:findName>
 
@@ -23,11 +27,19 @@
 			<text>Continue...</text>
 			<event load="REPUTATION_DECREASE_OG_IRON_COMBAT"/>
 		</mod-append:choice>
+		<mod-append:choice blue="false" req="SEC SECTOR_OG_DAWN">
+			<text>Continue...</text>
+			<event load="REPUTATION_DECREASE_OG_DAWN_COMBAT"/>
+		</mod-append:choice>
 	</mod:findLike>
 	<mod:findLike type="event" limit="1" start="2" reverse="false">
 		<mod-append:choice blue="false" req="SEC SECTOR_OG_IRON">
 			<text>Continue...</text>
 			<event load="REPUTATION_DECREASE_OG_IRON"/>
+		</mod-append:choice>
+		<mod-append:choice blue="false" req="SEC SECTOR_OG_DAWN">
+			<text>Continue...</text>
+			<event load="REPUTATION_DECREASE_OG_DAWN"/>
 		</mod-append:choice>
 	</mod:findLike>
 </mod:findName>
@@ -38,11 +50,19 @@
 			<text>Continue...</text>
 			<event load="REPUTATION_DECREASE_OG_IRON_COMBAT"/>
 		</mod-append:choice>
+		<mod-append:choice blue="false" req="SEC SECTOR_OG_DAWN">
+			<text>Continue...</text>
+			<event load="REPUTATION_DECREASE_OG_DAWN_COMBAT"/>
+		</mod-append:choice>
 	</mod:findLike>
 	<mod:findLike type="event" limit="1" start="1" reverse="false">
 		<mod-append:choice blue="false" req="SEC SECTOR_OG_IRON">
 			<text>Continue...</text>
 			<event load="REPUTATION_DECREASE_OG_IRON"/>
+		</mod-append:choice>
+		<mod-append:choice blue="false" req="SEC SECTOR_OG_DAWN">
+			<text>Continue...</text>
+			<event load="REPUTATION_DECREASE_OG_DAWN"/>
 		</mod-append:choice>
 	</mod:findLike>
 </mod:findName>

@@ -17,24 +17,24 @@
 	<deadCrew load="OGT_BOSS_IRON_DEADCREW" />
 </ship>
 <mod:findName type="event" name="MV_TRAVELER_GENERIC_NORMAL">
-    <mod:findLike type="loadEventList">
-        <mod-append:event name="MV_TRAVELER_OGT_BOSS_IRON_NORMAL"/>
-    </mod:findLike>
+	<mod:findLike type="loadEventList">
+		<mod-append:event name="MV_TRAVELER_OGT_BOSS_IRON_NORMAL"/>
+	</mod:findLike>
 </mod:findName>
 <mod:findName type="event" name="MV_TRAVELER_GENERIC_CHALLENGE">
-    <mod:findLike type="loadEventList">
-        <mod-append:event name="MV_TRAVELER_OGT_BOSS_IRON_CHALLENGE"/>
-    </mod:findLike>
+	<mod:findLike type="loadEventList">
+		<mod-append:event name="MV_TRAVELER_OGT_BOSS_IRON_CHALLENGE"/>
+	</mod:findLike>
 </mod:findName>
 <mod:findName type="event" name="MV_TRAVELER_GENERIC_EXTREME">
-    <mod:findLike type="loadEventList">
-        <mod-append:event name="MV_TRAVELER_OGT_BOSS_IRON_EXTREME"/>
-    </mod:findLike>
+	<mod:findLike type="loadEventList">
+		<mod-append:event name="MV_TRAVELER_OGT_BOSS_IRON_EXTREME"/>
+	</mod:findLike>
 </mod:findName>
 <mod:findName type="event" name="MV_TRAVELER_GENERIC_CHAOS">
-    <mod:findLike type="loadEventList">
-        <mod-append:event name="MV_TRAVELER_OGT_BOSS_IRON_CHAOS"/>
-    </mod:findLike>
+	<mod:findLike type="loadEventList">
+		<mod-append:event name="MV_TRAVELER_OGT_BOSS_IRON_CHAOS"/>
+	</mod:findLike>
 </mod:findName>
 <event name="MV_TRAVELER_OGT_BOSS_IRON_NORMAL">
 	<text>From out of the tunnel comes a massive cruiser vessel, of Iron Watch design! This must be some rare exploration vessel, who's taken it upon themselves to travel the Multiverse!</text>

@@ -10,14 +10,14 @@ local function xor(a, b)
 	return (a and not b) or (not a and b)
 end
 local function isPointInEllipse(point, ellipse)
-    if ellipse.a <= 0 or ellipse.b <= 0 then
-        return false
-    end
-    local dx = point.x - ellipse.center.x
-    local dy = point.y - ellipse.center.y
-    local result = (dx^2 / ellipse.a^2) + (dy^2 / ellipse.b^2)
+	if ellipse.a <= 0 or ellipse.b <= 0 then
+		return false
+	end
+	local dx = point.x - ellipse.center.x
+	local dy = point.y - ellipse.center.y
+	local result = (dx^2 / ellipse.a^2) + (dy^2 / ellipse.b^2)
 
-    return result <= 1
+	return result <= 1
 end
 
 local function worldToPlayerLocation(location)
@@ -256,6 +256,8 @@ end
 local beamDamageMods = mods.multiverse.beamDamageMods
 beamDamageMods["OG_FOCUS_PROJECTILE_FAKE"] = {iDamage = 0}
 beamDamageMods["OG_FOCUS_PROJECTILE_WEAK_FAKE"] = {iDamage = 0}
+beamDamageMods["OG_FOCUS_PROJECTILE_BIO"] = {iDamage = 0}
+beamDamageMods["OG_FOCUS_PROJECTILE_BIO_FAKE"] = {iDamage = 0}
 
 mods.og.turretBlueprintsList = {}
 local turretBlueprintsList = mods.og.turretBlueprintsList 
@@ -269,6 +271,10 @@ local defence_types = {
 	PROJECTILES_MISSILES = {[1] = true, [2] = true, [4] = true, [7] = true, name = "All Projectiles"},
 	ALL = {[1] = true, [2] = true, [3] = true, [4] = true, [7] = true, name = "All"},
 }
+mods.og.chain_types = {
+	cooldown = 1,
+}
+local chain_types = mods.og.chain_types
 
 mods.og.turrets = {}
 local turrets = mods.og.turrets
@@ -288,6 +294,13 @@ local function add_stat_text(desc, currentTurret, chargeMax)
 	desc = desc.."\nCharge Amount: "..math.floor(currentTurret.charges_per_charge)
 	if currentTurret.ammo_consumption then
 		desc = desc.."\nMissile Consumption: "..tostring(currentTurret.ammo_consumption)
+	end
+	if currentTurret.chain and currentTurret.chain.type == chain_types.cooldown then
+		chain_amount = math.floor(currentTurret.chain.amount * 100)
+		desc = desc.."\nChain Effect: Reduces cooldown by "..chain_amount.."%"
+		local chain_count = math.floor(currentTurret.chain.count)
+		local chain_max_effect = math.floor(currentTurret.chain.amount * currentTurret.chain.count * 100)
+		desc = desc.."\nChain Reduction Cap: "..chain_max_effect.."% ("..chain_count.." chains)"
 	end
 	desc = desc.."\n\nRotation Speed: "..math.floor(currentTurret.rotation_speed)
 	if currentTurret.shot_radius then
@@ -319,6 +332,9 @@ local function add_stat_text(desc, currentTurret, chargeMax)
 	if damage.iShieldPiercing ~= 0 then
 		desc = desc.."\nShield Piercing: "..math.floor(damage.iShieldPiercing)
 	end
+	if damage.bHullBuster then
+		desc = desc.."\nDoes 2x damage to systemless rooms"
+	end
 	desc = desc.."\n"
 	if damage.bLockdown then
 		desc = desc.."\nLocks down rooms on hit"
@@ -335,7 +351,9 @@ local function add_stat_text(desc, currentTurret, chargeMax)
 	if vunerable_weapons[currentTurret.blueprint] then
 		desc = desc.."\nEffect Duration: "..math.floor(vunerable_weapons[currentTurret.blueprint]).." seconds long"
 	end
-
+	if currentTurret.stealth then
+		desc = desc.."\n\n"..Hyperspace.Text:GetText("stat_stealth")
+	end
 	return desc
 end
 
@@ -378,11 +396,13 @@ end
 mods.og.systemBlueprintVarName = "_blueprint"
 mods.og.systemStateVarName = "_state"
 mods.og.systemChargesVarName = "_charges"
+mods.og.systemChainVarName = "_chain"
 mods.og.systemTimeVarName = "_time"
 
 local systemBlueprintVarName = mods.og.systemBlueprintVarName
 local systemStateVarName = mods.og.systemStateVarName
 local systemChargesVarName = mods.og.systemChargesVarName
+local systemChainVarName = mods.og.systemChainVarName
 local systemTimeVarName = mods.og.systemTimeVarName
 --local systemTime = 0
 --local systemFiringTime = 0
@@ -634,6 +654,21 @@ end
 
 local ctrl_held = false
 
+local function find_closest_slot(roomShape, mousePos)
+	local slotSize = 35
+	local relX = mousePos.x - roomShape.x
+	local relY = mousePos.y - roomShape.y
+	if relX < 0 or relX >= roomShape.w or relY < 0 or relY >= roomShape.h then
+		return 0
+	end
+	local slotsPerRow = math.floor(roomShape.w / slotSize)
+	local col = math.floor(relX / slotSize)
+	local row = math.floor(relY / slotSize)
+	local slotID = (row * slotsPerRow) + col
+
+	return slotID
+end
+
 local function system_click(systemBox, shift)
 	local systemId = Hyperspace.ShipSystem.SystemIdToName(systemBox.pSystem.iSystemType)
 	local shipId = (systemBox.bPlayerUI and 0) or 1
@@ -646,7 +681,11 @@ local function system_click(systemBox, shift)
 			Hyperspace.Mouse.invalidPointer = cursorDefault2
 			local combatControl = Hyperspace.App.gui.combatControl
 			if combatControl.selectedRoom >= 0 then
-				systemBox.pSystem.table.currentTargetTemp = combatControl.selectedRoom
+				local targetShipGraph = Hyperspace.ShipGraph.GetShipInfo(1)
+				local roomShape = targetShipGraph:GetRoomShape(combatControl.selectedRoom)
+				local mousePosEnemy = worldToEnemyLocation(Hyperspace.Mouse.position)
+				local slotId = find_closest_slot(roomShape, mousePosEnemy)
+				systemBox.pSystem.table.currentTargetTemp = {roomId = combatControl.selectedRoom, slotId = slotId}
 			else
 				local shipId = (systemBox.bPlayerUI and 0) or 1
 				local currentTurret = turrets[ turretBlueprintsList[ Hyperspace.playerVariables[shipId..systemId..systemBlueprintVarName] ] ]
@@ -754,14 +793,33 @@ script.on_render_event(Defines.RenderEvents.SHIP_SPARKS, function(ship) end, fun
 			local currentTurret = turrets[ turretBlueprintsList[ Hyperspace.playerVariables[math.floor(otherManager.iShipId)..sysName..systemBlueprintVarName] ] ]
 			--print("render"..turretBlueprintsList[ Hyperspace.playerVariables[math.floor(otherManager.iShipId)..sysName..systemBlueprintVarName] ].." "..math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName)
 			if system.table.currentlyTargetting then
-				for room in vter(ship.vRoomList) do
-					if room.iRoomId == combatControl.selectedRoom then
-						Graphics.CSurface.GL_RenderPrimitive(room.highlightPrimitive) -- highlight the room
-						Graphics.CSurface.GL_RenderPrimitive(room.highlightPrimitive2)
+				if currentTurret.blueprint_type ~= 3 then
+					for room in vter(ship.vRoomList) do
+						if room.iRoomId == combatControl.selectedRoom then
+							Graphics.CSurface.GL_RenderPrimitive(room.highlightPrimitive) -- highlight the room
+							Graphics.CSurface.GL_RenderPrimitive(room.highlightPrimitive2)
+						end
 					end
+				elseif combatControl.selectedRoom >= 0 then
+					local targetShipGraph = Hyperspace.ShipGraph.GetShipInfo(shipManager.iShipId)
+					local roomShape = targetShipGraph:GetRoomShape(combatControl.selectedRoom)
+					local mousePosEnemy = worldToEnemyLocation(Hyperspace.Mouse.position)
+					local slotId = find_closest_slot(roomShape, mousePosEnemy)
+					local targetPos = targetShipGraph:GetSlotWorldPosition(slotId, combatControl.selectedRoom)
+					Graphics.CSurface.GL_PushMatrix()
+					Graphics.CSurface.GL_Translate(targetPos.x, targetPos.y, 0)
+					if currentTurret.shot_radius then
+						Graphics.CSurface.GL_DrawCircle(0, 0, currentTurret.shot_radius, Graphics.GL_Color(1, 0, 0, 0.25))
+					end
+					Graphics.CSurface.GL_RenderPrimitive(targetingImage.temp)
+					Graphics.CSurface.GL_PopMatrix()
 				end
 			elseif system.table.currentTarget and Hyperspace.playerVariables[math.floor(otherManager.iShipId)..sysName..systemStateVarName] == 0 and not system.table.currentlyTargetted then
-				local targetPos = shipManager:GetRoomCenter(system.table.currentTarget)
+				local targetPos = shipManager:GetRoomCenter(system.table.currentTarget.roomId)
+				if currentTurret.blueprint_type == 3 then
+					local targetShipGraph = Hyperspace.ShipGraph.GetShipInfo(shipManager.iShipId)
+					targetPos = targetShipGraph:GetSlotWorldPosition(system.table.currentTarget.slotId, system.table.currentTarget.roomId)
+				end
 				Graphics.CSurface.GL_PushMatrix()
 				Graphics.CSurface.GL_Translate(targetPos.x, targetPos.y, 0)
 				if currentTurret.shot_radius then
@@ -770,7 +828,11 @@ script.on_render_event(Defines.RenderEvents.SHIP_SPARKS, function(ship) end, fun
 				Graphics.CSurface.GL_RenderPrimitive(targetingImage.full)
 				Graphics.CSurface.GL_PopMatrix()
 			elseif system.table.currentTargetTemp and Hyperspace.playerVariables[math.floor(otherManager.iShipId)..sysName..systemStateVarName] == 0 and not system.table.currentlyTargetted then
-				local targetPos = shipManager:GetRoomCenter(system.table.currentTargetTemp)
+				local targetPos = shipManager:GetRoomCenter(system.table.currentTargetTemp.roomId)
+				if currentTurret.blueprint_type == 3 then
+					local targetShipGraph = Hyperspace.ShipGraph.GetShipInfo(shipManager.iShipId)
+					targetPos = targetShipGraph:GetSlotWorldPosition(system.table.currentTargetTemp.slotId, system.table.currentTargetTemp.roomId)
+				end
 				Graphics.CSurface.GL_PushMatrix()
 				Graphics.CSurface.GL_Translate(targetPos.x, targetPos.y, 0)
 				if currentTurret.shot_radius then
@@ -813,7 +875,7 @@ script.on_render_event(Defines.RenderEvents.SHIP, function() end, function(ship)
 					end
 				end
 				for drone in vter(spaceManager.drones) do
-					if checkValidTarget(drone._targetable, currentTurret.defence_type, shipManager) and not drone.bDead and projectile._targetable:GetSpaceId() == ship.iShipId then
+					if checkValidTarget(drone._targetable, currentTurret.defence_type, shipManager) and not drone.bDead and drone._targetable:GetSpaceId() == ship.iShipId then
 						local targetPos = drone._targetable:GetRandomTargettingPoint(true)
 						local dist
 						if projectile._targetable:GetSpaceId() == 0 then
@@ -902,6 +964,7 @@ local turretBoxInnerHover
 local turretBoxOffense
 local turretBoxDefense
 local turretBoxToggleHover
+local turretBoxChain
 do
 	local c = Graphics.GL_Color(1, 1, 1, 1)
 	turretBox = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/box_og_turret.png", UIOffset_x, UIOffset_y, 0, c, 1, false)
@@ -911,6 +974,7 @@ do
 	turretBoxOffense = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/button_og_turret_toggle_o_on.png", UIOffset_x, UIOffset_y, 0, c, 1, false)
 	turretBoxDefense = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/button_og_turret_toggle_d_on.png", UIOffset_x, UIOffset_y, 0, c, 1, false)
 	turretBoxToggleHover = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/button_og_turret_toggle_hover.png", UIOffset_x, UIOffset_y, 0, c, 1, false)
+	turretBoxChain = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/box_inner_og_turret_chain.png", UIOffset_x, UIOffset_y, 0, c, 1, false)
 end
 
 local tutorialEvents = {}
@@ -975,9 +1039,20 @@ local function system_render(systemBox, ignoreStatus)
 		local maxCharges = currentTurret.charges
 		--print(turretBlueprintsList[ Hyperspace.playerVariables[shipId..systemId..systemBlueprintVarName] ].." "..tostring(shipId..systemId..systemBlueprintVarName))
 		local charges = Hyperspace.playerVariables[shipId..systemId..systemChargesVarName]
-		local chargeTime = currentTurret.charge_time[system:GetEffectivePower()]/(1 + system.iActiveManned * 0.1)
+		
+		local hasMannedBonus = (system.iActiveManned > 0 and 0.05) or 0
+		local chargeTime = currentTurret.charge_time[system:GetEffectivePower()]
+		local chargeTimeReduction = 0
+		local chainAmount = Hyperspace.playerVariables[shipId..systemId..systemChainVarName]
+		if currentTurret.chain and currentTurret.chain.type == chain_types.cooldown then
+			for i = 1, chainAmount do
+				chargeTimeReduction = chargeTimeReduction + chargeTime * currentTurret.chain.amount
+			end
+		end
+		chargeTime = chargeTime - chargeTimeReduction
+		chargeTime = chargeTime/(1 + hasMannedBonus + system.iActiveManned * 0.05)
+
 		local chargeTimeDisplay = math.ceil(chargeTime)
-		--print(currentTurret.charge_time[system:GetEffectivePower()].." "..chargeTime.." "..system.iActiveManned)
 		local time = math.floor(0.5 + system.table.chargeTime * chargeTimeDisplay * 2)
 
 		--[[local lastTint = Graphics.CSurface.GetColorTint()
@@ -1034,6 +1109,11 @@ local function system_render(systemBox, ignoreStatus)
 		end
 		Graphics.CSurface.GL_RenderPrimitiveWithColor(turretBoxInner, renderColour)
 
+		if currentTurret.chain and chainAmount > 0 then
+			Graphics.CSurface.GL_RenderPrimitiveWithColor(turretBoxChain, renderColour)
+		elseif currentTurret.chain then
+			Graphics.CSurface.GL_RenderPrimitiveWithColor(turretBoxChain, c_off)
+		end
 
 		Graphics.CSurface.GL_PushMatrix()
 		Graphics.CSurface.GL_Translate(UIOffset_x, UIOffset_y, 0)
@@ -1052,6 +1132,9 @@ local function system_render(systemBox, ignoreStatus)
 		local blueprint = Hyperspace.Blueprints:GetWeaponBlueprint(turretBlueprintsList[ Hyperspace.playerVariables[shipId..systemId..systemBlueprintVarName] ])
 		local barColour = renderColour
 		Graphics.CSurface.GL_SetColor(renderColour)
+		if currentTurret.chain and chainAmount > 0 then
+			Graphics.freetype.easy_printAutoNewlines(6, 56, 35, 43, "+"..math.floor(chainAmount))
+		end
 		Graphics.freetype.easy_printAutoNewlines(6, 40, 19, 43, blueprint.desc.shortTitle:GetText())
 
 		if system_ready(system) and not system.table.currentlyTargetting and (system.table.currentTarget or system.table.currentTargetTemp) then
@@ -1148,6 +1231,7 @@ local function system_render(systemBox, ignoreStatus)
 	elseif is_system(systemBox) then
 		Graphics.CSurface.GL_RenderPrimitive(turretBox)
 	end
+	Graphics.CSurface.GL_SetColor(Graphics.GL_Color(1, 1, 1, 1))
 end
 script.on_render_event(Defines.RenderEvents.SYSTEM_BOX, 
 function(systemBox, ignoreStatus) 
@@ -1177,6 +1261,7 @@ local function resetTurrets(shipManager)
 			else
 				Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] = 0
 			end
+			Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChainVarName] = 0
 			Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemTimeVarName] = 0
 			system.table.chargeTime = 0
 			system.table.firingTime = 0.1
@@ -1315,8 +1400,14 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 			projectile2.entryAngle = system.table.entryAngle
 		elseif system.table.currentTarget.death_animation then
 			system.table.currentTarget.death_animation:Start(true)
+			if mods.og.defended_ach and shipManager.iShipId == 0 then
+				mods.og.defended_ach = mods.og.defended_ach + 1
+			end
 		elseif system.table.currentTarget.BlowUp then
 			system.table.currentTarget:BlowUp(false)
+			if mods.og.defended_ach and shipManager.iShipId == 0 then
+				mods.og.defended_ach = mods.og.defended_ach + 1
+			end
 		end
 	end
 	if currentTurret.ammo_consumption then
@@ -1332,11 +1423,13 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 		local randomSound = math.random(blueprint.effects.launchSounds:size()) - 1
 		Hyperspace.Sounds:PlaySoundMix(blueprint.effects.launchSounds[randomSound], -1, false)
 	end
-	if manningCrew then
+	if manningCrew and otherManager and otherManager._targetable.hostile then
 		manningCrew:IncreaseSkill(3)
 	end
-	if offensive and shipManager.ship.bCloaked and shipManager.cloakSystem then
-		shipManager.cloakSystem.timer.currTime = math.min(shipManager.cloakSystem.timer.currTime + (shipManager.cloakSystem.timer.maxTime/5), shipManager.cloakSystem.timer.maxTime)
+	if offensive and shipManager.ship.bCloaked and shipManager.cloakSystem and not currentTurret.stealth then
+		local timer = shipManager.cloakSystem.timer
+		timer.currTime = timer.currTime + timer.currGoal/5
+		--shipManager.cloakSystem.timer.currTime = math.min(shipManager.cloakSystem.timer.currTime + (shipManager.cloakSystem.timer.maxTime/5), shipManager.cloakSystem.timer.maxTime)
 	end
 	if offensive and currentTurret.blueprint_type ~= 3 then
 		if currentTurret.shot_radius then
@@ -1375,7 +1468,7 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 	currentTurret.image:Start(true)
 	if currentTurret.image.info.numFrames > 1 then
 		if currentTurret.multi_anim then
-			print("set frame:"..tostring(1 + currentTurret.multi_anim.frames * (Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] - 1)))
+			--print("set frame:"..tostring(1 + currentTurret.multi_anim.frames * (Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] - 1)))
 			currentTurret.image:SetCurrentFrame(1 + currentTurret.multi_anim.frames * (Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] - 1))
 		else
 			currentTurret.image:SetCurrentFrame(1)
@@ -1510,7 +1603,16 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 				end
 			end
 			local hasMannedBonus = (system.iActiveManned > 0 and 0.05) or 0
-			local chargeTime = currentTurret.charge_time[system:GetEffectivePower()]/(1 + hasMannedBonus + system.iActiveManned * 0.05)
+			local chargeTime = currentTurret.charge_time[system:GetEffectivePower()]
+			local chargeTimeReduction = 0
+			if currentTurret.chain and currentTurret.chain.type == chain_types.cooldown then
+				local chainAmount = Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChainVarName]
+				for i = 1, chainAmount do
+					chargeTimeReduction = chargeTimeReduction + chargeTime * currentTurret.chain.amount
+				end
+			end
+			chargeTime = chargeTime - chargeTimeReduction
+			chargeTime = chargeTime/(1 + hasMannedBonus + system.iActiveManned * 0.05)
 			
 			local otherManager = Hyperspace.ships(1 - shipManager.iShipId)
 			system.table.firingTime = system.table.firingTime - time_increment(true)
@@ -1524,6 +1626,9 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 					if system.table.chargeTime >= 1 then
 						local maxWithAmmo = ((not currentTurret.ammo_consumption) and math.huge) or ((shipManager:GetMissileCount() - system.table.ammo_consumed - currentTurret.ammo_consumption * Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName])/currentTurret.ammo_consumption) 
 						Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] = math.min(Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] + maxWithAmmo , currentTurret.charges, Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] + currentTurret.charges_per_charge)
+						if currentTurret.chain then
+							Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChainVarName] = math.min(currentTurret.chain.count, Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChainVarName] + 1)
+						end
 						system.table.chargeTime = 0
 					end
 					Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemTimeVarName] = system.table.chargeTime * 10000000 
@@ -1534,6 +1639,9 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 					system.table.chargeTime = math.max(0, system.table.chargeTime - 6 * time_increment(true)/chargeTime)
 					if system.table.chargeTime <= 0 and Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] > 0 then
 						Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] = math.max(0, Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] - currentTurret.charges_per_charge)
+						if currentTurret.chain then
+							Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChainVarName] = math.max(0, Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChainVarName] - 1)
+						end
 						system.table.chargeTime = 1
 					end
 					Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemTimeVarName] = system.table.chargeTime * 10000000 
@@ -1602,7 +1710,12 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 				local aimedAheadEnemy = shipManager.iShipId == 1 and math.abs(angle_diff(system.table.currentAimingAngle, -90)) < (currentTurret.aim_cone or 1)
 				local shouldFire = hasTarget and readyFire and otherShipTargetable --and notCloaked
 				if (aimedAheadPlayer or aimedAheadEnemy) and shouldFire then
-					local roomPosition = (system.table.currentTarget and otherManager:GetRoomCenter(system.table.currentTarget)) or otherManager:GetRandomRoomCenter()
+					local roomPosition = (system.table.currentTarget and otherManager:GetRoomCenter(system.table.currentTarget.roomId)) or otherManager:GetRandomRoomCenter()
+					if currentTurret.blueprint_type == 3 and system.table.currentTarget then
+						local targetShipGraph = Hyperspace.ShipGraph.GetShipInfo(otherManager.iShipId)
+						local tempRoomPos = targetShipGraph:GetSlotWorldPosition(system.table.currentTarget.slotId, system.table.currentTarget.roomId)
+						roomPosition = Hyperspace.Pointf(tempRoomPos.x, tempRoomPos.y) 
+					end
 					fireTurret(system, currentTurret, shipManager, otherManager, sysName, blueprint, pos, true, roomPosition, manningCrew)
 				end
 			elseif Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemStateVarName] == 1 or system.table.currentlyTargetted then
@@ -1708,7 +1821,7 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(s)
 		local shipBound_x = ship.shipImage.x + shipGraph.shipBox.x + ship.shipImage.w
 		local shipBound_y = ship.shipImage.y + shipGraph.shipBox.y
 		--if userdata_table(projectile, "mods.og").turret_projectile then print("PROJECTILE EXISTS") end
-		local playerFired = projectile.currentSpace == 0 and projectile.position.x > shipBound_x
+		local playerFired = projectile.currentSpace == 0 and (projectile.position.x > shipBound_x or projectile.position.x > 800)
 		local enemyFired = projectile.currentSpace == 1 and projectile.position.y < shipBound_y
 		if userdata_table(projectile, "mods.og").turret_projectile and (playerFired or enemyFired) then
 			--print("UPDATE PROJECTILE DESTINATION"..tostring(shipBound_x))
@@ -1776,14 +1889,13 @@ local function renderTurret(shipManager, ship, spaceManager, shipGraph, sysName)
 	--print("ship:"..shipManager.iShipId.." jump first:"..shipManager.jump_timer.first.." second:"..shipManager.jump_timer.second.." bJumping"..tostring(shipManager.bJumping))
 	if shipManager.bJumping and shipManager.iShipId == 1 then return end
 	local currentTurret = nil
-	local overRideTurretAngle = false
 	if sysName == "og_turret_adaptive" then
 		local turretLoc = turret_location[ship.shipName] and turret_location[ship.shipName][sysName] or {x = 0, y = 0}
 		local shipCorner = {x = ship.shipImage.x + shipGraph.shipBox.x, y = ship.shipImage.y + shipGraph.shipBox.y}
 		local shipSize = {x = math.floor(ship.shipImage.w/2), y = math.floor(ship.shipImage.h/2)}
 
 		Graphics.CSurface.GL_PushStencilMode()
-		Graphics.CSurface.GL_SetStencilMode(stencil_mode.set, 1, 25)
+		Graphics.CSurface.GL_SetStencilMode(stencil_mode.set, 1, 64)
 		Graphics.CSurface.GL_DrawRect(
 			-1280, 
 			-720, 
@@ -1791,7 +1903,7 @@ local function renderTurret(shipManager, ship, spaceManager, shipGraph, sysName)
 			720*3, 
 			Graphics.GL_Color(1, 1, 1, 1)
 		)
-		Graphics.CSurface.GL_SetStencilMode(stencil_mode.set, 0, 25)
+		Graphics.CSurface.GL_SetStencilMode(stencil_mode.set, 0, 64)
 		Graphics.CSurface.GL_PushMatrix()
 		Graphics.CSurface.GL_Translate(shipGraph.shipBox.x + ship.shipImage.x + shipSize.x, shipGraph.shipBox.y + ship.shipImage.y + shipSize.y, 0)
 		--Graphics.CSurface.GL_Translate(shipGraph.shipBox.x, shipGraph.shipBox.y, 0)
@@ -1805,7 +1917,7 @@ local function renderTurret(shipManager, ship, spaceManager, shipGraph, sysName)
 		Graphics.CSurface.GL_RenderPrimitiveWithAlpha(ship.floorPrimitive, 1)
 		Graphics.CSurface.GL_PopMatrix()
 
-		Graphics.CSurface.GL_SetStencilMode(stencil_mode.use, 1, 25)
+		Graphics.CSurface.GL_SetStencilMode(stencil_mode.use, 1, 64)
 
 		Graphics.CSurface.GL_PushMatrix()
 		Graphics.CSurface.GL_Translate(shipCorner.x + turretLoc.x, shipCorner.y + turretLoc.y, 0)
@@ -1816,7 +1928,7 @@ local function renderTurret(shipManager, ship, spaceManager, shipGraph, sysName)
 		end
 		Graphics.CSurface.GL_PopMatrix()
 
-		Graphics.CSurface.GL_SetStencilMode(stencil_mode.use, 0, 25)
+		Graphics.CSurface.GL_SetStencilMode(stencil_mode.use, 0, 64)
 		
 		Graphics.CSurface.GL_PushMatrix()
 		Graphics.CSurface.GL_Translate(shipCorner.x + turretLoc.x, shipCorner.y + turretLoc.y, 0)
@@ -1827,7 +1939,7 @@ local function renderTurret(shipManager, ship, spaceManager, shipGraph, sysName)
 		end
 		Graphics.CSurface.GL_PopMatrix()
 
-		Graphics.CSurface.GL_SetStencilMode(stencil_mode.ignore, 1, 25)
+		Graphics.CSurface.GL_SetStencilMode(stencil_mode.ignore, 1, 64)
 		Graphics.CSurface.GL_PopStencilMode()
 
 		Graphics.CSurface.GL_PushMatrix()
@@ -1842,17 +1954,29 @@ local function renderTurret(shipManager, ship, spaceManager, shipGraph, sysName)
 	if Hyperspace.App.menu.shipBuilder.bOpen then
 		local id, i = findStartingTurret(shipManager, sysName)
 		if id then currentTurret = turrets[id] end
-		overRideTurretAngle = true
+		if not currentTurret then return end
+
+		local turretLoc = turret_location[ship.shipName] and turret_location[ship.shipName][sysName] or {x = 0, y = 0}
+		local shipCorner = {x = ship.shipImage.x + shipGraph.shipBox.x, y = ship.shipImage.y + shipGraph.shipBox.y}
+		local angleSet = 90 * turretLoc.direction
+		local colour = Graphics.GL_Color(1,1,1,1)
+
+		Graphics.CSurface.GL_PushMatrix()
+		Graphics.CSurface.GL_Translate(shipCorner.x + turretLoc.x, shipCorner.y + turretLoc.y, 0)
+		Graphics.CSurface.GL_Rotate(angleSet, 0, 0, 1)
+		currentTurret.image:OnRender(1, colour, false)
+		if currentTurret.charge_image then
+			Graphics.CSurface.GL_RenderPrimitiveWithAlpha(currentTurret.charge_image, 1)
+		end
+		Graphics.CSurface.GL_PopMatrix()
 	elseif Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] >= 0 then
 		currentTurret = turrets[ turretBlueprintsList[ Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] ] ]
-	end
-	if currentTurret then
 		local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
 		if not currentTurret then return end
 
 		local turretLoc = turret_location[ship.shipName] and turret_location[ship.shipName][sysName] or {x = 0, y = 0}
 		local shipCorner = {x = ship.shipImage.x + shipGraph.shipBox.x, y = ship.shipImage.y + shipGraph.shipBox.y}
-		local angleSet = (overRideTurretAngle and 90 * turretLoc.direction) or (system.table.currentAimingAngle or 0)
+		local angleSet = system.table.currentAimingAngle or 0
 		local colour = Graphics.GL_Color(1,1,1,1)
 		if shipManager.ship.bCloaked then
 			colour = Graphics.GL_Color(1,1,1,0.5)
@@ -1865,6 +1989,11 @@ local function renderTurret(shipManager, ship, spaceManager, shipGraph, sysName)
 		currentTurret.image:OnRender(1, colour, false)
 		if currentTurret.charge_image then
 			Graphics.CSurface.GL_RenderPrimitiveWithAlpha(currentTurret.charge_image, system.table.chargeTime or 1)
+		end
+		local chains = Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChainVarName]
+		if currentTurret.chain and currentTurret.chain.image and chains > 0 then
+			currentTurret.chain.image:SetCurrentFrame(chains - 1)
+			currentTurret.chain.image:OnRender(1, Graphics.GL_Color(1,1,1,1), false)
 		end
 		if currentTurret.glow and charges > 0 then
 			currentTurret.glow:SetCurrentFrame(charges - 1)
@@ -1933,22 +2062,27 @@ script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
 	if Hyperspace.App.menu.shipBuilder.bOpen then
 		if Hyperspace.playerVariables.og_turret_adaptive_saved_x > 0 then
 			local shipManager = Hyperspace.ships.player
-			turret_location[shipManager.ship.shipName]["og_turret_adaptive"].x = Hyperspace.playerVariables.og_turret_adaptive_saved_x
-			turret_location[shipManager.ship.shipName]["og_turret_adaptive"].y = Hyperspace.playerVariables.og_turret_adaptive_saved_y
-			turret_location[shipManager.ship.shipName]["og_turret_adaptive"].direction = Hyperspace.playerVariables.og_turret_adaptive_saved_direction/2
+			if turret_location[shipManager.ship.shipName] and turret_location[shipManager.ship.shipName]["og_turret_adaptive"] then
+				turret_location[shipManager.ship.shipName]["og_turret_adaptive"].x = Hyperspace.playerVariables.og_turret_adaptive_saved_x
+				turret_location[shipManager.ship.shipName]["og_turret_adaptive"].y = Hyperspace.playerVariables.og_turret_adaptive_saved_y
+				turret_location[shipManager.ship.shipName]["og_turret_adaptive"].direction = Hyperspace.playerVariables.og_turret_adaptive_saved_direction/2
+			end
 		else
 			local systemId = Hyperspace.ShipSystem.NameToSystemId("og_turret_adaptive")
 			local shipManager = Hyperspace.ships.player
-			local roomId = shipManager.myBlueprint.systemInfo.location[0]
-			local pos = shipManager:GetRoomCenter(roomId)
+			local sysInfo = Hyperspace.ships.player.myBlueprint.systemInfo
+			if sysInfo:has_key(systemId) then
+				local roomId = sysInfo[systemId].location[0]
+				local pos = shipManager:GetRoomCenter(roomId)
 
-			local ship = shipManager.ship
-			local shipGraph = Hyperspace.ShipGraph.GetShipInfo(0)
-			local shipCorner = {x = ship.shipImage.x + shipGraph.shipBox.x, y = ship.shipImage.y + shipGraph.shipBox.y}
-			local posRelative = {x = pos.x - shipCorner.x, y = pos.y - shipCorner.y}
+				local ship = shipManager.ship
+				local shipGraph = Hyperspace.ShipGraph.GetShipInfo(0)
+				local shipCorner = {x = ship.shipImage.x + shipGraph.shipBox.x, y = ship.shipImage.y + shipGraph.shipBox.y}
+				local posRelative = {x = pos.x - shipCorner.x, y = pos.y - shipCorner.y}
 
-			turret_location[shipManager.ship.shipName]["og_turret_adaptive"].x = posRelative.x
-			turret_location[shipManager.ship.shipName]["og_turret_adaptive"].y = posRelative.y
+				turret_location[shipManager.ship.shipName]["og_turret_adaptive"].x = posRelative.x
+				turret_location[shipManager.ship.shipName]["og_turret_adaptive"].y = posRelative.y
+			end
 		end
 	end
 end)
@@ -2354,7 +2488,7 @@ script.on_internal_event(Defines.InternalEvents.POST_CREATE_CHOICEBOX, function(
 					local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
 					local currentTurretName = turretBlueprintsList[ Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] ]
 					if currentTurretName == removeItem then
-						event.stuff.removeItem = "     "
+						event.stuff.removeItem = "	 "
 						Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] = -1
 					end
 				end
@@ -2366,7 +2500,7 @@ end)
 script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA, function(shipManager, projectile, location, damage, forceHit, shipFriendlyFire)
 	local room = get_room_at_location(shipManager, location, true)
 	local system = shipManager:GetSystemInRoom(room)
-	if system and systemNameList[Hyperspace.ShipSystem.SystemIdToName(system.iSystemType)] then
+	if system and systemNameCheck[Hyperspace.ShipSystem.SystemIdToName(system.iSystemType)] then
 		local sysName = Hyperspace.ShipSystem.SystemIdToName(system.iSystemType)
 		local currentTurret = turrets[ turretBlueprintsList[ Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] ] ]
 		if currentTurret.dawn and damage.iDamage + damage.iSystemDamage > 0 then
@@ -2381,7 +2515,7 @@ script.on_internal_event(Defines.InternalEvents.DAMAGE_BEAM, function(shipManage
 	if beamHitType ~= Defines.BeamHit.NEW_ROOM then return Defines.Chain.CONTINUE, beamHitType end
 	local room = get_room_at_location(shipManager, location, true)
 	local system = shipManager:GetSystemInRoom(room)
-	if system and systemNameList[Hyperspace.ShipSystem.SystemIdToName(system.iSystemType)] then
+	if system and systemNameCheck[Hyperspace.ShipSystem.SystemIdToName(system.iSystemType)] then
 		local sysName = Hyperspace.ShipSystem.SystemIdToName(system.iSystemType)
 		local currentTurret = turrets[ turretBlueprintsList[ Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] ] ]
 		if currentTurret.dawn and damage.iDamage + damage.iSystemDamage > 0 then
@@ -2402,7 +2536,7 @@ script.on_render_event(Defines.RenderEvents.SHIP_FLOOR, function() end, function
 			--print("has system render")
 			local sysName = Hyperspace.ShipSystem.SystemIdToName(system.iSystemType)
 			local currentTurret = turrets[ turretBlueprintsList[ Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] ] ]
-			if currentTurret.dawn then
+			if currentTurret and currentTurret.dawn then
 				--print("render render_vunerable system")
 				render_vunerable(room)
 			end

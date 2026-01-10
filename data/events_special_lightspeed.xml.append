@@ -8,6 +8,10 @@
 		<text>Proceed to the Iron Watch Sector.</text>
 		<event load="SALE_OG_IRON_WARP" />
 	</mod-append:choice>
+	<mod-append:choice hidden="true" req="SEC SECTOR_OG_DAWN_UNIQUE" blue="false">
+		<text>Proceed to the New Dawn Sector.</text>
+		<event load="OG_DAWN_UNIQUE_WARP" />
+	</mod-append:choice>
 </mod:findName>
 
 <mod:findName type="event" name="ATLAS_MENU_NOEQUIPMENT">
@@ -19,6 +23,10 @@
 		<text>Proceed to the Iron Watch Sector.</text>
 		<event load="SALE_OG_IRON_WARP" />
 	</mod-append:choice>
+	<mod-append:choice hidden="true" req="SEC SECTOR_OG_DAWN_UNIQUE" blue="false">
+		<text>Proceed to the New Dawn Sector.</text>
+		<event load="OG_DAWN_UNIQUE_WARP" />
+	</mod-append:choice>
 </mod:findName>
 
 <mod:findName type="event" name="REROUTE_MENU">
@@ -28,7 +36,38 @@
 </mod:findName>
 
 <mod:findName type="event" name="REROUTE_MENU_HAT">
+	<mod-append:choice hidden="true" req="sec_unique_og_dawn" lvl="0" max_lvl="0" blue="false">
+		<text>Proceed to the New Dawn Forward Operating Base.</text>
+		<event load="LIGHTSPEED_SECTOR_WARP_OG_DAWN" />
+	</mod-append:choice>
+	<mod-append:choice hidden="true" req="sec_unique_og_dawn" lvl="1" blue="false">
+		<text>The New Dawn Forward Operating Base is behind you.</text>
+		<event load="OPTION_INVALID" />
+	</mod-append:choice>
 </mod:findName>
+
+<event name="LIGHTSPEED_SECTOR_WARP_OG_DAWN">
+	<text id="atlas_og_dawn"/>
+	<choice hidden="true">
+		<text>Continue with the jump.</text>
+		<event>
+			<text>You prepare to jump to the new co-ordinates, and change your flight path accordingly.</text>
+			<variable name="magical_hat_active" op="set" val="0"/>
+			<variable name="loc_sector_count" op="add" val="-1"/>
+			<replaceSector name="SECTOR_OG_DAWN_UNIQUE">SECTOR_OG_IRON</replaceSector>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event><secretSector>SECTOR_OG_DAWN_UNIQUE</secretSector></event>
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true">
+		<text>Nevermind.</text>
+		<event>
+			<loadEvent>ATLAS_MENU_NOEQUIPMENT</loadEvent>
+		</event>
+	</choice>
+</event>
 
 <mod:findName type="event" name="REROUTE_MENU_ASTROMETRICS">
 	<mod-append:choice req="ASTRO_OG_IRON" max_group="2" blue="false" hidden="true">
@@ -109,6 +148,27 @@
 		</event>
 	</choice>
 	<choice hidden="true" req="COORDS" max_group="1" blue="false">
+		<text>Reroute.</text>
+		<event load="REROUTE_MENU"/>
+	</choice>
+</event>
+
+<event name="ENTER_OG_DAWN_UNIQUE">
+	<text load="TEXT_LIGHTSPEED" />
+	<img back="BACKGROUND_LIGHTSPEED" planet="NONE" />
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="LOAD_ATLAS_MARKER" />
+	</choice>
+</event>
+
+<event name="OG_DAWN_UNIQUE_WARP">
+	<text id="atlas_og_dawn"/>
+	<choice hidden="true">
+		<text>Exit hyperspeed.</text>
+		<event load="START_OG_DAWN_UNIQUE"/>
+	</choice>
+	<choice hidden="true" req="COORDS" blue="false">
 		<text>Reroute.</text>
 		<event load="REROUTE_MENU"/>
 	</choice>

@@ -192,13 +192,23 @@ hideName["GATLING_SYLVAN"] = "You greedy, murdering traitor you"
 
 mods.og.craftedWeapons = {}
 local craftedWeapons = mods.og.craftedWeapons
-table.insert(craftedWeapons, {weapon = "OG_TURRET_LASER_1", component_amounts = {1, 1}, components = {defence_drones_laser, {"LASER_BURST_2", "LASER_BURST_3", "LASER_BURST_5", "LASER_CHAINGUN", "LASER_CHAINGUN_2", "LASER_CHAINGUN_DAMAGE", "LASER_CHARGEGUN", "LASER_CHARGEGUN_2", "LASER_CHARGEGUN_3", "LASER_CHARGE_CHAIN"}}} )
+table.insert(craftedWeapons, {weapon = "OG_TURRET_LASER_1", component_amounts = {1, 1}, components = {defence_drones_laser, {"LASER_BURST_2", "LASER_BURST_3", "LASER_BURST_5", "LASER_CHARGEGUN", "LASER_CHARGEGUN_2", "LASER_CHARGEGUN_3", "LASER_CHARGE_CHAIN"}}} )
 table.insert(craftedWeapons, {weapon = "OG_TURRET_LASER_2", component_amounts = {1, 1}, components = {defence_drones_laser, {"LASER_HEAVY_1", "LASER_HEAVY_2", "LASER_HEAVY_3", "LASER_HEAVY_CHAINGUN", "LASER_HEAVY_PIERCE"}}} )
+table.insert(craftedWeapons, {weapon = "OG_TURRET_LASER_PIERCE", component_amounts = {1, 1}, components = {defence_drones_laser, {"LASER_PIERCE", "LASER_PIERCE_2", "LASER_HEAVY_PIERCE", "ION_PIERCE_1", "ION_PIERCE_2"}}} )
+table.insert(craftedWeapons, {weapon = "OG_TURRET_LASER_CHAINGUN", component_amounts = {1, 1}, components = {defence_drones_laser, { "LASER_CHAINGUN", "LASER_CHAINGUN_2", "LASER_CHAINGUN_DAMAGE", "LASER_CHARGE_CHAIN", "LASER_HULL_CHAINGUN"}}} )
+table.insert(craftedWeapons, {weapon = "OG_TURRET_LASER_BIO", component_amounts = {1, 1}, components = {defence_drones_laser, {"LASER_BIO", "LOOT_CLAN_1", "BOMB_BIO", "SHOTGUN_TOXIC", "SHOTGUN_TOXIC_PLAYER", "ION_BIO", "MISSILES_BIO"}}} )
+table.insert(craftedWeapons, {weapon = "OG_TURRET_LASER_HULL", component_amounts = {1, 1}, components = {defence_drones_laser, {"LASER_HULL_1", "LASER_HULL_2", "LASER_HULL_3", "LASER_HULL_3_PLAYER", "LASER_HULL_CHAINGUN"}}} )
+
+
 table.insert(craftedWeapons, {weapon = "OG_TURRET_ION_1", component_amounts = {1, 1}, components = {defence_drones_ion, {"ION_1", "ION_2", "ION_3", "ION_4", "ION_CHAINGUN", "ION_CHARGEGUN", "ION_CHARGEGUN_2"}}} )
 table.insert(craftedWeapons, {weapon = "OG_TURRET_ION_2", component_amounts = {1, 1}, components = {defence_drones_ion, {"ION_FIRE", "ION_BIO", "ION_TRI", "ION_STUN", "ION_STUN_2", "ION_STUN_HEAVY", "ION_STUN_CHARGEGUN"}}} )
+
 table.insert(craftedWeapons, {weapon = "OG_TURRET_MISSILE_1", component_amounts = {1, 1}, components = {defence_drones_missile, {"MISSILES_1", "MISSILES_2", "MISSILES_BURST", "MISSILES_BURST_2", "MISSILES_BURST_2_PLAYER", "MISSILES_FREE"}}} )
 table.insert(craftedWeapons, {weapon = "OG_TURRET_MISSILE_2", component_amounts = {1, 1}, components = {defence_drones_missile, {"MISSILES_3", "MISSILES_4", "MISSILES_ENERGY", "MISSILES_FIRE", "MISSILES_FIRE_PLAYER", "MISSILES_CLOAK", "MISSILES_CLOAK_PLAYER"}}} )
+table.insert(craftedWeapons, {weapon = "OG_TURRET_KERNEL_HEAVY", component_amounts = {1, 1}, components = {defence_drones_missile, {"KERNEL_1", "KERNEL_1_ELITE", "KERNEL_2", "KERNEL_2_ELITE", "KERNEL_HEAVY", "KERNEL_HEAVY_ELITE"}}} )
+table.insert(craftedWeapons, {weapon = "OG_TURRET_KERNEL_FIRE", component_amounts = {1, 1}, components = {defence_drones_missile, {"KERNEL_FIRE", "KERNEL_FIRE_ELITE", "KERNEL_CHAIN", "KERNEL_CHAIN_ELITE", "KERNEL_CHARGE", "KERNEL_CHARGE_ELITE"}}} )
 table.insert(craftedWeapons, {weapon = "OG_TURRET_FLAK_1", component_amounts = {1, 1}, components = {defence_drones_missile, {"SHOTGUN_1", "SHOTGUN_2", "SHOTGUN_3", "SHOTGUN_4", "SHOTGUN_CHARGE", "SHOTGUN_CHAIN", "SHOTGUN_INSTANT"}}} )
+
 table.insert(craftedWeapons, {weapon = "OG_TURRET_FOCUS_1", component_amounts = {1, 1}, components = {defence_drones_focus, {"FOCUS_1", "FOCUS_2", "FOCUS_3", "FOCUS_CHAIN", "FOCUS_BIO"}}} )
 
 table.insert(craftedWeapons, {weapon = "OG_TURRET_LASER_MINI_1", component_amounts = {1, 1}, components = {defence_drones_mini, {"LASER_BURST_2", "LASER_BURST_2", "LASER_BURST_3", "LASER_BURST_3", "LASER_CONSERVATIVE"}}} )

@@ -7,7 +7,7 @@
 </ship>
 
 <event name="GUARD_OG_DAWN_DESTROY">
-	<text>You have defeated the Iron Watch guard. Whatever might have been in their cargo has for certain been destroyed, but you can at least salvage some supplies from the ship.</text>
+	<text>You have defeated the New Dawn guard. Whatever might have been in their cargo has for certain been destroyed, but you can at least salvage some supplies from the ship.</text>
 	<autoReward level="MED">standard</autoReward>
 	<choice hidden="true">
 		<text>Continue...</text>
@@ -15,7 +15,7 @@
 	</choice>
 </event>
 <event name="GUARD_OG_DAWN_DEADCREW">
-	<text>You have defeated the Iron Watch guard. Without crew on board to stop you, you can investigate their cargo. You find a weapon to bring back to the ship, and move on to scrap their hull.</text>
+	<text>You have defeated the New Dawn guard. Without crew on board to stop you, you can investigate their cargo. You find a weapon to bring back to the ship, and move on to scrap their hull.</text>
 	<autoReward level="MED">standard</autoReward>
 	<weapon name="GIFTLIST_OG_DAWN"/>
 	<choice hidden="true">
@@ -31,7 +31,7 @@
 	<noQuestText/>
 	<removeHazards/>
 	<clearCustomFleet/>
-	<text>By killing the Iron Watch guard, you have no doubt caused them to dispatch reinforcements to track you down. Watch your step as you explore the sector.</text>
+	<text>By killing the New Dawn guard, you have no doubt caused them to dispatch reinforcements to track you down. Watch your step as you explore the sector.</text>
 	<quest event="REINFORCEMENTS_OG_DAWN">
 		<nebulaBeacon>true</nebulaBeacon>
 		<nextSector>false</nextSector>
@@ -56,7 +56,7 @@
 		<visitedTooltip>Explored location. Nothing left of interest.</visitedTooltip>
 		<undiscoveredTooltip>An unvisited location.</undiscoveredTooltip>
 	</beaconType>
-	<text>A Iron Watch ship moves in to attack! Based on the vengeful look in their captain's eye, this is no doubt the ship dispatched by the guard to hunt you down!</text>
+	<text>A New Dawn ship moves in to attack! Based on the vengeful look in their captain's eye, this is no doubt the ship dispatched by the guard to hunt you down!</text>
 	<ship load="SHIP_OG_DAWN_REINFORCEMENTS" hostile="true"/>
 	<environment type="PDS" target="player"/>
 	<choice hidden="true">
@@ -72,11 +72,167 @@
 		<visitedTooltip>Explored location. Nothing left of interest.</visitedTooltip>
 		<undiscoveredTooltip>An unvisited location.</undiscoveredTooltip>
 	</beaconType>
-	<text>A Iron Watch ship moves in to attack! Based on the vengeful look in their captain's eye, this is no doubt the ship dispatched by the guard to hunt you down!</text>
+	<text>A New Dawn ship moves in to attack! Based on the vengeful look in their captain's eye, this is no doubt the ship dispatched by the guard to hunt you down!</text>
 	<ship load="SHIP_OG_DAWN_REINFORCEMENTS" hostile="true"/>
 	<img back="BACK_EVENT_STARS_SPARSE"/>
 	<status type="loss" target="player" system="sensors" amount="1"/>
 	<environment type="PDS" target="player"/>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="COMBAT_CHECK"/>
+	</choice>
+</event>
+
+<textList name="TEXT_START_OG_DAWN_UNIQUE">
+	<text>What was previously just like any other Iron Watch settlement has become home to the New Dawn's military. Anyone who opposed the faction is now long gone, but the faction is desperately in need of support, especially of a powerful renegade like yourself.</text>
+	<text>The New Dawn is a splinter group of the Iron Watch, the previously Iron Watch members have come here to organise their military forces against the Iron Watch. The New Dawn however is desperately in need of support, especially of a powerful renegade like yourself.</text>
+</textList>
+<event name="START_OG_DAWN_UNIQUE">
+	<metaVariable name="juke_og_dawn" op="set" val="1" />
+	<variable name="sec_unique_og_dawn" op="set" val="1"/>
+	<preventQuest />
+	<beaconType id="map_icon_start" global="false">
+		<color r="46" g="252" b="51" a="1" />
+	</beaconType>
+	<text load="TEXT_START_OG_DAWN_UNIQUE" />
+	<ship load="SHIP_GUARD_OG_DAWN" hostile="false" />
+	<changeBackground>BACK_SECTOR_PIRATE</changeBackground>
+	<playSound>lightspeed</playSound>
+	<choice hidden="true" req="rep_og_dawn" lvl="3" max_lvl="999" max_group="0" blue="false">
+		<text>Continue...</text>
+		<event load="GUARD_OG_DAWN_FRIENDLY" />
+	</choice>
+	<choice hidden="true" req="rep_og_dawn" lvl="0" max_lvl="2" max_group="0" blue="false">
+		<text>Continue...</text>
+		<event load="GUARD_OG_DAWN" />
+	</choice>
+	<choice hidden="true" req="rep_og_dawn" lvl="-999" max_lvl="-1" max_group="0" blue="false">
+		<text>Continue...</text>
+		<event load="GUARD_OG_DAWN_CRIMINAL" />
+	</choice>
+</event>
+<event name="GUARD_OG_DAWN_FRIENDLY">
+	<text>Instead of immediately deploying their weapons against you, the guard reaches out via comms. "Listen, good word has spread about you, but I don't wanna get on the bad side of the rebellion just on good word, so if you could send a little scrap my way we can both come out of this with what we want."</text>
+	<choice hidden="true">
+		<text>We refuse to pay the bribe, fight your way through!</text>
+		<event>
+			<text>You mute the ship and prepare for combat.</text>
+			<ship hostile="true"/>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="REPUTATION_DECREASE_OG_DAWN_COMBAT"/>
+			</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>Pay the bribe.</text>
+		<event>
+			<text>The guard nods and combs over the scrap for a brief moment. "Very well, if anyone asks you came through on the previous shift."</text>
+			<item_modify>
+				<item type="scrap" min="-5" max="-5"/>
+			</item_modify>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="REPUTATION_UPDATE_OG_DAWN"/>
+			</choice>
+		</event>
+	</choice>
+	<choice req="LIST_CREW_OG_DAWN" hidden="true">
+		<text>(New Dawn Crew) Request free passage.</text>
+		<event>
+			<text>"Oh, I wasn't aware, here we have some supplies on hand to help those like you."</text>
+			<autoReward level="MED">standard</autoReward>
+		</event>
+	</choice>
+	<choice req="LIST_CREW_REBEL_ALL" hidden="true">
+		<text>(Rebel Crew) Request free passage.</text>
+		<event>
+			<text>"I suppose there's no risk if you've got rebels onboard, very well."</text>
+		</event>
+	</choice>
+	<choice hidden="true" req="mind">
+		<text>(Mind Control) Convince the guard to leave you alone.</text>
+		<event load="GUARD_MIND_MORALITY"/>
+	</choice>
+	<choice hidden="true" req="BLUELIST_WEAPONS_MIND_CONTROL" max_group="0">
+		<text>(Mind Control Weapon) Convince the guard to leave you alone.</text>
+		<event load="GUARD_MIND_MORALITY"/>
+	</choice>
+	<choice hidden="true" req="BLUELIST_WEAPONS_MIND_AFFECT" max_group="0">
+		<text>(Mind Affecting Weapon) Induce chaos within the guard and slip past.</text>
+		<event load="GUARD_MIND_AFFECTING_MORALITY"/>
+	</choice>
+	<choice hidden="true" req="cloaking">
+		<text>(Cloaking) Cloak and try to escape.</text>
+		<event load="GUARD_CLOAK_MORALITY"/>
+	</choice>
+	<choice hidden="true" req="engines" lvl="5">
+		<text>(Adv. Engines) Try to escape the guard.</text>
+		<event load="GUARD_ESCAPE_MORALITY"/>
+	</choice>
+	<choice hidden="true" req="pilot" lvl="3">
+		<text>(Adv. Piloting) Activate the auto-pilot to try and escape.</text>
+		<event load="GUARD_ESCAPE_MORALITY"/>
+	</choice>
+</event>
+
+<event name="GUARD_OG_DAWN">
+	<text>The guard hails you. "Hey, it's nothing personal but the rebellion's got a problem with you and now that makes it a problem for me."</text>
+	<modifyPursuit amount="1"/>
+	<choice hidden="true">
+		<text>Prepare to fight!</text>
+		<event>
+			<text>You rush to defensive positions as the guard approaches menacingly.</text>
+			<ship hostile="true"/>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="REPUTATION_DECREASE_OG_DAWN_COMBAT"/>
+			</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>Try to bribe them.</text>
+		<event>
+			<text>You hope this is enough to satisfy them...</text>
+			<item_modify>
+				<item type="scrap" min="-25" max="-20"/>
+			</item_modify>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event>
+					<text>"Funny, I just can't seem to remember who gave me this scrap... Now hurry along before I change my mind."</text>
+				</event>
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true" req="mind">
+		<text>(Mind Control) Convince the guard to leave you alone.</text>
+		<event load="GUARD_MIND"/>
+	</choice>
+	<choice hidden="true" req="BLUELIST_WEAPONS_MIND_CONTROL" max_group="0">
+		<text>(Mind Control Weapon) Convince the guard to leave you alone.</text>
+		<event load="GUARD_MIND"/>
+	</choice>
+	<choice hidden="true" req="BLUELIST_WEAPONS_MIND_AFFECT" max_group="0">
+		<text>(Mind Affecting Weapon) Induce chaos within the guard and slip past.</text>
+		<event load="GUARD_MIND_AFFECTING"/>
+	</choice>
+	<choice hidden="true" req="cloaking">
+		<text>(Cloaking) Cloak and try to escape.</text>
+		<event load="GUARD_CLOAK"/>
+	</choice>
+	<choice hidden="true" req="engines" lvl="5">
+		<text>(Adv. Engines) Try to escape the guard.</text>
+		<event load="GUARD_ESCAPE"/>
+	</choice>
+	<choice hidden="true" req="pilot" lvl="3">
+		<text>(Adv. Piloting) Activate the auto-pilot to try and escape.</text>
+		<event load="GUARD_ESCAPE"/>
+	</choice>
+</event>
+<event name="GUARD_OG_DAWN_CRIMINAL">
+	<text>It appears you've become quite famous here as the guard station has immediately gone into high alert, there's avoiding the fight now.</text>
+	<ship hostile="true"/>
 	<choice hidden="true">
 		<text>Continue...</text>
 		<event load="COMBAT_CHECK"/>
@@ -92,6 +248,16 @@
 Your actions here, justifiable or not, will not reflect well in the eyes of the Federation or its citizens. Continuously perform actions like this and you might start to see negative reactions from the Federation and its allies.</text>
 	<variable name="rep_general" op="add" val="1"/>
 	<variable name="rep_og_dawn" op="add" val="1"/>
+</event>
+<event name="REPUTATION_UPDATE_DOUBLE_OG_DAWN">
+	<text>[REPUTATION INCREASED X2 - NEW DAWN]
+	Your actions here have improved your reputation within the New Dawn, at the cost of your reputation with the Iron Watch. Certain members might be more willing to interact with you.
+	For your outstanding actions, your reputation was increased twice.
+
+[NOTORIETY INCREASED - GENERAL]
+Your actions here, justifiable or not, will not reflect well in the eyes of the Federation or its citizens. Continuously perform actions like this and you might start to see negative reactions from the Federation and its allies.</text>
+	<variable name="rep_general" op="add" val="1"/>
+	<variable name="rep_og_dawn" op="add" val="2"/>
 </event>
 <event name="REPUTATION_UPDATE_OG_DAWN_COMBAT">
 	<text>[REPUTATION INCREASED - NEW DAWN]
@@ -114,6 +280,16 @@ Your actions here, justifiable or not, will not reflect well in the eyes of the 
 <event name="REPUTATION_DECREASE_OG_DAWN_COMBAT">
 	<text>[REPUTATION DECREASED - NEW DAWN]
 	Your actions here will reflect poorly within the New Dawn. They might no longer feel comfortable around you, if you had previously gained reputation before.</text>
+	<variable name="rep_og_dawn" op="add" val="-1"/>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="COMBAT_CHECK"/>
+	</choice>
+</event>
+<event name="REPUTATION_DECREASE_DOUBLE_OG_DAWN_COMBAT">
+	<text>[REPUTATION DECREASED X2 - NEW DAWN]
+	Your actions here will reflect poorly within the New Dawn. They might no longer feel comfortable around you, if you had previously gained reputation before.
+For your extra egregious actions, your reputation was decreased twice.</text>
 	<variable name="rep_og_dawn" op="add" val="-1"/>
 	<choice hidden="true">
 		<text>Continue...</text>
@@ -202,4 +378,1910 @@ Your actions here, justifiable or not, will not reflect well in the eyes of the 
 	<destroyed load="DESTROYED_OG_DAWN"/>
 	<deadCrew load="DEAD_CREW_OG_DAWN"/>
 </ship>
+
+<!--STORELIST-->
+
+
+<eventList name="STORELIST_OG_DAWN">
+	<event load="STOREEVENT_ALIENS"/>
+	<event load="STOREEVENT_DAMAGED"/>
+	
+	<event load="STOREEVENT_FED_AUTO"/>
+	
+	<event load="STOREEVENT_ZOLTAN_REPAIRS"/>
+	<event load="STOREEVENT_ZOLTAN_GUARDS"/>
+
+	<event load="STOREEVENT_DUSK_FRIENDLYISH"/>
+	<event load="STOREEVENT_DUSK_PROTOCOL"/>
+	<event load="STOREEVENT_DUSK_TAXES"/>
+	
+	<event load="STOREEVENT_REBEL_FRIENDLY"/>
+	
+	<event load="STORE_HOSTILE_REBEL"/>
+	
+	<event load="STOREEVENT_SECTOR_DUSK_SEARCH"/>
+</eventList>
+
+<event name="STOREEVENT_OG_DAWN_TURRET" unique="true">
+	<preventQuest/>
+	<beaconType id="map_icon_store_og_dawn" global="true">
+		<color r="155" g="111" b="167" a="1"/>
+	</beaconType>
+	<text>A New Dawn merchant has setup at an outpost nearby, an occasional customer visits the outpost, but there's enough time for you to get in without attracting unwanted attention.</text>
+	<choice>
+		<text>Check out the merchant.</text>
+		<event>
+			<text>You enter the outpost to discover a wide variety of items on sale, the usual stuff is there, crates of fuel, drone parts, and missiles, but towards one wall you find an unusual turret on display, locked up tight behind bullet proof glass. "Surplus New Dawn Equipment: Ask at the counter"</text>
+			<store>STORE_STANDARD</store>
+			<choice>
+				<text>Inquire about the surplus New Dawn equipment.</text>
+				<event>
+					<text>The merchant, a short looking human, replies; "Ahhh, a keen eye you have ehh. That there is a genuine New Dawn produced Turret- Hey wait you aren't with New Dawn are you? or those rebels?"</text>
+					<choice>
+						<text>No, why?</text>
+						<event>
+							<text>"No, reason, was just curious. Anyway, as I was saying this is a genuine New Dawn turret, some of the most powerful equipment you can find." The merchant puts a high price on it, but clearly its a good piece of equipment.</text>
+							<choice hidden="false">
+								<text>Purchase the Turret.</text>
+								<event load="STOREEVENT_OG_DAWN_TURRET_COVERUP_PURCHASE_100"/>
+							</choice>
+							<choice req="LIST_CREW_OG_DAWN" hidden="true">
+								<text>(New Dawn Crew) Quietly report him to the New Dawn.</text>
+								<event load="STOREEVENT_OG_DAWN_TURRET_COVERUP_REPORT"/>
+							</choice>
+							<choice req="LIST_REBEL_WITHOUT_OG_DAWN" hidden="true">
+								<text>(Rebel Crew) Quietly report him to the New Dawn.</text>
+								<event load="STOREEVENT_OG_DAWN_TURRET_COVERUP_REPORT"/>
+							</choice>
+							<choice req="LIST_CREW_OG_DAWN" hidden="true">
+								<text>(New Dawn Crew) Confront him about how he acquired the turret.</text>
+								<event load="STOREEVENT_OG_DAWN_TURRET_COVERUP_REVEALED"/>
+							</choice>
+							<choice req="LIST_REBEL_WITHOUT_OG_DAWN" hidden="true">
+								<text>(Rebel Crew) Confront him about how he acquired the turret.</text>
+								<event load="STOREEVENT_OG_DAWN_TURRET_COVERUP_REVEALED"/>
+							</choice>
+							<choice>
+								<text>Ignore the offer and just shop.</text>
+								<event/>
+							</choice>
+						</event>
+					</choice>
+					<choice req="LIST_CREW_OG_DAWN" hidden="true">
+						<text>(New Dawn Crew) We're with the New Dawn.</text>
+						<event load="STOREEVENT_OG_DAWN_TURRET_COVERUP"/>
+					</choice>
+					<choice req="LIST_REBEL_WITHOUT_OG_DAWN" hidden="true">
+						<text>(Rebel Crew) We're with the rebellion.</text>
+						<event load="STOREEVENT_OG_DAWN_TURRET_COVERUP"/>
+					</choice>
+				</event>
+			</choice>
+			<choice>
+				<text>Ignore it and just shop.</text>
+				<event/>
+			</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>Ignore the merchant.</text>
+		<event>
+			<text>You aren't looking to attract the attention of any rebel sympathisers.</text>
+			<choice>
+				<text>Do something onboard the ship.</text>
+				<event load="STORAGE_CHECK"/>
+			</choice>
+			<choice>
+				<text>Do nothing.</text>
+				<event/>
+			</choice>
+		</event>
+	</choice>
+</event>
+
+<event name="STOREEVENT_OG_DAWN_TURRET_COVERUP">
+	<text>The merchant now sweating nervously continues, "As I was saying, That there ISN'T a genuine New Dawn Turret, rather its a uhm. a, Replica, yes a replica, it doesn't function at all. It's meerly a collectors piece, you wouldn't be interested in it."</text>
+	<choice hidden="true">
+		<text>The merchant steers the conversation away from the turret, you'll need extra information to push it any further.</text>
+		<event load="OPTION_INVALID"/>
+	</choice>
+	<choice hidden="true" req="sensors" lvl="3">
+		<text>(Adv. Sensors) Scan the turret remotely.</text>
+		<event>
+			<text>Your scans indicated that it actually isn't a replica and rather a real New Dawn turret.</text>
+			<choice>
+				<text>Report the merchant to the New Dawn.</text>
+				<event name="STOREEVENT_OG_DAWN_TURRET_COVERUP_REPORT">
+					<text>You quietly report the merchant to the local authorities using the information you collected, before they arrive you're able to do some shopping.</text>
+					<choice>
+						<text>Continue...</text>
+						<event load="REPUTATION_UPDATE_OG_DAWN"/>
+					</choice>
+				</event>
+			</choice>
+			<choice hidden="false">
+				<text>Offer to compensate him for "seizing" the New Dawn turret.</text>
+				<event name="STOREEVENT_OG_DAWN_TURRET_COVERUP_PURCHASE_100">
+					<text>After you assure him that the New Dawn won't find out about this, he's happy to hand it off to you for a good price.</text>
+					<item_modify>
+						<item type="scrap" min="-100" max="-100"/>
+					</item_modify>
+					<weapon name="OG_TURRET_LASER_DAWN"/>
+				</event>
+			</choice>
+			<choice>
+				<text>Threaten to report him if he doesn't lower the price.</text>
+				<event name="STOREEVENT_OG_DAWN_TURRET_COVERUP_THREATEN">
+					<text>The merchant agrees to the deal for a cheaper price. Although strangely didn't seem too scared of your threats.</text>
+					<choice hidden="false">
+						<text>Compensate him the agreed amount for "seizing" the New Dawn turret.</text>
+						<event name="STOREEVENT_OG_DAWN_TURRET_COVERUP_PURCHASE_80">
+							<text>After you assure him that the New Dawn won't find out about this, he's happy to hand it off to you for a good price.</text>
+							<item_modify>
+								<item type="scrap" min="-80" max="-80"/>
+							</item_modify>
+							<weapon name="OG_TURRET_LASER_DAWN"/>
+						</event>
+					</choice>
+					<choice>
+						<text>Threaten to report him if he doesn't lower the price again.</text>
+						<event>
+							<text>You take a harsh tone and threaten the merchant again, but this time the merchant is even less concerned. Eventually you look over at the Turret to realize its gone, the merchant managed to hide it without you realizing, with nothing to report your threats fall flat.</text>
+						</event>
+					</choice>
+					<choice>
+						<text>Politely decline and just shop.</text>
+						<event/>
+					</choice>
+				</event>
+			</choice>
+			<choice>
+				<text>Ignore it and just shop.</text>
+				<event/>
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true" req="LIST_CREW_OG_IRON">
+		<text>(Iron Watch Crew) Your Iron Watch technician recognises that the turret isn't a replica.</text>
+		<event>
+			<text>Your technician quietly reveals that the merchant is lying about it being a replica, perhaps you can use this to your advantage?</text>
+			<choice>
+				<text>Report the merchant to the New Dawn.</text>
+				<event load="STOREEVENT_OG_DAWN_TURRET_COVERUP_REPORT"/>
+			</choice>
+			<choice hidden="false">
+				<text>Offer to compensate him for "seizing" the New Dawn turret.</text>
+				<event load="STOREEVENT_OG_DAWN_TURRET_COVERUP_PURCHASE_100"/>
+			</choice>
+			<choice>
+				<text>Threaten to report him if he doesn't lower the price.</text>
+				<event load="STOREEVENT_OG_DAWN_TURRET_COVERUP_THREATEN"/>
+			</choice>
+			<choice>
+				<text>Ignore it and just shop.</text>
+				<event/>
+			</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>Ignore it and just shop.</text>
+		<event/>
+	</choice>
+</event>
+
+<event name="STOREEVENT_OG_DAWN_TURRET_COVERUP_REVEALED">
+	<text>"I uh, uh found it nearby, just floating around, yeah it was just floating in space and I picked it up, nothing illegal."</text>
+	<choice>
+		<text>Report the merchant to the New Dawn.</text>
+		<event load="STOREEVENT_OG_DAWN_TURRET_COVERUP_REPORT"/>
+	</choice>
+	<choice hidden="false">
+		<text>Offer to compensate him for "seizing" the New Dawn turret.</text>
+		<event load="STOREEVENT_OG_DAWN_TURRET_COVERUP_PURCHASE_100"/>
+	</choice>
+	<choice>
+		<text>Threaten to report him if he doesn't lower the price.</text>
+		<event load="STOREEVENT_OG_DAWN_TURRET_COVERUP_THREATEN"/>
+	</choice>
+	<choice>
+		<text>Ignore it and just shop.</text>
+		<event/>
+	</choice>
+</event>
+
+<eventList name="ITEMS_OG_DAWN">
+	<event load="OG_DAWN_DEBRIS_FIELD"/>
+	<event load="OG_DAWN_SUPPLIES_NEEDED"/>
+	<event load="OG_DAWN_OUTPOST_FLEET"/>
+	
+	<event load="OG_IRON_DEFENSE_DRONE"/>
+</eventList>
+
+<event name="OG_DAWN_DEBRIS_FIELD" unique="true">
+	<text>You've arrived at the beacon to discover the wreck of a New Dawn vessel. Theres nothing in the area that indicates a battle took place here, instead it appears the wreck was created by the asteroid field here, if you want to search the debris you'll need to enter the asteroid field.</text>
+	<choice hidden="true">
+		<text>Search the debris field.</text>
+		<event load="OG_DAWN_DEBRIS_FIELD_SEARCH"/>
+	</choice>
+	<choice>
+		<text>Ignore the wreckage.</text>
+		<event>
+			<text>You stay out of danger and prepare for your next jump.</text>
+			<choice>
+				<text>Do something onboard the ship.</text>
+				<event load="STORAGE_CHECK"/>
+			</choice>
+			<choice>
+				<text>Do nothing.</text>
+				<event/>
+			</choice>
+		</event>
+	</choice>
+</event>
+
+<eventList name="OG_DAWN_DEBRIS_FIELD_SEARCH">
+	<event>
+		<text>You search the debris field, but it seems like there's nothing of value here. Unfortunately, the asteroid field is both loose and densely packed, so you'll have to avoid damage as you charge your FTL drive!</text>
+		<environment type="asteroid"/>
+	</event>
+	<event>
+		<text>You search the debris field, but it seems like there's nothing of value here. Unfortunately, the asteroid field is both loose and densely packed, so you'll have to avoid damage as you charge your FTL drive!</text>
+		<environment type="asteroid"/>
+	</event>
+	<event>
+		<text>You search the debris field. Amidst the largely worthless junk, you manage to track down a hidden supply of missiles in a large cargo container that survived.</text>
+		<autoReward level="MED">missiles_only</autoReward>
+		<environment type="asteroid"/>
+	</event>
+	<event>
+		<text>You search the debris field. While much of it is worthless junk, you manage to scrounge up a small amount of useful resources.</text>
+		<autoReward level="MED">stuff</autoReward>
+		<environment type="asteroid"/>
+	</event>
+	<event>
+		<text>You search the debris field. The material itself is mostly worthless junk. However, amidst the unremarkable debris, you find what seems to be an escape pod with markings matching that of the ship.</text>
+		<environment type="asteroid"/>
+		<choice hidden="true">
+			<text>Take the escape pod.</text>
+			<event>
+				<text>From out of the escape pod, a lone New Dawn Soldier stumbles. "...I thought I was a goner. That asteroid field was far more dangerous than we expected... I'm lucky to be alive."</text>
+				<crewMember amount="1" class="human_og_dawn"/>
+			</event>
+		</choice>
+		<choice>
+			<text>Ignore the escape pod.</text>
+			<event/>
+		</choice>
+	</event>
+</eventList>
+
+<ship name="SHIP_OG_DAWN_TRANSPORT_EMPTY" auto_blueprint="OG_DAWN_TRANSPORT">
+	<escape  chance="0.3" min="3" max="4" load="ESCAPE_OG_DAWN"/>
+	<gotaway load="GOTAWAY_OG_DAWN"/>
+	<destroyed load="DESTROYED_OG_DAWN"/>
+	<deadCrew load="DEAD_CREW_OG_DAWN"/>
+</ship>
+<event name="OG_DAWN_SUPPLIES_NEEDED" unique="true">
+	<text>Docked to a nearby New Dawn outpost is a large transport ship belonging to the New Dawn, your scans indicate that the transport is unusually empty.</text>
+	<ship load="SHIP_OG_DAWN_TRANSPORT_EMPTY" hostile="false"/>
+	<choice req="rep_og_dawn" lvl="0" blue="false">
+		<text>Contact the transport.</text>
+		<event>
+			<text>"A Federation Renagade? I didn't think I'd see your kind around here, worry not there are no rebels around, we do not have to be enemies."
+The Captain of the transport pauses, thinking on something.
+"Say, you don't have any spare supplies on you, we were meant to collect supplies from this outpost, but apparently they never recieved any from the last transport."
+"We'd be happy to pay you with some surplus equipment or personnel."</text>
+			<choice hidden="false">
+				<text>Request one of their soldiers in exchange for supplies.</text>
+				<event>
+					<text>You dock with the transport and hand over the supplies, you're greeted by your new crew member, "To be honest I always wanted to work on a real war ship, the transport is safe and all, but it gets real boring on there."</text>
+					<item_modify>
+						<item type="scrap" min="-15" max="-15"/>
+						<item type="fuel" min="-6" max="-6"/>
+						<item type="missiles" min="-4" max="-4"/>
+						<item type="drones" min="-3" max="-3"/>
+					</item_modify>
+					<crewMember amount="1" class="human_og_dawn"/>
+					<choice>
+						<text>Continue...</text>
+						<event load="REPUTATION_UPDATE_OG_DAWN"/>
+					</choice>
+				</event>
+			</choice>
+			<choice hidden="false">
+				<text>Request one of their soldiers in exchange for supplies.</text>
+				<event>
+					<text>You dock with the transport and hand over the supplies, you're greeted by your new crew member, "To be honest I always wanted to work on a real war ship, the transport is safe and all, but it gets real boring on there."</text>
+					<item_modify>
+						<item type="scrap" min="-25" max="-25"/>
+						<item type="fuel" min="-6" max="-6"/>
+						<item type="missiles" min="-4" max="-4"/>
+						<item type="drones" min="-3" max="-3"/>
+					</item_modify>
+					<weapon name="GIFTLIST_OG_DAWN"/>
+					<choice>
+						<text>Continue...</text>
+						<event load="REPUTATION_UPDATE_OG_DAWN"/>
+					</choice>
+				</event>
+			</choice>
+			<choice hidden="false">
+				<text>Request they put in good word for you with the rest of the New Dawn in exchange for supplies.</text>
+				<event>
+					<text>You dock with the transport and hand over the supplies, you're greeted by the transport's Captain, "You know, those rebels really made the Federation sound awful, but you really don't seem that bad."</text>
+					<item_modify>
+						<item type="scrap" min="-10" max="-10"/>
+						<item type="fuel" min="-5" max="-5"/>
+						<item type="missiles" min="-3" max="-3"/>
+						<item type="drones" min="-2" max="-2"/>
+					</item_modify>
+					<choice>
+						<text>Continue...</text>
+						<event load="REPUTATION_UPDATE_DOUBLE_OG_DAWN"/>
+					</choice>
+				</event>
+			</choice>
+			<choice>
+				<text>"Sorry we can't spare any extra supplies."</text>
+				<event>
+					<text>You wish them luck and prepare for your next jump.</text>
+					<choice>
+						<text>Do something onboard the ship.</text>
+						<event load="STORAGE_CHECK"/>
+					</choice>
+					<choice>
+						<text>Do nothing.</text>
+						<event/>
+					</choice>
+				</event>
+			</choice>
+		</event>
+	</choice>
+	<choice req="rep_og_dawn" lvl="-999" max_lvl="0" blue="false">
+		<text>Contact the transport.</text>
+		<event>
+			<text>"Federation scum, don't come any closer, we don't want any trouble but we aren't opposed to ripping your ship to threads."</text>
+			<choice hidden="false">
+				<text>Eject some supplies towards them as a sign of good will.</text>
+				<event>
+					<text>The transport carefully scoops up the supplies, keeping their turrets trained on you. "Hmmph, I suppose not all of you are terrible, good luck out there Captain." With that the transport carefully retreats to the safety of the outpost.</text>
+					<item_modify>
+						<item type="scrap" min="-10" max="-10"/>
+						<item type="fuel" min="-5" max="-5"/>
+						<item type="missiles" min="-3" max="-3"/>
+						<item type="drones" min="-2" max="-2"/>
+					</item_modify>
+					<choice>
+						<text>Continue...</text>
+						<event load="REPUTATION_UPDATE_OG_DAWN"/>
+					</choice>
+				</event>
+			</choice>
+			<choice>
+				<text>Wait for them to leave the outpost before attacking.</text>
+				<event>
+					<text>Eventually the transport finishes their buisiness with the outpost and begins to head off, once out of range of the outpost you carefully intercept them with guns blazing.</text>
+					<ship hostile="true"/>
+					<choice>
+						<text>Continue...</text>
+						<event load="REPUTATION_DECREASE_OG_DAWN_COMBAT"/>
+					</choice>
+				</event>
+			</choice>
+			<choice>
+				<text>Ignore them.</text>
+				<event>
+					<text>You keep your distance and prepare for your next jump.</text>
+					<choice>
+						<text>Do something onboard the ship.</text>
+						<event load="STORAGE_CHECK"/>
+					</choice>
+					<choice>
+						<text>Do nothing.</text>
+						<event/>
+					</choice>
+				</event>
+			</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>Wait for them to leave the outpost before attacking.</text>
+		<event>
+			<text>Eventually the transport finishes their buisiness with the outpost and begins to head off, once out of range of the outpost you carefully intercept them with guns blazing.</text>
+			<ship hostile="true"/>
+			<choice>
+				<text>Continue...</text>
+				<event load="REPUTATION_DECREASE_OG_DAWN_COMBAT"/>
+			</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>Ignore them.</text>
+		<event>
+			<text>You keep your distance and prepare for your next jump.</text>
+			<choice>
+				<text>Do something onboard the ship.</text>
+				<event load="STORAGE_CHECK"/>
+			</choice>
+			<choice>
+				<text>Do nothing.</text>
+				<event/>
+			</choice>
+		</event>
+	</choice>
+</event>
+
+<event name="OG_DAWN_OUTPOST_FLEET">
+	<text>You arrive at the beacon face to face with a large communications outpost, you detect a large number of encrypted communications being sent towards the rebel fleet, the outpost appears mostly undefended, you could destroy it for salvage without taking more than a few points of hull damage.</text>
+	<environment type="pulsar"/>
+	<choice hidden="true" req="rep_og_dawn" lvl="2" blue="false">
+		<text>Contact the Outpost.</text>
+		<event>
+			<text>"Ahh, the Federation Renegade we've been hearing about, worry not, the rebellion doesn't know you're here. Yet."</text>
+			<choice>
+				<text>Request the outpost delay the rebel fleet.</text>
+				<event>
+					<text>"Hmmph, I suppose we can, I just hope this doesn't get traced back to me."</text>
+					<modifyPursuit amount="-1"/>
+				</event>
+			</choice>
+			<choice hidden="false">
+				<text>Request the outpost route the fleet through a specific position so that you can lay a trap there.</text>
+				<event>
+					<text>"Hmmph, I suppose we can, I just hope this doesn't get traced back to me."</text>
+					<item_modify>
+						<item type="missiles" min="-5" max="-5"/>
+					</item_modify>
+					<modifyPursuit amount="-2"/>
+				</event>
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true" req="rep_og_dawn" lvl="0" max_lvl="1" blue="false">
+		<text>Contact the Outpost.</text>
+		<event>
+			<text>"You, you're a Federation Renegade! Give me one good reason I shouldn't report you to the fleet right now!"</text>
+			<choice>
+				<text>Offer supplies as a bribe.</text>
+				<event>
+					<text>"Hmmph, I suppose I can let you go, just get out of here before the rebellion finds out."</text>
+					<choice>
+						<text>Continue...</text>
+						<event load="REPUTATION_UPDATE_OG_DAWN"/>
+					</choice>
+				</event>
+			</choice>
+			<choice req="LIST_CREW_OG_DAWN" hidden="true">
+				<text>(New Dawn Crew) Request the outpost delay the rebel fleet.</text>
+				<event>
+					<text>"Hmmph, I suppose I can, I just hope this doesn't get traced back to me."</text>
+					<modifyPursuit amount="-1"/>
+				</event>
+			</choice>
+			<choice req="LIST_REBEL_WITHOUT_OG_DAWN" hidden="true">
+				<text>(Rebel Crew) Request the outpost delay the rebel fleet.</text>
+				<event>
+					<text>"Hmmph, I suppose I can, I just hope this doesn't get traced back to me."</text>
+					<modifyPursuit amount="-1"/>
+				</event>
+			</choice>
+			<choice>
+				<text>Tell them you were just about to leave.</text>
+				<event>
+					<text>They decide not to report you, you keep your distance and prepare for your next jump.</text>
+					<choice>
+						<text>Do something onboard the ship.</text>
+						<event load="STORAGE_CHECK"/>
+					</choice>
+					<choice>
+						<text>Do nothing.</text>
+						<event/>
+					</choice>
+				</event>
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true" req="rep_og_dawn" lvl="-999" max_lvl="-1" blue="false">
+		<text>The outpost refuses any attempts to make contact due to your negative reputation.</text>
+		<event load="OPTION_INVALID"/>
+	</choice>
+	<choice hidden="true">
+		<text>Wreck it for scrap and supplies.</text>
+		<event>
+			<text>You open fire on the outpost, it quickly disintergrates under your weapons, it's underpowered turrets only landing a few hits on you. Unfortunately it was able to alert the rebel fleet to your position before it was destroyed.</text>
+			<modifyPursuit amount="1"/>
+			<autoReward level="MED">standard</autoReward>
+			<choice>
+				<text>Continue...</text>
+				<event load="REPUTATION_DECREASE_OG_DAWN"/>
+			</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>Ignore the outpost.</text>
+		<event>
+			<text>You keep your distance and prepare for your next jump.</text>
+			<choice>
+				<text>Do something onboard the ship.</text>
+				<event load="STORAGE_CHECK"/>
+			</choice>
+			<choice>
+				<text>Do nothing.</text>
+				<event/>
+			</choice>
+		</event>
+	</choice>
+</event>
+
+<!--Neutral-->
+<eventList name="NEUTRAL_OG_DAWN">
+	<event load="REBELHOLD_ELITE_CHOICE"/>
+
+	<event load="OG_DAWN_REBEL_DAWN_INFIGHT"/>
+	<event load="OG_DAWN_NEUTRAL_SHIP_PULSAR"/>
+	<event load="OG_DAWN_NEUTRAL_SHIP"/>
+
+	<event load="PIRATE_CIVILIAN_MV"/>
+	<event load="OG_IRON_EXPLORE_TRANSPORT"/>
+	<event load="FILLER_EXPLORE"/>
+</eventList>
+
+<ship name="SHIP_OG_DAWN_REBEL_INFIGHT" auto_blueprint="LIST_SHIPS_OG_DAWN_FIGHT">
+	<destroyed>
+		<text load="TEXT_DESTROYED_OG_DAWN"/>
+		<autoReward level="MED">standard</autoReward>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event load="OG_DAWN_REBEL_DAWN_INFIGHT_REBEL_FOLLOWUP"/>
+		</choice>
+	</destroyed>
+	<deadCrew>
+		<text load="TEXT_DEAD_CREW_OG_DAWN"/>
+		<autoReward level="HIGH">standard</autoReward>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event load="OG_DAWN_REBEL_DAWN_INFIGHT_REBEL_FOLLOWUP"/>
+		</choice>
+	</deadCrew>
+</ship>
+<ship name="SHIP_REBEL_OG_DAWN_INFIGHT" auto_blueprint="LIST_SHIPS_REBEL_FIGHT">
+	<destroyed>
+		<text load="TEXT_DESTROYED_REBEL"/>
+		<autoReward level="MED">standard</autoReward>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event load="OG_DAWN_REBEL_DAWN_INFIGHT_DAWN_FOLLOWUP"/>
+		</choice>
+	</destroyed>
+	<deadCrew>
+		<text load="TEXT_DEAD_CREW_REBEL"/>
+		<autoReward level="HIGH">standard</autoReward>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event load="OG_DAWN_REBEL_DAWN_INFIGHT_DAWN_FOLLOWUP"/>
+		</choice>
+	</deadCrew>
+</ship>
+
+<event name="OG_DAWN_REBEL_DAWN_INFIGHT" unique="true">
+	<text>You arrive at the beacon face to face with both a New Dawn vessel and Rebel ship, you immediately prepare yourself for the coming battle before realizing that the ships aren't interested in you, instead they've actually got their weapons trained on each other.
+From what you can hear over public communications you get the sense that the New Dawn Captain is sick of having to listen to the commands of these "stupid rebel captains who couldn't tell the arse end of a slug from their own mother." And the Rebel Captain is quite displeased with insubordination of the New Dawn ship.</text>
+	<choice>
+		<text>Engage the New Dawn vessel.</text>
+		<event>
+			<text>You arm you weapons and move into engage the New Dawn ship, you have a moment to consider your decision again, you could escape now and avoid the fight if you pulled off now.</text>
+			<ship load="SHIP_OG_DAWN_REBEL_INFIGHT" hostile="true"/>
+			<choice>
+				<text>Attack!</text>
+				<event load="REPUTATION_DECREASE_OG_DAWN_COMBAT"/>
+			</choice>
+			<choice>
+				<text>Avoid the fight.</text>
+				<event>
+					<ship hostile="false"/>
+					<text>You turn tail and run away, the two ships turn their attention back to each other while you prepare for your next jump.</text>
+					<choice>
+						<text>Do something onboard the ship.</text>
+						<event load="STORAGE_CHECK"/>
+					</choice>
+					<choice>
+						<text>Do nothing.</text>
+						<event/>
+					</choice>
+				</event>
+			</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>Engage the Rebel vessel.</text>
+		<event>
+			<text>You arm you weapons and move into engage the Rebel ship, you have a moment to consider your decision again, you could escape now and avoid the fight if you pulled off now.</text>
+			<ship load="SHIP_REBEL_OG_DAWN_INFIGHT" hostile="true"/>
+			<choice>
+				<text>Attack!</text>
+				<event load="REPUTATION_UPDATE_OG_DAWN_COMBAT"/>
+			</choice>
+			<choice>
+				<text>Avoid the fight.</text>
+				<event>
+					<ship hostile="false"/>
+					<text>You turn tail and run away, the two ships turn their attention back to each other while you prepare for your next jump.</text>
+					<choice>
+						<text>Do something onboard the ship.</text>
+						<event load="STORAGE_CHECK"/>
+					</choice>
+					<choice>
+						<text>Do nothing.</text>
+						<event/>
+					</choice>
+				</event>
+			</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>Use the confusion to escape and avoid any conflict.</text>
+		<event>
+			<text>You keep your distance and prepare for your next jump.</text>
+			<choice>
+				<text>Do something onboard the ship.</text>
+				<event load="STORAGE_CHECK"/>
+			</choice>
+			<choice>
+				<text>Do nothing.</text>
+				<event/>
+			</choice>
+		</event>
+	</choice>
+</event>
+
+<event name="OG_DAWN_REBEL_DAWN_INFIGHT_DAWN_FOLLOWUP">
+	<text>With the Rebel vessel dealt with, the New Dawn ship doesn't make any moves to engage you, you're unsure of their next move.</text>
+	<ship load="SHIP_OG_DAWN_FIGHT" hostile="false"/>
+	<choice hidden="true" req="rep_og_dawn" lvl="2" blue="false">
+		<text>Contact the New Dawn ship.</text>
+		<event>
+			<text>"Ahh, the Federation Renegade we've been hearing about, I'm really starting to think this alliance with the rebellion was a huge mistake, these guys are awful."
+The Captain pauses for a moment thinking.
+"Here take these supplies, we were originally meant to deliver them to the Rebel outpost nearby but I doubt they'll ever notice it never arrived."</text>
+			<autoReward level="MED">standard_no_item</autoReward>
+		</event>
+	</choice>
+	<choice hidden="true" req="rep_og_dawn" lvl="0" max_lvl="1" blue="false">
+		<text>Contact the New Dawn ship.</text>
+		<event>
+			<text>"You, you're a Federation Renegade. I'm probably supposed to shoot you now, but then again I was supposed to follow that idiot's orders and look how that turned out. Thanks for dealing with them by the way, keeps my hands clean, I'll be sure to spread the good word about you." With that the ship jumps away, clearly keen to be away of the whole thing.</text>
+			<instantEscape/>
+		</event>
+	</choice>
+	<choice hidden="true" req="rep_og_dawn" lvl="-999" max_lvl="-1" blue="false">
+		<text>The ship refuses any attempts to make contact due to your negative reputation.</text>
+		<event load="OPTION_INVALID"/>
+	</choice>
+	<choice>
+		<text>Engage the New Dawn ship.</text>
+		<event>
+			<text>The New Dawn ship is clearly surprised by you moving to engage them, they turn on their weapons in response.</text>
+			<ship hostile="true"/>
+			<choice>
+				<text>Continue...</text>
+				<event load="REPUTATION_DECREASE_DOUBLE_OG_DAWN_COMBAT"/>
+			</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>Ignore the ship.</text>
+		<event/>
+	</choice>
+</event>
+
+<event name="OG_DAWN_REBEL_DAWN_INFIGHT_REBEL_FOLLOWUP">
+	<text>With the New Dawn vessel dealt with, the Rebel ship doesn't make any moves to engage you, but it doesn't seem like you should expect any thanks either.</text>
+	<ship load="SHIP_REBEL_FIGHT" hostile="true"/>
+	<choice>
+		<text>Engage the Rebel ship.</text>
+		<event load="COMBAT_CHECK"/>
+	</choice>
+	<choice>
+		<text>Use the uneasy peace and back away to avoid any conflict.</text>
+		<event>
+			<ship hostile="false"/>
+			<text>You keep your distance and prepare for your next jump.</text>
+		</event>
+	</choice>
+</event>
+
+<event name="OG_DAWN_NEUTRAL_SHIP_PULSAR">
+	<ship load="SHIP_OG_DAWN_FIGHT" hostile="false"/>
+	<environment type="pulsar"/>
+	<text>You've arrived at the beacon unnoticed, This area of space is relatively uninhabited due to the pulsar, only a single New Dawn vessel shows up on sensors, and it appears they aren't aware of you yet.</text>
+	<choice hidden="true" req="rep_og_dawn" lvl="2" blue="false">
+		<text>Contact the ship.</text>
+		<event>
+			<text>"Ah, The famous Renegade that has been visiting out sector, I've heard good things about you. I don't suppose you could help me, I've been sent here to hunt down a rogue Iron Watch vessel, but I cannot find it. I would appreciate your help in the search."</text>
+			<choice>
+				<text>Agree to help.</text>
+				<event>
+					<ship load="SHIP_OG_IRON_FIGHT" hostile="true"/>
+					<text>You agree to help and split off from the New Dawn ship, after a few minutes of searching the New Dawn ship disapears off into the distance, beyond the range of your sensors. It's only a few minutes later that the Iron Watch vessel appears, revealed behind a large by slow asteroid. They correctly deduce you're apart of the hunting team and don't give you a chance, prepare to fight.</text>
+					<choice>
+						<text>Continue...</text>
+						<event load="REPUTATION_UPDATE_OG_DAWN_COMBAT"/>
+					</choice>
+				</event>
+			</choice>
+			<choice hidden="true">
+				<text>Attack!</text>
+				<event>
+					<text>You rush in to get the upper hand, unfortunately the ship notices you and is able to prepare for the battle.</text>
+					<ship hostile="true"/>
+					<choice>
+						<text>Continue...</text>
+						<event load="REPUTATION_DECREASE_OG_DAWN_COMBAT"/>
+					</choice>
+				</event>
+			</choice>
+			<choice>
+				<text>Politely decline.</text>
+				<event>
+					<text>You keep your distance and prepare for your next jump.</text>
+					<choice>
+						<text>Do something onboard the ship.</text>
+						<event load="STORAGE_CHECK"/>
+					</choice>
+					<choice>
+						<text>Do nothing.</text>
+						<event/>
+					</choice>
+				</event>
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true" req="rep_og_dawn" lvl="-1" max_lvl="1" blue="false">
+		<text>Contact the ship.</text>
+		<event>
+			<text>"You're not who I'm looking for, stay out of my way and we'll have no problems."</text>
+			<choice hidden="true">
+				<text>Attack!</text>
+				<event>
+					<text>You rush in to get the upper hand, unfortunately the ship notices you and is able to prepare for the battle.</text>
+					<ship hostile="true"/>
+					<choice>
+						<text>Continue...</text>
+						<event load="REPUTATION_DECREASE_OG_DAWN_COMBAT"/>
+					</choice>
+				</event>
+			</choice>
+			<choice>
+				<text>Ignore them.</text>
+				<event>
+					<text>You keep your distance and prepare for your next jump.</text>
+					<choice>
+						<text>Do something onboard the ship.</text>
+						<event load="STORAGE_CHECK"/>
+					</choice>
+					<choice>
+						<text>Do nothing.</text>
+						<event/>
+					</choice>
+				</event>
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true" req="rep_og_dawn" lvl="-999" max_lvl="-2" blue="false">
+		<text>Making contact would just result in them attacking you due to your negative reputation.</text>
+		<event load="OPTION_INVALID"/>
+	</choice>
+	<choice hidden="true">
+		<text>Attack!</text>
+		<event>
+			<text>You rush in to get the upper hand, unfortunately the ship notices you and is able to prepare for the battle.</text>
+			<ship hostile="true"/>
+			<choice>
+				<text>Continue...</text>
+				<event load="REPUTATION_DECREASE_OG_DAWN_COMBAT"/>
+			</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>Ignore the outpost.</text>
+		<event>
+			<text>You keep your distance and prepare for your next jump.</text>
+			<choice>
+				<text>Do something onboard the ship.</text>
+				<event load="STORAGE_CHECK"/>
+			</choice>
+			<choice>
+				<text>Do nothing.</text>
+				<event/>
+			</choice>
+		</event>
+	</choice>
+</event>
+
+<event name="OG_DAWN_NEUTRAL_SHIP">
+	<ship load="SHIP_OG_DAWN_FIGHT" hostile="false"/>
+	<text>You've arrived at the beacon unnoticed, The only New Dawn vessel nearby hasn't noticed you yet...</text>
+	<choice hidden="true" req="rep_og_dawn" lvl="2" blue="false">
+		<text>Contact the ship.</text>
+		<event>
+			<text>"Ah, the Renegade Captain, I don't suppose you have any spare supplies on hand, we're running low on fuel and drone parts, we have the scrap to compensate you."</text>
+			<choice>
+				<text>Agree to the exchange.</text>
+				<event>
+					<text>You transfer them the supplies and recieve their scrap, a good old fashion exchange of resources.</text>
+					<item_modify>
+						<item type="scrap" min="30" max="40"/>
+						<item type="fuel" min="-5" max="-4"/>
+						<item type="drones" min="-4" max="-3"/>
+					</item_modify>
+					<choice>
+						<text>Continue...</text>
+						<event load="REPUTATION_UPDATE_OG_DAWN_COMBAT"/>
+					</choice>
+				</event>
+			</choice>
+			<choice hidden="true">
+				<text>Attack!</text>
+				<event>
+					<text>You rush in to get the upper hand, unfortunately the ship notices you and is able to prepare for the battle.</text>
+					<ship hostile="true"/>
+					<choice>
+						<text>Continue...</text>
+						<event load="REPUTATION_DECREASE_OG_DAWN_COMBAT"/>
+					</choice>
+				</event>
+			</choice>
+			<choice>
+				<text>Politely decline.</text>
+				<event>
+					<text>You keep your distance and prepare for your next jump.</text>
+					<choice>
+						<text>Do something onboard the ship.</text>
+						<event load="STORAGE_CHECK"/>
+					</choice>
+					<choice>
+						<text>Do nothing.</text>
+						<event/>
+					</choice>
+				</event>
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true" req="rep_og_dawn" lvl="-1" max_lvl="1" blue="false">
+		<text>Contact the ship.</text>
+		<event>
+			<text>"I'm not looking for a fight, stay out of my way and we'll have no problems."</text>
+			<choice hidden="true">
+				<text>Attack!</text>
+				<event>
+					<text>You rush in to get the upper hand, unfortunately the ship notices you and is able to prepare for the battle.</text>
+					<ship hostile="true"/>
+					<choice>
+						<text>Continue...</text>
+						<event load="REPUTATION_DECREASE_OG_DAWN_COMBAT"/>
+					</choice>
+				</event>
+			</choice>
+			<choice>
+				<text>Ignore them.</text>
+				<event>
+					<text>You keep your distance and prepare for your next jump.</text>
+					<choice>
+						<text>Do something onboard the ship.</text>
+						<event load="STORAGE_CHECK"/>
+					</choice>
+					<choice>
+						<text>Do nothing.</text>
+						<event/>
+					</choice>
+				</event>
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true" req="rep_og_dawn" lvl="-999" max_lvl="-2" blue="false">
+		<text>Making contact would just result in them attacking you due to your negative reputation.</text>
+		<event load="OPTION_INVALID"/>
+	</choice>
+	<choice hidden="true">
+		<text>Attack!</text>
+		<event>
+			<text>You rush in to get the upper hand, unfortunately the ship notices you and is able to prepare for the battle.</text>
+			<ship hostile="true"/>
+			<choice>
+				<text>Continue...</text>
+				<event load="REPUTATION_DECREASE_OG_DAWN_COMBAT"/>
+			</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>Ignore the outpost.</text>
+		<event>
+			<text>You keep your distance and prepare for your next jump.</text>
+			<choice>
+				<text>Do something onboard the ship.</text>
+				<event load="STORAGE_CHECK"/>
+			</choice>
+			<choice>
+				<text>Do nothing.</text>
+				<event/>
+			</choice>
+		</event>
+	</choice>
+</event>
+
+<!--DISTRESS-->
+<eventList name="DISTRESS_OG_DAWN">
+	<event load="OG_DAWN_DISTRESS_ASTEROID"/>
+
+	<event load="DISTRESS_REBEL_DISTRACT_CHECKPOINT"/>
+
+	<event load="OG_IRON_DISTRESS_PULSAR"/>
+</eventList>
+
+<ship name="SHIP_OG_DAWN_DISTRESS_SCOUT" auto_blueprint="OG_DAWN_SCOUT">
+	<escape  chance="0.3" min="3" max="4" load="ESCAPE_OG_DAWN"/>
+	<gotaway load="GOTAWAY_OG_DAWN"/>
+	<destroyed load="DESTROYED_OG_DAWN"/>
+	<deadCrew load="DEAD_CREW_OG_DAWN"/>
+</ship>
+
+<event name="OG_DAWN_DISTRESS_ASTEROID" unique="true">
+	<distressBeacon/>
+	<environment type="asteroid"/>
+	<text>You've arrived in an asteroid field, the distress beacon is coming from a wrecked New Dawn transport just off to the side of the beacon.</text>
+	<choice>
+		<text>Investigate the wreckage.</text>
+		<event>
+			<ship load="SHIP_OG_DAWN_DISTRESS_SCOUT" hostile="false"/>
+			<enemyDamage amount="1" system="engines" effect="fire"/>
+			<text>You pull up close to the wreckage, there are several cargo containers in amongst the debris but they all appear openned, someone's been here already.
+A moment later you find out who that is, a New Dawn scout reveals themselves from behind some asteroids, it's apparent they've taken some damage to their engines by the thin line of oil and other fluids leaking behind them.</text>
+			<choice>
+				<text>Contact the ship.</text>
+				<event>
+					<text>The Captain of the ship sounds frantic, "Please, Captain, you've got to help us, I've rescued everyone I could find but our ship isn't going to last much longer, I beg you to take us and our cargo onboard and out of the asteroid field, theres an outpost nearby."</text>
+					<choice>
+						<text>Agree to help.</text>
+						<event>
+							<text>It's going to take time to load everyone onboard and get to the outpost, you'll need to survive the asteroid for about 30 seconds.</text>
+							<triggeredEvent name="OG_DAWN_DISTRESS_ASTEROID_TRIGGEREDEVENT" event="OG_DAWN_DISTRESS_ASTEROID_LOADED" time="16" clearOnJump="true" thisFight="false">
+								<triggeredEventBox load="DEFAULT_TIMER" pos="default">
+									<warning time="5.0" flash="false"/>
+									<tooltip>Time to load everything onboard.</tooltip>
+								</triggeredEventBox>
+								<timerSounds load="DEFAULT_TIMER_SOUNDS"/>
+							</triggeredEvent>
+						</event>
+					</choice>
+					<choice>
+						<text>Attack them!</text>
+						<event>
+							<text>Instead of helping them out you immediately engage your weapons, if any of them survive this they're not going to be so trusting of random federation ships in the future.</text>
+							<ship hostile="true"/>
+							<choice>
+								<text>Continue...</text>
+								<event load="REPUTATION_DECREASE_OG_DAWN_COMBAT"/>
+							</choice>
+						</event>
+					</choice>
+					<choice>
+						<text>Politely Decline.</text>
+						<event>
+							<text>You keep your distance and prepare for your next jump.</text>
+							<choice>
+								<text>Do something onboard the ship.</text>
+								<event load="STORAGE_CHECK"/>
+							</choice>
+							<choice>
+								<text>Do nothing.</text>
+								<event/>
+							</choice>
+						</event>
+					</choice>
+				</event>
+			</choice>
+			<choice>
+				<text>Attack them!</text>
+				<event>
+					<text>Instead of hearing them out you immediately engage your weapons, if any of them survive this they're not going to be so trusting of random federation ships in the future.</text>
+					<ship hostile="true"/>
+					<choice>
+						<text>Continue...</text>
+						<event load="REPUTATION_DECREASE_OG_DAWN_COMBAT"/>
+					</choice>
+				</event>
+			</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>Ignore the wreck.</text>
+		<event>
+			<text>You keep your distance and prepare for your next jump.</text>
+			<choice>
+				<text>Do something onboard the ship.</text>
+				<event load="STORAGE_CHECK"/>
+			</choice>
+			<choice>
+				<text>Do nothing.</text>
+				<event/>
+			</choice>
+		</event>
+	</choice>
+</event>
+
+<event name="OG_DAWN_DISTRESS_ASTEROID_LOADED">
+	<text>You manage to load everyone onboard just in time, not a moment later an asteroid hits the enemy ship, causing a rapid depressurisation event. It will only take a little bit longer to make it to the outpost.</text>
+	<enemyDamage amount="999"/>
+	<triggeredEvent name="OG_DAWN_DISTRESS_ASTEROID_TRIGGEREDEVENT2" event="OG_DAWN_DISTRESS_ASTEROID_OUTPOST" time="15" clearOnJump="true" thisFight="false">
+		<triggeredEventBox load="DEFAULT_TIMER" pos="default">
+			<warning time="5.0" flash="false"/>
+			<tooltip>Time to make it to the outpost.</tooltip>
+		</triggeredEventBox>
+		<timerSounds load="DEFAULT_TIMER_SOUNDS"/>
+	</triggeredEvent>
+</event>
+
+<event name="OG_DAWN_DISTRESS_ASTEROID_OUTPOST">
+	<text>You've made it, you dock with the outpost and everyone makes it off successfully. The crew of the ship are very thankful, One of the New Dawn Soldier comes up to you, "Do you think I could join your ship as one of your crew, it was pretty boring working on the transport escort, atleast up until I thought we were going to die."</text>
+	<autoReward level="LOW">standard</autoReward>
+	<choice>
+		<text>Accept them onboard.</text>
+		<event>
+			<text>You're joined by your new crewmember onboard the ship.</text>
+			<crewMember amount="1" class="human_og_dawn"/>
+			<choice>
+				<text>Continue...</text>
+				<event load="REPUTATION_UPDATE_OG_DAWN"/>
+			</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>Politely decline.</text>
+		<event load="REPUTATION_UPDATE_OG_DAWN"/>
+	</choice>
+</event>
+
+<!--QUESTS-->
+<eventList name="QUESTS_OG_DAWN">
+	<event load="OG_DAWN_PREIGN_QUEST"/>
+</eventList>
+
+<ship name="SHIP_OG_DAWN_PREIGN_QUEST" auto_blueprint="OG_DAWN_BOMBER">
+	<destroyed>
+		<text load="TEXT_DESTROYED_OG_DAWN"/>
+		<autoReward level="MED">standard_no_item</autoReward>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event>
+				<text>As you search the wreckage of the ship you come across a strange cargo container, it even has it's destination recorded on the side, you take it onboard.</text>
+				<weapon name="OG_CARGO_CRATE_PREIGN_WEAK"/>
+				<quest event="OG_DAWN_PREIGN_QUEST_DESTINATION"/>
+			</event>
+		</choice>
+	</destroyed>
+	<deadCrew>
+		<text load="TEXT_DEAD_CREW_OG_DAWN"/>
+		<autoReward level="HIGH">standard_no_item</autoReward>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event>
+				<text>As you search the remains of the ship you come across a strange cargo container, it even has it's destination recorded on the side, you take it onboard.</text>
+				<weapon name="OG_CARGO_CRATE_PREIGN_WEAK"/>
+				<quest event="OG_DAWN_PREIGN_QUEST_DESTINATION"/>
+			</event>
+		</choice>
+	</deadCrew>
+</ship>
+<event name="OG_DAWN_PREIGN_QUEST" unique="true">
+	<distressBeacon/>
+	<ship load="SHIP_OG_DAWN_PREIGN_QUEST" hostile="false"/>
+	<text>The distress beacon originates from a damaged New Dawn bomber parked nearby, your scans indicate that their engines are heavily damaged, they're not going to be going anywhere soon.</text>
+	<choice hidden="true" req="rep_og_dawn" lvl="3" blue="false">
+		<text>Contact the ship.</text>
+		<event>
+			<text>"You're no New Dawn, but I have heard of you helping the other out, We've got an important piece of cargo onboard that needs to make it to a nearby base, we'll make sure you're compensated well if you deliver it there."</text>
+			<choice hidden="false">
+				<text>Agree to deliver the item.</text>
+				<event>
+					<text>They transfer the cooridinates and the cargo crate over to you, they give a quick warning to not open it before sending you on your way.</text>
+					<weapon name="OG_CARGO_CRATE_PREIGN_WEAK"/>
+					<quest event="OG_DAWN_PREIGN_QUEST_DESTINATION"/>
+				</event>
+			</choice>
+			<choice hidden="true">
+				<text>Attack!</text>
+				<event>
+					<text>Weapon's armed you plan on taking the cargo, and their ship by force.</text>
+					<ship hostile="true"/>
+					<choice>
+						<text>Continue...</text>
+						<event load="REPUTATION_DECREASE_OG_DAWN_COMBAT"/>
+					</choice>
+				</event>
+			</choice>
+			<choice>
+				<text>Ignore them.</text>
+				<event>
+					<text>You keep your distance and prepare for your next jump.</text>
+					<choice>
+						<text>Do something onboard the ship.</text>
+						<event load="STORAGE_CHECK"/>
+					</choice>
+					<choice>
+						<text>Do nothing.</text>
+						<event/>
+					</choice>
+				</event>
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true" req="rep_og_dawn" lvl="-999" max_lvl="2" blue="false">
+		<text>Your attempts to make contact are immediately cut off when they realize who you are, it appears they were hoping for one of their own to come to the rescue.</text>
+		<event load="OPTION_INVALID"/>
+	</choice>
+	<choice hidden="true">
+		<text>Attack!</text>
+		<event>
+			<text>Weapon's armed you plan on taking their ship by force.</text>
+			<ship hostile="true"/>
+			<choice>
+				<text>Continue...</text>
+				<event load="REPUTATION_DECREASE_OG_DAWN_COMBAT"/>
+			</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>Ignore them.</text>
+		<event>
+			<text>You keep your distance and prepare for your next jump.</text>
+			<choice>
+				<text>Do something onboard the ship.</text>
+				<event load="STORAGE_CHECK"/>
+			</choice>
+			<choice>
+				<text>Do nothing.</text>
+				<event/>
+			</choice>
+		</event>
+	</choice>
+</event>
+
+<ship name="OG_DAWN_PREIGN_QUEST_LEGION_ASSAULT" auto_blueprint="OG_LEGION_ASSAULT_TURRET">
+	<destroyed load="OG_DAWN_PREIGN_LEGION_DEFEAT"/>
+	<deadCrew load="OG_DAWN_PREIGN_LEGION_DEFEAT"/>
+	<crew>
+		<crewMember type="LIST_CREW_MALFORM_RANDOM" prop="0.5"/>
+		<crewMember type="LIST_CREW_LEGION" prop="0.5"/>
+	</crew>
+</ship>
+<event name="OG_DAWN_PREIGN_QUEST_DESTINATION">
+	<beaconType id="map_icon_quest" global="true">
+		<color r="69" g="168" b="235" a="1"/>
+		<unvisitedTooltip>The intended destination of the cargo container.</unvisitedTooltip>
+	</beaconType>
+	<img back="BACK_EVENT_SMUGGLERPORT" planet="NONE"/>
+	<text>You arrive at the beacon to discover a large military installation, the destination on the cargo crate specifies a specific docking port to head to.</text>
+	<choice>
+		<text>Dock at specified docking port.</text>
+		<event>
+			<text>You ship glides into place at the docking port, You head out into the military installation but are stopped just outside. "This docking port was designated for special delivery, please move your ship to a different port."</text>
+			<choice>
+				<text>"Oh, Actually we are the delivery crew."</text>
+				<event>
+					<text>"Oh, well where's the Cargo Crate then?"</text>
+					<choice hidden="true" req="OG_CARGO_CRATE_PREIGN_WEAK">
+						<text>(Cargo Crate) Show her the Cargo Crate.</text>
+						<event>
+							<text>"Oh you weren't lying, there it is, please bring it and follow me, its not far from here."
+
+A moment later you find yourself in an odd looking labratory, there are several unattended tables around the room, but you're directed to a slightly larger one in the middle.</text>
+							<choice>
+								<text>Continue...</text>
+								<event>
+									<text>A scientist or perhaps an engineer walks over, "Ah excellent it's here." He pops the crate open and begin rummaging through it, looking for something.
+"Ah excellent, it was in here." He pulls out a strange looking device, you recognise it as one of the New Dawn's Turret Pre-energisers, although it appears modified. The engineer takes it to the table and begins connecting it up to several other components from the table.</text>
+									<remove name="OG_CARGO_CRATE_PREIGN_WEAK"/>
+									<choice>
+										<text>Continue...</text>
+										<event>
+											<text>He turns his attention to you, not appearing to actually care who he's talking to. "I present the Turret PRE-IGNITER, an enhanced version of our successful Pre-energiser. I suppose putting this together wasn't neccessary, but I like to have a final prototype, it makes it feel complete.</text>
+											<choice>
+												<text>Continue...</text>
+												<event>
+													<playSound>smallExplosion</playSound>
+													<text>Not a moment later the entire station is rocked by a large explosion, sirens and alarms start blaring and people start rushing through, the engineer turns to a nearby console, quickly bringing up the station's exterior camera's.
+On the vid screen you can makeout a strange looking ship silhouetted against the nearby star. "It's just as I suspected." The engineer turns towards you. "Captain, what kind of ship do you have?" "A cruiser, excellent, take the Turret Pre-igniter, I've saved the designs to a secure datacenter, but I cannot risk the physical prototype falling into their hands, please take it with you and get out of here, whatever you do, do not let it fall into the Rebellion's hands."</text>
+													<augment name="OG_TURRET_PREIGNITE"/>
+													<choice>
+														<text>Continue...</text>
+														<event>
+															<ship load="OG_DAWN_PREIGN_QUEST_LEGION_ASSAULT" hostile="true"/>
+															<text>You rush back to your ship, desperate to get it away from the installation before it gets damaged in the confusion.
+You undock for the station and begin to drift away when the hostile ship turns it's attention to you, warnings lightup across the cockpit warning you of the danger, prepare for combat.</text>
+															<choice>
+																<text>Continue...</text>
+																<event load="COMBAT_CHECK"/>
+															</choice>
+														</event>
+													</choice>
+												</event>
+											</choice>
+										</event>
+									</choice>
+								</event>
+							</choice>
+						</event>
+					</choice>
+					<choice hidden="true">
+						<text>"Ohh, uh we don't have it anymore."</text>
+						<event>
+							<text>"Right, well I'd recommend you move off before I have to throw you out of the airlock."
+You quickly return to your ship and prepare for your next jump.</text>
+							<choice>
+								<text>Do something onboard the ship.</text>
+								<event load="STORAGE_CHECK"/>
+							</choice>
+							<choice>
+								<text>Do nothing.</text>
+								<event/>
+							</choice>
+						</event>
+					</choice>
+				</event>
+			</choice>
+			<choice>
+				<text>"Oh sorry, we'll move off then."</text>
+				<event>
+					<text>You move your ship off of the docking port and prepare for your next jump.</text>
+					<choice>
+						<text>Do something onboard the ship.</text>
+						<event load="STORAGE_CHECK"/>
+					</choice>
+					<choice>
+						<text>Do nothing.</text>
+						<event/>
+					</choice>
+				</event>
+			</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>Ignore the installation.</text>
+		<event>
+			<text>You keep your distance and prepare for your next jump.</text>
+			<choice>
+				<text>Do something onboard the ship.</text>
+				<event load="STORAGE_CHECK"/>
+			</choice>
+			<choice>
+				<text>Do nothing.</text>
+				<event/>
+			</choice>
+		</event>
+	</choice>
+</event>
+
+<event name="OG_DAWN_PREIGN_LEGION_DEFEAT">
+	<text>The Rebel vessel has been defeated, leaving behind plenty of scrap matter, the unusual turret mounted to the ship survived with only a few minor dents and scratches. Surprisingly, you still detect faint life signs aboard the wreck as you scrap it...</text>
+	<autoReward level="HIGH">standard_no_item</autoReward>
+	<weapon name="OG_TURRET_LASER_ZENITH"/>
+	<choice hidden="true">	
+		<text>Continue...</text>
+		<event>
+			<text>You move closer, tearing open the cargo bay to find a wounded Rebel soldier. As soon as you approach he panics, reaching for a sharp piece of metal, and plunges it deep into his chest. An act of suicide, likely trying to stop you from getting information... but on what?</text>
+			<choice hidden="true">	
+				<text>Investigate the ship.</text>
+				<event>
+					<text>Seems most of the data on the ship was purged during the fight - a strange practice, but it seems they knew their fate before the fight had even begun. Whatever this ship was, it was under very clear orders not to let anything leak. Maybe this won't be the last time you see a ship like this, though that's very uncertain.</text>
+				</event>
+			</choice>
+		</event>
+	</choice>
+</event>
+
+<!--HOSTILE-->
+<eventList name="HOSTILE_OG_DAWN">
+	<event load="ENCOUNTER_OG_DAWN_SHIP"/>
+	<event load="ENCOUNTER_OG_DAWN_SHIP"/>
+
+	<event load="ENCOUNTER_OG_IRON_PULSAR"/>
+	<event load="ENCOUNTER_OG_PIRATE_PULSAR"/>
+
+	<event load="ENCOUNTER_REBELHOLD_STATION"/>
+	<event load="ENCOUNTER_REBEL"/>
+	<event load="ENCOUNTER_REBEL"/>
+</eventList>
+
+<textList name="TEXT_ENCOUNTER_OG_DAWN">
+	<text>As you jump into the system a New Dawn ship advances on your position. They are refusing all hails. Prepare for a fight.</text>
+	<text>Soon after arriving in the system you are hailed by a small cruiser. "What good fortune that we happen to run into each other. Nothing personal, but you have some information we need!"</text>
+	<text>The only other ship at this beacon messages you: "Finally, after months of waiting, someone has fallen into our trap!"</text>
+	<text>You barely have time to register jump completion before your ship warns you of an incoming ship with weapons hot.</text>
+</textList>
+<event name="ENCOUNTER_OG_DAWN_SHIP">
+	<text load="TEXT_ENCOUNTER_OG_DAWN"/>
+	<ship load="SHIP_OG_DAWN_FIGHT" hostile="true"/> 
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="COMBAT_CHECK"/>
+	</choice>
+</event>
+
+<!--SPECIAL-->
+
+<ship name="SHIP_OG_DAWN_HEIST_DAWN" auto_blueprint="OG_DAWN_RAIDER">
+	<destroyed>
+		<text load="TEXT_DESTROYED_OG_DAWN"/>
+		<autoReward level="HIGH">standard</autoReward>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event load="OG_DAWN_HEIST_IRON_WIN_FOLLOWUP"/>
+		</choice>
+	</destroyed>
+	<deadCrew>
+		<text load="TEXT_DEAD_CREW_OG_DAWN"/>
+		<autoReward level="HIGH">standard</autoReward>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event load="OG_DAWN_HEIST_IRON_WIN_FOLLOWUP"/>
+		</choice>
+	</deadCrew>
+</ship>
+<ship name="SHIP_OG_DAWN_HEIST_DAWN_RUN" auto_blueprint="OG_DAWN_RAIDER">
+	<surrender min="9" max="9" load="OG_DAWN_HEIST_DAWN_RUN"/>
+	<destroyed>
+		<text load="TEXT_DESTROYED_OG_DAWN"/>
+		<autoReward level="HIGH">standard</autoReward>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event load="OG_DAWN_HEIST_DAWN_RUN_CONT"/>
+		</choice>
+	</destroyed>
+	<deadCrew>
+		<text load="TEXT_DEAD_CREW_OG_DAWN"/>
+		<autoReward level="HIGH">standard</autoReward>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event load="OG_DAWN_HEIST_DAWN_RUN_CONT"/>
+		</choice>
+	</deadCrew>
+</ship>
+<ship name="SHIP_OG_DAWN_HEIST_DAWN_ESCORT" auto_blueprint="OG_DAWN_CORVETTE">
+	<destroyed>
+		<text load="TEXT_DESTROYED_OG_DAWN"/>
+		<autoReward level="MED">standard</autoReward>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event load="OG_DAWN_HEIST_ESCORT_FOLLOWUP_DAWN"/>
+		</choice>
+	</destroyed>
+	<deadCrew>
+		<text load="TEXT_DEAD_CREW_OG_DAWN"/>
+		<autoReward level="HIGH">standard</autoReward>
+		<recallBoarders force="true" ship="player"/>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event load="OG_DAWN_HEIST_ESCORT_FOLLOWUP_DAWN"/>
+		</choice>
+	</deadCrew>
+</ship>
+
+<ship name="SHIP_OG_DAWN_HEIST_IRON" auto_blueprint="OG_IRON_RAIDER">
+	<destroyed>
+		<text load="TEXT_DESTROYED_OG_IRON"/>
+		<autoReward level="HIGH">standard</autoReward>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event load="OG_DAWN_HEIST_DAWN_WIN_FOLLOWUP"/>
+		</choice>
+	</destroyed>
+	<deadCrew>
+		<text load="TEXT_DEAD_CREW_OG_IRON"/>
+		<autoReward level="HIGH">standard</autoReward>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event load="OG_DAWN_HEIST_DAWN_WIN_FOLLOWUP"/>
+		</choice>
+	</deadCrew>
+</ship>
+
+<ship name="SHIP_OG_DAWN_HEIST_IRON_RUN" auto_blueprint="OG_IRON_RAIDER">
+	<surrender min="9" max="9" load="OG_DAWN_HEIST_IRON_RUN"/>
+	<destroyed>
+		<text load="TEXT_DESTROYED_OG_IRON"/>
+		<autoReward level="HIGH">standard</autoReward>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event load="OG_DAWN_HEIST_IRON_RUN_CONT"/>
+		</choice>
+	</destroyed>
+	<deadCrew>
+		<text load="TEXT_DEAD_CREW_OG_IRON"/>
+		<autoReward level="HIGH">standard</autoReward>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event load="OG_DAWN_HEIST_IRON_RUN_CONT"/>
+		</choice>
+	</deadCrew>
+</ship>
+<ship name="SHIP_OG_DAWN_HEIST_IRON_ESCORT" auto_blueprint="OG_IRON_FIGHTER">
+	<destroyed>
+		<text load="TEXT_DESTROYED_OG_IRON"/>
+		<autoReward level="MED">standard</autoReward>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event load="OG_DAWN_HEIST_ESCORT_FOLLOWUP_IRON"/>
+		</choice>
+	</destroyed>
+	<deadCrew>
+		<text load="TEXT_DEAD_CREW_OG_IRON"/>
+		<autoReward level="HIGH">standard</autoReward>
+		<recallBoarders force="true" ship="player"/>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event load="OG_DAWN_HEIST_ESCORT_FOLLOWUP_IRON"/>
+		</choice>
+	</deadCrew>
+</ship>
+
+<event name="OG_DAWN_HEIST_START" unique="true">
+	<text>You've arrived at the beacon face to face with a pair of Iron Watch ships, one of them is just a common figher, but the other is an unusual design, a larger cruiser sized ship. An unusual sight in this sector, most of the Iron Watch were either forced out, or joined their leaders in turning to the New Dawn.</text>
+	<ship load="SHIP_OG_DAWN_HEIST_IRON_ESCORT" hostile="false"/> 
+	<choice hidden="true" req="rep_og_dawn" lvl="2" blue="false">
+		<text>Contact the ships.</text>
+		<event>
+			<text>Just as you were initiating contact with the Iron Watch vessel, alarms go off on your consoles, another ship have arrived, and this time it's not the Iron Watch. The new comer, a New Dawn vessel immediately opens fire on the larger of the two Iron Watch ships. The Iron watch ships which were previously neutral immediately move to defend, and assuming you're on the side of the New Dawn vessel the fighter splits off to engage you.</text>
+			<ship hostile="true"/>
+			<choice>
+				<text>Continue...</text>
+				<event load="COMBAT_CHECK"/>
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true" req="rep_og_dawn" lvl="-1" max_lvl="1" blue="false">
+		<text>Contact the ships.</text>
+		<event>
+			<text>Just as you were initiating contact with the Iron Watch vessel, alarms go off on your consoles, another pair of ships have arrived, and this time it's not the Iron Watch. The new comers, a pair of New Dawn vessels immediately opens fire on the larger of the two Iron Watch ships. The Iron watch ships which were previously neutral immediately move to defend from the attack.</text>
+			<ship load="SHIP_OG_DAWN_HEIST_DAWN_ESCORT" hostile="false"/> 
+			<choice>
+				<text>Aid the New Dawn.</text>
+				<event>
+					<text>You move in to defend the New Dawn fighter, who's already damaged and on the verge of defeat. You slip in between them and their opponent, the Iron Watch escort, weapons armed.</text>
+					<ship load="SHIP_OG_DAWN_HEIST_IRON_ESCORT" hostile="true"/> 
+					<choice>
+						<text>Continue...</text>
+						<event load="COMBAT_CHECK"/>
+					</choice>
+				</event>
+			</choice>
+			<choice>
+				<text>Aid the Iron Watch.</text>
+				<event>
+					<text>You move in to defend the Iron Watch escort ship, who's already damaged and on the verge of defeat. You slip in between them and their opponent, the New Dawn fighter, weapons armed.</text>
+					<ship hostile="true"/> 
+					<choice>
+						<text>Continue...</text>
+						<event load="COMBAT_CHECK"/>
+					</choice>
+				</event>
+			</choice>
+			<choice>
+				<text>Use the confusion to escape.</text>
+				<event>
+					<text>You keep your distance and prepare for your next jump.</text>
+					<choice>
+						<text>Do something onboard the ship.</text>
+						<event load="STORAGE_CHECK"/>
+					</choice>
+					<choice>
+						<text>Do nothing.</text>
+						<event/>
+					</choice>
+				</event>
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true" req="rep_og_dawn" lvl="-99" max_lvl="-2" blue="false">
+		<text>Contact the ships.</text>
+		<event>
+			<text>Just as you were initiating contact with the Iron Watch vessel, alarms go off on your consoles, another pair of ships have arrived, and this time it's not the Iron Watch. The new comers, a pair of New Dawn vessels immediately opens fire on the larger of the two Iron Watch ships. The Iron watch ships which were previously neutral immediately move to defend from the attack.</text>
+			<ship load="SHIP_OG_DAWN_HEIST_DAWN_ESCORT" hostile="false"/> 
+			<choice>
+				<text>Aid the Iron Watch.</text>
+				<event>
+					<text>You move in to defend the Iron Watch escort ship, who's already damaged and on the verge of defeat. You slip in between them and their opponent, the New Dawn fighter, weapons armed.</text>
+					<ship hostile="true"/> 
+					<choice>
+						<text>Continue...</text>
+						<event load="COMBAT_CHECK"/>
+					</choice>
+				</event>
+			</choice>
+			<choice>
+				<text>Use the confusion to escape.</text>
+				<event>
+					<text>You keep your distance and prepare for your next jump.</text>
+					<choice>
+						<text>Do something onboard the ship.</text>
+						<event load="STORAGE_CHECK"/>
+					</choice>
+					<choice>
+						<text>Do nothing.</text>
+						<event/>
+					</choice>
+				</event>
+			</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>Ignore the ships.</text>
+		<event>
+			<text>You keep your distance and prepare for your next jump.</text>
+			<choice>
+				<text>Do something onboard the ship.</text>
+				<event load="STORAGE_CHECK"/>
+			</choice>
+			<choice>
+				<text>Do nothing.</text>
+				<event/>
+			</choice>
+		</event>
+	</choice>
+</event>
+
+<event name="OG_DAWN_HEIST_ESCORT_FOLLOWUP_IRON">
+	<text>The debris clears around you, it appears the New Dawn escort ship you were protecting has left, running or jumping away. The two main cruisers however are still locked in battle, both damaged and leaking.
+The New Dawn cruiser contacts you, "Please Captain, we can't last much longer, step in and finish the job."</text>
+	<ship load="SHIP_OG_DAWN_HEIST_IRON_RUN" hostile="true"/>
+	<enemyDamage amount="1" system="weapons" effect="fire"/>
+	<enemyDamage amount="2" system="shields" effect="fire"/>
+	<enemyDamage amount="0" system="cloaking" effect="fire"/>
+	<enemyDamage amount="1" system="og_turret" effect="breach"/>
+	<enemyDamage amount="1" system="og_turret_mini" effect="fire"/>
+	<enemyDamage amount="0" system="og_turret_mini_2" effect="fire"/>
+	<enemyDamage amount="0" system="og_turret_mini_3" effect="fire"/>
+	<choice>
+		<text>Aid the New Dawn cruiser.</text>
+		<event load="COMBAT_CHECK"/>
+	</choice>
+	<choice>
+		<text>Abandon the New Dawn ship.</text>
+		<event>
+			<ship hostile="false"/>
+			<instantEscape/>
+			<text>You keep your distance and its not long before the New Dawn ship explodes, the Iron Watch ship still clearly afraid of you in their damaged state chooses to jump away.</text>
+		</event>
+	</choice>
+</event>
+<event name="OG_DAWN_HEIST_IRON_RUN">
+	<text>Despite taking heavy fire, the Iron Watch ship managed to trigger an emergency jump, slipping into the void just as their systems were beginning to fail.</text>
+	<recallBoarders force="true" ship="player"/>
+	<instantEscape/>
+	<choice>
+		<text>Continue...</text>
+		<event name="OG_DAWN_HEIST_IRON_RUN_CONT">
+			<text>The good news however is the the New Dawn cruiser managed to survive. "Captain, it's a good thing you were here, it's clear we would have been doomed without your help, Thank you. Now, what I'm about to ask you is against protocol but clearly we're up against some tough opponents here, we could really use your help."
+"Recently we recovered some intel from an Iron Watch transport we captured, it held plans for a heist on one of our data-vaults, We know they've setup a secret base somewhere nearby in preparation for the heist, but we haven't found it yet, we were hoping one of these ships had that information on them."</text>
+			<choice>
+				<text>Agree to help, and direct them to the Iron Watch escort you defeated earlier.</text>
+				<event>
+					<text>You direct the cruiser to investigate the escort you destroyed, they begin scavenging the wreck searching for any intact consoles or systems. It's only a few minutes later when you recieve contact from them, "Aha, Captain we've found it, they actually setup inside of a large asteroid in the same system as the Data-vault, unfortunately from the cargo transcript we found it appears they're quite close to being ready, we need to get there as quick as possible, we'll send you the location now."</text>
+					<quest event="OG_DAWN_HEIST_QUEST_DAWN"/>
+				</event> 
+			</choice>
+			<choice>
+				<text>Politely decline, you've got a more important mission ahead.</text>
+				<event/>
+			</choice>
+		</event>
+	</choice>
+</event>
+
+<event name="OG_DAWN_HEIST_ESCORT_FOLLOWUP_DAWN">
+	<text>The debris clears around you, it appears the Iron Watch escort ship you were protecting has left, running or jumping away. The two main cruisers however are still locked in battle, both damaged and leaking.
+The Iron Watch cruiser contacts you, "Please Captain, we can't last much longer, step in and finish the job."</text>
+	<ship load="SHIP_OG_DAWN_HEIST_DAWN_RUN" hostile="true"/>
+	<enemyDamage amount="1" system="weapons" effect="fire"/>
+	<enemyDamage amount="2" system="shields" effect="fire"/>
+	<enemyDamage amount="0" system="cloaking" effect="fire"/>
+	<enemyDamage amount="1" system="og_turret" effect="breach"/>
+	<enemyDamage amount="1" system="og_turret_mini" effect="fire"/>
+	<enemyDamage amount="0" system="og_turret_mini_2" effect="fire"/>
+	<enemyDamage amount="0" system="og_turret_mini_3" effect="fire"/>
+	<choice>
+		<text>Aid the Iron Watch cruiser.</text>
+		<event load="COMBAT_CHECK"/>
+	</choice>
+	<choice>
+		<text>Abandon the Iron Watch ship.</text>
+		<event>
+			<ship hostile="false"/>
+			<instantEscape/>
+			<text>You keep your distance and its not long before the Iron Watch ship explodes, the New Dawn ship still clearly afraid of you in their damaged state chooses to jump away.</text>
+		</event>
+	</choice>
+</event>
+<event name="OG_DAWN_HEIST_DAWN_RUN">
+	<text>Despite taking heavy fire, the Iron Watch ship managed to trigger an emergency jump, slipping into the void just as their systems were beginning to fail.</text>
+	<recallBoarders force="true" ship="player"/>
+	<instantEscape/>
+	<choice>
+		<text>Continue...</text>
+		<event name="OG_DAWN_HEIST_DAWN_RUN_CONT">
+			<text>The good news however is the the Iron Watch cruiser managed to survive. "Captain, it's a good thing you were here, it's clear we would have been doomed without your help, Thank you. Now I shouldn't be telling you this, but clearly we need the help."
+"We're in the process of preparing for a raid on the a New Dawn data-vault, capturing the information held there will be a great boon in the war, but its heavily defended. We've been preparing with supplies and equipment nearby the data-vault, hidden from their sensors. We're almost ready to go, so we'd appreciate your help during the raid."</text>
+			<choice>
+				<text>Agree to help.</text>
+				<event>
+					<text>"Excellent! I look forward to having the extra fire support during the raid, we'll send you the location now, good luck and see you soon."</text>
+					<quest event="OG_DAWN_HEIST_QUEST_IRON"/>
+				</event>
+			</choice>
+			<choice>
+				<text>Politely decline, you've got a more important mission ahead.</text>
+				<event/>
+			</choice>
+		</event>
+	</choice>
+</event>
+
+
+<event name="OG_DAWN_HEIST_QUEST_DAWN">
+	<beaconType id="map_icon_quest" global="true">
+		<color r="69" g="168" b="235" a="1"/>
+		<unvisitedTooltip>The location of the Iron Watch's secret base.</unvisitedTooltip>
+	</beaconType>
+	<img back="BACKGROUND" planet="PLANET_POPULATED"/>
+	<text>You've arrived at the rendevouz point, the New Dawn cruiser is there already. "You're here Captain, we can set-off then, follow me and prepare for combat."</text>
+	<choice>
+		<text>Follow the cruiser.</text>
+		<event>
+			<text>You follow the cruiser, passing by several large asteroids floating in the void. You don't even realize when you get to the Iron Watch base until you're right up against it, you pickup the faintest blip on your sensors in the center of a large asteroid, protected from detection by the thick layer of rock.
+Now that you know where their base is it doesn't take you long to locate the entrance, a natural cave in the asteroid that leads inwards.</text>
+			<choice>
+				<text>Follow the cruiser inside.</text>
+				<event>
+					<text>You eventually make it out into a cavernous space, smaller than you expected but packed with cargo containers and a few temporary structures. However a quick scan indicates that the base is empty, abandoned. The New Dawn ship realizing this aswell quickly turns back the way you came, with full power to their engines. "Captain, we've made a mistake, they've already moved on the data-vault, I need to get back there now!"</text>
+					<choice>
+						<text>Continue...</text>
+						<event>
+							<text>Once outside, "We're heading back to the data-vault, I want you to stay here, in case they've simply moved somewhere else nearby, or worse, completed their mission already and are on their way back. If anyone shows up we can't risk them escaping with the data, do not let them escape." With that they leave, heading off towards the data-vault.</text>
+							<choice>
+								<text>Continue..</text>
+								<event>
+									<text>Just when you were getting bored, a ship appears on your sensors, at first you think it's the New Dawn ship returning, but it quickly resolves to be an Iron Watch ship, the same ship that escaped from you earlier.
+Upon seeing you they also activate their weapons, preparing to attack. You notice however that it appears their engines are damage, it appears they're attempting an emergency jump to escape, but it will take a few minutes due to the damage, now is your chance.</text>
+									<ship load="SHIP_OG_DAWN_HEIST_IRON" hostile="true"/>
+									<enemyDamage amount="1" system="engines" effect="fire"/>
+									<triggeredEvent name="OG_DAWN_HEIST_DAWN_TIMER" event="OG_DAWN_HEIST_DAWN_FAIL" time="150" clearOnJump="true" thisFight="false">
+										<triggeredEventBox load="DEFAULT_TIMER" pos="default">
+											<warning time="30.0" flash="false"/>
+											<tooltip>Time until the Iron Watch cruiser will be able to execute an emergency jump.</tooltip>
+										</triggeredEventBox>
+										<timerSounds load="DEFAULT_TIMER_SOUNDS"/>
+									</triggeredEvent>
+									<choice>
+										<text>Continue...</text>
+										<event load="COMBAT_CHECK"/>
+									</choice>
+								</event>
+							</choice>
+						</event>
+					</choice>
+				</event>
+			</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>"Actually, we've had second thought's, we'd rather avoid this conflict."</text>
+		<event>
+			<text>The New Dawn Captain is disapointed and goes off on his own, hopefully their ship will be powerful enough on their own.</text>
+			<choice>
+				<text>Do something onboard the ship.</text>
+				<event load="STORAGE_CHECK"/>
+			</choice>
+			<choice>
+				<text>Do nothing.</text>
+				<event/>
+			</choice>
+		</event>
+	</choice>
+</event>
+<event name="OG_DAWN_HEIST_DAWN_FAIL">
+	<recallBoarders force="true" ship="both"/>
+	<instantEscape/>
+	<text>The ship jumps away, if they had the data it's gone now, you've failed. You wait but don't hear back from the New Dawn, you're on your own again.</text>
+</event>
+<event name="OG_DAWN_HEIST_DAWN_WIN_FOLLOWUP">
+	<clearTriggeredEvent name="OG_DAWN_HEIST_DAWN_TIMER"/>
+	<text>It's only a few minutes later when the New Dawn cruiser arrives, "Oh thank the gods you managed to stop them, we defeated the rest of the ships at the data-vault, but this one slipped through our defenses, we believe they had the stolen data on them, the salvage team are on their way now to try and cleanup anything that survived. We cannot thank you enough for the help."
+
+"One of the things they attempted to steal were the plans for a new cruiser we have designed, I've taken the liberty to download the design myself for you, try not to let it fall into the wrong hands. Additionally, and possibly more immediately helpful to you, I have a selection of New Dawn equipment, take whatever you like the look of, I can just write it off as destroyed in the battle."</text>
+	<unlockCustomShip silent="false">PLAYER_SHIP_OG_DAWN_SPEAR</unlockCustomShip>
+	<choice hidden="false">
+		<text>Take:</text>
+		<event>
+			<text>You choose one of the New Dawn turrets, after which the Captain thanks you again before heading back to the data-vault</text>
+			<weapon name="OG_TURRET_LASER_DAWN"/>
+		</event>
+	</choice>
+	<choice hidden="false">
+		<text>Take:</text>
+		<event>
+			<text>You choose one of the New Dawn turrets, after which the Captain thanks you again before heading back to the data-vault</text>
+			<weapon name="OG_TURRET_ION_DAWN"/>
+		</event>
+	</choice>
+	<choice hidden="false">
+		<text>Take:</text>
+		<event>
+			<text>You choose one of the New Dawn turrets, after which the Captain thanks you again before heading back to the data-vault</text>
+			<weapon name="OG_TURRET_MISSILE_DAWN"/>
+		</event>
+	</choice>
+	<choice hidden="false">
+		<text>Take:</text>
+		<event>
+			<text>You choose one of the New Dawn turrets, after which the Captain thanks you again before heading back to the data-vault</text>
+			<weapon name="OG_TURRET_FLAK_DAWN"/>
+		</event>
+	</choice>
+	<choice hidden="false">
+		<text>Take:</text>
+		<event>
+			<text>You choose one of the New Dawn turrets, after which the Captain thanks you again before heading back to the data-vault</text>
+			<weapon name="OG_TURRET_FOCUS_DAWN"/>
+		</event>
+	</choice>
+</event>
+
+
+<event name="OG_DAWN_HEIST_QUEST_IRON">
+	<beaconType id="map_icon_quest" global="true">
+		<color r="69" g="168" b="235" a="1"/>
+		<unvisitedTooltip>The location of the New Dawn data-vault to be raided.</unvisitedTooltip>
+	</beaconType>
+	<img back="BACKGROUND" planet="PLANET_POPULATED"/>
+	<text>You've arrived at the rendevouz point, the Iron Watch cruiser is already there, alongside a small fleet of smaller military vessels. "You're here Captain, we can set-off then, follow me and prepare for combat."</text>
+	<choice>
+		<text>Follow the cruiser.</text>
+		<event>
+			<text>You follow the cruiser, the data-vault quickly appears on your sensors, a large station heavily defended, it has a massive solar array nearby providing power to it.
+The Iron Watch cruiser contacts you, "Stick with me, I have the main raid force onboard, the other ships will be providing cover for the raid, I want you there in case anything unexpected happens."</text>
+			<choice>
+				<text>"Aye, we'll be there."</text>
+				<event>
+					<text>The smaller ships engage first, pulling defenders away from the station, aswell as laying into and disabling many of the turrets built onto the station. It all appears to be going well until a large New Dawn vessel reveals its self from behind the station, heading straight towards you and the Iron Watch cruiser. "You need to stop that ship, we're heavy on crew and equipment, we're not actually outfitted for ship to ship combat. You need to prevent them from making it too us."</text>
+					<ship load="SHIP_OG_DAWN_HEIST_DAWN" hostile="true"/>
+					<triggeredEvent name="OG_DAWN_HEIST_IRON_TIMER" event="OG_DAWN_HEIST_IRON_FAIL" time="150" clearOnJump="true" thisFight="false">
+						<triggeredEventBox load="DEFAULT_TIMER" pos="default">
+							<warning time="30.0" flash="false"/>
+							<tooltip>Time until the New Dawn vessel is within firing range of the Iron Watch cruiser.</tooltip>
+						</triggeredEventBox>
+						<timerSounds load="DEFAULT_TIMER_SOUNDS"/>
+					</triggeredEvent>
+					<choice>
+						<text>Continue...</text>
+						<event load="COMBAT_CHECK"/>
+					</choice>
+				</event>
+			</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>"Actually, we've had second thought's, we'd rather avoid this conflict."</text>
+		<event>
+			<text>The New Dawn Captain is disapointed and goes off on his own, hopefully their ship will be powerful enough on their own.</text>
+			<choice>
+				<text>Do something onboard the ship.</text>
+				<event load="STORAGE_CHECK"/>
+			</choice>
+			<choice>
+				<text>Do nothing.</text>
+				<event/>
+			</choice>
+		</event>
+	</choice>
+</event>
+<event name="OG_DAWN_HEIST_IRON_FAIL">
+	<recallBoarders force="true" ship="both"/>
+	<ship hostile="false"/>
+	<text>The New Dawn vessel turns away from you and begins firing on the Iron Watch vessel, you watch as it disintergrates under the continuous fire, eventually breaking apart, dashing any hopes of a successful raid. The rest of the Iron Watch force falls around you, the New Dawn defences turning towards you, forcing you back, eventually you're forced to run, or else be destroyed.</text>
+</event>
+<event name="OG_DAWN_HEIST_IRON_WIN_FOLLOWUP">
+	<clearTriggeredEvent name="OG_DAWN_HEIST_IRON_TIMER"/>
+	<text>With the New Dawn vessel defeated nothing prevents your force from completely the raid. The rest of the defences are cleaned up and the Iron Watch vessel eventually disengages with the station. "It's a success, thanks for the help Captain, we couldn't have done it without you. I've taken the liberty of extracting any data that may be useful to you, additionally we've captured a selection of New Dawn equipment, take whatever you need."</text>
+	<unlockCustomShip silent="false">PLAYER_SHIP_OG_DAWN_SPEAR</unlockCustomShip>
+	<modifyPursuit amount="-1"/>
+	<choice hidden="false">
+		<text>Take:</text>
+		<event>
+			<text>You choose one of the New Dawn turrets, after which the Captain thanks you again before continuing back to their base.</text>
+			<weapon name="OG_TURRET_LASER_DAWN"/>
+		</event>
+	</choice>
+	<choice hidden="false">
+		<text>Take:</text>
+		<event>
+			<text>You choose one of the New Dawn turrets, after which the Captain thanks you again before continuing back to their base.</text>
+			<weapon name="OG_TURRET_ION_DAWN"/>
+		</event>
+	</choice>
+	<choice hidden="false">
+		<text>Take:</text>
+		<event>
+			<text>You choose one of the New Dawn turrets, after which the Captain thanks you again before continuing back to their base.</text>
+			<weapon name="OG_TURRET_MISSILE_DAWN"/>
+		</event>
+	</choice>
+	<choice hidden="false">
+		<text>Take:</text>
+		<event>
+			<text>You choose one of the New Dawn turrets, after which the Captain thanks you again before continuing back to their base.</text>
+			<weapon name="OG_TURRET_FLAK_DAWN"/>
+		</event>
+	</choice>
+	<choice hidden="false">
+		<text>Take:</text>
+		<event>
+			<text>You choose one of the New Dawn turrets, after which the Captain thanks you again before continuing back to their base.</text>
+			<weapon name="OG_TURRET_FOCUS_DAWN"/>
+		</event>
+	</choice>
+</event>
+
+<!--TRANSPORT-->
+
+<ship name="SHIP_OG_DAWN_TRANSPORT_LOOT" auto_blueprint="OG_DAWN_TRANSPORT">
+	<escape timer="40" min="999" max="999" >
+		<text>They look like they don't want to fight. They are trying to escape.</text>
+		<ship hostile="true"/>
+	</escape>
+	<destroyed load="TRANSPORT_DESTROYED"/>
+	<deadCrew load="TRANSPORT_CAPTURE_OG_DAWN"/>
+</ship>
+
+<event name="TRANSPORT_OG_DAWN_LOOT" unique="true">
+    <preventQuest/>
+	<beaconType id="map_icon_transport" global="true" req="LOOT_COMPASS">
+		<color r="255" g="186" b="0" a="1"/>
+		<unvisitedTooltip>An unvisited location.</unvisitedTooltip>
+		<visitedTooltip>Explored location. Nothing left of interest.</visitedTooltip>
+		<undiscoveredTooltip>An unvisited location.</undiscoveredTooltip>
+	</beaconType>
+	<text>This beacon hosts a New Dawn transport. It's safe to bet the ship is most likely carrying some special tech. If you can kill its crew, their cargo will be yours.</text>
+    <ship load="SHIP_OG_DAWN_TRANSPORT_LOOT" hostile="false"/>
+	<choice>
+        <text>Demand the surrender of their goods.</text>
+        <event>
+            <text>You prepare to secure their cargo by force.</text>
+            <ship hostile="true"/>
+            <choice hidden="true">
+                <text>Continue...</text>
+                <event load="COMBAT_CHECK"/>
+            </choice>
+        </event>
+    </choice>
+    <choice>
+        <text>Avoid the ship.</text>
+        <event>
+            <text>They stay outside your weapons range, and eventually jump away.</text>
+            <choice hidden="true">
+                <text>Do something onboard the ship.</text>
+                <event load="STORAGE_CHECK"/>
+            </choice>
+            <choice hidden="true">
+                <text>Do nothing.</text>
+                <event/>
+            </choice>
+        </event>
+    </choice>
+</event>
+<event name="TRANSPORT_CAPTURE_OG_DAWN" unique="true">
+    <text>The crew is dead, leaving you with the ship. Its cargo is yours for the taking. Aboard is the special tech you expected, which you bring back to your ship.</text>
+    <autoReward level="MED">standard_no_item</autoReward>
+	<achievement>ACH_TRANS_OG_DAWN</achievement>
+    <weapon name="LOOT_OG_DAWN_1"/>
+	<variable name="ach_trans_og_dawn" op="set" val="1"/>
+</event>
 </FTL>

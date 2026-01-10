@@ -154,7 +154,7 @@ This enemy possesses New Dawn turrets, when hit by these rooms will be temporari
 		<mod-append:empty/>
 		<mod-append:empty/>
 		<mod-append:empty/>
-		<mod-append:empty/>
+		<mod-append:ship>PLAYER_SHIP_OG_DAWN_BIG</mod-append:ship>
 		
 		<mod-append:empty/>
 		<mod-append:empty/>
@@ -187,7 +187,7 @@ This enemy possesses New Dawn turrets, when hit by these rooms will be temporari
 		</achievement>
 		<achievement name="SHIP_ACH_OG_RAIDER_3" layout="all">
 			<name>Heavy Lifting</name>
-			<description>As a Raider Class Vessel: Reach Sector 8 without buying weapons or drones' systems (or upgrading them as ship starting systems).</description>
+			<description>As a Raider-Class vessel: Reach Sector 8 without buying weapons or drones' systems (or upgrading them as ship starting systems).</description>
 			<icon>ogp_raider_3_icon</icon>
 			<lockImage>ogp_raider_3_icon_locked</lockImage>
 		</achievement>
@@ -236,7 +236,7 @@ This enemy possesses New Dawn turrets, when hit by these rooms will be temporari
 	</mod-append:customShip>
 
 	<mod-append:ship name="PLAYER_SHIP_OG_DAWN_SPEAR" b="true" c="true" >
-		<!--arrow variant="a" direction="down" tooltip="ship_unlock_og_two_wins" image="arrow_v_down.png" unlockedImage="arrow_v_down_on.png">PLAYER_SHIP_OG_EXECUTOR</arrow-->
+		<arrow variant="a" direction="down" tooltip="ship_unlock_og_two_wins" image="arrow_v_down.png" unlockedImage="arrow_v_down_on.png">PLAYER_SHIP_OG_DAWN_BIG</arrow>
 		<unlock variant="a" silent="false">
 			<type>4</type>
 		</unlock>
@@ -249,20 +249,20 @@ This enemy possesses New Dawn turrets, when hit by these rooms will be temporari
 			<type>4</type>
 		</unlock>
 		<achievement name="SHIP_ACH_OG_DAWN_SPEAR_1" layout="all">
-			<name>War Economy</name>
-			<description>As a Raider-Class vessel, create a new turret of your own.</description>
+			<name>Point Defence</name>
+			<description>Shoot down 5 projectiles or drones in a single fight as a Spearhead-Class vessel.</description>
 			<icon>ogp_dawn_spear_1_icon</icon>
 			<lockImage>ogp_dawn_spear_1_icon_locked</lockImage>
 		</achievement>
 		<achievement name="SHIP_ACH_OG_DAWN_SPEAR_2" layout="all">
-			<name>Treading on the Rattlesnake</name>
-			<description>Defeat a New Dawn ship by destroying their hull using a Raider-Class vessel.</description>
+			<name>Rebel Allegiance</name>
+			<description>Reach Sector 8 without recruiting a single non-human crew onto a Spearhead-Class vessel.</description>
 			<icon>ogp_dawn_spear_2_icon</icon>
 			<lockImage>ogp_dawn_spear_2_icon_locked</lockImage>
 		</achievement>
 		<achievement name="SHIP_ACH_OG_DAWN_SPEAR_3" layout="all">
-			<name>Heavy Lifting</name>
-			<description>As a Raider Class Vessel: Reach Sector 8 without buying weapons or drones' systems (or upgrading them as ship starting systems).</description>
+			<name>Combo Breaker</name>
+			<description>As a Spearhead-Class vessel: Trigger the bonus system damage from a New Dawn turret 6 times from an application of the effect.</description>
 			<icon>ogp_dawn_spear_3_icon</icon>
 			<lockImage>ogp_dawn_spear_3_icon_locked</lockImage>
 		</achievement>
@@ -287,14 +287,76 @@ This enemy possesses New Dawn turrets, when hit by these rooms will be temporari
 		<systemLimit>9</systemLimit>
 	</mod-append:customShip>
 
+	<mod-append:ship name="PLAYER_SHIP_OG_DAWN_BIG" b="true" c="true" >
+		<unlock variant="a">
+			<type>2</type>
+			<shipReq>PLAYER_SHIP_OG_DAWN_SPEAR_2</shipReq>
+			<shipReq>PLAYER_SHIP_OG_DAWN_SPEAR_3</shipReq>
+		</unlock>
+		<unlock variant="a">
+			<type>2</type>
+			<shipReq>PLAYER_SHIP_OG_DAWN_SPEAR</shipReq>
+			<shipReq>PLAYER_SHIP_OG_DAWN_SPEAR_3</shipReq>
+		</unlock>
+		<unlock variant="a">
+			<type>2</type>
+			<shipReq>PLAYER_SHIP_OG_DAWN_SPEAR</shipReq>
+			<shipReq>PLAYER_SHIP_OG_DAWN_SPEAR_2</shipReq>
+		</unlock>
+		<unlock variant="b" silent="false">
+			<type>1</type>
+			<shipReq>PLAYER_SHIP_OG_DAWN_SPEAR</shipReq>
+			<value>8</value>
+		</unlock>
+		<unlock variant="c" silent="false">
+			<type>4</type>
+		</unlock>
+		<achievement name="SHIP_ACH_OG_DAWN_BIG_1" layout="all">
+			<name>Trojan Horse</name>
+			<description>As a Colossus-Class vessel, fill all of your crew slots.</description>
+			<icon>ogp_dawn_big_1_icon</icon>
+			<lockImage>ogp_dawn_big_1_icon_locked</lockImage>
+		</achievement>
+		<achievement name="SHIP_ACH_OG_DAWN_BIG_2" layout="all">
+			<name>Synchronized Assault</name>
+			<description>As a Colossus-Class vessel: Equip the same turret in all of your turret slots.</description>
+			<icon>ogp_dawn_big_2_icon</icon>
+			<lockImage>ogp_dawn_big_2_icon_locked</lockImage>
+		</achievement>
+		<achievement name="SHIP_ACH_OG_DAWN_BIG_3" layout="all">
+			<name>This is my rifle, these are my Guns!</name>
+			<description>Upgrade all of your large turrets to 5 power as a Colossus-Class vessel.</description>
+			<icon>ogp_dawn_big_3_icon</icon>
+			<lockImage>ogp_dawn_big_3_icon_locked</lockImage>
+		</achievement>
+	</mod-append:ship>
+	<mod-append:customShip name="PLAYER_SHIP_OG_DAWN_BIG">
+		<hiddenAug>SHIP_OG_DAWN</hiddenAug>
+		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
+		<crewLimit>11</crewLimit>
+		<systemLimit>10</systemLimit>
+	</mod-append:customShip>
+	<mod-append:customShip name="PLAYER_SHIP_OG_DAWN_BIG_2">
+		<hiddenAug>SHIP_OG_DAWN</hiddenAug>
+		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
+		<crewLimit>11</crewLimit>
+		<systemLimit>10</systemLimit>
+	</mod-append:customShip>
+	<mod-append:customShip name="PLAYER_SHIP_OG_DAWN_BIG_3">
+		<hiddenAug>SHIP_OG_DAWN</hiddenAug>
+		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
+		<crewLimit>11</crewLimit>
+		<systemLimit>10</systemLimit>
+	</mod-append:customShip>
+
 	<mod-append:ship name="PLAYER_SHIP_OG_KESTREL" b="false" c="false" >
 		<arrow variant="a" direction="right" tooltip="ship_unlock_sector5" image="arrow_5_right.png" unlockedImage="arrow_5_right_on.png">PLAYER_SHIP_OG_REBEL</arrow>
 	</mod-append:ship>
 	<mod-append:customShip name="PLAYER_SHIP_OG_KESTREL">
 		<hiddenAug>SHIP_KESTREL</hiddenAug>
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
-		<crewLimit>8</crewLimit>
-		<systemLimit>10</systemLimit>
+		<crewLimit>11</crewLimit>
+		<systemLimit>8</systemLimit>
 	</mod-append:customShip>
 
 	<mod-append:ship name="PLAYER_SHIP_OG_REBEL" b="false" c="false" >
@@ -505,6 +567,12 @@ This enemy possesses New Dawn turrets, when hit by these rooms will be temporari
 			<shipIcon>icon_og_turret_dawn</shipIcon>
 		</shipIcons>
 	</mod-append:customShip>
+	<mod-append:customShip name="OG_LEGION_ASSAULT_TURRET">
+		<shipIcons>
+			<shipIcon>icon_threat</shipIcon>
+		</shipIcons>
+		<noFuelStalemate/>
+	</mod-append:customShip>
 </mod:findLike>
 
 <mod:findLike type="augments" limit="1" reverse="false">
@@ -540,11 +608,15 @@ This enemy possesses New Dawn turrets, when hit by these rooms will be temporari
 	<variable name="rep_og_iron" op="set" val="0"/>
 	<variable name="rep_og_dawn" op="set" val="0"/>
 	<variable name="rep_comb_og_iron" op="set" val="0"/>
+	<variable name="ach_trans_og_dawn" op="set" val="0"/>
+
+	<variable name="sec_unique_og_dawn" op="set" val="0"/>
 	
 	<variable name="og_turret_adaptive_saved_x" op="set" val="0"/>
 	<variable name="og_turret_adaptive_saved_y" op="set" val="0"/>
 
 	<metaVariable name="juke_og_iron" op="set" val="0"/>
+	<metaVariable name="juke_og_dawn" op="set" val="0"/>
 	<metaVariable name="og_turret_tutorial" op="set" val="0"/>
 
 	<req name="OG_TURRET_TUTORIAL_SHOW" type="all">
@@ -580,6 +652,13 @@ This enemy possesses New Dawn turrets, when hit by these rooms will be temporari
 		<name>loc_astrometrics_neutral_og</name>
 		<req lvl="0" max_lvl="0">
 			<name>loc_astrometrics_neutral</name>
+		</req>
+	</req>
+
+	<req name="LIST_REBEL_WITHOUT_OG_DAWN" type="all">
+		<name>LIST_CREW_REBEL_ALL</name>
+		<req lvl="0" max_lvl="0">
+			<name>LIST_CREW_OG_DAWN</name>
 		</req>
 	</req>
 
@@ -619,7 +698,7 @@ This enemy possesses New Dawn turrets, when hit by these rooms will be temporari
 		</skills>
 	</race>
 	<race name="human_og_dawn">
-		<damageMultiplier>1.2</damageMultiplier>
+		<damageMultiplier>1</damageMultiplier>
 		<damageTakenMultiplier>0.7</damageTakenMultiplier>
 		<fireDamageMultiplier>0.6</fireDamageMultiplier>
 		<suffocationModifier>0.83</suffocationModifier>
@@ -639,8 +718,8 @@ This enemy possesses New Dawn turrets, when hit by these rooms will be temporari
 			<tooltip>[COOLDOWN:30s  DURATION: 15s]
 				Grants the following effects:
 				-Avoids being targetted by crew.
-				-Damage reduced by 25%
-				-Sabotage Speed reduced by 50%
+				-Damage increased by 50%
+				-Sabotage Speed increased by 25%
 				-Cloak duration passively regenerates
 				-Cloak duration reduces from the following actions:
 					-Attacking, 1x
@@ -653,12 +732,12 @@ This enemy possesses New Dawn turrets, when hit by these rooms will be temporari
 				<finishSounds>
 					<finishSound>decloak</finishSound>
 				</finishSounds>
-				<damageMultiplier>0.6</damageMultiplier>
+				<damageMultiplier>1.5</damageMultiplier>
 				<animSheet baseVisible="true">human_og_dawn_cloak</animSheet>
 				<canFight>true</canFight>
 				<canSabotage>true</canSabotage>
 				<validTarget>false</validTarget>
-				<sabotageSpeedMultiplier>0.5</sabotageSpeedMultiplier>
+				<sabotageSpeedMultiplier>1.25</sabotageSpeedMultiplier>
 			</temporaryEffect>
 		</powerEffect>
 		<skills>
@@ -680,9 +759,26 @@ This enemy possesses New Dawn turrets, when hit by these rooms will be temporari
 				<description id="jukebox_unlocked" />
 				<secretDescription id="jukebox_locked" />
 				<header id="jukebox_header" />
-				<icon>music_unlocked</icon>
+				<icon>music_unlocked_og</icon>
 				<variable name="juke_og_iron" amount="1" />
 				<multiDifficulty>false</multiDifficulty>
+			</achievement>
+			<achievement name="MUSIC_OG_DAWN">
+				<name>New Dawn</name>
+				<description id="jukebox_unlocked" />
+				<secretDescription id="jukebox_locked" />
+				<header id="jukebox_header" />
+				<icon>music_unlocked_og</icon>
+				<variable name="juke_og_dawn" amount="1" />
+				<multiDifficulty>false</multiDifficulty>
+			</achievement>
+			<achievement name="ACH_TRANS_OG_DAWN">
+				<name>New Dawn Transport</name>
+				<secretDescription>Obtain the loot from the New Dawn loot transport.</secretDescription>
+				<description>Obtain the Pierce Laser I from the New Dawn loot transport.</description>
+				<icon>ach_trans_og_dawn</icon>
+				<header>Loot Acquired</header>
+				<sound>achievement</sound>
 			</achievement>
 			<achievement name="ACH_OG_REN_IRON">
 				<name>Turret Support</name>

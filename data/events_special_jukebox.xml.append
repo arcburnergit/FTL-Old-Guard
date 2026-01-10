@@ -8,5 +8,13 @@ Composed by: Lizzard</text>
 			<loadEvent>STORAGE_CHECK_JUKEBOX</loadEvent>
 		</event>
 	</mod-append:choice>
+	<mod-append:choice hidden="true" req="juke_og_iron" blue="false">
+		<text>[style[color:F64B2D]]OG: New Dawn[[/style]]
+Composed by: Lizzard</text>
+		<event>
+			<playMusic>og_dawn</playMusic>
+			<loadEvent>STORAGE_CHECK_JUKEBOX</loadEvent>
+		</event>
+	</mod-append:choice>
 </mod:findName>
 </FTL>

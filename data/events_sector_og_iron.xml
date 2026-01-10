@@ -56,7 +56,7 @@
 		<visitedTooltip>Explored location. Nothing left of interest.</visitedTooltip>
 		<undiscoveredTooltip>An unvisited location.</undiscoveredTooltip>
 	</beaconType>
-	<text>A Iron Watch ship moves in to attack! Based on the vengeful look in their captain's eye, this is no doubt the ship dispatched by the guard to hunt you down!</text>
+	<text>An Iron Watch ship moves in to attack! Based on the vengeful look in their captain's eye, this is no doubt the ship dispatched by the guard to hunt you down!</text>
 	<ship load="SHIP_OG_IRON_REINFORCEMENTS" hostile="true"/>
 	<environment type="PDS" target="player"/>
 	<choice hidden="true">
@@ -72,7 +72,7 @@
 		<visitedTooltip>Explored location. Nothing left of interest.</visitedTooltip>
 		<undiscoveredTooltip>An unvisited location.</undiscoveredTooltip>
 	</beaconType>
-	<text>A Iron Watch ship moves in to attack! Based on the vengeful look in their captain's eye, this is no doubt the ship dispatched by the guard to hunt you down!</text>
+	<text>An Iron Watch ship moves in to attack! Based on the vengeful look in their captain's eye, this is no doubt the ship dispatched by the guard to hunt you down!</text>
 	<ship load="SHIP_OG_IRON_REINFORCEMENTS" hostile="true"/>
 	<img back="BACK_EVENT_STARS_SPARSE"/>
 	<status type="loss" target="player" system="sensors" amount="1"/>
@@ -1476,7 +1476,19 @@ They don't immediately respond and they keep their jump drive ready.</text>
 </event>
 
 <event name="OG_IRON_DAWN_HIDEOUT_QUEST_WIN">
-	<text>With the guard ship dealt with you're able to access and loot and destroy the depot. It appears that the New Dawn were watching because it isn't very long before you receive a message. "Find us at the New Dawn forward operating base, we'll talk there."</text>
+	<loadEventList seeded="false" first="true" generate="false" default="OG_IRON_DAWN_HIDEOUT_QUEST_WIN_INITIATE">
+		<event req="OG_DAWN_INITIATE" lvl="1">
+			<text>With the guard ship dealt with you're able to access, loot and destroy the depot. It appears that the New Dawn were watching because it isn't very long before you receive a message. "It appears you've already met with some other members of the New Dawn, We'll find you at the New Dawn forward operating base."</text>
+			<autoReward level="MED">standard_no_item</autoReward>
+			<choice>
+				<text>Continue...</text>
+				<event load="REPUTATION_UPDATE_OG_DAWN"/>
+			</choice>
+		</event>
+	</loadEventList>
+</event>
+<event name="OG_IRON_DAWN_HIDEOUT_QUEST_WIN_INITIATE">
+	<text>With the guard ship dealt with you're able to access, loot and destroy the depot. It appears that the New Dawn were watching because it isn't very long before you receive a message. "Find us at the New Dawn forward operating base, we'll talk there."</text>
 	<autoReward level="MED">standard_no_item</autoReward>
 	<hiddenAug>OG_DAWN_INITIATE</hiddenAug>
 	<choice>
@@ -1487,6 +1499,8 @@ They don't immediately respond and they keep their jump drive ready.</text>
 
 <!--HOSTILE-->
 <eventList name="HOSTILE_OG_IRON">
+	<event load="ENCOUNTER_OG_IRON"/>
+	<event load="ENCOUNTER_OG_IRON"/>
 	<event load="ENCOUNTER_OG_IRON"/>
 	<event load="FLOATING_CARGO_MV"/>
 </eventList>
@@ -1544,10 +1558,18 @@ They don't immediately respond and they keep their jump drive ready.</text>
 	<destroyed>
 		<text load="TEXT_DESTROYED_OG_IRON"/>
 		<autoReward level="MED">standard</autoReward>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event load="OG_IRON_PROTOTYPE_DAWN_WIN"/>
+		</choice>
 	</destroyed>
 	<deadCrew>
 		<text load="TEXT_DEAD_CREW_OG_IRON"/>
 		<autoReward level="HIGH">standard</autoReward>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event load="OG_IRON_PROTOTYPE_DAWN_WIN"/>
+		</choice>
 	</deadCrew>
 </ship>
 
@@ -1792,7 +1814,7 @@ They don't immediately respond and they keep their jump drive ready.</text>
 		<unvisitedTooltip>Location of the prototype Iron Watch vessel.</unvisitedTooltip>
 	</beaconType>
 	<environment type="pulsar"/>
-	<img back="BACKGROUND" planet="PLANET_UNPOPULATED"/>
+	<img back="BACKGROUND" planet="NONE"/>
 	<ship load="SHIP_OG_IRON_PROTOTYPE" hostile="false"/>
 	<text>You arrive at the beacon to discover the Iron Watch vessel in orbit around the pulsar here, it appears they're testing their weapon systems on a nearby asteroid.</text>
 	<choice hidden="true">
@@ -1806,8 +1828,17 @@ If that's not bad enough a new ship reveals itself from behind a nearby asteroid
 				<event load="REPUTATION_DECREASE_OG_DAWN_COMBAT" />
 			</choice>
 			<choice hidden="true">
-				<text>Aid the New Dawn ship in it's attack on the heavily armed prototype. (COMING SOON)</text>
-				<event load="OPTION_INVALID"/>
+				<text>Aid the New Dawn ship in it's attack on the heavily armed prototype.</text>
+				<event>
+					<ship load="SHIP_OG_IRON_PROTOTYPE" hostile="true"/>
+					<text>You turn you attention to the prototype, unfortunately by the time you're ready the ship has almost fully recovered from the pulsar hit. You're not alone though, you have the support of the New Dawn ship.</text>
+					<environment type="PDS" target="enemy"/>
+					<noASBPlanet/>
+					<choice>
+						<text>Continue...</text>
+						<event load="COMBAT_CHECK"/>
+					</choice>
+				</event>
 			</choice>
 			<choice>
 				<text>Retreat to a safe distance and stay out of the fight.</text>
@@ -1834,6 +1865,28 @@ If that's not bad enough a new ship reveals itself from behind a nearby asteroid
 	<choice hidden="true">
 		<text>Continue...</text>
 		<event load="REPUTATION_UPDATE_OG_IRON" />
+	</choice>
+</event>
+
+<event name="OG_IRON_PROTOTYPE_DAWN_WIN">
+	<loadEventList seeded="false" first="true" generate="false" default="OG_IRON_PROTOTYPE_DAWN_WIN_INITIATE">
+		<event req="OG_DAWN_INITIATE" lvl="1">
+			<text>The New Dawn ship is still wary of you even after the fight. You watch as they move up to the wreck and carefully extract a single component, you're not what it is, but with that done they back away from the wreck, uninterested in the rest of it. You recieve a simple thank you before they leave.</text>
+			<autoReward level="MED">standard_no_item</autoReward>
+			<choice>
+				<text>Continue...</text>
+				<event load="REPUTATION_UPDATE_OG_DAWN"/>
+			</choice>
+		</event>
+	</loadEventList>
+</event>
+<event name="OG_IRON_PROTOTYPE_DAWN_WIN_INITIATE">
+	<text>The New Dawn ship is still wary of you even after the fight. You watch as they move up to the wreck and carefully extract a single component, you're not what it is, but with that done they back away from the wreck, uninterested in the rest of it. "Captain, if you ever make it to the New Dawn Forward Operating Base I'll ensure you get through unopposed, try and find me once you're there."</text>
+	<autoReward level="MED">standard_no_item</autoReward>
+	<hiddenAug>OG_DAWN_INITIATE</hiddenAug>
+	<choice>
+		<text>Continue...</text>
+		<event load="REPUTATION_UPDATE_OG_DAWN"/>
 	</choice>
 </event>
 </FTL>

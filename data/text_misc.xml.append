@@ -11,9 +11,13 @@
 <text name="ship_PLAYER_SHIP_OG_EXECUTOR_2_unlock">Get to Sector 8 with The Type A to unlock this ship.</text>
 <text name="ship_PLAYER_SHIP_OG_EXECUTOR_3_unlock">Complete 2/3 of this ship class's Achievements to unlock this ship.</text>
 
-<text name="ship_PLAYER_SHIP_OG_DAWN_SPEAR_unlock">REMEMBER TO ADD THIS TEXT.</text>
+<text name="ship_PLAYER_SHIP_OG_DAWN_SPEAR_unlock">Participate in or prevent a heist on a New Dawn data-vault.</text>
 <text name="ship_PLAYER_SHIP_OG_DAWN_SPEAR_2_unlock">Get to Sector 8 with The Type A to unlock this ship.</text>
 <text name="ship_PLAYER_SHIP_OG_DAWN_SPEAR_3_unlock">Complete 2/3 of this ship class's Achievements to unlock this ship.</text>
+
+<text name="ship_PLAYER_SHIP_OG_DAWN_BIG_unlock">Win with any 2 Spearhead-Class ships.</text>
+<text name="ship_PLAYER_SHIP_OG_DAWN_BIG_2_unlock">Get to Sector 8 with The Type A to unlock this ship.</text>
+<text name="ship_PLAYER_SHIP_OG_DAWN_BIG_3_unlock">Complete 2/3 of this ship class's Achievements to unlock this ship.</text>
 
 <text name="ship_PLAYER_SHIP_OG_REBEL_unlock">Get to Sector 5 with the Iron Kestrel Cruiser to unlock this ship.</text>
 <text name="ship_PLAYER_SHIP_OG_CURA_unlock">Get to Sector 5 with the Iron Rebel Cruiser to unlock this ship.</text>
@@ -22,6 +26,10 @@
 <text name="ship_PLAYER_SHIP_OG_ROCK_unlock">Get to Sector 5 with the Iron Angelic Deathbringer Cruiser to unlock this ship.</text>
 <text name="ship_PLAYER_SHIP_OG_PEACEKEEPER_unlock">Get to Sector 5 with the Iron Rock Cruiser to unlock this ship.</text>
 <text name="ship_PLAYER_SHIP_OG_KNIGHT_unlock">Get to Sector 5 with the Iron Peacekeeper Cruiser to unlock this ship.</text>
+
+<text name="loot_og_dawn_1">NEW DAWN LOOT
+Applies vunerability to hit rooms for 5 seconds
+-1 second cooldown</text>
 
 <text name="og_turret">Turret Control</text>
 <text name="og_turret_installed">Turret Control System installed</text>
