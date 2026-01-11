@@ -404,7 +404,7 @@ For your extra egregious actions, your reputation was decreased twice.</text>
 
 <event name="STOREEVENT_OG_DAWN_TURRET" unique="true">
 	<preventQuest/>
-	<beaconType id="map_icon_store_og_dawn" global="true">
+	<beaconType id="map_icon_store_og_dawn" global="false">
 		<color r="155" g="111" b="167" a="1"/>
 	</beaconType>
 	<text>A New Dawn merchant has setup at an outpost nearby, an occasional customer visits the outpost, but there's enough time for you to get in without attracting unwanted attention.</text>

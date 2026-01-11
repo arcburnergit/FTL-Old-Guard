@@ -370,6 +370,7 @@
 </FTL>
 
 <!--Turrets-->
+<!--BASES-->
 <FTL>
 <weaponBlueprint name="OG_TURRET_BASE_LASER">
 	<type>BEAM</type>
@@ -506,7 +507,10 @@
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>invisible</iconReplace>
 </weaponBlueprint>
+</FTL>
 
+<!--LASERS-->
+<FTL>
 <weaponBlueprint name="OG_TURRET_LASER_1">
 	<type>BEAM</type>
 	<flavorType>Turret</flavorType>
@@ -760,6 +764,30 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<iconReplace>og_turret_laser_chaingun_icon</iconReplace>
 </weaponBlueprint>
 
+<weaponBlueprint name="OG_TURRET_LASER_PARTICLE">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Particle Accelerator Turret</title>
+	<short>Particle A.</short>
+	<desc>Shoots streamlined bolts which do heavy system damage. Does not harm crew or hull, and cannot lower shields.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>100</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_laser_particle_icon</iconReplace>
+</weaponBlueprint>
+</FTL>
+
+<!--IONS-->
+<FTL>
 <weaponBlueprint name="OG_TURRET_ION_1">
 	<type>BEAM</type>
 	<flavorType>Turret</flavorType>
@@ -802,6 +830,30 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<iconReplace>og_turret_ion_2_icon</iconReplace>
 </weaponBlueprint>
 
+<weaponBlueprint name="OG_TURRET_ENERGY_1">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Energy Cannon Turret</title>
+	<short>Energy C.</short>
+	<desc>Energy turrets can disable systems while also causing hull damage.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>100</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_energy_1_icon</iconReplace>
+</weaponBlueprint>
+</FTL>
+
+<!--MISSILES-->
+<FTL>
 <weaponBlueprint name="OG_TURRET_MISSILE_1">
 	<type>BEAM</type>
 	<flavorType>Turret</flavorType>
@@ -884,9 +936,10 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_kernel_fire_icon</iconReplace>
 </weaponBlueprint>
+</FTL>
 
-
-
+<!--FLAK-->
+<FTL>
 <weaponBlueprint name="OG_TURRET_FLAK_1">
 	<type>BEAM</type>
 	<flavorType>Turret</flavorType>
@@ -907,7 +960,30 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_flak_1_icon</iconReplace>
 </weaponBlueprint>
+<weaponBlueprint name="OG_TURRET_FLAK_BIO">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Irradiated Flak Turret</title>
+	<short>Rad Flak</short>
+	<desc>Fires 4 radioactive projectiles which do normal hull damage as well as high crew damage and sometimes erode the hull enough to create a breach.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>100</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_flak_rad_icon</iconReplace>
+</weaponBlueprint>
+</FTL>
 
+<!--BEAMS-->
+<FTL>
 <weaponBlueprint name="OG_TURRET_FOCUS_1">
 	<type>BEAM</type>
 	<flavorType>Turret</flavorType>
@@ -950,6 +1026,30 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<iconReplace>og_turret_focus_bio_icon</iconReplace>
 </weaponBlueprint>
 
+<weaponBlueprint name="OG_TURRET_FOCUS_CHAIN">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Chain Pinpoint Turret</title>
+	<short>Chain P.</short>
+	<desc>This Pinpoint weapon only does a moderate amount of damage, but quickly ramps up its fire rate until it becomes devastating on enemies with their shields down.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>100</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_focus_chain_icon</iconReplace>
+</weaponBlueprint>
+</FTL>
+
+<!--MICRO LASERS-->
+<FTL>
 <weaponBlueprint name="OG_TURRET_LASER_MINI_1">
 	<type>BEAM</type>
 	<flavorType>Turret</flavorType>
@@ -1012,7 +1112,10 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_laser_mini_2_icon</iconReplace>
 </weaponBlueprint>
+</FTL>
 
+<!--MICRO ION-->
+<FTL>
 <weaponBlueprint name="OG_TURRET_ION_MINI_1">
 	<type>BEAM</type>
 	<flavorType>Turret</flavorType>
@@ -1033,7 +1136,10 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_ion_mini_1_icon</iconReplace>
 </weaponBlueprint>
+</FTL>
 
+<!--MICRO BEAMS-->
+<FTL>
 <weaponBlueprint name="OG_TURRET_FOCUS_MINI_1">
 	<type>BEAM</type>
 	<flavorType>Turret</flavorType>
@@ -1054,7 +1160,10 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_focus_mini_1_icon</iconReplace>
 </weaponBlueprint>
+</FTL>
 
+<!--MICRO FLAK-->
+<FTL>
 <weaponBlueprint name="OG_TURRET_FLAK_MINI_1">
 	<type>BEAM</type>
 	<flavorType>Turret</flavorType>
@@ -1075,7 +1184,10 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_flak_mini_1_icon</iconReplace>
 </weaponBlueprint>
+</FTL>
 
+<!--MICRO MISSILES-->
+<FTL>
 <weaponBlueprint name="OG_TURRET_MISSILE_MINI_1">
 	<type>BEAM</type>
 	<flavorType>Turret</flavorType>
@@ -1096,8 +1208,10 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_missile_mini_1_icon</iconReplace>
 </weaponBlueprint>
+</FTL>
 
-
+<!--DAWN-->
+<FTL>
 <weaponBlueprint name="OG_TURRET_LASER_DAWN">
 	<type>BEAM</type>
 	<flavorType>Turret</flavorType>
@@ -1625,7 +1739,42 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<weaponArt>zenith_1</weaponArt>
 	<iconImage>laser</iconImage>
 </weaponBlueprint>
-
+<weaponBlueprint name="OG_LASER_PROJECTILE_PARTICLE">
+	<type>LASER</type>
+	<title>Laser</title>
+	<short>Laser</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>0</damage>
+	<sysDamage>1</sysDamage>
+	<shots>1</shots>
+	<sp>0</sp>
+	<fireChance>3</fireChance>
+	<breachChance>0</breachChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>laser_particle</image>
+	<launchSounds>
+		<sound>laser_particle</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>hitHull2</sound>
+		<sound>hitHull3</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>laser_particle</weaponArt>
+	<iconImage>laser</iconImage>
+</weaponBlueprint>
 
 
 
@@ -1758,6 +1907,52 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<weaponArt>ion_1</weaponArt>
 	<iconImage>ion</iconImage>
 </weaponBlueprint>
+<weaponBlueprint name="OG_ION_PROJECTILE_ENERGY">
+	<type>LASER</type>
+	<title>Ion</title>
+	<short>Ion</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>1</damage>
+	<noSysDamage>true</noSysDamage>
+	<noPersDamage>true</noPersDamage>
+	<spin>720</spin>
+	<ion>1</ion>
+	<speed>45</speed>
+	<shots>1</shots>
+	<sp>0</sp>
+	<fireChance>2</fireChance>
+	<breachChance>0</breachChance>
+	<stunChance>0</stunChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>energy_shot</image>
+	<explosion>explosion_energy</explosion>
+	<launchSounds>
+		<sound>energy</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>ionHit1</sound>
+		<sound>ionHit2</sound>
+		<sound>ionHit3</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>ionShields1</sound>
+		<sound>ionShields2</sound>
+		<sound>ionShields3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>energy_1</weaponArt>
+	<iconImage>ion</iconImage>
+</weaponBlueprint>
+
+
+
 <weaponBlueprint name="OG_MISSILE_PROJECTILE_SWARM">
 	<type>MISSILE</type>
 	<title>Laser</title>
@@ -2000,6 +2195,56 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<weaponArt>laser_burst_1</weaponArt>
 	<iconImage>laser</iconImage>
 </weaponBlueprint>
+<weaponBlueprint name="OG_FLAK_PROJECTILE_BIO">
+	<type>LASER</type>
+	<drone_targetable>1</drone_targetable>
+	<title>Flak</title>
+	<short>Flak</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>1</damage>
+	<persDamage>2</persDamage>
+	<statBoosts>
+        <statBoost name="moveSpeedMultiplier" load="RAD_MOVE"/>
+		<statBoost name="stunMultiplier" load="RAD_STUN"/>
+        <statBoost name="repairSpeed" load="RAD_REPAIR"/>
+    </statBoosts>
+	<spin>720</spin>
+	<shots>1</shots>
+	<sp>0</sp>
+	<fireChance>0</fireChance>
+	<breachChance>5</breachChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<speed>26</speed>
+	<image>debris_large_toxic</image>
+	<launchSounds>
+		<sound>flak</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>flakImpact1</sound>
+		<sound>flakImpact2</sound>
+		<sound>flakImpact3</sound>
+		<sound>flakImpact4</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>shotgun_toxic</weaponArt>
+	<iconImage>laser</iconImage>
+</weaponBlueprint>
+
+
+
+
 <weaponBlueprint name="OG_FOCUS_PROJECTILE">
 	<type>BEAM</type>
 	<title>Focus</title>
@@ -2160,6 +2405,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<weaponArt>focus_1</weaponArt>
 	<iconImage>beam</iconImage>
 </weaponBlueprint>
+
 
 
 <weaponBlueprint name="OG_LASER_PROJECTILE_BASE_DAWN">
@@ -3979,7 +4225,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 <FTL>
 <augBlueprint name="OG_REFLECTIVE_PLATING">
 	<title>Reflective Plating</title>
-	<desc>Halves the damage of beams hitting this ship, rounding down.</desc>
+	<desc>Halves the damage of beams hitting this ship, rounding down, but not below 1.</desc>
 	<cost>80</cost>
 	<rarity>0</rarity>
 	<stackable>true</stackable>

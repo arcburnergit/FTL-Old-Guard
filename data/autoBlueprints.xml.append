@@ -308,9 +308,8 @@
 		<og_turret_mini_2 power="1" max="4" room="2" start="true" turret="OG_TURRET_LASER_MINI_1" />
 		<og_turret_mini_3 power="1" max="4" room="3" start="false" turret="OG_TURRET_LASER_MINI_2" />
 		<og_turret_mini_4 power="1" max="4" room="4" start="false" turret="OG_TURRET_LASER_MINI_2" />
-		<cloaking power="1" max="2" room="7" start="true" />
+		<cloaking power="1" max="2" room="7" start="false" />
 		<doors power="2" max="2" room="14" start="true" />
-		<drones power="2" max="6" room="13" start="false" />
 		<engines power="2" max="2" room="5" start="true" />
 		<medbay power="2" max="2" room="6" start="true" />
 		<oxygen power="1" max="1" room="12" start="true" />
@@ -655,9 +654,8 @@
 		<og_turret_mini_2 power="1" max="4" room="2" start="true" turret="LIST_TURRETS_DAWN_SMALL" />
 		<og_turret_mini_3 power="1" max="4" room="3" start="false" turret="LIST_TURRETS_DAWN_SMALL" />
 		<og_turret_mini_4 power="1" max="4" room="4" start="false" turret="LIST_TURRETS_DAWN_SMALL" />
-		<cloaking power="1" max="2" room="7" start="true" />
+		<cloaking power="1" max="2" room="7" start="false" />
 		<doors power="2" max="2" room="14" start="true" />
-		<drones power="2" max="6" room="13" start="false" />
 		<engines power="2" max="2" room="5" start="true" />
 		<medbay power="2" max="2" room="6" start="true" />
 		<oxygen power="1" max="1" room="12" start="true" />

@@ -136,30 +136,27 @@ local function handle_reduction_armor(ship, projectile, location, damage, immedi
 		--print("REDUCE DAMAGE:"..tostring(damage.iDamage))
 		-- Check if incoming damage is greater than the reduction amount
 		if damage.iDamage > 0 then
-			damage.iDamage = math.floor(damage.iDamage * ship:GetAugmentationValue("OG_REFLECTIVE_PLATING"))
-			if damage.iDamage == 0 then
-				create_damage_message(ship.iShipId, damageMessages.NEGATED, location.x, location.y)
-			end
+			damage.iDamage = math.max(1, math.floor(damage.iDamage * ship:GetAugmentationValue("OG_REFLECTIVE_PLATING")))
 		elseif damage.iDamage < 0 then
-			damage.iDamage = math.ceil(damage.iDamage * ship:GetAugmentationValue("OG_REFLECTIVE_PLATING"))
+			damage.iDamage = math.min(-1, math.ceil(damage.iDamage * ship:GetAugmentationValue("OG_REFLECTIVE_PLATING")))
 		end
 		if damage.iSystemDamage >= 0 then
-			damage.iSystemDamage = math.floor(damage.iSystemDamage * ship:GetAugmentationValue("OG_REFLECTIVE_PLATING"))
+			damage.iSystemDamage = math.max(1, math.floor(damage.iSystemDamage * ship:GetAugmentationValue("OG_REFLECTIVE_PLATING")))
 		else
-			damage.iSystemDamage = math.ceil(damage.iSystemDamage * ship:GetAugmentationValue("OG_REFLECTIVE_PLATING"))
+			damage.iSystemDamage = math.min(-1, math.ceil(damage.iSystemDamage * ship:GetAugmentationValue("OG_REFLECTIVE_PLATING")))
 		end
 		if damage.iPersDamage >= 0 then
-			damage.iPersDamage = math.floor(damage.iPersDamage * ship:GetAugmentationValue("OG_REFLECTIVE_PLATING"))
+			damage.iPersDamage = math.max(1, math.floor(damage.iPersDamage * ship:GetAugmentationValue("OG_REFLECTIVE_PLATING")))
 		else
-			damage.iPersDamage = math.ceil(damage.iPersDamage * ship:GetAugmentationValue("OG_REFLECTIVE_PLATING"))
+			damage.iPersDamage = math.min(-1, math.ceil(damage.iPersDamage * ship:GetAugmentationValue("OG_REFLECTIVE_PLATING")))
 		end
 		if damage.iIonDamage >= 0 then
-			damage.iIonDamage = math.floor(damage.iIonDamage * ship:GetAugmentationValue("OG_REFLECTIVE_PLATING"))
+			damage.iIonDamage = math.max(1, math.floor(damage.iIonDamage * ship:GetAugmentationValue("OG_REFLECTIVE_PLATING")))
 		else
-			damage.iIonDamage = math.ceil(damage.iIonDamage * ship:GetAugmentationValue("OG_REFLECTIVE_PLATING"))
+			damage.iIonDamage = math.min(-1, math.ceil(damage.iIonDamage * ship:GetAugmentationValue("OG_REFLECTIVE_PLATING")))
 		end
-		damage.fireChance = math.floor(damage.fireChance * ship:GetAugmentationValue("OG_REFLECTIVE_PLATING"))
-		damage.breachChance = math.floor(damage.breachChance * ship:GetAugmentationValue("OG_REFLECTIVE_PLATING"))
+		damage.fireChance = math.max(1, math.floor(damage.fireChance * ship:GetAugmentationValue("OG_REFLECTIVE_PLATING")))
+		damage.breachChance = math.max(1, math.floor(damage.breachChance * ship:GetAugmentationValue("OG_REFLECTIVE_PLATING")))
 	end
 end
 script.on_internal_event(Defines.InternalEvents.DAMAGE_BEAM, function(ship, projectile, location, damage, realNewTile, beamHitType)
