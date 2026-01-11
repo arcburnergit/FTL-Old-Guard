@@ -140,19 +140,19 @@ local function handle_reduction_armor(ship, projectile, location, damage, immedi
 		elseif damage.iDamage < 0 then
 			damage.iDamage = math.min(-1, math.ceil(damage.iDamage * ship:GetAugmentationValue("OG_REFLECTIVE_PLATING")))
 		end
-		if damage.iSystemDamage >= 0 then
+		if damage.iSystemDamage > 0 then
 			damage.iSystemDamage = math.max(1, math.floor(damage.iSystemDamage * ship:GetAugmentationValue("OG_REFLECTIVE_PLATING")))
-		else
+		elseif damage.iSystemDamage < 0 then
 			damage.iSystemDamage = math.min(-1, math.ceil(damage.iSystemDamage * ship:GetAugmentationValue("OG_REFLECTIVE_PLATING")))
 		end
-		if damage.iPersDamage >= 0 then
+		if damage.iPersDamage > 0 then
 			damage.iPersDamage = math.max(1, math.floor(damage.iPersDamage * ship:GetAugmentationValue("OG_REFLECTIVE_PLATING")))
-		else
+		elseif damage.iPersDamage < 0 then
 			damage.iPersDamage = math.min(-1, math.ceil(damage.iPersDamage * ship:GetAugmentationValue("OG_REFLECTIVE_PLATING")))
 		end
-		if damage.iIonDamage >= 0 then
+		if damage.iIonDamage > 0 then
 			damage.iIonDamage = math.max(1, math.floor(damage.iIonDamage * ship:GetAugmentationValue("OG_REFLECTIVE_PLATING")))
-		else
+		elseif damage.iIonDamage < 0 then
 			damage.iIonDamage = math.min(-1, math.ceil(damage.iIonDamage * ship:GetAugmentationValue("OG_REFLECTIVE_PLATING")))
 		end
 		damage.fireChance = math.max(1, math.floor(damage.fireChance * ship:GetAugmentationValue("OG_REFLECTIVE_PLATING")))

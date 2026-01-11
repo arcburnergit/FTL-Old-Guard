@@ -273,7 +273,7 @@
 	<power>2</power>
 	<cost>60</cost>
 	<bp>2</bp>
-	<rarity>3</rarity>
+	<rarity>0</rarity>
 	<image>laser_burst</image>
 	<launchSounds>
 		<sound>laser_pierce</sound>
