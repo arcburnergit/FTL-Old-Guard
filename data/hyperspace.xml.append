@@ -256,7 +256,7 @@ This enemy possesses New Dawn turrets, when hit by these, rooms will be temporar
 		</achievement>
 		<achievement name="SHIP_ACH_OG_DAWN_SPEAR_2" layout="all">
 			<name>Rebel Allegiance</name>
-			<description>Reach Sector 8 without recruiting a single non-human crew onto a Spearhead-Class vessel.</description>
+			<description>Reach Sector 8 without jumping to a new beacon with a single non-human crew onboard a Spearhead-Class vessel.</description>
 			<icon>ogp_dawn_spear_2_icon</icon>
 			<lockImage>ogp_dawn_spear_2_icon_locked</lockImage>
 		</achievement>

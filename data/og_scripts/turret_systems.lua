@@ -2572,3 +2572,56 @@ script.on_render_event(Defines.RenderEvents.SHIP_FLOOR, function() end, function
 		end
 	end
 end)
+
+
+script.on_internal_event(Defines.InternalEvents.PROJECTILE_UPDATE_PRE, function(projectile)
+	if not userdata_table(projectile, "mods.og").projectile_space then
+		userdata_table(projectile, "mods.og").projectile_space = {last_space = projectile.currentSpace}
+	else
+		local projTable = userdata_table(projectile, "mods.og").projectile_space
+		if projectile.currentSpace ~= projTable.last_space then
+			local ship = Hyperspace.ships(projectile.currentSpace).ship
+			local shipGraph = Hyperspace.ShipGraph.GetShipInfo(projectile.currentSpace)
+			local shipCorner = {x = ship.shipImage.x + shipGraph.shipBox.x, y = ship.shipImage.y + shipGraph.shipBox.y}
+			local ellipsePos = {x = ship.baseEllipse.center.x + shipCorner.x + ship.shipImage.w/2, y = ship.baseEllipse.center.y + shipCorner.y + ship.shipImage.h/2}
+			local baseEllipseCorrected = {center = ellipsePos, a = ship.baseEllipse.a, b = ship.baseEllipse.b}
+			local withinShield = isPointInEllipse(projectile.position, baseEllipseCorrected)
+			if withinShield then
+				--print("MOVE PROJECTILE")
+				local dx = projectile.position.x - baseEllipseCorrected.center.x
+				local verticalOffset = baseEllipseCorrected.b * math.sqrt(1 - (dx^2 / baseEllipseCorrected.a^2))
+				local topY = baseEllipseCorrected.center.y + verticalOffset
+				local bottomY = baseEllipseCorrected.center.y - verticalOffset
+				if math.abs(projectile.position.y - topY) < math.abs(projectile.position.y - bottomY) then
+					projectile.position.y = topY + 1
+				else
+					projectile.position.y = bottomY - 1
+				end
+			end
+		end
+		userdata_table(projectile, "mods.og").projectile_space.last_space = projectile.currentSpace
+	end
+	if projectile.sub_start and projectile.currentSpace ~= projectile.destinationSpace then
+		local ship = Hyperspace.ships(projectile.destinationSpace).ship
+		local shipGraph = Hyperspace.ShipGraph.GetShipInfo(projectile.destinationSpace)
+		local shipCorner = {x = ship.shipImage.x + shipGraph.shipBox.x, y = ship.shipImage.y + shipGraph.shipBox.y}
+		local ellipsePos = {x = ship.baseEllipse.center.x + shipCorner.x + ship.shipImage.w/2, y = ship.baseEllipse.center.y + shipCorner.y + ship.shipImage.h/2}
+		local baseEllipseCorrected = {center = ellipsePos, a = ship.baseEllipse.a, b = ship.baseEllipse.b}
+		local withinShield = isPointInEllipse(projectile.sub_start, baseEllipseCorrected)
+		--print("ellipse: center x:"..ship.baseEllipse.center.x.." y:"..ship.baseEllipse.center.y.." a:"..ship.baseEllipse.a.." b:"..ship.baseEllipse.b)
+		--print("point: x:"..projectile.sub_start.x.." y:"..projectile.sub_start.y)
+		if withinShield then
+			--print("MOVE BEAM START")
+			local dx = projectile.sub_start.x - baseEllipseCorrected.center.x
+			local verticalOffset = baseEllipseCorrected.b * math.sqrt(1 - (dx^2 / baseEllipseCorrected.a^2))
+			local topY = baseEllipseCorrected.center.y + verticalOffset
+			local bottomY = baseEllipseCorrected.center.y - verticalOffset
+			if math.abs(projectile.sub_start.y - topY) < math.abs(projectile.sub_start.y - bottomY) then
+				projectile.sub_start.y = topY + 1
+			else
+				projectile.sub_start.y = bottomY - 1
+			end
+		end
+	end
+	return Defines.Chain.CONTINUE
+end)
