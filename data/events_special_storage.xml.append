@@ -478,4 +478,10 @@
 		<event load="STORAGE_CHECK"/>
 	</choice>
 </event>
+<mod:findName type="event" name="STORAGE_CHECK_SYSTEM_TECH_SCRAMBLER">
+	<mod-append:choice hidden="true">
+		<text>[Additional Effects: Enemy Turrets are scrambled, making them far less accurate in defense].</text>
+		<event load="OPTION_INVALID" />
+	</mod-append:choice>
+</mod:findName>
 </FTL>

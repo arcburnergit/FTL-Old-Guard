@@ -1610,6 +1610,9 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 			end
 			local turretLoc = turret_location[shipManager.ship.shipName] and turret_location[shipManager.ship.shipName][sysName] or {x = 0, y = 0, direction = turret_directions.RIGHT}
 			local turretRestAngle = 90 * (turretLoc.direction or 0)
+			if Hyperspace.ships(1-shipManager.iShipId) and Hyperspace.ships(1-shipManager.iShipId):HasAugmentation("DEFENSE_SCRAMBLER") > 0 then
+				turretRestAngle = normalize_angle(turretRestAngle + math.random(-135, 135))
+			end
 			local pos = {x = shipCorner.x + turretLoc.x, y = shipCorner.y + turretLoc.y}
 
 			local currentTurret = turrets[ turretBlueprintsList[ Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] ] ]
@@ -1985,7 +1988,7 @@ local function renderTurret(shipManager, ship, spaceManager, shipGraph, sysName)
 		if id then currentTurret = turrets[id] end
 		if not currentTurret then return end
 
-		local turretLoc = turret_location[ship.shipName] and turret_location[ship.shipName][sysName] or {x = 0, y = 0}
+		local turretLoc = turret_location[ship.shipName] and turret_location[ship.shipName][sysName] or {x = 0, y = 0, direction = 0}
 		local shipCorner = {x = ship.shipImage.x + shipGraph.shipBox.x, y = ship.shipImage.y + shipGraph.shipBox.y}
 		local angleSet = 90 * turretLoc.direction
 		local colour = Graphics.GL_Color(1,1,1,1)
@@ -2029,6 +2032,27 @@ local function renderTurret(shipManager, ship, spaceManager, shipGraph, sysName)
 			currentTurret.glow:OnRender(1, Graphics.GL_Color(1,1,1,1), false)
 		end
 		Graphics.CSurface.GL_PopMatrix()
+		local mousePosEnemy = worldToEnemyLocation(Hyperspace.Mouse.position)
+		local turretLocCorrected = {x = shipCorner.x + turretLoc.x, y = shipCorner.y + turretLoc.y}
+		if shipManager.iShipId == 1 and get_distance(mousePosEnemy, turretLocCorrected) <= 15 then
+			local s = "Charges: "..math.floor(charges).."/"..math.floor(currentTurret.charges)
+			if Hyperspace.ships.player:HasSystem(7) and Hyperspace.ships.player:GetSystem(7):GetEffectivePower() >= 2 then
+				local hasMannedBonus = (system.iActiveManned > 0 and 0.05) or 0
+				local chargeTime = currentTurret.charge_time[system:GetEffectivePower()]
+				local chargeTimeReduction = 0
+				local chainAmount = Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChainVarName]
+				if currentTurret.chain and currentTurret.chain.type == chain_types.cooldown then
+					for i = 1, chainAmount do
+						chargeTimeReduction = chargeTimeReduction + chargeTime * currentTurret.chain.amount
+					end
+				end
+				chargeTime = chargeTime - chargeTimeReduction
+				chargeTime = chargeTime/(1 + hasMannedBonus + system.iActiveManned * 0.05)
+				s = s .. "\nCharge Time: "..tostring(math.floor(0.5 + system.table.chargeTime * chargeTime * 10)/10).."/"..tostring(math.floor(0.5 + chargeTime * 10)/10)
+			end
+			Hyperspace.Mouse.tooltip = s
+			Hyperspace.Mouse.bForceTooltip = true
+		end
 	end
 end
 
@@ -2579,7 +2603,7 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_UPDATE_PRE, function(
 		userdata_table(projectile, "mods.og").projectile_space = {last_space = projectile.currentSpace}
 	else
 		local projTable = userdata_table(projectile, "mods.og").projectile_space
-		if projectile.currentSpace ~= projTable.last_space then
+		if projectile.currentSpace ~= projTable.last_space and defence_types.ALL[projectile._targetable.type] then
 			local ship = Hyperspace.ships(projectile.currentSpace).ship
 			local shipGraph = Hyperspace.ShipGraph.GetShipInfo(projectile.currentSpace)
 			local shipCorner = {x = ship.shipImage.x + shipGraph.shipBox.x, y = ship.shipImage.y + shipGraph.shipBox.y}

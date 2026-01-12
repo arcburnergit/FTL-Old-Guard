@@ -650,6 +650,7 @@ turrets["OG_TURRET_FOCUS_DAWN"] = {
 	enemy_burst = 1,
 	hold_time = 0.4,
 	speed_reduction = 0.5,
+	stealth = true,
 	dawn = true,
 	image = Hyperspace.Animations:GetAnimation("og_turret_focus_dawn"),
 	glow = Hyperspace.Animations:GetAnimation("og_turret_focus_1_glow"),
