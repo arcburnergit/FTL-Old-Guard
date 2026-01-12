@@ -195,11 +195,13 @@ for item in vter(Hyperspace.Blueprints:GetBlueprintList("BLUELIST_OBELISK")) do
 	--print("add to hideName:"..item)
 	hideName[item] = "Something Old"
 end
+hideName["GATLING"] = "Unleash hell on your opposition!"
 hideName["PRIME_LASER"] = "Let it hit you and you're already dead."
-hideName["DEFENSE_PRIME"] = "Let it hit you and you're already dead."
+hideName["DEFENSE_PRIME"] = "Archein."
 hideName["COMBAT_PRIME"] = "Let it hit you and you're already dead."
 hideName["BEAM_HARDSCIFI"] = "REAL SCIENCE"
 hideName["GATLING_SYLVAN"] = "You greedy, murdering traitor you"
+hideName["GATLING_SYLVAN_HONOR"] = "You greedy, murdering traitor you"
 
 mods.og.craftedWeapons = {}
 local craftedWeapons = mods.og.craftedWeapons
@@ -238,7 +240,11 @@ table.insert(craftedWeapons, {weapon = "OG_TURRET_LASER_ANCIENT", component_amou
 table.insert(craftedWeapons, {weapon = "OG_TURRET_LASER_ANCIENT", component_amounts = {1, 1}, components = {defence_drones_laser, {"ANCIENT_LASER", "ANCIENT_LASER_2", "ANCIENT_LASER_3", "ANCIENT_BEAM", "ANCIENT_BEAM_2", "ANCIENT_BEAM_3"}}} )
 
 table.insert(craftedWeapons, {weapon = "OG_TURRET_LASER_CEL", component_amounts = {1, 1}, components = {{"DEFENSE_PRIME"}, {"LASER_BURST_2", "LASER_BURST_3", "LASER_BURST_5", "LASER_CHAINGUN", "LASER_CHAINGUN_2", "LASER_CHAINGUN_DAMAGE", "LASER_CHARGEGUN", "LASER_CHARGEGUN_2", "LASER_CHARGEGUN_3", "LASER_CHARGE_CHAIN"}}} )
-table.insert(craftedWeapons, {weapon = "OG_TURRET_LASER_CEL", component_amounts = {1, 1}, components = {defence_drones_laser, {"PRIME_LASER", "COMBAT_PRIME", "BEAM_HARDSCIFI", "GATLING_SYLVAN"}}} )
+table.insert(craftedWeapons, {weapon = "OG_TURRET_LASER_CEL", component_amounts = {1, 1}, components = {defence_drones_laser, {"PRIME_LASER", "COMBAT_PRIME", "BEAM_HARDSCIFI"}}} )
+
+table.insert(craftedWeapons, {weapon = "OG_TURRET_LASER_GATLING", component_amounts = {1, 1}, components = {defence_drones_laser, {"GATLING"}}} )
+table.insert(craftedWeapons, {weapon = "OG_TURRET_LASER_RIFTWAKER", component_amounts = {1, 1}, components = {defence_drones_laser, {"GATLING_SYLVAN", "GATLING_SYLVAN_HONOR"}}} )
+
 local craftedItemsVisible = {}
 
 function TEST(needed)

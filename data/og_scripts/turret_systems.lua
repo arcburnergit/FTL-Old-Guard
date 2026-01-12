@@ -1469,7 +1469,9 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 		userdata_table(projectile, "mods.og").turret_projectile = {target = targetPosition, destination_space = otherManager.iShipId}
 	elseif not offensive and currentTurret.blueprint_type ~= 3 then
 		userdata_table(projectile, "mods.og").targeted = system.table.currentTarget
-		system.table.currentTarget.table.og_targeted = (system.table.currentTarget.table.og_targeted or 0) + 1
+		if system.table.currentTarget and system.table.currentTarget.table then
+			system.table.currentTarget.table.og_targeted = (system.table.currentTarget.table.og_targeted or 0) + 1
+		end
 		if currentTurret.homing then
 			--print("start homing")
 			--checkValidTarget(system.table.currentTarget._targetable, defence_types.ALL, shipManager, true)
@@ -1786,6 +1788,13 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 					local target_angle, int_point, t
 					if currentTurret.blueprint_type ~= 3  then
 						target_angle, int_point, t = find_intercept_angle(pos, speed, targetPos, targetVelocity)
+						if target_angle then
+							local tempChargeShot = (Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] - 1)
+							local currentShotNumber = tempChargeShot % #currentTurret.fire_points + 1
+							local currentShot = currentTurret.fire_points[currentShotNumber]
+							local tempNewPos = offset_point_in_direction(pos, target_angle, currentShot.x, currentShot.y)
+							target_angle, int_point, t = find_intercept_angle(tempNewPos, speed, targetPos, targetVelocity)
+						end
 					end
 					if not target_angle then 
 						target_angle = get_angle_between_points(pos, targetPos)

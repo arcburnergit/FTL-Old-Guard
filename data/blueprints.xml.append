@@ -784,6 +784,48 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_laser_particle_icon</iconReplace>
 </weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_LASER_GATLING">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Gatling Turret</title>
+	<short>Gatling</short>
+	<desc>The Gatling turret takes a very long time to warm up, but it will eventually unleash hell on your opposition!</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>200</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_laser_gatling_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_LASER_RIFTWAKER">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>'Rift Waker' Turret</title>
+	<short>'Rift Waker'</short>
+	<desc>A powerful weapon of war carried previously only by Sylvan, but now by you as well. You greedy, murdering traitor you.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>400</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_laser_riftwaker_icon</iconReplace>
+</weaponBlueprint>
 </FTL>
 
 <!--IONS-->

@@ -14,6 +14,8 @@ table.insert(turretBlueprintsList, "OG_TURRET_LASER_PIERCE")
 table.insert(turretBlueprintsList, "OG_TURRET_LASER_HULL")
 table.insert(turretBlueprintsList, "OG_TURRET_LASER_CHAINGUN")
 table.insert(turretBlueprintsList, "OG_TURRET_LASER_PARTICLE")
+table.insert(turretBlueprintsList, "OG_TURRET_LASER_GATLING")
+table.insert(turretBlueprintsList, "OG_TURRET_LASER_RIFTWAKER")
 table.insert(turretBlueprintsList, "OG_TURRET_ION_1")
 table.insert(turretBlueprintsList, "OG_TURRET_ION_2")
 table.insert(turretBlueprintsList, "OG_TURRET_ENERGY_1")
@@ -266,6 +268,45 @@ turrets["OG_TURRET_LASER_PARTICLE"] = {
 	charges_per_charge = 3,
 	rotation_speed = 180,
 	charge_time = {[0] = 14, 14, 12, 9, 7, 6, 5, 4, 3},
+}
+turrets["OG_TURRET_LASER_GATLING"] = {
+	enemy_burst = 1,
+	shot_radius = 90,
+	image = Hyperspace.Animations:GetAnimation("og_turret_laser_gatling"),
+	glow = Hyperspace.Animations:GetAnimation("og_turret_laser_gatling_glow"),
+	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_laser_gatling_charge.png", -90, -90, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
+	chain = {
+		type = chain_types.cooldown,
+		amount = 0.975,
+		count = 1,
+	},
+	fire_points = {{x = 0, y = -90, fire_delay = 0.2}, {x = 0, y = -90, fire_delay = 0.0, auto_burst = true}},
+	defence_type = defence_types.ALL,
+	blueprint_type = 1,
+	blueprint = "OG_LASER_PROJECTILE_LIGHT",
+	charges = 2,
+	charges_per_charge = 2,
+	rotation_speed = 180,
+	charge_time = {[0] = 38, 38, 34, 30, 28, 26, 24, 22, 20},
+}
+turrets["OG_TURRET_LASER_RIFTWAKER"] = {
+	enemy_burst = 1,
+	image = Hyperspace.Animations:GetAnimation("og_turret_laser_riftwaker"),
+	glow = Hyperspace.Animations:GetAnimation("og_turret_laser_riftwaker_glow"),
+	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_laser_riftwaker_charge.png", -90, -90, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
+	chain = {
+		type = chain_types.cooldown,
+		amount = 0.99,
+		count = 1,
+	},
+	fire_points = {{x = 0, y = -90, fire_delay = 0.2}},
+	defence_type = defence_types.ALL,
+	blueprint_type = 1,
+	blueprint = "OG_LASER_PROJECTILE_PIERCE",
+	charges = 1,
+	charges_per_charge = 1,
+	rotation_speed = 180,
+	charge_time = {[0] = 28, 28, 24, 20, 18, 16, 14, 12, 10},
 }
 turrets["OG_TURRET_ION_1"] = {
 	enemy_burst = 1,

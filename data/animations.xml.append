@@ -268,6 +268,42 @@
 	<time>1</time>
 </anim>
 
+<animSheet name="og_turret_laser_gatling_icon" w="115" h="66" fw="115" fh="66">og_turrets/turret_laser_gatling_icon.png</animSheet>
+<anim name="og_turret_laser_gatling_icon">
+	<sheet>og_turret_laser_gatling_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_laser_gatling" w="1440" h="180" fw="180" fh="180">og_turrets/turret_laser_gatling.png</animSheet>
+<anim name="og_turret_laser_gatling">
+	<sheet>og_turret_laser_gatling</sheet>
+	<desc length="8" x="0" y="0" />
+	<time>0.26666</time>
+</anim>
+<animSheet name="og_turret_laser_gatling_glow" w="180" h="180" fw="180" fh="180">og_turrets/turret_laser_gatling_glow.png</animSheet>
+<anim name="og_turret_laser_gatling_glow">
+	<sheet>og_turret_laser_gatling_glow</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_laser_riftwaker_icon" w="115" h="66" fw="115" fh="66">og_turrets/turret_laser_riftwaker_icon.png</animSheet>
+<anim name="og_turret_laser_riftwaker_icon">
+	<sheet>og_turret_laser_riftwaker_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_laser_riftwaker" w="1440" h="180" fw="180" fh="180">og_turrets/turret_laser_riftwaker.png</animSheet>
+<anim name="og_turret_laser_riftwaker">
+	<sheet>og_turret_laser_riftwaker</sheet>
+	<desc length="8" x="0" y="0" />
+	<time>0.26666</time>
+</anim>
+<animSheet name="og_turret_laser_riftwaker_glow" w="180" h="180" fw="180" fh="180">og_turrets/turret_laser_riftwaker_glow.png</animSheet>
+<anim name="og_turret_laser_riftwaker_glow">
+	<sheet>og_turret_laser_riftwaker_glow</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
 
 
 
