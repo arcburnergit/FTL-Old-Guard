@@ -133,10 +133,12 @@ local humanList = {}
 for item in vter(Hyperspace.Blueprints:GetBlueprintList("LIST_CREW_HUMAN")) do
 	humanList[item] = true
 end
-script.on_internal_event(Defines.InternalEvents.JUMP_LEAVE, function()
-	for crewmem in vter(Hyperspace.ships.player.vCrewList) do
-		if crewmem.iShipId == 0 and not humanList[crewmem.type] then
-			Hyperspace.playerVariables.og_ach_track_humans_only = 1
+script.on_internal_event(Defines.InternalEvents.JUMP_LEAVE, function(shipManager)
+	if shipManager.iShipId == 0 then
+		for crewmem in vter(shipManager.vCrewList) do
+			if crewmem.iShipId == 0 and not humanList[crewmem.type] and not crewmem:IsDrone() then
+				Hyperspace.playerVariables.og_ach_track_humans_only = 1
+			end
 		end
 	end
 end)

@@ -305,7 +305,7 @@ This enemy possesses New Dawn turrets, when hit by these, rooms will be temporar
 		</unlock>
 		<unlock variant="b" silent="false">
 			<type>1</type>
-			<shipReq>PLAYER_SHIP_OG_DAWN_SPEAR</shipReq>
+			<shipReq>PLAYER_SHIP_OG_DAWN_BIG</shipReq>
 			<value>8</value>
 		</unlock>
 		<unlock variant="c" silent="false">
