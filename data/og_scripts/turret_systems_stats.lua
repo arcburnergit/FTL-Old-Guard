@@ -19,6 +19,8 @@ table.insert(turretBlueprintsList, "OG_TURRET_LASER_RIFTWAKER")
 table.insert(turretBlueprintsList, "OG_TURRET_ION_1")
 table.insert(turretBlueprintsList, "OG_TURRET_ION_2")
 table.insert(turretBlueprintsList, "OG_TURRET_ENERGY_1")
+table.insert(turretBlueprintsList, "OG_TURRET_CRYSTAL_1")
+table.insert(turretBlueprintsList, "OG_TURRET_CRYSTAL_1_ELITE")
 table.insert(turretBlueprintsList, "OG_TURRET_MISSILE_1")
 table.insert(turretBlueprintsList, "OG_TURRET_MISSILE_2")
 table.insert(turretBlueprintsList, "OG_TURRET_KERNEL_HEAVY")
@@ -76,7 +78,7 @@ turrets["OG_TURRET_LASER_1"] = {
 	image = Hyperspace.Animations:GetAnimation("og_turret_laser_1"),
 	multi_anim = {frames = 3},
 	glow = Hyperspace.Animations:GetAnimation("og_turret_laser_1_glow"),
-	fire_points = {{x = 12, y = -42, fire_delay = 0.5}, {x = -12, y = -42, fire_delay = 0.5}},
+	fire_points = {{x = 12, y = -42, fire_delay = 0.5}, {x = -12, y = -42, fire_delay = 0.35, auto_burst = true}},
 	defence_type = defence_types.PROJECTILES,
 	blueprint_type = 1,
 	blueprint = "OG_LASER_PROJECTILE_BASE",
@@ -349,6 +351,36 @@ turrets["OG_TURRET_ENERGY_1"] = {
 	charges_per_charge = 5,
 	rotation_speed = 180,
 	charge_time = {[0] = 24, 24, 20, 17, 14, 12, 10, 8.5, 7},
+}
+turrets["OG_TURRET_CRYSTAL_1"] = {
+	enemy_burst = 2,
+	hide_glow_firing = true,
+	image = Hyperspace.Animations:GetAnimation("og_turret_crystal_1"),
+	glow = Hyperspace.Animations:GetAnimation("og_turret_crystal_1_glow"),
+	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_crystal_1_charge.png", -39, -39, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
+	fire_points = {{x = 0, y = -39, fire_delay = 0.35}},
+	defence_type = defence_types.MISSILES,
+	blueprint_type = 2,
+	blueprint = "OG_CRYSTAL_PROJECTILE_BASE",
+	charges = 4,
+	charges_per_charge = 2,
+	rotation_speed = 120,
+	charge_time = {[0] = 10, 10, 8.5, 7, 6, 5.5, 5, 4.75, 4.5},
+}
+turrets["OG_TURRET_CRYSTAL_1_ELITE"] = {
+	enemy_burst = 2,
+	hide_glow_firing = true,
+	image = Hyperspace.Animations:GetAnimation("og_turret_crystal_1_elite"),
+	glow = Hyperspace.Animations:GetAnimation("og_turret_crystal_1_glow"),
+	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_crystal_1_charge.png", -39, -39, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
+	fire_points = {{x = 0, y = -35, fire_delay = 0.35}},
+	defence_type = defence_types.DRONES_MISSILES,
+	blueprint_type = 2,
+	blueprint = "OG_CRYSTAL_PROJECTILE_ELITE",
+	charges = 4,
+	charges_per_charge = 2,
+	rotation_speed = 120,
+	charge_time = {[0] = 10, 10, 8.5, 7, 6, 5.5, 5, 4.75, 4.5},
 }
 turrets["OG_TURRET_MISSILE_1"] = {
 	enemy_burst = 3,

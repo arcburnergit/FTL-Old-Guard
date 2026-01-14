@@ -217,6 +217,9 @@ table.insert(craftedWeapons, {weapon = "OG_TURRET_ION_1", component_amounts = {1
 table.insert(craftedWeapons, {weapon = "OG_TURRET_ION_2", component_amounts = {1, 1}, components = {defence_drones_ion, {"ION_FIRE", "ION_FIRE_PLAYER", "ION_BIO", "ION_TRI", "ION_STUN", "ION_STUN_2", "ION_STUN_HEAVY", "ION_STUN_CHARGEGUN", "ION_STUN_CHARGEGUN_PLAYER"}}} )
 table.insert(craftedWeapons, {weapon = "OG_TURRET_ENERGY_1", component_amounts = {1, 1}, components = {defence_drones_ion, {"ENERGY_1", "ENERGY_2", "ENERGY_2_PLAYER", "ENERGY_3", "ENERGY_HULL", "ENERGY_STUN", "ENERGY_STUN_PLAYER", "ENERGY_CHAINGUN", "ENERGY_CHARGEGUN", "ENERGY_CHARGEGUN_PLAYER"}}} )
 
+table.insert(craftedWeapons, {weapon = "OG_TURRET_CRYSTAL_1", component_amounts = {1, 1}, components = {defence_drones_missile, {"CRYSTAL_BURST_1", "CRYSTAL_BURST_2", "CRYSTAL_HEAVY_1", "CRYSTAL_HEAVY_2", "CRYSTAL_STUN", "CRYSTAL_SHOTGUN", "CRYSTAL_CHARGEGUN"}}} )
+table.insert(craftedWeapons, {weapon = "OG_TURRET_CRYSTAL_1_ELITE", component_amounts = {1, 1}, components = {defence_drones_missile, {"CRYSTAL_BURST_1_RED", "CRYSTAL_BURST_2_RED", "CRYSTAL_HEAVY_1_RED", "CRYSTAL_HEAVY_2_RED", "CRYSTAL_STUN_RED", "CRYSTAL_SHOTGUN_RED", "CRYSTAL_CHARGEGUN_RED"}}} )
+
 table.insert(craftedWeapons, {weapon = "OG_TURRET_MISSILE_1", component_amounts = {1, 1}, components = {defence_drones_missile, {"MISSILES_1", "MISSILES_2", "MISSILES_BURST", "MISSILES_BURST_2", "MISSILES_BURST_2_PLAYER", "MISSILES_FREE"}}} )
 table.insert(craftedWeapons, {weapon = "OG_TURRET_MISSILE_2", component_amounts = {1, 1}, components = {defence_drones_missile, {"MISSILES_3", "MISSILES_4", "MISSILES_ENERGY", "MISSILES_FIRE", "MISSILES_FIRE_PLAYER", "MISSILES_CLOAK", "MISSILES_CLOAK_PLAYER"}}} )
 table.insert(craftedWeapons, {weapon = "OG_TURRET_KERNEL_HEAVY", component_amounts = {1, 1}, components = {defence_drones_missile, {"KERNEL_1", "KERNEL_1_ELITE", "KERNEL_2", "KERNEL_2_ELITE", "KERNEL_HEAVY", "KERNEL_HEAVY_ELITE"}}} )

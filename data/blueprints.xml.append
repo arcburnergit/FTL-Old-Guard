@@ -894,6 +894,51 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 </weaponBlueprint>
 </FTL>
 
+<!--CRYSTAL-->
+<FTL>
+<weaponBlueprint name="OG_TURRET_CRYSTAL_1">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Crystal Burst Turret</title>
+	<short>Crystal</short>
+	<desc>Modified projectile turret that fires 2 shield piercing crystals.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>100</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_crystal_1_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_CRYSTAL_1_ELITE">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Elite Crystal Burst Turret</title>
+	<short>€ Crystal</short>
+	<desc>Modified projectile turret that fires 2 shield piercing crystals. Elite variant that always applies lockdown and pierces 2 shields.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>100</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_crystal_1_elite_icon</iconReplace>
+</weaponBlueprint>
+</FTL>
+
 <!--MISSILES-->
 <FTL>
 <weaponBlueprint name="OG_TURRET_MISSILE_1">
@@ -1994,6 +2039,87 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 </weaponBlueprint>
 
 
+<weaponBlueprint name="OG_CRYSTAL_PROJECTILE_BASE">
+	<type>MISSILE</type>
+	<title>Laser</title>
+	<short>Laser</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>1</damage>
+	<missiles>0</missiles>
+	<speed>50</speed>
+	<shots>1</shots>
+	<sp>1</sp>
+	<fireChance>0</fireChance>
+	<breachChance>1</breachChance>
+	<stunChance>4</stunChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>crystal_shard2</image>
+	<explosion>explosion_crystal_2</explosion>
+	<launchSounds>
+		<sound>lightLaser1</sound>
+		<sound>lightLaser2</sound>
+		<sound>lightLaser3</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>crystalExplosion_small</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>missiles_1</weaponArt>
+	<iconImage>missile</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_CRYSTAL_PROJECTILE_ELITE">
+	<type>MISSILE</type>
+	<title>Laser</title>
+	<short>Laser</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>1</damage>
+	<missiles>0</missiles>
+	<speed>50</speed>
+	<shots>1</shots>
+	<sp>2</sp>
+	<lockdown>1</lockdown>
+	<fireChance>0</fireChance>
+	<breachChance>1</breachChance>
+	<stunChance>4</stunChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>crystal_shard2_red</image>
+	<explosion>explosion_crystal_2</explosion>
+	<launchSounds>
+		<sound>lightLaser1</sound>
+		<sound>lightLaser2</sound>
+		<sound>lightLaser3</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>crystalExplosion_small</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>missiles_1</weaponArt>
+	<iconImage>missile</iconImage>
+</weaponBlueprint>
 
 <weaponBlueprint name="OG_MISSILE_PROJECTILE_SWARM">
 	<type>MISSILE</type>

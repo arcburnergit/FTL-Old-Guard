@@ -2008,6 +2008,14 @@ local function renderTurret(shipManager, ship, spaceManager, shipGraph, sysName)
 		if currentTurret.charge_image then
 			Graphics.CSurface.GL_RenderPrimitiveWithAlpha(currentTurret.charge_image, 1)
 		end
+		if currentTurret.chain and currentTurret.chain.image then
+			currentTurret.chain.image:SetCurrentFrame(currentTurret.chain.count - 1)
+			currentTurret.chain.image:OnRender(1, Graphics.GL_Color(1,1,1,1), false)
+		end
+		if currentTurret.glow then
+			currentTurret.glow:SetCurrentFrame(currentTurret.charges - 1)
+			currentTurret.glow:OnRender(1, Graphics.GL_Color(1,1,1,1), false)
+		end
 		Graphics.CSurface.GL_PopMatrix()
 	elseif Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] >= 0 then
 		currentTurret = turrets[ turretBlueprintsList[ Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] ] ]
@@ -2035,7 +2043,7 @@ local function renderTurret(shipManager, ship, spaceManager, shipGraph, sysName)
 			currentTurret.chain.image:SetCurrentFrame(chains - 1)
 			currentTurret.chain.image:OnRender(1, Graphics.GL_Color(1,1,1,1), false)
 		end
-		if currentTurret.glow and charges > 0 then
+		if currentTurret.glow and charges > 0 and (not currentTurret.hide_glow_firing or currentTurret.image.currentFrame <= 0) then
 			currentTurret.glow:SetCurrentFrame(charges - 1)
 			currentTurret.glow:OnRender(1, Graphics.GL_Color(1,1,1,1), false)
 		end
