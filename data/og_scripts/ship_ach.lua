@@ -133,17 +133,20 @@ local humanList = {}
 for item in vter(Hyperspace.Blueprints:GetBlueprintList("LIST_CREW_HUMAN")) do
 	humanList[item] = true
 end
+local function ach_spear_2_invalid_crew(crewmem)
+	return crewmem.iShipId == 0 and not humanList[crewmem.type] and not (crewmem:IsDrone() or crewmem.bOutOfGame) then
+end
 script.on_internal_event(Defines.InternalEvents.JUMP_LEAVE, function(shipManager)
 	if shipManager.iShipId == 0 then
 		for crewmem in vter(shipManager.vCrewList) do
-			if crewmem.iShipId == 0 and not humanList[crewmem.type] and not crewmem:IsDrone() then
+			if ach_spear_2_invalid_crew(crewmem) then
 				Hyperspace.playerVariables.og_ach_track_humans_only = 1
 			end
 		end
 	end
 end)
 script.on_internal_event(Defines.InternalEvents.JUMP_ARRIVE, function(shipManager)
-	if should_track_achievement("SHIP_ACH_OG_DAWN_SPEAR_2", Hyperspace.ships.player, "PLAYER_SHIP_OG_DAWN_SPEAR") and current_sector() > 8 and Hyperspace.playerVariables.og_ach_track_humans_only == 0 then
+	if should_track_achievement("SHIP_ACH_OG_DAWN_SPEAR_2", Hyperspace.ships.player, "PLAYER_SHIP_OG_DAWN_SPEAR") and current_sector() >= 8 and Hyperspace.playerVariables.og_ach_track_humans_only == 0 then
 		Hyperspace.CustomAchievementTracker.instance:SetAchievement("SHIP_ACH_OG_DAWN_SPEAR_2", false)
 	end
 end)
@@ -158,7 +161,7 @@ script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
 			local validRun = true
 			local invalidCrew = {}
 			for crewmem in vter(Hyperspace.ships.player.vCrewList) do
-				if crewmem.iShipId == 0 and not humanList[crewmem.type] then
+				if ach_spear_2_invalid_crew(crewmem) then
 					validRun = false
 					table.insert(invalidCrew, crewmem:GetLongName())
 				end
