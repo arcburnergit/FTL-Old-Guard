@@ -134,7 +134,7 @@ for item in vter(Hyperspace.Blueprints:GetBlueprintList("LIST_CREW_HUMAN")) do
 	humanList[item] = true
 end
 local function ach_spear_2_invalid_crew(crewmem)
-	return crewmem.iShipId == 0 and not humanList[crewmem.type] and not (crewmem:IsDrone() or crewmem.bOutOfGame) then
+	return crewmem.iShipId == 0 and not humanList[crewmem.type] and not (crewmem:IsDrone() or crewmem.bOutOfGame)
 end
 script.on_internal_event(Defines.InternalEvents.JUMP_LEAVE, function(shipManager)
 	if shipManager.iShipId == 0 then
