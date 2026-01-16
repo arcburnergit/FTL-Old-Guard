@@ -217,6 +217,7 @@ local wallImage =  {
 
 function mods.og.render_vunerable(room)
 	--print("render_vunerable:"..room.iRoomId)
+	if Hyperspace.App.menu.shipBuilder.bOpen then return end
 	local opacity = 0.5
 	local x = room.rect.x
 	local y = room.rect.y

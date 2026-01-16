@@ -15,31 +15,55 @@
 	<name>human_og_raider</name>
 </blueprintList>
 <blueprintList name="BLUELIST_CREW_OG_DAWN">
+	<name>human_og_dawn</name>
 </blueprintList>
 <blueprintList name="SHOP_TURRETS_ALL">
 	<name>OG_TURRET_LASER_1</name>
 	<name>OG_TURRET_LASER_2</name>
+	<name>OG_TURRET_LASER_PIERCE</name>
+	<name>OG_TURRET_LASER_CHAINGUN</name>
+	<name>OG_TURRET_LASER_BIO</name>
+	<name>OG_TURRET_LASER_HULL</name>
+	<name>OG_TURRET_LASER_PARTICLE</name>
 	<name>OG_TURRET_ION_1</name>
 	<name>OG_TURRET_ION_2</name>
+	<name>OG_TURRET_ENERGY_1</name>
+	<name>OG_TURRET_CRYSTAL_1</name>
+	<name>OG_TURRET_CRYSTAL_1_ELITE</name>
 	<name>OG_TURRET_MISSILE_1</name>
 	<name>OG_TURRET_MISSILE_2</name>
+	<name>OG_TURRET_KERNEL_HEAVY</name>
+	<name>OG_TURRET_KERNEL_FIRE</name>
 	<name>OG_TURRET_FLAK_1</name>
+	<name>OG_TURRET_FLAK_BIO</name>
 	<name>OG_TURRET_FOCUS_1</name>
+	<name>OG_TURRET_FOCUS_BIO</name>
+	<name>OG_TURRET_FOCUS_CHAIN</name>
 	<name>OG_TURRET_LASER_MINI_1</name>
 	<name>OG_TURRET_LASER_MINI_2</name>
 	<name>OG_TURRET_ION_MINI_1</name>
 	<name>OG_TURRET_FOCUS_MINI_1</name>
 	<name>OG_TURRET_MISSILE_MINI_1</name>
+	<name>OG_TURRET_FLAK_MINI_1</name>
 </blueprintList>
 <blueprintList name="SHOP_TURRETS_LARGE">
 	<name>OG_TURRET_LASER_1</name>
 	<name>OG_TURRET_LASER_2</name>
+	<name>OG_TURRET_LASER_PIERCE</name>
+	<name>OG_TURRET_LASER_CHAINGUN</name>
+	<name>OG_TURRET_LASER_BIO</name>
+	<name>OG_TURRET_LASER_HULL</name>
+	<name>OG_TURRET_LASER_PARTICLE</name>
 	<name>OG_TURRET_ION_1</name>
 	<name>OG_TURRET_ION_2</name>
+	<name>OG_TURRET_ENERGY_1</name>
 	<name>OG_TURRET_MISSILE_1</name>
 	<name>OG_TURRET_MISSILE_2</name>
 	<name>OG_TURRET_FLAK_1</name>
+	<name>OG_TURRET_FLAK_BIO</name>
 	<name>OG_TURRET_FOCUS_1</name>
+	<name>OG_TURRET_FOCUS_BIO</name>
+	<name>OG_TURRET_FOCUS_CHAIN</name>
 </blueprintList>
 <blueprintList name="SHOP_TURRETS_MINI">
 	<name>OG_TURRET_LASER_MINI_1</name>
@@ -47,6 +71,7 @@
 	<name>OG_TURRET_ION_MINI_1</name>
 	<name>OG_TURRET_FOCUS_MINI_1</name>
 	<name>OG_TURRET_MISSILE_MINI_1</name>
+	<name>OG_TURRET_FLAK_MINI_1</name>
 </blueprintList>
 <blueprintList name="GIFTLIST_OG_IRON">
 	<name>OG_TURRET_LASER_MINI_1</name>
@@ -54,6 +79,7 @@
 	<name>OG_TURRET_ION_MINI_1</name>
 	<name>OG_TURRET_FOCUS_MINI_1</name>
 	<name>OG_TURRET_MISSILE_MINI_1</name>
+	<name>OG_TURRET_FLAK_MINI_1</name>
 </blueprintList>
 </FTL>
 <!--Iron Watch Ships-->
@@ -100,11 +126,13 @@
 <blueprintList name="LIST_TURRETS_BIG_ATTACK">
 	<name>OG_TURRET_LASER_1</name>
 	<name>OG_TURRET_LASER_2</name>
-	<name>OG_TURRET_MISSILE_2</name>
+	<name>OG_TURRET_LASER_PIERCE</name>
+	<name>OG_TURRET_LASER_HULL</name>
 	<name>OG_TURRET_FOCUS_1</name>
 </blueprintList>
 <blueprintList name="LIST_TURRETS_BIG_DEFENCE">
 	<name>OG_TURRET_LASER_1</name>
+	<name>OG_TURRET_LASER_BIO</name>
 	<name>OG_TURRET_MISSILE_1</name>
 	<name>OG_TURRET_FLAK_1</name>
 </blueprintList>

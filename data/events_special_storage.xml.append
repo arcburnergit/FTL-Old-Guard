@@ -52,10 +52,10 @@
 		<text>Nevermind.</text>
 		<event load="STORAGE_CHECK"/>
 	</choice>
-	<choice hidden="false">
+	<!--choice hidden="false">
 		<text>Craft a turret base.</text>
 		<event load="OG_CRAFT_TURRET_BASE"/>
-	</choice>
+	</choice-->
 </event>
 
 <event name="OG_CRAFT_CRAFT">
@@ -189,11 +189,11 @@
 		<text>Manual Dexterity. [Cost: 30~, 5|]</text>
 		<event load="STORAGE_CHECK_SYSTEM_OG_TURRET_MANUAL" />
 	</choice>
-	<choice req="UPG_OG_TURRET_ADAPTIVE_BUY" lvl="1" max_group="2" blue="false" hidden="true">
+	<choice req="UPG_OG_TURRET_ADAPTIVE_BUY" lvl="1" max_group="3" blue="false" hidden="true">
 		<text>Expanded Circuitry. [ALREADY INSTALLED]</text>
 		<event load="OPTION_INVALID" />
 	</choice>
-	<choice req="UPG_OG_TURRET_ADAPTIVE_SHOW" lvl="1" max_group="2" blue="false" hidden="true">
+	<choice req="UPG_OG_TURRET_ADAPTIVE_SHOW" lvl="1" max_group="3" blue="false" hidden="true">
 		<text>Expanded Circuitry. [Cost: 30~, 5|]</text>
 		<event load="STORAGE_CHECK_SYSTEM_OG_TURRET_ADAPTIVE_LARGE" />
 	</choice>

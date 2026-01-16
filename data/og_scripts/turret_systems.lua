@@ -319,20 +319,34 @@ local function add_stat_text(desc, currentTurret, chargeMax)
 	local shotBlueprint = Hyperspace.Blueprints:GetWeaponBlueprint(currentTurret.blueprint)
 	local damage = shotBlueprint.damage
 	desc = desc.."\n"
-	if damage.iDamage > 0 then
-		desc = desc.."\nBase Hull Damage: "..math.floor(damage.iDamage)
+	local tempDamage = {iDamage = damage.iDamage, iSystemDamage = damage.iSystemDamage, iPersDamage = damage.iPersDamage, iIonDamage = damage.iIonDamage}
+	if currentTurret.fake_damage then
+		if currentTurret.fake_damage.iDamage then tempDamage.iDamage = tempDamage.iDamage + currentTurret.fake_damage.iDamage end
+		if currentTurret.fake_damage.iSystemDamage then tempDamage.iSystemDamage = tempDamage.iSystemDamage + currentTurret.fake_damage.iSystemDamage end
+		if currentTurret.fake_damage.iPersDamage then tempDamage.iPersDamage = tempDamage.iPersDamage + currentTurret.fake_damage.iPersDamage end
+		if currentTurret.fake_damage.iIonDamage then tempDamage.iIonDamage = tempDamage.iIonDamage + currentTurret.fake_damage.iIonDamage end
 	end
-	if damage.iSystemDamage + damage.iDamage > 0 then
-		desc = desc.."\nTotal System Damage: "..math.floor(damage.iDamage + damage.iSystemDamage)
+	if tempDamage.iDamage > 0 then
+		desc = desc.."\nBase Hull Damage: "..math.floor(tempDamage.iDamage)
 	end
-	if damage.iPersDamage + damage.iDamage > 0 then
-		desc = desc.."\nTotal Crew Damage: "..math.floor((damage.iDamage + damage.iPersDamage) * 15)
+	if tempDamage.iSystemDamage + tempDamage.iDamage > 0 then
+		desc = desc.."\nTotal System Damage: "..math.floor(tempDamage.iDamage + tempDamage.iSystemDamage)
 	end
-	if damage.iIonDamage > 0 then
-		desc = desc.."\nTotal Ion Damage: "..math.floor(damage.iIonDamage)
+	if tempDamage.iPersDamage + tempDamage.iDamage > 0 then
+		desc = desc.."\nTotal Crew Damage: "..math.floor((tempDamage.iDamage + tempDamage.iPersDamage) * 15)
+	end
+	if tempDamage.iIonDamage > 0 then
+		desc = desc.."\nTotal Ion Damage: "..math.floor(tempDamage.iIonDamage)
 	end
 	if damage.iShieldPiercing ~= 0 then
-		desc = desc.."\nShield Piercing: "..math.floor(damage.iShieldPiercing)
+		local tempPiercing = damage.iShieldPiercing
+		if currentTurret.blueprint_type == 3 then 
+			tempPiercing = tempPiercing - 1 
+			if currentTurret.fake_damage and currentTurret.fake_damage.iDamage then
+				tempPiercing = tempPiercing - currentTurret.fake_damage.iDamage
+			end
+		end
+		desc = desc.."\nShield Piercing: "..math.floor(tempPiercing)
 	end
 	if damage.bHullBuster then
 		desc = desc.."\nDoes 2x damage to systemless rooms"
@@ -1034,6 +1048,9 @@ local function get_charge_time(currentTurret, system)
 
 	local hasMannedBonus = (system.iActiveManned > 0 and 0.05) or 0
 	local chargeTime = currentTurret.charge_time[system:GetEffectivePower()]
+	if currentTurret.enemy_charge_time and shipId == 1 then
+		chargeTime = currentTurret.enemy_charge_time[system:GetEffectivePower()]
+	end
 	local chargeTimeReduction = 0
 	local chainAmount = Hyperspace.playerVariables[shipId..systemNameTemp..systemChainVarName]
 	if currentTurret.chain and currentTurret.chain.type == chain_types.cooldown then

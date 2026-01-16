@@ -412,7 +412,7 @@ For your extra egregious actions, your reputation was decreased twice.</text>
 		<text>Check out the merchant.</text>
 		<event>
 			<text>You enter the outpost to discover a wide variety of items on sale, the usual stuff is there, crates of fuel, drone parts, and missiles, but towards one wall you find an unusual turret on display, locked up tight behind bullet proof glass. "Surplus New Dawn Equipment: Ask at the counter"</text>
-			<store>STORE_STANDARD</store>
+			<store>STORE_STANDARD_OG_TURRETS</store>
 			<choice>
 				<text>Inquire about the surplus New Dawn equipment.</text>
 				<event>
@@ -2242,7 +2242,7 @@ The Iron Watch cruiser contacts you, "Stick with me, I have the main raid force 
 </ship>
 
 <event name="TRANSPORT_OG_DAWN_LOOT" unique="true">
-    <preventQuest/>
+	<preventQuest/>
 	<beaconType id="map_icon_transport" global="true" req="LOOT_COMPASS">
 		<color r="255" g="186" b="0" a="1"/>
 		<unvisitedTooltip>An unvisited location.</unvisitedTooltip>
@@ -2250,38 +2250,38 @@ The Iron Watch cruiser contacts you, "Stick with me, I have the main raid force 
 		<undiscoveredTooltip>An unvisited location.</undiscoveredTooltip>
 	</beaconType>
 	<text>This beacon hosts a New Dawn transport. It's safe to bet the ship is most likely carrying some special tech. If you can kill its crew, their cargo will be yours.</text>
-    <ship load="SHIP_OG_DAWN_TRANSPORT_LOOT" hostile="false"/>
+	<ship load="SHIP_OG_DAWN_TRANSPORT_LOOT" hostile="false"/>
 	<choice>
-        <text>Demand the surrender of their goods.</text>
-        <event>
-            <text>You prepare to secure their cargo by force.</text>
-            <ship hostile="true"/>
-            <choice hidden="true">
-                <text>Continue...</text>
-                <event load="COMBAT_CHECK"/>
-            </choice>
-        </event>
-    </choice>
-    <choice>
-        <text>Avoid the ship.</text>
-        <event>
-            <text>They stay outside your weapons range, and eventually jump away.</text>
-            <choice hidden="true">
-                <text>Do something onboard the ship.</text>
-                <event load="STORAGE_CHECK"/>
-            </choice>
-            <choice hidden="true">
-                <text>Do nothing.</text>
-                <event/>
-            </choice>
-        </event>
-    </choice>
+		<text>Demand the surrender of their goods.</text>
+		<event>
+			<text>You prepare to secure their cargo by force.</text>
+			<ship hostile="true"/>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="COMBAT_CHECK"/>
+			</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>Avoid the ship.</text>
+		<event>
+			<text>They stay outside your weapons range, and eventually jump away.</text>
+			<choice hidden="true">
+				<text>Do something onboard the ship.</text>
+				<event load="STORAGE_CHECK"/>
+			</choice>
+			<choice hidden="true">
+				<text>Do nothing.</text>
+				<event/>
+			</choice>
+		</event>
+	</choice>
 </event>
 <event name="TRANSPORT_CAPTURE_OG_DAWN" unique="true">
-    <text>The crew is dead, leaving you with the ship. Its cargo is yours for the taking. Aboard is the special tech you expected, which you bring back to your ship.</text>
-    <autoReward level="MED">standard_no_item</autoReward>
+	<text>The crew is dead, leaving you with the ship. Its cargo is yours for the taking. Aboard is the special tech you expected, which you bring back to your ship.</text>
+	<autoReward level="MED">standard_no_item</autoReward>
 	<achievement>ACH_TRANS_OG_DAWN</achievement>
-    <weapon name="LOOT_OG_DAWN_1"/>
+	<weapon name="LOOT_OG_DAWN_1"/>
 	<variable name="ach_trans_og_dawn" op="set" val="1"/>
 </event>
 </FTL>

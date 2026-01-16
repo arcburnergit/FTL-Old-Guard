@@ -502,7 +502,7 @@
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>100</cost>
+	<cost>65</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>invisible</iconReplace>
@@ -526,7 +526,7 @@
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>100</cost>
+	<cost>65</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_laser_1_icon</iconReplace>
@@ -547,7 +547,7 @@
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>100</cost>
+	<cost>65</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_laser_2_icon</iconReplace>
@@ -589,7 +589,7 @@
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>150</cost>
+	<cost>100</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_laser_boss_light_icon</iconReplace>
@@ -611,7 +611,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>150</cost>
+	<cost>100</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_laser_boss_light_chaos_icon</iconReplace>
@@ -632,7 +632,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>150</cost>
+	<cost>100</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_laser_ancient_icon</iconReplace>
@@ -653,7 +653,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>150</cost>
+	<cost>100</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_laser_cel_1_icon</iconReplace>
@@ -674,7 +674,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>100</cost>
+	<cost>65</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_laser_zenith_icon</iconReplace>
@@ -695,7 +695,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>100</cost>
+	<cost>65</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_laser_rad_icon</iconReplace>
@@ -716,7 +716,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>100</cost>
+	<cost>65</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_laser_pierce_icon</iconReplace>
@@ -737,7 +737,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>100</cost>
+	<cost>65</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_laser_hull_icon</iconReplace>
@@ -758,7 +758,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>100</cost>
+	<cost>65</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_laser_chaingun_icon</iconReplace>
@@ -779,7 +779,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>100</cost>
+	<cost>65</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_laser_particle_icon</iconReplace>
@@ -845,7 +845,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>100</cost>
+	<cost>65</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_ion_1_icon</iconReplace>
@@ -866,7 +866,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>100</cost>
+	<cost>65</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_ion_2_icon</iconReplace>
@@ -887,7 +887,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>100</cost>
+	<cost>65</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_energy_1_icon</iconReplace>
@@ -911,7 +911,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>100</cost>
+	<cost>65</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_crystal_1_icon</iconReplace>
@@ -932,7 +932,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>100</cost>
+	<cost>65</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_crystal_1_elite_icon</iconReplace>
@@ -956,7 +956,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>100</cost>
+	<cost>65</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_missile_1_icon</iconReplace>
@@ -977,7 +977,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>100</cost>
+	<cost>65</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_missile_2_icon</iconReplace>
@@ -998,7 +998,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>100</cost>
+	<cost>65</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_kernel_heavy_icon</iconReplace>
@@ -1018,7 +1018,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>100</cost>
+	<cost>65</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_kernel_fire_icon</iconReplace>
@@ -1042,7 +1042,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>100</cost>
+	<cost>65</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_flak_1_icon</iconReplace>
@@ -1062,7 +1062,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>100</cost>
+	<cost>65</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_flak_rad_icon</iconReplace>
@@ -1086,7 +1086,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>100</cost>
+	<cost>65</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_focus_1_icon</iconReplace>
@@ -1107,7 +1107,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>100</cost>
+	<cost>65</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_focus_bio_icon</iconReplace>
@@ -1128,7 +1128,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>100</cost>
+	<cost>65</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_focus_chain_icon</iconReplace>
@@ -1152,7 +1152,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>80</cost>
+	<cost>45</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_laser_mini_1_icon</iconReplace>
@@ -1194,7 +1194,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>80</cost>
+	<cost>45</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_laser_mini_2_icon</iconReplace>
@@ -1218,7 +1218,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>80</cost>
+	<cost>45</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_ion_mini_1_icon</iconReplace>
@@ -1242,7 +1242,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>80</cost>
+	<cost>45</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_focus_mini_1_icon</iconReplace>
@@ -1266,7 +1266,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>100</cost>
+	<cost>45</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_flak_mini_1_icon</iconReplace>
@@ -1290,7 +1290,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>80</cost>
+	<cost>45</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_missile_mini_1_icon</iconReplace>
@@ -1315,7 +1315,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>100</cost>
+	<cost>80</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_laser_dawn_icon</iconReplace>
@@ -1337,7 +1337,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>100</cost>
+	<cost>80</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_ion_dawn_icon</iconReplace>
@@ -1359,7 +1359,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>100</cost>
+	<cost>80</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_missile_dawn_icon</iconReplace>
@@ -1381,7 +1381,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>100</cost>
+	<cost>80</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_flak_dawn_icon</iconReplace>
@@ -1403,7 +1403,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>100</cost>
+	<cost>80</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_focus_dawn_icon</iconReplace>
@@ -1425,7 +1425,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>80</cost>
+	<cost>50</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_laser_mini_dawn_1_icon</iconReplace>
@@ -1447,7 +1447,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>80</cost>
+	<cost>50</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_laser_mini_dawn_2_icon</iconReplace>
@@ -1469,7 +1469,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>80</cost>
+	<cost>50</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_focus_mini_dawn_icon</iconReplace>
@@ -2167,7 +2167,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<short>Laser</short>
 	<desc>YOU SHOULD NEVER SEE THIS</desc>
 	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
-	<damage>2</damage>
+	<damage>3</damage>
 	<missiles>0</missiles>
 	<accuracyMod>10</accuracyMod>
 	<speed>50</speed>
@@ -2373,10 +2373,10 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<damage>1</damage>
 	<persDamage>2</persDamage>
 	<statBoosts>
-        <statBoost name="moveSpeedMultiplier" load="RAD_MOVE"/>
+		<statBoost name="moveSpeedMultiplier" load="RAD_MOVE"/>
 		<statBoost name="stunMultiplier" load="RAD_STUN"/>
-        <statBoost name="repairSpeed" load="RAD_REPAIR"/>
-    </statBoosts>
+		<statBoost name="repairSpeed" load="RAD_REPAIR"/>
+	</statBoosts>
 	<spin>720</spin>
 	<shots>1</shots>
 	<sp>0</sp>
@@ -2522,7 +2522,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 		<g>8</g>
 		<b>200</b>
 	</color>
-	<sp>3</sp>
+	<sp>1</sp>
 	<fireChance>0</fireChance>
 	<breachChance>5</breachChance>
 	<statBoosts>
@@ -3730,7 +3730,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 
 <shipBlueprint name="PLAYER_SHIP_OG_KESTREL" layout="ogp_kestrel_a" img="ogp_kestrel_a">
 	<class>Iron Kestrel Cruiser</class>
-	<name>Superluminal</name>
+	<name>Supercausal</name>
 	<desc>An iconic Kestrel-model cruiser, this vessel is well rounded and well suited to both experienced and inexperienced captains.</desc>
 	<systemList>
 		<og_turret power="2" room="16" start="true" img="room_og_turret_5" turret="OG_TURRET_LASER_1">
@@ -3812,7 +3812,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 
 <shipBlueprint name="PLAYER_SHIP_OG_REBEL" layout="ogp_rebel_a" img="ogp_rebel_a">
 	<class>Iron Rebel Cruiser</class>
-	<name>Ajaccio</name>
+	<name>Corsica</name>
 	<unlock id="ship_PLAYER_SHIP_OG_REBEL_unlock"/>
 	<desc>Using reverse engineered Iron Watch turret tech and weaponry similar to that of the Flagship, this powerful cruiser packs a serious punch.</desc>
 	<systemList>
@@ -3895,7 +3895,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 
 <shipBlueprint name="PLAYER_SHIP_OG_CURA" layout="ogp_cura_a" img="ogp_cura_a">
 	<class>Iron Innovation Cruiser</class>
-	<name>C.U.R.A.</name>
+	<name>The Iron Giant</name>
 	<unlock id="ship_PLAYER_SHIP_OG_CURA_unlock"/>
 	<desc>Powered with a neutered Rebel AI-core, this ship carries prototype equipment used for creating power surges.</desc>
 	<systemList>
@@ -3982,7 +3982,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 
 <shipBlueprint name="PLAYER_SHIP_OG_SEPARATIST" layout="ogp_separatist_a" img="ogp_separatist_a">
 	<class>Iron Separatist Cruiser</class>
-	<name>The Solitude</name>
+	<name>The Isolation</name>
 	<unlock id="ship_PLAYER_SHIP_OG_SEPARATIST_unlock"/>
 	<desc>A lonesome Separatist Engi pilots this ship without aid of an extensive crew, but with the company of his personnel drones he can manage.</desc>
 	<systemList>
@@ -4066,7 +4066,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 
 <shipBlueprint name="PLAYER_SHIP_OG_ANGEL" layout="ogp_angel_a" img="ogp_angel_a">
 	<class>Iron Angelic Deathbringer</class>
-	<name>Lucifer</name>
+	<name>Venus</name>
 	<unlock id="ship_PLAYER_SHIP_OG_ANGEL_unlock"/>
 	<desc>The Angels are some of the finest mercenaries in the galaxy. This stealth ship must rely on its deadly crew to kill the enemy quickly before it takes too much damage.</desc>
 	<systemList>
@@ -4144,7 +4144,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 
 <shipBlueprint name="PLAYER_SHIP_OG_ROCK" layout="ogp_rock_a" img="ogp_rock_a">
 	<class>Iron Rock Cruiser</class>
-	<name>Bulwark</name>
+	<name>Rampart</name>
 	<unlock id="ship_PLAYER_SHIP_OG_ROCK_unlock"/>
 	<desc>Similar to its designers, this super-dense behemoth uses brute force to overwhelm its foes.</desc>
 	<systemList>
@@ -4154,7 +4154,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 				<number>0</number>
 			</slot>
 		</og_turret>
-		<og_turret_2 power="2" room="1" start="true" img="room_og_turret_8" turret="OG_TURRET_MISSILE_2">
+		<og_turret_2 power="2" room="1" start="true" img="room_og_turret_8" turret="OG_TURRET_KERNEL_FIRE">
 			<slot>
 				<direction>right</direction>
 				<number>0</number>
@@ -4230,7 +4230,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 
 <shipBlueprint name="PLAYER_SHIP_OG_PEACEKEEPER" layout="ogp_peace_a" img="ogp_peace_a">
 	<class>Iron Peacekeeping Cruiser</class>
-	<name>Lazarus</name>
+	<name>The Beggar</name>
 	<unlock id="ship_PLAYER_SHIP_OG_PEACEKEEPER_unlock"/>
 	<desc>A sleek and state of the art Zoltan vessel design. This model is iconic for being Devorak Rei's very own personal cruiser.</desc>
 	<systemList>
@@ -4283,7 +4283,6 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 				<number>0</number>
 			</slot>
 		</shields>
-		<teleporter power="1" room="8" start="true" />
 		<weapons power="2" room="5" start="false" img="room_weapons_12">
 			<slot>
 				<direction>right</direction>
@@ -4308,7 +4307,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 
 <shipBlueprint name="PLAYER_SHIP_OG_KNIGHT" layout="ogp_knight_a" img="ogp_knight_a">
 	<class>Iron Knighted Cruiser</class>
-	<name>The Black Raven</name>
+	<name>The Silver Raven</name>
 	<unlock id="ship_PLAYER_SHIP_OG_KNIGHT_unlock"/>
 	<desc>This small cruiser might have little hull, but it still exists as the KoN's flagship vessel. It's not the size that matters, but the way you use it.</desc>
 	<systemList>
