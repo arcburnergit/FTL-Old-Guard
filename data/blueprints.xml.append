@@ -1347,8 +1347,8 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<type>BEAM</type>
 	<flavorType>Turret</flavorType>
 	<tip>tip_og_turret</tip>
-	<title>Dawn Quad Missile Turret</title>
-	<short>€ Quad M.</short>
+	<title>Dawn Dual Missile Turret</title>
+	<short>€ Dual M.</short>
 	<desc>Slow to charge but capable of delivering high damage to the enemy ship, decent against enemy drones and solid projectiles.
 New Dawn varient applies a status effect to hit rooms that causes them to take +1 system damage. However Turret Systems equiped with New Dawn turrets similarly take +1 system damage when hit.</desc>
 	<tooltip>Turret</tooltip>

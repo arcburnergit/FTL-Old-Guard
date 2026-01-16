@@ -698,12 +698,12 @@ turrets["OG_TURRET_MISSILE_DAWN"] = {
 	fire_points = {{x = 15, y = -48, fire_delay = 0.5}, {x = -15, y = -48, fire_delay = 0.5}},
 	defence_type = defence_types.DRONES_MISSILES,
 	blueprint_type = 2,
-	ammo_consumption = 0.5,
+	ammo_consumption = 1,
 	blueprint = "OG_MISSILE_PROJECTILE_HEAVY_DAWN",
 	charges = 2,
-	charges_per_charge = 2,
+	charges_per_charge = 1,
 	rotation_speed = 120,
-	charge_time = turrets["OG_TURRET_MISSILE_2"].charge_time,
+	charge_time = turrets["OG_TURRET_LASER_2"].charge_time,
 }
 turrets["OG_TURRET_FLAK_DAWN"] = {
 	enemy_burst = 3,

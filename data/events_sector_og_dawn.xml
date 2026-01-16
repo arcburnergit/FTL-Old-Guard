@@ -689,9 +689,9 @@ The Captain of the transport pauses, thinking on something.
 				</event>
 			</choice>
 			<choice hidden="false">
-				<text>Request one of their soldiers in exchange for supplies.</text>
+				<text>Request one of their turrets in exchange for supplies.</text>
 				<event>
-					<text>You dock with the transport and hand over the supplies, you're greeted by your new crew member, "To be honest I always wanted to work on a real war ship, the transport is safe and all, but it gets real boring on there."</text>
+					<text>You dock with the transport and hand over the supplies, you're greeted by the transport's Captain, "You know, those rebels really made the Federation sound awful, but you really don't seem that bad."</text>
 					<item_modify>
 						<item type="scrap" min="-25" max="-25"/>
 						<item type="fuel" min="-6" max="-6"/>
@@ -737,7 +737,7 @@ The Captain of the transport pauses, thinking on something.
 			</choice>
 		</event>
 	</choice>
-	<choice req="rep_og_dawn" lvl="-999" max_lvl="0" blue="false">
+	<choice req="rep_og_dawn" lvl="-999" max_lvl="1" blue="false">
 		<text>Contact the transport.</text>
 		<event>
 			<text>"Federation scum, don't come any closer, we don't want any trouble but we aren't opposed to ripping your ship to threads."</text>

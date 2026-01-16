@@ -1059,7 +1059,7 @@ local function get_charge_time(currentTurret, system)
 		end
 	end
 	chargeTime = chargeTime - chargeTimeReduction
-	chargeTime = (chargeTime * 1 - (hasMannedBonus + system.iActiveManned * 0.05))/(1 + shipManager:GetAugmentationValue("AUTO_COOLDOWN")/2)
+	chargeTime = (chargeTime * (1 - (hasMannedBonus + system.iActiveManned * 0.05)))/(1 + shipManager:GetAugmentationValue("AUTO_COOLDOWN")/2)
 	return chargeTime
 end
 
@@ -1156,6 +1156,7 @@ local function system_render(systemBox, ignoreStatus)
 		end
 		Graphics.CSurface.GL_RenderPrimitiveWithColor(turretBoxInner, renderColour)
 
+		local chainAmount = Hyperspace.playerVariables[shipId..systemId..systemChainVarName]
 		if currentTurret.chain and chainAmount > 0 then
 			Graphics.CSurface.GL_RenderPrimitiveWithColor(turretBoxChain, renderColour)
 		elseif currentTurret.chain then
