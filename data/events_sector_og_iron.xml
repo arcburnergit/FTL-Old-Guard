@@ -884,7 +884,7 @@
 		<text>Please, you can have the wreck, just let us live!</text>
 		<choice hidden="true">
 			<text>Accept their offer.</text>
-			<event load="OG_IRON_EXPLORE_TRANSPORT_SECURE"/>
+			<event load="OG_IRON_EXPLORE_TRANSPORT_SECURE_SURRENDER"/>
 		</choice>
 		<choice>
 			<text>Surrender is not an option.</text>
@@ -908,6 +908,15 @@
 		</choice>
 	</deadCrew>
 </ship>
+<event name="OG_IRON_EXPLORE_TRANSPORT_SECURE_SURRENDER">
+	<ship hostile="false"/>
+	<text>You scrap the wreck and collect what you can from it's stores before preparing for your next jump</text>
+	<autoReward level="MED">standard_no_item</autoReward>
+	<choice>
+		<text>Continue...</text>
+		<event load="REPUTATION_UPDATE_OG_IRON"/>
+	</choice>
+</event>
 <event name="OG_IRON_EXPLORE_TRANSPORT_SECURE">
 	<text>You scrap the wreck and collect what you can from it's stores before preparing for your next jump</text>
 	<autoReward level="MED">standard_no_item</autoReward>

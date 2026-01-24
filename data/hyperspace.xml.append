@@ -356,7 +356,7 @@ This enemy possesses New Dawn turrets, when hit by these, rooms will be temporar
 		<hiddenAug>SHIP_KESTREL</hiddenAug>
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 		<crewLimit>11</crewLimit>
-		<systemLimit>8</systemLimit>
+		<systemLimit>10</systemLimit>
 	</mod-append:customShip>
 
 	<mod-append:ship name="PLAYER_SHIP_OG_REBEL" b="false" c="false" >
@@ -677,6 +677,8 @@ This enemy possesses New Dawn turrets, when hit by these, rooms will be temporar
 	<bossShip>OGT_BOSS_IRON_CHALLENGE</bossShip>
 	<bossShip>OGT_BOSS_IRON_EXTREME</bossShip>
 	<bossShip>OGT_BOSS_IRON_CHAOS</bossShip>
+
+	<bossShip yOffset="210">OG_LEGION_ASSAULT_TURRET</bossShip>
 </events>
 <crew>
 	<race name="human_og_raider">

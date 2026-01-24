@@ -619,9 +619,11 @@ script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
 				Hyperspace.Mouse.bForceTooltip = true
 				Hyperspace.Mouse.tooltip = "Set the turret to defensive mode."
 			elseif system.table.tooltip_type == 0 then
-				Hyperspace.Mouse.bForceTooltip = true
-				local currentTurret = turrets[ turretBlueprintsList[ Hyperspace.playerVariables[shipId..sysName..systemBlueprintVarName] ] ]
-				Hyperspace.Mouse.tooltip = add_stat_text("", currentTurret, system:GetMaxPower())
+				if Hyperspace.playerVariables[shipId..sysName..systemBlueprintVarName] >= 0 then
+					Hyperspace.Mouse.bForceTooltip = true
+					local currentTurret = turrets[ turretBlueprintsList[ Hyperspace.playerVariables[shipId..sysName..systemBlueprintVarName] ] ]
+					Hyperspace.Mouse.tooltip = add_stat_text("", currentTurret, system:GetMaxPower())
+				end
 			elseif system.table.tooltip_type == 3 or system.table.tooltip_type == 3 then
 				Hyperspace.Mouse.bForceTooltip = true
 				Hyperspace.Mouse.tooltip = "Toggle to activate/deactivate turrets automatically firing.\n\nLEFT CTRL + AIM can force a turret to do the opposite of current setting"
@@ -1321,6 +1323,7 @@ local function resetTurrets(shipManager)
 end
 
 script.on_internal_event(Defines.InternalEvents.JUMP_ARRIVE, resetTurrets)
+script.on_internal_event(Defines.InternalEvents.ON_WAIT, resetTurrets)
 
 script.on_internal_event(Defines.InternalEvents.JUMP_LEAVE, function(shipManager)
 	if shipManager.iShipId == 1 then
@@ -1331,6 +1334,7 @@ script.on_internal_event(Defines.InternalEvents.JUMP_LEAVE, function(shipManager
 		end
 	end
 end)
+
 
 script.on_game_event("STORAGE_CHECK_OG_TURRET", false, function()
 	local shipManager = Hyperspace.ships.player
@@ -1693,6 +1697,9 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 						if currentTurret.chain then
 							Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChainVarName] = math.max(0, Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChainVarName] - 1)
 						end
+						system.table.chargeTime = 1
+					elseif system.table.chargeTime <= 0 and Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChainVarName] >= 1 then
+						Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChainVarName] = math.max(0, Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChainVarName] - 1)
 						system.table.chargeTime = 1
 					end
 					Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemTimeVarName] = system.table.chargeTime * 10000000 

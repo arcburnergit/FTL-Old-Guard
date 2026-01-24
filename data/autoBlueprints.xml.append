@@ -1635,6 +1635,7 @@ WEAPONS
 -->
 <mod:findName type="blueprintList" name="BLUELIST_AETHER">
 	<mod-append:name>OG_TURRET_LASER_ANCIENT</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_ZENITH</mod-append:name>
 </mod:findName>
 
 <mod:findName type="blueprintList" name="BLUELIST_OBELISK">

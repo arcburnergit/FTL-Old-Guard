@@ -205,6 +205,23 @@
 			</choice>
 		</event>
 	</choice>
+	<choice req="LIST_CREW_OG_DAWN" hidden="true">
+		<text>(New Dawn Crew) Request free passage.</text>
+		<event>
+			<text>"Oh, I wasn't aware, here we have some supplies on hand to help those like you."</text>
+			<autoReward level="LOW">standard</autoReward>
+			<choice>
+				<text>Continue...</text>
+				<event load="REPUTATION_UPDATE_OG_DAWN_SAFE"/>
+			</choice>
+		</event>
+	</choice>
+	<choice req="LIST_CREW_REBEL_ALL" hidden="true">
+		<text>(Rebel Crew) Request free passage.</text>
+		<event>
+			<text>"I suppose there's no risk if you've got rebels onboard, very well."</text>
+		</event>
+	</choice>
 	<choice hidden="true" req="mind">
 		<text>(Mind Control) Convince the guard to leave you alone.</text>
 		<event load="GUARD_MIND"/>
@@ -249,6 +266,12 @@ Your actions here, justifiable or not, will not reflect well in the eyes of the 
 	<variable name="rep_general" op="add" val="1"/>
 	<variable name="rep_og_dawn" op="add" val="1"/>
 </event>
+<event name="REPUTATION_UPDATE_OG_DAWN_SAFE">
+	<text>[REPUTATION INCREASED - NEW DAWN]
+	Your actions here have improved your reputation within the New Dawn, at the cost of your reputation with the Iron Watch. Certain members might be more willing to interact with you.</text>
+	<variable name="rep_og_dawn" op="add" val="1"/>
+</event>
+
 <event name="REPUTATION_UPDATE_DOUBLE_OG_DAWN">
 	<text>[REPUTATION INCREASED X2 - NEW DAWN]
 	Your actions here have improved your reputation within the New Dawn, at the cost of your reputation with the Iron Watch. Certain members might be more willing to interact with you.
@@ -1102,7 +1125,7 @@ The Captain pauses for a moment thinking.
 				<text>Agree to help.</text>
 				<event>
 					<ship load="SHIP_OG_IRON_FIGHT" hostile="true"/>
-					<text>You agree to help and split off from the New Dawn ship, after a few minutes of searching the New Dawn ship disapears off into the distance, beyond the range of your sensors. It's only a few minutes later that the Iron Watch vessel appears, revealed behind a large by slow asteroid. They correctly deduce you're apart of the hunting team and don't give you a chance, prepare to fight.</text>
+					<text>You agree to help and split off from the New Dawn ship, after a few minutes of searching the New Dawn ship disapears off into the distance, beyond the range of your sensors. It's only a few minutes later that the Iron Watch vessel appears, revealed behind a large but slow asteroid. They correctly deduce you're a part of the hunting team and don't give you a chance, prepare to fight.</text>
 					<choice>
 						<text>Continue...</text>
 						<event load="REPUTATION_UPDATE_OG_DAWN_COMBAT"/>
@@ -1578,14 +1601,14 @@ A moment later you find yourself in an odd looking labratory, there are several 
 							<choice>
 								<text>Continue...</text>
 								<event>
-									<text>A scientist or perhaps an engineer walks over, "Ah excellent it's here." He pops the crate open and begin rummaging through it, looking for something.
+									<text>A scientist or perhaps an engineer walks over, "The delivery is here, perfect." He pops the crate open and begin rummaging through it, looking for something.
 "Ah excellent, it was in here." He pulls out a strange looking device, you recognise it as one of the New Dawn's Turret Pre-energisers, although it appears modified. The engineer takes it to the table and begins connecting it up to several other components from the table.</text>
 									<remove name="OG_CARGO_CRATE_PREIGN_WEAK"/>
 									<choice>
 										<text>Continue...</text>
 										<event>
 											<text>He turns his attention to you, not appearing to actually care who he's talking to. "I present the Turret PRE-IGNITER, an enhanced version of our successful Pre-energiser. I suppose putting this together wasn't neccessary, but I like to have a final prototype, it makes it feel complete.</text>
-											<choice>
+											<choice hidden="true">
 												<text>Continue...</text>
 												<event>
 													<playSound>smallExplosion</playSound>
@@ -1597,7 +1620,7 @@ On the vid screen you can makeout a strange looking ship silhouetted against the
 														<event>
 															<ship load="OG_DAWN_PREIGN_QUEST_LEGION_ASSAULT" hostile="true"/>
 															<text>You rush back to your ship, desperate to get it away from the installation before it gets damaged in the confusion.
-You undock for the station and begin to drift away when the hostile ship turns it's attention to you, warnings lightup across the cockpit warning you of the danger, prepare for combat.</text>
+You undock for the station and begin to drift away when the hostile ship turns it's attention to you, warnings light up across the cockpit warning you of the danger, prepare for combat.</text>
 															<choice>
 																<text>Continue...</text>
 																<event load="COMBAT_CHECK"/>
@@ -1825,6 +1848,12 @@ You quickly return to your ship and prepare for your next jump.</text>
 </ship>
 
 <event name="OG_DAWN_HEIST_START" unique="true">
+	<preventFleet/>
+	<preventQuest/>
+	<beaconType id="map_icon_og_dawn_ship" global="false">
+		<color r="165" g="173" b="184" a="1"/>
+		<unvisitedTooltip>You've heard reports of Iron Watch ships nearby.</unvisitedTooltip>
+	</beaconType>
 	<text>You've arrived at the beacon face to face with a pair of Iron Watch ships, one of them is just a common figher, but the other is an unusual design, a larger cruiser sized ship. An unusual sight in this sector, most of the Iron Watch were either forced out, or joined their leaders in turning to the New Dawn.</text>
 	<ship load="SHIP_OG_DAWN_HEIST_IRON_ESCORT" hostile="false"/> 
 	<choice hidden="true" req="rep_og_dawn" lvl="2" blue="false">
@@ -2027,8 +2056,10 @@ The Iron Watch cruiser contacts you, "Please Captain, we can't last much longer,
 
 
 <event name="OG_DAWN_HEIST_QUEST_DAWN">
-	<beaconType id="map_icon_quest" global="true">
-		<color r="69" g="168" b="235" a="1"/>
+	<preventFleet/>
+	<preventQuest/>
+	<beaconType id="map_icon_og_dawn_base" global="true">
+		<color r="155" g="111" b="167" a="1"/>
 		<unvisitedTooltip>The location of the Iron Watch's secret base.</unvisitedTooltip>
 	</beaconType>
 	<img back="BACKGROUND" planet="PLANET_POPULATED"/>
@@ -2050,7 +2081,7 @@ Now that you know where their base is it doesn't take you long to locate the ent
 								<text>Continue..</text>
 								<event>
 									<text>Just when you were getting bored, a ship appears on your sensors, at first you think it's the New Dawn ship returning, but it quickly resolves to be an Iron Watch ship, the same ship that escaped from you earlier.
-Upon seeing you they also activate their weapons, preparing to attack. You notice however that it appears their engines are damage, it appears they're attempting an emergency jump to escape, but it will take a few minutes due to the damage, now is your chance.</text>
+Upon seeing you they also activate their weapons, preparing to attack. You notice however that it appears their engines are damaged, and they're attempting an emergency jump to escape. It will take a few minutes due to the damage, now is your chance.</text>
 									<ship load="SHIP_OG_DAWN_HEIST_IRON" hostile="true"/>
 									<enemyDamage amount="1" system="engines" effect="fire"/>
 									<triggeredEvent name="OG_DAWN_HEIST_DAWN_TIMER" event="OG_DAWN_HEIST_DAWN_FAIL" time="150" clearOnJump="true" thisFight="false">
@@ -2137,8 +2168,10 @@ Upon seeing you they also activate their weapons, preparing to attack. You notic
 
 
 <event name="OG_DAWN_HEIST_QUEST_IRON">
-	<beaconType id="map_icon_quest" global="true">
-		<color r="69" g="168" b="235" a="1"/>
+	<preventFleet/>
+	<preventQuest/>
+	<beaconType id="map_icon_og_dawn_vault" global="true">
+		<color r="155" g="111" b="167" a="1"/>
 		<unvisitedTooltip>The location of the New Dawn data-vault to be raided.</unvisitedTooltip>
 	</beaconType>
 	<img back="BACKGROUND" planet="PLANET_POPULATED"/>
@@ -2190,7 +2223,7 @@ The Iron Watch cruiser contacts you, "Stick with me, I have the main raid force 
 </event>
 <event name="OG_DAWN_HEIST_IRON_WIN_FOLLOWUP">
 	<clearTriggeredEvent name="OG_DAWN_HEIST_IRON_TIMER"/>
-	<text>With the New Dawn vessel defeated nothing prevents your force from completely the raid. The rest of the defences are cleaned up and the Iron Watch vessel eventually disengages with the station. "It's a success, thanks for the help Captain, we couldn't have done it without you. I've taken the liberty of extracting any data that may be useful to you, additionally we've captured a selection of New Dawn equipment, take whatever you need."</text>
+	<text>With the New Dawn vessel defeated nothing prevents your force from completing the raid. The rest of the defences are cleaned up and the Iron Watch vessel eventually disengages with the station. "It's a success, thanks for the help Captain, we couldn't have done it without you. I've taken the liberty of extracting any data that may be useful to you, additionally we've captured a selection of New Dawn equipment, take whatever you need."</text>
 	<unlockCustomShip silent="false">PLAYER_SHIP_OG_DAWN_SPEAR</unlockCustomShip>
 	<modifyPursuit amount="-1"/>
 	<choice hidden="false">

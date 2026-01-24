@@ -350,7 +350,8 @@ turrets["OG_TURRET_ENERGY_1"] = {
 	charges = 5,
 	charges_per_charge = 5,
 	rotation_speed = 180,
-	charge_time = {[0] = 24, 24, 20, 17, 14, 12, 10, 8.5, 7},
+	charge_time = {[0] = 20, 20, 17, 14, 12, 10, 8.5, 7, 6},
+	enemy_charge_time = {[0] = 24, 24, 20, 17, 14, 12, 10, 8.5, 7},
 }
 turrets["OG_TURRET_CRYSTAL_1"] = {
 	enemy_burst = 2,
@@ -807,9 +808,5 @@ for turretId, currentTurret in pairs(turrets) do
 		currentTurret.chain.image.position.x = -1 * currentTurret.glow.info.frameWidth/2
 		currentTurret.chain.image.position.y = -1 * currentTurret.glow.info.frameHeight/2
 		currentTurret.chain.image.tracker.loop = false
-	end
-	--print("CHARGE TIMES:"..turretId.." "..#currentTurret.charge_time)
-	if #currentTurret.charge_time < 8 then
-		print("INSUFFICIENT CHARGE TIMES:"..turretId)
 	end
 end

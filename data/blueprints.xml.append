@@ -19,7 +19,7 @@
 	<title>Overclocked Motors [X]</title>
 	<desc>Turrets Rotate 50% faster.
 	
-	[X] - As an external system upgrade, this augment will provide its normal effect but take up an augment slot. Can be converted for free to the internal version under the internal upgrade menu if you have the Modified Clone Bay system.</desc>
+	[X] - As an external system upgrade, this augment will provide its normal effect but take up an augment slot. Can be converted for free to the internal version under the internal upgrade menu if you have a Turret Control system.</desc>
 	<cost>60</cost>
 	<rarity>0</rarity>
 	<stackable>true</stackable>
@@ -38,7 +38,7 @@
 	<title>Accelerators [X]</title>
 	<desc>Turret projectiles move 50% faster.
 	
-	[X] - As an external system upgrade, this augment will provide its normal effect but take up an augment slot. Can be converted for free to the internal version under the internal upgrade menu if you have the Modified Clone Bay system.</desc>
+	[X] - As an external system upgrade, this augment will provide its normal effect but take up an augment slot. Can be converted for free to the internal version under the internal upgrade menu if you have a Turret Control system.</desc>
 	<cost>50</cost>
 	<rarity>0</rarity>
 	<stackable>false</stackable>
@@ -57,7 +57,7 @@
 	<title>Manual Dexterity [X]</title>
 	<desc>Turrets gain 180 rotation speed when manually targetted.
 	
-	[X] - As an external system upgrade, this augment will provide its normal effect but take up an augment slot. Can be converted for free to the internal version under the internal upgrade menu if you have the Modified Clone Bay system.</desc>
+	[X] - As an external system upgrade, this augment will provide its normal effect but take up an augment slot. Can be converted for free to the internal version under the internal upgrade menu if you have a Turret Control system.</desc>
 	<cost>40</cost>
 	<rarity>0</rarity>
 	<stackable>true</stackable>
@@ -76,7 +76,7 @@
 	<title>Expanded Circuitry [X]</title>
 	<desc>Expands the adaptive turret's slot to accept all sizes of turrets.
 	
-	[X] - As an external system upgrade, this augment will provide its normal effect but take up an augment slot. Can be converted for free to the internal version under the internal upgrade menu if you have the Modified Clone Bay system.</desc>
+	[X] - As an external system upgrade, this augment will provide its normal effect but take up an augment slot. Can be converted for free to the internal version under the internal upgrade menu if you have a Turret Control system.</desc>
 	<cost>40</cost>
 	<rarity>0</rarity>
 	<stackable>false</stackable>
@@ -217,7 +217,7 @@
 <systemBlueprint name="og_turret_adaptive">
 	<type>og_turret_adaptive</type>
 	<title>Adaptive Turret Control</title>
-	<desc>Powers your ship's turret. Upgrading lowers the charge time of the turret. Turret position can be altered outside of combat to best fit the ship, can be upgraded to a large turret slot.</desc>
+	<desc>Powers your ship's turret. Upgrading lowers the charge time of the turret. Turret position can be altered outside of combat to best fit the ship, can be upgraded to a large turret slot in the internal upgrade menu.</desc>
 	<startPower>1</startPower>
 	<maxPower>4</maxPower>
 	<rarity>0</rarity>
@@ -674,7 +674,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>65</cost>
+	<cost>100</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_laser_zenith_icon</iconReplace>
@@ -3303,7 +3303,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 		</og_turret>
 		<og_turret_mini power="2" room="1" start="true" turret="OG_TURRET_LASER_MINI_DAWN_2" img="room_og_turret_3_noman" />
 		<battery power="1" room="2" start="false" img="room_battery_16" />
-		<cloaking power="2" room="17" start="false" img="room_cloaking_2" />
+		<cloaking power="1" room="17" start="false" img="room_cloaking_2" />
 		<clonebay power="1" room="18" start="true">
 			<slot>
 				<number>0</number>
@@ -3381,7 +3381,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<unlock id="ship_PLAYER_SHIP_OG_DAWN_SPEAR_3_unlock"/>
 	<desc>Armed to the teeth, this ship is fully combat focused. A product of rebel design the ship makes use of malforms  to eliminate the need for oxygen, and a doctor drone in place of a medical system.</desc>
 	<systemList>
-		<og_turret power="2" max="5" room="1" start="true" turret="OG_TURRET_FLAK_1" img="room_og_turret_8" >
+		<og_turret power="2" max="5" room="1" start="true" turret="OG_TURRET_LASER_CHAINGUN" img="room_og_turret_8" >
 			<slot>
 				<direction>right</direction>
 				<number>1</number>
@@ -3986,7 +3986,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<unlock id="ship_PLAYER_SHIP_OG_SEPARATIST_unlock"/>
 	<desc>A lonesome Separatist Engi pilots this ship without aid of an extensive crew, but with the company of his personnel drones he can manage.</desc>
 	<systemList>
-		<og_turret power="2" room="3" start="true" img="room_og_turret_5" turret="OG_TURRET_FLAK_1">
+		<og_turret power="2" room="3" start="true" img="room_og_turret_2" turret="OG_TURRET_FLAK_1">
 			<slot>
 				<direction>right</direction>
 				<number>1</number>

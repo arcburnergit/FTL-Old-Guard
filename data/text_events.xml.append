@@ -27,3 +27,6 @@ The Military holdout for the New Dawn, low on both supplies and allies in their 
 
 <text name="map_icon_store_og_iron">STORE [IRON WATCH]</text>
 <text name="map_icon_store_og_dawn">STORE [NEW DAWN]</text>
+<text name="map_icon_og_dawn_ship">SHIP [!]</text>
+<text name="map_icon_og_dawn_base">HIDDEN BASE [!]</text>
+<text name="map_icon_og_dawn_vault">DATA_VAULT [!]</text>

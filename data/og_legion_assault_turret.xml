@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--Copyright (c) 2012 by Subset Games. All rights reserved.-->
-<img x="-33" y="-34" w="383" h="323" />
+<img x="-47" y="-104" w="383" h="323" />
 <offsets>
 	<floor x="191" y="161" />
 	<cloak x="0" y="0" />
 </offsets>
 <weaponMounts>
-	<mount x="336" y="25" rotate="false" mirror="false" gib="-1" slide="up" />
-	<mount x="47" y="25" rotate="false" mirror="true" gib="-1" slide="up" />
-	<mount x="285" y="16" rotate="false" mirror="false" gib="-1" slide="up" />
-	<mount x="97" y="16" rotate="false" mirror="true" gib="-1" slide="up" />
-	<mount x="97" y="16" rotate="false" mirror="true" gib="-1" slide="up" />
+	<mount x="350" y="95" rotate="false" mirror="false" gib="-1" slide="up" />
+	<mount x="47" y="55" rotate="false" mirror="true" gib="-1" slide="up" />
+	<mount x="299" y="86" rotate="false" mirror="false" gib="-1" slide="up" />
+	<mount x="77" y="45" rotate="false" mirror="false" gib="-1" slide="up" />
+	<mount x="97" y="26" rotate="false" mirror="true" gib="-1" slide="up" />
 </weaponMounts>
 <ogTurretMounts>
-	<og_turret x="63" y="67" direction="up"/>
+	<og_turret x="117" y="107" direction="up"/>
 </ogTurretMounts>
 <explosion />
 
