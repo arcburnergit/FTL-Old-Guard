@@ -1028,7 +1028,7 @@ script.on_render_event(Defines.RenderEvents.SHIP, function() end, function(ship)
 end)
 
 local function system_ready(shipSystem)
-	return not shipSystem:GetLocked() and shipSystem:Functioning() and shipSystem.iHackEffect <= 1
+	return --[[not shipSystem:GetLocked() and]] shipSystem:Functioning() and shipSystem.iHackEffect <= 1
 end
 
 local turretBox
