@@ -264,15 +264,16 @@ mods.og.turretBlueprintsList = {}
 local turretBlueprintsList = mods.og.turretBlueprintsList 
 
 --1 = MISSILES, 2 = FLAK, 3 = DRONES, 4 = PROJECTILES, 5 = HACKING 
-local defence_types = {
-	DRONES = {[3] = true, [7] = true, name = "Drones"},
-	MISSILES = {[1] = true, [2] = true, [7] = true, name = "All Solid Projectiles"},
-	DRONES_MISSILES = {[1] = true, [2] = true, [3] = true, [7] = true, name = "All Solid Projectiles and Drones"},
-	PROJECTILES = {[4] = true, name = "Non-Solid Projectiles"},
-	DRONES_PROJECTILES = {[3] = true, [4] = true, name = "Non-Solid Projectiles and Drones"},
-	PROJECTILES_MISSILES = {[1] = true, [2] = true, [4] = true, [7] = true, name = "All Projectiles"},
-	ALL = {[1] = true, [2] = true, [3] = true, [4] = true, [7] = true, name = "All"},
+mods.og.defence_types = {
+	DRONES = {[3] = true, [7] = true, name = Hyperspace.Text:GetText("og_lua_turret_type_drones")},
+	MISSILES = {[1] = true, [2] = true, [7] = true, name = Hyperspace.Text:GetText("og_lua_turret_type_missiles")},
+	DRONES_MISSILES = {[1] = true, [2] = true, [3] = true, [7] = true, name = Hyperspace.Text:GetText("og_lua_turret_type_drones_missiles")},
+	PROJECTILES = {[4] = true, name = Hyperspace.Text:GetText("og_lua_turret_type_projectiles")},
+	DRONES_PROJECTILES = {[3] = true, [4] = true, [7] = true, name = Hyperspace.Text:GetText("og_lua_turret_type_drones_projectiles")},
+	PROJECTILES_MISSILES = {[1] = true, [2] = true, [4] = true, [7] = true, name = Hyperspace.Text:GetText("og_lua_turret_type_projectiles_missiles")},
+	ALL = {[1] = true, [2] = true, [3] = true, [4] = true, [7] = true, name = Hyperspace.Text:GetText("og_lua_turret_type_all")},
 }
+local defence_types = mods.og.defence_types
 mods.og.chain_types = {
 	cooldown = 1,
 }
@@ -282,8 +283,37 @@ mods.og.turrets = {}
 local turrets = mods.og.turrets
 local vunerable_weapons = mods.og.vunerable_weapons
 
+local statsText = {
+	time = Hyperspace.Text:GetText("og_lua_turret_stats_time"),
+	charges = Hyperspace.Text:GetText("og_lua_turret_stats_charges"),
+	amount = Hyperspace.Text:GetText("og_lua_turret_stats_amount"),
+	ammo = Hyperspace.Text:GetText("og_lua_turret_stats_ammo"),
+	chain = Hyperspace.Text:GetText("og_lua_turret_stats_chain"),
+	chainCap = Hyperspace.Text:GetText("og_lua_turret_stats_chainCap"),
+	rotation = Hyperspace.Text:GetText("og_lua_turret_stats_rotation"),
+	radius = Hyperspace.Text:GetText("og_lua_turret_stats_radius"),
+	rate = Hyperspace.Text:GetText("og_lua_turret_stats_rate"),
+	target = Hyperspace.Text:GetText("og_lua_turret_stats_target"),
+
+	damage = Hyperspace.Text:GetText("og_lua_turret_stats_damage"),
+	sysDamage = Hyperspace.Text:GetText("og_lua_turret_stats_sysDamage"),
+	persDamage = Hyperspace.Text:GetText("og_lua_turret_stats_persDamage"),
+	ionDamage = Hyperspace.Text:GetText("og_lua_turret_stats_ionDamage"),
+	pierce = Hyperspace.Text:GetText("og_lua_turret_stats_pierce"),
+	hullBust = Hyperspace.Text:GetText("og_lua_turret_stats_hullBust"),
+	lockdown = Hyperspace.Text:GetText("og_lua_turret_stats_lockdown"),
+
+	fireChance = Hyperspace.Text:GetText("og_lua_turret_stats_fireChance"),
+	breachChance = Hyperspace.Text:GetText("og_lua_turret_stats_breachChance"),
+	stunChance = Hyperspace.Text:GetText("og_lua_turret_stats_stunChance"),
+	effect = Hyperspace.Text:GetText("og_lua_turret_stats_effect"),
+	stealth = Hyperspace.Text:GetText("stat_stealth"),
+
+	price = Hyperspace.Text:GetText("og_lua_turret_stats_price"),
+}
+
 local function add_stat_text(desc, currentTurret, chargeMax)
-	desc = desc.."Stats:\nCharge Time: "
+	desc = desc..statsText.time
 	for i, t in ipairs(currentTurret.charge_time) do
 		if i <= chargeMax then
 			desc = desc..math.floor(t*10)/10
@@ -292,30 +322,30 @@ local function add_stat_text(desc, currentTurret, chargeMax)
 			desc = desc.."/"
 		end
 	end
-	desc = desc.."\nMaximum Charges: "..math.floor(currentTurret.charges)
-	desc = desc.."\nCharge Amount: "..math.floor(currentTurret.charges_per_charge)
+	desc = desc..string.format(statsText.charges, math.floor(currentTurret.charges))
+	desc = desc..string.format(statsText.amount, math.floor(currentTurret.charges_per_charge))
 	if currentTurret.ammo_consumption then
-		desc = desc.."\nMissile Consumption: "..tostring(currentTurret.ammo_consumption)
+		desc = desc..string.format(statsText.ammo, math.floor(currentTurret.ammo_consumption))
 	end
 	if currentTurret.chain and currentTurret.chain.type == chain_types.cooldown then
 		chain_amount = math.floor(currentTurret.chain.amount * 100)
-		desc = desc.."\nChain Effect: Reduces cooldown by "..chain_amount.."%"
+		desc = desc..string.format(statsText.chain, chain_amount)
 		local chain_count = math.floor(currentTurret.chain.count)
 		local chain_max_effect = math.floor(currentTurret.chain.amount * currentTurret.chain.count * 100)
-		desc = desc.."\nChain Reduction Cap: "..chain_max_effect.."% ("..chain_count.." chains)"
+		desc = desc..string.format(statsText.chainCap, chain_max_effect, chain_count)
 	end
-	desc = desc.."\n\nRotation Speed: "..math.floor(currentTurret.rotation_speed)
+	desc = desc..string.format(statsText.rotation, math.floor(currentTurret.rotation_speed))
 	if currentTurret.shot_radius then
-		desc = desc.."\nShot Radius: "..math.floor(currentTurret.shot_radius)
+		desc = desc..string.format(statsText.radius, math.floor(currentTurret.shot_radius))
 	end
-	desc = desc.."\nFire Rate: "
+	desc = desc..statsText.rate
 	for i, t in ipairs(currentTurret.fire_points) do
-		desc = desc..t.fire_delay.."s"
+		desc = desc..t.fire_delay
 		if i < #currentTurret.fire_points then
 			desc = desc.."/"
 		end
 	end
-	desc = desc.."\nProjectile Target: "..currentTurret.defence_type.name
+	desc = desc..string.format(statsText.target, currentTurret.defence_type.name)
 	local shotBlueprint = Hyperspace.Blueprints:GetWeaponBlueprint(currentTurret.blueprint)
 	local damage = shotBlueprint.damage
 	desc = desc.."\n"
@@ -327,16 +357,16 @@ local function add_stat_text(desc, currentTurret, chargeMax)
 		if currentTurret.fake_damage.iIonDamage then tempDamage.iIonDamage = tempDamage.iIonDamage + currentTurret.fake_damage.iIonDamage end
 	end
 	if tempDamage.iDamage > 0 then
-		desc = desc.."\nBase Hull Damage: "..math.floor(tempDamage.iDamage)
+		desc = desc..string.format(statsText.damage, math.floor(tempDamage.iDamage))
 	end
 	if tempDamage.iSystemDamage + tempDamage.iDamage > 0 then
-		desc = desc.."\nTotal System Damage: "..math.floor(tempDamage.iDamage + tempDamage.iSystemDamage)
+		desc = desc..string.format(statsText.sysDamage, math.floor(tempDamage.iDamage + tempDamage.iSystemDamage))
 	end
 	if tempDamage.iPersDamage + tempDamage.iDamage > 0 then
-		desc = desc.."\nTotal Crew Damage: "..math.floor((tempDamage.iDamage + tempDamage.iPersDamage) * 15)
+		desc = desc..string.format(statsText.persDamage, math.floor((tempDamage.iDamage + tempDamage.iPersDamage) * 15))
 	end
 	if tempDamage.iIonDamage > 0 then
-		desc = desc.."\nTotal Ion Damage: "..math.floor(tempDamage.iIonDamage)
+		desc = desc..string.format(statsText.ionDamage, math.floor(tempDamage.iIonDamage))
 	end
 	if damage.iShieldPiercing ~= 0 then
 		local tempPiercing = damage.iShieldPiercing
@@ -346,29 +376,29 @@ local function add_stat_text(desc, currentTurret, chargeMax)
 				tempPiercing = tempPiercing - currentTurret.fake_damage.iDamage
 			end
 		end
-		desc = desc.."\nShield Piercing: "..math.floor(tempPiercing)
+		desc = desc..string.format(statsText.pierce, math.floor(tempPiercing))
 	end
 	if damage.bHullBuster then
-		desc = desc.."\nDoes 2x damage to systemless rooms"
+		desc = desc..statsText.hullBust
 	end
 	desc = desc.."\n"
 	if damage.bLockdown then
-		desc = desc.."\nLocks down rooms on hit"
+		desc = desc..statsText.lockdown
 	end
 	if damage.fireChance > 0 then
-		desc = desc.."\nFire Chance: "..math.floor(damage.fireChance * 10).."%"
+		desc = desc..string.format(statsText.fireChance, math.floor(damage.fireChance * 10))
 	end
 	if damage.breachChance > 0 then
-		desc = desc.."\nBreach Chance: "..math.floor(damage.breachChance * 10).."% (Adjusted: "..math.floor((100 - 10 * damage.fireChance) * (damage.breachChance/10)).."%)"
+		desc = desc..string.format(statsText.breachChance, math.floor(damage.breachChance * 10), math.floor((100 - 10 * damage.fireChance) * (damage.breachChance/10)))
 	end
 	if damage.stunChance > 0 then
-		desc = desc.."\nStun Chance: "..math.floor(damage.stunChance * 10).."% ("..math.floor((damage.iStun > 0 and damage.iStun) or 3).." seconds long)"
+		desc = desc..string.format(statsText.fireChance, math.floor(damage.stunChance * 10), math.floor((damage.iStun > 0 and damage.iStun) or 3))
 	end
 	if vunerable_weapons[currentTurret.blueprint] then
-		desc = desc.."\nEffect Duration: "..math.floor(vunerable_weapons[currentTurret.blueprint]).." seconds long"
+		desc = desc..string.format(statsText.effect, math.floor(vunerable_weapons[currentTurret.blueprint]))
 	end
 	if currentTurret.stealth then
-		desc = desc.."\n\n"..Hyperspace.Text:GetText("stat_stealth")
+		desc = desc.."\n\n"..statsText.stealth
 	end
 	return desc
 end
@@ -377,7 +407,7 @@ script.on_internal_event(Defines.InternalEvents.WEAPON_DESCBOX, function(bluepri
 	if turrets[blueprint.name] then
 		local currentTurret = turrets[blueprint.name]
 		desc = add_stat_text((blueprint.desc.description:GetText().."\n\n"), currentTurret, 8)
-		desc = desc.."\n\nDefault Price: "..math.floor(blueprint.desc.cost).."~   -   Selling Price: "..math.floor(blueprint.desc.cost/2).."~"
+		desc = desc..string.format(statsText.price, math.floor(blueprint.desc.cost), math.floor(blueprint.desc.cost/2))
 	end
 	return Defines.Chain.CONTINUE, desc
 end)
@@ -446,10 +476,11 @@ local function is_system_enemy(systemBox)
 	return isSystemName and not systemBox.bPlayerUI
 end
 
+local text_power_increase = Hyperspace.Text:GetText("og_lua_turret_power_increase")
 local function get_level_description_system(currentId, level, tooltip)
 	for _, sysName in ipairs(systemNameList) do
 		if currentId == Hyperspace.ShipSystem.NameToSystemId(sysName) then
-			return string.format("More System Power")
+			return string.format(text_power_increase)
 		end
 	end
 end
@@ -484,13 +515,13 @@ local function system_construct_system_box(systemBox)
 		targetButton.hitbox.w = 75
 		targetButton.hitbox.h = 39
 		systemBox.table.targetButton = targetButton
-		local offenseButton = Hyperspace.Button()
-		offenseButton:OnInit("systemUI/button_og_turret_toggle_o", Hyperspace.Point(UIOffset_x, UIOffset_y))
-		offenseButton.hitbox.x = 74
-		offenseButton.hitbox.y = 37
-		offenseButton.hitbox.w = 17
-		offenseButton.hitbox.h = 18
-		systemBox.table.offenseButton = offenseButton
+		local offenceButton = Hyperspace.Button()
+		offenceButton:OnInit("systemUI/button_og_turret_toggle_o", Hyperspace.Point(UIOffset_x, UIOffset_y))
+		offenceButton.hitbox.x = 74
+		offenceButton.hitbox.y = 37
+		offenceButton.hitbox.w = 17
+		offenceButton.hitbox.h = 18
+		systemBox.table.offenceButton = offenceButton
 		local defenceButton = Hyperspace.Button()
 		defenceButton:OnInit("systemUI/button_og_turret_toggle_d", Hyperspace.Point(UIOffset_x, UIOffset_y))
 		defenceButton.hitbox.x = 74
@@ -572,12 +603,12 @@ local function system_mouse_move(systemBox, x, y)
 		local systemId = Hyperspace.ShipSystem.SystemIdToName(systemBox.pSystem.iSystemType)
 		local targetButton = systemBox.table.targetButton
 		targetButton:MouseMove(x - (UIOffset_x), y - (UIOffset_y), false)
-		local offenseButton = systemBox.table.offenseButton
-		offenseButton:MouseMove(x - (UIOffset_x), y - (UIOffset_y), false)
+		local offenceButton = systemBox.table.offenceButton
+		offenceButton:MouseMove(x - (UIOffset_x), y - (UIOffset_y), false)
 		local defenceButton = systemBox.table.defenceButton
 		defenceButton:MouseMove(x - (UIOffset_x), y - (UIOffset_y), false)
 		local shipId = (systemBox.bPlayerUI and 0) or 1
-		if offenseButton.bHover and Hyperspace.playerVariables[shipId..systemId..systemStateVarName] == 1 then
+		if offenceButton.bHover and Hyperspace.playerVariables[shipId..systemId..systemStateVarName] == 1 then
 			systemBox.pSystem.table.tooltip_type = 1
 		elseif defenceButton.bHover and Hyperspace.playerVariables[shipId..systemId..systemStateVarName] == 0 then
 			systemBox.pSystem.table.tooltip_type = 2
@@ -605,6 +636,12 @@ local function system_mouse_move(systemBox, x, y)
 end
 script.on_internal_event(Defines.InternalEvents.SYSTEM_BOX_MOUSE_MOVE, system_mouse_move)
 
+local buttonHover_text = {
+	offence = Hyperspace.Text:GetText("og_lua_turret_button_offence"),
+	defence = Hyperspace.Text:GetText("og_lua_turret_button_defence"),
+	autoFire = Hyperspace.Text:GetText("og_lua_turret_button_autoFire"),
+}
+
 script.on_internal_event(Defines.InternalEvents.ON_TICK, function() 
 	local shipManager = Hyperspace.ships.player
 	if not shipManager then return end
@@ -614,10 +651,10 @@ script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
 			local shipId = 0
 			if system.table.tooltip_type == 1 then
 				Hyperspace.Mouse.bForceTooltip = true
-				Hyperspace.Mouse.tooltip = "Set the turret to offensive mode."
+				Hyperspace.Mouse.tooltip = buttonHover_text.offence
 			elseif system.table.tooltip_type == 2 then
 				Hyperspace.Mouse.bForceTooltip = true
-				Hyperspace.Mouse.tooltip = "Set the turret to defensive mode."
+				Hyperspace.Mouse.tooltip = buttonHover_text.defence
 			elseif system.table.tooltip_type == 0 then
 				if Hyperspace.playerVariables[shipId..sysName..systemBlueprintVarName] >= 0 then
 					Hyperspace.Mouse.bForceTooltip = true
@@ -626,7 +663,7 @@ script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
 				end
 			elseif system.table.tooltip_type == 3 or system.table.tooltip_type == 3 then
 				Hyperspace.Mouse.bForceTooltip = true
-				Hyperspace.Mouse.tooltip = "Toggle to activate/deactivate turrets automatically firing.\n\nLEFT CTRL + AIM can force a turret to do the opposite of current setting"
+				Hyperspace.Mouse.tooltip = buttonHover_text.autoFire
 			end
 		end
 	end
@@ -746,9 +783,9 @@ local function system_click(systemBox, shift)
 				end
 			end
 		end
-		local offenseButton = systemBox.table.offenseButton
+		local offenceButton = systemBox.table.offenceButton
 		local defenceButton = systemBox.table.defenceButton
-		if offenseButton.bHover and offenseButton.bActive then
+		if offenceButton.bHover and offenceButton.bActive then
 			local shipManager = Hyperspace.ships.player
 			systemBox.pSystem.table.currentTarget = nil
 			systemBox.pSystem.table.currentlyTargetted = false
@@ -1089,8 +1126,8 @@ local function system_render(systemBox, ignoreStatus)
 
 		local targetButton = systemBox.table.targetButton
 		targetButton.bActive = system_ready(system) and not system.table.currentlyTargetting
-		local offenseButton = systemBox.table.offenseButton
-		offenseButton.bActive = system_ready(system) and Hyperspace.playerVariables[shipId..systemId..systemStateVarName] ~= 0
+		local offenceButton = systemBox.table.offenceButton
+		offenceButton.bActive = system_ready(system) and Hyperspace.playerVariables[shipId..systemId..systemStateVarName] ~= 0
 		local defenceButton = systemBox.table.defenceButton
 		defenceButton.bActive = system_ready(system) and Hyperspace.playerVariables[shipId..systemId..systemStateVarName] ~= 1
 
@@ -1141,12 +1178,12 @@ local function system_render(systemBox, ignoreStatus)
 		elseif charges == maxCharges then
 			renderColour = c_charged
 		end
-		if targetButton.bHover and not (systemBox.table.offenseButton.bHover or systemBox.table.defenceButton.bHover) then
+		if targetButton.bHover and not (systemBox.table.offenceButton.bHover or systemBox.table.defenceButton.bHover) then
 			Graphics.CSurface.GL_RenderPrimitiveWithColor(turretBoxInnerHover, renderColour)
 		end
 
 		if Hyperspace.playerVariables[shipId..systemId..systemStateVarName] == 1 then
-			if systemBox.table.offenseButton.bHover then
+			if systemBox.table.offenceButton.bHover then
 				Graphics.CSurface.GL_RenderPrimitiveWithColor(turretBoxToggleHover, renderColour)
 			end
 			Graphics.CSurface.GL_RenderPrimitiveWithColor(turretBoxDefense, renderColour)
@@ -1949,6 +1986,10 @@ local turret_mount_back_above = Hyperspace.Resources:CreateImagePrimitiveString(
 local turret_mount_mini_back_above = Hyperspace.Resources:CreateImagePrimitiveString("og_turrets/ship_turret_mount_mini_back_above.png", -23, -23, 0, Graphics.GL_Color(1, 1, 1, 1) , 1, false)
 
 local stencil_mode = {ignore = 0, set = 1, use = 2}
+local turretHover_text = {
+	charges = Hyperspace.Text:GetText("og_lua_turret_hover_charges"),
+	time = Hyperspace.Text:GetText("og_lua_turret_hover_time")
+}
 
 local function renderTurret(shipManager, ship, spaceManager, shipGraph, sysName)
 	--print("ship:"..shipManager.iShipId.." jump first:"..shipManager.jump_timer.first.." second:"..shipManager.jump_timer.second.." bJumping"..tostring(shipManager.bJumping))
@@ -2076,10 +2117,10 @@ local function renderTurret(shipManager, ship, spaceManager, shipGraph, sysName)
 		local mousePosEnemy = worldToEnemyLocation(Hyperspace.Mouse.position)
 		local turretLocCorrected = {x = shipCorner.x + turretLoc.x, y = shipCorner.y + turretLoc.y}
 		if shipManager.iShipId == 1 and get_distance(mousePosEnemy, turretLocCorrected) <= 15 then
-			local s = "Charges: "..math.floor(charges).."/"..math.floor(currentTurret.charges)
+			local s = string.format(turretHover_text.charges, math.floor(charges), math.floor(currentTurret.charges))
 			if Hyperspace.ships.player:HasSystem(7) and Hyperspace.ships.player:GetSystem(7):GetEffectivePower() >= 2 then
 				local chargeTime = get_charge_time(currentTurret, system)
-				s = s .. "\nCharge Time: "..tostring(math.floor(0.5 + system.table.chargeTime * chargeTime * 10)/10).."/"..tostring(math.floor(0.5 + chargeTime * 10)/10)
+				s = s .. string.format(turretHover_text.time, math.floor(0.5 + system.table.chargeTime * chargeTime * 10)/10, math.floor(0.5 + chargeTime * 10)/10)
 			end
 			Hyperspace.Mouse.tooltip = s
 			Hyperspace.Mouse.bForceTooltip = true

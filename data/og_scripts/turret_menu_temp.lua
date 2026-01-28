@@ -255,6 +255,20 @@ end
 
 local cost_increase = 0
 
+local craftText = {
+	use = Hyperspace.Text:GetText("og_lua_turret_craft_use"),
+	use_scrap = Hyperspace.Text:GetText("og_lua_turret_craft_use_scrap"),
+	finish = Hyperspace.Text:GetText("og_lua_turret_craft_finish"),
+	blueprint = Hyperspace.Text:GetText("og_lua_turret_craft_blueprint"),
+	mystery = Hyperspace.Text:GetText("og_lua_turret_craft_mystery"),
+	requires = Hyperspace.Text:GetText("og_lua_turret_craft_requires"),
+	atleast = Hyperspace.Text:GetText("og_lua_turret_craft_atleast"),
+	list = Hyperspace.Text:GetText("og_lua_turret_craft_list"),
+	list_scrap = Hyperspace.Text:GetText("og_lua_turret_craft_list_scrap"),
+	craft = Hyperspace.Text:GetText("og_lua_turret_craft_craft"),
+	unknown = Hyperspace.Text:GetText("og_lua_turret_craft_unknown"),
+}
+
 local function addComponentStep(currentEvent, weapon, craftingData, weaponCost, itemLevel, itemAmount)
 	--print(weapon.." ITEM LEVEL AT: "..itemLevel.." NEEDS: "..#craftingData.components.." ITEM AMOUNT AT: "..itemAmount.." NEEDS: "..craftingData.component_amounts[itemLevel])
 	local eventManager = Hyperspace.Event
@@ -272,15 +286,15 @@ local function addComponentStep(currentEvent, weapon, craftingData, weaponCost, 
 			local tempCost = weaponCost - neededBlueprint.desc.cost + cost_increase
 			if craftingData.match_cost and tempCost > 0 then
 				tempEvent.stuff.scrap = -1 * tempCost
-				currentEvent:AddChoice(tempEvent, "Use your "..neededBlueprint.desc.title:GetText().." + "..math.floor(tempCost).."~", emptyReq, true)
+				currentEvent:AddChoice(tempEvent, string.format(craftText.use_scrap, neededBlueprint.desc.title:GetText(), math.floor(tempCost)), emptyReq, true)
 			else
-				currentEvent:AddChoice(tempEvent, "Use your "..neededBlueprint.desc.title:GetText(), emptyReq, true)
+				currentEvent:AddChoice(tempEvent, string.format(craftText.use, neededBlueprint.desc.title:GetText()), emptyReq, true)
 			end
 			if itemAmount >= craftingData.component_amounts[itemLevel] then
 				if itemLevel >= #craftingData.components then
 					tempEvent.eventName = "OG_CRAFT_FINISH_ITEM"
 					tempEvent.stuff.weapon = Hyperspace.Blueprints:GetWeaponBlueprint(weapon)
-					tempEvent.text.data = "You follow the supplied blueprint and eventually come away with a new item."
+					tempEvent.text.data = craftText.finish
 					tempEvent.text.isLiteral = true
 				else
 					addComponentStep(tempEvent, weapon, craftingData, weaponCost, itemLevel + 1, 1)
@@ -341,16 +355,16 @@ script.on_internal_event(Defines.InternalEvents.PRE_CREATE_CHOICEBOX, function(e
 				local weaponEvent = eventManager:CreateEvent("OG_CRAFT_CRAFT", 0, false)
 				if showBlueprint then
 					weaponEvent.eventName = "OG_CRAFT_CRAFT_"..weapon
-					weaponEvent:AddChoice(weaponEvent, "Blueprint:", emptyReq, false)
+					weaponEvent:AddChoice(weaponEvent, craftText.blueprint, emptyReq, false)
 				else
 					weaponEvent.eventName = "OG_CRAFT_HIDDEN_"..weapon
-					weaponEvent:AddChoice(weaponEvent, "Blueprint:", emptyReq, false)
+					weaponEvent:AddChoice(weaponEvent, craftText.blueprint, emptyReq, false)
 				end
 
-				local eventString = ((showBlueprint and weaponBlueprint.desc.title:GetText()) or "???") .." Requires:"
+				local eventString = string.format(craftText.requires, ((showBlueprint and weaponBlueprint.desc.title:GetText()) or craftText.mystery))
 				for i, components in ipairs(craftingData.components) do
-					eventString = eventString.."\n  Atleast "..craftingData.component_amounts[i]..":"
-					if components == defence_drones then
+					eventString = eventString..string.format(craftText.atleast, craftingData.component_amounts[i])
+					--[[if components == defence_drones then
 						eventString = eventString.."\n	Any Defense Drone"
 					elseif components == defence_drones_laser then
 						eventString = eventString.."\n	Any Defense Drone\n	Laser Turret Base"
@@ -362,25 +376,25 @@ script.on_internal_event(Defines.InternalEvents.PRE_CREATE_CHOICEBOX, function(e
 						eventString = eventString.."\n	Any Defense Drone\n	Focus Turret Base"
 					elseif components == defence_drones_mini then
 						eventString = eventString.."\n	Any Defense Drone\n	Micro Turret Base"
-					else
-						for _, needed in ipairs(components) do
-							if hideName[needed] and (not showBlueprint) and not (player:HasEquipment(needed, true) > 0) then
-								eventString = eventString.."\n	"..hideName[needed]
+					else]]
+					for _, needed in ipairs(components) do
+						if hideName[needed] and (not showBlueprint) and not (player:HasEquipment(needed, true) > 0) then
+							eventString = eventString..string.format(craftText.list, hideName[needed])
+						else
+							local tempBlueprint = Hyperspace.Blueprints:GetWeaponBlueprint(needed)
+							if tempBlueprint.desc.title:GetText() == "" then
+								tempBlueprint = Hyperspace.Blueprints:GetDroneBlueprint(needed)
+							end
+							local tempCost = weaponCost - tempBlueprint.desc.cost + cost_increase
+							--print("weapon:"..weapon.." cost:"..math.floor(weaponCost).." item:"..needed.." cost:"..math.floor(tempBlueprint.desc.cost).." tempCost:"..math.floor(tempCost))
+							if craftingData.match_cost and tempCost > 0 then
+								eventString = eventString..string.format(craftText.list_scrap, tempBlueprint.desc.title:GetText(), math.floor(tempCost))
 							else
-								local tempBlueprint = Hyperspace.Blueprints:GetWeaponBlueprint(needed)
-								if tempBlueprint.desc.title:GetText() == "" then
-									tempBlueprint = Hyperspace.Blueprints:GetDroneBlueprint(needed)
-								end
-								local tempCost = weaponCost - tempBlueprint.desc.cost + cost_increase
-								--print("weapon:"..weapon.." cost:"..math.floor(weaponCost).." item:"..needed.." cost:"..math.floor(tempBlueprint.desc.cost).." tempCost:"..math.floor(tempCost))
-								if craftingData.match_cost and tempCost > 0 then
-									eventString = eventString.."\n	"..tempBlueprint.desc.title:GetText().." + "..math.floor(tempCost).."~"
-								else
-									eventString = eventString.."\n	"..tempBlueprint.desc.title:GetText()
-								end
+								eventString = eventString..string.format(craftText.list, tempBlueprint.desc.title:GetText())
 							end
 						end
 					end
+					--end
 				end
 				weaponEvent.text.data = eventString
 				weaponEvent.text.isLiteral = true
@@ -408,7 +422,7 @@ script.on_internal_event(Defines.InternalEvents.PRE_CREATE_CHOICEBOX, function(e
 
 				if canCraft then
 					local craftStepEvent = eventManager:CreateEvent("OG_CRAFT_CRAFT_STEP", 0, false)
-					weaponEvent:AddChoice(craftStepEvent, "Craft this item.", blueReq, false)
+					weaponEvent:AddChoice(craftStepEvent, craftText.craft, blueReq, false)
 
 					addComponentStep(craftStepEvent, weapon, craftingData, weaponCost, 1, 1)
 
@@ -418,7 +432,7 @@ script.on_internal_event(Defines.InternalEvents.PRE_CREATE_CHOICEBOX, function(e
 					end
 				else
 					local tempEvent = eventManager:CreateEvent("OPTION_INVALID", 0, false)
-					weaponEvent:AddChoice(tempEvent, "Craft this item.", emptyReq, true)
+					weaponEvent:AddChoice(tempEvent, craftText.craft, emptyReq, true)
 
 
 					if showBlueprint then
@@ -428,7 +442,7 @@ script.on_internal_event(Defines.InternalEvents.PRE_CREATE_CHOICEBOX, function(e
 				if showBlueprint then
 					table.insert(craftedItemsVisible, weapon)
 				else
-					event:AddChoice(weaponEvent, "Unknown Turret", emptyReq, false)
+					event:AddChoice(weaponEvent, craftText.unknown, emptyReq, false)
 					table.insert(craftedItemsVisible, "OG_TURRET_UNKNOWN")
 				end
 			end
@@ -467,9 +481,13 @@ script.on_internal_event(Defines.InternalEvents.POST_CREATE_CHOICEBOX, function(
 	end
 end)
 
+local text_fab = Hyperspace.Text:GetText("og_lua_turret_fabricate")
+local text_item = Hyperspace.Text:GetText("og_lua_turret_fabricate_item")
+local text_mystery = Hyperspace.Text:GetText("og_lua_turret_fabricate_mystery")
+local text_price = Hyperspace.Text:GetText("og_lua_turret_stats_price"),
 script.on_internal_event(Defines.InternalEvents.WEAPON_DESCBOX, function(blueprint, desc)
 	if turret_bases[blueprint.name] then
-		desc = "Can be used to fabricate:"
+		desc = text_fab
 		for _, craftingData in ipairs(craftedWeapons) do
 			local has_base = false
 			local hidden = false
@@ -489,12 +507,12 @@ script.on_internal_event(Defines.InternalEvents.WEAPON_DESCBOX, function(bluepri
 			end
 			if has_base and ((not hidden) or Hyperspace.metaVariables["og_turret_craft_"..craftingData.weapon] == 1) then
 				local weaponBlueprint = Hyperspace.Blueprints:GetWeaponBlueprint(craftingData.weapon)
-				desc = desc.."\n["..weaponBlueprint.desc.title:GetText().."]"
+				desc = desc..string.format(text_item, weaponBlueprint.desc.title:GetText())
 			elseif has_base then
-				desc = desc.."\n[???]"
+				desc = desc..text_mystery
 			end
 		end
-		desc = desc.."\n\nDefault Price: "..math.floor(blueprint.desc.cost).."~   -   Selling Price: "..math.floor(blueprint.desc.cost/2).."~"
+		desc = desc..string.format(text_price, math.floor(blueprint.desc.cost), math.floor(blueprint.desc.cost/2))
 	end
 	return Defines.Chain.CONTINUE, desc
 end)

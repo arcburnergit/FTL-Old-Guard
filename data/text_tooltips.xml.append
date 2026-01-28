@@ -21,4 +21,65 @@
 <text name="tooltip_og_turret_mini_4_enemy">Turret Control: Powers the enemy turret.</text>
 <text name="tooltip_og_turret_adaptive">Turret Control: Click on the turret to set its mode, or target it. Manning reduces charge time.</text>
 <text name="tooltip_og_turret_adaptive_enemy">Turret Control: Powers the enemy turret.</text>
+
+
+
+<text name="og_lua_turret_stats_time">Stats:\nCharge Time: </text>
+<text name="og_lua_turret_stats_charges">\nMaximum Charges: %d</text>
+<text name="og_lua_turret_stats_amount">\nCharge Amount: %d</text>
+<text name="og_lua_turret_stats_ammo">\nMissile Consumption: %d</text>
+<text name="og_lua_turret_stats_chain">\nChain Effect: Reduces cooldown by %d%%</text>
+<text name="og_lua_turret_stats_chainCap">\nChain Reduction Cap: %d%% (%d chains)</text>
+<text name="og_lua_turret_stats_rotation">\n\nRotation Speed: %d</text>
+<text name="og_lua_turret_stats_radius">\nShot Radius: %d</text>
+<text name="og_lua_turret_stats_rate">\nFire Rate: </text>
+<text name="og_lua_turret_stats_target">\nProjectile Target: %s</text>
+
+<text name="og_lua_turret_stats_damage">\nBase Hull Damage: %d</text>
+<text name="og_lua_turret_stats_sysDamage">\nTotal System Damage: %d</text>
+<text name="og_lua_turret_stats_persDamage">Total Crew Damage: %d</text>
+<text name="og_lua_turret_stats_ionDamage">\nTotal Ion Damage: %d</text>
+<text name="og_lua_turret_stats_pierce">\nShield Piercing: %d</text>
+<text name="og_lua_turret_stats_hullBust">\nDoes 2x damage to systemless rooms</text>
+<text name="og_lua_turret_stats_lockdown">\nLocks down rooms on hit</text>
+
+<text name="og_lua_turret_stats_fireChance">\nFire Chance: %d%%</text>
+<text name="og_lua_turret_stats_breachChance">\nBreach Chance: %d%% (Adjusted: %d%%)</text>
+<text name="og_lua_turret_stats_stunChance">\nStun Chance: %d%% (%d seconds long)</text>
+<text name="og_lua_turret_stats_effect">\nEffect Duration: %d seconds long</text>
+
+<text name="og_lua_turret_stats_price">\n\nDefault Price: %d~   -   Selling Price: %d~</text>
+
+<text name="og_lua_turret_power_increase">Faster Charge Time</text>
+
+<text name="og_lua_turret_button_offence">Set the turret to offensive mode.</text>
+<text name="og_lua_turret_button_defence">Set the turret to defensive mode.</text>
+<text name="og_lua_turret_button_autoFire">Toggle to activate/deactivate turrets automatically firing.\n\nLEFT CTRL + AIM can force a turret to do the opposite of current setting</text>
+
+<text name="og_lua_turret_hover_charges">Charges: %d/%d</text>
+<text name="og_lua_turret_hover_time">\nCharge Time: %.1f/%.1f</text>
+
+<text name="og_lua_turret_type_drones">Drones</text>
+<text name="og_lua_turret_type_missiles">All Solid Projectiles</text>
+<text name="og_lua_turret_type_drones_missiles">All Solid Projectiles and Drones</text>
+<text name="og_lua_turret_type_projectiles">Non-Solid Projectiles</text>
+<text name="og_lua_turret_type_drones_projectiles">Non-Solid Projectiles and Drones</text>
+<text name="og_lua_turret_type_projectiles_missiles">All Projectiles</text>
+<text name="og_lua_turret_type_all">All Projectiles and Drones</text>
+
+<text name="og_lua_turret_craft_use">Use your %s</text>
+<text name="og_lua_turret_craft_use_scrap">Use your %s + $d~</text>
+<text name="og_lua_turret_craft_finish">You follow the supplied blueprint and eventually come away with a new item.</text>
+<text name="og_lua_turret_craft_blueprint">Blueprint:</text>
+<text name="og_lua_turret_craft_mystery">???</text>
+<text name="og_lua_turret_craft_requires">%s Requires:</text>
+<text name="og_lua_turret_craft_atleast">\n  Atleast %d:</text>
+<text name="og_lua_turret_craft_list">\n    %s</text>
+<text name="og_lua_turret_craft_list_scrap">\n    %s + %d~</text>
+<text name="og_lua_turret_craft_craft">Craft this item.</text>
+<text name="og_lua_turret_craft_unknown">Unknown Turret</text>
+
+<text name="og_lua_turret_fabricate">Can be used to fabricate:</text>
+<text name="og_lua_turret_fabricate_item">\n[%s]</text>
+<text name="og_lua_turret_fabricate_mystery">\n[???]</text>
 </FTL>

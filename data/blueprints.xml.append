@@ -517,7 +517,7 @@
 	<tip>tip_og_turret</tip>
 	<title>Burst Laser Turret</title>
 	<short>Burst L.</short>
-	<desc>Standard Burst Laser Turret. A cheap and efficient middleground between offense and defence.</desc>
+	<desc>Standard Burst Laser Turret. A cheap and efficient middleground between offence and defence.</desc>
 	<tooltip>Turret</tooltip>
 	<damage>0</damage>
 	<sp>0</sp>
@@ -559,7 +559,7 @@
 	<tip>tip_og_turret</tip>
 	<title>Old Burst Laser Turret</title>
 	<short>O. Burst L.</short>
-	<desc>Standard Burst Laser Turret. A cheap and efficient middleground between offense and defence. Very old and has worse aim.</desc>
+	<desc>Standard Burst Laser Turret. A cheap and efficient middleground between offence and defence. Very old and has worse aim.</desc>
 	<tooltip>Turret</tooltip>
 	<damage>0</damage>
 	<sp>0</sp>
@@ -1033,7 +1033,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<tip>tip_og_turret</tip>
 	<title>Flak Turret</title>
 	<short>Flak</short>
-	<desc>A powerful Flak turret, can build up an incredible volley to be fired in both defence and offense.</desc>
+	<desc>A powerful Flak turret, can build up an incredible volley to be fired in both defence and offence.</desc>
 	<tooltip>Turret</tooltip>
 	<damage>0</damage>
 	<sp>0</sp>
@@ -1209,7 +1209,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<tip>tip_og_turret_mini</tip>
 	<title>Micro Ion Turret</title>
 	<short>Micro I.</short>
-	<desc>This Ion Turret is effective drone defence while still being able to support the ships offense.</desc>
+	<desc>This Ion Turret is effective drone defence while still being able to support the ships offence.</desc>
 	<tooltip>Turret</tooltip>
 	<damage>0</damage>
 	<sp>0</sp>
@@ -1257,7 +1257,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<tip>tip_og_turret</tip>
 	<title>Micro Flak Turret</title>
 	<short>Micro F.</short>
-	<desc>A small Flak turret, can build up a volley to be fired in both defence and offense.</desc>
+	<desc>A small Flak turret, can build up a volley to be fired in both defence and offence.</desc>
 	<tooltip>Turret</tooltip>
 	<damage>0</damage>
 	<sp>0</sp>
@@ -1371,7 +1371,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<tip>tip_og_turret</tip>
 	<title>Dawn Flak Turret</title>
 	<short>€ Flak</short>
-	<desc>A powerful Flak turret, can build up an incredible volley to be fired in both defence and offense.
+	<desc>A powerful Flak turret, can build up an incredible volley to be fired in both defence and offence.
 New Dawn varient applies a status effect to hit rooms that causes them to take +1 system damage. However Turret Systems equiped with New Dawn turrets similarly take +1 system damage when hit.</desc>
 	<tooltip>Turret</tooltip>
 	<damage>0</damage>
@@ -3293,7 +3293,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<class>Spearhead-Class</class>
 	<name>The God Ray</name>
 	<unlock id="ship_PLAYER_SHIP_OG_DAWN_SPEAR_2_unlock"/>
-	<desc>This varient of the Spearhead-Class cruiser uses turrets to protect itself and it's weapons to provide offense. Using your turrets for offense will be risky without any other defensive systems to rely on.</desc>
+	<desc>This varient of the Spearhead-Class cruiser uses turrets to protect itself and it's weapons to provide offence. Using your turrets for offence will be risky without any other defensive systems to rely on.</desc>
 	<systemList>
 		<og_turret power="2" max="5" room="3" start="true" turret="OG_TURRET_LASER_1" img="room_og_turret_6" >
 			<slot>
