@@ -26,6 +26,8 @@ end
 local turretBlueprintsList = mods.og.turretBlueprintsList
 local turrets = mods.og.turrets
 
+local saveTurret = mods.og.saveTurret
+
 local systemBlueprintVarName = mods.og.systemBlueprintVarName
 local systemStateVarName = mods.og.systemStateVarName
 local systemChargesVarName = mods.og.systemChargesVarName
@@ -43,7 +45,7 @@ script.on_internal_event(Defines.InternalEvents.HAS_EQUIPMENT, function(shipMana
 end)
 
 local hookedEvents = {}
-local function turret_install_event(installEvent, sysName, shipManager, eventManager)
+local function turret_install_event(installEvent, sysName, shipManager, eventManager, system, toAddBlueprint)
 	--print("turret_install_event"..installEvent.eventName.." sys:"..sysName)
 	if shipManager:HasSystem(3) then
 		for weapon in vter(shipManager.weaponSystem.weapons) do
@@ -51,20 +53,29 @@ local function turret_install_event(installEvent, sysName, shipManager, eventMan
 			if turrets[weapon.blueprint.name] and (turrets[weapon.blueprint.name].mini or not microTurrets[sysName]) then
 				local removeEvent = eventManager:CreateEvent("STORAGE_CHECK_OG_TURRET_EMPTY", 0, false)
 				removeEvent.eventName = removeEvent.eventName.."_INSTALL_"..sysName.."_"..weapon.blueprint.name
-				local index = 0
+				if toAddBlueprint then
+					removeEvent.eventName = removeEvent.eventName.."_REFUND_"..toAddBlueprint.name
+				end
+				--[[local index = 0
 				for i, turretId in ipairs(turretBlueprintsList) do
 					if turretId == weapon.blueprint.name then
 						index = i
 					end
-				end
+				end]]
 				if not hookedEvents[removeEvent.eventName] then
 					hookedEvents[removeEvent.eventName] = true
 					script.on_game_event(removeEvent.eventName, false, function()
-						Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] = index
+						--Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] = index
+						system.table.blueprint = weapon.blueprint.name
+						shipManager:RemoveItem(weapon.blueprint.name, true)
+						if toAddBlueprint then
+							Hyperspace.App.gui.equipScreen:AddWeapon(toAddBlueprint, true, false)
+						end
+						saveTurret(shipManager, system, sysName)
 						return
 					end)
 				end
-				removeEvent.stuff.removeItem = weapon.blueprint.name
+				--removeEvent.stuff.removeItem = weapon.blueprint.name
 				removeEvent.stuff.weapon = weapon.blueprint
 				installEvent:AddChoice(removeEvent, "Install this:", emptyReq, false)
 				--print("added choice:"..weapon.blueprint.name)
@@ -74,25 +85,37 @@ local function turret_install_event(installEvent, sysName, shipManager, eventMan
 	for item in vter(Hyperspace.App.gui.equipScreen:GetCargoHold()) do
 		--print("items:"..item)
 		if turrets[item] and (turrets[item].mini or not microTurrets[sysName]) then
+
 			local removeEvent = eventManager:CreateEvent("STORAGE_CHECK_OG_TURRET_EMPTY", 0, false)
 			removeEvent.eventName = removeEvent.eventName.."_INSTALL_"..sysName.."_"..item
-			local index = 0
+			if toAddBlueprint then
+				removeEvent.eventName = removeEvent.eventName.."_REFUND_"..toAddBlueprint.name
+			end
+			--[[local index = 0
 			for i, turretId in ipairs(turretBlueprintsList) do
 				if turretId == item then
 					index = i
 				end
-			end
+			end]]
 			if not hookedEvents[removeEvent.eventName] then
 				hookedEvents[removeEvent.eventName] = true
 				script.on_game_event(removeEvent.eventName, false, function()
-					Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] = index
+					--Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] = index
+					system.table.blueprint = weapon.blueprint.name
+					shipManager:RemoveItem(item, true)
+					if toAddBlueprint then
+						Hyperspace.App.gui.equipScreen:AddWeapon(toAddBlueprint, true, false)
+					end
+					saveTurret(shipManager, system, sysName)
 					return
 				end)
 			end
-			removeEvent.stuff.removeItem = item
+			--removeEvent.stuff.removeItem = item
 			local blueprint = Hyperspace.Blueprints:GetWeaponBlueprint(item)
 			removeEvent.stuff.weapon = blueprint
+
 			installEvent:AddChoice(removeEvent, "Install this:", emptyReq, false)
+
 			--print("added item choice:"..item)
 		end
 	end
@@ -107,37 +130,49 @@ script.on_internal_event(Defines.InternalEvents.PRE_CREATE_CHOICEBOX, function(e
 		for _, sysName in ipairs(systemNameList) do
 			if shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) then
 				local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
-				if Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] < 0 then
+				if system.table.blueprint == "" then
 					local installEvent = eventManager:CreateEvent("STORAGE_CHECK_OG_TURRET_INSTALL", 0, false)
-					turret_install_event(installEvent, sysName, shipManager, eventManager)
+					turret_install_event(installEvent, sysName, shipManager, eventManager, system, nil)
 					event:AddChoice(installEvent, "Manage Empty Turret.", emptyReq, false)
 				else
 					local removeEvent = eventManager:CreateEvent("STORAGE_CHECK_OG_TURRET_REMOVE", 0, false)
+					removeEvent:RemoveChoice(0)
+
+					local toAddBlueprint = Hyperspace.Blueprints:GetWeaponBlueprint(system.table.blueprint)
+					local addEvent = eventManager:CreateEvent("STORAGE_CHECK_OG_TURRET_EMPTY", 0, false)
+					addEvent.eventName = addEvent.eventName.."_REFUND_"..toAddBlueprint.name
+					if not hookedEvents[addEvent.eventName] then
+						hookedEvents[addEvent.eventName] = true
+						script.on_game_event(addEvent.eventName, false, function()
+							Hyperspace.App.gui.equipScreen:AddWeapon(toAddBlueprint, true, false)
+							saveTurret(shipManager, system, sysName)
+							return
+						end)
+					end
+					removeEvent:AddChoice(addEvent, "Leave it empty.", emptyReq, false)
 
 					removeEvent.eventName = removeEvent.eventName.."_"..sysName
-					turret_install_event(removeEvent, sysName, shipManager, eventManager)
+					turret_install_event(removeEvent, sysName, shipManager, eventManager, system, toAddBlueprint)
 
 					if not hookedEvents[removeEvent.eventName] then
 						hookedEvents[removeEvent.eventName] = true
 						script.on_game_event(removeEvent.eventName, false, function()
 							local sys = Hyperspace.ships.player:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
-							Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] = -1
-							Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChargesVarName] = 0
-							Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemTimeVarName] = 0
 							if sys.table then
-								sys.table.currentTarget = nil
-								sys.table.chargeTime = 0
+								sys.table.blueprint = ""
+								sys.table.charges = 0
+								sys.table.time = 0
 								sys.table.firingTime = 0
 								sys.table.currentShot = 0
+								sys.table.currentTarget = nil
 								sys.table.currentlyTargetting = false
+								saveTurret(Hyperspace.ships.player, sys, sysName)
 							else
 								print("og: failed to get sys.table")
 							end
 							return
 						end)
 					end
-					local blueprint = Hyperspace.Blueprints:GetWeaponBlueprint(turretBlueprintsList[Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] ])
-					removeEvent.stuff.weapon = blueprint
 					event:AddChoice(removeEvent, "Uninstall Turret:", emptyReq, false)
 				end
 			end
@@ -459,6 +494,21 @@ script.on_internal_event(Defines.InternalEvents.POST_CREATE_CHOICEBOX, function(
 				choice.rewards.weapon = Hyperspace.Blueprints:GetWeaponBlueprint(craftedItemsVisible[i])
 			end
 			i = i + 1
+		end
+	elseif event.eventName == "STORAGE_CHECK_OG_TURRET" then
+		local turretItemsUninstall = {}
+		for _, sysName in ipairs(systemNameList) do
+			if Hyperspace.ships.player:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) then
+				local system = Hyperspace.ships.player:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
+				table.insert(turretItemsUninstall, Hyperspace.Blueprints:GetWeaponBlueprint(system.table.blueprint))
+			end
+		end
+		local i = 1
+		for choice in vter(choiceBox:GetChoices()) do
+			if choice.text == "Uninstall Turret:" then
+				choice.rewards.weapon = turretItemsUninstall[i]
+				i = i + 1
+			end
 		end
 	elseif string.sub(event.eventName, 1, 15) == "OG_CRAFT_CRAFT_" then
 		local weapon = string.sub(event.eventName, 16, string.len(event.eventName))

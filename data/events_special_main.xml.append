@@ -2,7 +2,12 @@
 <FTL>
 <mod:findName type="event" name="START_BEACON_REAL" limit="1">
 	<mod-append:queueEvent>OG_TURRET_ARROWS_START</mod-append:queueEvent>
+	<mod-append:queueEvent>OG_SET_TEST_VALUE</mod-append:queueEvent>
 </mod:findName>
+
+<event name="OG_SET_TEST_VALUE">
+	<variable name="og_test_variable" op="set" val="1"/>
+</event>
 
 <event name="OG_TURRET_ARROWS_START">
 	<loadEventList seeded="false" first="true" generate="false" default="OG_TURRET_ARROWS_CANCEL">

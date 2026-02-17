@@ -3,7 +3,8 @@
 <multiShipFix enabled="true"/>
 <mod:findLike type="scripts" reverse="false">
 	<mod-append:script>data/og_scripts/core.lua</mod-append:script>
-	<mod-append:script>data/og_scripts/turret_systems.lua</mod-append:script>
+	<mod-append:script>data/og_scripts/turret_systems_func.lua</mod-append:script>
+	<mod-append:script>data/og_scripts/turret_systems_rendering.lua</mod-append:script>
 	<mod-append:script>data/og_scripts/turret_systems_stats.lua</mod-append:script>
 	<mod-append:script>data/og_scripts/turret_menu_temp.lua</mod-append:script>
 	<mod-append:script>data/og_scripts/ship_ach.lua</mod-append:script>
@@ -605,6 +606,8 @@ This enemy possesses New Dawn turrets, when hit by these, rooms will be temporar
 <events>
 	<eventFile>sector_og_iron</eventFile>
 	<eventFile>sector_og_dawn</eventFile>
+	<variable name="og_test_variable" op="set" val="0"/>
+
 	<variable name="rep_og_iron" op="set" val="0"/>
 	<variable name="rep_og_dawn" op="set" val="0"/>
 	<variable name="rep_comb_og_iron" op="set" val="0"/>

@@ -1,181 +1,24 @@
+-- MV CORE
 local vter = mods.multiverse.vter
 local time_increment = mods.multiverse.time_increment
 local userdata_table = mods.multiverse.userdata_table
 local node_child_iter = mods.multiverse.node_child_iter
 local node_get_number_default = mods.multiverse.node_get_number_default
 
+--OG CORE
 local get_room_at_location = mods.og.get_room_at_location
-
-local function xor(a, b)
-	return (a and not b) or (not a and b)
-end
-local function isPointInEllipse(point, ellipse)
-	if ellipse.a <= 0 or ellipse.b <= 0 then
-		return false
-	end
-	local dx = point.x - ellipse.center.x
-	local dy = point.y - ellipse.center.y
-	local result = (dx^2 / ellipse.a^2) + (dy^2 / ellipse.b^2)
-
-	return result <= 1
-end
-
-local function worldToPlayerLocation(location)
-	local cApp = Hyperspace.App
-	local combatControl = cApp.gui.combatControl
-	local playerPosition = combatControl.playerShipPosition
-	return Hyperspace.Point(location.x - playerPosition.x, location.y - playerPosition.y)
-end
-local function worldToEnemyLocation(location)
-	local cApp = Hyperspace.App
-	local combatControl = cApp.gui.combatControl
-	local position = combatControl.position
-	local targetPosition = combatControl.targetPosition
-	local enemyShipOriginX = position.x + targetPosition.x
-	local enemyShipOriginY = position.y + targetPosition.y
-	return Hyperspace.Point(location.x - enemyShipOriginX, location.y - enemyShipOriginY)
-end
-
-local function get_distance(point1, point2)
-	return math.sqrt(((point2.x - point1.x)^ 2)+((point2.y - point1.y) ^ 2))
-end
-
-local function offset_point_in_direction(position, angle, offset_x, offset_y)
-	local alpha = math.rad(angle)
-	local newX = position.x - (offset_y * math.cos(alpha)) - (offset_x * math.cos(alpha+math.rad(90)))
-	local newY = position.y - (offset_y * math.sin(alpha)) - (offset_x * math.sin(alpha+math.rad(90)))
-	return Hyperspace.Pointf(newX, newY)
-end
-
-local function get_random_point_in_radius(center, radius)
-	r = radius * math.sqrt(math.random())
-	theta = math.random() * 2 * math.pi
-	return Hyperspace.Pointf(center.x + r * math.cos(theta), center.y + r * math.sin(theta))
-end
-
-local function normalize_angle(angle)
-	angle = angle % 360
-	if angle < 0 then
-		angle = angle + 360
-	end
-	return angle
-end
-
-local function angle_diff(angle1, angle2)
-	local diff = angle2 - angle1
-	while diff > 180 do
-		diff = diff - 360
-	end
-	while diff < -180 do
-		diff = diff + 360
-	end
-	return diff
-end
-
-local function move_angle_to(current_angle, target_angle, max_rotation)
-	local diff = target_angle - current_angle
-	if diff > 180 then
-		diff = diff - 360
-	elseif diff <= -180 then
-		diff = diff + 360
-	end
-
-	local new_angle
-
-	if math.abs(diff) <= math.abs(max_rotation) then
-		new_angle = target_angle
-	else
-		if diff > 0 then
-			new_angle = current_angle + math.abs(max_rotation)
-		else
-			new_angle = current_angle - math.abs(max_rotation)
-		end
-	end
-	--print("current_angle:"..tostring(current_angle).." target_angle:"..tostring(target_angle).." max_rotation:"..tostring(max_rotation).." new_angle"..tostring(normalize_angle(new_angle)))
-	return normalize_angle(new_angle)
-end
-
-local function get_angle_between_points(pos, target_pos)
-	local alpha = math.atan((target_pos.y-pos.y), (target_pos.x-pos.x))
-	return normalize_angle(math.deg(alpha))
-end
-
-local function find_intercept_angle(current_pos, speed, target_pos, target_velocity)
-	--print("find_intercept")
-	--print("current_pos x:"..tostring(current_pos.x).." y:"..tostring(current_pos.y))
-	--print("speed:"..tostring(speed))
-	--print("target_pos x:"..tostring(target_pos.x).." y:"..tostring(target_pos.y))
-	--print("target_velocity x:"..tostring(target_velocity.x).." y:"..tostring(target_velocity.y).." speed:"..tostring(math.sqrt(target_velocity.x^2 + target_velocity.y^2)))
-	local px = target_pos.x - current_pos.x
-	local py = target_pos.y - current_pos.y
-	local epsilon = 0.0001 -- tolerence for checking near 0
-
-	if math.abs(target_velocity.x) < epsilon and math.abs(target_velocity.y) < epsilon then
-		local p_sq = px^2 + py^2
-		local dist = math.sqrt(p_sq)
-		local t = dist / speed
-		local intercept_angle = get_angle_between_points(current_pos, target_pos)
-		--print("direct intercept")
-		return intercept_angle, target_pos, t
-	end
-
-	local v_sq = target_velocity.x^2 + target_velocity.y^2
-	local A = v_sq - speed^2
-
-	local p_dot_v = px * target_velocity.x + py * target_velocity.y
-	local B = 2 * p_dot_v
-
-	local p_sq = px^2 + py^2
-	local C = p_sq
-
-	-- time to intercept
-	local t = nil
-	if math.abs(A) < epsilon then
-		if math.abs(B) > epsilon then
-			t = -C / B
-		else
-			--print("Failed Intercept, current_pos and target_pos are the same.")
-			return nil 
-		end
-	else
-		local D = B^2 - 4*A*C
-
-		if D < 0 then
-			--print("Failed Intercept, interception is impossible.")
-			return nil
-		end
-
-		local D_sqrt = math.sqrt(D)
-		local t1 = (-B + D_sqrt) / (2 * A)
-		local t2 = (-B - D_sqrt) / (2 * A)
-
-		if t1 > 0 and t2 > 0 then
-			t = math.min(t1, t2)
-		elseif t1 > 0 then
-			t = t1
-		elseif t2 > 0 then
-			t = t2
-		else
-			--print("Failed Intercept, interception is impossible 2.")
-			return nil
-		end
-	end
-
-	if t <= 0 then
-		--print("Failed Intercept, interception time is negative.")
-		return nil
-	end
-
-	local cur_vx = (px / t) + target_velocity.x
-	local cur_vy = (py / t) + target_velocity.y
-
-	local intercept_angle = get_angle_between_points({x = 0, y = 0}, {x = cur_vx, y = cur_vy})
-	local intercept_point = {
-		x = target_pos.x + target_velocity.x * t,
-		y = target_pos.y + target_velocity.y * t
-	}
-	return intercept_angle, Hyperspace.Pointf(intercept_point.x, intercept_point.y), t
-end
+local xor = mods.og.xor
+local isPointInEllipse = mods.og.isPointInEllipse
+local worldToPlayerLocation = mods.og.worldToPlayerLocation
+local worldToEnemyLocation = mods.og.worldToEnemyLocation
+local get_distance = mods.og.get_distance
+local offset_point_in_direction = mods.offset_point_in_direction
+local get_random_point_in_radius = mods.og.get_random_point_in_radius
+local normalize_angle = mods.og.normalize_angle
+local angle_diff = mods.og.angle_diff
+local move_angle_to = mods.og.move_angle_to
+local get_angle_between_points = mods.og.get_angle_between_points
+local find_intercept_angle = mods.og.find_intercept_angle
 
 local systemName = "og_turret"
 mods.og.microTurrets = {["og_turret_mini"] = true, ["og_turret_mini_2"] = true, ["og_turret_mini_3"] = true, ["og_turret_mini_4"] = true}
@@ -274,6 +117,7 @@ mods.og.defence_types = {
 	ALL = {[1] = true, [2] = true, [3] = true, [4] = true, [7] = true, name = Hyperspace.Text:GetText("og_lua_turret_type_all")},
 }
 local defence_types = mods.og.defence_types
+
 mods.og.chain_types = {
 	cooldown = 1,
 }
