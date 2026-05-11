@@ -55,7 +55,7 @@
 
 <text name="og_lua_turret_stats_damage">\nBase Hull Damage: %d</text>
 <text name="og_lua_turret_stats_sysDamage">\nTotal System Damage: %d</text>
-<text name="og_lua_turret_stats_persDamage">Total Crew Damage: %d</text>
+<text name="og_lua_turret_stats_persDamage">\nTotal Crew Damage: %d</text>
 <text name="og_lua_turret_stats_ionDamage">\nTotal Ion Damage: %d</text>
 <text name="og_lua_turret_stats_pierce">\nShield Piercing: %d</text>
 <text name="og_lua_turret_stats_hullBust">\nDoes 2x damage to systemless rooms</text>

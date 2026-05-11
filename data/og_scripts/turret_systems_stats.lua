@@ -25,6 +25,7 @@ table.insert(turretBlueprintsList, "OG_TURRET_MISSILE_1")
 table.insert(turretBlueprintsList, "OG_TURRET_MISSILE_2")
 table.insert(turretBlueprintsList, "OG_TURRET_KERNEL_HEAVY")
 table.insert(turretBlueprintsList, "OG_TURRET_KERNEL_FIRE")
+table.insert(turretBlueprintsList, "OG_TURRET_MISSILE_CLONE_CANNON")
 table.insert(turretBlueprintsList, "OG_TURRET_FLAK_1")
 table.insert(turretBlueprintsList, "OG_TURRET_FLAK_BIO")
 table.insert(turretBlueprintsList, "OG_TURRET_FOCUS_1")
@@ -437,6 +438,22 @@ turrets["OG_TURRET_KERNEL_FIRE"] = {
 	charges_per_charge = 1,
 	rotation_speed = 180,
 	charge_time = {[0] = 17, 17, 14, 11, 9, 7, 5, 5, 4},
+}
+turrets["OG_TURRET_MISSILE_CLONE_CANNON"] = {
+	enemy_burst = 1,
+	shot_radius = 30,
+	aim_cone = 1,
+	image = Hyperspace.Animations:GetAnimation("og_turret_missile_clone_cannon"),
+	glow = Hyperspace.Animations:GetAnimation("og_turret_missile_clone_cannon_glow"),
+	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_missile_clone_cannon_charge.png", -40, -40, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
+	fire_points = {{x = 0, y = -40, fire_delay = 0.4}},
+	defence_type = defence_types.DRONES_MISSILES,
+	blueprint_type = 1,
+	blueprint = "OG_MISSILE_PROJECTILE_CLONE",
+	charges = 2,
+	charges_per_charge = 1,
+	rotation_speed = 120,
+	charge_time = {[0] = 12, 12, 10, 8, 6, 5, 4, 3.5, 3},
 }
 turrets["OG_TURRET_FLAK_1"] = {
 	enemy_burst = 3,

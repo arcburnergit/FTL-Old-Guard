@@ -101,7 +101,7 @@ local function turret_install_event(installEvent, sysName, shipManager, eventMan
 				hookedEvents[removeEvent.eventName] = true
 				script.on_game_event(removeEvent.eventName, false, function()
 					--Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] = index
-					system.table.blueprint = weapon.blueprint.name
+					system.table.blueprint = item
 					shipManager:RemoveItem(item, true)
 					if toAddBlueprint then
 						Hyperspace.App.gui.equipScreen:AddWeapon(toAddBlueprint, true, false)
@@ -230,10 +230,15 @@ for item in vter(Hyperspace.Blueprints:GetBlueprintList("BLUELIST_OBELISK")) do
 	--print("add to hideName:"..item)
 	hideName[item] = "Something Old"
 end
+local clone_cannon_list = {}
+for item in vter(Hyperspace.Blueprints:GetBlueprintList("LIST_CLONE_CANNON")) do
+	hideName[item] = "Something Ethically Dubious"
+	table.insert(clone_cannon_list, item)
+end
 hideName["GATLING"] = "Unleash hell on your opposition!"
 hideName["PRIME_LASER"] = "Let it hit you and you're already dead."
-hideName["DEFENSE_PRIME"] = "Archein."
-hideName["COMBAT_PRIME"] = "Let it hit you and you're already dead."
+hideName["DEFENSE_PRIME"] = "Guardian Angel."
+hideName["COMBAT_PRIME"] = "Angel of Vengeance."
 hideName["BEAM_HARDSCIFI"] = "REAL SCIENCE"
 hideName["GATLING_SYLVAN"] = "You greedy, murdering traitor you"
 hideName["GATLING_SYLVAN_HONOR"] = "You greedy, murdering traitor you"
@@ -273,6 +278,8 @@ table.insert(craftedWeapons, {weapon = "OG_TURRET_ION_MINI_1", match_cost = true
 table.insert(craftedWeapons, {weapon = "OG_TURRET_FOCUS_MINI_1", match_cost = true, component_amounts = {1}, components = {{"FOCUS_1", "FOCUS_2", "FOCUS_3", "FOCUS_CHAIN", "FOCUS_BIO", "BEAM_CONSERVATIVE"}}} )
 table.insert(craftedWeapons, {weapon = "OG_TURRET_FLAK_MINI_1", match_cost = true, component_amounts = {1}, components = {{"SHOTGUN_1", "SHOTGUN_2", "SHOTGUN_3", "SHOTGUN_4", "SHOTGUN_CHARGE", "SHOTGUN_CHAIN", "SHOTGUN_INSTANT"}}} )
 table.insert(craftedWeapons, {weapon = "OG_TURRET_MISSILE_MINI_1", match_cost = true, component_amounts = {1}, components = {{"MISSILES_1", "MISSILES_2", "MISSILES_BURST", "MISSILES_BURST_2", "MISSILES_BURST_2_PLAYER", "MISSILES_FREE", "MISSILES_CONSERVATIVE"}}} )
+
+table.insert(craftedWeapons, {weapon = "OG_TURRET_MISSILE_CLONE_CANNON", match_cost = true, component_amounts = {1}, components = {clone_cannon_list}} )
 
 table.insert(craftedWeapons, {weapon = "OG_TURRET_LASER_ANCIENT", match_cost = true, component_amounts = {1}, components = {{"ANCIENT_LASER", "ANCIENT_LASER_2", "ANCIENT_LASER_3", "ANCIENT_BEAM", "ANCIENT_BEAM_2", "ANCIENT_BEAM_3", "ANCIENT_DEFENSE_1"}}} )
 

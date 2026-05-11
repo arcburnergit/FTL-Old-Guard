@@ -12,7 +12,7 @@ local isPointInEllipse = mods.og.isPointInEllipse
 local worldToPlayerLocation = mods.og.worldToPlayerLocation
 local worldToEnemyLocation = mods.og.worldToEnemyLocation
 local get_distance = mods.og.get_distance
-local offset_point_in_direction = mods.offset_point_in_direction
+local offset_point_in_direction = mods.og.offset_point_in_direction
 local get_random_point_in_radius = mods.og.get_random_point_in_radius
 local normalize_angle = mods.og.normalize_angle
 local angle_diff = mods.og.angle_diff
@@ -74,31 +74,34 @@ local targetingImage = {
 local autoFireOffButton= mods.og.autoFireOffButton
 local autoFireOnButton= mods.og.autoFireOnButton
 --RENDER ROOM TARGETING
-local function render_active_targeting(shipManager, otherManager, combatControl, system, currentTurret)
-	if combatControl.selectedRoom >= 0 and currentTurret.blueprint_type ~= 3 then
+local function render_active_targeting(shipManager, otherManager, combatControl, system, currentTurret, ship)
+	--print("render_active_targeting")
+	if combatControl.selectedRoom >= 0 then
 		for room in vter(ship.vRoomList) do
 			if room.iRoomId == combatControl.selectedRoom then
 				Graphics.CSurface.GL_RenderPrimitive(room.highlightPrimitive) -- highlight the room
 				Graphics.CSurface.GL_RenderPrimitive(room.highlightPrimitive2)
 			end
 		end
-		if currentTurret.shot_radius then
-			local targetPos = shipManager:GetRoomCenter(combatControl.selectedRoom)
+		if currentTurret.blueprint_type ~= 3 then
+			if currentTurret.shot_radius then
+				local targetPos = shipManager:GetRoomCenter(combatControl.selectedRoom)
+				Graphics.CSurface.GL_PushMatrix()
+				Graphics.CSurface.GL_Translate(targetPos.x, targetPos.y, 0)
+				Graphics.CSurface.GL_DrawCircle(0, 0, currentTurret.shot_radius, Graphics.GL_Color(1, 0, 0, 0.25))
+				Graphics.CSurface.GL_PopMatrix()
+			end
+		elseif currentTurret.shot_radius then
+			local targetShipGraph = Hyperspace.ShipGraph.GetShipInfo(shipManager.iShipId)
+			local roomShape = targetShipGraph:GetRoomShape(combatControl.selectedRoom)
+			local mousePosEnemy = worldToEnemyLocation(Hyperspace.Mouse.position)
+			local slotId = find_closest_slot(roomShape, mousePosEnemy)
+			local targetPos = targetShipGraph:GetSlotWorldPosition(slotId, combatControl.selectedRoom)
 			Graphics.CSurface.GL_PushMatrix()
 			Graphics.CSurface.GL_Translate(targetPos.x, targetPos.y, 0)
 			Graphics.CSurface.GL_DrawCircle(0, 0, currentTurret.shot_radius, Graphics.GL_Color(1, 0, 0, 0.25))
 			Graphics.CSurface.GL_PopMatrix()
 		end
-	elseif combatControl.selectedRoom >= 0 and currentTurret.shot_radius then
-		local targetShipGraph = Hyperspace.ShipGraph.GetShipInfo(shipManager.iShipId)
-		local roomShape = targetShipGraph:GetRoomShape(combatControl.selectedRoom)
-		local mousePosEnemy = worldToEnemyLocation(Hyperspace.Mouse.position)
-		local slotId = find_closest_slot(roomShape, mousePosEnemy)
-		local targetPos = targetShipGraph:GetSlotWorldPosition(slotId, combatControl.selectedRoom)
-		Graphics.CSurface.GL_PushMatrix()
-		Graphics.CSurface.GL_Translate(targetPos.x, targetPos.y, 0)
-		Graphics.CSurface.GL_DrawCircle(0, 0, currentTurret.shot_radius, Graphics.GL_Color(1, 0, 0, 0.25))
-		Graphics.CSurface.GL_PopMatrix()
 	end
 end
 
@@ -128,13 +131,15 @@ script.on_render_event(Defines.RenderEvents.SHIP_SPARKS, function(ship) end, fun
 	for _, sysName in ipairs(systemNameList) do
 		if otherManager and systemCacheList[otherManager.iShipId][sysName] then
 			local system = otherManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
-			local currentTurret = turrets[ system.table.blueprint ]
-			if system.table.currentlyTargetting then
-				render_active_targeting(shipManager, otherManager, combatControl, system, currentTurret)
-			elseif system.table.currentTarget and system.table.state == turret_states.defence and not system.table.currentlyTargetted then
-				render_targeting(shipManager, otherManager, system, currentTurret, system.table.currentTarget, false)
-			elseif system.table.currentTargetTemp and system.table.state == turret_states.defence and not system.table.currentlyTargetted then
-				render_targeting(shipManager, otherManager, system, currentTurret, system.table.currentTargetTemp, true)
+			if system then
+				local currentTurret = turrets[ system.table.blueprint ]
+				if system.table.currentlyTargetting then
+					render_active_targeting(shipManager, otherManager, combatControl, system, currentTurret, ship)
+				elseif system.table.currentTarget and system.table.state == turret_states.defence and not system.table.currentlyTargetted then
+					render_targeting(shipManager, otherManager, system, currentTurret, system.table.currentTarget, false)
+				elseif system.table.currentTargetTemp and system.table.state == turret_states.defence and not system.table.currentlyTargetted then
+					render_targeting(shipManager, otherManager, system, currentTurret, system.table.currentTargetTemp, true)
+				end
 			end
 		end
 	end
@@ -176,11 +181,12 @@ local function render_target_icon_vectors(shipManager, otherManager, currentTurr
 	end
 end
 
-local function find_closest_target(spaceManager, currentTurret, mousePosPlayer, mousePosEnemy)
+local checkValidTarget = mods.og.checkValidTarget
+local function find_closest_target(spaceManager, currentTurret, mousePosPlayer, mousePosEnemy, ship)
 	local currentClosest = nil
 	for projectile in vter(spaceManager.projectiles) do
 		local blueprint = Hyperspace.Blueprints:GetWeaponBlueprint(projectile.extend.name)
-		if checkValidTarget(projectile._targetable, currentTurret.defence_type, shipManager) and not projectile.missed and not projectile.passedTarget and blueprint.typeName ~= "BEAM" and projectile._targetable:GetSpaceId() == ship.iShipId then
+		if checkValidTarget(projectile._targetable, currentTurret.defence_type, Hyperspace.ships.player) and not projectile.missed and not projectile.passedTarget and blueprint.typeName ~= "BEAM" and projectile._targetable:GetSpaceId() == ship.iShipId then
 			local targetPos = projectile._targetable:GetRandomTargettingPoint(true)
 			local dist
 			if projectile._targetable:GetSpaceId() == 0 then
@@ -194,7 +200,7 @@ local function find_closest_target(spaceManager, currentTurret, mousePosPlayer, 
 		end
 	end
 	for drone in vter(spaceManager.drones) do
-		if checkValidTarget(drone._targetable, currentTurret.defence_type, shipManager) and not drone.bDead and drone._targetable:GetSpaceId() == ship.iShipId then
+		if checkValidTarget(drone._targetable, currentTurret.defence_type, Hyperspace.ships.player) and not drone.bDead and drone._targetable:GetSpaceId() == ship.iShipId then
 			local targetPos = drone._targetable:GetRandomTargettingPoint(true)
 			local dist
 			if drone._targetable:GetSpaceId() == 0 then
@@ -217,21 +223,23 @@ script.on_render_event(Defines.RenderEvents.SHIP, function() end, function(ship)
 	for _, sysName in ipairs(systemNameList) do
 		if systemCacheList[shipManager.iShipId][sysName] then
 			local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
-			local currentTurret = turrets[ system.table.blueprint ]
-			local spaceManager = Hyperspace.App.world.space
-			if system.table.currentlyTargetting then
-				system.table.autoFireInvert = ctrl_held
-				local mousePosPlayer = worldToPlayerLocation(Hyperspace.Mouse.position)
-				local mousePosEnemy = worldToEnemyLocation(Hyperspace.Mouse.position)
-				local currentClosest = find_closest_target(spaceManager, currentTurret, mousePosPlayer, mousePosEnemy)
-				if currentClosest then
-					local targetPos = currentClosest.target:GetRandomTargettingPoint(true)
-					render_target_icon(targetPos, otherManager, currentTurret, 1)
+			if system then
+				local currentTurret = turrets[ system.table.blueprint ]
+				local spaceManager = Hyperspace.App.world.space
+				if system.table.currentlyTargetting then
+					system.table.autoFireInvert = mods.og.ctrl_held
+					local mousePosPlayer = worldToPlayerLocation(Hyperspace.Mouse.position)
+					local mousePosEnemy = worldToEnemyLocation(Hyperspace.Mouse.position)
+					local currentClosest = find_closest_target(spaceManager, currentTurret, mousePosPlayer, mousePosEnemy, ship)
+					if currentClosest then
+						local targetPos = currentClosest.target:GetRandomTargettingPoint(true)
+						render_target_icon(targetPos, otherManager, currentTurret, 1)
+					end
+				elseif system.table.currentTarget and (system.table.state == turret_states.offence or system.table.currentlyTargetted) then
+					render_target_icon_vectors(shipManager, otherManager, currentTurret, spaceManager, system.table.currentTarget, false)
+				elseif system.table.currentTargetTemp and system.table.currentlyTargetted then
+					render_target_icon_vectors(shipManager, otherManager, currentTurret, spaceManager, system.table.currentTargetTemp, false)
 				end
-			elseif system.table.currentTarget and (system.table.state == turret_states.offence or system.table.currentlyTargetted) then
-				render_target_icon_vectors(shipManager, otherManager, currentTurret, spaceManager, system.table.currentTarget, false)
-			elseif system.table.currentTargetTemp and system.table.currentlyTargetted then
-				render_target_icon_vectors(shipManager, otherManager, currentTurret, spaceManager, system.table.currentTarget, false)
 			end
 		end
 	end
@@ -307,7 +315,7 @@ local back_tut = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/butto
 local offensive_tut = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/button_og_turret_toggle_o_on.png", UIOffset_x, UIOffset_y, 0, tut_colour, 1, false)
 local defensive_tut = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/button_og_turret_toggle_d_on.png", UIOffset_x, UIOffset_y, 0, tut_colour, 1, false)
 
-local function render_tutorial_systemBox()
+local function render_tutorial_systemBox(systemBox)
 	if tutorialType == 1 then
 		sysArrow:OnRender()
 	elseif tutorialType == 2 then
@@ -497,7 +505,7 @@ local function system_render(systemBox, ignoreStatus)
 			end
 		end
 
-		render_tutorial_systemBox()
+		render_tutorial_systemBox(systemBox)
 
 	elseif is_system(systemBox) then
 		Graphics.CSurface.GL_RenderPrimitive(turretBox)

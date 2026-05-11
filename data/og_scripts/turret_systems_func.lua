@@ -12,7 +12,7 @@ local isPointInEllipse = mods.og.isPointInEllipse
 local worldToPlayerLocation = mods.og.worldToPlayerLocation
 local worldToEnemyLocation = mods.og.worldToEnemyLocation
 local get_distance = mods.og.get_distance
-local offset_point_in_direction = mods.offset_point_in_direction
+local offset_point_in_direction = mods.og.offset_point_in_direction
 local get_random_point_in_radius = mods.og.get_random_point_in_radius
 local normalize_angle = mods.og.normalize_angle
 local angle_diff = mods.og.angle_diff
@@ -60,7 +60,6 @@ mods.og.scrambler_radius = 32
 local scrambler_radius = mods.og.scrambler_radius
 
 mods.og.turret_autofire_setting = 0
-local turret_autofire_setting = mods.og.turret_autofire_setting
 
 --TURRET ENUMS
 mods.og.turret_directions = {
@@ -208,7 +207,7 @@ local function add_stat_text(desc, currentTurret, chargeMax)
 		desc = desc..string.format(statsText.ammo, math.floor(currentTurret.ammo_consumption))
 	end
 	if currentTurret.chain and currentTurret.chain.type == chain_types.cooldown then
-		chain_amount = math.floor(currentTurret.chain.amount * 100)
+		local chain_amount = math.floor(currentTurret.chain.amount * 100)
 		desc = desc..string.format(statsText.chain, chain_amount)
 		local chain_count = math.floor(currentTurret.chain.count)
 		local chain_max_effect = math.floor(currentTurret.chain.amount * currentTurret.chain.count * 100)
@@ -293,7 +292,7 @@ script.on_internal_event(Defines.InternalEvents.WEAPON_DESCBOX, function(bluepri
 end)
 
 script.on_internal_event(Defines.InternalEvents.WEAPON_STATBOX, function(blueprint, stats)
-	return Defines.Chain.CONTINUE, desc
+	return Defines.Chain.CONTINUE, stats
 end)
 
 -- TURRET HELPER FUNCTIONS
@@ -342,12 +341,24 @@ end
 local saveTurretDefaults = mods.og.saveTurretDefaults
 
 function mods.og.saveTurret(shipManager, system, sysName)
-	--log("save:"..sysName)
+	if Hyperspace.App.menu.shipBuilder.bOpen then return end
+	log("save:"..sysName)
 	local shipId = math.floor(shipManager.iShipId)
+
+	if system.table.blueprint == "" then
+		log("save empty blueprint")
+        Hyperspace.playerVariables[shipId..sysName..systemBlueprintVarName] = -1
+        Hyperspace.playerVariables[shipId..sysName..systemStateVarName] = 0
+        Hyperspace.playerVariables[shipId..sysName..systemChargesVarName] = 0
+        Hyperspace.playerVariables[shipId..sysName..systemChainVarName] = 0
+        Hyperspace.playerVariables[shipId..sysName..systemTimeVarName] = 0
+        return
+    end
+
 	for i, name in ipairs(turretBlueprintsList) do
 		if name == system.table.blueprint then
 			Hyperspace.playerVariables[shipId..sysName..systemBlueprintVarName] = i
-			--log("save blueprint:"..system.table.blueprint.." var:"..tostring(Hyperspace.playerVariables[shipId..sysName..systemBlueprintVarName]))
+			log("save blueprint:"..system.table.blueprint.." var:"..tostring(Hyperspace.playerVariables[shipId..sysName..systemBlueprintVarName]))
 			goto SAVE_STATE
 		end
 	end
@@ -367,12 +378,23 @@ end
 local saveTurret = mods.og.saveTurret
 
 function mods.og.loadTurret(shipManager, system, sysName)
-	--log("load:"..sysName)
+	log("load:"..sysName)
 	local shipId = math.floor(shipManager.iShipId)
+
+	if Hyperspace.playerVariables[shipId..sysName..systemBlueprintVarName] == -1 then
+		log("load empty blueprint")
+        system.table.blueprint = ""
+        system.table.state = 0
+        system.table.charges = 0
+        system.table.chain_level = 0
+        system.table.time = 0
+        return
+    end
+
 	for i, name in ipairs(turretBlueprintsList) do
 		if i == Hyperspace.playerVariables[shipId..sysName..systemBlueprintVarName] then
 			system.table.blueprint = name
-			--log("load blueprint:"..system.table.blueprint.." var:"..tostring(Hyperspace.playerVariables[shipId..sysName..systemBlueprintVarName]))
+			log("load blueprint:"..system.table.blueprint.." var:"..tostring(Hyperspace.playerVariables[shipId..sysName..systemBlueprintVarName]))
 			goto LOAD_STATE
 		end
 	end
@@ -435,17 +457,18 @@ function mods.og.findStartingTurret(shipManager, sysName)
 end
 local findStartingTurret = mods.og.findStartingTurret
 
+local initialFiringTime = 0.1
+
 local function resetTurrets(shipManager)
 	for _, sysName in ipairs(systemNameList) do
 		if systemCacheList[shipManager.iShipId][sysName] then
 			local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
 
 			system.table.time = 0
-			if shipManager:HasAugmentation("OG_TURRET_PREIGNITE") > 0 then
-				local currentTurret = turrets[ system.table.blueprint ]
+			local currentTurret = turrets[ system.table.blueprint ]
+			if shipManager:HasAugmentation("OG_TURRET_PREIGNITE") > 0 and currentTurret then
 				system.table.charges = currentTurret.charges
-			elseif shipManager:HasAugmentation("OG_TURRET_PREIGNITE_WEAK") > 0 then
-				local currentTurret = turrets[ system.table.blueprint ]
+			elseif shipManager:HasAugmentation("OG_TURRET_PREIGNITE_WEAK") > 0 and currentTurret then
 				if shipManager.iShipId == 0 then
 					system.table.charges = math.ceil(currentTurret.charges/2)
 				else
@@ -454,7 +477,11 @@ local function resetTurrets(shipManager)
 			else
 				system.table.charges = 0
 			end
-			system.table.chain_level = 0
+			if currentTurret.chain then
+				system.table.chain_level = math.min(currentTurret.chain.count, system.table.charges)
+			else
+				system.table.chain_level = 0
+			end
 			--system.table.state = turret_states.defence
 			system.table.firingTime = initialFiringTime
 
@@ -476,7 +503,7 @@ local function resetTurrets(shipManager)
 	end
 end
 
-local function select_turret(system, shift)
+function mods.og.select_turret(system, shift)
 	local shipManager = Hyperspace.ships.player
 	system.table.currentTarget = nil
 	system.table.autoFireInvert = shift 
@@ -486,8 +513,9 @@ local function select_turret(system, shift)
 	Hyperspace.Mouse.validPointer = cursorValid
 	Hyperspace.Mouse.invalidPointer = cursorValid2
 end
+local select_turret = mods.og.select_turret
 
-local function checkValidTarget(targetable, defence_type, shipManager)
+function mods.og.checkValidTarget(targetable, defence_type, shipManager)
 	if not targetable then return false end
 	local isDying = targetable.GetIsDying and targetable:GetIsDying()
 	local ownerId = targetable.GetOwnerId and targetable:GetOwnerId()
@@ -507,6 +535,7 @@ local function checkValidTarget(targetable, defence_type, shipManager)
 	end
 	return false
 end
+local checkValidTarget = mods.og.checkValidTarget
 
 function mods.og.get_charge_time(currentTurret, system)
 	local systemNameTemp = Hyperspace.ShipSystem.SystemIdToName(system.iSystemType)
@@ -605,8 +634,6 @@ do
 	autoFireOnButton.hitbox.h = 24
 end
 
-local initialFiringTime = 0.1
-
 local function setup_system_buttons(systemBox)
 	local targetButton = Hyperspace.Button()
 	targetButton:OnInit("systemUI/button_og_turret_target", Hyperspace.Point(UIOffset_x, UIOffset_y))
@@ -671,7 +698,7 @@ local function system_construct_system_box(systemBox)
 
 		systemBox.pSystem.table.index = -1
 		local shipManager = Hyperspace.ships(systemBox.pSystem._shipObj.iShipId)
-		if shipManager then
+		if shipManager and ((not systemBox.pSystem.table.blueprint) or systemBox.pSystem.table.blueprint == "OG_EMPTY_TURRET") then
 			local id, i = findStartingTurret(shipManager, systemId)
 			systemBox.pSystem.table.blueprint = id
 		end
@@ -696,9 +723,6 @@ local function system_construct_system_box(systemBox)
 		systemBox.pSystem.table.currentTargetTemp = nil
 
 		systemBox.pSystem.table.autoFireInvert = false
-		if shipManager then
-			loadTurret(shipManager, systemBox.pSystem, systemId)
-		end
 	elseif is_system_enemy(systemBox) then
 
 		local systemId = Hyperspace.ShipSystem.SystemIdToName(systemBox.pSystem.iSystemType)
@@ -706,8 +730,9 @@ local function system_construct_system_box(systemBox)
 			systemBox.pSystem.table.micro = true
 			--systemBox.pSystem.bBoostable = false
 		end
-
-		systemBox.pSystem.table.blueprint = "OG_EMPTY_TURRET"
+		if not systemBox.pSystem.table.blueprint then
+			systemBox.pSystem.table.blueprint = "OG_EMPTY_TURRET"
+		end
 
 		systemBox.pSystem.table.time = 0
 		systemBox.pSystem.table.charges = 0
@@ -726,9 +751,6 @@ local function system_construct_system_box(systemBox)
 		systemBox.pSystem.table.currentlyTargetted = false
 
 		systemBox.pSystem.table.currentTarget = nil
-		if shipManager then
-			loadTurret(shipManager, systemBox.pSystem, systemId)
-		end
 	end
 end
 script.on_internal_event(Defines.InternalEvents.CONSTRUCT_SYSTEM_BOX, system_construct_system_box)
@@ -771,7 +793,7 @@ local function system_mouse_move(systemBox, x, y)
 		end
 
 		if systemBox.pSystem.table.index == Hyperspace.playerVariables.og_turret_count then
-			if turret_autofire_setting == 0 then
+			if mods.og.turret_autofire_setting == 0 then
 				autoFireOffButton:MouseMove(x - (UIOffset_x + autoFireX), y - (UIOffset_y + autoFireY), false)
 				if autoFireOffButton.bHover then
 					systemBox.pSystem.table.tooltip_type = tooltip_hover.autofire_off
@@ -845,7 +867,7 @@ script.on_init(function()
 	end
 end)
 
-local ctrl_held = false
+mods.og.ctrl_held = false
 
 -- Track when the hotkeys are being configured
 local settingTurret = nil
@@ -892,14 +914,14 @@ local auto_key = 306
 
 script.on_internal_event(Defines.InternalEvents.ON_KEY_UP, function(key)
 	if key == auto_key then
-		ctrl_held = false
+		mods.og.ctrl_held = false
 	end
 	return Defines.Chain.CONTINUE
 end)
 
 script.on_internal_event(Defines.InternalEvents.ON_KEY_DOWN, function(key)
 	if key == auto_key then
-		ctrl_held = true
+		mods.og.ctrl_held = true
 	end
 	-- Allow player to reconfigure the hotkeys
 	if settingTurret then
@@ -923,7 +945,7 @@ script.on_internal_event(Defines.InternalEvents.ON_KEY_DOWN, function(key)
 					if systemCacheList[shipManager.iShipId][sysName] then
 						local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
 						if system.table.index == i then
-							select_turret(system, ctrl_held) -- enables targetting for a turret
+							select_turret(system, mods.og.ctrl_held) -- enables targetting for a turret
 						elseif system.table.currentlyTargetting then
 							system.table.currentlyTargetting = false -- disables targetting for other turrets if its active
 						end
@@ -977,7 +999,7 @@ local function target_enemy_projectile(currentTurret, mousePosPlayer, mousePosEn
 	local currentClosest = nil
 	for projectile in vter(spaceManager.projectiles) do
 		local blueprint = Hyperspace.Blueprints:GetWeaponBlueprint(projectile.extend.name)
-		if checkValidTarget(projectile._targetable, currentTurret.defence_type, shipManager) and not projectile.missed and not projectile.passedTarget and blueprint.typeName ~= "BEAM" then
+		if checkValidTarget(projectile._targetable, currentTurret.defence_type, Hyperspace.ships.player) and not projectile.missed and not projectile.passedTarget and blueprint.typeName ~= "BEAM" then
 			local targetPos = projectile._targetable:GetRandomTargettingPoint(true)
 			local dist
 			if projectile._targetable:GetSpaceId() == 0 then
@@ -994,7 +1016,7 @@ local function target_enemy_projectile(currentTurret, mousePosPlayer, mousePosEn
 end
 local function target_enemy_drone(currentTurret, mousePosPlayer, mousePosEnemy, spaceManager, currentClosest)
 	for drone in vter(spaceManager.drones) do
-		if checkValidTarget(drone._targetable, currentTurret.defence_type, shipManager) and not drone.bDead then
+		if checkValidTarget(drone._targetable, currentTurret.defence_type, Hyperspace.ships.player) and not drone.bDead then
 			local targetPos = drone._targetable:GetRandomTargettingPoint(true)
 			local dist
 			if drone._targetable:GetSpaceId() == 0 then
@@ -1016,7 +1038,7 @@ local function click_finish_targetting(systemBox, shipManager, targetButton)
 	Hyperspace.Mouse.invalidPointer = cursorDefault2
 	local combatControl = Hyperspace.App.gui.combatControl
 	if combatControl.selectedRoom >= 0 then
-		target_enemy_room_temp(systemBox.combatControl)
+		target_enemy_room_temp(systemBox, combatControl)
 	else
 		local shipId = (systemBox.bPlayerUI and 0) or 1
 		local currentTurret = turrets[ systemBox.pSystem.table.blueprint ]
@@ -1057,14 +1079,14 @@ local function system_click(systemBox, shift)
 			systemBox.pSystem.table.currentTargetTemp = nil
 			systemBox.pSystem.table.state = turret_states.offence
 		elseif targetButton.bHover and targetButton.bActive then
-			select_turret(systemBox.pSystem, ctrl_held)
+			select_turret(systemBox.pSystem, mods.og.ctrl_held)
 		end
 
 		if systemBox.pSystem.table.index == Hyperspace.playerVariables.og_turret_count then
-			if turret_autofire_setting == 0 and autoFireOffButton.bHover and autoFireOffButton.bActive then
-				turret_autofire_setting = 1
-			elseif turret_autofire_setting == 1 and autoFireOnButton.bHover and autoFireOnButton.bActive then
-				turret_autofire_setting = 0
+			if mods.og.turret_autofire_setting == 0 and autoFireOffButton.bHover and autoFireOffButton.bActive then
+				mods.og.turret_autofire_setting = 1
+			elseif mods.og.turret_autofire_setting == 1 and autoFireOnButton.bHover and autoFireOnButton.bActive then
+				mods.og.turret_autofire_setting = 0
 			end
 		end
 	end
@@ -1114,10 +1136,10 @@ script.on_init(function(newGame)
 	if newGame then
 		local shipManager = Hyperspace.ships.player
 		for _, sysName in ipairs(systemNameList) do
-			--local id, i = findStartingTurret(shipManager, sysName)
 			if shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) then
 				local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
 				--system.table.blueprint = id
+				local id, i = findStartingTurret(shipManager, sysName)
 				saveTurretDefaults(shipManager, system, sysName, id)
 				--print("set starting "..sysName..": "..id)
 			end
@@ -1169,7 +1191,7 @@ end)
 
 
 --TURRET FIRING
-local function findFiringPosition(targetPosition, shipManager, otherManager, pos, currentTurret)
+local function findFiringPosition(targetPosition, shipManager, otherManager, pos, currentTurret, offensive)
 	local firingPosition = targetPosition
 	local beamMiss = false
 	if offensive and shipManager.iShipId == 0 then
@@ -1188,7 +1210,8 @@ local function findFiringPosition(targetPosition, shipManager, otherManager, pos
 	end
 	return firingPosition, beamMiss
 end
-local function handleTurretBeams(system, blueprint, firingPos, beamMiss, shipManager, offensive)
+local function handleTurretBeams(system, blueprint, firingPos, beamMiss, shipManager, offensive, projectile, targetPosition)
+	local spaceManager = Hyperspace.App.world.space
 	if offensive then
 		projectile.speed_magnitude = projectile.speed_magnitude * 0.25
 		local projectile2 = spaceManager:CreateBeam(
@@ -1265,12 +1288,12 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 	local currentShotNumber =(system.table.charges - 1) % #currentTurret.fire_points + 1
 	local currentShot = currentTurret.fire_points[currentShotNumber]
 
-	local firingPos, beamMiss = findFiringPosition(targetPosition, shipManager, otherManager, pos, currentTurret)
+	local firingPos, beamMiss = findFiringPosition(targetPosition, shipManager, otherManager, pos, currentTurret, offensive)
 	local spawnPos = offset_point_in_direction(pos, system.table.currentAimingAngle, currentShot.x, currentShot.y)
 
 	local projectile = createTurretProjectile(currentTurret, system, blueprint, spawnPos, firingPos, shipManager, offensive)
 	if currentTurret.blueprint_type == 3 then
-		handleTurretBeams(system, blueprint, firingPos, beamMiss, shipManager, offensive)
+		handleTurretBeams(system, blueprint, firingPos, beamMiss, shipManager, offensive, projectile, targetPosition)
 	end
 	--handle missile consumption
 	if currentTurret.ammo_consumption then
@@ -1292,8 +1315,19 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 		manningCrew:IncreaseSkill(3)
 	end
 
+	--clone cannon
+	if blueprint.name == "OG_MISSILE_PROJECTILE_CLONE" then
+		local race = "human"
+		if manningCrew then
+			race = manningCrew.type
+			projectile.flight_animation = Hyperspace.Animations:GetAnimation(race.."_walk_up")
+			projectile.flight_animation:Start(true)
+		end
+		userdata_table(projectile, "mods.og").clone_cannon = race
+	end
+
 	--cloak timer
-	if offensive and shipManager.ship.bCloaked and shipManager.cloakSystem and not currentTurret.stealth then
+	if offensive and shipManager.ship.bCloaked and shipManager.cloakSystem and shipManager:GetAugmentationValue("CLOAK_FIRE") < 1 and not currentTurret.stealth then
 		local timer = shipManager.cloakSystem.timer
 		timer.currTime = timer.currTime + timer.currGoal/5
 		--shipManager.cloakSystem.timer.currTime = math.min(shipManager.cloakSystem.timer.currTime + (shipManager.cloakSystem.timer.maxTime/5), shipManager.cloakSystem.timer.maxTime)
@@ -1338,7 +1372,7 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 	local cApp = Hyperspace.App
 	local combatControl = cApp.gui.combatControl
 	local weapControl = combatControl.weapControl
-	if offensive and xor(turret_autofire_setting == 0, system.table.autoFireInvert) and ((not currentShot.auto_burst) or system.table.charges == 1) then
+	if offensive and xor(mods.og.turret_autofire_setting == 0, system.table.autoFireInvert) and ((not currentShot.auto_burst) or system.table.charges == 1) then
 		system.table.currentTarget = nil
 		system.table.currentlyTargetted = false
 	end
@@ -1518,7 +1552,7 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 				goto END_SYSTEM_LOOP 
 			end
 			
-			local turretLoc = turret_location[shipManager.ship.shipName] and turret_location[shipManager.ship.shipName][sysName] or {x = 0, y = 0, direction = turret_directions.RIGHT}
+			local turretLoc = turret_location[shipManager.ship.shipName] and turret_location[shipManager.ship.shipName][sysName] or {x = 0, y = 0, direction = turret_directions.right}
 			local turretRestAngle = 90 * (turretLoc.direction or 0)
 			if otherManager and otherManager:HasAugmentation("DEFENSE_SCRAMBLER") > 0 then
 				turretRestAngle = normalize_angle(turretRestAngle + math.random(-135, 135))
@@ -1724,7 +1758,7 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(s)
 		end
 
 		if userdata_table(projectile, "mods.og").targeted and projectile.passedTarget then
-			userdata_table(projectile, "mods.og").targeted.table.og_targeted = math.max(0, userdata_table(projectile, "mods.og").targeted.table.og_targeted - 1)
+			userdata_table(projectile, "mods.og").targeted.table.og_targeted = math.max(0, (userdata_table(projectile, "mods.og").targeted.table.og_targeted - 1 or 1))
 			userdata_table(projectile, "mods.og").targeted = nil
 		end
 
@@ -1965,6 +1999,7 @@ script.on_internal_event(Defines.InternalEvents.PRE_CREATE_CHOICEBOX, function(e
 		if not hasItem then
 			for _, sysName in ipairs(systemNameList) do
 				if shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) then
+					local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
 					local currentTurretName = system.table.blueprint
 					if currentTurretName == removeItem then
 						event.stuff.removeItem = "OG_TURRET_REMOVE_"..event.stuff.removeItem
@@ -1999,6 +2034,7 @@ script.on_internal_event(Defines.InternalEvents.HAS_EQUIPMENT, function(shipMana
 	if turrets[equipment] then
 		for _, sysName in ipairs(systemNameList) do
 			if shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) then
+				local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
 				local currentTurretName = system.table.blueprint
 				if currentTurretName == equipment then
 					value = value + 1
@@ -2012,6 +2048,7 @@ script.on_internal_event(Defines.InternalEvents.HAS_EQUIPMENT, function(shipMana
 				if turrets[item] then
 					for _, sysName in ipairs(systemNameList) do
 						if shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) then
+							local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
 							local currentTurretName = system.table.blueprint
 							if currentTurretName == item then
 								value = value + 1

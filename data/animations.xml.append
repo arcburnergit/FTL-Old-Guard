@@ -467,6 +467,25 @@
 	<time>0.6</time>
 </anim>
 
+<animSheet name="og_turret_missile_clone_cannon_icon" w="80" h="49" fw="80" fh="49">og_turrets/turret_missile_clone_cannon_icon.png</animSheet>
+<anim name="og_turret_missile_clone_cannon_icon">
+	<sheet>og_turret_missile_clone_cannon_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_missile_clone_cannon" w="80" h="80" fw="80" fh="80">og_turrets/turret_missile_clone_cannon.png</animSheet>
+<anim name="og_turret_missile_clone_cannon">
+	<sheet>og_turret_missile_clone_cannon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_missile_clone_cannon_glow" w="160" h="80" fw="80" fh="80">og_turrets/turret_missile_clone_cannon_glow.png</animSheet>
+<anim name="og_turret_missile_clone_cannon_glow">
+	<sheet>og_turret_missile_clone_cannon_glow</sheet>
+	<desc length="2" x="0" y="0" />
+	<time>1</time>
+</anim>
+
 
 <!--FLAK-->
 

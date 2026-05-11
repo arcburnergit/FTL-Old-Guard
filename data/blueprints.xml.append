@@ -1023,6 +1023,27 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_kernel_fire_icon</iconReplace>
 </weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_MISSILE_CLONE_CANNON">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Clone Cannon</title>
+	<short>Cloner</short>
+	<desc>No weapon has ever sparked a larger ethical controversy, but if it works it works. Clones whatever crew is currently manning the turret.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>80</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_missile_clone_cannon_icon</iconReplace>
+</weaponBlueprint>
 </FTL>
 
 <!--FLAK-->
@@ -2318,6 +2339,46 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 		<sound>miss</sound>
 	</missSounds>
 	<weaponArt>kernel_heavy</weaponArt>
+	<iconImage>missile</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_MISSILE_PROJECTILE_CLONE">
+	<type>MISSILE</type>
+	<title>Laser</title>
+	<short>Laser</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>1</damage>
+	<sysDamage>0</sysDamage>
+	<missiles>0</missiles>
+	<accuracyMod>10</accuracyMod>
+	<speed>30</speed>
+	<shots>1</shots>
+	<sp>1</sp>
+	<fireChance>0</fireChance>
+	<breachChance>0</breachChance>
+	<stunChance>0</stunChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>humanproj</image>
+	<launchSounds>
+		<sound>smallMissile1</sound>
+		<sound>smallMissile2</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>spiderDeath</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>spiderDeath</sound>
+		<sound>spiderDeath</sound>
+		<sound>spiderDeath</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>clone_cannon_def</weaponArt>
 	<iconImage>missile</iconImage>
 </weaponBlueprint>
 
