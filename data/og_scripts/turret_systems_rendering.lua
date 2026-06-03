@@ -44,7 +44,6 @@ local scrambler_radius = mods.og.scrambler_radius
 local turret_location = mods.og.turret_location
 local starting_turrets = mods.og.starting_turrets
 
-local turret_autofire_setting = mods.og.turret_autofire_setting
 
 local systemBlueprintVarName = mods.og.systemBlueprintVarName
 local systemStateVarName = mods.og.systemStateVarName
@@ -231,13 +230,13 @@ script.on_render_event(Defines.RenderEvents.SHIP, function() end, function(ship)
 					local mousePosPlayer = worldToPlayerLocation(Hyperspace.Mouse.position)
 					local mousePosEnemy = worldToEnemyLocation(Hyperspace.Mouse.position)
 					local currentClosest = find_closest_target(spaceManager, currentTurret, mousePosPlayer, mousePosEnemy, ship)
-					if currentClosest then
+					if currentClosest and currentClosest.target:GetSpaceId() == ship.iShipId then
 						local targetPos = currentClosest.target:GetRandomTargettingPoint(true)
 						render_target_icon(targetPos, otherManager, currentTurret, 1)
 					end
-				elseif system.table.currentTarget and (system.table.state == turret_states.offence or system.table.currentlyTargetted) then
+				elseif system.table.currentTarget and (system.table.state == turret_states.offence or system.table.currentlyTargetted) and system.table.currentTarget._targetable:GetSpaceId() == ship.iShipId then
 					render_target_icon_vectors(shipManager, otherManager, currentTurret, spaceManager, system.table.currentTarget, false)
-				elseif system.table.currentTargetTemp and system.table.currentlyTargetted then
+				elseif system.table.currentTargetTemp and system.table.currentlyTargetted and system.table.currentTargetTemp._targetable:GetSpaceId() == ship.iShipId then
 					render_target_icon_vectors(shipManager, otherManager, currentTurret, spaceManager, system.table.currentTargetTemp, false)
 				end
 			end
@@ -379,7 +378,7 @@ local function system_render(systemBox, ignoreStatus)
 		local renderColour = c_on
 		if not system_ready(system) then
 			renderColour = c_off
-		elseif system.table.currentlyTargetting and xor(turret_autofire_setting == 0, system.table.autoFireInvert) then
+		elseif system.table.currentlyTargetting and xor(mods.og.turret_autofire_setting == 0, system.table.autoFireInvert) then
 			renderColour = c_auto
 		elseif system.table.currentlyTargetting then
 			renderColour = c_single
@@ -434,7 +433,7 @@ local function system_render(systemBox, ignoreStatus)
 		Graphics.freetype.easy_printAutoNewlines(6, 40, 19, 43, blueprint.desc.shortTitle:GetText())
 
 		if system_ready(system) and not system.table.currentlyTargetting and (system.table.currentTarget or system.table.currentTargetTemp) then
-			if xor(turret_autofire_setting == 0, system.table.autoFireInvert) then
+			if xor(mods.og.turret_autofire_setting == 0, system.table.autoFireInvert) then
 				barColour = c_auto
 				--Graphics.CSurface.GL_SetColorTint(c_auto)
 			else
@@ -498,9 +497,9 @@ local function system_render(systemBox, ignoreStatus)
 		end
 
 		if systemBox.pSystem.table.index == Hyperspace.playerVariables.og_turret_count then
-			if turret_autofire_setting == 0 and autoFireOffButton.bActive then
+			if mods.og.turret_autofire_setting == 0 then
 				autoFireOffButton:OnRender()
-			elseif turret_autofire_setting == 1 and autoFireOnButton.bActive then
+			else
 				autoFireOnButton:OnRender()
 			end
 		end

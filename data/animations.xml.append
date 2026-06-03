@@ -1112,3 +1112,76 @@
 	<time>1</time>
 </anim>
 </FTL>
+
+<!--DARKEST DESIRE-->
+<FTL>
+
+<animSheet name="og_turret_focus_soulplague_icon" w="76" h="30" fw="76" fh="30">og_turrets/dd/turret_focus_soulplague_icon.png</animSheet>
+<anim name="og_turret_focus_soulplague_icon">
+	<sheet>og_turret_focus_soulplague_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_focus_soulplague" w="944" h="118" fw="118" fh="118">og_turrets/dd/turret_focus_soulplague.png</animSheet>
+<anim name="og_turret_focus_soulplague">
+	<sheet>og_turret_focus_soulplague</sheet>
+	<desc length="8" x="0" y="0" />
+	<time>0.45</time>
+</anim>
+<animSheet name="og_turret_focus_soulplague_glow" w="118" h="118" fw="118" fh="118">og_turrets/dd/turret_focus_soulplague_charge.png</animSheet>
+<anim name="og_turret_focus_soulplague_glow">
+	<sheet>og_turret_focus_soulplague_glow</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+
+<animSheet name="og_turret_laser_darkness_mini_icon" w="32" h="14" fw="32" fh="14">og_turrets/dd/turret_laser_darkness_mini_icon.png</animSheet>
+<anim name="og_turret_laser_darkness_mini_icon">
+	<sheet>og_turret_laser_darkness_mini_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_laser_darkness_mini" w="176" h="44" fw="44" fh="44">og_turrets/dd/turret_laser_darkness_mini.png</animSheet>
+<anim name="og_turret_laser_darkness_mini">
+	<sheet>og_turret_laser_darkness_mini</sheet>
+	<desc length="4" x="0" y="0" />
+	<time>0.4</time>
+</anim>
+<animSheet name="og_turret_laser_darkness_mini_glow" w="220" h="44" fw="44" fh="44">og_turrets/dd/turret_laser_darkness_mini_glow.png</animSheet>
+<anim name="og_turret_laser_darkness_mini_glow">
+	<sheet>og_turret_laser_darkness_mini_glow</sheet>
+	<desc length="5" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_laser_darkness_projectile" w="60" h="20" fw="60" fh="20">og_turrets/dd/og_laser_darkness_projectile.png</animSheet>
+<anim name="og_laser_darkness_projectile">
+	<sheet>og_laser_darkness_projectile</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+
+<animSheet name="og_turret_missile_falseradiance_icon" w="56" h="62" fw="56" fh="62">og_turrets/dd/turret_missile_falseradiance_icon.png</animSheet>
+<anim name="og_turret_missile_falseradiance_icon">
+	<sheet>og_turret_missile_falseradiance_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_missile_falseradiance" w="62" h="62" fw="62" fh="62">og_turrets/dd/turret_missile_falseradiance.png</animSheet>
+<anim name="og_turret_missile_falseradiance">
+	<sheet>og_turret_missile_falseradiance</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>0.4</time>
+</anim>
+<animSheet name="og_turret_missile_falseradiance_glow" w="868" h="62" fw="62" fh="62">og_turrets/dd/turret_missile_falseradiance_glow.png</animSheet>
+<anim name="og_turret_missile_falseradiance_glow">
+	<sheet>og_turret_missile_falseradiance_glow</sheet>
+	<desc length="14" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_missile_falseradiance_projectile" w="24" h="24" fw="24" fh="24">og_turrets/dd/og_missile_falseradiance_projectile.png</animSheet>
+<anim name="og_missile_falseradiance_projectile">
+	<sheet>og_missile_falseradiance_projectile</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+</FTL>

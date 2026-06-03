@@ -243,6 +243,34 @@ hideName["BEAM_HARDSCIFI"] = "REAL SCIENCE"
 hideName["GATLING_SYLVAN"] = "You greedy, murdering traitor you"
 hideName["GATLING_SYLVAN_HONOR"] = "You greedy, murdering traitor you"
 
+hideName["DDSHOTGUN_SOULPLAGUE"] = "You're hungry for more turrets - the turrets are hungry for more... well, everything."
+hideName["DDFOCUS_SOULPLAGUE"] = ""
+hideName["DDPHASE_SOULPLAGUE"] = ""
+hideName["DDMISSILES_SOULPLAGUE"] = ""
+hideName["DDLASER_HEAVY_SOULPLAGUE"] = ""
+hideName["DDCHAINLASER_SOULPLAGUE"] = ""
+hideName["DDCHAINLASER_SOULPLAGUE_CHAOS"] = ""
+hideName["DDSOULPLAGUE_SHATTEREDPROMISE"] = ""
+
+hideName["DDFALSERADIANCE_BURSTMISSILE"] = "And then, upon the eighth day... your enemies cried out, with an ardent voice - pleading for salvation. It would never come."
+hideName["DDFALSERADIANCE_CHAINLASER"] = ""
+hideName["DDFALSERADIANCE_PIERCELASER"] = ""
+hideName["DDFALSERADIANCE_CHAINFOCUS"] = ""
+hideName["DDFALSERADIANCE_BREACHBEAM"] = ""
+hideName["DDFALSERADIANCE_HEAVYION"] = ""
+hideName["DDFALSERADIANCE_HEAVYSHOTGUN"] = ""
+hideName["DDFALSERADIANCE_LOST_GODHOOD"] = ""
+hideName["DDFALSERADIANCE_LOOT"] = ""
+
+hideName["SHOTGUN_DARKGOD"] = "Things are getting a bit darker than you'd desire, aren't they?"
+hideName["LASER_DARKGOD"] = ""
+hideName["BOMB_DARKGOD"] = ""
+hideName["DD_BEAM_INSTANT_DARKGOD"] = ""
+hideName["DDLASER_CHARGE_DARKGOD"] = ""
+hideName["DDDEEP_ONE_SHOTGUN"] = ""
+hideName["DDDEEP_ONE_SHOTGUN_CHAOS"] = ""
+hideName["LASER_DISPARITY_LOOT"] = ""
+
 mods.og.craftedWeapons = {}
 local craftedWeapons = mods.og.craftedWeapons
 table.insert(craftedWeapons, {weapon = "OG_TURRET_LASER_1", match_cost = true, component_amounts = {1}, components = {{"LASER_BURST_2", "LASER_BURST_3", "LASER_BURST_5", "LASER_CHARGEGUN", "LASER_CHARGEGUN_2", "LASER_CHARGEGUN_3", "LASER_CHARGE_CHAIN"}}} )
@@ -287,6 +315,16 @@ table.insert(craftedWeapons, {weapon = "OG_TURRET_LASER_CEL_1", match_cost = tru
 
 table.insert(craftedWeapons, {weapon = "OG_TURRET_LASER_GATLING", match_cost = true, component_amounts = {1}, components = {{"GATLING"}}} )
 table.insert(craftedWeapons, {weapon = "OG_TURRET_LASER_RIFTWAKER", match_cost = true, component_amounts = {1}, components = {{"GATLING_SYLVAN", "GATLING_SYLVAN_HONOR"}}} )
+
+local addedDD = false
+script.on_init(function()
+	if (not addedDD) and (Hyperspace.Text:GetText("tip_ddplagueridden_weapon") ~= "") then
+		addedDD = true
+		table.insert(craftedWeapons, {weapon = "OG_TURRET_FOCUS_SOULPLAGUE", match_cost = true, component_amounts = {1}, components = {{"DDSHOTGUN_SOULPLAGUE", "DDFOCUS_SOULPLAGUE", "DDPHASE_SOULPLAGUE", "DDMISSILES_SOULPLAGUE", "DDLASER_HEAVY_SOULPLAGUE", "DDCHAINLASER_SOULPLAGUE", "DDCHAINLASER_SOULPLAGUE_CHAOS", "DDSOULPLAGUE_SHATTEREDPROMISE"}}} )
+		table.insert(craftedWeapons, {weapon = "OG_TURRET_MISSILE_FALSERADIANCE", match_cost = true, component_amounts = {1}, components = {{"DDFALSERADIANCE_BURSTMISSILE", "DDFALSERADIANCE_CHAINLASER", "DDFALSERADIANCE_PIERCELASER", "DDFALSERADIANCE_CHAINFOCUS", "DDFALSERADIANCE_BREACHBEAM", "DDFALSERADIANCE_HEAVYION", "DDFALSERADIANCE_HEAVYSHOTGUN", "DDFALSERADIANCE_LOST_GODHOOD", "DDFALSERADIANCE_LOOT"}}} )
+		table.insert(craftedWeapons, {weapon = "OG_TURRET_LASER_DARKNESS_MINI", match_cost = true, component_amounts = {1}, components = {{"SHOTGUN_DARKGOD", "LASER_DARKGOD", "BOMB_DARKGOD", "DD_BEAM_INSTANT_DARKGOD", "DDLASER_CHARGE_DARKGOD", "DDDEEP_ONE_SHOTGUN", "DDDEEP_ONE_SHOTGUN_CHAOS", "LASER_DISPARITY_LOOT"}}} )
+	end
+end)
 
 local craftedItemsVisible = {}
 
@@ -421,7 +459,9 @@ script.on_internal_event(Defines.InternalEvents.PRE_CREATE_CHOICEBOX, function(e
 					else]]
 					for _, needed in ipairs(components) do
 						if hideName[needed] and (not showBlueprint) and not (player:HasEquipment(needed, true) > 0) then
-							eventString = eventString..string.format(craftText.list, hideName[needed])
+							if hideName[needed] ~= "" then
+								eventString = eventString..string.format(craftText.list, hideName[needed])
+							end
 						else
 							local tempBlueprint = Hyperspace.Blueprints:GetWeaponBlueprint(needed)
 							if tempBlueprint.desc.title:GetText() == "" then
@@ -572,4 +612,64 @@ script.on_internal_event(Defines.InternalEvents.WEAPON_DESCBOX, function(bluepri
 		desc = desc..string.format(text_price, math.floor(blueprint.desc.cost), math.floor(blueprint.desc.cost/2))
 	end
 	return Defines.Chain.CONTINUE, desc
+end)
+
+local craftingMats = {}
+script.on_init(function()
+	craftingMats = {}
+	for _, craftingData in ipairs(craftedWeapons) do
+		local weaponBlueprint = Hyperspace.Blueprints:GetWeaponBlueprint(craftingData.weapon)
+		local name = weaponBlueprint.desc.title:GetText()
+		for _, components in ipairs(craftingData.components) do
+			for _, needed in ipairs(components) do
+				if hideName[needed] then
+					if craftingMats[needed] then
+						table.insert(craftingMats[needed], {name = name, var = "og_turret_craft_"..craftingData.weapon})
+					else
+						craftingMats[needed] = {{name = name, var = "og_turret_craft_"..craftingData.weapon}}
+					end
+				else
+					if craftingMats[needed] then
+						table.insert(craftingMats[needed], {name = name,})
+					else
+						craftingMats[needed] = {{name = name}}
+					end
+				end
+			end
+		end
+	end
+end)
+
+local last_mat = ""
+local last_mats = {}
+
+script.on_internal_event(Defines.InternalEvents.WEAPON_DESCBOX, function(bp, desc)
+	if Hyperspace.App.menu.shipBuilder.bOpen then return desc end
+
+	if last_mat == bp.name then
+		if #last_mats > 0 then
+			local s = "Can be fabricated into: "..table.concat(last_mats, ", ")
+			Hyperspace.Mouse.tooltip = #Hyperspace.Mouse.tooltip > 0 and Hyperspace.Mouse.tooltip.."\n" or ""
+			Hyperspace.Mouse.tooltip = Hyperspace.Mouse.tooltip..s
+			Hyperspace.Mouse.bForceTooltip = true
+		end
+		return desc
+	elseif last_mat ~= "" then
+		last_mat = ""
+		last_mats = {}
+	end
+
+	local mats = craftingMats[bp.name]
+
+	if mats and Hyperspace.metaVariables.og_turret_fab_tips == 0 then
+		local mats_dupe = {}
+		for _, item_data in ipairs(mats) do
+			if (not item_data.var) or Hyperspace.metaVariables[item_data.var] > 0 then
+				table.insert(mats_dupe, item_data.name)
+			end
+		end
+		last_mat = bp.name
+		last_mats = mats_dupe
+	end
+	return desc
 end)

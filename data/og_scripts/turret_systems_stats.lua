@@ -48,6 +48,11 @@ table.insert(turretBlueprintsList, "OG_TURRET_LASER_MINI_DAWN_1")
 table.insert(turretBlueprintsList, "OG_TURRET_LASER_MINI_DAWN_2")
 table.insert(turretBlueprintsList, "OG_TURRET_FOCUS_MINI_DAWN")
 
+--DARKEST DESIRE CROSSOVER
+table.insert(turretBlueprintsList, "OG_TURRET_FOCUS_SOULPLAGUE")
+table.insert(turretBlueprintsList, "OG_TURRET_MISSILE_FALSERADIANCE")
+table.insert(turretBlueprintsList, "OG_TURRET_LASER_DARKNESS_MINI")
+
 local defence_types = mods.og.defence_types
 local chain_types = mods.og.chain_types
 
@@ -594,7 +599,7 @@ turrets["OG_TURRET_LASER_MINI_2"] = {
 	rotation_speed = 240,
 	charge_time = {[0] = 5, 5, 3.5, 2.5, 2, 1.75, 1.5, 1.25, 1},
 	enemy_charge_time = {[0] = 7, 7, 6, 5, 4, 3.5, 3, 2.75, 2.5},
-} -- add mini ion (anti drone) and mini focus (anti laser)
+} 
 turrets["OG_TURRET_ION_MINI_1"] = {
 	enemy_burst = 1,
 	mini = true,
@@ -802,6 +807,61 @@ turrets["OG_TURRET_FOCUS_MINI_DAWN"] = {
 	rotation_speed = 240,
 	charge_time = turrets["OG_TURRET_FOCUS_MINI_1"].charge_time,
 }
+
+
+turrets["OG_TURRET_FOCUS_SOULPLAGUE"] = {
+	enemy_burst = 1,
+	hold_time = 0.4,
+	stealth = true,
+	fake_damage = {iDamage = -2},
+	speed_reduction = 0.5,
+	image = Hyperspace.Animations:GetAnimation("og_turret_focus_soulplague"),
+	glow = Hyperspace.Animations:GetAnimation("og_turret_focus_soulplague_glow"),
+	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/dd/turret_focus_soulplague_charge.png", -59, -59, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
+	fire_points = {{x = 0, y = -20, fire_delay = 0.6}},
+	defence_type = defence_types.PROJECTILES_MISSILES,
+	blueprint_type = 3,
+	blueprint = "OG_FOCUS_PROJECTILE_SOULPLAGUE",
+	blueprint_fake = "OG_FOCUS_PROJECTILE_SOULPLAGUE_FAKE",
+	charges = 1,
+	charges_per_charge = 1,
+	rotation_speed = 240,
+	charge_time = {[0] = 8, 8, 6, 5, 4, 3.5, 3, 2.75, 2.5}
+}
+turrets["OG_TURRET_MISSILE_FALSERADIANCE"] = {
+	enemy_burst = 8,
+	homing = 480,
+	multifire_homing = true,
+	aim_cone = 30,
+	shot_radius = 84,
+	image = Hyperspace.Animations:GetAnimation("og_turret_missile_falseradiance"),
+	glow = Hyperspace.Animations:GetAnimation("og_turret_missile_falseradiance_glow"),
+	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/dd/turret_missile_falseradiance_charge.png", -31, -31, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
+	fire_points = {{x = 26, y = -48, fire_delay = 0.15}, {x = 15, y = -48, fire_delay = 0.15}, {x = -15, y = -48, fire_delay = 0.15}, {x = -26, y = -48, fire_delay = 0.15}},
+	defence_type = defence_types.ALL,
+	blueprint_type = 2,
+	ammo_consumption = 0.1,
+	blueprint = "OG_MISSILE_PROJECTILE_FALSERADIANCE",
+	charges = 14,
+	charges_per_charge = 2,
+	rotation_speed = 120,
+	charge_time = {[0] = 5, 5, 3.5, 2.5, 2, 1.75, 1.5, 1.25, 1},
+	enemy_charge_time = {[0] = 6, 6, 4.5, 3.5, 3, 2.75, 2.5, 2.25, 2},
+}
+turrets["OG_TURRET_LASER_DARKNESS_MINI"] = {
+	mini = true,
+	image = Hyperspace.Animations:GetAnimation("og_turret_laser_darkness_mini"),
+	glow = Hyperspace.Animations:GetAnimation("og_turret_laser_darkness_mini_glow"),
+	fire_points = {{x = 0, y = -12, fire_delay = 0.25}},
+	defence_type = defence_types.PROJECTILES_MISSILES,
+	blueprint_type = 1,
+	blueprint = "OG_LASER_PROJECTILE_DARKNESS",
+	charges = 5,
+	charges_per_charge = 1,
+	rotation_speed = 240,
+	charge_time = {[0] = 6, 6, 4.5, 3.5, 3, 2.75, 2.5, 2.25, 2},
+}
+
 
 for turretId, currentTurret in pairs(turrets) do
 	currentTurret.image.position.x = -1 * currentTurret.image.info.frameWidth/2

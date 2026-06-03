@@ -687,7 +687,7 @@ For your extra egregious actions, your reputation was decreased twice.</text>
 <event name="OG_DAWN_SUPPLIES_NEEDED" unique="true">
 	<text>Docked to a nearby New Dawn outpost is a large transport ship belonging to the New Dawn, your scans indicate that the transport is unusually empty.</text>
 	<ship load="SHIP_OG_DAWN_TRANSPORT_EMPTY" hostile="false"/>
-	<choice req="rep_og_dawn" lvl="0" blue="false">
+	<choice req="rep_og_dawn" lvl="1" blue="false">
 		<text>Contact the transport.</text>
 		<event>
 			<text>"A Federation Renagade? I didn't think I'd see your kind around here, worry not there are no rebels around, we do not have to be enemies."
@@ -760,7 +760,7 @@ The Captain of the transport pauses, thinking on something.
 			</choice>
 		</event>
 	</choice>
-	<choice req="rep_og_dawn" lvl="-999" max_lvl="1" blue="false">
+	<choice req="rep_og_dawn" lvl="-999" max_lvl="0" blue="false">
 		<text>Contact the transport.</text>
 		<event>
 			<text>"Federation scum, don't come any closer, we don't want any trouble but we aren't opposed to ripping your ship to threads."</text>
@@ -2184,7 +2184,7 @@ The Iron Watch cruiser contacts you, "Stick with me, I have the main raid force 
 			<choice>
 				<text>"Aye, we'll be there."</text>
 				<event>
-					<text>The smaller ships engage first, pulling defenders away from the station, aswell as laying into and disabling many of the turrets built onto the station. It all appears to be going well until a large New Dawn vessel reveals its self from behind the station, heading straight towards you and the Iron Watch cruiser. "You need to stop that ship, we're heavy on crew and equipment, we're not actually outfitted for ship to ship combat. You need to prevent them from making it too us."</text>
+					<text>The smaller ships engage first, pulling defenders away from the station, aswell as laying into and disabling many of the turrets built onto the station. It all appears to be going well until a large New Dawn vessel reveals its self from behind the station, heading straight towards you and the Iron Watch cruiser. "You need to stop that ship, we're heavy on crew and equipment, we're not actually outfitted for ship to ship combat. You need to prevent them from making it to us."</text>
 					<ship load="SHIP_OG_DAWN_HEIST_DAWN" hostile="true"/>
 					<triggeredEvent name="OG_DAWN_HEIST_IRON_TIMER" event="OG_DAWN_HEIST_IRON_FAIL" time="150" clearOnJump="true" thisFight="false">
 						<triggeredEventBox load="DEFAULT_TIMER" pos="default">

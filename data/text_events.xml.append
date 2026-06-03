@@ -25,6 +25,8 @@ Locations of Interest: ???
 The Military holdout for the New Dawn, low on both supplies and allies in their fight against the Iron Watch, they've turned to the rebellion for help, despite the protests of some New Dawn members.
 </text>
 
+<text name="map_icon_og_battlecruiser">BATTLECRUISER</text>
+
 <text name="map_icon_store_og_iron">STORE [IRON WATCH]</text>
 <text name="map_icon_store_og_dawn">STORE [NEW DAWN]</text>
 <text name="map_icon_og_dawn_ship">SHIP [!]</text>

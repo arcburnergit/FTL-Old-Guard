@@ -359,6 +359,8 @@ beamDamageMods["OG_FOCUS_PROJECTILE_FAKE"] = {iDamage = 0}
 beamDamageMods["OG_FOCUS_PROJECTILE_WEAK_FAKE"] = {iDamage = 0}
 beamDamageMods["OG_FOCUS_PROJECTILE_BIO"] = {iDamage = 0}
 beamDamageMods["OG_FOCUS_PROJECTILE_BIO_FAKE"] = {iDamage = 0}
+beamDamageMods["OG_FOCUS_PROJECTILE_SOULPLAGUE"] = {iDamage = 0}
+beamDamageMods["OG_FOCUS_PROJECTILE_SOULPLAGUE_FAKE"] = {iDamage = 0}
 
 mods.multiverse.astrometricsSectors.og = {
 	civilian = 0,
@@ -761,15 +763,17 @@ defLOWHPTHRESH.realBoostId = Hyperspace.StatBoostDefinition.statBoostDefs:size()
 Hyperspace.StatBoostDefinition.statBoostDefs:push_back(defLOWHPTHRESH)
 
 script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA_HIT, function(shipManager, projectile, location, damage, shipFriendlyFire)
-	local cloneTable = userdata_table(projectile, "mods.og").clone_cannon
-	if cloneTable then
-		local room = get_room_at_location(shipManager, location, true)
-		local clone = shipManager:AddCrewMemberFromString("Clone", cloneTable, true, room, true, true)
-		Hyperspace.StatBoostManager.GetInstance():CreateTimedAugmentBoost(Hyperspace.StatBoost(defNOCLONE), clone)
-		Hyperspace.StatBoostManager.GetInstance():CreateTimedAugmentBoost(Hyperspace.StatBoost(defNOSLOT), clone)
-		Hyperspace.StatBoostManager.GetInstance():CreateTimedAugmentBoost(Hyperspace.StatBoost(defNOWARNING), clone)
-		Hyperspace.StatBoostManager.GetInstance():CreateTimedAugmentBoost(Hyperspace.StatBoost(defLOWHPTHRESH), clone)
-		clone.extend.deathTimer = Hyperspace.TimerHelper(false)
-		clone.extend.deathTimer:Start(15)
+	if projectile then
+		local cloneTable = userdata_table(projectile, "mods.og").clone_cannon
+		if cloneTable then
+			local room = get_room_at_location(shipManager, location, true)
+			local clone = shipManager:AddCrewMemberFromString("Clone", cloneTable, true, room, true, true)
+			Hyperspace.StatBoostManager.GetInstance():CreateTimedAugmentBoost(Hyperspace.StatBoost(defNOCLONE), clone)
+			Hyperspace.StatBoostManager.GetInstance():CreateTimedAugmentBoost(Hyperspace.StatBoost(defNOSLOT), clone)
+			Hyperspace.StatBoostManager.GetInstance():CreateTimedAugmentBoost(Hyperspace.StatBoost(defNOWARNING), clone)
+			Hyperspace.StatBoostManager.GetInstance():CreateTimedAugmentBoost(Hyperspace.StatBoost(defLOWHPTHRESH), clone)
+			clone.extend.deathTimer = Hyperspace.TimerHelper(false)
+			clone.extend.deathTimer:Start(15)
+		end
 	end
 end)

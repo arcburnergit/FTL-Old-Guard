@@ -1497,6 +1497,646 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 </weaponBlueprint>
 </FTL>
 
+<!--DARKEST DESIRE-->
+<FTL>
+
+<weaponBlueprint name="OG_TURRET_FOCUS_SOULPLAGUE">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_ddplagueridden_weapon</tip>
+	<title>Plagueridden Pinpoint Turret</title>
+	<short>Plague P.</short>
+	<desc>This appears to vaguely resemble a powerful Rad-Pinpoint Turret, but it's been thoroughly corrupted by the Soulplague mattervirus. Inflicts room hit with Plagueridden, infecting and hindering enemies.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>80</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_focus_soulplague_icon</iconReplace>
+</weaponBlueprint>
+<weaponBlueprint name="OG_TURRET_MISSILE_FALSERADIANCE">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_ddradiant_weapons</tip>
+	<title>The Unnamed Day</title>
+	<short>Unnamed</short>
+	<desc>A bizarre, living weapon from a distant reality - this Lightborne Missile turret is capable of charging several missiles at once, each inflicting rooms hit with the Radiant Desecration effect.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>100</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_missile_falseradiance_icon</iconReplace>
+</weaponBlueprint>
+<weaponBlueprint name="OG_TURRET_LASER_DARKNESS_MINI">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_shadow_weapon</tip>
+	<title>Malaise</title>
+	<short>Malaise</short>
+	<desc>A rapid-firing laser whose projectiles appear to embody darkness itself.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>60</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_laser_darkness_mini_icon</iconReplace>
+</weaponBlueprint>
+
+
+<weaponBlueprint name="OG_FOCUS_PROJECTILE_SOULPLAGUE">
+	<type>BEAM</type>
+	<title>Focus</title>
+	<short>Focus</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>2</damage>
+	<statBoosts>
+		<statBoost name="trueHealAmount">
+			<boostType>FLAT</boostType>
+			<amount>-60</amount>
+			<shipTarget>ALL</shipTarget>
+			<crewTarget>ALL</crewTarget>
+			<affectsSelf>true</affectsSelf>
+			<duration>1</duration>
+			<blackList load="LIST_DDANNOYINGBLUEPRINTSTUFF_DDSOULPLAGUE_ALIGNED"/>
+		</statBoost>
+	</statBoosts>
+	<roomStatBoosts>
+		<statBoost name="repairSpeed">
+			<boostType>MULT</boostType>
+			<amount>0.5</amount>
+			<shipTarget>ALL</shipTarget>
+			<crewTarget>ENEMIES</crewTarget>
+			<droneTarget>CREW</droneTarget>
+			<affectsSelf>false</affectsSelf>
+			<duration>12</duration>
+			<maxStacks id="ddPlagueriddenRepairDebuff">1</maxStacks>
+			<priority>10001</priority>
+			<blackList load="LIST_DDANNOYINGBLUEPRINTSTUFF_CREW_DDNOFEAR"/>
+			<roomAnim renderLayer="3">                                                    
+				<anim animType="default" animBorder="2">ddinvisible_effect</anim>
+					<wallAnim>ddroom_plagueridden_effect</wallAnim>
+			</roomAnim>
+		</statBoost>
+		<statBoost name="trueHealAmount">
+			<boostType>FLAT</boostType>
+			<amount>-2.3</amount>
+			<shipTarget>ALL</shipTarget>
+			<crewTarget>ENEMIES</crewTarget>
+			<droneTarget>CREW</droneTarget>
+			<affectsSelf>false</affectsSelf>
+			<duration>12</duration>
+			<maxStacks id="ddPlagueriddenDOTDebuff">1</maxStacks>
+			<priority>10001</priority>
+			<blackList load="LIST_DDANNOYINGBLUEPRINTSTUFF_CREW_DDNOFEAR"/>
+		</statBoost>
+		<statBoost name="deathEffect">
+			<boostType>ADD</boostType>
+			<deathEffect>
+				<event load="DDSOULPLAGUE_SUMMON_BEAM_CRYSTAL"/>
+			</deathEffect>
+			<shipTarget>ALL</shipTarget>
+			<crewTarget>ENEMIES</crewTarget>
+			<droneTarget>CREW</droneTarget>
+			<affectsSelf>false</affectsSelf>
+			<duration>12</duration>
+			<maxStacks id="ddSoulplagueInfectionDebuff">1</maxStacks>
+			<priority>10001</priority>
+			<whiteList load="LIST_DDANNOYINGBLUEPRINTSTUFF_CREW_CRYSTAL"/>
+			<boostAnim>ddsoulplague_infected_debuff</boostAnim>
+		</statBoost>
+		<statBoost name="deathEffect">
+			<boostType>ADD</boostType>
+			<deathEffect>
+				<event load="DDSOULPLAGUE_SUMMON_BEAM_DEEPONE"/>
+			</deathEffect>
+			<shipTarget>ALL</shipTarget>
+			<crewTarget>ENEMIES</crewTarget>
+			<droneTarget>CREW</droneTarget>
+			<affectsSelf>false</affectsSelf>
+			<duration>12</duration>
+			<maxStacks id="ddSoulplagueInfectionDebuff">1</maxStacks>
+			<priority>10001</priority>
+			<whiteList load="LIST_DDANNOYINGBLUEPRINTSTUFF_CREW_DEEPONES"/>
+			<boostAnim>ddsoulplague_infected_debuff</boostAnim>
+		</statBoost>
+		<statBoost name="deathEffect">
+			<boostType>ADD</boostType>
+			<deathEffect>
+				<event load="DDSOULPLAGUE_SUMMON_BEAM_ENGI"/>
+			</deathEffect>
+			<shipTarget>ALL</shipTarget>
+			<crewTarget>ENEMIES</crewTarget>
+			<droneTarget>CREW</droneTarget>
+			<affectsSelf>false</affectsSelf>
+			<duration>12</duration>
+			<maxStacks id="ddSoulplagueInfectionDebuff">1</maxStacks>
+			<priority>10001</priority>
+			<whiteList load="LIST_DDANNOYINGBLUEPRINTSTUFF_CREW_ENGI"/>
+			<boostAnim>ddsoulplague_infected_debuff</boostAnim>
+		</statBoost>
+		<statBoost name="deathEffect">
+			<boostType>ADD</boostType>
+			<deathEffect>
+				<event load="DDSOULPLAGUE_SUMMON_BEAM_GHOST"/>
+			</deathEffect>
+			<shipTarget>ALL</shipTarget>
+			<crewTarget>ENEMIES</crewTarget>
+			<droneTarget>CREW</droneTarget>
+			<affectsSelf>false</affectsSelf>
+			<duration>12</duration>
+			<maxStacks id="ddSoulplagueInfectionDebuff">1</maxStacks>
+			<priority>10001</priority>
+			<whiteList load="LIST_DDANNOYINGBLUEPRINTSTUFF_CREW_GHOST"/>
+			<boostAnim>ddsoulplague_infected_debuff</boostAnim>
+		</statBoost>
+		<statBoost name="deathEffect">
+			<boostType>ADD</boostType>
+			<deathEffect>
+				<event load="DDSOULPLAGUE_SUMMON_BEAM_LANIUS"/>
+			</deathEffect>
+			<shipTarget>ALL</shipTarget>
+			<crewTarget>ENEMIES</crewTarget>
+			<droneTarget>CREW</droneTarget>
+			<affectsSelf>false</affectsSelf>
+			<duration>12</duration>
+			<maxStacks id="ddSoulplagueInfectionDebuff">1</maxStacks>
+			<priority>10001</priority>
+			<whiteList load="LIST_DDANNOYINGBLUEPRINTSTUFF_CREW_LANIUS"/>
+			<boostAnim>ddsoulplague_infected_debuff</boostAnim>
+		</statBoost>
+		<statBoost name="deathEffect">
+			<boostType>ADD</boostType>
+			<deathEffect>
+				<event load="DDSOULPLAGUE_SUMMON_BEAM_LEECH"/>
+			</deathEffect>
+			<shipTarget>ALL</shipTarget>
+			<crewTarget>ENEMIES</crewTarget>
+			<droneTarget>CREW</droneTarget>
+			<affectsSelf>false</affectsSelf>
+			<duration>12</duration>
+			<maxStacks id="ddSoulplagueInfectionDebuff">1</maxStacks>
+			<priority>10001</priority>
+			<whiteList load="LIST_DDANNOYINGBLUEPRINTSTUFF_CREW_LEECH"/>
+			<boostAnim>ddsoulplague_infected_debuff</boostAnim>
+		</statBoost>
+		<statBoost name="deathEffect">
+			<boostType>ADD</boostType>
+			<deathEffect>
+				<event load="DDSOULPLAGUE_SUMMON_BEAM_MANTIS"/>
+			</deathEffect>
+			<shipTarget>ALL</shipTarget>
+			<crewTarget>ENEMIES</crewTarget>
+			<droneTarget>CREW</droneTarget>
+			<affectsSelf>false</affectsSelf>
+			<duration>12</duration>
+			<maxStacks id="ddSoulplagueInfectionDebuff">1</maxStacks>
+			<priority>10001</priority>
+			<whiteList load="LIST_DDANNOYINGBLUEPRINTSTUFF_CREW_MANTIS"/>
+			<boostAnim>ddsoulplague_infected_debuff</boostAnim>
+		</statBoost>
+		<statBoost name="deathEffect">
+			<boostType>ADD</boostType>
+			<deathEffect>
+				<event load="DDSOULPLAGUE_SUMMON_BEAM_OBELISK"/>
+			</deathEffect>
+			<shipTarget>ALL</shipTarget>
+			<crewTarget>ENEMIES</crewTarget>
+			<droneTarget>CREW</droneTarget>
+			<affectsSelf>false</affectsSelf>
+			<duration>12</duration>
+			<maxStacks id="ddSoulplagueInfectionDebuff">1</maxStacks>
+			<priority>10001</priority>
+			<whiteList load="LIST_DDANNOYINGBLUEPRINTSTUFF_CREW_ANCIENT"/>
+			<boostAnim>ddsoulplague_infected_debuff</boostAnim>
+		</statBoost>
+		<statBoost name="deathEffect">
+			<boostType>ADD</boostType>
+			<deathEffect>
+				<event load="DDSOULPLAGUE_SUMMON_BEAM_ORCHID"/>
+			</deathEffect>
+			<shipTarget>ALL</shipTarget>
+			<crewTarget>ENEMIES</crewTarget>
+			<droneTarget>CREW</droneTarget>
+			<affectsSelf>false</affectsSelf>
+			<duration>12</duration>
+			<maxStacks id="ddSoulplagueInfectionDebuff">1</maxStacks>
+			<priority>10001</priority>
+			<whiteList load="LIST_DDANNOYINGBLUEPRINTSTUFF_CREW_ORCHID"/>
+			<boostAnim>ddsoulplague_infected_debuff</boostAnim>
+		</statBoost>
+		<statBoost name="deathEffect">
+			<boostType>ADD</boostType>
+			<deathEffect>
+				<event load="DDSOULPLAGUE_SUMMON_BEAM_ROCKMAN"/>
+			</deathEffect>
+			<shipTarget>ALL</shipTarget>
+			<crewTarget>ENEMIES</crewTarget>
+			<droneTarget>CREW</droneTarget>
+			<affectsSelf>false</affectsSelf>
+			<duration>12</duration>
+			<maxStacks id="ddSoulplagueInfectionDebuff">1</maxStacks>
+			<priority>10001</priority>
+			<whiteList load="LIST_DDANNOYINGBLUEPRINTSTUFF_CREW_ROCK"/>
+			<boostAnim>ddsoulplague_infected_debuff</boostAnim>
+		</statBoost>
+		<statBoost name="deathEffect">
+			<boostType>ADD</boostType>
+			<deathEffect>
+				<event load="DDSOULPLAGUE_SUMMON_BEAM_SHELL"/>
+			</deathEffect>
+			<shipTarget>ALL</shipTarget>
+			<crewTarget>ENEMIES</crewTarget>
+			<droneTarget>CREW</droneTarget>
+			<affectsSelf>false</affectsSelf>
+			<duration>12</duration>
+			<maxStacks id="ddSoulplagueInfectionDebuff">1</maxStacks>
+			<priority>10001</priority>
+			<whiteList load="LIST_DDANNOYINGBLUEPRINTSTUFF_CREW_SHELL"/>
+			<boostAnim>ddsoulplague_infected_debuff</boostAnim>
+		</statBoost>
+		<statBoost name="deathEffect">
+			<boostType>ADD</boostType>
+			<deathEffect>
+				<event load="DDSOULPLAGUE_SUMMON_BEAM_SLUG"/>
+			</deathEffect>
+			<shipTarget>ALL</shipTarget>
+			<crewTarget>ENEMIES</crewTarget>
+			<droneTarget>CREW</droneTarget>
+			<affectsSelf>false</affectsSelf>
+			<duration>12</duration>
+			<maxStacks id="ddSoulplagueInfectionDebuff">1</maxStacks>
+			<priority>10001</priority>
+			<whiteList load="LIST_DDANNOYINGBLUEPRINTSTUFF_CREW_SLUG"/>
+			<boostAnim>ddsoulplague_infected_debuff</boostAnim>
+		</statBoost>
+		<statBoost name="deathEffect">
+			<boostType>ADD</boostType>
+			<deathEffect>
+				<event load="DDSOULPLAGUE_SUMMON_BEAM_ZOLTAN"/>
+			</deathEffect>
+			<shipTarget>ALL</shipTarget>
+			<crewTarget>ENEMIES</crewTarget>
+			<droneTarget>CREW</droneTarget>
+			<affectsSelf>false</affectsSelf>
+			<duration>12</duration>
+			<maxStacks id="ddSoulplagueInfectionDebuff">1</maxStacks>
+			<priority>10001</priority>
+			<whiteList load="LIST_DDANNOYINGBLUEPRINTSTUFF_CREW_ZOLTAN"/>
+			<boostAnim>ddsoulplague_infected_debuff</boostAnim>
+		</statBoost>
+		<statBoost name="deathEffect">
+			<boostType>ADD</boostType>
+			<deathEffect>
+				<event load="DDSOULPLAGUE_SUMMON_BEAM_HUMAN"/>
+			</deathEffect>
+			<shipTarget>ALL</shipTarget>
+			<crewTarget>ENEMIES</crewTarget>
+			<droneTarget>CREW</droneTarget>
+			<affectsSelf>false</affectsSelf>
+			<duration>12</duration>
+			<maxStacks id="ddSoulplagueInfectionDebuff">1</maxStacks>
+			<priority>10001</priority>
+			<blackList>
+				<blueprintList load="LIST_DDANNOYINGBLUEPRINTSTUFF_CREW_CRYSTAL"/>
+				<blueprintList load="LIST_DDANNOYINGBLUEPRINTSTUFF_CREW_DEEPONES"/>
+				<blueprintList load="LIST_DDANNOYINGBLUEPRINTSTUFF_CREW_ENGI"/>
+				<blueprintList load="LIST_DDANNOYINGBLUEPRINTSTUFF_CREW_GHOST"/>
+				<blueprintList load="LIST_DDANNOYINGBLUEPRINTSTUFF_CREW_LANIUS"/>
+				<blueprintList load="LIST_DDANNOYINGBLUEPRINTSTUFF_CREW_LEECH"/>
+				<blueprintList load="LIST_DDANNOYINGBLUEPRINTSTUFF_CREW_MANTIS"/>
+				<blueprintList load="LIST_DDANNOYINGBLUEPRINTSTUFF_CREW_ANCIENT"/>
+				<blueprintList load="LIST_DDANNOYINGBLUEPRINTSTUFF_CREW_ORCHID"/>
+				<blueprintList load="LIST_DDANNOYINGBLUEPRINTSTUFF_CREW_ROCK"/>
+				<blueprintList load="LIST_DDANNOYINGBLUEPRINTSTUFF_CREW_SHELL"/>
+				<blueprintList load="LIST_DDANNOYINGBLUEPRINTSTUFF_CREW_SLUG"/>
+				<blueprintList load="LIST_DDANNOYINGBLUEPRINTSTUFF_CREW_ZOLTAN"/>
+				<blueprintList load="LIST_DDANNOYINGBLUEPRINTSTUFF_CREW_DDNOFEAR"/>
+			</blackList>
+			<boostAnim>ddsoulplague_infected_debuff</boostAnim>
+		</statBoost>
+	</roomStatBoosts>
+	<color>
+		<r>169</r>
+		<g>97</g>
+		<b>181</b>
+	</color>
+	<sp>3</sp>
+	<fireChance>0</fireChance>
+	<breachChance>3</breachChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<speed>1</speed>
+	<image>beam_contact</image>
+	<length>1</length>
+	<launchSounds>
+		<sound>focus_weak</sound>
+	</launchSounds>
+	<weaponArt>focus_1</weaponArt>
+	<iconImage>beam</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_FOCUS_PROJECTILE_SOULPLAGUE_FAKE">
+	<type>BEAM</type>
+	<title>Focus</title>
+	<short>Focus</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>2</damage>
+	<color>
+		<r>169</r>
+		<g>97</g>
+		<b>181</b>
+	</color>
+	<sp>20</sp>
+	<fireChance>0</fireChance>
+	<breachChance>0</breachChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<speed>1</speed>
+	<image>beam_contact</image>
+	<length>1</length>
+	<launchSounds>
+		<sound>focus_weak</sound>
+	</launchSounds>
+	<weaponArt>focus_1</weaponArt>
+	<iconImage>beam</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_MISSILE_PROJECTILE_FALSERADIANCE">
+	<type>MISSILE</type>
+	<title>Laser</title>
+	<short>Laser</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>1</damage>
+	<roomStatBoosts>
+		<statBoost name="trueHealAmount">
+			<boostType>FLAT</boostType>
+			<amount>4.0</amount>
+			<shipTarget>CURRENT_ROOM</shipTarget>
+			<crewTarget>ALLIES</crewTarget>
+			<droneTarget>ALL</droneTarget>
+			<affectsSelf>false</affectsSelf>
+			<duration>25</duration>
+			<maxStacks id="ddRadiantDesecrationHealingBuff">1</maxStacks>
+			<priority>10001</priority>
+			<whiteList>
+				<ddlightborne_slayling/>
+				<ddlightborne_prismling/>
+				<ddlightborne_cinderling/>
+				<ddlightborne_clusterular/>
+				<ddlightborne_cellular/>
+				<ddlightborne_devourlux/>
+				<ddlightborne_spiritling/>
+				<ddlightborne_commandlux/>
+				<ddlightborne_timelux/>
+				<ddlightborne_angelular/>
+				<ddlightborne_warlockular/>
+				<ddlightborne_breakling/>
+				<ddlightborne_tormentular/>
+			</whiteList>
+			<roomAnim renderLayer="3">                                                    
+				<anim animType="default" animBorder="2">ddinvisible_effect</anim>
+					<wallAnim>ddroom_radiantdesecration_effect</wallAnim>
+			</roomAnim>
+		</statBoost>
+		<statBoost name="damageMultiplier">
+			<boostType>MULT</boostType>
+			<amount>4</amount>
+			<shipTarget>CURRENT_ROOM</shipTarget>
+			<crewTarget>ALLIES</crewTarget>
+			<droneTarget>ALL</droneTarget>
+			<affectsSelf>false</affectsSelf>
+			<duration>25</duration>
+			<maxStacks id="ddRadiantDesecrationDamageBuff">1</maxStacks>
+			<priority>-99999</priority>
+			<whiteList>
+				<ddlightborne_slayling/>
+				<ddlightborne_prismling/>
+				<ddlightborne_cinderling/>
+				<ddlightborne_clusterular/>
+				<ddlightborne_cellular/>
+				<ddlightborne_devourlux/>
+				<ddlightborne_spiritling/>
+				<ddlightborne_commandlux/>
+				<ddlightborne_timelux/>
+				<ddlightborne_angelular/>
+				<ddlightborne_warlockular/>
+				<ddlightborne_breakling/>
+				<ddlightborne_tormentular/>
+			</whiteList>
+		</statBoost>
+		<statBoost name="sabotageSpeedMultiplier">
+			<boostType>MULT</boostType>
+			<amount>4</amount>
+			<shipTarget>CURRENT_ROOM</shipTarget>
+			<crewTarget>ALLIES</crewTarget>
+			<droneTarget>ALL</droneTarget>
+			<affectsSelf>false</affectsSelf>
+			<duration>25</duration>
+			<maxStacks id="ddRadiantDesecrationSabotageBuff">1</maxStacks>
+			<priority>-99999</priority>
+			<whiteList>
+				<ddlightborne_slayling/>
+				<ddlightborne_prismling/>
+				<ddlightborne_cinderling/>
+				<ddlightborne_clusterular/>
+				<ddlightborne_cellular/>
+				<ddlightborne_devourlux/>
+				<ddlightborne_spiritling/>
+				<ddlightborne_commandlux/>
+				<ddlightborne_timelux/>
+				<ddlightborne_angelular/>
+				<ddlightborne_warlockular/>
+				<ddlightborne_breakling/>
+				<ddlightborne_tormentular/>
+			</whiteList>
+		</statBoost>
+		<statBoost name="moveSpeedMultiplier">
+			<boostType>MULT</boostType>
+			<amount>4</amount>
+			<shipTarget>CURRENT_ROOM</shipTarget>
+			<crewTarget>ALLIES</crewTarget>
+			<droneTarget>ALL</droneTarget>
+			<affectsSelf>false</affectsSelf>
+			<duration>25</duration>
+			<maxStacks id="ddRadiantDesecrationSpeedBuff">1</maxStacks>
+			<priority>-99999</priority>
+			<whiteList>
+				<ddlightborne_slayling/>
+				<ddlightborne_prismling/>
+				<ddlightborne_cinderling/>
+				<ddlightborne_clusterular/>
+				<ddlightborne_cellular/>
+				<ddlightborne_devourlux/>
+				<ddlightborne_spiritling/>
+				<ddlightborne_commandlux/>
+				<ddlightborne_timelux/>
+				<ddlightborne_angelular/>
+				<ddlightborne_warlockular/>
+				<ddlightborne_breakling/>
+				<ddlightborne_tormentular/>
+			</whiteList>
+		</statBoost>
+		<statBoost name="trueHealAmount">
+			<boostType>FLAT</boostType>
+			<amount>-1.0</amount>
+			<shipTarget>CURRENT_ROOM</shipTarget>
+			<crewTarget>ENEMIES</crewTarget>
+			<droneTarget>ALL</droneTarget>
+			<affectsSelf>false</affectsSelf>
+			<duration>25</duration>
+			<maxStacks id="ddRadiantDesecrationDOTDebuff">1</maxStacks>
+			<priority>10001</priority>
+			<boostAnim>ddradiantdesecration_debuff</boostAnim>
+		</statBoost>
+		<statBoost name="damageMultiplier">
+			<boostType>MULT</boostType>
+			<amount>0.8</amount>
+			<shipTarget>CURRENT_ROOM</shipTarget>
+			<crewTarget>ENEMIES</crewTarget>
+			<droneTarget>ALL</droneTarget>
+			<affectsSelf>false</affectsSelf>
+			<duration>25</duration>
+			<maxStacks id="ddRadiantDesecrationDamageDebuff">1</maxStacks>
+			<priority>10001</priority>
+		</statBoost>
+		<statBoost name="sabotageSpeedMultiplier">
+			<boostType>MULT</boostType>
+			<amount>0.8</amount>
+			<shipTarget>CURRENT_ROOM</shipTarget>
+			<crewTarget>ENEMIES</crewTarget>
+			<droneTarget>ALL</droneTarget>
+			<affectsSelf>false</affectsSelf>
+			<duration>25</duration>
+			<maxStacks id="ddRadiantDesecrationSabotageDebuff">1</maxStacks>
+			<priority>10001</priority>
+		</statBoost>
+		<statBoost name="moveSpeedMultiplier">
+			<boostType>MULT</boostType>
+			<amount>0.8</amount>
+			<shipTarget>CURRENT_ROOM</shipTarget>
+			<crewTarget>ENEMIES</crewTarget>
+			<droneTarget>ALL</droneTarget>
+			<affectsSelf>false</affectsSelf>
+			<duration>25</duration>
+			<maxStacks id="ddRadiantDesecrationSpeedDebuff">1</maxStacks>
+			<priority>10001</priority>
+		</statBoost>
+	</roomStatBoosts>
+	<missiles>0</missiles>
+	<accuracyMod>10</accuracyMod>
+	<speed>75</speed>
+	<shots>1</shots>
+	<sp>10</sp>
+	<fireChance>1</fireChance>
+	<breachChance>4</breachChance>
+	<stunChance>2</stunChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>og_missile_falseradiance_projectile</image>
+	<launchSounds>
+		<sound>smallMissile1</sound>
+		<sound>smallMissile2</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>smallExplosion</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>missiles_1</weaponArt>
+	<iconImage>missile</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_LASER_PROJECTILE_DARKNESS">
+	<type>LASER</type>
+	<title>Laser</title>
+	<short>Laser</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>1</damage>
+	<persDamage>-1</persDamage>
+	<shots>1</shots>
+	<sp>0</sp>
+	<fireChance>0</fireChance>
+	<breachChance>1</breachChance>
+	<cooldown>10</cooldown>
+	<spawnCrew>
+        <race>darkgodtendrils</race>
+		<name>Hungering Shadow</name>
+        <number>1</number>
+        <noSlot>true</noSlot>
+		<lifetime>21</lifetime>
+        <statBoosts>
+            <statBoost name="noClone">
+                <boostType>SET</boostType>
+                <value>true</value>
+                <shipTarget>ALL</shipTarget>
+                <crewTarget>ALL</crewTarget>
+                <priority>999999</priority>
+            </statBoost>
+        </statBoosts>
+    </spawnCrew>
+	<crewSpawnChance>6</crewSpawnChance>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>og_laser_darkness_projectile</image>
+	<launchSounds>
+		<sound>lightLaser1</sound>
+		<sound>lightLaser2</sound>
+		<sound>lightLaser3</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>hitHull2</sound>
+		<sound>hitHull3</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>laser_burst_1</weaponArt>
+	<iconImage>laser</iconImage>
+</weaponBlueprint>
+</FTL>
+
 <!--TURRET PROJECTILES-->
 <FTL>
 <weaponBlueprint name="OG_LASER_PROJECTILE_BASE">
@@ -4209,13 +4849,13 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<unlock id="ship_PLAYER_SHIP_OG_ROCK_unlock"/>
 	<desc>Similar to its designers, this super-dense behemoth uses brute force to overwhelm its foes.</desc>
 	<systemList>
-		<og_turret power="2" room="12" start="true" img="room_og_turret_3" turret="OG_TURRET_MISSILE_1">
+		<og_turret power="3" room="12" start="true" img="room_og_turret_8" turret="OG_TURRET_MISSILE_1">
 			<slot>
 				<direction>right</direction>
-				<number>0</number>
+				<number>1</number>
 			</slot>
 		</og_turret>
-		<og_turret_2 power="2" room="1" start="true" img="room_og_turret_8" turret="OG_TURRET_KERNEL_FIRE">
+		<og_turret_2 power="2" room="1" start="true" img="room_og_turret_3" turret="OG_TURRET_KERNEL_FIRE">
 			<slot>
 				<direction>right</direction>
 				<number>0</number>
@@ -4241,7 +4881,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 				<number>0</number>
 			</slot>
 		</engines>
-		<hacking power="1" room="6" start="true" img="room_hacking_2" />
+		<hacking power="1" room="6" start="false" img="room_hacking_2" />
 		<medbay power="1" room="14" start="true" img="room_medbay_7">
 			<slot>
 				<number>2</number>
@@ -4255,7 +4895,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 				<number>0</number>
 			</slot>
 		</pilot>
-		<sensors power="1" room="17" start="true" img="room_sensors_3_noman">
+		<sensors power="1" room="17" start="true" img="room_sensors_3">
 			<slot>
 				<direction>right</direction>
 				<number>1</number>
@@ -4280,7 +4920,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<weaponList missiles="18" count="2" />
 	<droneList drones="0" count="2" />
 	<health amount="30" />
-	<maxPower amount="10" />
+	<maxPower amount="8" />
 	<crewCount amount="1" class="rock" />
 	<crewCount amount="1" class="rock" />
 	<crewCount amount="1" class="rock" />

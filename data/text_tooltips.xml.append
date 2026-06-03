@@ -45,7 +45,7 @@
 <text name="og_lua_turret_stats_time">Stats:\nCharge Time: </text>
 <text name="og_lua_turret_stats_charges">\nMaximum Charges: %d</text>
 <text name="og_lua_turret_stats_amount">\nCharge Amount: %d</text>
-<text name="og_lua_turret_stats_ammo">\nMissile Consumption: %d</text>
+<text name="og_lua_turret_stats_ammo">\nMissile Consumption: %g</text>
 <text name="og_lua_turret_stats_chain">\nChain Effect: Reduces cooldown by %d%%</text>
 <text name="og_lua_turret_stats_chainCap">\nChain Reduction Cap: %d%% (%d chains)</text>
 <text name="og_lua_turret_stats_rotation">\n\nRotation Speed: %d</text>
@@ -86,7 +86,7 @@
 <text name="og_lua_turret_type_all">All Projectiles and Drones</text>
 
 <text name="og_lua_turret_craft_use">Use your %s</text>
-<text name="og_lua_turret_craft_use_scrap">Use your %s + $d~</text>
+<text name="og_lua_turret_craft_use_scrap">Use your %s + %d~</text>
 <text name="og_lua_turret_craft_finish">You follow the supplied blueprint and eventually come away with a new item.</text>
 <text name="og_lua_turret_craft_blueprint">Blueprint:</text>
 <text name="og_lua_turret_craft_mystery">???</text>

@@ -336,18 +336,21 @@ This enemy possesses New Dawn turrets, when hit by these, rooms will be temporar
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 		<crewLimit>11</crewLimit>
 		<systemLimit>10</systemLimit>
+		<customReactor maxLevel="40"/>
 	</mod-append:customShip>
 	<mod-append:customShip name="PLAYER_SHIP_OG_DAWN_BIG_2">
 		<hiddenAug>SHIP_OG_DAWN</hiddenAug>
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 		<crewLimit>11</crewLimit>
 		<systemLimit>10</systemLimit>
+		<customReactor maxLevel="40"/>
 	</mod-append:customShip>
 	<mod-append:customShip name="PLAYER_SHIP_OG_DAWN_BIG_3">
 		<hiddenAug>SHIP_OG_DAWN</hiddenAug>
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 		<crewLimit>11</crewLimit>
 		<systemLimit>10</systemLimit>
+		<customReactor maxLevel="40"/>
 	</mod-append:customShip>
 
 	<mod-append:ship name="PLAYER_SHIP_OG_KESTREL" b="false" c="false" >
@@ -604,6 +607,8 @@ This enemy possesses New Dawn turrets, when hit by these, rooms will be temporar
 	</mod-append:aug>
 </mod:findLike>
 <events>
+	<eventFile>special_og_battlecruisers</eventFile>
+
 	<eventFile>sector_og_iron</eventFile>
 	<eventFile>sector_og_dawn</eventFile>
 	<variable name="og_test_variable" op="set" val="0"/>
@@ -621,6 +626,7 @@ This enemy possesses New Dawn turrets, when hit by these, rooms will be temporar
 	<metaVariable name="juke_og_iron" op="set" val="0"/>
 	<metaVariable name="juke_og_dawn" op="set" val="0"/>
 	<metaVariable name="og_turret_tutorial" op="set" val="0"/>
+	<metaVariable name="og_turret_fab_tips" op="set" val="0"/>
 
 	<req name="OG_TURRET_TUTORIAL_SHOW" type="all">
 		<req type="any">

@@ -424,6 +424,20 @@
 			<loadEvent>COMBAT_CHECK_TOGGLE</loadEvent>
 		</event>
 	</mod-append:choice>
+	<mod-append:choice req="og_turret_fab_tips" lvl="0" max_lvl="0" blue="false">
+		<text>Toggle turret fabrication tips. [Currently Enabled]</text>
+		<event>
+			<metaVariable name="og_turret_fab_tips" op="set" val="1" />
+			<loadEvent>COMBAT_CHECK_TOGGLE</loadEvent>
+		</event>
+	</mod-append:choice>
+	<mod-append:choice req="og_turret_fab_tips" lvl="1" blue="false">
+		<text>Toggle turret fabrication tips. [Currently Disabled]</text>
+		<event>
+			<metaVariable name="og_turret_fab_tips" op="set" val="0" />
+			<loadEvent>COMBAT_CHECK_TOGGLE</loadEvent>
+		</event>
+	</mod-append:choice>
 </mod:findName>
 
 <mod:findName type="event" name="STORAGE_CHECK_AUG">

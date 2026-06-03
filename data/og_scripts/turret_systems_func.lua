@@ -204,7 +204,7 @@ local function add_stat_text(desc, currentTurret, chargeMax)
 	desc = desc..string.format(statsText.charges, math.floor(currentTurret.charges))
 	desc = desc..string.format(statsText.amount, math.floor(currentTurret.charges_per_charge))
 	if currentTurret.ammo_consumption then
-		desc = desc..string.format(statsText.ammo, math.floor(currentTurret.ammo_consumption))
+		desc = desc..string.format(statsText.ammo, currentTurret.ammo_consumption)
 	end
 	if currentTurret.chain and currentTurret.chain.type == chain_types.cooldown then
 		local chain_amount = math.floor(currentTurret.chain.amount * 100)
@@ -342,11 +342,11 @@ local saveTurretDefaults = mods.og.saveTurretDefaults
 
 function mods.og.saveTurret(shipManager, system, sysName)
 	if Hyperspace.App.menu.shipBuilder.bOpen then return end
-	log("save:"..sysName)
+	--log("save:"..sysName)
 	local shipId = math.floor(shipManager.iShipId)
 
 	if system.table.blueprint == "" then
-		log("save empty blueprint")
+		--log("save empty blueprint")
         Hyperspace.playerVariables[shipId..sysName..systemBlueprintVarName] = -1
         Hyperspace.playerVariables[shipId..sysName..systemStateVarName] = 0
         Hyperspace.playerVariables[shipId..sysName..systemChargesVarName] = 0
@@ -358,7 +358,7 @@ function mods.og.saveTurret(shipManager, system, sysName)
 	for i, name in ipairs(turretBlueprintsList) do
 		if name == system.table.blueprint then
 			Hyperspace.playerVariables[shipId..sysName..systemBlueprintVarName] = i
-			log("save blueprint:"..system.table.blueprint.." var:"..tostring(Hyperspace.playerVariables[shipId..sysName..systemBlueprintVarName]))
+			--log("save blueprint:"..system.table.blueprint.." var:"..tostring(Hyperspace.playerVariables[shipId..sysName..systemBlueprintVarName]))
 			goto SAVE_STATE
 		end
 	end
@@ -378,11 +378,11 @@ end
 local saveTurret = mods.og.saveTurret
 
 function mods.og.loadTurret(shipManager, system, sysName)
-	log("load:"..sysName)
+	--log("load:"..sysName)
 	local shipId = math.floor(shipManager.iShipId)
 
 	if Hyperspace.playerVariables[shipId..sysName..systemBlueprintVarName] == -1 then
-		log("load empty blueprint")
+		--log("load empty blueprint")
         system.table.blueprint = ""
         system.table.state = 0
         system.table.charges = 0
@@ -394,7 +394,7 @@ function mods.og.loadTurret(shipManager, system, sysName)
 	for i, name in ipairs(turretBlueprintsList) do
 		if i == Hyperspace.playerVariables[shipId..sysName..systemBlueprintVarName] then
 			system.table.blueprint = name
-			log("load blueprint:"..system.table.blueprint.." var:"..tostring(Hyperspace.playerVariables[shipId..sysName..systemBlueprintVarName]))
+			--log("load blueprint:"..system.table.blueprint.." var:"..tostring(Hyperspace.playerVariables[shipId..sysName..systemBlueprintVarName]))
 			goto LOAD_STATE
 		end
 	end
@@ -1413,7 +1413,7 @@ local function findTurretTarget(system, currentTurret, shipManager, pos, speed)
 		--print(projectile.extend.name.." type:"..tostring(projectile:GetType()))
 		local blueprint = Hyperspace.Blueprints:GetWeaponBlueprint(projectile.extend.name)
 		local validTarget = checkValidTarget(projectile._targetable, currentTurret.defence_type, shipManager)
-		local notTargeted = (not projectile.table.og_targeted) or (projectile.table.og_targeted < 2 and not currentTurret.homing) or projectile.table.og_targeted < 1
+		local notTargeted = (not projectile.table.og_targeted) or (projectile.table.og_targeted < 2 and (currentTurret.multifire_homing or not currentTurret.homing)) or projectile.table.og_targeted < 1
 		local projectileActive = not (projectile.missed or projectile.passedTarget or projectile.death_animation.tracker.running)
 		if validTarget and notTargeted and projectileActive then
 			local targetPos = projectile._targetable:GetRandomTargettingPoint(true)

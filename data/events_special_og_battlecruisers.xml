@@ -1,0 +1,111 @@
+<FTL>
+
+
+<ship name="OG_SHIP_SLUG_BATTLECRUISER" auto_blueprint="OG_SLUG_BATTLECRUISER">
+	<destroyed load="DESTROYED_OG_BATTLECRUISER_SLUG"/>
+	<deadCrew load="DEAD_CREW_OG_BATTLECRUISER_SLUG"/>
+</ship>
+
+<event name="DESTROYED_OG_BATTLECRUISER_SLUG">
+	<text>While scrapping the wreckage of the Battlecruiser, you find a functional Turret drifting in the midst of the wreckage.</text>
+	<autoReward level="MED">standard</autoReward>
+	<weapon name="OG_TURRET_FOCUS_BIO"/>
+</event>
+<event name="DEAD_CREW_OG_BATTLECRUISER_SLUG">
+	<text>The Battlecruiser has been emptied of crew. While scrapping it, you find a Turret in its storage.</text>
+	<autoReward level="MED">standard</autoReward>
+	<weapon name="OG_TURRET_FOCUS_BIO"/>
+</event>
+
+<event name="NEBULA_OG_BATTLECRUISER_SLUG" unique="true">
+	<preventQuest/>
+	<beaconType id="map_icon_og_battlecruiser" global="true" req="LOOT_COMPASS">
+		<color r="246" g="75" b="45" a="1"/>
+		<unvisitedTooltip>An unvisited location.</unvisitedTooltip>
+		<visitedTooltip>Explored location. Nothing left of interest.</visitedTooltip>
+		<undiscoveredTooltip>An unvisited location.</undiscoveredTooltip>
+	</beaconType>
+	<environment type="nebula"/>
+	<text>A Battlecruiser wielding powerful Turret tech is sitting at this beacon. The Kleptocracy aren't known as honest merchants, so you doubt this particular slug got his hands on those turrets fairly.</text>
+	<ship load="OG_SHIP_SLUG_BATTLECRUISER" hostile="false"/> 
+	<choice hidden="true">
+		<text>Attack, we can steal their Turret tech!</text>
+		<event>
+			<text>You've taken the risky choice of fighting the ship. Hopefully, you can protect yourself from their salvo long enough.</text>
+			<ship hostile="true"/>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="COMBAT_CHECK"/>
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true">
+		<text>Avoid the Battlecruiser.</text>
+		<event>
+			<text>Messing with a Battlecruiser is a bad idea.</text>
+			<choice>
+				<text>Do something onboard the ship.</text>
+				<event load="STORAGE_CHECK"/>
+			</choice>
+			<choice>
+				<text>Do nothing.</text>
+				<event/>
+			</choice>
+		</event>
+	</choice>
+</event>
+
+<ship name="OG_SHIP_CRYSTAL_BATTLECRUISER" auto_blueprint="OG_CRYSTAL_BATTLECRUISER">
+	<destroyed load="DESTROYED_OG_BATTLECRUISER_CRYSTAL"/>
+	<deadCrew load="DEAD_CREW_OG_BATTLECRUISER_CRYSTAL"/>
+</ship>
+
+<event name="DESTROYED_OG_BATTLECRUISER_CRYSTAL">
+	<text>While scrapping the wreckage of the Battlecruiser, you find a functional Turret drifting in the midst of the wreckage.</text>
+	<autoReward level="MED">standard</autoReward>
+	<weapon name="OG_TURRET_CRYSTAL_1"/>
+</event>
+<event name="DEAD_CREW_OG_BATTLECRUISER_CRYSTAL">
+	<text>The Battlecruiser has been emptied of crew. While scrapping it, you find a Turret in its storage.</text>
+	<autoReward level="MED">standard</autoReward>
+	<weapon name="OG_TURRET_CRYSTAL_1"/>
+</event>
+
+<event name="OG_BATTLECRUISER_CRYSTAL" unique="true">
+	<preventQuest/>
+	<beaconType id="map_icon_og_battlecruiser" global="true" req="LOOT_COMPASS">
+		<color r="246" g="75" b="45" a="1"/>
+		<unvisitedTooltip>An unvisited location.</unvisitedTooltip>
+		<visitedTooltip>Explored location. Nothing left of interest.</visitedTooltip>
+		<undiscoveredTooltip>An unvisited location.</undiscoveredTooltip>
+	</beaconType>
+	<text>The Crystalline Empire is more territorial than any other government or species. A Battlecruiser, wielding specialized Turret tech, is patrolling the beacon, but for once they don't seem to care about your presence.</text>
+	<ship load="OG_SHIP_CRYSTAL_BATTLECRUISER" hostile="false"/> 
+	<choice hidden="true">
+		<text>Attack, we can steal their Turret tech!</text>
+		<event>
+			<text>You've taken the risky choice of fighting the ship. Hopefully, you can protect yourself from their salvo long enough.</text>
+			<ship hostile="true"/>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="MORALITY_UPDATE_CRYSTAL_FIGHT"/>
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true">
+		<text>Avoid the Battlecruiser.</text>
+		<event>
+			<text>Messing with a Battlecruiser is a bad idea.</text>
+			<choice>
+				<text>Do something onboard the ship.</text>
+				<event load="STORAGE_CHECK"/>
+			</choice>
+			<choice>
+				<text>Do nothing.</text>
+				<event/>
+			</choice>
+		</event>
+	</choice>
+</event>
+
+</FTL>

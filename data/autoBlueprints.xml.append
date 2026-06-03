@@ -2218,3 +2218,55 @@ AUGMENTS
 <mod:findName type="blueprintList" name="LIST_LOOT_AUG">
 </mod:findName>
 </FTL>
+
+<!--BATTLECRUISERS-->
+<FTL>
+<shipBlueprint name="OG_SLUG_BATTLECRUISER" layout="og_slug_battlecruiser" img="og_slug_battlecruiser">
+	<class>Kleptocracy Battlecruiser</class>
+	<systemList>
+		<og_turret power="2" max="4" room="1" start="true" turret="OG_TURRET_FOCUS_BIO" />
+		<og_turret_mini power="1" max="3" room="2" start="true" turret="OG_TURRET_LASER_MINI_2" />
+		<engines power="1" max="2" room="13" start="true" />
+		<cloaking power="1" max="2" room="12" start="false" />
+		<drones power="2" max="6" room="9" start="true" />
+		<hacking power="1" max="1" room="12" start="false" />
+		<clonebay power="1" max="2" room="6" start="true" />
+		<oxygen power="1" max="2" room="3" start="true" />
+		<pilot power="1" max="1" room="0" start="true" />
+		<shields power="2" max="8" room="5" start="true" />
+	</systemList>
+	<weaponSlots>0</weaponSlots>
+	<droneSlots>3</droneSlots>
+	<weaponList missiles="8" count="0" />
+	<droneList drones="10" count="3" load="LIST_DRONES_ENEMY_COMBAT" />
+	<health amount="8" />
+	<maxPower amount="8" />
+	<crewCount amount="2" max="6" class="slug" />
+	<boardingAI>sabotage</boardingAI>
+	<aug name="SLUG_GEL" />
+</shipBlueprint>
+
+<shipBlueprint name="OG_CRYSTAL_BATTLECRUISER" layout="og_crystal_battlecruiser" img="og_crystal_battlecruiser">
+	<class>Imperial Battlecruiser</class>
+	<systemList>
+		<og_turret power="2" max="4" room="8" start="true" turret="OG_TURRET_CRYSTAL_1" />
+		<engines power="1" max="2" room="6" start="true" />
+		<medbay power="1" max="2" room="9" start="true" />
+		<mind power="1" max="2" room="0" start="false" />
+		<oxygen power="1" max="2" room="5" start="true" />
+		<pilot power="1" max="3" room="1" start="true" />
+		<shields power="2" max="8" room="4" start="true" />
+		<teleporter power="1" max="3" room="3" start="false" />
+		<weapons power="1" max="6" room="2" start="true" />
+	</systemList>
+	<weaponSlots>3</weaponSlots>
+	<droneSlots>0</droneSlots>
+	<weaponList missiles="11" count="3" load="LIST_WEAPONS_CRYSTAL" />
+	<droneList drones="5" count="0" />
+	<health amount="9" />
+	<maxPower amount="8" />
+	<crewCount amount="3" max="7" class="crystal" />
+	<boardingAI>sabotage</boardingAI>
+	<aug name="CRYSTAL_ARMOR_ENEMY" />
+</shipBlueprint>
+</FTL>
