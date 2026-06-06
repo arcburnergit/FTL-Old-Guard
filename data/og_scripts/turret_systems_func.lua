@@ -1378,12 +1378,14 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 	end
 
 	--turret animation
-	currentTurret.image:Start(true)
-	if currentTurret.image.info.numFrames > 1 then
-		if currentTurret.multi_anim then
-			currentTurret.image:SetCurrentFrame(1 + currentTurret.multi_anim.frames * (system.table.charges - 1))
-		else
-			currentTurret.image:SetCurrentFrame(1)
+	if system.table.image then
+		system.table.image:Start(true)
+		if system.table.image.info.numFrames > 1 then
+			if currentTurret.multi_anim then
+				system.table.image:SetCurrentFrame(1 + currentTurret.multi_anim.frames * (system.table.charges - 1))
+			else
+				system.table.image:SetCurrentFrame(1)
+			end
 		end
 	end
 	
@@ -1529,6 +1531,10 @@ local function updateTurretCharge(currentTurret, system, shipManager, otherManag
 				system.table.time = 1
 			end
 		end
+		if system.table.charging_anim then
+			local charging_anim_frame = math.floor(system.table.time * (system.table.charging_anim.info.numFrames - 1))
+			system.table.charging_anim:SetCurrentFrame(charging_anim_frame)
+		end
 	end
 end
 
@@ -1584,8 +1590,10 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 			end
 
 			if not system_ready(system) then
-				currentTurret.image.tracker:Stop(true)
-				currentTurret.image:SetCurrentFrame(0)
+				if system.table.image then
+					system.table.image.tracker:Stop(true)
+					system.table.image:SetCurrentFrame(0)
+				end
 				system.table.currentTarget = nil
 				goto END_SYSTEM_LOOP
 			elseif system.table.currentlyTargetting then 
@@ -1710,10 +1718,12 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 				end
 			end
 			local lastShot = ((system.table.charges) % #currentTurret.fire_points) + 1
-			currentTurret.image:Update()
-			if (currentTurret.image.currentFrame == currentTurret.image.info.numFrames - 1) or (currentTurret.multi_anim and currentTurret.image.currentFrame > currentTurret.multi_anim.frames * lastShot) then
-				currentTurret.image.tracker:Stop(true)
-				currentTurret.image:SetCurrentFrame(0)
+			if system.table.image then
+				system.table.image:Update()
+				if (system.table.image.currentFrame == system.table.image.info.numFrames - 1) or (currentTurret.multi_anim and system.table.image.currentFrame > currentTurret.multi_anim.frames * lastShot) then
+					system.table.image.tracker:Stop(true)
+					system.table.image:SetCurrentFrame(0)
+				end
 			end
 
 			if shipManager.iShipId == 1 and (not system.table.currentTarget) and system.table.charges >= currentTurret.charges and (currentTurret.enemy_burst or 1) > 0 then

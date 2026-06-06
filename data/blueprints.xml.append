@@ -370,7 +370,7 @@
 </FTL>
 
 <!--Turrets-->
-<!--BASES-->
+<!--BASES (UNUSED)-->
 <FTL>
 <weaponBlueprint name="OG_TURRET_BASE_LASER">
 	<type>BEAM</type>

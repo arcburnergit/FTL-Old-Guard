@@ -367,7 +367,6 @@ table.insert(craftedDarkestDesire.items, {weapon = "OG_TURRET_LASER_DARKNESS_MIN
 script.on_init(function()
 	Hyperspace.metaVariables[craftedDarkestDesire.var] = 0
 	if Hyperspace.Blueprints:GetWeaponBlueprint("DDDIVINE_DUALITY").desc.title:GetText() ~= "" then
-		print("Set true:"..craftedDarkestDesire.var)
 		Hyperspace.metaVariables[craftedDarkestDesire.var] = 1
 	end
 end)
