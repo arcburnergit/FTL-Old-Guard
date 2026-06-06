@@ -47,7 +47,7 @@
 </event>
 
 <event name="OG_CRAFT_MAIN_MENU">
-	<text>Available Blueprints.</text>
+	<text>Available Categories.</text>
 	<choice hidden="true">
 		<text>Nevermind.</text>
 		<event load="STORAGE_CHECK"/>
@@ -58,12 +58,16 @@
 	</choice-->
 </event>
 
-<event name="OG_CRAFT_CRAFT">
-	<text>Requires:</text>
-	<choice hidden="false">
+<event name="OG_CRAFT_CATEGORY_">
+	<text>Available Blueprints:</text>
+	<choice hidden="true">
 		<text>Nevermind.</text>
 		<event load="OG_CRAFT_MAIN_MENU_LOAD"/>
 	</choice>
+</event>
+
+<event name="OG_CRAFT_CRAFT">
+	<text>Requires:</text>
 </event>
 
 <event name="OG_CRAFT_CRAFT_STEP">

@@ -4,7 +4,7 @@
 <img x="-63" y="-58" w="336" h="491" />
 <offsets>
 	<floor x="168" y="245" />
-	<cloak x="168" y="245" />
+	<cloak x="0" y="0" />
 </offsets>
 <weaponMounts />
 <ogTurretMounts>
