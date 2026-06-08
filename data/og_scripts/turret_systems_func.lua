@@ -271,7 +271,7 @@ local function add_stat_text(desc, currentTurret, chargeMax)
 		desc = desc..string.format(statsText.breachChance, math.floor(damage.breachChance * 10), math.floor((100 - 10 * damage.fireChance) * (damage.breachChance/10)))
 	end
 	if damage.stunChance > 0 then
-		desc = desc..string.format(statsText.fireChance, math.floor(damage.stunChance * 10), math.floor((damage.iStun > 0 and damage.iStun) or 3))
+		desc = desc..string.format(statsText.stunChance, math.floor(damage.stunChance * 10), math.floor((damage.iStun > 0 and damage.iStun) or 3))
 	end
 	if vunerable_weapons[currentTurret.blueprint] then
 		desc = desc..string.format(statsText.effect, math.floor(vunerable_weapons[currentTurret.blueprint]))
