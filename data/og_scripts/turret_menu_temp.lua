@@ -702,12 +702,24 @@ end)
 local last_mat = ""
 local last_mats = {}
 
+
+local systemCacheList = mods.og.systemCacheList
+local text_fab_hover = Hyperspace.Text:GetText("og_lua_turret_fabricate_hover")
+
 script.on_internal_event(Defines.InternalEvents.WEAPON_DESCBOX, function(bp, desc)
 	if Hyperspace.App.menu.shipBuilder.bOpen then return desc end
+	local has_system = false
+	for _, sysName in ipairs(systemNameList) do
+		if systemCacheList[0][sysName] then
+			has_system = true
+			break
+		end
+	end
+	if not has_system then return desc end
 
 	if last_mat == bp.name then
 		if #last_mats > 0 then
-			local s = "Can be fabricated into: "..table.concat(last_mats, ", ")
+			local s = text_fab_hover..table.concat(last_mats, ", ")
 			Hyperspace.Mouse.tooltip = #Hyperspace.Mouse.tooltip > 0 and Hyperspace.Mouse.tooltip.."\n" or ""
 			Hyperspace.Mouse.tooltip = Hyperspace.Mouse.tooltip..s
 			Hyperspace.Mouse.bForceTooltip = true

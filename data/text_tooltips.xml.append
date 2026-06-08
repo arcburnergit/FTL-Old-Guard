@@ -100,4 +100,5 @@
 <text name="og_lua_turret_fabricate">Can be used to fabricate:</text>
 <text name="og_lua_turret_fabricate_item">\n[%s]</text>
 <text name="og_lua_turret_fabricate_mystery">\n[???]</text>
+<text name="og_lua_turret_fabricate_hover">Can be fabricated into: </text>
 </FTL>

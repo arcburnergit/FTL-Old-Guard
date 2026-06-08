@@ -753,6 +753,16 @@ local function renderTurret(shipManager, ship, spaceManager, shipGraph, sysName)
 				system.table.glow.tracker.loop = false
 			end
 		end
+
+		if currentTurret.custom_animations then
+			if not system.table.custom_animations then system.table.custom_animations = {} end
+			for id, anim_table in ipairs(currentTurret.custom_animations) do
+				if system.table.custom_animations[id] and system.table.custom_animations[id].tracker.running then
+					system.table.glow:OnRender(1, Graphics.GL_Color(1,1,1,1), false)
+				end
+			end
+		end
+
 		Graphics.CSurface.GL_PopMatrix()
 		local mousePosEnemy = worldToEnemyLocation(Hyperspace.Mouse.position)
 		local turretLocCorrected = {x = shipCorner.x + turretLoc.x, y = shipCorner.y + turretLoc.y}

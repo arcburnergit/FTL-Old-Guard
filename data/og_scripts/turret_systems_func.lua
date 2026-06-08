@@ -1594,6 +1594,26 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 					system.table.image.tracker:Stop(true)
 					system.table.image:SetCurrentFrame(0)
 				end
+				if currentTurret.custom_animations then
+					if not system.table.custom_animations then system.table.custom_animations = {} end
+					for id, anim_table in ipairs(currentTurret.custom_animations) do
+						if anim_table.depowered then
+							if system.table.custom_animations[id] and system.table.custom_animations[id].tracker.running then
+								system.table.custom_animations[id]:Update()
+							elseif system.table.custom_animations[id] then
+								system.table.custom_animations[id]:Start(true)
+								system.table.custom_animations[id]:Update()
+							elseif not system.table.custom_animations[id] then
+								system.table.custom_animations[id] = Hyperspace.Animations:GetAnimation(id)
+								system.table.custom_animations[id].position.x = -1 * system.table.custom_animations[id].info.frameWidth/2
+								system.table.custom_animations[id].position.y = -1 * system.table.custom_animations[id].info.frameHeight/2
+								system.table.custom_animations[id].tracker.loop = true
+							end
+						elseif system.table.custom_animations[id] and system.table.custom_animations[id].tracker.running then
+							system.table.custom_animations[id].tracker:Stop(true)	
+						end
+					end
+				end
 				system.table.currentTarget = nil
 				goto END_SYSTEM_LOOP
 			elseif system.table.currentlyTargetting then 
@@ -1717,6 +1737,30 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 					end
 				end
 			end
+
+			if currentTurret.custom_animations then
+				if not system.table.custom_animations then system.table.custom_animations = {} end
+				local is_charged = system.table.charges >= currentTurret.charges
+				for id, anim_table in ipairs(currentTurret.custom_animations) do
+					if (anim_table.charging and not is_charged) or (anim_table.charged and is_charged) then
+						if system.table.custom_animations[id] and system.table.custom_animations[id].tracker.running then
+							system.table.custom_animations[id]:Update()
+						elseif system.table.custom_animations[id] then
+							system.table.custom_animations[id]:Start(true)
+							system.table.custom_animations[id]:Update()
+						elseif not system.table.custom_animations[id] then
+							system.table.custom_animations[id] = Hyperspace.Animations:GetAnimation(id)
+							system.table.custom_animations[id].position.x = -1 * system.table.custom_animations[id].info.frameWidth/2
+							system.table.custom_animations[id].position.y = -1 * system.table.custom_animations[id].info.frameHeight/2
+							system.table.custom_animations[id].tracker.loop = true
+						end
+					elseif system.table.custom_animations[id] and system.table.custom_animations[id].tracker.running then
+						system.table.custom_animations[id].tracker:Stop(true)
+					end
+				end
+			end
+				
+
 			local lastShot = ((system.table.charges) % #currentTurret.fire_points) + 1
 			if system.table.image then
 				system.table.image:Update()
