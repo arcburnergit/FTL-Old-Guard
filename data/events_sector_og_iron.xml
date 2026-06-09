@@ -508,14 +508,15 @@
 	<preventQuest/>
 	<beaconType id="map_icon_store_generic" global="false">
 		<color r="215" g="255" b="200" a="1"/>
-	</beaconType><text>The nearby market is overlooked by an allied refueling post.</text>
+	</beaconType>
+	<text>A large market surrounds this refueling station.</text>
 	<ship load="SHIP_OG_IRON_TURRET_STATION_STORE" hostile="false"/>
 	<choice hidden="false">
 		<text>Purchase a discounted turret.</text>
 		<event>
-			<text>You stock up on fuel then check out the store.</text>
+			<text>You load up the turret before moving onto the rest of the market.</text>
 			<item_modify>
-				<item type="scrap" min="-70" max="-61"/>
+				<item type="scrap" min="-50" max="-41"/>
 			</item_modify>
 			<weapon name="SHOP_TURRETS_LARGE"/>
 			<choice hidden="true">
@@ -527,9 +528,9 @@
 	<choice req="mind" hidden="false">
 		<text>(Mind Control) "Negotiate" an even lower price.</text>
 		<event>
-			<text>You stock up on fuel then check out the store.</text>
+			<text>You load up the turret before moving onto the rest of the market.</text>
 			<item_modify>
-				<item type="scrap" min="-60" max="-51"/>
+				<item type="scrap" min="-40" max="-31"/>
 			</item_modify>
 			<weapon name="SHOP_TURRETS_LARGE"/>
 			<choice hidden="true">
@@ -538,13 +539,14 @@
 			</choice>
 		</event>
 	</choice>
-	<choice req="LIST_CREW_OG_IRON" hidden="true">
+	<choice req="LIST_CREW_OG_IRON" hidden="false">
 		<text>(Iron Watch Crew) Negotiate an even lower price.</text>
 		<event>
-			<text>You stock up on fuel then check out the store.</text>
+			<text>You load up the turret before moving onto the rest of the market.</text>
 			<item_modify>
-				<item type="scrap" min="-60" max="-51"/>
+				<item type="scrap" min="-40" max="-31"/>
 			</item_modify>
+			<weapon name="SHOP_TURRETS_LARGE"/>
 			<choice hidden="true">
 				<text>Shop.</text>
 				<event load="STORE_LOAD_GENERIC"/>
