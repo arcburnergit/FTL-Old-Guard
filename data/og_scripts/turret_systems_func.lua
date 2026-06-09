@@ -204,7 +204,7 @@ local function add_stat_text(desc, currentTurret, chargeMax)
 	desc = desc..string.format(statsText.charges, math.floor(currentTurret.charges))
 	desc = desc..string.format(statsText.amount, math.floor(currentTurret.charges_per_charge))
 	if currentTurret.ammo_consumption then
-		desc = desc..string.format(statsText.ammo, currentTurret.ammo_consumption)
+		desc = desc..string.format(statsText.ammo, currentTurret.ammo_consumption * (1 - shipManager:GetAugmentationValue("EXPLOSIVE_REPLICATOR")))
 	end
 	if currentTurret.chain and currentTurret.chain.type == chain_types.cooldown then
 		local chain_amount = math.floor(currentTurret.chain.amount * 100)
@@ -1297,7 +1297,8 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 	end
 	--handle missile consumption
 	if currentTurret.ammo_consumption then
-		system.table.ammo_consumed = system.table.ammo_consumed + currentTurret.ammo_consumption
+		system.table.ammo_consumed = system.table.ammo_consumed + currentTurret.ammo_consumption * (1 - shipManager:GetAugmentationValue("EXPLOSIVE_REPLICATOR"))
+
 		if system.table.ammo_consumed >= 1 then 
 			shipManager:ModifyMissileCount(-1 * math.floor(system.table.ammo_consumed))
 			system.table.ammo_consumed = system.table.ammo_consumed - math.floor(system.table.ammo_consumed)

@@ -326,7 +326,7 @@ turrets["OG_TURRET_ION_2"] = {
 	image = "og_turret_ion_2",
 	glow = "og_turret_ion_2_glow",
 	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_ion_2_charge.png", -30, -11, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
-	fire_points = {{x = 5, y = -32, fire_delay = 0.25}, {x = -5, y = -32, fire_delay = 0.5}},
+	fire_points = {{x = 5, y = -32, fire_delay = 0.5}, {x = -5, y = -32, fire_delay = 0.25}},
 	defence_type = defence_types.DRONES,
 	blueprint_type = 1,
 	blueprint = "OG_ION_PROJECTILE_FIRE",
@@ -830,9 +830,9 @@ turrets["OG_TURRET_FOCUS_SOULPLAGUE"] = {
 }
 turrets["OG_TURRET_MISSILE_FALSERADIANCE"] = {
 	enemy_burst = 8,
-	homing = 480,
+	homing = 720,
 	multifire_homing = true,
-	aim_cone = 30,
+	aim_cone = 60,
 	shot_radius = 84,
 	image = "og_turret_missile_falseradiance",
 	glow = "og_turret_missile_falseradiance_glow",

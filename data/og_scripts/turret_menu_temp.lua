@@ -236,6 +236,14 @@ for item in vter(Hyperspace.Blueprints:GetBlueprintList("LIST_CLONE_CANNON")) do
 	table.insert(clone_cannon_list, item)
 end
 hideName["GATLING"] = "Unleash hell on your opposition!"
+hideName["GATLING_VERSION1"] = ""
+hideName["GATLING_VERSION2"] = ""
+hideName["GATLING_VERSION3"] = ""
+hideName["GATLING_VERSION4"] = ""
+hideName["GATLING_VERSION5"] = ""
+hideName["GATLING_VERSION6"] = ""
+hideName["GATLING_VERSION7"] = ""
+hideName["GATLING_VERSION8"] = ""
 hideName["PRIME_LASER"] = "Let it hit you and you're already dead."
 hideName["DEFENSE_PRIME"] = "Guardian Angel."
 hideName["COMBAT_PRIME"] = "Angel of Vengeance."
