@@ -115,6 +115,7 @@ local function check_turret_projectile(projectile)
 	return false
 end
 script.on_internal_event(Defines.InternalEvents.PROJECTILE_COLLISION, function(projectile1, projectile2, damage, response)
+	if not should_track_achievement("SHIP_ACH_OG_DAWN_SPEAR_1", Hyperspace.ships.player, "PLAYER_SHIP_OG_DAWN_SPEAR") then return Defines.Chain.CONTINUE end
 	local turret_collision = false
 	if projectile1 and projectile1.extend.name and projectile1.ownerId == 0 then
 		turret_collision = turret_collision or check_turret_projectile(projectile1)

@@ -32,3 +32,11 @@ The Military holdout for the New Dawn, low on both supplies and allies in their 
 <text name="map_icon_og_dawn_ship">SHIP [!]</text>
 <text name="map_icon_og_dawn_base">HIDDEN BASE [!]</text>
 <text name="map_icon_og_dawn_vault">DATA_VAULT [!]</text>
+
+<text name="storage_choice_og_eatmote_none_original">I desire... no change.</text>
+<text name="storage_choice_og_eatmote_drone_original">I desire... Drone Control.</text>
+<text name="storage_choice_og_eatmote_drone">I desire... Drone Control. (will replace Turret Control)</text>
+<text name="storage_choice_og_eatmote_1">I desire... Turret Control.</text>
+<text name="storage_choice_og_eatmote_1_drone">I desire... Turret Control. (will replace Drone Control)</text>
+<text name="storage_choice_og_eatmote_2">I desire... to upgrade my Turret Control.</text>
+<text name="storage_choice_og_eatmote_3">You cannot upgrade your Turret Control any further.</text>

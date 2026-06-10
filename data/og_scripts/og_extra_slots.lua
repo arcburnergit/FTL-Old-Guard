@@ -51,10 +51,16 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 			applySystemBonus(shipManager, bonus, true)
 			--print("LOADED SYSTEM SLOT SCRIPT")
 
-			local systemId = Hyperspace.ShipSystem.NameToSystemId("og_turret_adaptive_2")
 			local sysInfo = Hyperspace.ships.player.myBlueprint.systemInfo
-			if sysInfo:has_key(systemId) then
+
+			local systemId_2 = Hyperspace.ShipSystem.NameToSystemId("og_turret_adaptive_2")
+			if sysInfo:has_key(systemId_2) then
 				Hyperspace.playerVariables["og_turret_adaptive_can_install_second"] = 1
+			end
+
+			local systemId_single = Hyperspace.ShipSystem.NameToSystemId("og_turret_adaptive_single")
+			if sysInfo:has_key(systemId_single) then
+				Hyperspace.playerVariables["og_turret_adaptive_can_install_single"] = 1
 			end
 			loadComplete = true
 		end

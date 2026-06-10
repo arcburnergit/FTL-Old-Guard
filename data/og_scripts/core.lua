@@ -777,3 +777,80 @@ script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA_HIT, function(shipMa
 		end
 	end
 end)
+
+local og_eatmote_choice_text_none_original = Hyperspace.Text:GetText("storage_choice_og_eatmote_none_original")
+
+local og_eatmote_choice_event_1 = "STORAGE_CHECK_DDDIVINEGIMMICK_EATMOTE_SYSTEMPART_OG_TURRET_SINGLE_1"
+local og_eatmote_choice_text_1 = Hyperspace.Text:GetText("storage_choice_og_eatmote_1")
+local og_eatmote_choice_req_1 = Hyperspace.ChoiceReq()
+og_eatmote_choice_req_1.object = "OG_EATMOTE_SINGLE_TURRET_ADD"
+og_eatmote_choice_req_1.blue = false
+og_eatmote_choice_req_1.min_level = 1
+og_eatmote_choice_req_1.max_level = mods.multiverse.INT_MAX
+og_eatmote_choice_req_1.max_group = -1
+
+local og_eatmote_choice_text_drone_original = Hyperspace.Text:GetText("storage_choice_og_eatmote_drone_original")
+local og_eatmote_choice_text_drone = Hyperspace.Text:GetText("storage_choice_og_eatmote_drone")
+
+local og_eatmote_choice_text_1_drone = Hyperspace.Text:GetText("storage_choice_og_eatmote_1_drone")
+local og_eatmote_choice_req_1_drone = Hyperspace.ChoiceReq()
+og_eatmote_choice_req_1_drone.object = "OG_EATMOTE_SINGLE_TURRET_ADD_DRONE"
+og_eatmote_choice_req_1_drone.blue = false
+og_eatmote_choice_req_1_drone.min_level = 1
+og_eatmote_choice_req_1_drone.max_level = mods.multiverse.INT_MAX
+og_eatmote_choice_req_1_drone.max_group = -1
+
+
+local og_eatmote_choice_event_2 = "STORAGE_CHECK_DDDIVINEGIMMICK_EATMOTE_SYSTEMPART_OG_TURRET_SINGLE_2"
+local og_eatmote_choice_text_2 = Hyperspace.Text:GetText("storage_choice_og_eatmote_2")
+local og_eatmote_choice_req_2 = Hyperspace.ChoiceReq()
+og_eatmote_choice_req_2.object = "og_turret_adaptive_single"
+og_eatmote_choice_req_2.blue = false
+og_eatmote_choice_req_2.min_level = 1
+og_eatmote_choice_req_2.max_level = 5
+og_eatmote_choice_req_2.max_group = -1
+	
+local og_eatmote_choice_event_3 = "OPTION_INVALID"
+local og_eatmote_choice_text_3 = Hyperspace.Text:GetText("storage_choice_og_eatmote_3")
+local og_eatmote_choice_req_3 = Hyperspace.ChoiceReq()
+og_eatmote_choice_req_3.object = "og_turret_adaptive_single"
+og_eatmote_choice_req_3.blue = false
+og_eatmote_choice_req_3.min_level = 6
+og_eatmote_choice_req_3.max_level = mods.multiverse.INT_MAX
+og_eatmote_choice_req_3.max_group = -1
+
+script.on_internal_event(Defines.InternalEvents.PRE_CREATE_CHOICEBOX, function(event)
+	local eventManager = Hyperspace.Event
+	if event.eventName == "STORAGE_CHECK_DDDIVINEGIMMICK_EATMOTE_SYSTEMPART" then
+		local old_last = event.choices:back()
+		event.choices:pop_back()
+
+		local event_1 = eventManager:CreateEvent(og_eatmote_choice_event_1, 0, true)
+		event:AddChoice(event_1, og_eatmote_choice_text_1, og_eatmote_choice_req_1, false)
+
+		event:AddChoice(event_1, og_eatmote_choice_text_1_drone, og_eatmote_choice_req_1_drone, false)
+
+		local event_2 = eventManager:CreateEvent(og_eatmote_choice_event_2, 0, true)
+		event:AddChoice(event_2, og_eatmote_choice_text_2, og_eatmote_choice_req_2, false)
+
+		local event_3 = eventManager:CreateEvent(og_eatmote_choice_event_3, 0, true)
+		event:AddChoice(event_3, og_eatmote_choice_text_3, og_eatmote_choice_req_3, false)
+
+		event.choices:push_back(old_last)
+	end
+end)
+
+script.on_internal_event(Defines.InternalEvents.POST_CREATE_CHOICEBOX, function(choiceBox, event)
+	if event.eventName == "STORAGE_CHECK_DDDIVINEGIMMICK_EATMOTE_SYSTEMPART" then
+		for choice in vter(choiceBox:GetChoices()) do
+			if choice.text == og_eatmote_choice_text_drone_original then
+				--print("Found text")
+				if Hyperspace.ships.player:HasSystem(Hyperspace.ShipSystem.NameToSystemId("og_turret_adaptive_single")) then
+					--print("replaced text")
+					choice.text = og_eatmote_choice_text_drone
+				end
+				break
+			end
+		end
+	end
+end)

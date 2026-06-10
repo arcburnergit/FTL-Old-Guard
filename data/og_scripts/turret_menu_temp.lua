@@ -44,6 +44,14 @@ script.on_internal_event(Defines.InternalEvents.HAS_EQUIPMENT, function(shipMana
 	return Defines.Chain.CONTINUE, value
 end)
 
+local manageText = {
+	nevermind = Hyperspace.Text:GetText("og_lua_turret_manage_nevermind"),
+	uninstall = Hyperspace.Text:GetText("og_lua_turret_manage_uninstall"),
+	empty = Hyperspace.Text:GetText("og_lua_turret_manage_empty"),
+	leave = Hyperspace.Text:GetText("og_lua_turret_manage_leave"),
+	install = Hyperspace.Text:GetText("og_lua_turret_manage_install"),
+}
+
 local hookedEvents = {}
 local function turret_install_event(installEvent, sysName, shipManager, eventManager, system, toAddBlueprint)
 	--print("turret_install_event"..installEvent.eventName.." sys:"..sysName)
@@ -77,7 +85,7 @@ local function turret_install_event(installEvent, sysName, shipManager, eventMan
 				end
 				--removeEvent.stuff.removeItem = weapon.blueprint.name
 				removeEvent.stuff.weapon = weapon.blueprint
-				installEvent:AddChoice(removeEvent, "Install this:", emptyReq, false)
+				installEvent:AddChoice(removeEvent, manageText.install, emptyReq, false)
 				--print("added choice:"..weapon.blueprint.name)
 			end
 		end
@@ -114,14 +122,13 @@ local function turret_install_event(installEvent, sysName, shipManager, eventMan
 			local blueprint = Hyperspace.Blueprints:GetWeaponBlueprint(item)
 			removeEvent.stuff.weapon = blueprint
 
-			installEvent:AddChoice(removeEvent, "Install this:", emptyReq, false)
+			installEvent:AddChoice(removeEvent, manageText.install, emptyReq, false)
 
 			--print("added item choice:"..item)
 		end
 	end
-
-	
 end
+
 
 script.on_internal_event(Defines.InternalEvents.PRE_CREATE_CHOICEBOX, function(event)
 	local eventManager = Hyperspace.Event
@@ -133,7 +140,7 @@ script.on_internal_event(Defines.InternalEvents.PRE_CREATE_CHOICEBOX, function(e
 				if system.table.blueprint == "" then
 					local installEvent = eventManager:CreateEvent("STORAGE_CHECK_OG_TURRET_INSTALL", 0, false)
 					turret_install_event(installEvent, sysName, shipManager, eventManager, system, nil)
-					event:AddChoice(installEvent, "Manage Empty Turret.", emptyReq, false)
+					event:AddChoice(installEvent, manageText.empty, emptyReq, false)
 				else
 					local removeEvent = eventManager:CreateEvent("STORAGE_CHECK_OG_TURRET_REMOVE", 0, false)
 					removeEvent:RemoveChoice(0)
@@ -149,7 +156,7 @@ script.on_internal_event(Defines.InternalEvents.PRE_CREATE_CHOICEBOX, function(e
 							return
 						end)
 					end
-					removeEvent:AddChoice(addEvent, "Leave it empty.", emptyReq, false)
+					removeEvent:AddChoice(addEvent, manageText.leave, emptyReq, false)
 
 					removeEvent.eventName = removeEvent.eventName.."_"..sysName
 					turret_install_event(removeEvent, sysName, shipManager, eventManager, system, toAddBlueprint)
@@ -173,7 +180,7 @@ script.on_internal_event(Defines.InternalEvents.PRE_CREATE_CHOICEBOX, function(e
 							return
 						end)
 					end
-					event:AddChoice(removeEvent, "Uninstall Turret:", emptyReq, false)
+					event:AddChoice(removeEvent, manageText.uninstall, emptyReq, false)
 				end
 			end
 		end
@@ -228,11 +235,11 @@ mods.og.hideName = {}
 local hideName = mods.og.hideName
 for item in vter(Hyperspace.Blueprints:GetBlueprintList("BLUELIST_OBELISK")) do
 	--print("add to hideName:"..item)
-	hideName[item] = "Something Old"
+	hideName[item] = "Something Old..."
 end
 local clone_cannon_list = {}
 for item in vter(Hyperspace.Blueprints:GetBlueprintList("LIST_CLONE_CANNON")) do
-	hideName[item] = "Something Ethically Dubious"
+	hideName[item] = "Something Ethically Dubious."
 	table.insert(clone_cannon_list, item)
 end
 hideName["GATLING"] = "Unleash hell on your opposition!"
@@ -247,9 +254,9 @@ hideName["GATLING_VERSION8"] = ""
 hideName["PRIME_LASER"] = "Let it hit you and you're already dead."
 hideName["DEFENSE_PRIME"] = "Guardian Angel."
 hideName["COMBAT_PRIME"] = "Angel of Vengeance."
-hideName["BEAM_HARDSCIFI"] = "REAL SCIENCE"
-hideName["GATLING_SYLVAN"] = "You greedy, murdering traitor you"
-hideName["GATLING_SYLVAN_HONOR"] = "You greedy, murdering traitor you"
+hideName["BEAM_HARDSCIFI"] = "REAL SCIENCE!"
+hideName["GATLING_SYLVAN"] = "You greedy, murdering traitor you."
+hideName["GATLING_SYLVAN_HONOR"] = "Go kick some Rebel asses."
 
 hideName["DDSHOTGUN_SOULPLAGUE"] = "You're hungry for more turrets - the turrets are hungry for more... well, everything."
 hideName["DDFOCUS_SOULPLAGUE"] = ""
@@ -487,7 +494,7 @@ local function generate_crafts(event, player, eventManager, craftingTable)
 		if displayOption then
 			local weaponEvent = eventManager:CreateEvent("OG_CRAFT_CRAFT", 0, false)
 			weaponEvent:RemoveChoice(0)
-			weaponEvent:AddChoice(event, "Nevermind.", emptyReq, false)
+			weaponEvent:AddChoice(event, manageText.nevermind, emptyReq, false)
 			if showBlueprint then
 				weaponEvent.eventName = "OG_CRAFT_CRAFT_"..weapon
 				weaponEvent:AddChoice(weaponEvent, craftText.blueprint, emptyReq, false)
@@ -615,8 +622,10 @@ script.on_internal_event(Defines.InternalEvents.POST_CREATE_CHOICEBOX, function(
 		end
 		local i = 1
 		for choice in vter(choiceBox:GetChoices()) do
-			if choice.text == "Uninstall Turret:" then
+			if choice.text == manageText.uninstall then
 				choice.rewards.weapon = turretItemsUninstall[i]
+				i = i + 1
+			elseif choice.text == manageText.empty then
 				i = i + 1
 			end
 		end

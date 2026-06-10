@@ -910,7 +910,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<tip>tip_og_turret</tip>
 	<title>Ion Barrage Turret</title>
 	<short>Ion B.</short>
-	<desc>Ion Turrets are excellent drone suppression aswell as being able to disable systems without causing hull damage. This one charges and fires very quuckly.</desc>
+	<desc>Ion Turrets are excellent drone suppression aswell as being able to disable systems without causing hull damage. This one charges and fires very quickly.</desc>
 	<tooltip>Turret</tooltip>
 	<damage>0</damage>
 	<sp>0</sp>

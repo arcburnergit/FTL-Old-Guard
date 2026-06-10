@@ -105,6 +105,12 @@
 <text name="og_lua_turret_craft_craft">Craft this item.</text>
 <text name="og_lua_turret_craft_unknown">Unknown Turret</text>
 
+<text name="og_lua_turret_manage_nevermind">Nevermind.</text>
+<text name="og_lua_turret_manage_uninstall">Uninstall Turret:</text>
+<text name="og_lua_turret_manage_empty">Manage Empty Turret.</text>
+<text name="og_lua_turret_manage_leave">Leave it empty.</text>
+<text name="og_lua_turret_manage_install">Install this:</text>
+
 <text name="og_lua_turret_fabricate">Can be used to fabricate:</text>
 <text name="og_lua_turret_fabricate_item">\n[%s]</text>
 <text name="og_lua_turret_fabricate_mystery">\n[???]</text>

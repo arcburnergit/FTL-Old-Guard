@@ -397,12 +397,12 @@ local function system_render(systemBox, ignoreStatus)
 			if systemBox.table.offenceButton.bHover then
 				Graphics.CSurface.GL_RenderPrimitiveWithColor(turretBoxToggleHover, renderColour)
 			end
-			Graphics.CSurface.GL_RenderPrimitiveWithColor(turretBoxDefense, renderColour)
+			Graphics.CSurface.GL_RenderPrimitive(turretBoxDefense)
 		elseif system.table.state == turret_states.defence then
 			if systemBox.table.defenceButton.bHover then
 				Graphics.CSurface.GL_RenderPrimitiveWithColor(turretBoxToggleHover, renderColour)
 			end
-			Graphics.CSurface.GL_RenderPrimitiveWithColor(turretBoxOffense, renderColour)
+			Graphics.CSurface.GL_RenderPrimitive(turretBoxOffense)
 		end
 		Graphics.CSurface.GL_RenderPrimitiveWithColor(turretBoxInner, renderColour)
 
