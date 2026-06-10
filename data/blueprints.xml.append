@@ -65,7 +65,7 @@
 </augBlueprint>
 
 <augBlueprint name="UPG_OG_TURRET_ADAPTIVE_LARGE">
-	<title>Expanded Circuitry</title>
+	<title>Hardpoint Retrofit</title>
 	<desc>YOU SHOULD NEVER SEE THIS</desc>
 	<cost>0</cost>
 	<rarity>0</rarity>
@@ -73,11 +73,47 @@
 	<value>80</value>
 </augBlueprint>
 <augBlueprint name="EX_OG_TURRET_ADAPTIVE_LARGE">
-	<title>Expanded Circuitry [X]</title>
+	<title>Hardpoint Retrofit [X]</title>
 	<desc>Expands the adaptive turret's slot to accept all sizes of turrets.
 	
 	[X] - As an external system upgrade, this augment will provide its normal effect but take up an augment slot. Can be converted for free to the internal version under the internal upgrade menu if you have a Turret Control system.</desc>
 	<cost>40</cost>
+	<rarity>0</rarity>
+	<stackable>false</stackable>
+</augBlueprint>
+
+<augBlueprint name="UPG_OG_TURRET_ADAPTIVE_2_LARGE">
+	<title>Secondary Hardpoint Retrofit</title>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<cost>0</cost>
+	<rarity>0</rarity>
+	<stackable>false</stackable>
+	<value>80</value>
+</augBlueprint>
+<augBlueprint name="EX_OG_TURRET_ADAPTIVE_2_LARGE">
+	<title>Secondary Hardpoint Retrofit [X]</title>
+	<desc>Expands the secondary adaptive turret's slot to accept all sizes of turrets.
+	
+	[X] - As an external system upgrade, this augment will provide its normal effect but take up an augment slot. Can be converted for free to the internal version under the internal upgrade menu if you have a Turret Control system.</desc>
+	<cost>40</cost>
+	<rarity>0</rarity>
+	<stackable>false</stackable>
+</augBlueprint>
+
+<augBlueprint name="UPG_OG_TURRET_ADAPTIVE_SECONDARY">
+	<title>Secondary Turret</title>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<cost>0</cost>
+	<rarity>0</rarity>
+	<stackable>false</stackable>
+	<value>1</value>
+</augBlueprint>
+<augBlueprint name="EX_OG_TURRET_ADAPTIVE_SECONDARY">
+	<title>Secondary Turret [X]</title>
+	<desc>Installs a Secondary Adaptive Turret system in place of drone control, this new system does not consume a system slot.
+	
+	[X] - As an external system upgrade, this augment can be converted for free to the internal version under the internal upgrade menu if you have a Turret Control system.</desc>
+	<cost>50</cost>
 	<rarity>0</rarity>
 	<stackable>false</stackable>
 </augBlueprint>
@@ -217,9 +253,47 @@
 <systemBlueprint name="og_turret_adaptive">
 	<type>og_turret_adaptive</type>
 	<title>Adaptive Turret Control</title>
+	<desc>Can be Internally upgraded to add a secondary turret system alongside this one in place of drone control, secondary system does not consume a system slot. Powers your ship's turret. Upgrading lowers the charge time of the turret. Turret position can be altered outside of combat to best fit the ship, can be upgraded to a large turret slot in the internal upgrade menu.</desc>
+	<startPower>1</startPower>
+	<maxPower>4</maxPower>
+	<rarity>0</rarity>
+	<upgradeCost>
+		<level>35</level>
+		<level>55</level>
+		<level>70</level>
+		<level>100</level>
+		<level>120</level>
+		<level>140</level>
+		<level>160</level>
+	</upgradeCost>
+	<cost>50</cost>
+</systemBlueprint>
+
+<systemBlueprint name="og_turret_adaptive_2">
+	<type>og_turret_adaptive_2</type>
+	<title>Secondary Turret Control</title>
 	<desc>Powers your ship's turret. Upgrading lowers the charge time of the turret. Turret position can be altered outside of combat to best fit the ship, can be upgraded to a large turret slot in the internal upgrade menu.</desc>
 	<startPower>1</startPower>
 	<maxPower>4</maxPower>
+	<rarity>0</rarity>
+	<upgradeCost>
+		<level>35</level>
+		<level>55</level>
+		<level>70</level>
+		<level>100</level>
+		<level>120</level>
+		<level>140</level>
+		<level>160</level>
+	</upgradeCost>
+	<cost>50</cost>
+</systemBlueprint>
+
+<systemBlueprint name="og_turret_adaptive_single">
+	<type>og_turret_adaptive_single</type>
+	<title>Advanced Turret Control</title>
+	<desc>An Alternative to the Drone System, only available on ships that cannot otherwise install turrets, has an increased maximum system level. Powers your ship's turret. Upgrading lowers the charge time of the turret. Turret position can be altered outside of combat to best fit the ship, can be upgraded to a large turret slot in the internal upgrade menu.</desc>
+	<startPower>1</startPower>
+	<maxPower>6</maxPower>
 	<rarity>0</rarity>
 	<upgradeCost>
 		<level>35</level>

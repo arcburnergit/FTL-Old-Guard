@@ -49,4 +49,8 @@ Applies vunerability to hit rooms for 5 seconds
 <text name="og_turret_mini_4_installed">Turret Control System installed</text>
 <text name="og_turret_adaptive">Adaptive Turret Control</text>
 <text name="og_turret_adaptive_installed">Adaptive Turret Control System installed</text>
+<text name="og_turret_adaptive_2">Secondary Turret Control</text>
+<text name="og_turret_adaptive_2_installed">Secondary Turret Control System installed</text>
+<text name="og_turret_adaptive_single">Advanced Turret Control</text>
+<text name="og_turret_adaptive_single_installed">Advanced Turret Control System installed</text>
 </FTL>

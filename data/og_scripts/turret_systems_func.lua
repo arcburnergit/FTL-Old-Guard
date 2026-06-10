@@ -40,9 +40,12 @@ systemName.."_mini",
 systemName.."_mini_2", 
 systemName.."_mini_3", 
 systemName.."_mini_4", 
-systemName.."_adaptive"
+systemName.."_adaptive",
+systemName.."_adaptive_2",
+systemName.."_adaptive_single"
 }
 local systemNameList = mods.og.systemNameList
+
 
 for _, sysName in ipairs(systemNameList) do
 	mods.multiverse.systemIcons[Hyperspace.ShipSystem.NameToSystemId(sysName)] = mods.multiverse.register_system_icon(sysName)
@@ -152,6 +155,8 @@ do
 			end
 		end
 		turret_location[fileTable.xml]["og_turret_adaptive"] = {x = 0, y = 0, direction = turret_directions.right}
+		turret_location[fileTable.xml]["og_turret_adaptive_2"] = {x = 0, y = 0, direction = turret_directions.right}
+		turret_location[fileTable.xml]["og_turret_adaptive_single"] = {x = 0, y = 0, direction = turret_directions.right}
 	end
 end
 
@@ -661,11 +666,11 @@ end
 local function setup_adaptive_system(systemBox, systemId)
 	systemBox.pSystem.table.micro = true
 	microTurrets[systemId] = true
-	if Hyperspace.playerVariables.og_turret_adaptive_saved_x > 0 then
+	if Hyperspace.playerVariables[systemId.."_saved_x"] > 0 then
 		local shipManager = Hyperspace.ships.player
-		turret_location[shipManager.ship.shipName]["og_turret_adaptive"].x = Hyperspace.playerVariables.og_turret_adaptive_saved_x
-		turret_location[shipManager.ship.shipName]["og_turret_adaptive"].y = Hyperspace.playerVariables.og_turret_adaptive_saved_y
-		turret_location[shipManager.ship.shipName]["og_turret_adaptive"].direction = Hyperspace.playerVariables.og_turret_adaptive_saved_direction/2
+		turret_location[shipManager.ship.shipName][systemId].x = Hyperspace.playerVariables[systemId.."_saved_x"]
+		turret_location[shipManager.ship.shipName][systemId].y = Hyperspace.playerVariables[systemId.."_saved_y"]
+		turret_location[shipManager.ship.shipName][systemId].direction = Hyperspace.playerVariables[systemId.."_saved_direction"]/2
 	else
 		local roomId = systemBox.pSystem.roomId
 		local shipManager = Hyperspace.ships.player
@@ -676,8 +681,8 @@ local function setup_adaptive_system(systemBox, systemId)
 		local shipCorner = {x = ship.shipImage.x + shipGraph.shipBox.x, y = ship.shipImage.y + shipGraph.shipBox.y}
 		local posRelative = {x = pos.x - shipCorner.x, y = pos.y - shipCorner.y}
 
-		turret_location[shipManager.ship.shipName]["og_turret_adaptive"].x = posRelative.x
-		turret_location[shipManager.ship.shipName]["og_turret_adaptive"].y = posRelative.y
+		turret_location[shipManager.ship.shipName][systemId].x = posRelative.x
+		turret_location[shipManager.ship.shipName][systemId].y = posRelative.y
 	end
 end
 
@@ -689,7 +694,7 @@ local function system_construct_system_box(systemBox)
 
 		local systemId = Hyperspace.ShipSystem.SystemIdToName(systemBox.pSystem.iSystemType)
 		--print("construct player turret system "..systemId)
-		if systemId == "og_turret_adaptive" then
+		if systemId == "og_turret_adaptive" or systemId == "og_turret_adaptive_2" or systemId == "og_turret_adaptive_single" then
 			setup_adaptive_system(systemBox, systemId)
 		elseif microTurrets[systemId] then
 			systemBox.pSystem.table.micro = true
@@ -1550,8 +1555,22 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 		elseif sysName == "og_turret_adaptive" then
 			microTurrets["og_turret_adaptive"] = true
 		end
+		if sysName == "og_turret_adaptive_2" and shipManager:HasAugmentation("UPG_OG_TURRET_ADAPTIVE_2_LARGE") > 0 then
+			microTurrets["og_turret_adaptive_2"] = false
+		elseif sysName == "og_turret_adaptive_2" then
+			microTurrets["og_turret_adaptive_2"] = true
+		end
+		if sysName == "og_turret_adaptive_single" and shipManager:HasAugmentation("UPG_OG_TURRET_ADAPTIVE_LARGE") > 0 then
+			microTurrets["og_turret_adaptive_single"] = false
+		elseif sysName == "og_turret_adaptive_single" then
+			microTurrets["og_turret_adaptive_single"] = true
+		end
 		if systemCacheList[shipManager.iShipId][sysName] then
 			local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
+			if not system then 
+				systemCacheList[shipManager.iShipId][sysName] = false 
+				break
+			end
 			if system.table.blueprint == "" or not system.table.firingTime then 
 				--[[print(tostring(system.table.blueprint == ""))
 				print(tostring(not system.table.firingTime))
@@ -1852,36 +1871,74 @@ end)
 local positioning_turret = false
 local lastPosition = {x = 0, y = 0, direction = turret_directions.right}
 script.on_game_event("OG_TURRET_ADAPTIVE_POSITION", false, function() 
-	positioning_turret = true
+	positioning_turret = 1
 	lastPosition = {}
 	lastPosition.x = turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive"].x
 	lastPosition.y = turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive"].y
 	lastPosition.direction = turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive"].direction
 end)
+script.on_game_event("OG_TURRET_ADAPTIVE_2_POSITION", false, function() 
+	positioning_turret = 2
+	lastPosition = {}
+	lastPosition.x = turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive_2"].x
+	lastPosition.y = turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive_2"].y
+	lastPosition.direction = turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive_2"].direction
+end)
+script.on_game_event("OG_TURRET_ADAPTIVE_SINGLE_POSITION", false, function() 
+	positioning_turret = 3
+	lastPosition = {}
+	lastPosition.x = turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive_single"].x
+	lastPosition.y = turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive_single"].y
+	lastPosition.direction = turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive_single"].direction
+end)
 
 script.on_internal_event(Defines.InternalEvents.ON_MOUSE_L_BUTTON_DOWN, function(x, y)
-	if positioning_turret then
+	if positioning_turret == 1 then
 		positioning_turret = false
 		Hyperspace.playerVariables.og_turret_adaptive_saved_x = turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive"].x
 		Hyperspace.playerVariables.og_turret_adaptive_saved_y = turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive"].y
 		Hyperspace.playerVariables.og_turret_adaptive_saved_direction = 2 * turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive"].direction
+	elseif positioning_turret == 2 then
+		positioning_turret = false
+		Hyperspace.playerVariables.og_turret_adaptive_2_saved_x = turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive_2"].x
+		Hyperspace.playerVariables.og_turret_adaptive_2_saved_y = turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive_2"].y
+		Hyperspace.playerVariables.og_turret_adaptive_2_saved_direction = 2 * turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive_2"].direction
+	elseif positioning_turret == 3 then
+		positioning_turret = false
+		Hyperspace.playerVariables.og_turret_adaptive_single_saved_x = turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive_single"].x
+		Hyperspace.playerVariables.og_turret_adaptive_single_saved_y = turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive_single"].y
+		Hyperspace.playerVariables.og_turret_adaptive_single_saved_direction = 2 * turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive_single"].direction
 	end
 	return Defines.Chain.CONTINUE
 end)
 
 script.on_internal_event(Defines.InternalEvents.ON_MOUSE_R_BUTTON_DOWN, function(x, y)
-	if positioning_turret then
+	if positioning_turret == 1 then
 		positioning_turret = false
 		turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive"] = lastPosition
+	elseif positioning_turret == 2 then
+		positioning_turret = false
+		turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive_2"] = lastPosition
+	elseif positioning_turret == 3 then
+		positioning_turret = false
+		turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive_single"] = lastPosition
 	end
 	return Defines.Chain.CONTINUE
 end)
 
 script.on_internal_event(Defines.InternalEvents.ON_KEY_DOWN, function(key)
-	if key == 114 and positioning_turret then --r key
+	if key == 114 and positioning_turret == 1 then --r key
 		local newDir = turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive"].direction + 0.5
 		if newDir >= 2 then newDir = -2 end
 		turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive"].direction = newDir
+	elseif key == 114 and positioning_turret == 2 then --r key
+		local newDir = turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive_2"].direction + 0.5
+		if newDir >= 2 then newDir = -2 end
+		turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive_2"].direction = newDir
+	elseif key == 114 and positioning_turret == 3 then --r key
+		local newDir = turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive_single"].direction + 0.5
+		if newDir >= 2 then newDir = -2 end
+		turret_location[Hyperspace.ships.player.ship.shipName]["og_turret_adaptive_single"].direction = newDir
 	end
 	return Defines.Chain.CONTINUE
 end)
@@ -1900,20 +1957,22 @@ script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
 		--print("ellipse x:"..ship.baseEllipse.center.x.." y:"..ship.baseEllipse.center.y.." a:"..ship.baseEllipse.a.." b:"..ship.baseEllipse.b)
 		--print("mouse x:"..mousePosRelative.x.." y:"..mousePosRelative.y)
 		if withinRect and withinShield then
-			turret_location[ship.shipName]["og_turret_adaptive"].x = mousePosRelative.x
-			turret_location[ship.shipName]["og_turret_adaptive"].y = mousePosRelative.y
+			if positioning_turret == 1 then
+				turret_location[ship.shipName]["og_turret_adaptive"].x = mousePosRelative.x
+				turret_location[ship.shipName]["og_turret_adaptive"].y = mousePosRelative.y
+			elseif positioning_turret == 2 then
+				turret_location[ship.shipName]["og_turret_adaptive_2"].x = mousePosRelative.x
+				turret_location[ship.shipName]["og_turret_adaptive_2"].y = mousePosRelative.y
+			elseif positioning_turret == 3 then
+				turret_location[ship.shipName]["og_turret_adaptive_single"].x = mousePosRelative.x
+				turret_location[ship.shipName]["og_turret_adaptive_single"].y = mousePosRelative.y
+			end
 		end
 	end
 	if Hyperspace.App.menu.shipBuilder.bOpen then
-		if Hyperspace.playerVariables.og_turret_adaptive_saved_x > 0 then
-			local shipManager = Hyperspace.ships.player
-			if turret_location[shipManager.ship.shipName] and turret_location[shipManager.ship.shipName]["og_turret_adaptive"] then
-				turret_location[shipManager.ship.shipName]["og_turret_adaptive"].x = Hyperspace.playerVariables.og_turret_adaptive_saved_x
-				turret_location[shipManager.ship.shipName]["og_turret_adaptive"].y = Hyperspace.playerVariables.og_turret_adaptive_saved_y
-				turret_location[shipManager.ship.shipName]["og_turret_adaptive"].direction = Hyperspace.playerVariables.og_turret_adaptive_saved_direction/2
-			end
-		else
-			local systemId = Hyperspace.ShipSystem.NameToSystemId("og_turret_adaptive")
+		local adaptive_list_temp = {"og_turret_adaptive", "og_turret_adaptive_2", "og_turret_adaptive_single"}
+		for _, sysName in ipairs(adaptive_list_temp) do
+			local systemId = Hyperspace.ShipSystem.NameToSystemId(sysName)
 			local shipManager = Hyperspace.ships.player
 			local sysInfo = Hyperspace.ships.player.myBlueprint.systemInfo
 			if sysInfo:has_key(systemId) then
@@ -1925,8 +1984,8 @@ script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
 				local shipCorner = {x = ship.shipImage.x + shipGraph.shipBox.x, y = ship.shipImage.y + shipGraph.shipBox.y}
 				local posRelative = {x = pos.x - shipCorner.x, y = pos.y - shipCorner.y}
 
-				turret_location[shipManager.ship.shipName]["og_turret_adaptive"].x = posRelative.x
-				turret_location[shipManager.ship.shipName]["og_turret_adaptive"].y = posRelative.y
+				turret_location[shipManager.ship.shipName][sysName].x = posRelative.x
+				turret_location[shipManager.ship.shipName][sysName].y = posRelative.y
 			end
 		end
 	end

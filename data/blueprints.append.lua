@@ -7,22 +7,27 @@ local function getRoomCount(file)
 	return mod.iter.count(rooms_iter)
 end
 
-local systemsToAppend = {}
-systemsToAppend["og_turret_adaptive"] = {attributes = {power = 1, start = "false", turret = "OG_TURRET_LASER_RUSTY_MINI_1"}, manning = true, avoid = {"og_turret", "og_turret_2", "og_turret_3", "og_turret_4", "og_turret_mini", "og_turret_mini_2", "og_turret_mini_3", "og_turret_mini_4"},
-	image_list = {
-		{room_image = "room_og_turret_5", w = 2, h = 2, top = "00", bottom = "00", left="00", right="10", manning_slot = 1, manning_direction = "right"},
-		{room_image = "room_og_turret_6", w = 2, h = 2, top = "00", bottom = "00", left="00", right="01", manning_slot = 3, manning_direction = "right"},
+local turret_image_list = {
+	{room_image = "room_og_turret_5", w = 2, h = 2, top = "00", bottom = "00", left="00", right="10", manning_slot = 1, manning_direction = "right"},
+	{room_image = "room_og_turret_6", w = 2, h = 2, top = "00", bottom = "00", left="00", right="01", manning_slot = 3, manning_direction = "right"},
 
-		{room_image = "room_og_turret", w = 1, h = 3, top = "0", bottom = "0", left="000", right="010", manning_slot = 1, manning_direction = "right"},
-		{room_image = "room_og_turret_2", w = 2, h = 1, top = "00", bottom = "00", left="0", right="1", manning_slot = 1, manning_direction = "right"},
-		{room_image = "room_og_turret_3", w = 1, h = 2, top = "0", bottom = "0", left="00", right="10", manning_slot = 0, manning_direction = "right"},
-		{room_image = "room_og_turret_4", w = 2, h = 1, top = "10", bottom = "00", left="0", right="0", manning_slot = 0, manning_direction = "up"},
-		{room_image = "room_og_turret_7", w = 2, h = 1, top = "01", bottom = "00", left="0", right="0", manning_slot = 1, manning_direction = "up"},
-		{room_image = "room_og_turret_8", w = 1, h = 2, top = "0", bottom = "0", left="00", right="01", manning_slot = 1, manning_direction = "right"},
-		{room_image = "room_og_turret_9", w = 2, h = 1, top = "00", bottom = "01", left="0", right="0", manning_slot = 1, manning_direction = "down"},
-		{room_image = "room_og_turret_10", w = 2, h = 1, top = "00", bottom = "10", left="0", right="0", manning_slot = 0, manning_direction = "down"},
-		{room_image = "room_og_turret_11", w = 1, h = 1, top = "1", bottom = "0", left="0", right="0", manning_slot = 0, manning_direction = "up"},
-	}
+	{room_image = "room_og_turret", w = 1, h = 3, top = "0", bottom = "0", left="000", right="010", manning_slot = 1, manning_direction = "right"},
+	{room_image = "room_og_turret_2", w = 2, h = 1, top = "00", bottom = "00", left="0", right="1", manning_slot = 1, manning_direction = "right"},
+	{room_image = "room_og_turret_3", w = 1, h = 2, top = "0", bottom = "0", left="00", right="10", manning_slot = 0, manning_direction = "right"},
+	{room_image = "room_og_turret_4", w = 2, h = 1, top = "10", bottom = "00", left="0", right="0", manning_slot = 0, manning_direction = "up"},
+	{room_image = "room_og_turret_7", w = 2, h = 1, top = "01", bottom = "00", left="0", right="0", manning_slot = 1, manning_direction = "up"},
+	{room_image = "room_og_turret_8", w = 1, h = 2, top = "0", bottom = "0", left="00", right="01", manning_slot = 1, manning_direction = "right"},
+	{room_image = "room_og_turret_9", w = 2, h = 1, top = "00", bottom = "01", left="0", right="0", manning_slot = 1, manning_direction = "down"},
+	{room_image = "room_og_turret_10", w = 2, h = 1, top = "00", bottom = "10", left="0", right="0", manning_slot = 0, manning_direction = "down"},
+	{room_image = "room_og_turret_11", w = 1, h = 1, top = "1", bottom = "0", left="0", right="0", manning_slot = 0, manning_direction = "up"},
+}
+
+local systemsToAppend = {}
+systemsToAppend[1] = {id_name = "og_turret_adaptive", attributes = {power = 1, start = "false", turret = "OG_TURRET_LASER_RUSTY_MINI_1"}, manning = true, avoid = {"og_turret", "og_turret_2", "og_turret_3", "og_turret_4", "og_turret_mini", "og_turret_mini_2", "og_turret_mini_3", "og_turret_mini_4"},
+	image_list = turret_image_list
+}
+systemsToAppend[2] = {id_name = "og_turret_adaptive_2", alt_name = "og_turret_adaptive_single", depends_on = "og_turret_adaptive", replace_sys = "drones", only_replace = true, attributes = {power = 1, start = "false", turret = "OG_TURRET_LASER_RUSTY_MINI_1"}, manning = true, avoid = {"og_turret", "og_turret_2", "og_turret_3", "og_turret_4", "og_turret_mini", "og_turret_mini_2", "og_turret_mini_3", "og_turret_mini_4"},
+	image_list = turret_image_list
 }
 
 local function noDoorOverlap(rT, rB, rL, rR, iT, iB, iL, iR, shipName)
@@ -161,13 +166,13 @@ for blueprint in root:children() do
 					end
 				end
 				-- append new systems
-				--print("searching ship:"..shipName)
-				for system, sysInfo in pairs(systemsToAppend) do
+				for _, sysInfo in ipairs(systemsToAppend) do
 					local avoid = false
 					local hasSystem = false
 					local targetRoom = nil
 					local targetRoomSlot = nil
 					local targetRoomSize = nil
+					local systemNameFinal = sysInfo.id_name
 					if sysInfo.avoid then
 						for _, sysName in ipairs(sysInfo.avoid) do
 							if hasSystems[sysName] then
@@ -175,6 +180,9 @@ for blueprint in root:children() do
 								--print("avoid:"..sysName.." ship:"..blueprint.attrs.name)
 							end
 						end
+					end
+					if sysInfo.depends_on and not hasSystems[sysInfo.depends_on] then
+						systemNameFinal = sysInfo.alt_name
 					end
 					if sysInfo.replace_sys then
 						for room, roomTable in ipairs(roomList) do
@@ -185,7 +193,7 @@ for blueprint in root:children() do
 									targetRoomSlot = takenRooms[room-1][sysInfo.replace_sys]
 								end
 							end
-							if takenRooms[room-1] and takenRooms[room-1][system] then
+							if takenRooms[room-1] and takenRooms[room-1][systemNameFinal] then
 								hasSystem = true
 							end
 						end
@@ -200,7 +208,7 @@ for blueprint in root:children() do
 									targetRoom = room-1
 									targetRoomSize = roomTable.size
 								end
-							elseif takenRooms[room-1] and takenRooms[room-1][system] then
+							elseif takenRooms[room-1] and takenRooms[room-1][systemNameFinal] then
 								hasSystem = true
 							end
 						end
@@ -219,7 +227,7 @@ for blueprint in root:children() do
 						end
 					end
 					if targetRoom and (not hasSystem) and (not avoid) then
-						local newSystem = mod.xml.element(system, sysInfo.attributes)
+						local newSystem = mod.xml.element(systemNameFinal, sysInfo.attributes)
 						newSystem.attrs.room = targetRoom
 
 						local roomTable = roomDoors[targetRoom]
@@ -301,6 +309,7 @@ for blueprint in root:children() do
 						end
 
 						systemListElement:append(newSystem)
+						hasSystems[systemNameFinal] = true
 						for name, attribute in newSystem:attrs() do
 							if name=="room" then
 								takenRooms[attribute] = newSystem.name

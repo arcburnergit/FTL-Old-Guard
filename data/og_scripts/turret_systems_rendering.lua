@@ -653,7 +653,7 @@ local function renderTurret(shipManager, ship, spaceManager, shipGraph, sysName)
 	--print("ship:"..shipManager.iShipId.." jump first:"..shipManager.jump_timer.first.." second:"..shipManager.jump_timer.second.." bJumping"..tostring(shipManager.bJumping))
 	if shipManager.bJumping and shipManager.iShipId == 1 then return end
 	
-	if sysName == "og_turret_adaptive" then
+	if sysName == "og_turret_adaptive" or sysName == "og_turret_adaptive_2" or sysName == "og_turret_adaptive_single" then
 		renderAdaptiveBack(shipManager, ship, spaceManager, shipGraph, sysName)
 	end
 	local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))

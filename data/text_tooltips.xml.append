@@ -21,6 +21,10 @@
 <text name="tooltip_og_turret_mini_4_enemy">Turret Control: Powers the enemy turret.</text>
 <text name="tooltip_og_turret_adaptive">Turret Control: Click on the turret to set its mode, or target it. Manning reduces charge time.</text>
 <text name="tooltip_og_turret_adaptive_enemy">Turret Control: Powers the enemy turret.</text>
+<text name="tooltip_og_turret_adaptive_2">Turret Control: Click on the turret to set its mode, or target it. Manning reduces charge time.</text>
+<text name="tooltip_og_turret_adaptive_2_enemy">Turret Control: Powers the enemy turret.</text>
+<text name="tooltip_og_turret_adaptive_single">Turret Control: Click on the turret to set its mode, or target it. Manning reduces charge time.</text>
+<text name="tooltip_og_turret_adaptive_single_enemy">Turret Control: Powers the enemy turret.</text>
 
 <text name="hack_og_turret">Temporarily drain charge from the enemy turret.</text>
 <text name="hack_og_turret_2">Temporarily drain charge from the enemy turret.</text>
@@ -31,6 +35,8 @@
 <text name="hack_og_turret_mini_3">Temporarily drain charge from the enemy turret.</text>
 <text name="hack_og_turret_mini_4">Temporarily drain charge from the enemy turret.</text>
 <text name="hack_og_turret_adaptive">Temporarily drain charge from the enemy turret.</text>
+<text name="hack_og_turret_adaptive_2">Temporarily drain charge from the enemy turret.</text>
+<text name="hack_og_turret_adaptive_single">Temporarily drain charge from the enemy turret.</text>
 
 <text name="hack_og_turret_player">SYSTEM HACKED: TURRET LOSING CHARGE.</text>
 <text name="hack_og_turret_2_player">SYSTEM HACKED: TURRET LOSING CHARGE.</text>
@@ -41,6 +47,8 @@
 <text name="hack_og_turret_mini_3_player">SYSTEM HACKED: TURRET LOSING CHARGE.</text>
 <text name="hack_og_turret_mini_4_player">SYSTEM HACKED: TURRET LOSING CHARGE.</text>
 <text name="hack_og_turret_adaptive_player">SYSTEM HACKED: TURRET LOSING CHARGE.</text>
+<text name="hack_og_turret_adaptive_2_player">SYSTEM HACKED: TURRET LOSING CHARGE.</text>
+<text name="hack_og_turret_adaptive_single_player">SYSTEM HACKED: TURRET LOSING CHARGE.</text>
 
 <text name="og_lua_turret_stats_time">Stats:\nCharge Time: </text>
 <text name="og_lua_turret_stats_charges">\nMaximum Charges: %d</text>

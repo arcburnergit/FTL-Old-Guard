@@ -7,18 +7,10 @@
 	<mod-append:script>data/og_scripts/turret_systems_rendering.lua</mod-append:script>
 	<mod-append:script>data/og_scripts/turret_systems_stats.lua</mod-append:script>
 	<mod-append:script>data/og_scripts/turret_menu_temp.lua</mod-append:script>
+	<mod-append:script>data/og_scripts/og_extra_slots.lua</mod-append:script>
 	<mod-append:script>data/og_scripts/ship_ach.lua</mod-append:script>
 </mod:findLike>
 <shieldWithoutSystem enabled="true"/>
-<mod:findLike type="ships" limit="1">
-	<mod:findLike type="customShip">
-		<mod:findLike type="exclusivityOverride">
-			<mod-append:exclusivityGroup>
-				<og_turret_adaptive/>
-			</mod-append:exclusivityGroup>
-		</mod:findLike>
-	</mod:findLike>
-</mod:findLike>
 <mod:findLike type="customSystems" reverse="false">
 	<mod-append:customSystem id="og_turret"/>
 	<mod-append:customSystem id="og_turret_2"/>
@@ -29,6 +21,8 @@
 	<mod-append:customSystem id="og_turret_mini_3"/>
 	<mod-append:customSystem id="og_turret_mini_4"/>
 	<mod-append:customSystem id="og_turret_adaptive"/>
+	<mod-append:customSystem id="og_turret_adaptive_2"/>
+	<mod-append:customSystem id="og_turret_adaptive_single"/>
 
 	<mod-append:exclusivityGroup>
 		<og_turret/>
@@ -57,6 +51,10 @@
 	<mod-append:exclusivityGroup>
 		<og_turret_adaptive/>
 	</mod-append:exclusivityGroup>
+	<mod:findWithChildLike type="exclusivityGroup" child-type="drones">
+		<mod-append:og_turret_adaptive_2/>
+		<mod-append:og_turret_adaptive_single/>
+	</mod:findWithChildLike>
 
 	<mod:findLike type="systemPositions" reverse="false">
 		<mod-append:og_turret position="7"/>
@@ -68,6 +66,8 @@
 		<mod-append:og_turret_mini_3 position="7"/>
 		<mod-append:og_turret_mini_4 position="7"/>
 		<mod-append:og_turret_adaptive position="7"/>
+		<mod-append:og_turret_adaptive_2 position="7"/>
+		<mod-append:og_turret_adaptive_single position="7"/>
 	</mod:findLike>
 
 	<mod-append:systemPositions subSystemOffset="1015"> 
@@ -88,6 +88,8 @@
 		<og_turret_mini_3 position="7"/>
 		<og_turret_mini_4 position="7"/>
 		<og_turret_adaptive position="7"/>
+		<og_turret_adaptive_2 position="7"/>
+		<og_turret_adaptive_single position="7"/>
 		<mind position="8"/>
 		<hacking position="9"/>
 		<temporal position="10"/>
@@ -106,6 +108,25 @@
 </mod:findLike>
 
 <mod:findLike type="ships" limit="1" reverse="false">
+	<mod:findLike type="customShip">
+		<mod:findLike type="exclusivityOverride">
+			<mod-append:exclusivityGroup>
+				<og_turret_adaptive/>
+			</mod-append:exclusivityGroup>
+			<mod:findWithChildLike type="exclusivityGroup" child-type="drones">
+				<mod-append:og_turret_adaptive_2/>
+				<mod-append:og_turret_adaptive_single/>
+			</mod:findWithChildLike>
+			<mod-append:exclusivityGroup>
+				<drones/>
+				<og_turret_adaptive_2/>
+				<og_turret_adaptive_single/>
+			</mod-append:exclusivityGroup>
+			<mod:findWithChildLike type="exclusivityGroup" child-type="drones" start="1">
+				<mod:removeTag />
+			</mod:findWithChildLike>
+		</mod:findLike>
+	</mod:findLike>
 	<mod:findLike type="shipIcons">
 		<mod-append:shipIcon>
 			<name>icon_og_rotation</name>
@@ -605,6 +626,12 @@ This enemy possesses New Dawn turrets, when hit by these, rooms will be temporar
 	<mod-append:aug name="EX_OG_TURRET_ADAPTIVE_LARGE">
 		<function name="UPG_OG_TURRET_ADAPTIVE_LARGE" value="1" useForReqs="false" warning="true"/>
 	</mod-append:aug>
+	<mod-append:aug name="EX_OG_TURRET_ADAPTIVE_2_LARGE">
+		<function name="UPG_OG_TURRET_ADAPTIVE_2_LARGE" value="1" useForReqs="false" warning="true"/>
+	</mod-append:aug>
+	<mod-append:aug name="EX_OG_TURRET_ADAPTIVE_SECONDARY">
+		<function name="UPG_OG_TURRET_ADAPTIVE_SECONDARY" value="1" useForReqs="false" warning="true"/>
+	</mod-append:aug>
 </mod:findLike>
 <events>
 	<eventFile>special_og_battlecruisers</eventFile>
@@ -619,9 +646,16 @@ This enemy possesses New Dawn turrets, when hit by these, rooms will be temporar
 	<variable name="ach_trans_og_dawn" op="set" val="0"/>
 
 	<variable name="sec_unique_og_dawn" op="set" val="0"/>
+	<variable name="og_turret_adaptive_can_install_second" val="0"/>
 	
 	<variable name="og_turret_adaptive_saved_x" op="set" val="0"/>
 	<variable name="og_turret_adaptive_saved_y" op="set" val="0"/>
+
+	<variable name="og_turret_adaptive_2_saved_x" op="set" val="0"/>
+	<variable name="og_turret_adaptive_2_saved_y" op="set" val="0"/>
+
+	<variable name="og_turret_adaptive_single_saved_x" op="set" val="0"/>
+	<variable name="og_turret_adaptive_single_saved_y" op="set" val="0"/>
 
 	<metaVariable name="juke_og_iron" op="set" val="0"/>
 	<metaVariable name="juke_og_dawn" op="set" val="0"/>
@@ -639,6 +673,8 @@ This enemy possesses New Dawn turrets, when hit by these, rooms will be temporar
 			<name>og_turret_mini_3</name>
 			<name>og_turret_mini_4</name>
 			<name>og_turret_adaptive</name>
+			<name>og_turret_adaptive_2</name>
+			<name>og_turret_adaptive_single</name>
 			<name>og_turret_count</name>
 		</req>
 		<req lvl="0" max_lvl="0">
@@ -646,14 +682,44 @@ This enemy possesses New Dawn turrets, when hit by these, rooms will be temporar
 		</req>
 	</req>
 
-	<req name="UPG_OG_TURRET_ADAPTIVE_SHOW" type="all">
+	<req name="UPG_OG_TURRET_ADAPTIVE_SHOW" type="any">
 		<name>og_turret_adaptive</name>
+		<name>og_turret_adaptive_single</name>
 	</req>
 
 	<req name="UPG_OG_TURRET_ADAPTIVE_BUY" type="all">
-		<name>og_turret_adaptive</name>
+		<req lvl="1" type="any">
+			<name>og_turret_adaptive</name>
+			<name>og_turret_adaptive_single</name>
+		</req>
 		<req lvl="1">
 			<name>UPG_OG_TURRET_ADAPTIVE_LARGE</name>
+		</req>
+	</req>
+
+	<req name="UPG_OG_TURRET_ADAPTIVE_2_SHOW" type="any">
+		<name>og_turret_adaptive_2</name>
+	</req>
+
+	<req name="UPG_OG_TURRET_ADAPTIVE_2_BUY" type="all">
+		<req lvl="1" type="any">
+			<name>og_turret_adaptive_2</name>
+		</req>
+		<req lvl="1">
+			<name>UPG_OG_TURRET_ADAPTIVE_2_LARGE</name>
+		</req>
+	</req>
+
+	<req name="UPG_OG_TURRET_ADAPTIVE_SECONDARY_SHOW" type="all">
+		<name>og_turret_adaptive</name>
+		<name>og_turret_adaptive_can_install_second</name>
+	</req>
+
+	<req name="UPG_OG_TURRET_ADAPTIVE_SECONDARY_BUY" type="all">
+		<name>og_turret_adaptive</name>
+		<name>og_turret_adaptive_can_install_second</name>
+		<req lvl="1">
+			<name>UPG_OG_TURRET_ADAPTIVE_SECONDARY</name>
 		</req>
 	</req>
 
@@ -814,6 +880,7 @@ This enemy possesses New Dawn turrets, when hit by these, rooms will be temporar
 				<og_turret/>
 				<og_turret_2/>
 				<og_turret_adaptive/>
+				<og_turret_adaptive_single/>
 			</guaranteedSystems>
 			<item>
 				<blueprint>OG_SHOP_ITEM_TURRET_SYSTEMS</blueprint>

@@ -5,6 +5,18 @@
 			<mod-append:exclusivityGroup>
 				<og_turret_adaptive/>
 			</mod-append:exclusivityGroup>
+			<mod:findWithChildLike type="exclusivityGroup" child-type="drones">
+				<mod-append:og_turret_adaptive_2/>
+				<mod-append:og_turret_adaptive_single/>
+			</mod:findWithChildLike>
+			<mod-append:exclusivityGroup>
+				<drones/>
+				<og_turret_adaptive_2/>
+				<og_turret_adaptive_single/>
+			</mod-append:exclusivityGroup>
+			<mod:findWithChildLike type="exclusivityGroup" child-type="drones" start="1">
+				<mod:removeTag />
+			</mod:findWithChildLike>
 		</mod:findLike>
 	</mod:findLike>
 </mod:findLike>
