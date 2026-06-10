@@ -151,6 +151,11 @@ script.on_internal_event(Defines.InternalEvents.JUMP_ARRIVE, function(shipManage
 		Hyperspace.CustomAchievementTracker.instance:SetAchievement("SHIP_ACH_OG_DAWN_SPEAR_2", false)
 	end
 end)
+local achTexts = {
+	valid = Hyperspace.Text:GetText("og_lua_turret_ach_valid"),
+	crew = Hyperspace.Text:GetText("og_lua_turret_ach_crew"),
+	invalid = Hyperspace.Text:GetText("og_lua_turret_ach_invalid"),
+}
 script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
 	if should_track_achievement("SHIP_ACH_OG_DAWN_SPEAR_2", Hyperspace.ships.player, "PLAYER_SHIP_OG_DAWN_SPEAR") then
 		local jump_string = string.sub(Hyperspace.Text:GetText("jump_button"), 1, 20)
@@ -168,16 +173,16 @@ script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
 				end
 			end
 			if Hyperspace.playerVariables.og_ach_track_humans_only == 0 and validRun then
-				Hyperspace.Mouse.tooltip = Hyperspace.Mouse.tooltip.."\nRebel Allegiance Achievement: Valid Run\nCurrent Ship Crew: Valid"
+				Hyperspace.Mouse.tooltip = Hyperspace.Mouse.tooltip..achTexts.valid
 			elseif Hyperspace.playerVariables.og_ach_track_humans_only == 0 then
 				local appendCrewString = ""
 				for _, s in ipairs(invalidCrew) do
 					appendCrewString = appendCrewString..", "..s
 				end
 				appendCrewString = string.sub(appendCrewString, 2)
-				Hyperspace.Mouse.tooltip = Hyperspace.Mouse.tooltip.."\nRebel Allegiance Achievement: Valid Run\nCurrent Ship Crew: Invalid\nInvalid Crew:"..appendCrewString
+				Hyperspace.Mouse.tooltip = Hyperspace.Mouse.tooltip..achTexts.crew..appendCrewString
 			else
-				Hyperspace.Mouse.tooltip = Hyperspace.Mouse.tooltip.."\nRebel Allegiance Achievement: Invalid Run"
+				Hyperspace.Mouse.tooltip = Hyperspace.Mouse.tooltip..achTexts.invalid
 			end
 		end
 	end

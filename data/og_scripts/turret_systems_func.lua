@@ -886,6 +886,12 @@ script.on_game_event("COMBAT_CHECK_HOTKEYS_OG_TURRET_7_START", false, function()
 script.on_game_event("COMBAT_CHECK_HOTKEYS_OG_TURRET_8_START", false, function() settingTurret = 8 end)
 script.on_game_event("COMBAT_CHECK_HOTKEYS", false, function() settingTurret = nil end)
 
+local keyText = {
+	unset = Hyperspace.Text:GetText("og_lua_turret_key_unset"),
+	current = Hyperspace.Text:GetText("og_lua_turret_key_current"),
+	currently = Hyperspace.Text:GetText("og_lua_turret_key_currently"),
+}
+
 local emptyReq = Hyperspace.ChoiceReq()
 local hotkey_events = {}
 hotkey_events["COMBAT_CHECK_HOTKEYS_OG_TURRET_1_START"] = true
@@ -909,9 +915,9 @@ script.on_internal_event(Defines.InternalEvents.PRE_CREATE_CHOICEBOX, function(e
 			end
 		end
 		if key == -1 then
-			s = "Unset"
+			s = keyText.unset
 		end
-		event:AddChoice(event, "Current key: "..s, emptyReq, false)
+		event:AddChoice(event, keyText.current..s, emptyReq, false)
 	end
 end)
 
@@ -975,9 +981,9 @@ script.on_internal_event(Defines.InternalEvents.POST_CREATE_CHOICEBOX, function(
 					end
 				end
 				if key == -1 then
-					s = "Unset"
+					s = keyText.unset
 				end
-				choice.text = choice.text.." (currently is the \""..s.."\" key)"
+				choice.text = choice.text..string.format(keyText.currently, s)
 			end
 		end
 	end

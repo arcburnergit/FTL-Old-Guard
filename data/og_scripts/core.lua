@@ -536,8 +536,8 @@ script.on_internal_event(Defines.InternalEvents.POWER_ON_UPDATE, function(power)
 end)
 
 local repToShow = {
-	{id = "rep_comb_og_iron", name = "Iron Watch Reputation"},
-	{id = "rep_og_dawn", name = "New Dawn Reputation", hidden = true},
+	{id = "rep_comb_og_iron", name = Hyperspace.Text:GetText("og_lua_turret_rep_iron")},
+	{id = "rep_og_dawn", name = Hyperspace.Text:GetText("og_lua_turret_rep_dawn"), hidden = true},
 }
 
 local emptyReq = Hyperspace.ChoiceReq()
@@ -762,12 +762,14 @@ defLOWHPTHRESH.priority = 9999
 defLOWHPTHRESH.realBoostId = Hyperspace.StatBoostDefinition.statBoostDefs:size()
 Hyperspace.StatBoostDefinition.statBoostDefs:push_back(defLOWHPTHRESH)
 
+local cloneName = Hyperspace.Text:GetText("og_lua_turret_clone_cannon")
+
 script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA_HIT, function(shipManager, projectile, location, damage, shipFriendlyFire)
 	if projectile then
 		local cloneTable = userdata_table(projectile, "mods.og").clone_cannon
 		if cloneTable then
 			local room = get_room_at_location(shipManager, location, true)
-			local clone = shipManager:AddCrewMemberFromString("Clone", cloneTable, true, room, true, true)
+			local clone = shipManager:AddCrewMemberFromString(cloneName, cloneTable, true, room, true, true)
 			Hyperspace.StatBoostManager.GetInstance():CreateTimedAugmentBoost(Hyperspace.StatBoost(defNOCLONE), clone)
 			Hyperspace.StatBoostManager.GetInstance():CreateTimedAugmentBoost(Hyperspace.StatBoost(defNOSLOT), clone)
 			Hyperspace.StatBoostManager.GetInstance():CreateTimedAugmentBoost(Hyperspace.StatBoost(defNOWARNING), clone)

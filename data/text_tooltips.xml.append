@@ -115,4 +115,17 @@
 <text name="og_lua_turret_fabricate_item">\n[%s]</text>
 <text name="og_lua_turret_fabricate_mystery">\n[???]</text>
 <text name="og_lua_turret_fabricate_hover">Can be fabricated into: </text>
+
+<text name="og_lua_turret_key_unset">Unset</text>
+<text name="og_lua_turret_key_current">Current key: </text>
+<text name="og_lua_turret_key_currently"> (currently is the \"%s\" key)</text>
+
+<text name="og_lua_turret_ach_valid">\nRebel Allegiance Achievement: Valid Run\nCurrent Ship Crew: Valid</text>
+<text name="og_lua_turret_ach_crew">\nRebel Allegiance Achievement: Valid Run\nCurrent Ship Crew: Invalid\nInvalid Crew:</text>
+<text name="og_lua_turret_ach_invalid">\nRebel Allegiance Achievement: Invalid Run</text>
+
+<text name="og_lua_turret_clone_cannon">Clone</text>
+
+<text name="og_lua_turret_rep_iron">Iron Watch Reputation</text>
+<text name="og_lua_turret_rep_dawn">New Dawn Reputation</text>
 </FTL>
