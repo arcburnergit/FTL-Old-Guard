@@ -843,7 +843,7 @@
 				<event>
 					<text>You move in and begin looting the civilian when an Iron Watch ship arrives at the beacon. They appear to think you're responsible for the wreck as they immediately move in to attack.</text>
 					<autoReward level="LOW">stuff</autoReward>
-					<ship load="SHIP_OG_IRON_FIGHT" hostile="false"/>
+					<ship load="SHIP_OG_IRON_FIGHT" hostile="true"/>
 					<choice hidden="true">
 						<text>Continue...</text>
 						<event load="REPUTATION_DECREASE_OG_IRON_COMBAT"/>
