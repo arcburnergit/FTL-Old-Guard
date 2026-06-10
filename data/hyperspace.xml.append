@@ -284,7 +284,7 @@ This enemy possesses New Dawn turrets, when hit by these, rooms will be temporar
 		</achievement>
 		<achievement name="SHIP_ACH_OG_DAWN_SPEAR_3" layout="all">
 			<name>Combo Breaker</name>
-			<description>As a Spearhead-Class vessel: Trigger the bonus system damage from a New Dawn turret 6 times from an application of the effect.</description>
+			<description>As a Spearhead-Class vessel: Trigger the bonus system damage from a New Dawn turret 6 times from a single application of the effect.</description>
 			<icon>ogp_dawn_spear_3_icon</icon>
 			<lockImage>ogp_dawn_spear_3_icon_locked</lockImage>
 		</achievement>

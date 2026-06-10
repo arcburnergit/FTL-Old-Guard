@@ -688,6 +688,7 @@ script.on_internal_event(Defines.InternalEvents.DAMAGE_BEAM, function(shipManage
 	if projectile and projectile.extend.name and vunerable_weapons[projectile.extend.name] then
 		if vunerable_rooms[shipManager.iShipId][room] then
 			vunerable_rooms[shipManager.iShipId][room].time = math.max(vunerable_rooms[shipManager.iShipId][room].time, vunerable_weapons[projectile.extend.name])
+			vunerable_rooms[shipManager.iShipId][room].triggers = 0
 		else
 			vunerable_rooms[shipManager.iShipId][room] = {time = vunerable_weapons[projectile.extend.name], triggers = 0}
 		end
@@ -701,6 +702,7 @@ script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA_HIT, function(shipMa
 	if projectile and projectile.extend.name and vunerable_weapons[projectile.extend.name] then
 		if vunerable_rooms[shipManager.iShipId][room] then
 			vunerable_rooms[shipManager.iShipId][room].time = math.max(vunerable_rooms[shipManager.iShipId][room].time, vunerable_weapons[projectile.extend.name])
+			vunerable_rooms[shipManager.iShipId][room].triggers = 0
 		else
 			vunerable_rooms[shipManager.iShipId][room] = {time = vunerable_weapons[projectile.extend.name], triggers = 0}
 		end

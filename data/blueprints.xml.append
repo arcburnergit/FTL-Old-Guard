@@ -676,7 +676,7 @@
 	<title>Chaotic Light Charger Turret</title>
 	<short>Light C.™</short>
 	<desc>A specialized Light Laser Turret which is extremely effective at defending the ship with its high charge count and quick rotation speed.
-Chaotic varient rotates 5x as fast and can target any projectile.</desc>
+Chaotic variant rotates 5x as fast and can target any projectile.</desc>
 	<tooltip>Turret</tooltip>
 	<damage>0</damage>
 	<sp>0</sp>
@@ -1401,7 +1401,7 @@ Chaotic varient rotates 5x as fast and can target any projectile.</desc>
 	<title>Dawn Heavy Laser Turret</title>
 	<short>€ Heavy L.</short>
 	<desc>Heavy Laser Turrets make for poor defensive turrets with their slow rotation speed and high damage per shot, but are excellent against enemy ships.
-New Dawn varient applies a status effect to hit rooms that causes them to take +1 system damage. However Turret Systems equiped with New Dawn turrets similarly take +1 system damage when hit.</desc>
+New Dawn variant applies a status effect to hit rooms that causes them to take +1 system damage. However Turret Systems equiped with New Dawn turrets similarly take +1 system damage when hit.</desc>
 	<tooltip>Turret</tooltip>
 	<damage>0</damage>
 	<sp>0</sp>
@@ -1423,7 +1423,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<title>Dawn Fire Ion Turret</title>
 	<short>€ Fire I.</short>
 	<desc>Ion Turrets are excellent drone suppression aswell as being able to disable systems without causing hull damage. This one starts fires in the system it hits.
-New Dawn varient applies a status effect to hit rooms that causes them to take +1 system damage. However Turret Systems equiped with New Dawn turrets similarly take +1 system damage when hit.</desc>
+New Dawn variant applies a status effect to hit rooms that causes them to take +1 system damage. However Turret Systems equiped with New Dawn turrets similarly take +1 system damage when hit.</desc>
 	<tooltip>€ Turret</tooltip>
 	<damage>0</damage>
 	<sp>0</sp>
@@ -1445,7 +1445,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<title>Dawn Dual Missile Turret</title>
 	<short>€ Dual M.</short>
 	<desc>Slow to charge but capable of delivering high damage to the enemy ship, decent against enemy drones and solid projectiles.
-New Dawn varient applies a status effect to hit rooms that causes them to take +1 system damage. However Turret Systems equiped with New Dawn turrets similarly take +1 system damage when hit.</desc>
+New Dawn variant applies a status effect to hit rooms that causes them to take +1 system damage. However Turret Systems equiped with New Dawn turrets similarly take +1 system damage when hit.</desc>
 	<tooltip>Turret</tooltip>
 	<damage>0</damage>
 	<sp>0</sp>
@@ -1467,7 +1467,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<title>Dawn Flak Turret</title>
 	<short>€ Flak</short>
 	<desc>A powerful Flak turret, can build up an incredible volley to be fired in both defence and offence.
-New Dawn varient applies a status effect to hit rooms that causes them to take +1 system damage. However Turret Systems equiped with New Dawn turrets similarly take +1 system damage when hit.</desc>
+New Dawn variant applies a status effect to hit rooms that causes them to take +1 system damage. However Turret Systems equiped with New Dawn turrets similarly take +1 system damage when hit.</desc>
 	<tooltip>Turret</tooltip>
 	<damage>0</damage>
 	<sp>0</sp>
@@ -1489,7 +1489,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<title>Dawn Pinpoint Turret</title>
 	<short>€ Pinpoint</short>
 	<desc>Pinpoint Turrets prove extremely effective against enemy missiles due to their almost instantaneous time to kill.
-New Dawn varient applies a status effect to hit rooms that causes them to take +1 system damage. However Turret Systems equiped with New Dawn turrets similarly take +1 system damage when hit.</desc>
+New Dawn variant applies a status effect to hit rooms that causes them to take +1 system damage. However Turret Systems equiped with New Dawn turrets similarly take +1 system damage when hit.</desc>
 	<tooltip>Turret</tooltip>
 	<damage>0</damage>
 	<sp>0</sp>
@@ -1511,7 +1511,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<title>Dawn Micro Laser Turret</title>
 	<short>€ Micro L.</short>
 	<desc>This Laser Turret is unlikely to be able to deal with an enemy ship on it's own, but its high rotation speed makes it a defensive unit.
-New Dawn varient applies a status effect to hit rooms that causes them to take +1 system damage. However Turret Systems equiped with New Dawn turrets similarly take +1 system damage when hit.</desc>
+New Dawn variant applies a status effect to hit rooms that causes them to take +1 system damage. However Turret Systems equiped with New Dawn turrets similarly take +1 system damage when hit.</desc>
 	<tooltip>Turret</tooltip>
 	<damage>0</damage>
 	<sp>0</sp>
@@ -1533,7 +1533,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<title>Dawn Light Laser Turret</title>
 	<short>€ Light L.</short>
 	<desc>Incapable of doing system damage, this Light Laser Turret is much better suited for shield suppression and defence.
-New Dawn varient applies a status effect to hit rooms that causes them to take +1 system damage. However Turret Systems equiped with New Dawn turrets similarly take +1 system damage when hit.</desc>
+New Dawn variant applies a status effect to hit rooms that causes them to take +1 system damage. However Turret Systems equiped with New Dawn turrets similarly take +1 system damage when hit.</desc>
 	<tooltip>Turret</tooltip>
 	<damage>0</damage>
 	<sp>0</sp>
@@ -1555,7 +1555,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<title>Dawn Micro Pinpoint Turret</title>
 	<short>€ Micro P.</short>
 	<desc>This small Pinpoint Turret requires support to damage the enemy ship, but remains capable against enemy missiles.
-New Dawn varient applies a status effect to hit rooms that causes them to take +1 system damage. However Turret Systems equiped with New Dawn turrets similarly take +1 system damage when hit.</desc>
+New Dawn variant applies a status effect to hit rooms that causes them to take +1 system damage. However Turret Systems equiped with New Dawn turrets similarly take +1 system damage when hit.</desc>
 	<tooltip>Turret</tooltip>
 	<damage>0</damage>
 	<sp>0</sp>
@@ -4068,7 +4068,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<class>Spearhead-Class</class>
 	<name>The God Ray</name>
 	<unlock id="ship_PLAYER_SHIP_OG_DAWN_SPEAR_2_unlock"/>
-	<desc>This varient of the Spearhead-Class cruiser uses turrets to protect itself and it's weapons to provide offence. Using your turrets for offence will be risky without any other defensive systems to rely on.</desc>
+	<desc>This variant of the Spearhead-Class cruiser uses turrets to protect itself and it's weapons to provide offence. Using your turrets for offence will be risky without any other defensive systems to rely on.</desc>
 	<systemList>
 		<og_turret power="2" max="5" room="3" start="true" turret="OG_TURRET_LASER_1" img="room_og_turret_6" >
 			<slot>
@@ -4154,7 +4154,7 @@ New Dawn varient applies a status effect to hit rooms that causes them to take +
 	<class>Spearhead-Class</class>
 	<name>The Burning Emblem</name>
 	<unlock id="ship_PLAYER_SHIP_OG_DAWN_SPEAR_3_unlock"/>
-	<desc>Armed to the teeth, this ship is fully combat focused. A product of rebel design the ship makes use of malforms  to eliminate the need for oxygen, and a doctor drone in place of a medical system.</desc>
+	<desc>Armed to the teeth, this ship is fully combat focused. A product of rebel design, the ship makes use of malforms to eliminate the need for oxygen, and a doctor drone in place of a medical system.</desc>
 	<systemList>
 		<og_turret power="2" max="5" room="1" start="true" turret="OG_TURRET_LASER_CHAINGUN" img="room_og_turret_8" >
 			<slot>

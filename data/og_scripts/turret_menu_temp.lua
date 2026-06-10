@@ -233,16 +233,18 @@ table.insert(defence_drones_mini, "OG_TURRET_BASE_MINI")
 
 mods.og.hideName = {}
 local hideName = mods.og.hideName
+
+ancient_text = Hyperspace.Text:GetText("og_lua_turret_hidename_ancient")
 for item in vter(Hyperspace.Blueprints:GetBlueprintList("BLUELIST_OBELISK")) do
-	--print("add to hideName:"..item)
-	hideName[item] = "Something Old..."
+	hideName[item] = ancient_text
 end
+local clone_cannon_text = Hyperspace.Text:GetText("og_lua_turret_hidename_clone_cannon")
 local clone_cannon_list = {}
 for item in vter(Hyperspace.Blueprints:GetBlueprintList("LIST_CLONE_CANNON")) do
-	hideName[item] = "Something Ethically Dubious."
+	hideName[item] = clone_cannon_text
 	table.insert(clone_cannon_list, item)
 end
-hideName["GATLING"] = "Unleash hell on your opposition!"
+hideName["GATLING"] = Hyperspace.Text:GetText("og_lua_turret_hidename_gatling")
 hideName["GATLING_VERSION1"] = ""
 hideName["GATLING_VERSION2"] = ""
 hideName["GATLING_VERSION3"] = ""
@@ -251,14 +253,14 @@ hideName["GATLING_VERSION5"] = ""
 hideName["GATLING_VERSION6"] = ""
 hideName["GATLING_VERSION7"] = ""
 hideName["GATLING_VERSION8"] = ""
-hideName["PRIME_LASER"] = "Let it hit you and you're already dead."
-hideName["DEFENSE_PRIME"] = "Guardian Angel."
-hideName["COMBAT_PRIME"] = "Angel of Vengeance."
-hideName["BEAM_HARDSCIFI"] = "REAL SCIENCE!"
-hideName["GATLING_SYLVAN"] = "You greedy, murdering traitor you."
-hideName["GATLING_SYLVAN_HONOR"] = "Go kick some Rebel asses."
+hideName["PRIME_LASER"] = Hyperspace.Text:GetText("og_lua_turret_hidename_prime_laser")
+hideName["DEFENSE_PRIME"] = Hyperspace.Text:GetText("og_lua_turret_hidename_prime_defense")
+hideName["COMBAT_PRIME"] = Hyperspace.Text:GetText("og_lua_turret_hidename_prime_combat")
+hideName["BEAM_HARDSCIFI"] = Hyperspace.Text:GetText("og_lua_turret_hidename_scifi")
+hideName["GATLING_SYLVAN"] = Hyperspace.Text:GetText("og_lua_turret_hidename_sylvan")
+hideName["GATLING_SYLVAN_HONOR"] = Hyperspace.Text:GetText("og_lua_turret_hidename_sylvan_honor")
 
-hideName["DDSHOTGUN_SOULPLAGUE"] = "You're hungry for more turrets - the turrets are hungry for more... well, everything."
+hideName["DDSHOTGUN_SOULPLAGUE"] = Hyperspace.Text:GetText("og_lua_turret_hidename_dd_soulplague")
 hideName["DDFOCUS_SOULPLAGUE"] = ""
 hideName["DDPHASE_SOULPLAGUE"] = ""
 hideName["DDMISSILES_SOULPLAGUE"] = ""
@@ -267,7 +269,7 @@ hideName["DDCHAINLASER_SOULPLAGUE"] = ""
 hideName["DDCHAINLASER_SOULPLAGUE_CHAOS"] = ""
 hideName["DDSOULPLAGUE_SHATTEREDPROMISE"] = ""
 
-hideName["DDFALSERADIANCE_BURSTMISSILE"] = "And then, upon the eighth day... your enemies cried out, with an ardent voice - pleading for salvation. It would never come."
+hideName["DDFALSERADIANCE_BURSTMISSILE"] = Hyperspace.Text:GetText("og_lua_turret_hidename_dd_falseradiance")
 hideName["DDFALSERADIANCE_CHAINLASER"] = ""
 hideName["DDFALSERADIANCE_PIERCELASER"] = ""
 hideName["DDFALSERADIANCE_CHAINFOCUS"] = ""
@@ -277,7 +279,7 @@ hideName["DDFALSERADIANCE_HEAVYSHOTGUN"] = ""
 hideName["DDFALSERADIANCE_LOST_GODHOOD"] = ""
 hideName["DDFALSERADIANCE_LOOT"] = ""
 
-hideName["SHOTGUN_DARKGOD"] = "Things are getting a bit darker than you'd desire, aren't they?"
+hideName["SHOTGUN_DARKGOD"] = Hyperspace.Text:GetText("og_lua_turret_hidename_dd_darkgod")
 hideName["LASER_DARKGOD"] = ""
 hideName["BOMB_DARKGOD"] = ""
 hideName["DD_BEAM_INSTANT_DARKGOD"] = ""

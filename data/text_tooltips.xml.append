@@ -128,4 +128,18 @@
 
 <text name="og_lua_turret_rep_iron">Iron Watch Reputation</text>
 <text name="og_lua_turret_rep_dawn">New Dawn Reputation</text>
+
+<text name="og_lua_turret_hidename_ancient">Something Old...</text>
+<text name="og_lua_turret_hidename_clone_cannon">Something Ethically Dubious.</text>
+<text name="og_lua_turret_hidename_gatling">Unleash hell on your opposition!</text>
+<text name="og_lua_turret_hidename_prime_laser">Let it hit you and you're already dead.</text>
+<text name="og_lua_turret_hidename_prime_defense">Guardian Angel.</text>
+<text name="og_lua_turret_hidename_prime_combat">Angel of Vengeance.</text>
+<text name="og_lua_turret_hidename_scifi">REAL SCIENCE!</text>
+<text name="og_lua_turret_hidename_sylvan">You greedy, murdering traitor you.</text>
+<text name="og_lua_turret_hidename_sylvan_honor">Go kick some Rebel asses.</text>
+
+<text name="og_lua_turret_hidename_dd_soulplague">You're hungry for more turrets - the turrets are hungry for more... well, everything.</text>
+<text name="og_lua_turret_hidename_dd_falseradiance">And then, upon the eighth day... your enemies cried out, with an ardent voice - pleading for salvation. It would never come.</text>
+<text name="og_lua_turret_hidename_dd_darkgod">Things are getting a bit darker than you'd desire, aren't they?</text>
 </FTL>
