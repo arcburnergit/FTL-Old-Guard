@@ -26,6 +26,10 @@ script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
 			animation_id = {firing = true, looping = true},
 			animation_id = {charging = true, charged = true, depowered = true, looping = false}, -- when looping = false it will only play on the transition from inactive to active, so this one will only play after firing.
 		} --an animation can be played under multiple conditions, this means that instead of stopping one anim and starting a new identical one we can just continue the same animation
+		autofire = { --false/true/amount; false for 1 charge per shot, true for all stored charges, amount is amount; false is default
+			offence = true, 
+			defence = true,
+		}, --if autofire tag is left undefined, will fire 1 charge per shot
 		hide_glow_firing = true, --hides the glow image while turret is firing
 		shot_radius = 42, --Makes the turret less accurate, radius is halved (making it more accurate) while performing defensive duties, ie shooting at a drone
 		aim_cone = 45, --how close to aiming at the target does the turret need to be in order to fire at it

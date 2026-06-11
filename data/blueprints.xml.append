@@ -760,7 +760,7 @@ Chaotic variant rotates 5x as fast and can target any projectile.</desc>
 	<tip>tip_og_turret</tip>
 	<title>Irradiation Laser Turret</title>
 	<short>Rad L.</short>
-	<desc>A specialized Laser Turret that does high bio damage and cripples crew, but no system or hull damage. This turret is also extremely capable in the defense role shooting down enemy lasers.</desc>
+	<desc>A specialized Laser Turret that does high bio damage and cripples crew, but no system or hull damage. This turret is also extremely capable in the defence role shooting down enemy lasers.</desc>
 	<tooltip>Turret</tooltip>
 	<damage>0</damage>
 	<sp>0</sp>
