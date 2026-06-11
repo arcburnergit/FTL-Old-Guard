@@ -59,9 +59,13 @@ local chain_types = mods.og.chain_types
 local turrets = mods.og.turrets
 turrets["OG_EMPTY_TURRET"] = {
 	image = "og_turret_laser_error",
-	multi_anim = {frames = 3},
+	multi_anim = 3,
 	glow = "og_turret_laser_1_glow",
-	fire_points = {{x = 12, y = -42, fire_delay = 0.1}, {x = -12, y = -42, fire_delay = 0.5}},
+	fire_points = {{x = -12, y = -42, fire_delay = 0.5}, {x = 12, y = -42, fire_delay = 0.5}},
+	autofire = {
+		offence = 2,
+		defence = 2,
+	},
 	defence_type = defence_types.ALL,
 	blueprint_type = 1,
 	blueprint = "OG_LASER_PROJECTILE_BASE",
@@ -73,9 +77,13 @@ turrets["OG_EMPTY_TURRET"] = {
 turrets["OG_TURRET_LASER_1"] = {
 	enemy_burst = 2,
 	image = "og_turret_laser_1",
-	multi_anim = {frames = 3},
+	multi_anim = 3,
 	glow = "og_turret_laser_1_glow",
-	fire_points = {{x = 12, y = -42, fire_delay = 0.5}, {x = -12, y = -42, fire_delay = 0.35, auto_burst = true}},
+	fire_points = {{x = -12, y = -42, fire_delay = 0.5}, {x = 12, y = -42, fire_delay = 0.35}},
+	autofire = {
+		offence = 2,
+		defence = 2,
+	},
 	defence_type = defence_types.PROJECTILES,
 	blueprint_type = 1,
 	blueprint = "OG_LASER_PROJECTILE_BASE",
@@ -88,9 +96,13 @@ turrets["OG_TURRET_LASER_RUSTY_1"] = {
 	enemy_burst = 2,
 	shot_radius = 42,
 	image = "og_turret_laser_rusty_1",
-	multi_anim = {frames = 3},
+	multi_anim = 3,
 	glow = "og_turret_laser_1_glow",
-	fire_points = {{x = 12, y = -42, fire_delay = 0.5}, {x = -12, y = -42, fire_delay = 0.5}},
+	fire_points = {{x = -12, y = -42, fire_delay = 0.5}, {x = 12, y = -42, fire_delay = 0.35}},
+	autofire = {
+		offence = 2,
+		defence = 2,
+	},
 	defence_type = defence_types.PROJECTILES,
 	blueprint_type = 1,
 	blueprint = "OG_LASER_PROJECTILE_BASE",
@@ -383,6 +395,7 @@ turrets["OG_TURRET_CRYSTAL_1_ELITE"] = {
 turrets["OG_TURRET_MISSILE_1"] = {
 	enemy_burst = 3,
 	homing = 720,
+	intercept_amount = 1,
 	aim_cone = 45,
 	image = "og_turret_missile_1",
 	glow = "og_turret_missile_1_glow",
@@ -399,6 +412,7 @@ turrets["OG_TURRET_MISSILE_1"] = {
 turrets["OG_TURRET_MISSILE_2"] = {
 	enemy_burst = 2,
 	homing = 480,
+	intercept_amount = 1,
 	aim_cone = 30,
 	image = "og_turret_missile_2",
 	glow = "og_turret_missile_2_glow",
@@ -657,6 +671,7 @@ turrets["OG_TURRET_MISSILE_MINI_1"] = {
 	enemy_burst = 1,
 	mini = true,
 	homing = 360,
+	intercept_amount = 1,
 	aim_cone = 10,
 	image = "og_turret_missile_mini_1",
 	glow = "og_turret_missile_mini_1_glow",
@@ -831,7 +846,7 @@ turrets["OG_TURRET_FOCUS_SOULPLAGUE"] = {
 turrets["OG_TURRET_MISSILE_FALSERADIANCE"] = {
 	enemy_burst = 8,
 	homing = 720,
-	multifire_homing = true,
+	intercept_amount = 2,
 	aim_cone = 60,
 	shot_radius = 84,
 	image = "og_turret_missile_falseradiance",

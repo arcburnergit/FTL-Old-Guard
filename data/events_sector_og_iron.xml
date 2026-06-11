@@ -576,14 +576,14 @@
 
 <!--ITEMS-->
 <eventList name="ITEMS_OG_IRON">
-	<event load="OG_IRON_DEFENSE_DRONE"/>
+	<event load="OG_IRON_DEFENCE_DRONE"/>
 	<event load="OG_IRON_FOR_SCIENCE"/>
 	<event load="OG_IRON_DAWN_WRECK"/>
 	
 	<event load="FILLER_FUEL_FOR_DRONE"/>
 </eventList>
 
-<event name="OG_IRON_DEFENSE_DRONE" unique="true">
+<event name="OG_IRON_DEFENCE_DRONE" unique="true">
 	<ship load="SHIP_OG_IRON_GENERIC" hostile="false"/>
 	<text>You arrive at the beacon to discover an Iron Watch ship. The captain is seemingly quite distressed as you can hear yelling over the public channels.
 	"What do you mean it's not a turret?" You can hear the faint noise of one of their crew trying to explain something the captain clearly doesn't understand.
@@ -1670,7 +1670,7 @@ They don't immediately respond and they keep their jump drive ready.</text>
 			<choice hidden="true">
 				<text>Threaten the outpost for the information.</text>
 				<event>
-					<text>The outpost is effectively defenseless against your weapons, they quickly capitulate to your demands, uploading the data on the prototype. They also kindly return your donation.</text>
+					<text>The outpost is effectively defenceless against your weapons, they quickly capitulate to your demands, uploading the data on the prototype. They also kindly return your donation.</text>
 					<item_modify>
 						<item type="scrap" min="10" max="10" />
 					</item_modify>
@@ -1710,7 +1710,7 @@ They don't immediately respond and they keep their jump drive ready.</text>
 	<choice hidden="true">
 		<text>Threaten the outpost for the information.</text>
 		<event>
-			<text>The outpost is effectively defenseless against your weapons, they quickly capitulate to your demands, uploading the data on the prototype.</text>
+			<text>The outpost is effectively defenceless against your weapons, they quickly capitulate to your demands, uploading the data on the prototype.</text>
 			<quest event="OG_IRON_PROTOTYPE_DESTINATION"/>
 			<choice>
 				<text>Continue...</text>
@@ -1757,7 +1757,7 @@ They don't immediately respond and they keep their jump drive ready.</text>
 	<choice hidden="true">
 		<text>Threaten the outpost for the information.</text>
 		<event>
-			<text>The outpost is effectively defenseless against your weapons, they quickly capitulate to your demands, uploading the data on the prototype.</text>
+			<text>The outpost is effectively defenceless against your weapons, they quickly capitulate to your demands, uploading the data on the prototype.</text>
 			<quest event="OG_IRON_PROTOTYPE_DESTINATION"/>
 			<choice>
 				<text>Continue...</text>

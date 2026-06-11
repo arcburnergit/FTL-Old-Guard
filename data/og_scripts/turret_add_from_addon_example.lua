@@ -19,14 +19,17 @@ script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
 		stealth = true, --Like pierce lasers or beams/pinpoints, doesn't consume cloak timer when firing
 		image = "example_turret_name_anim", -- main animation
 		charging_anim = "example_turret_name_charging_anim", -- charging animation, if not present first frame of main animation used instead
-		custom_animations = { --looping animation to play over the top in different situations
-			animation_id = {depowered = true},
-			animation_id = {charging = true},
-			animation_id = {charged = true},
-		}
+		custom_animations = { --animation to play over the top in different situations
+			animation_id = {depowered = true, looping = true},
+			animation_id = {charging = true, looping = true},
+			animation_id = {charged = true, looping = false},
+			animation_id = {firing = true, looping = true},
+			animation_id = {charging = true, charged = true, depowered = true, looping = false}, -- when looping = false it will only play on the transition from inactive to active, so this one will only play after firing.
+		} --an animation can be played under multiple conditions, this means that instead of stopping one anim and starting a new identical one we can just continue the same animation
 		hide_glow_firing = true, --hides the glow image while turret is firing
 		shot_radius = 42, --Makes the turret less accurate, radius is halved (making it more accurate) while performing defensive duties, ie shooting at a drone
 		aim_cone = 45, --how close to aiming at the target does the turret need to be in order to fire at it
+		intercept_amount = 1, --how many to fire at target in defensive mode
 		homing = 36, --Gives projectiles the ability to steer and home in in the target, most useful with a higher aim cone to allow the turret to fire on the target earlier, and have the projectiles make up for the remaining aiming.
 		multi_anim = {frames = 3}, -- Splits the Animation into a number of sections, each section corresponding to one projectile, in this case we split the first 3 frames for the left shot, and then the remaining are the right
 		glow = "example_turret_name_anim_glow", -- glow, each frame is for 1 charge, so first frame is when the weapon has charged 1 shot, 2nd frame 2 shots, ect

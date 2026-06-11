@@ -617,7 +617,7 @@ For your extra egregious actions, your reputation was decreased twice.</text>
 	<event load="OG_DAWN_SUPPLIES_NEEDED"/>
 	<event load="OG_DAWN_OUTPOST_FLEET"/>
 	
-	<event load="OG_IRON_DEFENSE_DRONE"/>
+	<event load="OG_IRON_DEFENCE_DRONE"/>
 </eventList>
 
 <event name="OG_DAWN_DEBRIS_FIELD" unique="true">
@@ -2125,7 +2125,7 @@ Upon seeing you they also activate their weapons, preparing to attack. You notic
 </event>
 <event name="OG_DAWN_HEIST_DAWN_WIN_FOLLOWUP">
 	<clearTriggeredEvent name="OG_DAWN_HEIST_DAWN_TIMER"/>
-	<text>It's only a few minutes later when the New Dawn cruiser arrives, "Oh thank the gods you managed to stop them, we defeated the rest of the ships at the data-vault, but this one slipped through our defenses, we believe they had the stolen data on them, the salvage team are on their way now to try and cleanup anything that survived. We cannot thank you enough for the help."
+	<text>It's only a few minutes later when the New Dawn cruiser arrives, "Oh thank the gods you managed to stop them, we defeated the rest of the ships at the data-vault, but this one slipped through our defences, we believe they had the stolen data on them, the salvage team are on their way now to try and cleanup anything that survived. We cannot thank you enough for the help."
 
 "One of the things they attempted to steal were the plans for a new cruiser we have designed, I've taken the liberty to download the design myself for you, try not to let it fall into the wrong hands. Additionally, and possibly more immediately helpful to you, I have a selection of New Dawn equipment, take whatever you like the look of, I can just write it off as destroyed in the battle."</text>
 	<unlockCustomShip silent="false">PLAYER_SHIP_OG_DAWN_SPEAR</unlockCustomShip>

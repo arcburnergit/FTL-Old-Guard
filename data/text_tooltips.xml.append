@@ -59,6 +59,7 @@
 <text name="og_lua_turret_stats_rotation">\n\nRotation Speed: %d</text>
 <text name="og_lua_turret_stats_radius">\nShot Radius: %d</text>
 <text name="og_lua_turret_stats_rate">\nFire Rate: </text>
+<text name="og_lua_turret_stats_autofire">\nBurst Fire Amount: Offence:%s/Defence:%s</text>
 <text name="og_lua_turret_stats_target">\nProjectile Target: %s</text>
 
 <text name="og_lua_turret_stats_damage">\nBase Hull Damage: %d</text>
@@ -78,8 +79,8 @@
 
 <text name="og_lua_turret_power_increase">Faster Charge Time</text>
 
-<text name="og_lua_turret_button_offence">Set the turret to offensive mode.</text>
-<text name="og_lua_turret_button_defence">Set the turret to defensive mode.</text>
+<text name="og_lua_turret_button_offence">Set the turret to defensive mode.</text>
+<text name="og_lua_turret_button_defence">Set the turret to offensive mode.</text>
 <text name="og_lua_turret_button_autoFire">Toggle to activate/deactivate turrets automatically firing.\n\nLEFT CTRL + AIM can force a turret to do the opposite of current setting</text>
 
 <text name="og_lua_turret_hover_charges">Charges: %d/%d</text>

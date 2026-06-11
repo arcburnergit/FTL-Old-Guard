@@ -134,9 +134,9 @@ script.on_render_event(Defines.RenderEvents.SHIP_SPARKS, function(ship) return D
 				local currentTurret = turrets[ system.table.blueprint ]
 				if system.table.currentlyTargetting then
 					render_active_targeting(shipManager, otherManager, combatControl, system, currentTurret, ship)
-				elseif system.table.currentTarget and system.table.state == turret_states.defence and not system.table.currentlyTargetted then
+				elseif system.table.currentTarget and system.table.state == turret_states.offence and not system.table.currentlyTargetted then
 					render_targeting(shipManager, otherManager, system, currentTurret, system.table.currentTarget, false)
-				elseif system.table.currentTargetTemp and system.table.state == turret_states.defence and not system.table.currentlyTargetted then
+				elseif system.table.currentTargetTemp and system.table.state == turret_states.offence and not system.table.currentlyTargetted then
 					render_targeting(shipManager, otherManager, system, currentTurret, system.table.currentTargetTemp, true)
 				end
 			end
@@ -235,7 +235,7 @@ script.on_render_event(Defines.RenderEvents.SHIP, function() return Defines.Chai
 						local targetPos = currentClosest.target:GetRandomTargettingPoint(true)
 						render_target_icon(targetPos, otherManager, currentTurret, 1)
 					end
-				elseif system.table.currentTarget and (system.table.state == turret_states.offence or system.table.currentlyTargetted) and system.table.currentTarget._targetable:GetSpaceId() == ship.iShipId then
+				elseif system.table.currentTarget and (system.table.state == turret_states.defence or system.table.currentlyTargetted) and system.table.currentTarget._targetable:GetSpaceId() == ship.iShipId then
 					render_target_icon_vectors(shipManager, otherManager, currentTurret, spaceManager, system.table.currentTarget, false)
 				elseif system.table.currentTargetTemp and system.table.currentlyTargetted and system.table.currentTargetTemp._targetable:GetSpaceId() == ship.iShipId then
 					render_target_icon_vectors(shipManager, otherManager, currentTurret, spaceManager, system.table.currentTargetTemp, false)
@@ -257,8 +257,8 @@ local turretBox
 local turretBoxInner
 local turretBoxInnerBack
 local turretBoxInnerHover
-local turretBoxOffense
-local turretBoxDefense
+local turretBoxOffence
+local turretBoxDefence
 local turretBoxToggleHover
 local turretBoxChain
 do
@@ -267,8 +267,8 @@ do
 	turretBoxInner = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/box_inner_og_turret.png", UIOffset_x, UIOffset_y, 0, c, 1, false)
 	turretBoxInnerHover = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/box_inner_og_turret_hover.png", UIOffset_x, UIOffset_y, 0, c, 1, false)
 	turretBoxInnerBack = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/box_inner_og_turret_back.png", UIOffset_x, UIOffset_y, 0, c, 1, false)
-	turretBoxOffense = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/button_og_turret_toggle_o_on.png", UIOffset_x, UIOffset_y, 0, c, 1, false)
-	turretBoxDefense = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/button_og_turret_toggle_d_on.png", UIOffset_x, UIOffset_y, 0, c, 1, false)
+	turretBoxOffence = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/button_og_turret_toggle_o_on.png", UIOffset_x, UIOffset_y, 0, c, 1, false)
+	turretBoxDefence = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/button_og_turret_toggle_d_on.png", UIOffset_x, UIOffset_y, 0, c, 1, false)
 	turretBoxToggleHover = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/button_og_turret_toggle_hover.png", UIOffset_x, UIOffset_y, 0, c, 1, false)
 	turretBoxChain = Hyperspace.Resources:CreateImagePrimitiveString("systemUI/box_inner_og_turret_chain.png", UIOffset_x, UIOffset_y, 0, c, 1, false)
 end
@@ -350,9 +350,9 @@ local function system_render(systemBox, ignoreStatus)
 		local targetButton = systemBox.table.targetButton
 		targetButton.bActive = system_ready(system) and not system.table.currentlyTargetting
 		local offenceButton = systemBox.table.offenceButton
-		offenceButton.bActive = system_ready(system) and system.table.state ~= turret_states.defence
+		offenceButton.bActive = system_ready(system) and system.table.state == turret_states.offence
 		local defenceButton = systemBox.table.defenceButton
-		defenceButton.bActive = system_ready(system) and system.table.state ~= turret_states.offence
+		defenceButton.bActive = system_ready(system) and system.table.state == turret_states.defence
 
 		local currentTurret = turrets[ system.table.blueprint ]
 		local maxCharges = currentTurret.charges
@@ -397,12 +397,12 @@ local function system_render(systemBox, ignoreStatus)
 			if systemBox.table.offenceButton.bHover then
 				Graphics.CSurface.GL_RenderPrimitiveWithColor(turretBoxToggleHover, renderColour)
 			end
-			Graphics.CSurface.GL_RenderPrimitive(turretBoxDefense)
+			Graphics.CSurface.GL_RenderPrimitive(turretBoxOffence)
 		elseif system.table.state == turret_states.defence then
 			if systemBox.table.defenceButton.bHover then
 				Graphics.CSurface.GL_RenderPrimitiveWithColor(turretBoxToggleHover, renderColour)
 			end
-			Graphics.CSurface.GL_RenderPrimitive(turretBoxOffense)
+			Graphics.CSurface.GL_RenderPrimitive(turretBoxDefence)
 		end
 		Graphics.CSurface.GL_RenderPrimitiveWithColor(turretBoxInner, renderColour)
 
@@ -755,10 +755,11 @@ local function renderTurret(shipManager, ship, spaceManager, shipGraph, sysName)
 		end
 
 		if currentTurret.custom_animations then
-			if not system.table.custom_animations then system.table.custom_animations = {} end
-			for id, anim_table in ipairs(currentTurret.custom_animations) do
-				if system.table.custom_animations[id] and system.table.custom_animations[id].tracker.running then
-					system.table.glow:OnRender(1, Graphics.GL_Color(1,1,1,1), false)
+			if system.table.custom_animations then
+				for _, anim_table in ipairs(system.table.custom_animations) do
+					if anim_table.anim.tracker.running then
+						anim_table.anim:OnRender(1, Graphics.GL_Color(1,1,1,1), false)
+					end
 				end
 			end
 		end

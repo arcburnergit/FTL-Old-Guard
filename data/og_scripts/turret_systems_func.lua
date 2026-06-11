@@ -95,8 +95,8 @@ mods.og.chain_types = {
 local chain_types = mods.og.chain_types
 
 mods.og.turret_states = {
-	defence = 0,
-	offence = 1,
+	offence = 0,
+	defence = 1,
 }
 local turret_states = mods.og.turret_states
 
@@ -178,6 +178,7 @@ local statsText = {
 	rotation = Hyperspace.Text:GetText("og_lua_turret_stats_rotation"),
 	radius = Hyperspace.Text:GetText("og_lua_turret_stats_radius"),
 	rate = Hyperspace.Text:GetText("og_lua_turret_stats_rate"),
+	autofire = Hyperspace.Text:GetText("og_lua_turret_stats_autofire"),
 	target = Hyperspace.Text:GetText("og_lua_turret_stats_target"),
 
 	damage = Hyperspace.Text:GetText("og_lua_turret_stats_damage"),
@@ -228,6 +229,11 @@ local function add_stat_text(desc, currentTurret, chargeMax)
 		if i < #currentTurret.fire_points then
 			desc = desc.."/"
 		end
+	end
+	if currentTurret.autofire then
+		local offence_s = (currentTurret.autofire.offence == true and "All") or tostring(math.floor(currentTurret.autofire.offence or 1))
+		local defence_s = (currentTurret.autofire.defence == true and "All") or tostring(math.floor(currentTurret.autofire.defence or 1))
+		desc = desc..string.format(statsText.autofire, offence_s, defence_s)
 	end
 	desc = desc..string.format(statsText.target, currentTurret.defence_type.name)
 	local shotBlueprint = Hyperspace.Blueprints:GetWeaponBlueprint(currentTurret.blueprint)
@@ -352,13 +358,13 @@ function mods.og.saveTurret(shipManager, system, sysName)
 
 	if system.table.blueprint == "" then
 		--log("save empty blueprint")
-        Hyperspace.playerVariables[shipId..sysName..systemBlueprintVarName] = -1
-        Hyperspace.playerVariables[shipId..sysName..systemStateVarName] = 0
-        Hyperspace.playerVariables[shipId..sysName..systemChargesVarName] = 0
-        Hyperspace.playerVariables[shipId..sysName..systemChainVarName] = 0
-        Hyperspace.playerVariables[shipId..sysName..systemTimeVarName] = 0
-        return
-    end
+		Hyperspace.playerVariables[shipId..sysName..systemBlueprintVarName] = -1
+		Hyperspace.playerVariables[shipId..sysName..systemStateVarName] = 0
+		Hyperspace.playerVariables[shipId..sysName..systemChargesVarName] = 0
+		Hyperspace.playerVariables[shipId..sysName..systemChainVarName] = 0
+		Hyperspace.playerVariables[shipId..sysName..systemTimeVarName] = 0
+		return
+	end
 
 	for i, name in ipairs(turretBlueprintsList) do
 		if name == system.table.blueprint then
@@ -388,13 +394,13 @@ function mods.og.loadTurret(shipManager, system, sysName)
 
 	if Hyperspace.playerVariables[shipId..sysName..systemBlueprintVarName] == -1 then
 		--log("load empty blueprint")
-        system.table.blueprint = ""
-        system.table.state = 0
-        system.table.charges = 0
-        system.table.chain_level = 0
-        system.table.time = 0
-        return
-    end
+		system.table.blueprint = ""
+		system.table.state = 0
+		system.table.charges = 0
+		system.table.chain_level = 0
+		system.table.time = 0
+		return
+	end
 
 	for i, name in ipairs(turretBlueprintsList) do
 		if i == Hyperspace.playerVariables[shipId..sysName..systemBlueprintVarName] then
@@ -711,7 +717,7 @@ local function system_construct_system_box(systemBox)
 		systemBox.pSystem.table.time = 0
 		systemBox.pSystem.table.charges = 0
 		systemBox.pSystem.table.chain_level = 0
-		systemBox.pSystem.table.state = turret_states.defence
+		systemBox.pSystem.table.state = turret_states.offence
 		systemBox.pSystem.table.firingTime = initialFiringTime
 
 		systemBox.pSystem.table.ammo_consumed = 0
@@ -742,7 +748,7 @@ local function system_construct_system_box(systemBox)
 		systemBox.pSystem.table.time = 0
 		systemBox.pSystem.table.charges = 0
 		systemBox.pSystem.table.chain_level = 0
-		systemBox.pSystem.table.state = turret_states.defence
+		systemBox.pSystem.table.state = turret_states.offence
 		systemBox.pSystem.table.firingTime = initialFiringTime
 
 		systemBox.pSystem.table.ammo_consumed = 0
@@ -1082,13 +1088,13 @@ local function system_click(systemBox, shift)
 			systemBox.pSystem.table.currentTarget = nil
 			systemBox.pSystem.table.currentlyTargetted = false
 			systemBox.pSystem.table.currentTargetTemp = nil
-			systemBox.pSystem.table.state = turret_states.defence
+			systemBox.pSystem.table.state = turret_states.defence --click offence button to switch to defence mode
 		elseif defenceButton.bHover and defenceButton.bActive then
 			local shipManager = Hyperspace.ships.player
 			systemBox.pSystem.table.currentTarget = nil
 			systemBox.pSystem.table.currentlyTargetted = false
 			systemBox.pSystem.table.currentTargetTemp = nil
-			systemBox.pSystem.table.state = turret_states.offence
+			systemBox.pSystem.table.state = turret_states.offence --click defence button to switch to offence mode
 		elseif targetButton.bHover and targetButton.bActive then
 			select_turret(systemBox.pSystem, mods.og.ctrl_held)
 		end
@@ -1347,12 +1353,13 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 
 	--handle targetting
 	if offensive and currentTurret.blueprint_type ~= 3 then
+		local tempTargetPosition = targetPosition
 		if currentTurret.shot_radius then
-			targetPosition = get_random_point_in_radius(targetPosition, currentTurret.shot_radius)
+			tempTargetPosition = get_random_point_in_radius(targetPosition, currentTurret.shot_radius)
 			projectile.bBroadcastTarget = true
 		end
 		projectile.entryAngle = system.table.entryAngle
-		userdata_table(projectile, "mods.og").turret_projectile = {target = targetPosition, destination_space = otherManager.iShipId}
+		userdata_table(projectile, "mods.og").turret_projectile = {target = tempTargetPosition, destination_space = otherManager.iShipId}
 	elseif not offensive and currentTurret.blueprint_type ~= 3 then
 		userdata_table(projectile, "mods.og").targeted = system.table.currentTarget
 		if system.table.currentTarget and system.table.currentTarget.table then
@@ -1373,20 +1380,47 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 	if shipManager:HasAugmentation("UPG_OG_TURRET_SPEED") > 0 then
 		projectile.speed_magnitude = projectile.speed_magnitude * (1.5 ^ shipManager:GetAugmentationValue("UPG_OG_TURRET_SPEED"))
 	end
-
-	--reset turret target in defence mode
-	if (not offensive) and ((not currentShot.auto_burst) or system.table.charges == 1) then
-		system.table.currentTarget = nil
-		system.table.currentlyTargetted = false
+	
+	--autofire
+	system.table.last_mode = (offensive and turret_states.offence) or turret_states.defence
+	system.table.last_target = system.table.currentTarget 
+	system.table.last_target_pos = {x = targetPosition.x, y = targetPosition.y}
+	system.table.last_target_space = (offensive and otherManager.iShipId) or (1 - otherManager.iShipId)
+	if system.table.lock_firing then
+		system.table.lock_firing = system.table.lock_firing - 1
+		if system.table.lock_firing <= 0 or system.table.charges <= 1 then
+			system.table.lock_firing = false
+		end
+	else
+		if currentTurret.autofire then
+			local fireAmount = (offensive and currentTurret.autofire.offense) or currentTurret.autofire.defence
+			if fireAmount == true then
+				system.table.lock_firing = system.table.charges - 1
+			elseif fireAmount then
+				system.table.lock_firing = fireAmount - 1
+			else
+				system.table.lock_firing = false
+			end
+		else
+			system.table.lock_firing = false
+		end
 	end
 
-	--reset turret target in offence mode
-	local cApp = Hyperspace.App
-	local combatControl = cApp.gui.combatControl
-	local weapControl = combatControl.weapControl
-	if offensive and xor(mods.og.turret_autofire_setting == 0, system.table.autoFireInvert) and ((not currentShot.auto_burst) or system.table.charges == 1) then
-		system.table.currentTarget = nil
-		system.table.currentlyTargetted = false
+	if not system.table.lock_firing then
+		--reset turret target in defence mode
+		if (not offensive) and ((not currentShot.auto_burst) or system.table.charges == 1) then
+			system.table.currentTarget = nil
+			system.table.currentlyTargetted = false
+		end
+
+		--reset turret target in offence mode
+		local cApp = Hyperspace.App
+		local combatControl = cApp.gui.combatControl
+		local weapControl = combatControl.weapControl
+		if offensive and xor(mods.og.turret_autofire_setting == 0, system.table.autoFireInvert) and ((not currentShot.auto_burst) or system.table.charges == 1) then
+			system.table.currentTarget = nil
+			system.table.currentlyTargetted = false
+		end
 	end
 
 	--turret animation
@@ -1394,13 +1428,23 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 		system.table.image:Start(true)
 		if system.table.image.info.numFrames > 1 then
 			if currentTurret.multi_anim then
-				system.table.image:SetCurrentFrame(1 + currentTurret.multi_anim.frames * (system.table.charges - 1))
+				local totalFiringFrames = system.table.image.info.numFrames - 1
+				local numSections = math.floor(totalFiringFrames / currentTurret.multi_anim)
+				if numSections > 0 then
+					local animIndex = system.table.charges % numSections
+					local startFrame = 1 + (animIndex * currentTurret.multi_anim)
+					system.table.image:SetCurrentFrame(startFrame)
+				else
+					system.table.image:SetCurrentFrame(1)
+				end
 			else
 				system.table.image:SetCurrentFrame(1)
 			end
 		end
 	end
-	
+
+
+
 	--update turret values
 	system.table.firingTime = currentShot.fire_delay
 	system.table.charges = system.table.charges - 1
@@ -1418,7 +1462,7 @@ local function findTurretTarget(system, currentTurret, shipManager, pos, speed)
 			end
 		end
 		for drone in vter(spaceManager.drones) do
-			if deadDrones[drone.selfId] and drone.table.og_targeted then
+			if (deadDrones[drone.selfId] or drone.ionStun) and drone.table.og_targeted then
 				drone.table.og_targeted = nil
 			end
 		end
@@ -1427,7 +1471,7 @@ local function findTurretTarget(system, currentTurret, shipManager, pos, speed)
 		--print(projectile.extend.name.." type:"..tostring(projectile:GetType()))
 		local blueprint = Hyperspace.Blueprints:GetWeaponBlueprint(projectile.extend.name)
 		local validTarget = checkValidTarget(projectile._targetable, currentTurret.defence_type, shipManager)
-		local notTargeted = (not projectile.table.og_targeted) or (projectile.table.og_targeted < 2 and (currentTurret.multifire_homing or not currentTurret.homing)) or projectile.table.og_targeted < 1
+		local notTargeted = (not projectile.table.og_targeted) or (projectile.table.og_targeted < (currentTurret.intercept_amount or 2))
 		local projectileActive = not (projectile.missed or projectile.passedTarget or projectile.death_animation.tracker.running)
 		if validTarget and notTargeted and projectileActive then
 			local targetPos = projectile._targetable:GetRandomTargettingPoint(true)
@@ -1615,42 +1659,62 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 				speed = speed * (1.5 ^ shipManager:GetAugmentationValue("UPG_OG_TURRET_SPEED"))
 			end
 
+			if currentTurret.custom_animations then
+				if not system.table.custom_animations then 
+					system.table.custom_animations = {} 
+					for id, anim_table in pairs(currentTurret.custom_animations) do
+						local tempAnim = Hyperspace.Animations:GetAnimation(id)
+						tempAnim.position.x = -1 * tempAnim.info.frameWidth/2
+						tempAnim.position.y = -1 * tempAnim.info.frameHeight/2
+						tempAnim.tracker.loop = anim_table.looping
+						table.insert(system.table.custom_animations, {id = id, anim = tempAnim, charging = anim_table.charging, charged = anim_table.charged, firing = anim_table.firing, depowered = anim_table.depowered, last_status = false})
+					end
+				end
+				local is_charged = system.table.charges >= currentTurret.charges
+				local is_ready = system_ready(system)
+				local is_firing = system.table.image.currentFrame > 0
+				for index, anim_table in ipairs(system.table.custom_animations) do
+					local charging_status = anim_table.charging and (not is_firing) and (not is_charged) and is_ready
+					local charged_status = anim_table.charged and (not is_firing) and is_charged and is_ready
+					local firing_status = anim_table.firing and is_firing and is_ready
+					local depowered_status = anim_table.depowered and (not is_ready)
+					local last_status = anim_table.last_status
+					if (charging_status or charged_status or depowered_status or firing_status) then
+						if not last_status then
+							anim_table.anim:Start(true)
+						end
+						anim_table.anim:Update()
+						system.table.custom_animations[index].last_status = true
+					else
+						if last_status then
+							anim_table.anim.tracker:Stop(true)
+						end
+						system.table.custom_animations[index].last_status = false
+					end
+				end
+			end
+
 			if not system_ready(system) then
 				if system.table.image then
 					system.table.image.tracker:Stop(true)
 					system.table.image:SetCurrentFrame(0)
 				end
-				if currentTurret.custom_animations then
-					if not system.table.custom_animations then system.table.custom_animations = {} end
-					for id, anim_table in ipairs(currentTurret.custom_animations) do
-						if anim_table.depowered then
-							if system.table.custom_animations[id] and system.table.custom_animations[id].tracker.running then
-								system.table.custom_animations[id]:Update()
-							elseif system.table.custom_animations[id] then
-								system.table.custom_animations[id]:Start(true)
-								system.table.custom_animations[id]:Update()
-							elseif not system.table.custom_animations[id] then
-								system.table.custom_animations[id] = Hyperspace.Animations:GetAnimation(id)
-								system.table.custom_animations[id].position.x = -1 * system.table.custom_animations[id].info.frameWidth/2
-								system.table.custom_animations[id].position.y = -1 * system.table.custom_animations[id].info.frameHeight/2
-								system.table.custom_animations[id].tracker.loop = true
-							end
-						elseif system.table.custom_animations[id] and system.table.custom_animations[id].tracker.running then
-							system.table.custom_animations[id].tracker:Stop(true)	
-						end
-					end
-				end
+				system.table.lock_firing = false
 				system.table.currentTarget = nil
 				goto END_SYSTEM_LOOP
-			elseif system.table.currentlyTargetting then 
+			elseif system.table.currentlyTargetting and not system.table.lock_firing then 
 				local mousePosPlayer = worldToPlayerLocation(Hyperspace.Mouse.position)
 				local target_angle = get_angle_between_points(pos, mousePosPlayer)
 				if math.abs(angle_diff(system.table.currentAimingAngle, target_angle)) > 0.01 then
 					system.table.currentAimingAngle = move_angle_to(system.table.currentAimingAngle, target_angle, currentMaxRotationSpeed * time_increment(true))
 				end
-			elseif system.table.state == turret_states.defence and not system.table.currentlyTargetted then
-				
-				if system.table.currentTargetTemp then
+			elseif (system.table.lock_firing and system.table.last_mode == turret_states.offence) or (system.table.state == turret_states.offence and not system.table.currentlyTargetted) then
+				if system.table.lock_firing then
+					system.table.currentTarget = system.table.last_target
+					if system.table.charges <= 0 then
+						system.table.lock_firing = false
+					end
+				elseif system.table.currentTargetTemp then
 					system.table.currentTarget = system.table.currentTargetTemp
 					system.table.entryAngle = math.random(360)
 					system.table.currentTargetTemp = nil
@@ -1683,16 +1747,21 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 				local aimedAheadPlayer = shipManager.iShipId == 0 and math.abs(angle_diff(system.table.currentAimingAngle, 0)) < (currentTurret.aim_cone or 1)
 				local aimedAheadEnemy = shipManager.iShipId == 1 and math.abs(angle_diff(system.table.currentAimingAngle, -90)) < (currentTurret.aim_cone or 1)
 				local shouldFire = hasTarget and readyFire and otherShipTargetable --and notCloaked
-				if (aimedAheadPlayer or aimedAheadEnemy) and shouldFire then
+
+				local shouldFireLocked = readyFire and system.table.lock_firing
+				if shouldFireLocked then
+					fireTurret(system, currentTurret, shipManager, otherManager, sysName, blueprint, pos, true, system.table.last_target_pos, manningCrew)
+				elseif (aimedAheadPlayer or aimedAheadEnemy) and shouldFire then
 					local roomPosition = (system.table.currentTarget and otherManager:GetRoomCenter(system.table.currentTarget.roomId)) or otherManager:GetRandomRoomCenter()
 					if currentTurret.blueprint_type == 3 and system.table.currentTarget then
 						local targetShipGraph = Hyperspace.ShipGraph.GetShipInfo(otherManager.iShipId)
 						local tempRoomPos = targetShipGraph:GetSlotWorldPosition(system.table.currentTarget.slotId, system.table.currentTarget.roomId)
 						roomPosition = Hyperspace.Pointf(tempRoomPos.x, tempRoomPos.y) 
 					end
+
 					fireTurret(system, currentTurret, shipManager, otherManager, sysName, blueprint, pos, true, roomPosition, manningCrew)
 				end
-			elseif system.table.state == turret_states.offence or system.table.currentlyTargetted then
+			elseif (system.table.lock_firing and system.table.last_mode == turret_states.defence) or (system.table.state == turret_states.defence or system.table.currentlyTargetted) then
 				if system.table.currentlyTargetted and system.table.currentTargetTemp then
 					system.table.currentTarget = system.table.currentTargetTemp
 					system.table.currentTargetTemp = nil
@@ -1749,13 +1818,27 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 
 					--Fire if within aim cone
 					--local notCloaked = not shipManager.ship.bCloaked
-					if math.abs(angle_diff(system.table.currentAimingAngle, target_angle)) < (currentTurret.aim_cone or 0.5) and system.table.firingTime <= 0 and system.table.charges > 0 then
-						fireTurret(system, currentTurret, shipManager, otherManager, sysName, blueprint, pos, false, Hyperspace.Pointf(int_point.x, int_point.y), manningCrew)
+					local readyFire = system.table.firingTime <= 0 and system.table.charges > 0
+					local aim_ready = math.abs(angle_diff(system.table.currentAimingAngle, target_angle)) < (currentTurret.aim_cone or 0.5)
+					if (aim_ready or system.table.lock_firing) and readyFire then
+						local target_point = Hyperspace.Pointf(int_point.x, int_point.y)
+						if not aim_ready then
+							target_point = offset_point_in_direction(pos, system.table.currentAimingAngle, 0, -1000)
+						end
+						fireTurret(system, currentTurret, shipManager, otherManager, sysName, blueprint, pos, false, target_point, manningCrew)
 					end
 				elseif system.table.currentTarget and system.table.currentTarget.entryAngle then
 					local target_angle = normalize_angle(system.table.currentTarget.entryAngle)
 					if math.abs(angle_diff(system.table.currentAimingAngle, target_angle)) > 0.01 then
 						system.table.currentAimingAngle = move_angle_to(system.table.currentAimingAngle, target_angle, currentMaxRotationSpeed * time_increment(true))
+					end
+				elseif system.table.lock_firing then
+					local readyFire = system.table.firingTime <= 0 and system.table.charges > 0
+					if system.table.charges <= 0 then
+						system.table.lock_firing = false
+					end
+					if readyFire then
+						fireTurret(system, currentTurret, shipManager, otherManager, sysName, blueprint, pos, false, system.table.last_target_pos, manningCrew)
 					end
 				else -- if no possible target
 					if math.abs(angle_diff(system.table.currentAimingAngle, turretRestAngle)) > 0.01 then
@@ -1764,46 +1847,37 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 				end
 			end
 
-			if currentTurret.custom_animations then
-				if not system.table.custom_animations then system.table.custom_animations = {} end
-				local is_charged = system.table.charges >= currentTurret.charges
-				for id, anim_table in ipairs(currentTurret.custom_animations) do
-					if (anim_table.charging and not is_charged) or (anim_table.charged and is_charged) then
-						if system.table.custom_animations[id] and system.table.custom_animations[id].tracker.running then
-							system.table.custom_animations[id]:Update()
-						elseif system.table.custom_animations[id] then
-							system.table.custom_animations[id]:Start(true)
-							system.table.custom_animations[id]:Update()
-						elseif not system.table.custom_animations[id] then
-							system.table.custom_animations[id] = Hyperspace.Animations:GetAnimation(id)
-							system.table.custom_animations[id].position.x = -1 * system.table.custom_animations[id].info.frameWidth/2
-							system.table.custom_animations[id].position.y = -1 * system.table.custom_animations[id].info.frameHeight/2
-							system.table.custom_animations[id].tracker.loop = true
-						end
-					elseif system.table.custom_animations[id] and system.table.custom_animations[id].tracker.running then
-						system.table.custom_animations[id].tracker:Stop(true)
-					end
-				end
-			end
-				
-
-			local lastShot = ((system.table.charges) % #currentTurret.fire_points) + 1
+			local lastShot = ((system.table.charges) % #currentTurret.fire_points)
 			if system.table.image then
+				local frameBefore = system.table.image.currentFrame
+				local sectionBefore = 0
+				if currentTurret.multi_anim and currentTurret.multi_anim > 0 and frameBefore > 0 then
+					sectionBefore = math.floor((frameBefore - 1) / currentTurret.multi_anim)
+				end
+
 				system.table.image:Update()
-				if (system.table.image.currentFrame == system.table.image.info.numFrames - 1) or (currentTurret.multi_anim and system.table.image.currentFrame > currentTurret.multi_anim.frames * lastShot) then
+
+				local frameAfter = system.table.image.currentFrame
+				local sectionAfter = 0
+
+				if currentTurret.multi_anim and currentTurret.multi_anim > 0 and frameAfter > 0 then
+					sectionAfter = math.floor((frameAfter - 1) / currentTurret.multi_anim)
+				end
+
+				if (sectionAfter > sectionBefore) or system.table.image:Done() or (frameBefore > 0 and frameAfter == 0) then
 					system.table.image.tracker:Stop(true)
 					system.table.image:SetCurrentFrame(0)
 				end
 			end
 
 			if shipManager.iShipId == 1 and (not system.table.currentTarget) and system.table.charges >= currentTurret.charges and (currentTurret.enemy_burst or 1) > 0 then
-				system.table.state = turret_states.defence
+				system.table.state = turret_states.offence
 				system.table.entryAngle = math.random(360)
 			elseif shipManager.iShipId == 1 and system.table.charges <= currentTurret.charges - (currentTurret.enemy_burst or 1) then
-				system.table.state = turret_states.offence
+				system.table.state = turret_states.defence
 			end
-			if shipManager.iShipId == 1 and system.table.state == turret_states.defence and not Hyperspace.ships.enemy._targetable.hostile then
-				system.table.state = turret_states.offence
+			if shipManager.iShipId == 1 and system.table.state == turret_states.offence and not Hyperspace.ships.enemy._targetable.hostile then
+				system.table.state = turret_states.defence
 			end
 		end
 		::END_SYSTEM_LOOP::
