@@ -1,4 +1,4 @@
-
+--adding new turrets (this is patch order independent, can be in addons before or after OG)
 local added = false
 script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
 	if (not mods.og) or added then return end
@@ -63,6 +63,14 @@ script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
 	table.insert(craftedCategories, craftedExampleMod)
 	--match_cost tells it to add a scrap amount to the craft so that the components aren't cheaper than the result
 	table.insert(craftedExampleMod.items, {weapon = "EXAMPLE_TURRET_NAME", match_cost = true, component_amounts = {1}, components = {{"LASER_BURST_2", "LASER_BURST_3"}}} )
+end)
+
+--example adding new components (this is patch order independent, can be in addons before or after OG)
+local added2 = false
+script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
+	if (not mods.og) or added2 then return end
+	added2 = true
+	mods.og.addComponent("OG_TURRET_LASER_1", "NEW_BURST_LASER_ID", 1) --add NEW_BURST_ID to the first component table (this turret only has 1 component table)
 end)
 
 --[[XML

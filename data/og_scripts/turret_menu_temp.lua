@@ -388,6 +388,27 @@ script.on_init(function()
 	end
 end)
 
+mods.og.craftedItemComponents = {}
+for i, cat_table in ipairs(craftedCategories) do
+	for n, item_table in ipairs(cat_table.items) do
+		mods.og.craftedItemComponents[item_table.weapon] = item_table.components
+	end
+end
+
+function mods.og.addComponent(turretId, componentId, index)
+	if not index then index = 1 end
+	table.insert(mods.og.craftedItemComponents[turretId][index], componentId)
+end
+
+--[[
+example usecase
+local added = false
+script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
+	if (not mods.og) or added then return end
+	mods.og.addComponent("OG_TURRET_LASER_1", "NEW_BURST_LASER_ID", 1) --add NEW_BURST_ID to the first component table (this turret only has 1 component table)
+end)
+]]
+
 -- OTHER
 
 local craftedItemsVisible = {}
