@@ -279,7 +279,7 @@ turrets["OG_TURRET_LASER_PARTICLE"] = {
 	image = "og_turret_laser_particle",
 	glow = "og_turret_laser_particle_glow",
 	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_laser_particle_charge.png", -47, -47, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
-	fire_points = {{x = 5, y = -42, fire_delay = 0.4},{x = 5, y = -42, fire_delay = 0, auto_burst = true},{x = 5, y = -42, fire_delay = 0, auto_burst = true}},
+	fire_points = {{x = -5, y = -42, fire_delay = 0.4},{x = -5, y = -42, fire_delay = 0, auto_burst = true},{x = -5, y = -42, fire_delay = 0, auto_burst = true}},
 	autofire = {
 		offence = 3, 
 		defence = 3,
@@ -337,6 +337,7 @@ turrets["OG_TURRET_LASER_RIFTWAKER"] = {
 }
 turrets["OG_TURRET_ION_1"] = {
 	enemy_burst = 1,
+	homing = 16,
 	image = "og_turret_ion_1",
 	glow = "og_turret_ion_1_glow",
 	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_ion_1_charge.png", -39, -10, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
@@ -351,6 +352,7 @@ turrets["OG_TURRET_ION_1"] = {
 }
 turrets["OG_TURRET_ION_2"] = {
 	enemy_burst = 2,
+	homing = 16,
 	image = "og_turret_ion_2",
 	glow = "og_turret_ion_2_glow",
 	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_ion_2_charge.png", -30, -11, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
@@ -365,6 +367,7 @@ turrets["OG_TURRET_ION_2"] = {
 }
 turrets["OG_TURRET_ENERGY_1"] = {
 	enemy_burst = 3,
+	homing = 16,
 	image = "og_turret_energy_1",
 	glow = "og_turret_energy_1_glow",
 	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_energy_1_charge.png", -50, -50, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
@@ -589,7 +592,7 @@ turrets["OG_TURRET_FOCUS_CHAIN"] = {
 	charges = 3,
 	charges_per_charge = 1,
 	rotation_speed = 240,
-	charge_time = {[0] = 14, 14, 12, 9, 7, 6, 5, 4, 3},
+	charge_time = {[0] = 16, 16, 13, 11, 9, 7, 6, 5, 4},
 }
 turrets["OG_TURRET_LASER_MINI_1"] = {
 	mini = true,
@@ -641,6 +644,7 @@ turrets["OG_TURRET_LASER_MINI_2"] = {
 turrets["OG_TURRET_ION_MINI_1"] = {
 	enemy_burst = 1,
 	mini = true,
+	homing = 16,
 	image = "og_turret_ion_mini_1",
 	glow = "og_turret_ion_mini_1_glow",
 	glow_offset = {x = -17, y = -6},

@@ -3984,6 +3984,178 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<mv-mapImage>map_icon_og_executor</mv-mapImage>
 </shipBlueprint>
 
+<shipBlueprint name="PLAYER_SHIP_OG_EXECUTOR_2" layout="ogp_executor_b" img="ogp_executor_b">
+	<class>Executor-Class</class>
+	<name>The Courier</name>
+	<desc>Equiped with a battery of small ion turrets, this ship is able to take down shields to allow it's mainline turret to work. Due to the number of turrets, Captains have to choose between a Drone Control or Weapon Control system.</desc>
+	<unlock id="ship_PLAYER_SHIP_OG_EXECUTOR_2_unlock"/>
+	<systemList>
+		<og_turret power="2" room="1" start="true" turret="OG_TURRET_LASER_PARTICLE" img="room_og_turret_8">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</og_turret>
+		<og_turret_mini power="1" max="3" room="2" start="true" turret="OG_TURRET_ION_MINI_1" img="room_og_turret_3_noman" />
+		<og_turret_mini_2 power="1" max="3" room="4" start="true" turret="OG_TURRET_ION_MINI_1" img="room_og_turret_2_noman" />
+		<og_turret_mini_3 power="1" max="3" room="3" start="true" turret="OG_TURRET_ION_MINI_1" img="room_og_turret_2_noman" />
+		<battery power="1" room="28" start="false" img="room_battery_10" />
+		<cloaking power="1" room="22" start="false" img="room_cloaking_12" />
+		<clonebay power="1" room="7" start="false">
+			<slot>
+				<number>1</number>
+			</slot>
+		</clonebay>
+		<doors power="1" room="24" start="true" img="room_doors_7">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</doors>
+		<drones power="2" max="8" room="25" start="false" img="room_drones_7" />
+		<engines power="2" room="9" start="true" img="room_engines_2">
+			<slot>
+				<direction>down</direction>
+				<number>2</number>
+			</slot>
+		</engines>
+		<hacking power="1" room="11" start="false" img="room_hacking_2" />
+		<medbay power="1" room="7" start="true" img="room_medbay">
+			<slot>
+				<number>1</number>
+			</slot>
+		</medbay>
+		<mind power="1" room="13" start="false" img="room_mind_5" />
+		<oxygen power="1" room="27" start="true" img="room_oxygen_23" />
+		<pilot power="1" room="0" start="true" img="room_pilot">
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</pilot>
+		<sensors power="1" room="23" start="false" img="room_sensors_3">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</sensors>
+		<shields power="2" max="8" room="6" start="true" img="room_shields_9">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</shields>
+		<teleporter power="1" room="5" start="false" />
+		<weapons power="2" max="8" room="25" start="false" img="room_weapons_6">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</weapons>
+	</systemList>
+	<weaponSlots>2</weaponSlots>
+	<droneSlots>2</droneSlots>
+	<weaponList missiles="8" count="2" />
+	<droneList drones="3" count="2" />
+	<health amount="45" />
+	<maxPower amount="10" />
+	<crewCount amount="1" class="human_og_raider" />
+	<crewCount amount="1" class="human_og_raider" />
+	<crewCount amount="1" class="human_og_raider" />
+	<aug name="EX_OG_TURRET_SPEED" />
+	<aug name="EX_OG_TURRET_SPEED" />
+	<aug name="EX_OG_TURRET_SPEED" />
+	<shieldImage>mup_long2</shieldImage>
+	<mv-mapImage>map_icon_og_executor</mv-mapImage>
+</shipBlueprint>
+
+<shipBlueprint name="PLAYER_SHIP_OG_EXECUTOR_3" layout="ogp_executor_c" img="ogp_executor_c">
+	<class>Executor-Class</class>
+	<name>The Bombardier</name>
+	<desc>This ship has been specialized for high firepower, able to carry either four weapons or four drones, alongside 2 mainline turrets, this ship is sure to pack a punch.</desc>
+	<unlock id="ship_PLAYER_SHIP_OG_EXECUTOR_3_unlock"/>
+	<systemList>
+		<og_turret power="2" room="2" start="true" turret="OG_TURRET_LASER_CHAINGUN" img="room_og_turret_3">
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</og_turret>
+		<og_turret_2 power="2" room="1" start="true" turret="OG_TURRET_FOCUS_CHAIN" img="room_og_turret_3">
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</og_turret_2>
+		<battery power="1" room="23" start="false" img="room_battery_16" />
+		<cloaking power="2" room="14" start="true" img="room_cloaking" />
+		<clonebay power="1" room="5" start="false">
+			<slot>
+				<number>0</number>
+			</slot>
+		</clonebay>
+		<doors power="2" room="8" start="true" img="room_doors_7">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</doors>
+		<drones power="2" max="8" room="3" start="false" img="room_drones_7" />
+		<engines power="1" room="4" start="true" img="room_engines_11">
+			<slot>
+				<direction>down</direction>
+				<number>3</number>
+			</slot>
+		</engines>
+		<hacking power="1" room="11" start="false" img="room_hacking_2" />
+		<medbay power="1" room="5" start="true" img="room_medbay_4">
+			<slot>
+				<number>0</number>
+			</slot>
+		</medbay>
+		<mind power="1" room="10" start="false" img="room_mind_5" />
+		<oxygen power="1" room="20" start="true" img="room_oxygen" />
+		<pilot power="1" room="0" start="true" img="room_pilot">
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</pilot>
+		<sensors power="2" room="6" start="true" img="room_sensors">
+			<slot>
+				<direction>down</direction>
+				<number>1</number>
+			</slot>
+		</sensors>
+		<shields power="2" max="8" room="15" start="false" img="room_shields_7">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</shields>
+		<teleporter power="1" room="24" start="false" />
+		<weapons power="2" max="8" room="3" start="false" img="room_weapons_6">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</weapons>
+	</systemList>
+	<weaponSlots>4</weaponSlots>
+	<droneSlots>4</droneSlots>
+	<weaponList missiles="8" count="4" />
+	<droneList drones="3" count="4" />
+	<health amount="45" />
+	<maxPower amount="9" />
+	<crewCount amount="1" class="human_soldier" />
+	<crewCount amount="1" class="human" />
+	<crewCount amount="1" class="human" />
+	<crewCount amount="1" class="human" />
+	<aug name="EX_CLOAK_FIRE" />
+	<shieldImage>mup_long2</shieldImage>
+	<mv-mapImage>map_icon_og_executor</mv-mapImage>
+</shipBlueprint>
+
 <shipBlueprint name="PLAYER_SHIP_OG_DAWN_SPEAR" layout="ogp_dawn_spear_a" img="ogp_dawn_spear_a">
 	<class>Spearhead-Class</class>
 	<name>The Approaching Sun</name>
