@@ -287,12 +287,14 @@ This enemy possesses New Dawn turrets, when hit by these, rooms will be temporar
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 		<crewLimit>11</crewLimit>
 		<systemLimit>10</systemLimit>
+		<customReactor maxLevel="35"/>
 	</mod-append:customShip>
 	<mod-append:customShip name="PLAYER_SHIP_OG_EXECUTOR_2">
 		<hiddenAug>SHIP_OG_GUARD</hiddenAug>
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 		<crewLimit>11</crewLimit>
 		<systemLimit>10</systemLimit>
+		<customReactor maxLevel="35"/>
 		<exclusivityOverride>
 			<exclusivityGroup>
 				<og_turret/>
@@ -371,7 +373,8 @@ This enemy possesses New Dawn turrets, when hit by these, rooms will be temporar
 		<hiddenAug>SHIP_OG_GUARD</hiddenAug>
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 		<crewLimit>11</crewLimit>
-		<systemLimit>10</systemLimit>
+		<systemLimit>9</systemLimit>
+		<customReactor maxLevel="35"/>
 		<exclusivityOverride>
 			<exclusivityGroup>
 				<og_turret/>

@@ -1384,7 +1384,7 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 	--autofire
 	system.table.last_mode = (offensive and turret_states.offence) or turret_states.defence
 	system.table.last_target = system.table.currentTarget 
-	system.table.last_target_pos = {x = targetPosition.x, y = targetPosition.y}
+	system.table.last_target_pos = Hyperspace.Pointf(targetPosition.x, targetPosition.y)
 	system.table.last_target_space = (offensive and otherManager.iShipId) or (1 - otherManager.iShipId)
 	if system.table.lock_firing then
 		system.table.lock_firing = system.table.lock_firing - 1
