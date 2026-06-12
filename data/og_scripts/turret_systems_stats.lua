@@ -183,7 +183,7 @@ turrets["OG_TURRET_LASER_ANCIENT"] = {
 	charges = 6,
 	charges_per_charge = 3,
 	rotation_speed = 180,
-	charge_time = {[0] = 17, 17, 14, 11, 9, 7, 5, 5, 4},
+	charge_time = {[0] = 17, 17, 14, 11, 9, 7, 6, 5, 4},
 }
 turrets["OG_TURRET_LASER_CEL_1"] = {
 	enemy_burst = 4,
@@ -211,7 +211,7 @@ turrets["OG_TURRET_LASER_ZENITH"] = {
 	charges = 3,
 	charges_per_charge = 1,
 	rotation_speed = 180,
-	charge_time = {[0] = 17, 17, 14, 11, 9, 7, 5, 5, 4},
+	charge_time = {[0] = 17, 17, 14, 11, 9, 7, 6, 5, 4},
 }
 turrets["OG_TURRET_LASER_BIO"] = {
 	enemy_burst = 1,
@@ -368,7 +368,7 @@ turrets["OG_TURRET_ION_2"] = {
 	charges = 4,
 	charges_per_charge = 2,
 	rotation_speed = 180,
-	charge_time = {[0] = 17, 17, 14, 11, 9, 7, 5, 5, 4},
+	charge_time = {[0] = 17, 17, 14, 11, 9, 7, 6, 5, 4},
 }
 turrets["OG_TURRET_ENERGY_1"] = {
 	enemy_burst = 3,
@@ -482,7 +482,7 @@ turrets["OG_TURRET_KERNEL_FIRE"] = {
 	charges = 3,
 	charges_per_charge = 1,
 	rotation_speed = 180,
-	charge_time = {[0] = 17, 17, 14, 11, 9, 7, 5, 5, 4},
+	charge_time = {[0] = 17, 17, 14, 11, 9, 7, 6, 5, 4},
 }
 turrets["OG_TURRET_MISSILE_CLONE_CANNON"] = {
 	enemy_burst = 1,
