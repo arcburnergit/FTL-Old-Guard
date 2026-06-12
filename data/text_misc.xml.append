@@ -31,6 +31,24 @@
 Applies vunerability to hit rooms for 5 seconds
 -1 second cooldown</text>
 
+<text name="og_turret_loot_slug_1">SLUG LOOT
++1 system damage, +15 crew damage
++20% breach chance</text>
+<text name="og_turret_loot_clan_1">CLAN LOOT
+Stuns crew hit for 3 seconds
++120 homing
+-0.5 second cooldown</text>
+<text name="og_turret_loot_crystal_1">CRYSTAL LOOT
+Fires Crystal Mines
++120 homing
++1 projectile
++5 second cooldown
+</text>
+<text name="og_turret_loot_federation_1">FEDERATION LOOT
+Can target all projectiles and drones
++2 charges
+-1 second cooldown</text>
+
 <text name="og_turret">Turret Control</text>
 <text name="og_turret_installed">Turret Control System installed</text>
 <text name="og_turret_2">Turret Control</text>

@@ -71,6 +71,7 @@ script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
 	if (not mods.og) or added2 then return end
 	added2 = true
 	mods.og.addComponent("OG_TURRET_LASER_1", "NEW_BURST_LASER_ID", 1) --add NEW_BURST_ID to the first component table (this turret only has 1 component table)
+	mods.og.addComponent("OG_TURRET_LASER_1", {"NEW_BURST_LASER_ID", "NEW_BURST_LASER_ID_2", "NEW_BURST_LASER_ID_3"}, 1) --add several new components
 end)
 
 --[[XML

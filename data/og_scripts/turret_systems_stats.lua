@@ -48,6 +48,11 @@ table.insert(turretBlueprintsList, "OG_TURRET_LASER_MINI_DAWN_1")
 table.insert(turretBlueprintsList, "OG_TURRET_LASER_MINI_DAWN_2")
 table.insert(turretBlueprintsList, "OG_TURRET_FOCUS_MINI_DAWN")
 
+table.insert(turretBlueprintsList, "OG_TURRET_LOOT_SLUG_1")
+table.insert(turretBlueprintsList, "OG_TURRET_LOOT_CLAN_1")
+table.insert(turretBlueprintsList, "OG_TURRET_LOOT_CRYSTAL_1")
+table.insert(turretBlueprintsList, "OG_TURRET_LOOT_FEDERATION_1")
+
 --DARKEST DESIRE CROSSOVER
 table.insert(turretBlueprintsList, "OG_TURRET_FOCUS_SOULPLAGUE")
 table.insert(turretBlueprintsList, "OG_TURRET_MISSILE_FALSERADIANCE")
@@ -853,6 +858,76 @@ turrets["OG_TURRET_FOCUS_MINI_DAWN"] = {
 	charges_per_charge = 1,
 	rotation_speed = 240,
 	charge_time = turrets["OG_TURRET_FOCUS_MINI_1"].charge_time,
+}
+
+turrets["OG_TURRET_LOOT_SLUG_1"] = {
+	enemy_burst = 1,
+	hold_time = 0.4,
+	stealth = true,
+	fake_damage = {iDamage = -2},
+	speed_reduction = 0.5,
+	image = "og_turret_loot_slug_1",
+	glow = "og_turret_focus_bio_glow",
+	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_focus_bio_charge.png", -24, -8, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
+	fire_points = {{x = 0, y = -7, fire_delay = 0.7}},
+	defence_type = defence_types.PROJECTILES,
+	blueprint_type = 3,
+	blueprint = "OG_LOOT_PROJECTILE_SLUG_1",
+	blueprint_fake = "OG_FOCUS_PROJECTILE_BIO_FAKE",
+	charges = 3,
+	charges_per_charge = 1,
+	rotation_speed = 240,
+	charge_time = {[0] = 9, 9, 7.5, 6, 5, 4.5, 4, 3.75, 3.5},
+}
+turrets["OG_TURRET_LOOT_CLAN_1"] = {
+	enemy_burst = 1,
+	intercept_amount = 1,
+	homing = 120,
+	image = "og_turret_loot_clan_1",
+	glow = "og_turret_laser_rad_glow",
+	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_laser_rad_charge.png", -39, -39, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
+	fire_points = {{x = 0, y = -30, fire_delay = 0.25}},
+	defence_type = defence_types.PROJECTILES,
+	blueprint_type = 1,
+	blueprint = "OG_LOOT_PROJECTILE_CLAN_1",
+	charges = 3,
+	charges_per_charge = 1,
+	rotation_speed = 270,
+	charge_time = {[0] = 4.5, 4.5, 3, 2.25, 1.75, 1.5, 1.25, 1, 0.75},
+}
+turrets["OG_TURRET_LOOT_CRYSTAL_1"] = {
+	enemy_burst = 2,
+	homing = 120,
+	shot_radius = 60,
+	hide_glow_firing = true,
+	image = "og_turret_loot_crystal_1",
+	glow = "og_turret_loot_crystal_1_glow",
+	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_loot_crystal_1_charge.png", -31, -31, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
+	fire_points = {{x = 0, y = -14, fire_delay = 0.35}, {x = 3, y = -14, fire_delay = 0, auto_burst = true}, {x = -3, y = -14, fire_delay = 0, auto_burst = true}},
+	autofire = {
+		offence = true,
+		defence = true,
+	},
+	defence_type = defence_types.DRONES,
+	blueprint_type = 2,
+	blueprint = "OG_CRYSTAL_PROJECTILE_SHARD",
+	charges = 3,
+	charges_per_charge = 3,
+	rotation_speed = 120,
+	charge_time = {[0] = 15, 15, 13, 11, 9, 7, 6, 5, 4},
+}
+turrets["OG_TURRET_LOOT_FEDERATION_1"] = {
+	enemy_burst = 1,
+	image = "og_turret_loot_federation_1",
+	glow = "og_turret_loot_federation_1_glow",
+	fire_points = {{x = 0, y = -60, fire_delay = 1}},
+	defence_type = defence_types.ALL,
+	blueprint_type = 1,
+	blueprint = "OG_LASER_PROJECTILE_HEAVY",
+	charges = 5,
+	charges_per_charge = 1,
+	rotation_speed = 120,
+	charge_time = {[0] = 8, 8, 6.5, 5, 4, 3.5, 3, 2.75, 2.5},
 }
 
 

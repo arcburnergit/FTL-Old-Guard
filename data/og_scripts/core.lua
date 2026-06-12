@@ -358,6 +358,7 @@ local beamDamageMods = mods.multiverse.beamDamageMods
 beamDamageMods["OG_FOCUS_PROJECTILE_FAKE"] = {iDamage = 0}
 beamDamageMods["OG_FOCUS_PROJECTILE_WEAK_FAKE"] = {iDamage = 0}
 beamDamageMods["OG_FOCUS_PROJECTILE_BIO"] = {iDamage = 0}
+beamDamageMods["OG_LOOT_PROJECTILE_SLUG_1"] = {iDamage = 0}
 beamDamageMods["OG_FOCUS_PROJECTILE_BIO_FAKE"] = {iDamage = 0}
 beamDamageMods["OG_FOCUS_PROJECTILE_SOULPLAGUE"] = {iDamage = 0}
 beamDamageMods["OG_FOCUS_PROJECTILE_SOULPLAGUE_FAKE"] = {iDamage = 0}

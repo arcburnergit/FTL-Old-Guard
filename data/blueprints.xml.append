@@ -2211,6 +2211,96 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 </weaponBlueprint>
 </FTL>
 
+<!--LOOT-->
+<FTL>
+
+<weaponBlueprint name="OG_TURRET_LOOT_SLUG_1">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>og_turret_loot_slug_1</tip>
+	<title>Irradiation Pinpoint Turret</title>
+	<short>Rad P.</short>
+	<desc>A powerful modified Pinpoint turret that does massive crew damage and cripples enemy crew, but no hull damage. Pierces 2 shields.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>75</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_loot_slug_1_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_LOOT_CLAN_1">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>og_turret_loot_clan_1</tip>
+	<title>Irradiation Laser Turret</title>
+	<short>Rad L.</short>
+	<desc>A specialized Laser Turret that does high bio damage and cripples crew, but no system or hull damage. This turret is also extremely capable in the defence role shooting down enemy lasers.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>75</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_loot_clan_1_icon</iconReplace>
+</weaponBlueprint>
+	
+<weaponBlueprint name="OG_TURRET_LOOT_CRYSTAL_1">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>og_turret_loot_crystal_1</tip>
+	<title>Shard Launcher Turret</title>
+	<short>Shard L.</short>
+	<desc>A specialized Mine Launching Turret that uses crystalline projectiles loaded with explosives. Does not use ammunition, but can only pierce 2 layers of shields.
+	
+	Provides 1 fleet delay for 5 missiles at empty beacons, has no notoriety impact.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>75</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_loot_crystal_1_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_LOOT_FEDERATION_1">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>og_turret_loot_federation_1</tip>
+	<title>Heavy Laser Turret</title>
+	<short>Heavy L.</short>
+	<desc>Heavy Laser Turrets make for poor defensive turrets with their slow rotation speed and high damage per shot, but are excellent against enemy ships.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>75</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_loot_federation_1_icon</iconReplace>
+</weaponBlueprint>
+</FTL>
+
 <!--TURRET PROJECTILES-->
 <FTL>
 <weaponBlueprint name="OG_LASER_PROJECTILE_BASE">
@@ -2773,7 +2863,6 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<iconImage>ion</iconImage>
 </weaponBlueprint>
 
-
 <weaponBlueprint name="OG_CRYSTAL_PROJECTILE_BASE">
 	<type>MISSILE</type>
 	<title>Laser</title>
@@ -3184,7 +3273,6 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<weaponArt>shotgun_toxic</weaponArt>
 	<iconImage>laser</iconImage>
 </weaponBlueprint>
-
 
 
 
@@ -3634,6 +3722,130 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	</launchSounds>
 	<weaponArt>focus_1</weaponArt>
 	<iconImage>beam</iconImage>
+</weaponBlueprint>
+
+
+<weaponBlueprint name="OG_LOOT_PROJECTILE_SLUG_1">
+	<type>BEAM</type>
+	<title>Focus</title>
+	<short>Focus</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>2</damage>
+	<sysDamage>1</sysDamage>
+	<persDamage>5</persDamage>
+	<color>
+		<r>255</r>
+		<g>8</g>
+		<b>200</b>
+	</color>
+	<sp>1</sp>
+	<fireChance>0</fireChance>
+	<breachChance>7</breachChance>
+	<statBoosts>
+		<statBoost name="moveSpeedMultiplier" load="RAD_MOVE"/>
+		<statBoost name="stunMultiplier" load="RAD_STUN"/>
+		<statBoost name="repairSpeed" load="RAD_REPAIR"/>
+	</statBoosts>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<speed>1</speed>
+	<image>beam_contact</image>
+	<length>1</length>
+	<launchSounds>
+		<sound>focus_weak</sound>
+	</launchSounds>
+	<weaponArt>focus_1</weaponArt>
+	<iconImage>beam</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_LOOT_PROJECTILE_CLAN_1">
+	<type>LASER</type>
+	<title>Laser</title>
+	<short>Laser</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>0</damage>
+	<persDamage>3</persDamage>
+	<stun>3</stun>
+	<statBoosts>
+		<statBoost name="moveSpeedMultiplier" load="RAD_MOVE"/>
+		<statBoost name="stunMultiplier" load="RAD_STUN"/>
+		<statBoost name="repairSpeed" load="RAD_REPAIR"/>
+	</statBoosts>
+	<shots>1</shots>
+	<sp>1</sp>
+	<fireChance>0</fireChance>
+	<breachChance>3</breachChance>
+	<stunChance>10</stunChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>laser_bio</image>
+	<launchSounds>
+		<sound>lightLaser1</sound>
+		<sound>lightLaser2</sound>
+		<sound>lightLaser3</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>hitHull2</sound>
+		<sound>hitHull3</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>laser_bio</weaponArt>
+	<iconImage>laser</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_CRYSTAL_PROJECTILE_SHARD">
+	<type>LASER</type>
+	<drone_targetable>1</drone_targetable>
+	<title>Flak</title>
+	<short>Flak</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>1</damage>
+	<sysDamage>-1</sysDamage>
+	<lockdown>1</lockdown>
+    <stun>12</stun>
+	<shots>1</shots>
+	<sp>2</sp>
+	<fireChance>2</fireChance>
+	<breachChance>4</breachChance>
+    <stunChance>3</stunChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<speed>15</speed>
+	<image>og_mine_crystal_blue</image>
+	<launchSounds>
+        <sound>smallMissile1</sound>
+        <sound>smallMissile2</sound>
+	</launchSounds>
+	<hitShipSounds>
+        <sound>smallExplosion</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>laser_burst_1</weaponArt>
+	<iconImage>laser</iconImage>
 </weaponBlueprint>
 </FTL>
 

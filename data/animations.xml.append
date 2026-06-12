@@ -863,6 +863,77 @@
 	<desc length="1" x="0" y="0"/>
 	<time>1</time>
 </anim>
+
+
+<animSheet name="og_turret_loot_slug_1_icon" w="82" h="34" fw="82" fh="34">og_turrets/turret_loot_slug_1_icon.png</animSheet>
+<anim name="og_turret_loot_slug_1_icon">
+	<sheet>og_turret_loot_slug_1_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_loot_slug_1" w="880" h="110" fw="110" fh="110">og_turrets/turret_loot_slug_1.png</animSheet>
+<anim name="og_turret_loot_slug_1">
+	<sheet>og_turret_loot_slug_1</sheet>
+	<desc length="8" x="0" y="0" />
+	<time>0.4</time>
+</anim>
+
+<animSheet name="og_turret_loot_clan_1_icon" w="64" h="30" fw="64" fh="30">og_turrets/turret_loot_clan_1_icon.png</animSheet>
+<anim name="og_turret_loot_clan_1_icon">
+	<sheet>og_turret_loot_clan_1_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_loot_clan_1" w="468" h="78" fw="78" fh="78">og_turrets/turret_loot_clan_1.png</animSheet>
+<anim name="og_turret_loot_clan_1">
+	<sheet>og_turret_loot_clan_1</sheet>
+	<desc length="6" x="0" y="0" />
+	<time>0.4</time>
+</anim>
+
+<animSheet name="og_turret_loot_crystal_1_icon" w="42" h="38" fw="42" fh="38">og_turrets/turret_loot_crystal_1_icon.png</animSheet>
+<anim name="og_turret_loot_crystal_1_icon">
+	<sheet>og_turret_loot_crystal_1_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_loot_crystal_1" w="186" h="62" fw="62" fh="62">og_turrets/turret_loot_crystal_1.png</animSheet>
+<anim name="og_turret_loot_crystal_1">
+	<sheet>og_turret_loot_crystal_1</sheet>
+	<desc length="3" x="0" y="0" />
+	<time>0.4</time>	
+</anim>
+<animSheet name="og_turret_loot_crystal_1_glow" w="186" h="62" fw="62" fh="62">og_turrets/turret_loot_crystal_1_glow.png</animSheet>
+<anim name="og_turret_loot_crystal_1_glow">
+	<sheet>og_turret_loot_crystal_1_glow</sheet>
+	<desc length="3" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_mine_crystal_blue" w="22" h="22" fw="22" fh="22">weapon_crystal/og_mine_crystal_blue.png</animSheet>
+<anim name="og_mine_crystal_blue">
+	<sheet>og_mine_crystal_blue</sheet>
+	<desc length="1" x="0" y="0"/>
+	<time>1.00</time>
+</anim>
+
+<animSheet name="og_turret_loot_federation_1_icon" w="99" h="30" fw="99" fh="30">og_turrets/turret_loot_federation_1_icon.png</animSheet>
+<anim name="og_turret_loot_federation_1_icon">
+	<sheet>og_turret_loot_federation_1_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_loot_federation_1" w="840" h="140" fw="140" fh="140">og_turrets/turret_loot_federation_1.png</animSheet>
+<anim name="og_turret_loot_federation_1">
+	<sheet>og_turret_loot_federation_1</sheet>
+	<desc length="6" x="0" y="0" />
+	<time>0.9</time>
+</anim>
+<animSheet name="og_turret_loot_federation_1_glow" w="90" h="8" fw="18" fh="8">og_turrets/turret_loot_federation_1_glow.png</animSheet>
+<anim name="og_turret_loot_federation_1_glow">
+	<sheet>og_turret_loot_federation_1_glow</sheet>
+	<desc length="5" x="0" y="0" />
+	<time>1</time>
+</anim>
 </FTL>
 
 <!--Crew-->

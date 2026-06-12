@@ -153,6 +153,11 @@ This enemy's turrets will be half charged at the start of combat.</tooltip>
 			<tooltip>NEW DAWN TURRETS:
 This enemy possesses New Dawn turrets, when hit by these, rooms will be temporarily made vunerable and recieve +1 system damage when hit, however these turrets also render their corresponding systems vunerable aswell.</tooltip>
 		</mod-append:shipIcon>
+		<mod-append:shipIcon>
+			<name>icon_og_battlecruiser</name>
+			<tooltip>BATTLECRUISER:
+This enemy is equiped with specialized turret tech, defeat them to take the specialized loot turret for yourself.</tooltip>
+		</mod-append:shipIcon>
 	</mod:findLike>
 	<mod:findLike type="shipOrder">
 		<mod-append:ship>PLAYER_SHIP_OG_KESTREL</mod-append:ship>
@@ -797,6 +802,21 @@ This enemy possesses New Dawn turrets, when hit by these, rooms will be temporar
 		</shipIcons>
 		<noFuelStalemate/>
 	</mod-append:customShip>
+	<mod-append:customShip name="OG_SLUG_BATTLECRUISER">
+		<shipIcons>
+			<shipIcon>icon_og_battlecruiser</shipIcon>
+		</shipIcons>
+	</mod-append:customShip>
+	<mod-append:customShip name="OG_CLAN_BATTLECRUISER">
+		<shipIcons>
+			<shipIcon>icon_og_battlecruiser</shipIcon>
+		</shipIcons>
+	</mod-append:customShip>
+	<mod-append:customShip name="OG_CRYSTAL_BATTLECRUISER">
+		<shipIcons>
+			<shipIcon>icon_og_battlecruiser</shipIcon>
+		</shipIcons>
+	</mod-append:customShip>
 </mod:findLike>
 
 <mod:findLike type="augments" limit="1" reverse="false">
@@ -843,6 +863,11 @@ This enemy possesses New Dawn turrets, when hit by these, rooms will be temporar
 	<variable name="rep_og_dawn" op="set" val="0"/>
 	<variable name="rep_comb_og_iron" op="set" val="0"/>
 	<variable name="ach_trans_og_dawn" op="set" val="0"/>
+	
+	<variable name="ach_og_battlecruiser_slug" op="set" val="0"/>
+	<variable name="ach_og_battlecruiser_clan" op="set" val="0"/>
+	<variable name="ach_og_battlecruiser_crystal" op="set" val="0"/>
+	<!--variable name="ach_og_battlecruiser_federation" op="set" val="0"/-->
 
 	<variable name="sec_unique_og_dawn" op="set" val="0"/>
 	<variable name="og_turret_adaptive_can_install_second" val="0"/>
@@ -1075,6 +1100,38 @@ This enemy possesses New Dawn turrets, when hit by these, rooms will be temporar
 				<header>Loot Acquired</header>
 				<sound>achievement</sound>
 			</achievement>
+			<achievement name="ACH_OG_BATTLECRUISER_SLUG">
+				<name>Kleptocracy Battlecruiser</name>
+				<secretDescription>Obtain the loot turret from the Kleptocracy Battlecruiser.</secretDescription>
+				<description>Obtain the Irradiation Pinpoint Turret from the Kleptocracy Battlecruiser.</description>
+				<icon>ach_og_battlecruiser_slug</icon>
+				<header>Turret Acquired</header>
+				<sound>achievement</sound>
+			</achievement>
+			<achievement name="ACH_OG_BATTLECRUISER_CLAN">
+				<name>Guild Battlecruiser</name>
+				<secretDescription>Obtain the loot turret from the Guild Battlecruiser.</secretDescription>
+				<description>Obtain the Irradiation Laser Turret from the Guild Battlecruiser.</description>
+				<icon>ach_og_battlecruiser_clan</icon>
+				<header>Turret Acquired</header>
+				<sound>achievement</sound>
+			</achievement>
+			<achievement name="ACH_OG_BATTLECRUISER_CRYSTAL">
+				<name>Imperial Battlecruiser</name>
+				<secretDescription>Obtain the loot turret from the Imperial Battlecruiser.</secretDescription>
+				<description>Obtain the Shard Launcher Turret from the Imperial Battlecruiser.</description>
+				<icon>ach_og_battlecruiser_crystal</icon>
+				<header>Turret Acquired</header>
+				<sound>achievement</sound>
+			</achievement>
+			<!--achievement name="ACH_OG_BATTLECRUISER_FEDERATION">
+				<name>Federation Battlecruiser</name>
+				<secretDescription>Obtain the loot turret from the Federation Battlecruiser.</secretDescription>
+				<description>Obtain the Irradiation Pinpoint Turret from the Federation Battlecruiser.</description>
+				<icon>ach_og_battlecruiser_federation</icon>
+				<header>Turret Acquired</header>
+				<sound>achievement</sound>
+			</achievement-->
 			<achievement name="ACH_OG_REN_IRON">
 				<name>Turret Support</name>
 				<description>Defeat the Raider Class C Renegade and get the Light Charger Turret.</description>

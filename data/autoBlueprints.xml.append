@@ -2221,11 +2221,28 @@ AUGMENTS
 
 <!--BATTLECRUISERS-->
 <FTL>
+
+<mod:findName name="BLUELIST_MINELAUNCHERS_ALL">
+	<mod-append:name>OG_TURRET_LOOT_CRYSTAL_1</mod-append:name>
+</mod:findName>
+
+<blueprintList name="LIST_SHIPS_OG_BATTLECRUISER">
+	<name>OG_SLUG_BATTLECRUISER</name>
+	<name>OG_CLAN_BATTLECRUISER</name>
+	<name>OG_CRYSTAL_BATTLECRUISER</name>
+	<!--
+	<name>OG_COALITION_BATTLECRUISER</name>
+	<name>OG_DYNASTY_BATTLECRUISER</name>
+	<name>OG_FEDERATION_BATTLECRUISER</name>
+	<name>OG_MILITIA_BATTLECRUISER</name>
+	-->
+</blueprintList>
+
 <shipBlueprint name="OG_SLUG_BATTLECRUISER" layout="og_slug_battlecruiser" img="og_slug_battlecruiser">
 	<class>Kleptocracy Battlecruiser</class>
 	<systemList>
 		<og_turret power="2" max="4" room="1" start="true" turret="OG_TURRET_FOCUS_BIO" />
-		<og_turret_mini power="1" max="3" room="2" start="true" turret="OG_TURRET_LASER_MINI_2" />
+		<og_turret_mini power="1" max="2" room="2" start="true" turret="OG_TURRET_LASER_MINI_2" />
 		<engines power="1" max="2" room="13" start="true" />
 		<cloaking power="1" max="2" room="12" start="false" />
 		<drones power="2" max="6" room="9" start="true" />
@@ -2238,7 +2255,31 @@ AUGMENTS
 	<droneSlots>3</droneSlots>
 	<weaponList missiles="8" count="0" />
 	<droneList drones="10" count="3" load="LIST_DRONES_ENEMY_COMBAT" />
-	<health amount="8" />
+	<health amount="10" />
+	<maxPower amount="10" />
+	<crewCount amount="2" max="6" class="slug" />
+	<boardingAI>sabotage</boardingAI>
+	<aug name="SLUG_GEL" />
+</shipBlueprint>
+
+<shipBlueprint name="OG_CLAN_BATTLECRUISER" layout="og_clan_battlecruiser" img="og_clan_battlecruiser">
+	<class>Guild Battlecruiser</class>
+	<systemList>
+		<og_turret power="2" max="4" room="1" start="true" turret="OG_TURRET_LASER_BIO" />
+		<og_turret_mini power="1" max="2" room="2" start="true" turret="OG_TURRET_FOCUS_MINI_1" />
+		<engines power="1" max="2" room="13" start="true" />
+		<cloaking power="1" max="2" room="12" start="false" />
+		<clonebay power="1" max="2" room="6" start="true" />
+		<oxygen power="1" max="2" room="3" start="true" />
+		<pilot power="1" max="1" room="0" start="true" />
+		<shields power="2" max="8" room="5" start="true" />
+		<weapons power="2" max="6" room="9" start="true" />
+	</systemList>
+	<weaponSlots>3</weaponSlots>
+	<droneSlots>0</droneSlots>
+	<weaponList missiles="8" count="3" load="LIST_WEAPONS_CLAN"/>
+	<droneList drones="10" count="0" />
+	<health amount="10" />
 	<maxPower amount="10" />
 	<crewCount amount="2" max="6" class="slug" />
 	<boardingAI>sabotage</boardingAI>

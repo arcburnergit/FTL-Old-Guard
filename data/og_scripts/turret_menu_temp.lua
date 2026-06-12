@@ -397,7 +397,19 @@ end
 
 function mods.og.addComponent(turretId, componentId, index)
 	if not index then index = 1 end
-	table.insert(mods.og.craftedItemComponents[turretId][index], componentId)
+	if not mods.og.craftedItemComponents[turretId] then
+		print("ERROR - Invalid Turret ID:"..tostring(turretId))
+	elseif not mods.og.craftedItemComponents[turretId][index] then
+		print("ERROR - Invalid Index:"..tostring(index))
+	else
+		if type(componentId) == "table" then
+			for _, id in ipairs(componentId) do
+				table.insert(mods.og.craftedItemComponents[turretId][index], id)
+			end
+		else
+			table.insert(mods.og.craftedItemComponents[turretId][index], componentId)
+		end
+	end
 end
 
 --[[
@@ -405,7 +417,9 @@ example usecase
 local added = false
 script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
 	if (not mods.og) or added then return end
+	added = true
 	mods.og.addComponent("OG_TURRET_LASER_1", "NEW_BURST_LASER_ID", 1) --add NEW_BURST_ID to the first component table (this turret only has 1 component table)
+	mods.og.addComponent("OG_TURRET_LASER_1", {"NEW_BURST_LASER_ID", "NEW_BURST_LASER_ID_2", "NEW_BURST_LASER_ID_3"}, 1) --add several new weapons
 end)
 ]]
 

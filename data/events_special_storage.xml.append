@@ -634,4 +634,16 @@
 	</choice>
 </event>
 
+<mod:findName type="event" name="STORAGE_CHECK_JOB_FLEET">
+	<mod-append:choice hidden="true" req="OG_TURRET_LOOT_CRYSTAL_1" blue="true">
+        <text>Use your Shard Launcher Turret and additional missiles. [-5}, gives 1 delay, does not impact notoriety]</text>
+        <event>
+            <text>You rig the ammunition and set a trap for the Rebels. Fortunately, due to obscure legal loopholes, the use of this weapon isn't illegal, though it is very morally dubious.</text>
+            <modifyPursuit amount="-1"/>
+            <item_modify>
+                <item type="missiles" min="-5" max="-5"/>
+            </item_modify>
+        </event>
+	</mod-append:choice>
+</mod:findName>
 </FTL>
