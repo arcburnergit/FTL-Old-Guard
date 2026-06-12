@@ -783,7 +783,7 @@ The Captain of the transport pauses, thinking on something.
 			<choice>
 				<text>Wait for them to leave the outpost before attacking.</text>
 				<event>
-					<text>Eventually the transport finishes their buisiness with the outpost and begins to head off, once out of range of the outpost you carefully intercept them with guns blazing.</text>
+					<text>Eventually the transport finishes their business with the outpost and begins to head off, once out of range of the outpost you carefully intercept them with guns blazing.</text>
 					<ship hostile="true"/>
 					<choice>
 						<text>Continue...</text>
@@ -810,7 +810,7 @@ The Captain of the transport pauses, thinking on something.
 	<choice>
 		<text>Wait for them to leave the outpost before attacking.</text>
 		<event>
-			<text>Eventually the transport finishes their buisiness with the outpost and begins to head off, once out of range of the outpost you carefully intercept them with guns blazing.</text>
+			<text>Eventually the transport finishes their business with the outpost and begins to head off, once out of range of the outpost you carefully intercept them with guns blazing.</text>
 			<ship hostile="true"/>
 			<choice>
 				<text>Continue...</text>
@@ -1613,7 +1613,7 @@ A moment later you find yourself in an odd looking labratory, there are several 
 												<event>
 													<playSound>smallExplosion</playSound>
 													<text>Not a moment later the entire station is rocked by a large explosion, sirens and alarms start blaring and people start rushing through, the engineer turns to a nearby console, quickly bringing up the station's exterior camera's.
-On the vid screen you can makeout a strange looking ship silhouetted against the nearby star. "It's just as I suspected." The engineer turns towards you. "Captain, what kind of ship do you have?" "A cruiser, excellent, take the Turret Pre-igniter, I've saved the designs to a secure datacenter, but I cannot risk the physical prototype falling into their hands, please take it with you and get out of here, whatever you do, do not let it fall into the Rebellion's hands."</text>
+On the vid screen you can makeout a strange looking ship silhouetted against the nearby star. "It's just as I suspected." The engineer turns towards you. "Captain, what kind of ship do you have?" "A cruiser, excellent! Take the Turret Pre-igniter, I've saved the designs to a secure datacenter. The physical prototype I cannot, however, risk falling into their hands, please take it with you and get out of here. Whatever you do, do not let it fall into the Rebellion's hands."</text>
 													<augment name="OG_TURRET_PREIGNITE"/>
 													<choice>
 														<text>Continue...</text>

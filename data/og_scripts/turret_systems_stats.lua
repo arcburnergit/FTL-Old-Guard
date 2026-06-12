@@ -183,7 +183,7 @@ turrets["OG_TURRET_LASER_ANCIENT"] = {
 	charges = 6,
 	charges_per_charge = 3,
 	rotation_speed = 180,
-	charge_time = {[0] = 14, 14, 12, 9, 7, 6, 5, 4, 3},
+	charge_time = {[0] = 17, 17, 14, 11, 9, 7, 5, 5, 4},
 }
 turrets["OG_TURRET_LASER_CEL_1"] = {
 	enemy_burst = 4,
@@ -211,7 +211,7 @@ turrets["OG_TURRET_LASER_ZENITH"] = {
 	charges = 3,
 	charges_per_charge = 1,
 	rotation_speed = 180,
-	charge_time = {[0] = 14, 14, 12, 9, 7, 6, 5, 4, 3},
+	charge_time = {[0] = 17, 17, 14, 11, 9, 7, 5, 5, 4},
 }
 turrets["OG_TURRET_LASER_BIO"] = {
 	enemy_burst = 1,
@@ -454,6 +454,7 @@ turrets["OG_TURRET_MISSILE_2"] = {
 }
 turrets["OG_TURRET_KERNEL_HEAVY"] = {
 	enemy_burst = 1,
+	intercept_amount = 1,
 	image = "og_turret_kernel_heavy",
 	glow = "og_turret_kernel_heavy_glow",
 	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_kernel_heavy_charge.png", -35, -35, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
@@ -469,6 +470,7 @@ turrets["OG_TURRET_KERNEL_HEAVY"] = {
 }
 turrets["OG_TURRET_KERNEL_FIRE"] = {
 	enemy_burst = 1,
+	intercept_amount = 1,
 	image = "og_turret_kernel_fire",
 	glow = "og_turret_kernel_heavy_glow",
 	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_kernel_fire_charge.png", -35, -35, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),

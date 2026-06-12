@@ -210,7 +210,7 @@ local function add_stat_text(desc, currentTurret, chargeMax)
 	desc = desc..string.format(statsText.charges, math.floor(currentTurret.charges))
 	desc = desc..string.format(statsText.amount, math.floor(currentTurret.charges_per_charge))
 	if currentTurret.ammo_consumption then
-		desc = desc..string.format(statsText.ammo, currentTurret.ammo_consumption * (1 - shipManager:GetAugmentationValue("EXPLOSIVE_REPLICATOR")))
+		desc = desc..string.format(statsText.ammo, currentTurret.ammo_consumption * (1 - Hyperspace.ships.player:GetAugmentationValue("EXPLOSIVE_REPLICATOR")))
 	end
 	if currentTurret.chain and currentTurret.chain.type == chain_types.cooldown then
 		local chain_amount = math.floor(currentTurret.chain.amount * 100)
