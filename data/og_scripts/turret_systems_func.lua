@@ -1050,12 +1050,44 @@ local function target_enemy_drone(currentTurret, mousePosPlayer, mousePosEnemy, 
 	return currentClosest
 end
 
+local function clearArmamentControl()
+	local cApp = Hyperspace.App
+	local combatControl = cApp.gui.combatControl
+	--local droneControl = combatControl.droneControl
+	local weapControl = combatControl.weapControl
+	if weapControl.armedSlot >= 0 then
+		weapControl:DeselectArmament(weapControl.armedSlot)
+	end
+end
+
+local function end_targetting(system)
+	system.table.currentlyTargetting = false
+	if Hyperspace.Mouse.validPointer == cursorValid then
+		Hyperspace.Mouse.validPointer = cursorDefault
+	end
+	if Hyperspace.Mouse.invalidPointer == cursorValid2 then
+		Hyperspace.Mouse.invalidPointer = cursorDefault2
+	end
+end
+
+local function end_targetting_all_systems()
+	local shipManager = Hyperspace.ships.player
+	if shipManager then
+		for _, sysName in ipairs(systemNameList) do
+			if systemCacheList[shipManager.iShipId][sysName] then
+				local system = shipManager:GetSystem(systemIdMap[sysName])
+				if system.table.currentlyTargetting then
+					end_targetting(system)
+				end
+			end
+		end
+	end
+end
+
 local function click_finish_targetting(systemBox, shipManager, targetButton)
-	systemBox.pSystem.table.currentlyTargetting = false
-	Hyperspace.Mouse.validPointer = cursorDefault
-	Hyperspace.Mouse.invalidPointer = cursorDefault2
 	local combatControl = Hyperspace.App.gui.combatControl
 	if combatControl.selectedRoom >= 0 then
+		end_targetting(systemBox.pSystem)
 		target_enemy_room_temp(systemBox, combatControl)
 	else
 		local shipId = (systemBox.bPlayerUI and 0) or 1
@@ -1066,6 +1098,7 @@ local function click_finish_targetting(systemBox, shipManager, targetButton)
 		local currentClosest = target_enemy_projectile(currentTurret, mousePosPlayer, mousePosEnemy, spaceManager)
 		currentClosest = target_enemy_drone(currentTurret, mousePosPlayer, mousePosEnemy, spaceManager, currentClosest)
 		if currentClosest then
+			end_targetting(systemBox.pSystem)
 			systemBox.pSystem.table.currentlyTargetted = true
 			systemBox.pSystem.table.currentTargetTemp = currentClosest.target
 		end
@@ -1075,10 +1108,12 @@ end
 local function system_click(systemBox, shift)
 	local systemId = Hyperspace.ShipSystem.SystemIdToName(systemBox.pSystem.iSystemType)
 	local shipId = (systemBox.bPlayerUI and 0) or 1
+	local continue = true
 	if is_system(systemBox) then
 		local targetButton = systemBox.table.targetButton
 		local shipManager = Hyperspace.ships.player
 		if Hyperspace.App.world.bStartedGame and systemBox.pSystem.table.currentlyTargetting then
+			continue = false
 			click_finish_targetting(systemBox, shipManager, targetButton)
 		end
 
@@ -1097,6 +1132,8 @@ local function system_click(systemBox, shift)
 			systemBox.pSystem.table.currentTargetTemp = nil
 			systemBox.pSystem.table.state = turret_states.offence --click defence button to switch to offence mode
 		elseif targetButton.bHover and targetButton.bActive then
+			end_targetting_all_systems()
+			clearArmamentControl()
 			select_turret(systemBox.pSystem, mods.og.ctrl_held)
 		end
 
@@ -1108,24 +1145,22 @@ local function system_click(systemBox, shift)
 			end
 		end
 	end
-	return Defines.Chain.CONTINUE
+	if continue then
+		return Defines.Chain.CONTINUE
+	else
+		return Defines.Chain.PREEMPT
+	end
 end
 script.on_internal_event(Defines.InternalEvents.SYSTEM_BOX_MOUSE_CLICK, system_click)
 
+
 script.on_internal_event(Defines.InternalEvents.ON_MOUSE_R_BUTTON_DOWN, function(x,y) 
-	local shipManager = Hyperspace.ships.player
-	if shipManager then
-		for _, sysName in ipairs(systemNameList) do
-			if systemCacheList[shipManager.iShipId][sysName] then
-				local system = shipManager:GetSystem(systemIdMap[sysName])
-				if system.table.currentlyTargetting then
-					system.table.currentlyTargetting = false
-					Hyperspace.Mouse.validPointer = cursorDefault
-					Hyperspace.Mouse.invalidPointer = cursorDefault2
-				end
-			end
-		end
-	end
+	end_targetting_all_systems()
+	return Defines.Chain.CONTINUE
+end)
+
+script.on_internal_event(Defines.InternalEvents.SELECT_ARMAMENT_POST, function(slot)
+	end_targetting_all_systems()
 	return Defines.Chain.CONTINUE
 end)
 

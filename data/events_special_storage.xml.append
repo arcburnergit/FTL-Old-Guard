@@ -29,7 +29,7 @@
 		<text>Reposition your Advanced Adaptive Turret Slot.</text>
 		<event name="OG_TURRET_ADAPTIVE_SINGLE_POSITION" />
 	</choice>
-	<choice req="UPG_OG_TURRET_ADAPTIVE_SECONDARY_SHOW" lvl="1" max_group="5" blue="true" hidden="true">
+	<choice req="UPG_OG_TURRET_ADAPTIVE_SECONDARY_SHOW" lvl="1" blue="true" hidden="true">
 		<text>Secondary Turret Control Upgrade. [Cost: 50~, 5|]</text>
 		<event load="STORAGE_CHECK_SYSTEM_OG_TURRET_ADAPTIVE_SECONDARY" />
 	</choice>

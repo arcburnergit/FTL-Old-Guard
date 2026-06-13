@@ -938,6 +938,9 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 	<req name="UPG_OG_TURRET_ADAPTIVE_SECONDARY_SHOW" type="all">
 		<name>og_turret_adaptive</name>
 		<name>og_turret_adaptive_can_install_second</name>
+		<req lvl="0" max_lvl="0">
+			<name>UPG_OG_TURRET_ADAPTIVE_SECONDARY</name>
+		</req>
 	</req>
 
 	<req name="UPG_OG_TURRET_ADAPTIVE_SECONDARY_BUY" type="all">
