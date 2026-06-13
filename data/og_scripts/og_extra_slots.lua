@@ -40,6 +40,7 @@ end)
 
 
 script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+	--local benchmark_start = os.clock()
 	if shipManager and shipManager.iShipId == 0 then
 		local ok = Hyperspace.playerVariables and Hyperspace.playerVariables["og_test_variable"] == 1
 		--print("OKL: ", ok and true or false)
@@ -65,6 +66,8 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 			loadComplete = true
 		end
 	end
+	--local benchmark_end = os.clock()
+	--print(string.format("core.lua SHIP_FLOOR 1: time: %.6f seconds", benchmark_end - benchmark_start))
 end)
 
 

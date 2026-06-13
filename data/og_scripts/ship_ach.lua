@@ -61,12 +61,15 @@ for ship in vter(Hyperspace.Blueprints:GetBlueprintList("LIST_SHIPS_OG_DAWN_ALL"
 	dawnShips[ship] = true
 end
 local function ach_check_raider_2()
+	--local benchmark_start = os.clock()
 	if Hyperspace.ships.enemy and dawnShips[Hyperspace.ships.enemy.myBlueprint.blueprintName] then
 		local beenKilled = Hyperspace.ships.enemy.ship.hullIntegrity.first <= 0 and Hyperspace.ships.enemy._targetable.hostile
 		if beenKilled and should_track_achievement("SHIP_ACH_OG_RAIDER_2", Hyperspace.ships.player, "PLAYER_SHIP_OG_RAIDER") then
 			Hyperspace.CustomAchievementTracker.instance:SetAchievement("SHIP_ACH_OG_RAIDER_2", false)
 		end
 	end
+	--local benchmark_end = os.clock()
+	--print(string.format("ship_ach.lua ON_TICK 1: time: %.6f seconds", benchmark_end - benchmark_start))
 end
 script.on_internal_event(Defines.InternalEvents.ON_TICK, ach_check_raider_2)
 
@@ -80,9 +83,12 @@ local function check_no_shields_or_weapons_ach(ship)
 		should_track_achievement("SHIP_ACH_OG_RAIDER_3", ship, "PLAYER_SHIP_OG_RAIDER")
 end
 script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(ship)
+	--local benchmark_start = os.clock()
 	if check_no_shields_or_weapons_ach(ship) then
 		Hyperspace.CustomAchievementTracker.instance:SetAchievement("SHIP_ACH_OG_RAIDER_3", false)
 	end
+	--local benchmark_end = os.clock()
+	--print(string.format("ship_ach.lua SHIP_LOOP 1: time: %.6f seconds", benchmark_end - benchmark_start))
 end)
 
 local in_combat = false
@@ -98,6 +104,7 @@ script.on_internal_event(Defines.InternalEvents.PRE_CREATE_CHOICEBOX, function(e
 	end
 end)
 script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+	--local benchmark_start = os.clock()
 	if shipManager.iShipId == 1 or not in_combat then return end
 	if (not Hyperspace.ships.enemy) or (not Hyperspace.ships.enemy._targetable.hostile) then
 		in_combat = false
@@ -105,6 +112,8 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 			Hyperspace.CustomAchievementTracker.instance:SetAchievement("SHIP_ACH_OG_EXECUTOR_2", false)
 		end
 	end
+	--local benchmark_end = os.clock()
+	--print(string.format("ship_ach.lua SHIP_LOOP 2: time: %.6f seconds", benchmark_end - benchmark_start))
 end)
 script.on_internal_event(Defines.InternalEvents.JUMP_LEAVE, function(shipManager)
 	if shipManager.iShipId == 0 and in_combat then

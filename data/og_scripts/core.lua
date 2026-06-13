@@ -519,6 +519,7 @@ script.on_internal_event(Defines.InternalEvents.DAMAGE_BEAM, function(ship, proj
 end)
 
 script.on_internal_event(Defines.InternalEvents.POWER_ON_UPDATE, function(power)
+	--local benchmark_start = os.clock()
 	if power.temporaryPowerActive then
 		local crewmem = power.crew
 		if crewmem.type == "human_og_dawn" then
@@ -533,6 +534,8 @@ script.on_internal_event(Defines.InternalEvents.POWER_ON_UPDATE, function(power)
 			end
 		end
 	end
+	--local benchmark_end = os.clock()
+	--print(string.format("core.lua POWER_ON_UPDATE 1: time: %.6f seconds", benchmark_end - benchmark_start))
 	return Defines.Chain.CONTINUE
 end)
 
@@ -645,6 +648,7 @@ script.on_internal_event(Defines.InternalEvents.JUMP_LEAVE, function(shipManager
 end)
 
 script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+	--local benchmark_start = os.clock()
 	for room in vter(shipManager.ship.vRoomList) do
 		if vunerable_rooms[shipManager.iShipId][room.iRoomId] then
 			--print("LOOP CORE:"..room.iRoomId)
@@ -654,15 +658,20 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 			end
 		end
 	end
+	--local benchmark_end = os.clock()
+	--print(string.format("core.lua SHIP_LOOP 1: time: %.6f seconds", benchmark_end - benchmark_start))
 end)
 
-script.on_render_event(Defines.RenderEvents.SHIP_FLOOR, function() end, function(ship) 
+script.on_render_event(Defines.RenderEvents.SHIP_FLOOR, function() end, function(ship)
+	--local benchmark_start = os.clock()
 	local shipManager = Hyperspace.ships(ship.iShipId)
 	for room in vter(shipManager.ship.vRoomList) do
 		if vunerable_rooms[shipManager.iShipId][room.iRoomId] then
 			render_vunerable(room)
 		end
 	end
+	--local benchmark_end = os.clock()
+	--print(string.format("core.lua SHIP_FLOOR 1: time: %.6f seconds", benchmark_end - benchmark_start))
 end)
 
 script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA, function(shipManager, projectile, location, damage, forceHit, shipFriendlyFire)
