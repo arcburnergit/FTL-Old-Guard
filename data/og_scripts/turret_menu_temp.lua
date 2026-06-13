@@ -365,6 +365,7 @@ table.insert(craftedPinpoints.items, {weapon = "OG_TURRET_FOCUS_CHAIN", match_co
 
 table.insert(craftedMicro.items, {weapon = "OG_TURRET_LASER_MINI_1", match_cost = true, component_amounts = {1}, components = {{"LASER_BURST_2", "LASER_BURST_3", "LASER_BURST_3", "LASER_CONSERVATIVE"}}} )
 table.insert(craftedMicro.items, {weapon = "OG_TURRET_LASER_MINI_2", match_cost = true, component_amounts = {1}, components = {{"LASER_LIGHT", "LASER_LIGHT_2", --[["LASER_LIGHT_BURST",]] "LASER_LIGHT_CHARGEGUN", "LASER_LIGHT_CHARGEGUN_CHAOS"}}} )
+table.insert(craftedMicro.items, {weapon = "OG_TURRET_LASER_MINI_BIO", match_cost = true, component_amounts = {1}, components = {{"LASER_BIO", "LOOT_CLAN_1", "BOMB_BIO", "ION_BIO", "LASER_FIRE", "LASER_FIRE_PLAYER", "BEAM_BIO_CONSERVATIVE"}}} )
 table.insert(craftedMicro.items, {weapon = "OG_TURRET_ION_MINI_1", match_cost = true, component_amounts = {1}, components = {{"ION_1", "ION_2", "ION_3", "ION_4", "ION_CHAINGUN", "ION_CHARGEGUN", "ION_CHARGEGUN_2", "ION_CONSERVATIVE"}}} )
 table.insert(craftedMicro.items, {weapon = "OG_TURRET_FOCUS_MINI_1", match_cost = true, component_amounts = {1}, components = {{"FOCUS_1", "FOCUS_2", "FOCUS_3", "FOCUS_CHAIN", "FOCUS_BIO", "BEAM_CONSERVATIVE"}}} )
 table.insert(craftedMicro.items, {weapon = "OG_TURRET_FLAK_MINI_1", match_cost = true, component_amounts = {1}, components = {{"SHOTGUN_1", "SHOTGUN_2", "SHOTGUN_3", "SHOTGUN_4", "SHOTGUN_CHARGE", "SHOTGUN_CHAIN", "SHOTGUN_INSTANT"}}} )

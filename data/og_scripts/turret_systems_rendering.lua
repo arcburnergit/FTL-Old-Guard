@@ -64,6 +64,7 @@ local turret_states = mods.og.turret_states
 
 --HELPER FUNCTIONS
 local get_charge_time = mods.og.get_charge_time
+local add_stat_text = mods.og.add_stat_text
 
 --COLOURS
 local COLOR_WHITE   = Graphics.GL_Color(1, 1, 1, 1)
@@ -73,8 +74,13 @@ local COLOR_CHARGED = Graphics.GL_Color(120/255, 255/255, 120/255, 1)
 local COLOR_SINGLE  = Graphics.GL_Color(255/255, 255/255, 50/255, 1)
 local COLOR_AUTO    = Graphics.GL_Color(255/255, 120/255, 120/255, 1)
 local COLOR_HALF    = Graphics.GL_Color(1, 1, 1, 0.5)
+local COLOR_RED  = Graphics.GL_Color(1, 0, 0, 1)
 local COLOR_RED_25  = Graphics.GL_Color(1, 0, 0, 0.25)
 local COLOR_INDEX   = Graphics.GL_Color(40/255, 78/255, 82/255, 1)
+
+local COLOR_BLACK_TRANS = Graphics.GL_Color(0, 0, 0, 0.9)
+
+local inspectionImage = Hyperspace.Resources:CreateImagePrimitiveString("og_turrets/ship_turret_inspection.png", -31, -31, 0, COLOR_WHITE, 1.0, false)
 
 --RENDER TARGETING ICON
 local targetingImage = {
@@ -663,6 +669,8 @@ local function renderAdaptiveBack(shipManager, ship, spaceManager, shipGraph, sy
 	end
 	Graphics.CSurface.GL_PopMatrix()
 end
+
+local priceText = Hyperspace.Text:GetText("og_lua_turret_stats_price")
 
 local function renderTurret(shipManager, ship, spaceManager, shipGraph, sysName)
 	--print("ship:"..shipManager.iShipId.." jump first:"..shipManager.jump_timer.first.." second:"..shipManager.jump_timer.second.." bJumping"..tostring(shipManager.bJumping))

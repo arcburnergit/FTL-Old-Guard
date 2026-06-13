@@ -1315,6 +1315,28 @@ Chaotic variant rotates 5x as fast and can target any projectile.</desc>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_laser_mini_2_icon</iconReplace>
 </weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_LASER_MINI_BIO">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret_mini</tip>
+	<title>Micro Irradiation Turret</title>
+	<short>Micro Rad</short>
+	<desc>A specialized Laser Turret that does bio damage and cripples crew, but no system or hull damage. This turret is also capable in the defence role shooting down enemy lasers.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>45</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_laser_mini_rad_icon</iconReplace>
+</weaponBlueprint>
+
 </FTL>
 
 <!--MICRO ION-->
@@ -2538,6 +2560,49 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<sp>1</sp>
 	<fireChance>0</fireChance>
 	<breachChance>3</breachChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>laser_bio</image>
+	<launchSounds>
+		<sound>lightLaser1</sound>
+		<sound>lightLaser2</sound>
+		<sound>lightLaser3</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>hitHull2</sound>
+		<sound>hitHull3</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>laser_bio</weaponArt>
+	<iconImage>laser</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_LASER_PROJECTILE_BIO_WEAK">
+	<type>LASER</type>
+	<title>Laser</title>
+	<short>Laser</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>0</damage>
+	<persDamage>2</persDamage>
+	<statBoosts>
+		<statBoost name="moveSpeedMultiplier" load="RAD_MOVE"/>
+		<statBoost name="stunMultiplier" load="RAD_STUN"/>
+		<statBoost name="repairSpeed" load="RAD_REPAIR"/>
+	</statBoosts>
+	<shots>1</shots>
+	<sp>0</sp>
+	<fireChance>0</fireChance>
+	<breachChance>1</breachChance>
 	<cooldown>10</cooldown>
 	<power>1</power>
 	<cost>0</cost>
@@ -5301,9 +5366,9 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<desc>The Angels are some of the finest mercenaries in the galaxy. This stealth ship must rely on its deadly crew to kill the enemy quickly before it takes too much damage.</desc>
 	<systemList>
 		<og_turret_mini power="1" room="2" start="true" img="room_og_turret_2_noman" turret="OG_TURRET_MISSILE_MINI_1" />
-		<og_turret_mini_2 power="1" room="3" start="true" img="room_og_turret_2_noman" turret="OG_TURRET_LASER_MINI_2" />
-		<og_turret_mini_3 power="1" room="4" start="false" img="room_og_turret_2_noman" turret="OG_TURRET_LASER_RUSTY_MINI_1" />
-		<og_turret_mini_4 power="1" room="5" start="false" img="room_og_turret_2_noman" turret="OG_TURRET_LASER_RUSTY_MINI_1" />
+		<og_turret_mini_2 power="1" room="3" start="true" img="room_og_turret_2_noman" turret="OG_TURRET_LASER_MINI_BIO" />
+		<og_turret_mini_3 power="1" room="4" start="true" img="room_og_turret_2_noman" turret="OG_TURRET_LASER_RUSTY_MINI_1" />
+		<og_turret_mini_4 power="1" room="5" start="true" img="room_og_turret_2_noman" turret="OG_TURRET_LASER_RUSTY_MINI_1" />
 		<battery power="1" room="18" start="false" img="room_battery_13" />
 		<cloaking power="2" room="6" start="true" img="room_cloaking_9" />
 		<clonebay power="1" room="9" start="false">
@@ -5363,7 +5428,7 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<weaponList missiles="16" count="2" />
 	<droneList drones="2" count="2" />
 	<health amount="30" />
-	<maxPower amount="9" />
+	<maxPower amount="11" />
 	<crewCount amount="1" class="human_angel" />
 	<crewCount amount="1" class="rock" />
 	<crewCount amount="1" class="mantis" />

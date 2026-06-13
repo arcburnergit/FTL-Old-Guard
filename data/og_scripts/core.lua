@@ -34,6 +34,10 @@ function mods.og.worldToPlayerLocation(location)
 	local cApp = Hyperspace.App
 	local combatControl = cApp.gui.combatControl
 	local playerPosition = combatControl.playerShipPosition
+	if cApp.menu.shipBuilder.bOpen then
+		local commandGui = cApp.gui
+		return Hyperspace.Point(location.x - commandGui.shipPosition.x - 30, location.y - commandGui.shipPosition.y + 139)
+	end
 	return Hyperspace.Point(location.x - playerPosition.x, location.y - playerPosition.y)
 end
 function mods.og.worldToEnemyLocation(location)

@@ -76,6 +76,7 @@
 <text name="og_lua_turret_stats_effect">\nEffect Duration: %d seconds long</text>
 
 <text name="og_lua_turret_stats_price">\n\nDefault Price: %d~   -   Selling Price: %d~</text>
+<text name="og_lua_turret_stats_price_short">\n\n%d~   -   %d~</text>
 
 <text name="og_lua_turret_power_increase">Faster Charge Time</text>
 

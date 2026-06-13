@@ -35,6 +35,7 @@ table.insert(turretBlueprintsList, "OG_TURRET_FOCUS_CHAIN")
 table.insert(turretBlueprintsList, "OG_TURRET_LASER_MINI_1")
 table.insert(turretBlueprintsList, "OG_TURRET_LASER_RUSTY_MINI_1")
 table.insert(turretBlueprintsList, "OG_TURRET_LASER_MINI_2")
+table.insert(turretBlueprintsList, "OG_TURRET_LASER_MINI_BIO")
 table.insert(turretBlueprintsList, "OG_TURRET_ION_MINI_1")
 table.insert(turretBlueprintsList, "OG_TURRET_FOCUS_MINI_1")
 table.insert(turretBlueprintsList, "OG_TURRET_FLAK_MINI_1")
@@ -562,7 +563,7 @@ turrets["OG_TURRET_FLAK_BIO"] = {
 }
 turrets["OG_TURRET_FOCUS_1"] = {
 	enemy_burst = 1,
-	hold_time = 0.4,
+	hold_time = 0.25,
 	stealth = true,
 	speed_reduction = 0.5,
 	image = "og_turret_focus_1",
@@ -580,7 +581,7 @@ turrets["OG_TURRET_FOCUS_1"] = {
 }
 turrets["OG_TURRET_FOCUS_BIO"] = {
 	enemy_burst = 1,
-	hold_time = 0.4,
+	hold_time = 0.25,
 	stealth = true,
 	fake_damage = {iDamage = -2},
 	speed_reduction = 0.5,
@@ -599,7 +600,7 @@ turrets["OG_TURRET_FOCUS_BIO"] = {
 }
 turrets["OG_TURRET_FOCUS_CHAIN"] = {
 	enemy_burst = 1,
-	hold_time = 0.4,
+	hold_time = 0.25,
 	stealth = true,
 	speed_reduction = 0.5,
 	image = "og_turret_focus_chain",
@@ -667,7 +668,22 @@ turrets["OG_TURRET_LASER_MINI_2"] = {
 	rotation_speed = 240,
 	charge_time = {[0] = 5, 5, 3.5, 2.5, 2, 1.75, 1.5, 1.25, 1},
 	enemy_charge_time = {[0] = 7, 7, 6, 5, 4, 3.5, 3, 2.75, 2.5},
-} 
+}
+turrets["OG_TURRET_LASER_MINI_BIO"] = {
+	mini = true,
+	image = "og_turret_laser_mini_rad",
+	glow = "og_turret_laser_mini_rad_glow",
+	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_laser_mini_rad_charge.png", -21, -21, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
+	fire_points = {{x = 0, y = -12, fire_delay = 0.25}},
+	defence_type = defence_types.PROJECTILES,
+	blueprint_type = 1,
+	blueprint = "OG_LASER_PROJECTILE_BIO_WEAK",
+	charges = 3,
+	charges_per_charge = 1,
+	rotation_speed = 240,
+	charge_time = {[0] = 4, 4, 3, 2, 1.5, 1.25, 1, 0.75, 0.5},
+	enemy_charge_time = {[0] = 5, 5, 3.5, 2.5, 2, 1.75, 1.5, 1.25, 1},
+}
 turrets["OG_TURRET_ION_MINI_1"] = {
 	enemy_burst = 1,
 	mini = true,
@@ -690,7 +706,7 @@ turrets["OG_TURRET_ION_MINI_1"] = {
 turrets["OG_TURRET_FOCUS_MINI_1"] = {
 	enemy_burst = 1,
 	mini = true,
-	hold_time = 0.4,
+	hold_time = 0.25,
 	speed_reduction = 0.5,
 	image = "og_turret_focus_mini_1",
 	glow = "og_turret_focus_mini_1_glow",
@@ -812,7 +828,7 @@ turrets["OG_TURRET_FLAK_DAWN"] = {
 }
 turrets["OG_TURRET_FOCUS_DAWN"] = {
 	enemy_burst = 1,
-	hold_time = 0.4,
+	hold_time = 0.25,
 	speed_reduction = 0.5,
 	stealth = true,
 	dawn = true,
@@ -865,7 +881,7 @@ turrets["OG_TURRET_LASER_MINI_DAWN_2"] = {
 turrets["OG_TURRET_FOCUS_MINI_DAWN"] = {
 	enemy_burst = 1,
 	mini = true,
-	hold_time = 0.4,
+	hold_time = 0.25,
 	speed_reduction = 0.5,
 	dawn = true,
 	image = "og_turret_focus_mini_dawn",
@@ -884,7 +900,7 @@ turrets["OG_TURRET_FOCUS_MINI_DAWN"] = {
 
 turrets["OG_TURRET_LOOT_SLUG_1"] = {
 	enemy_burst = 1,
-	hold_time = 0.4,
+	hold_time = 0.25,
 	stealth = true,
 	fake_damage = {iDamage = -2},
 	speed_reduction = 0.5,
@@ -955,7 +971,7 @@ turrets["OG_TURRET_LOOT_FEDERATION_1"] = {
 
 turrets["OG_TURRET_FOCUS_SOULPLAGUE"] = {
 	enemy_burst = 1,
-	hold_time = 0.4,
+	hold_time = 0.25,
 	stealth = true,
 	fake_damage = {iDamage = -2},
 	speed_reduction = 0.5,

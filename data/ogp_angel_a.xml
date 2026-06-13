@@ -15,8 +15,8 @@
 <ogTurretMounts>
 	<og_turret_mini x="322" y="385" direction="right"/>
 	<og_turret_mini_2 x="322" y="61" direction="right"/>
-	<og_turret_mini_3 x="183" y="327" direction="up"/>
-	<og_turret_mini_4 x="183" y="119" direction="down"/>
+	<og_turret_mini_3 x="183" y="327" direction="down"/>
+	<og_turret_mini_4 x="183" y="119" direction="up"/>
 </ogTurretMounts>
 <explosion />
 

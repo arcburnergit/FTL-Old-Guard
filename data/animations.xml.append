@@ -661,6 +661,24 @@
 	<desc length="3" x="0" y="0" />
 	<time>1</time>
 </anim>
+<animSheet name="og_turret_laser_mini_rad_icon" w="36" h="18" fw="36" fh="18">og_turrets/turret_laser_mini_rad_icon.png</animSheet>
+<anim name="og_turret_laser_mini_rad_icon">
+	<sheet>og_turret_laser_mini_rad_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_laser_mini_rad" w="294" h="42" fw="42" fh="42">og_turrets/turret_laser_mini_rad.png</animSheet>
+<anim name="og_turret_laser_mini_rad">
+	<sheet>og_turret_laser_mini_rad</sheet>
+	<desc length="7" x="0" y="0" />
+	<time>0.21</time>
+</anim>
+<animSheet name="og_turret_laser_mini_rad_glow" w="126" h="42" fw="42" fh="42">og_turrets/turret_laser_mini_rad_glow.png</animSheet>
+<anim name="og_turret_laser_mini_rad_glow">
+	<sheet>og_turret_laser_mini_rad_glow</sheet>
+	<desc length="3" x="0" y="0" />
+	<time>1</time>
+</anim>
 
 
 

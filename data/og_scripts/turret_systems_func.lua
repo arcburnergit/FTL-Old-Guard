@@ -201,8 +201,9 @@ local statsText = {
 	stealth = Hyperspace.Text:GetText("stat_stealth"),
 
 	price = Hyperspace.Text:GetText("og_lua_turret_stats_price"),
+	price_short = Hyperspace.Text:GetText("og_lua_turret_stats_price_short"),
 }
-local function add_stat_text(desc, currentTurret, chargeMax)
+function mods.og.add_stat_text(desc, currentTurret, chargeMax)
 	desc = desc..statsText.time
 	for i, t in ipairs(currentTurret.charge_time) do
 		if i <= chargeMax then
@@ -297,6 +298,7 @@ local function add_stat_text(desc, currentTurret, chargeMax)
 	end
 	return desc
 end
+local add_stat_text = mods.og.add_stat_text
 
 script.on_internal_event(Defines.InternalEvents.WEAPON_DESCBOX, function(blueprint, desc)
 	if turrets[blueprint.name] then
@@ -598,6 +600,23 @@ local system_ready = mods.og.system_ready
 --LEVEL DESCRIPTION
 local text_power_increase = Hyperspace.Text:GetText("og_lua_turret_power_increase")
 local function get_level_description_system(currentId, level, tooltip)
+	if Hyperspace.App.menu.shipBuilder.bOpen then
+		for _, sysName in ipairs(systemNameList) do
+			if currentId == systemIdMap[sysName] then
+				local id, i = findStartingTurret(Hyperspace.ships.player, sysName)
+				if id then 
+					local currentTurret = turrets[id] 
+					local blueprint = Hyperspace.Blueprints:GetWeaponBlueprint(id)
+					local desc = add_stat_text((blueprint.desc.title:GetText().."\n\n"), currentTurret, 8)
+					desc = desc..string.format(statsText.price_short, math.floor(blueprint.desc.cost), math.floor(blueprint.desc.cost/2))
+					
+					Hyperspace.Mouse.tooltip = desc
+					Hyperspace.Mouse.bForceTooltip = true
+				end
+			end
+		end
+	end
+
 	for _, sysName in ipairs(systemNameList) do
 		if currentId == systemIdMap[sysName] then
 			return string.format(text_power_increase)
