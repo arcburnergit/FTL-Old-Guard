@@ -817,6 +817,8 @@ script.on_render_event(Defines.RenderEvents.SHIP_MANAGER, function(shipManager) 
 			local system = shipManager:GetSystem(systemIdMap[sysName])
 			system.table.index = index_counter
 			if microTurrets[sysName] then
+				_shipCorner.x = ship.shipImage.x + shipGraph.shipBox.x
+				_shipCorner.y = ship.shipImage.y + shipGraph.shipBox.y
 				renderTurret(shipManager, ship, spaceManager, shipGraph, sysName)	
 			end	
 		end

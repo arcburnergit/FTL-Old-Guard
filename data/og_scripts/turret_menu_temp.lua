@@ -342,6 +342,7 @@ table.insert(craftedLasers.items, {weapon = "OG_TURRET_LASER_CHAINGUN", match_co
 table.insert(craftedLasers.items, {weapon = "OG_TURRET_LASER_BIO", match_cost = true, component_amounts = {1}, components = {{"LASER_BIO", "LOOT_CLAN_1", "BOMB_BIO", "ION_BIO", "LASER_FIRE", "LASER_FIRE_PLAYER"}}} )
 table.insert(craftedLasers.items, {weapon = "OG_TURRET_LASER_HULL", match_cost = true, component_amounts = {1}, components = {{"LASER_HULL_1", "LASER_HULL_2", "LASER_HULL_3", "LASER_HULL_3_PLAYER", "LASER_HULL_CHAINGUN"}}} )
 table.insert(craftedLasers.items, {weapon = "OG_TURRET_LASER_PARTICLE", match_cost = true, component_amounts = {1}, components = {{"LASER_PARTICLE", "LASER_PARTICLE_2", "BEAM_PARTICLE", "MISSILES_PARTICLE", "MISSILES_PARTICLE_PLAYER"}}} )
+table.insert(craftedLasers.items, {weapon = "OG_TURRET_LASER_FROST", match_cost = true, component_amounts = {1}, components = {{"LASER_FROST_1", "LASER_FROST_2", "LASER_FROST_2_PLAYER", "SENTRY_FROST", "FROST_CHARGEGUN"}}} )
 
 table.insert(craftedIons.items, {weapon = "OG_TURRET_ION_1", match_cost = true, component_amounts = {1}, components = {{"ION_1", "ION_2", "ION_3", "ION_4", "ION_CHAINGUN", "ION_CHARGEGUN", "ION_CHARGEGUN_2"}}} )
 table.insert(craftedIons.items, {weapon = "OG_TURRET_ION_2", match_cost = true, component_amounts = {1}, components = {{"ION_FIRE", "ION_FIRE_PLAYER", "ION_BIO", "ION_TRI", "ION_STUN", "ION_STUN_2", "ION_STUN_HEAVY", "ION_STUN_CHARGEGUN", "ION_STUN_CHARGEGUN_PLAYER"}}} )

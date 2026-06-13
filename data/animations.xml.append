@@ -267,6 +267,24 @@
 	<desc length="6" x="0" y="0" />
 	<time>1</time>
 </anim>
+<animSheet name="og_turret_laser_frost_icon" w="83" h="30" fw="83" fh="30">og_turrets/turret_laser_frost_icon.png</animSheet>
+<anim name="og_turret_laser_frost_icon">
+	<sheet>og_turret_laser_frost_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_laser_frost" w="1100" h="100" fw="100" fh="100">og_turrets/turret_laser_frost.png</animSheet>
+<anim name="og_turret_laser_frost">
+	<sheet>og_turret_laser_frost</sheet>
+	<desc length="11" x="0" y="0" />
+	<time>0.88</time>
+</anim>
+<animSheet name="og_turret_laser_frost_glow" w="600" h="100" fw="100" fh="100">og_turrets/turret_laser_frost_glow.png</animSheet>
+<anim name="og_turret_laser_frost_glow">
+	<sheet>og_turret_laser_frost_glow</sheet>
+	<desc length="6" x="0" y="0" />
+	<time>1</time>
+</anim>
 
 <animSheet name="og_turret_laser_gatling_icon" w="115" h="66" fw="115" fh="66">og_turrets/turret_laser_gatling_icon.png</animSheet>
 <anim name="og_turret_laser_gatling_icon">

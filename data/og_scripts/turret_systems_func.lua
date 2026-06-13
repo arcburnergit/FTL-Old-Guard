@@ -2263,8 +2263,16 @@ script.on_internal_event(Defines.InternalEvents.POST_CREATE_CHOICEBOX, function(
 					local system = shipManager:GetSystem(systemIdMap[sysName])
 					local currentTurretName = system.table.blueprint
 					if currentTurretName == removeItem then
-						event.stuff.removeItem = "	 "
-						Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] = -1
+						event.stuff.removeItem = " "
+						system.table.blueprint = ""
+						system.table.charges = 0
+						system.table.time = 0
+						system.table.firingTime = 0
+						system.table.currentShot = 0
+						system.table.currentTarget = nil
+						system.table.currentlyTargetting = false
+						saveTurret(shipManager, system, sysName)
+						break
 					end
 				end
 			end

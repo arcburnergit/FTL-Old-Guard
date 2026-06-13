@@ -14,6 +14,7 @@ table.insert(turretBlueprintsList, "OG_TURRET_LASER_PIERCE")
 table.insert(turretBlueprintsList, "OG_TURRET_LASER_HULL")
 table.insert(turretBlueprintsList, "OG_TURRET_LASER_CHAINGUN")
 table.insert(turretBlueprintsList, "OG_TURRET_LASER_PARTICLE")
+table.insert(turretBlueprintsList, "OG_TURRET_LASER_FROST")
 table.insert(turretBlueprintsList, "OG_TURRET_LASER_GATLING")
 table.insert(turretBlueprintsList, "OG_TURRET_LASER_RIFTWAKER")
 table.insert(turretBlueprintsList, "OG_TURRET_ION_1")
@@ -296,6 +297,25 @@ turrets["OG_TURRET_LASER_PARTICLE"] = {
 	charges_per_charge = 3,
 	rotation_speed = 180,
 	charge_time = {[0] = 14, 14, 12, 9, 7, 6, 5, 4, 3},
+}
+turrets["OG_TURRET_LASER_FROST"] = {
+	enemy_burst = 4,
+	image = "og_turret_laser_frost",
+	multi_anim = 5,
+	glow = "og_turret_laser_frost_glow",
+	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_laser_frost_charge.png", -50, -50, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
+	fire_points = {{x = -4, y = -52, fire_delay = 0.5}, {x = 4, y = -52, fire_delay = 0.4}},
+	autofire = {
+		offence = 2,
+		defence = 2,
+	},
+	defence_type = defence_types.MISSILES,
+	blueprint_type = 1,
+	blueprint = "OG_LASER_PROJECTILE_FROST",
+	charges = 6,
+	charges_per_charge = 2,
+	rotation_speed = 180,
+	charge_time = {[0] = 13, 13, 10, 7, 6, 5, 4, 3.5, 3},
 }
 turrets["OG_TURRET_LASER_GATLING"] = {
 	enemy_burst = 1,

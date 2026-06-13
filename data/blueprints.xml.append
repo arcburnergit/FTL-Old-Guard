@@ -859,6 +859,27 @@ Chaotic variant rotates 5x as fast and can target any projectile.</desc>
 	<iconReplace>og_turret_laser_particle_icon</iconReplace>
 </weaponBlueprint>
 
+<weaponBlueprint name="OG_TURRET_LASER_FROST">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Frost Laser Turret</title>
+	<short>Frost L.</short>
+	<desc>Frost Lasers are one of the few weapon types capable of locking down rooms, keeping most crew from entering or leaving.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>65</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_laser_frost_icon</iconReplace>
+</weaponBlueprint>
+
 <weaponBlueprint name="OG_TURRET_LASER_GATLING">
 	<type>BEAM</type>
 	<flavorType>Turret</flavorType>
@@ -2687,7 +2708,59 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<weaponArt>laser_particle</weaponArt>
 	<iconImage>laser</iconImage>
 </weaponBlueprint>
-
+<weaponBlueprint name="OG_LASER_PROJECTILE_FROST">
+	<type>LASER</type>
+	<title>Laser</title>
+	<short>Laser</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>1</damage>
+	<persDamage>1</persDamage>
+	<stun>3</stun>
+	<lockdown>1</lockdown>
+	<shots>1</shots>
+	<sp>0</sp>
+	<fireChance>0</fireChance>
+	<breachChance>0</breachChance>
+	<roomStatBoosts>
+		<statBoost name="trueHealAmount">
+			<boostType>FLAT</boostType>
+			<amount>0</amount>
+			<shipTarget>ALL</shipTarget>
+			<crewTarget>ALL</crewTarget>
+			<duration>20</duration>
+			<roomAnim renderLayer="3">
+				<anim animType="center">snowman_walk_down</anim>
+			</roomAnim>
+		</statBoost>
+	</roomStatBoosts>
+	<roomStatBoostChance>1</roomStatBoostChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>laser_frost</image>
+	<launchSounds>
+		<sound>lightLaser1</sound>
+		<sound>lightLaser2</sound>
+		<sound>lightLaser3</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>hitHull2</sound>
+		<sound>hitHull3</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>laser_frost</weaponArt>
+	<iconImage>laser</iconImage>
+</weaponBlueprint>
 
 
 <weaponBlueprint name="OG_ION_PROJECTILE_BASE">
@@ -3186,7 +3259,6 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 </weaponBlueprint>
 
 
-
 <weaponBlueprint name="OG_FLAK_PROJECTILE">
 	<type>LASER</type>
 	<drone_targetable>1</drone_targetable>
@@ -3273,7 +3345,6 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<weaponArt>shotgun_toxic</weaponArt>
 	<iconImage>laser</iconImage>
 </weaponBlueprint>
-
 
 
 <weaponBlueprint name="OG_FOCUS_PROJECTILE">
