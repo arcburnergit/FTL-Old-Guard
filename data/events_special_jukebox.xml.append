@@ -16,5 +16,21 @@ Composed by: Lizzard</text>
 			<loadEvent>STORAGE_CHECK_JUKEBOX</loadEvent>
 		</event>
 	</mod-append:choice>
+	<mod-append:choice hidden="true" req="juke_og_iron_neutron" blue="false">
+		<text>[style[color:F64B2D]]OG: Exclusion Zone[[/style]]
+Composed by: Lizzard</text>
+		<event>
+			<playMusic>og_iron_neutron</playMusic>
+			<loadEvent>STORAGE_CHECK_JUKEBOX</loadEvent>
+		</event>
+	</mod-append:choice>
+	<mod-append:choice hidden="true" req="juke_og_iron_neutron_irradiated" blue="false">
+		<text>[style[color:F64B2D]]OG: Irradiated[[/style]]
+Composed by: Lizzard</text>
+		<event>
+			<playMusic>og_iron_neutron_irradiated</playMusic>
+			<loadEvent>STORAGE_CHECK_JUKEBOX</loadEvent>
+		</event>
+	</mod-append:choice>
 </mod:findName>
 </FTL>

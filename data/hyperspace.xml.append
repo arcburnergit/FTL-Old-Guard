@@ -7,6 +7,7 @@
 	<mod-append:script>data/og_scripts/turret_systems_rendering.lua</mod-append:script>
 	<mod-append:script>data/og_scripts/turret_systems_stats.lua</mod-append:script>
 	<mod-append:script>data/og_scripts/turret_menu_temp.lua</mod-append:script>
+	<mod-append:script>data/og_scripts/neutron_beam.lua</mod-append:script>
 	<mod-append:script>data/og_scripts/og_extra_slots.lua</mod-append:script>
 	<mod-append:script>data/og_scripts/ship_ach.lua</mod-append:script>
 </mod:findLike>
@@ -858,6 +859,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 
 	<eventFile>sector_og_iron</eventFile>
 	<eventFile>sector_og_dawn</eventFile>
+	<eventFile>sector_og_iron_secret</eventFile>
 	<variable name="og_test_variable" op="set" val="0"/>
 
 	<variable name="rep_og_iron" op="set" val="0"/>
@@ -883,10 +885,18 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 	<variable name="og_turret_adaptive_single_saved_x" op="set" val="0"/>
 	<variable name="og_turret_adaptive_single_saved_y" op="set" val="0"/>
 
+	<variable name="coords_og_iron_secret" val="0"/>
+	<variable name="loc_environment_og_neutron_star_rotation" val="0"/>
+	<variable name="loc_environment_og_neutron_beam" val="0"/>
+
 	<metaVariable name="juke_og_iron" op="set" val="0"/>
 	<metaVariable name="juke_og_dawn" op="set" val="0"/>
+	<metaVariable name="juke_og_iron_neutron" op="set" val="0"/>
+	<metaVariable name="juke_og_iron_neutron_irradiated" op="set" val="0"/>
+
 	<metaVariable name="og_turret_tutorial" op="set" val="0"/>
 	<metaVariable name="og_turret_fab_tips" op="set" val="0"/>
+
 
 	<req name="OG_TURRET_TUTORIAL_SHOW" type="all">
 		<req type="any">
@@ -1096,6 +1106,26 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 				<variable name="juke_og_dawn" amount="1" />
 				<multiDifficulty>false</multiDifficulty>
 			</achievement>
+			<achievement name="MUSIC_OG_IRON_NEUTRON">
+				<name>Exclusion Zone</name>
+				<description id="jukebox_unlocked" />
+				<secretDescription id="jukebox_locked" />
+				<header id="jukebox_header" />
+				<icon>music_unlocked_og</icon>
+				<variable name="juke_og_iron_neutron" amount="1" />
+				<multiDifficulty>false</multiDifficulty>
+			</achievement>
+			<achievement name="MUSIC_OG_IRON_NEUTRON_IRRADIATED">
+				<name>Irradiated</name>
+				<description id="jukebox_unlocked" />
+				<secretDescription id="jukebox_locked" />
+				<header id="jukebox_header" />
+				<icon>music_unlocked_og</icon>
+				<variable name="juke_og_iron_neutron_irradiated" amount="1" />
+				<multiDifficulty>false</multiDifficulty>
+			</achievement>
+		</section>
+		<section text="The Old Guard" hidden="false">
 			<achievement name="ACH_TRANS_OG_DAWN">
 				<name>New Dawn Transport</name>
 				<secretDescription>Obtain the loot from the New Dawn loot transport.</secretDescription>
@@ -1327,5 +1357,25 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 			<chance>65</chance>
 		</category>
 	</mod-append:customStore>
+</mod:findLike>
+
+
+<mod:findLike type="events" limit="1" reverse="false">
+	<mod:findName type="req" name="LIST_CHECK_ANY_CREW">
+		<mod-append:req type="any" load="LIST_CREW_DEEPONES"/>
+	</mod:findName>
+	<mod:findName type="req" name="COORDS">
+		<mod-append:name>coords_og_iron_secret</mod-append:name>
+	</mod:findName>
+	<mod:findName type="req" name="COORDS_BOSS">
+		<mod:findLike type="req" start="0" limit="1">
+			<mod-append:name>coords_og_iron_secret</mod-append:name>
+		</mod:findLike>
+	</mod:findName>
+	<mod:findName type="req" name="COORDS_BOSS_TOOLATE">
+		<mod:findLike type="req" start="0" limit="1">
+			<mod-append:name>coords_og_iron_secret</mod-append:name>
+		</mod:findLike>
+	</mod:findName>
 </mod:findLike>
 </FTL>

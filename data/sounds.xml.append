@@ -10,5 +10,15 @@
 		<explore>og_MUS_DawnExplore.ogg</explore>
 		<combat>og_MUS_DawnBattle.ogg</combat>
 	</track>
+	<track>
+		<name>og_iron_neutron</name> <!--Music by lizzard-->
+		<explore>og_MUS_NeutronExplore.ogg</explore>
+		<combat>og_MUS_NeutronBattle.ogg</combat>
+	</track>
+	<track>
+		<name>og_iron_neutron_irradiated</name> <!--Music by lizzard-->
+		<explore>og_MUS_NeutronIrradiatedExplore.ogg</explore>
+		<combat>og_MUS_NeutronIrradiatedBattle.ogg</combat>
+	</track>
 </music>
 </FTL>

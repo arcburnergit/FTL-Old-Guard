@@ -30,9 +30,17 @@
 </mod:findName>
 
 <mod:findName type="event" name="REROUTE_MENU">
+	<mod-append:choice hidden="true" req="coords_og_iron_secret" blue="false">
+		<text>Jump to the Neutron Star Exclusion Zone.</text>
+		<event load="LIGHTSPEED_SECTOR_WARP_OG_IRON_SECRET"/>
+	</mod-append:choice>
 </mod:findName>
 
 <mod:findName type="event" name="REROUTE_MENU_LASTSTAND">
+	<mod-append:choice hidden="true" req="coords_og_iron_secret" blue="false">
+		<text>Jump to the Neutron Star Exclusion Zone.</text>
+		<event load="LIGHTSPEED_SECTOR_WARP_OG_IRON_SECRET_BOSS"/>
+	</mod-append:choice>
 </mod:findName>
 
 <mod:findName type="event" name="REROUTE_MENU_HAT">
@@ -172,6 +180,52 @@
 		<text>Reroute.</text>
 		<event load="REROUTE_MENU"/>
 	</choice>
+</event>
+
+
+<event name="LIGHTSPEED_SECTOR_WARP_OG_IRON_SECRET">
+	<text id="atlas_og_iron_secret"/>
+	<choice hidden="true">
+		<text>Continue with the jump.</text>
+		<event>
+			<text>You prepare to jump to the new co-ordinates, and change your flight path accordingly.</text>
+			<variable name="coords_og_iron_secret" op="set" val="0"/>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="JUMP_TO_OG_IRON_SECRET"/>
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true">
+		<text>Nevermind.</text>
+		<event>
+			<loadEvent>ATLAS_MENU_NOEQUIPMENT</loadEvent>
+		</event>
+	</choice>
+</event>
+<event name="LIGHTSPEED_SECTOR_WARP_OG_IRON_SECRET_BOSS">
+	<text id="atlas_og_iron_secret"/>
+	<choice hidden="true">
+		<text>Continue with the jump.</text>
+		<event>
+			<text>You prepare to jump to the new co-ordinates, and change your flight path accordingly.</text>
+			<variable name="coords_og_iron_secret" op="set" val="0"/>
+			<variable name="loc_laststand" op="add" val="1"/>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="JUMP_TO_OG_IRON_SECRET"/>
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true">
+		<text>Nevermind.</text>
+		<event>
+			<loadEvent>ATLAS_MENU_NOEQUIPMENT</loadEvent>
+		</event>
+	</choice>
+</event>
+<event name="JUMP_TO_OG_IRON_SECRET">
+	<secretSector>SECTOR_OG_IRON_SECRET</secretSector>
 </event>
 
 </FTL>

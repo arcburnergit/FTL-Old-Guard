@@ -345,9 +345,9 @@ For your extra egregious actions, your reputation was decreased twice.</text>
 	<autoReward level="MED">standard</autoReward>
 </event>
 <textList name="TEXT_DESTROYED_OG_DAWN">
-	<text>The Iron Watch captain lets out one final expletive as the ship is obliterated.</text>
-	<text>The hull of the Iron Watch vessel is dispersed out into space. You swoop in to salvage the remains.</text>
-	<text>The Iron Watch ship explodes, extinguishing all lives within. Your crew avoids their remains as they salvage the ship pieces.</text>
+	<text>The New Dawn captain lets out one final expletive as the ship is obliterated.</text>
+	<text>The hull of the New Dawn vessel is dispersed out into space. You swoop in to salvage the remains.</text>
+	<text>The New Dawn ship explodes, extinguishing all lives within. Your crew avoids their remains as they salvage the ship pieces.</text>
 	<text>One of the turrets is launched off into empty space as the ship explodes, throwing valuable debris in every direction.</text>
 </textList>
 
@@ -357,12 +357,12 @@ For your extra egregious actions, your reputation was decreased twice.</text>
 </event>
 <textList name="TEXT_DEAD_CREW_OG_DAWN">
 	<text>"Your bloodlust... will be your downfall someday, Renegade. You are only proof... the Federation... is no better than the Rebellion..."</text>
-	<text>Without a word, the Iron Watch captain falls to the ground, gasping for air as the life is extinguished from their eyes. You salvage the hull of their ship.</text>
-	<text>"You will regret this! Karma always comes back to people like you. Damn you Renegades... the Iron Watch would have been better off with the Rebellion..."</text>
+	<text>Without a word, the New Dawn captain falls to the ground, gasping for air as the life is extinguished from their eyes. You salvage the hull of their ship.</text>
+	<text>"You will regret this! Karma always comes back to people like you. Damn you Renegades... the New Dawn would have been better off with the Rebellion..."</text>
 </textList>
 
 <event name="ESCAPE_OG_DAWN">
-	<text>Scans show that the Iron Watch ship is trying to escape. Destroy it before it can get away!</text>
+	<text>Scans show that the New Dawn ship is trying to escape. Destroy it before it can get away!</text>
 </event>
 
 <eventList name="GOTAWAY_OG_DAWN">
@@ -375,11 +375,11 @@ For your extra egregious actions, your reputation was decreased twice.</text>
 	<text load="TEXT_GOTAWAY_OG_DAWN"/>
 </event>
 <textList name="TEXT_GOTAWAY_OG_DAWN">
-	<text>The Iron Watch vessel has slipped from your grasp, abandoning you at the beacon.</text>
-	<text>Your attempts at destroying the Iron Watch vessel have failed, and the ship has escaped.</text>
+	<text>The New Dawn vessel has slipped from your grasp, abandoning you at the beacon.</text>
+	<text>Your attempts at destroying the New Dawn vessel have failed, and the ship has escaped.</text>
 </textList>
 <event name="GOTAWAY_OG_DAWN_REMAINS">
-	<text>The Iron Watch vessel may have escaped, but not everything has gone wrong. A trail of scrap from the wreckage has been left behind, which you collect.</text>
+	<text>The New Dawn vessel may have escaped, but not everything has gone wrong. A trail of scrap from the wreckage has been left behind, which you collect.</text>
 	<autoReward level="LOW">scrap_only</autoReward>
 </event>
 

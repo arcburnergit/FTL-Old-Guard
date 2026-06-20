@@ -974,6 +974,19 @@
 
 <!--Crew-->
 <FTL>
+<animSheet name="og_neutron_beam_crew" w="352" h="32" fw="32" fh="32">people/og_neutron_beam_strip11.png</animSheet>
+<anim name="og_neutron_beam_crew">
+	<sheet>og_neutron_beam_crew</sheet>
+	<desc length="11" x="0" y="0"/>
+	<time>1.0</time>
+</anim>
+<animSheet name="og_neutron_damage" w="210" h="35" fw="35" fh="35">effects/og_neutron_damage_strip6.png</animSheet>
+<anim name="og_neutron_damage">
+	<sheet>og_neutron_damage</sheet>
+	<desc length="6" x="0" y="0"/>
+	<time>0.6</time>
+</anim>
+
 <animSheet name="human_og_raider" w="315" h="455" fw="35" fh="35">people/human_og_raider_base.png</animSheet>
 <anim name="human_og_raider_clone">
 	<sheet>human_og_raider</sheet>

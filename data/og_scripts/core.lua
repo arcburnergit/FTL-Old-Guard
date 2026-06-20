@@ -512,14 +512,19 @@ local function handle_reduction_armor(ship, projectile, location, damage, immedi
 		elseif damage.iIonDamage < 0 then
 			damage.iIonDamage = math.min(-1, math.ceil(damage.iIonDamage * ship:GetAugmentationValue("OG_REFLECTIVE_PLATING")))
 		end
-		damage.fireChance = math.max(1, math.floor(damage.fireChance * ship:GetAugmentationValue("OG_REFLECTIVE_PLATING")))
-		damage.breachChance = math.max(1, math.floor(damage.breachChance * ship:GetAugmentationValue("OG_REFLECTIVE_PLATING")))
+		if damage.fireChance > 0 then
+			damage.fireChance = math.max(1, math.floor(damage.fireChance * ship:GetAugmentationValue("OG_REFLECTIVE_PLATING")))
+		end
+		if damage.breachChance > 0 then
+			damage.breachChance = math.max(1, math.floor(damage.breachChance * ship:GetAugmentationValue("OG_REFLECTIVE_PLATING")))
+		end
 	end
 end
 script.on_internal_event(Defines.InternalEvents.DAMAGE_BEAM, function(ship, projectile, location, damage, realNewTile, beamHitType)
 	if beamHitType == Defines.BeamHit.NEW_ROOM then
 		handle_reduction_armor(ship, projectile, location, damage, true)
 	end
+	return Defines.Chain.CONTINUE, beamHitType
 end)
 
 script.on_internal_event(Defines.InternalEvents.POWER_ON_UPDATE, function(power)

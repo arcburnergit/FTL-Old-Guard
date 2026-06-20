@@ -5717,4 +5717,13 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<rarity>0</rarity>
 	<stackable>true</stackable>
 </augBlueprint>
+
+<augBlueprint name="OG_NEUTRON_SHIELD">
+	<title>Synchrotron Barrier</title>
+	<desc>Protects agains the effects of a neutron star's radiation beam, absorbing the damage and dissipating it throughout the engines system. Ship has ion immunity while the shield is online, but the shield goes down when engines are at 1 or less bars.</desc>
+	<cost>80</cost>
+	<rarity>0</rarity>
+	<stackable>true</stackable>
+	<value>1</value>
+</augBlueprint>
 </FTL>
