@@ -1,0 +1,11 @@
+<FTL>
+	
+<imageList name="BACK_SECTOR_OG_NEUTRON">
+	<img w="1280" h="720">stars_sectors/bg_og_neutron.png</img>
+</imageList>
+	
+<imageList name="BACK_SECTOR_OG_NEUTRON_STATION">
+	<img w="1280" h="720">stars_sectors/bg_og_neutron_station.png</img>
+</imageList>
+
+</FTL>

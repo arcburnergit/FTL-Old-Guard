@@ -749,12 +749,12 @@ turrets["OG_TURRET_MISSILE_MINI_1"] = {
 	fire_points = {{x = 0, y = -30, fire_delay = 0.4}},
 	defence_type = defence_types.ALL,
 	blueprint_type = 2,
-	ammo_consumption = 0.5,
+	ammo_consumption = 1,
 	blueprint = "OG_MISSILE_PROJECTILE_WEAK",
 	charges = 4,
 	charges_per_charge = 1,
 	rotation_speed = 240,
-	charge_time = {[0] = 7, 7, 6, 5, 4, 3.5, 3, 2.75, 2.5},
+	charge_time = {[0] = 11.5, 11.5, 9, 7, 6, 5, 4, 3, 2},
 }
 
 

@@ -979,6 +979,7 @@ The Captain of the transport pauses, thinking on something.
 	<deadCrew>
 		<text load="TEXT_DEAD_CREW_REBEL"/>
 		<autoReward level="HIGH">standard</autoReward>
+		<recallBoarders force="true" ship="player"/>
 		<choice hidden="true">
 			<text>Continue...</text>
 			<event load="OG_DAWN_REBEL_DAWN_INFIGHT_DAWN_FOLLOWUP"/>
@@ -1506,7 +1507,7 @@ A moment later you find out who that is, a New Dawn scout reveals themselves fro
 			<choice hidden="false">
 				<text>Agree to deliver the item.</text>
 				<event>
-					<text>They transfer the cooridinates and the cargo crate over to you, they give a quick warning to not open it before sending you on your way.</text>
+					<text>They transfer the coordinates and the cargo crate over to you, they give a quick warning to not open it before sending you on your way.</text>
 					<weapon name="OG_CARGO_CRATE_PREIGN_WEAK"/>
 					<quest event="OG_DAWN_PREIGN_QUEST_DESTINATION"/>
 				</event>
@@ -2031,7 +2032,7 @@ The Iron Watch cruiser contacts you, "Please Captain, we can't last much longer,
 	</choice>
 </event>
 <event name="OG_DAWN_HEIST_DAWN_RUN">
-	<text>Despite taking heavy fire, the Iron Watch ship managed to trigger an emergency jump, slipping into the void just as their systems were beginning to fail.</text>
+	<text>Despite taking heavy fire, the New Dawn ship managed to trigger an emergency jump, slipping into the void just as their systems were beginning to fail.</text>
 	<recallBoarders force="true" ship="player"/>
 	<instantEscape/>
 	<choice>

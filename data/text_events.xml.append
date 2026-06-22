@@ -24,6 +24,15 @@ Locations of Interest: ???
 
 The Military holdout for the New Dawn, low on both supplies and allies in their fight against the Iron Watch, they've turned to the rebellion for help, despite the protests of some New Dawn members.
 </text>
+<text name="atlas_og_neutron">Name: Neutron Star Exclusion Zone
+Type: Neutral
+Unique: True
+Dominant Faction: The Iron Watch
+Rebel Threat Level: High (Neutral Fleet)
+Locations of Interest: Neutron Research Station
+
+Safety varies within Iron Watch space, you'll find a wide range of groups here. The Iron Watch is a collective of Explorers, Scientists, and Pirates, all who have ventured into uncivilised space whether out of desperation or curiosity.
+</text>
 
 <text name="map_icon_og_battlecruiser">BATTLECRUISER</text>
 
@@ -32,6 +41,8 @@ The Military holdout for the New Dawn, low on both supplies and allies in their 
 <text name="map_icon_og_dawn_ship">SHIP [!]</text>
 <text name="map_icon_og_dawn_base">HIDDEN BASE [!]</text>
 <text name="map_icon_og_dawn_vault">DATA_VAULT [!]</text>
+
+<text name="map_icon_og_neutron_station">RESEARCH STATION [!]</text>
 
 <text name="storage_choice_og_eatmote_none_original">I desire... no change.</text>
 <text name="storage_choice_og_eatmote_drone_original">I desire... Drone Control.</text>

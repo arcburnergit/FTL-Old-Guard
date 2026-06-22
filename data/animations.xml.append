@@ -972,6 +972,23 @@
 </anim>
 </FTL>
 
+<!--SHIP EFFECTS-->
+<FTL>
+<animSheet name="shield_base_og_shield_front_burn" w="8320" h="1040" fw="1040" fh="1040">ship/shield_base_og_shield_front_burn.png</animSheet>
+<anim name="shield_base_og_shield_front_burn">
+	<sheet>shield_base_og_shield_front_burn</sheet>
+	<desc length="8" x="0" y="0"/>
+	<time>0.5</time>
+</anim>
+
+<animSheet name="shield_base_og_shield_up_burn" w="8320" h="1040" fw="1040" fh="1040">ship/shield_base_og_shield_up_burn.png</animSheet>
+<anim name="shield_base_og_shield_up_burn">
+	<sheet>shield_base_og_shield_up_burn</sheet>
+	<desc length="8" x="0" y="0"/>
+	<time>0.5</time>
+</anim>
+</FTL>
+
 <!--Crew-->
 <FTL>
 <animSheet name="og_neutron_beam_crew" w="352" h="32" fw="32" fh="32">people/og_neutron_beam_strip11.png</animSheet>

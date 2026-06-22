@@ -36,7 +36,7 @@
 </mod:findName>
 
 <mod:findName type="sectorType" name="SECRET">
-	<mod-append:name>SECTOR_OG_IRON_SECRET</mod-append:name>
+	<mod-append:name>SECTOR_OG_NEUTRON</mod-append:name>
 </mod:findName>
 
 <!--SECTORS-->
@@ -272,7 +272,7 @@
 </sectorDescription>
 
 
-<sectorDescription name="SECTOR_OG_IRON_SECRET" unique="true">
+<sectorDescription name="SECTOR_OG_NEUTRON" unique="true">
 	<nameList>
 		<name>Neutron Star Exclusion Zone</name>
 	</nameList>
@@ -315,16 +315,16 @@
 		<blueprint name="phantom_wraith" rarity="3"/>
 		<blueprint name="phantom_wraith_alpha" rarity="5"/>
 	</rarityList>
-	<startEvent>START_OG_IRON_SECRET</startEvent>
+	<startEvent>START_OG_NEUTRON</startEvent>
 	<removeFirstBeaconNebula/>
-	<exitBeacon event="FINISH_BEACON_OG_IRON" nebulaEvent="FINISH_BEACON_NEBULA" rebelEvent="FINISH_BEACON_FLEET_ACE"/>
-	<rebelBeacon event="FLEET_THREAT_VHIGH" nebulaEvent="NEBULA_LIGHT_FLEET_THREAT_VHIGH"/>
+	<exitBeacon event="FINISH_BEACON_OG_NEUTRON" nebulaEvent="FINISH_BEACON_NEBULA" rebelEvent="FINISH_BEACON_FLEET_ACE"/>
+	<rebelBeacon event="FLEET_THREAT_OG_IRON_FLEET" nebulaEvent="NEBULA_LIGHT_FLEET_THREAT_HIGH"/>
 	<priorityEvent name="ANOMALY_SPAWNER" min="1" max="1" priority="1" req="ANOMALY_SPAWN_CHECK" lvl="1"/>
 	<event name="MV_TRAVELER" min="1" max="1"/>
 	<!--event name="SYLVAN" min="1" max="1"/-->
 	<priorityEvent name="NEMESIS_ENCOUNTER" min="0" max="1" req="prof_finalsector" lvl="1"/>
 	
-	<event name="OG_IRON_PROTOTYPE" min="1" max="1"/>
+	<event name="OG_NEUTRON_HAZARD_RESEARCH_STATION" min="1" max="1"/>
 	
 	<event name="STORELIST_OG_IRON" min="2" max="2"/>
 	<event name="STORE_HOSTILE_PIRATE" min="0" max="1"/>

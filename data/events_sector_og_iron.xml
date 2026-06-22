@@ -365,8 +365,24 @@
 
 
 <!--FINISH-->
+<ship name="SHIP_OG_IRON_EXIT_STATION" auto_blueprint="OG_IRON_STATION">
+	<surrender  chance="0.4" min="2" max="3" load="SURRENDER_OG_IRON"/>
+	<destroyed load="DESTROYED_OG_IRON"/>
+	<deadCrew load="DEAD_CREW_OG_IRON"/>
+</ship>
+
 <event name="FINISH_BEACON_OG_IRON">
-	<text id="finish_beacon"/>
+	<text>You've arrived at the Long-Range Beacon. When the FTL Drive is charged you can jump to the next Sector.
+An Iron Watch station protects the beacon from any ne'er-do-wells as well as monitoring traffic out of the Sector.</text>
+	<ship load="SHIP_OG_IRON_EXIT_STATION" hostile="false"/>
+	<choice hidden="true" req="OG_IRON_FINISH_POSITIVE" lvl="1" blue="false">
+		<text>(Positive Reputation) The station is attempting to hail you.</text>
+		<event load="OG_IRON_FINISH_STATION" />
+	</choice>
+	<choice hidden="true" req="OG_IRON_FINISH_NEGATIVE" lvl="1" blue="false">
+		<text>(Negative/Neutral Reputation) The station ignores you.</text>
+		<event load="OPTION_INVALID" />
+	</choice>
 	<choice hidden="true">
 		<text>Explore.</text>
 		<event load="EXIT_FILLER_LIST"/>
@@ -378,6 +394,40 @@
 	<choice hidden="true">
 		<text>Do nothing.</text>
 		<event/>
+	</choice>
+</event>
+
+<event name="OG_IRON_FINISH_STATION">
+	<text>"Captain. Word of your actions in Iron Watch space has traveled fast, the higher-ups are impressed.
+We're aware of your standing agreement with the Federation regarding the rebellion, and we have no intention of pulling you from your mission.
+What we do have, however, is a proposition, one we believe serves your interests as much as our own."</text>
+	<variable name="og_iron_neutron_coords_given" op="set" val="1"/>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event>
+			<text>"Our Intelligence forces have uncovered that the New Dawn are coordinating with the Rebel fleet. Their target is a secret Iron Watch stronghold deep in unexplored space, we believe their fleet is already on the way there."</text>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event>
+					<text>"With an attack imminant, Admiral Micari of the Iron Watch Defence fleet has personally requested your assistance. Together, we have an opportunity to strike a decisive blow against both of our enemies in a single battle.
+						
+						You've been cleared for access to the sector coordinates. If you choose to make your way there, seek out Admiral Micari upon arrival at the entry beacon. Good Luck, Captain."</text>
+					<variable name="coords_og_neutron" op="set" val="1"/>
+					<choice hidden="true">
+						<text>Explore.</text>
+						<event load="EXIT_FILLER_LIST"/>
+					</choice>
+					<choice hidden="true">
+						<text>Do something onboard the ship.</text>
+						<event load="STORAGE_CHECK"/>
+					</choice>
+					<choice hidden="true">
+						<text>Do nothing.</text>
+						<event/>
+					</choice>
+				</event>
+			</choice>
+		</event>
 	</choice>
 </event>
 
@@ -509,7 +559,7 @@
 	<beaconType id="map_icon_store_generic" global="false">
 		<color r="215" g="255" b="200" a="1"/>
 	</beaconType>
-	<text>A large market surrounds this refueling station.</text>
+	<text>A large market surrounds this iron watch station.</text>
 	<ship load="SHIP_OG_IRON_TURRET_STATION_STORE" hostile="false"/>
 	<choice hidden="false">
 		<text>Purchase a discounted turret.</text>
@@ -569,7 +619,7 @@
 		<event load="STORE_LOAD_GENERIC"/>
 	</choice>
 </event>
-<ship name="SHIP_OG_IRON_TURRET_STATION_STORE" auto_blueprint="LIST_SHIPS_REFUEL">
+<ship name="SHIP_OG_IRON_TURRET_STATION_STORE" auto_blueprint="OG_IRON_STATION">
 	<destroyed load="DESTROYED_OG_IRON"/>
 	<deadCrew load="DEAD_CREW_OG_IRON"/>
 </ship>
@@ -1255,7 +1305,7 @@
 			<choice hidden="true">
 				<text>Investigate.</text>
 				<event>
-					<text>Most of the wreckage is useless, but you do eventually find a cargo container, and inside an unusual looking turret. It appears that this turret had a specific destination, an outpost nearby. You note down the cooridinates.</text>
+					<text>Most of the wreckage is useless, but you do eventually find a cargo container, and inside an unusual looking turret. It appears that this turret had a specific destination, an outpost nearby. You note down the coordinates.</text>
 					<weapon name="OG_TURRET_LASER_MINI_DAWN_2"/>
 					<quest event="OG_IRON_DELIVERY_OUTPOST"/>
 					<choice>
@@ -1542,7 +1592,7 @@ They don't immediately respond and they keep their jump drive ready.</text>
 	<text>The only other ship at this beacon messages you: "Finally, after months of waiting, someone has fallen into our trap!"</text>
 	<text>You barely have time to register jump completion before your ship warns you of an incoming ship with weapons hot.</text>
 </textList>
-<event name="ENCOUNTER_OG_IRON_PULSAR" unique="true">
+<event name="ENCOUNTER_OG_IRON_PULSAR">
 	<img back="BG_DARK"/>
 	<text>This beacon has been placed too close to a neutron star! The radiation field will temporarily ionize your systems. Iron Watch ships have apparently been designed to remain quite effective in the presence of pulsars, you're in for a bad time.</text>
 	<ship load="SHIP_OG_IRON_FIGHT" hostile="true"/>
@@ -1552,7 +1602,7 @@ They don't immediately respond and they keep their jump drive ready.</text>
 		<event load="COMBAT_CHECK"/>
 	</choice>
 </event>
-<event name="ENCOUNTER_OG_PIRATE_PULSAR" unique="true">
+<event name="ENCOUNTER_OG_PIRATE_PULSAR">
 	<img back="BG_DARK"/>
 	<text>This beacon has been placed too close to a neutron star! The radiation field will temporarily ionize your systems. A pirate, apparently oblivious to the danger of the pulsar, moves in to engage.</text>
 	<ship load="SHIP_PIRATE_ALL" hostile="true"/>
@@ -1598,7 +1648,7 @@ They don't immediately respond and they keep their jump drive ready.</text>
 					<text>You watch as the prototype docks with the distant outpost. It's only a few minutes later when the ship undocks and jumps away before you can do anything.</text>
 					<instantEscape/>
 					<choice hidden="true" req="rep_comb_og_iron" lvl="2" max_lvl="999" blue="false">
-						<text>(Friendly Reputation) Inquire about the ship with the outpost.</text>
+						<text>(Positive Reputation) Inquire about the ship with the outpost.</text>
 						<event load="OG_IRON_PROTOTYPE_OUTPOST_FRIENDLY" />
 					</choice>
 					<choice hidden="true" req="rep_comb_og_iron" lvl="0" max_lvl="1" blue="false">

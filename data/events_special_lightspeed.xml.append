@@ -30,16 +30,16 @@
 </mod:findName>
 
 <mod:findName type="event" name="REROUTE_MENU">
-	<mod-append:choice hidden="true" req="coords_og_iron_secret" blue="false">
+	<mod-append:choice hidden="true" req="coords_og_neutron" blue="false">
 		<text>Jump to the Neutron Star Exclusion Zone.</text>
-		<event load="LIGHTSPEED_SECTOR_WARP_OG_IRON_SECRET"/>
+		<event load="LIGHTSPEED_SECTOR_WARP_OG_NEUTRON"/>
 	</mod-append:choice>
 </mod:findName>
 
 <mod:findName type="event" name="REROUTE_MENU_LASTSTAND">
-	<mod-append:choice hidden="true" req="coords_og_iron_secret" blue="false">
+	<mod-append:choice hidden="true" req="coords_og_neutron" blue="false">
 		<text>Jump to the Neutron Star Exclusion Zone.</text>
-		<event load="LIGHTSPEED_SECTOR_WARP_OG_IRON_SECRET_BOSS"/>
+		<event load="LIGHTSPEED_SECTOR_WARP_OG_NEUTRON_BOSS"/>
 	</mod-append:choice>
 </mod:findName>
 
@@ -183,16 +183,16 @@
 </event>
 
 
-<event name="LIGHTSPEED_SECTOR_WARP_OG_IRON_SECRET">
-	<text id="atlas_og_iron_secret"/>
+<event name="LIGHTSPEED_SECTOR_WARP_OG_NEUTRON">
+	<text id="atlas_og_neutron"/>
 	<choice hidden="true">
 		<text>Continue with the jump.</text>
 		<event>
 			<text>You prepare to jump to the new co-ordinates, and change your flight path accordingly.</text>
-			<variable name="coords_og_iron_secret" op="set" val="0"/>
+			<variable name="coords_og_neutron" op="set" val="0"/>
 			<choice hidden="true">
 				<text>Continue...</text>
-				<event load="JUMP_TO_OG_IRON_SECRET"/>
+				<event load="JUMP_TO_OG_NEUTRON"/>
 			</choice>
 		</event>
 	</choice>
@@ -203,17 +203,17 @@
 		</event>
 	</choice>
 </event>
-<event name="LIGHTSPEED_SECTOR_WARP_OG_IRON_SECRET_BOSS">
-	<text id="atlas_og_iron_secret"/>
+<event name="LIGHTSPEED_SECTOR_WARP_OG_NEUTRON_BOSS">
+	<text id="atlas_og_neutron"/>
 	<choice hidden="true">
 		<text>Continue with the jump.</text>
 		<event>
 			<text>You prepare to jump to the new co-ordinates, and change your flight path accordingly.</text>
-			<variable name="coords_og_iron_secret" op="set" val="0"/>
+			<variable name="coords_og_neutron" op="set" val="0"/>
 			<variable name="loc_laststand" op="add" val="1"/>
 			<choice hidden="true">
 				<text>Continue...</text>
-				<event load="JUMP_TO_OG_IRON_SECRET"/>
+				<event load="JUMP_TO_OG_NEUTRON"/>
 			</choice>
 		</event>
 	</choice>
@@ -224,8 +224,8 @@
 		</event>
 	</choice>
 </event>
-<event name="JUMP_TO_OG_IRON_SECRET">
-	<secretSector>SECTOR_OG_IRON_SECRET</secretSector>
+<event name="JUMP_TO_OG_NEUTRON">
+	<secretSector>SECTOR_OG_NEUTRON</secretSector>
 </event>
 
 </FTL>

@@ -135,6 +135,11 @@
 Enemy Turrets rotate 100% faster.</tooltip>
 		</mod-append:shipIcon>
 		<mod-append:shipIcon>
+			<name>icon_og_neutron_shield</name>
+			<tooltip>Synchrotron Barrier:
+This enemy is protected from Ion Damage and radiation which is absorbed by the engines system, however enemies lose 5% evasion.</tooltip>
+		</mod-append:shipIcon>
+		<mod-append:shipIcon>
 			<name>icon_og_reflective_plating</name>
 			<tooltip>REFLECTIVE PLATING:
 Halves the damage of beams hitting this ship, rounding down, but not below 1.</tooltip>
@@ -753,6 +758,18 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		</rooms>
 	</mod-append:customShip>
 
+	<mod-append:customShip name="OG_IRON_STATION">
+		<shipIcons>
+			<shipIcon>icon_station</shipIcon>
+		</shipIcons>
+		<noFuelStalemate/>
+	</mod-append:customShip>
+	<mod-append:customShip name="OG_IRON_STATION_DAMAGED">
+		<shipIcons>
+			<shipIcon>icon_station</shipIcon>
+		</shipIcons>
+		<noFuelStalemate/>
+	</mod-append:customShip>
 	<mod-append:customShip name="OG_DAWN_SCOUT">
 		<shipIcons>
 			<shipIcon>icon_og_turret_dawn</shipIcon>
@@ -822,6 +839,12 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 </mod:findLike>
 
 <mod:findLike type="augments" limit="1" reverse="false">
+	<mod-append:aug name="OG_NEUTRON_SHIELD">
+		<icon>icon_og_neutron_shield</icon>
+	</mod-append:aug>
+	<mod-append:aug name="OG_NEUTRON_SHIELD_LOCKED">
+		<function name="OG_NEUTRON_SHIELD" value="1" useForReqs="true" warning="false"/>
+	</mod-append:aug>
 	<mod-append:aug name="OG_REFLECTIVE_PLATING">
 		<icon>icon_og_reflective_plating</icon>
 	</mod-append:aug>
@@ -859,7 +882,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 
 	<eventFile>sector_og_iron</eventFile>
 	<eventFile>sector_og_dawn</eventFile>
-	<eventFile>sector_og_iron_secret</eventFile>
+	<eventFile>sector_og_neutron</eventFile>
 	<variable name="og_test_variable" op="set" val="0"/>
 
 	<variable name="rep_og_iron" op="set" val="0"/>
@@ -885,7 +908,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 	<variable name="og_turret_adaptive_single_saved_x" op="set" val="0"/>
 	<variable name="og_turret_adaptive_single_saved_y" op="set" val="0"/>
 
-	<variable name="coords_og_iron_secret" val="0"/>
+	<variable name="coords_og_neutron" val="0"/>
 	<variable name="loc_environment_og_neutron_star_rotation" val="0"/>
 	<variable name="loc_environment_og_neutron_beam" val="0"/>
 
@@ -897,6 +920,26 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 	<metaVariable name="og_turret_tutorial" op="set" val="0"/>
 	<metaVariable name="og_turret_fab_tips" op="set" val="0"/>
 
+	<variable name="og_iron_neutron_coords_given" op="set" val="0"/>
+	<variable name="og_neutron_dawn_aligned" op="set" val="0"/>
+
+	<req name="OG_IRON_FINISH_POSITIVE" type="all">
+		<req lvl="2" max_lvl="999">
+			<name>rep_comb_og_iron</name>
+		</req>
+		<req lvl="0" max_lvl="0">
+			<name>og_iron_neutron_coords_given</name>
+		</req>
+	</req>
+
+	<req name="OG_IRON_FINISH_NEGATIVE" type="all">
+		<req lvl="-999" max_lvl="1">
+			<name>rep_comb_og_iron</name>
+		</req>
+		<req lvl="0" max_lvl="0">
+			<name>og_iron_neutron_coords_given</name>
+		</req>
+	</req>
 
 	<req name="OG_TURRET_TUTORIAL_SHOW" type="all">
 		<req type="any">
@@ -1005,10 +1048,29 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 	<metaVariable name="prof_hotkey_og_turret_7" op="set" val="-1"/>
 	<metaVariable name="prof_hotkey_og_turret_8" op="set" val="-1"/>
 
+	<fleetDef name="CUSTOM_FLEET_OG_IRON">
+        <ship layer="0">fleet_og_iron_1_small</ship>
+		<ship layer="0">fleet_og_iron_2_small</ship>
+		<ship layer="1">fleet_og_iron_1_med</ship>
+        <ship layer="1">fleet_og_iron_2_med</ship>
+        <ship layer="2">fleet_og_iron_1_big</ship>
+        <ship layer="2">fleet_og_iron_2_big</ship>
+        <bigShip>fleet_og_iron_1_big</bigShip>
+        <numShips layer="2">1</numShips>
+        <numShips layer="1">4</numShips>
+		<numShips layer="0">6</numShips>
+    </fleetDef>
+
 	<bossShip>OGT_BOSS_IRON_NORMAL</bossShip>
 	<bossShip>OGT_BOSS_IRON_CHALLENGE</bossShip>
 	<bossShip>OGT_BOSS_IRON_EXTREME</bossShip>
 	<bossShip>OGT_BOSS_IRON_CHAOS</bossShip>
+
+	<bossShip yOffset="100">OG_IRON_STATION</bossShip>
+	<bossShip yOffset="100">OG_IRON_STATION_DAMAGED</bossShip>
+	<bossShip>OG_IRON_RAIDER</bossShip>
+	<bossShip>OG_DAWN_RAIDER</bossShip>
+	<bossShip>OG_IRON_EXECUTOR</bossShip>
 
 	<bossShip yOffset="210">OG_LEGION_ASSAULT_TURRET</bossShip>
 </events>
@@ -1365,16 +1427,16 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<mod-append:req type="any" load="LIST_CREW_DEEPONES"/>
 	</mod:findName>
 	<mod:findName type="req" name="COORDS">
-		<mod-append:name>coords_og_iron_secret</mod-append:name>
+		<mod-append:name>coords_og_neutron</mod-append:name>
 	</mod:findName>
 	<mod:findName type="req" name="COORDS_BOSS">
 		<mod:findLike type="req" start="0" limit="1">
-			<mod-append:name>coords_og_iron_secret</mod-append:name>
+			<mod-append:name>coords_og_neutron</mod-append:name>
 		</mod:findLike>
 	</mod:findName>
 	<mod:findName type="req" name="COORDS_BOSS_TOOLATE">
 		<mod:findLike type="req" start="0" limit="1">
-			<mod-append:name>coords_og_iron_secret</mod-append:name>
+			<mod-append:name>coords_og_neutron</mod-append:name>
 		</mod:findLike>
 	</mod:findName>
 </mod:findLike>
