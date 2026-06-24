@@ -338,10 +338,10 @@
 	<desc length="1" x="0" y="0" />
 	<time>1</time>
 </anim>
-<animSheet name="og_turret_ion_1_glow" w="78" h="20" fw="78" fh="20">og_turrets/turret_ion_1_glow.png</animSheet>
+<animSheet name="og_turret_ion_1_glow" w="156" h="20" fw="78" fh="20">og_turrets/turret_ion_1_glow.png</animSheet>
 <anim name="og_turret_ion_1_glow">
 	<sheet>og_turret_ion_1_glow</sheet>
-	<desc length="1" x="0" y="0" />
+	<desc length="2" x="0" y="0" />
 	<time>1</time>
 </anim>
 <animSheet name="og_turret_ion_2_icon" w="60" h="34" fw="60" fh="34">og_turrets/turret_ion_2_icon.png</animSheet>
@@ -970,6 +970,17 @@
 	<desc length="5" x="0" y="0" />
 	<time>1</time>
 </anim>
+
+<animSheet name="og_neutron_beam_artillery" w="312" h="201" fw="104" fh="201">weapon_laser/og_neutron_beam_artillery.png</animSheet>
+<weaponAnim name="og_neutron_beam_artillery">
+	<sheet>og_neutron_beam_artillery</sheet>
+	<desc length="3" x="0" y="0"/>
+	<chargedFrame>1</chargedFrame>
+	<fireFrame>2</fireFrame>
+	<firePoint  x="52" y="1"/>
+	<mountPoint x="52" y="0"/>
+	<chargeImage>weapon_laser/og_neutron_beam_artillery_glow.png</chargeImage>
+</weaponAnim>
 </FTL>
 
 <!--SHIP EFFECTS-->
@@ -1245,6 +1256,250 @@
 </anim>
 <anim name="human_og_dawn_portrait">
 	<sheet>human_og_dawn</sheet>
+	<desc length="1" x="0" y="0"/>
+	<time>1</time>
+</anim>
+
+<animSheet name="human_og_midnight_hacking" w="70" h="35" fw="35" fh="35">people/human_og_midnight_hacking_base.png</animSheet>
+<anim name="human_og_midnight_hacking_clone">
+	<sheet>human_og_midnight_hacking</sheet>
+	<desc length="1" x="0" y="0"/>
+	<time>0.75</time>
+</anim>
+<anim name="human_og_midnight_hacking_death_right">
+	<sheet>human_og_midnight_hacking</sheet>
+	<desc length="1" x="0" y="0"/>
+	<time>0.75</time>
+</anim>
+<anim name="human_og_midnight_hacking_death_left">
+	<sheet>human_og_midnight_hacking</sheet>
+	<desc length="1" x="0" y="0"/>
+	<time>0.75</time>
+</anim>
+<anim name="human_og_midnight_hacking_walk_down">
+	<sheet>human_og_midnight_hacking</sheet>
+	<desc length="1" x="0" y="0"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_midnight_hacking_walk_right">
+	<sheet>human_og_midnight_hacking</sheet>
+	<desc length="1" x="0" y="0"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_midnight_hacking_walk_up">
+	<sheet>human_og_midnight_hacking</sheet>
+	<desc length="1" x="0" y="0"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_midnight_hacking_walk_left">
+	<sheet>human_og_midnight_hacking</sheet>
+	<desc length="1" x="0" y="0"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_midnight_hacking_shoot_down">
+	<sheet>human_og_midnight_hacking</sheet>
+	<desc length="1" x="0" y="0"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_midnight_hacking_shoot_right">
+	<sheet>human_og_midnight_hacking</sheet>
+	<desc length="1" x="0" y="0"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_midnight_hacking_shoot_up">
+	<sheet>human_og_midnight_hacking</sheet>
+	<desc length="1" x="0" y="0"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_midnight_hacking_shoot_left">
+	<sheet>human_og_midnight_hacking</sheet>
+	<desc length="1" x="0" y="0"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_midnight_hacking_fire_down">
+	<sheet>human_og_midnight_hacking</sheet>
+	<desc length="1" x="0" y="0"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_midnight_hacking_fire_right">
+	<sheet>human_og_midnight_hacking</sheet>
+	<desc length="1" x="0" y="0"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_midnight_hacking_fire_up">
+	<sheet>human_og_midnight_hacking</sheet>
+	<desc length="1" x="0" y="0"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_midnight_hacking_fire_left">
+	<sheet>human_og_midnight_hacking</sheet>
+	<desc length="1" x="0" y="0"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_midnight_hacking_repair">
+	<sheet>human_og_midnight_hacking</sheet>
+	<desc length="1" x="0" y="0"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_midnight_hacking_punch_up">
+	<sheet>human_og_midnight_hacking</sheet>
+	<desc length="1" x="0" y="0"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_midnight_hacking_punch_down">
+	<sheet>human_og_midnight_hacking</sheet>
+	<desc length="1" x="0" y="0"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_midnight_hacking_teleport">
+	<sheet>human_og_midnight_hacking</sheet>
+	<desc length="1" x="0" y="0"/>
+	<time>0.5</time>
+</anim>
+<anim name="human_og_midnight_hacking_type_right">
+	<sheet>human_og_midnight_hacking</sheet>
+	<desc length="1" x="0" y="0"/>
+	<time>0.75</time>
+</anim>
+<anim name="human_og_midnight_hacking_type_left">
+	<sheet>human_og_midnight_hacking</sheet>
+	<desc length="1" x="0" y="0"/>
+	<time>0.75</time>
+</anim>
+<anim name="human_og_midnight_hacking_type_up">
+	<sheet>human_og_midnight_hacking</sheet>
+	<desc length="1" x="0" y="0"/>
+	<time>0.75</time>
+</anim>
+<anim name="human_og_midnight_hacking_type_down">
+	<sheet>human_og_midnight_hacking</sheet>
+	<desc length="1" x="0" y="0"/>
+	<time>0.75</time>
+</anim>
+<anim name="human_og_midnight_hacking_portrait">
+	<sheet>human_og_midnight_hacking</sheet>
+	<desc length="1" x="0" y="0"/>
+	<time>1</time>
+</anim>
+
+<animSheet name="human_og_midnight" w="315" h="455" fw="35" fh="35">people/human_og_midnight_base.png</animSheet>
+<anim name="human_og_midnight_clone">
+	<sheet>human_og_midnight</sheet>
+	<desc length="6" x="0" y="2"/>
+	<time>0.75</time>
+</anim>
+<anim name="human_og_midnight_death_right">
+	<sheet>human_og_midnight</sheet>
+	<desc length="5" x="3" y="0"/>
+	<time>0.75</time>
+</anim>
+<anim name="human_og_midnight_death_left">
+	<sheet>human_og_midnight</sheet>
+	<desc length="5" x="0" y="2"/>
+	<time>0.75</time>
+</anim>
+<anim name="human_og_midnight_walk_down">
+	<sheet>human_og_midnight</sheet>
+	<desc length="4" x="0" y="12"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_midnight_walk_right">
+	<sheet>human_og_midnight</sheet>
+	<desc length="4" x="4" y="12"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_midnight_walk_up">
+	<sheet>human_og_midnight</sheet>
+	<desc length="4" x="0" y="11"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_midnight_walk_left">
+	<sheet>human_og_midnight</sheet>
+	<desc length="4" x="4" y="11"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_midnight_shoot_down">
+	<sheet>human_og_midnight</sheet>
+	<desc length="3" x="0" y="10"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_midnight_shoot_right">
+	<sheet>human_og_midnight</sheet>
+	<desc length="3" x="3" y="10"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_midnight_shoot_up">
+	<sheet>human_og_midnight</sheet>
+	<desc length="3" x="6" y="10"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_midnight_shoot_left">
+	<sheet>human_og_midnight</sheet>
+	<desc length="3" x="0" y="1"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_midnight_fire_down">
+	<sheet>human_og_midnight</sheet>
+	<desc length="4" x="0" y="9"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_midnight_fire_right">
+	<sheet>human_og_midnight</sheet>
+	<desc length="4" x="4" y="9"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_midnight_fire_up">
+	<sheet>human_og_midnight</sheet>
+	<desc length="4" x="0" y="8"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_midnight_fire_left">
+	<sheet>human_og_midnight</sheet>
+	<desc length="4" x="4" y="8"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_midnight_repair">
+	<sheet>human_og_midnight</sheet>
+	<desc length="9" x="0" y="7"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_midnight_punch_up">
+	<sheet>human_og_midnight</sheet>
+	<desc length="6" x="3" y="1"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_midnight_punch_down">
+	<sheet>human_og_midnight</sheet>
+	<desc length="6" x="0" y="6"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_midnight_teleport">
+	<sheet>human_og_midnight</sheet>
+	<desc length="9" x="0" y="3"/>
+	<time>0.5</time>
+</anim>
+<anim name="human_og_midnight_type_right">
+	<sheet>human_og_midnight</sheet>
+	<desc length="4" x="0" y="5"/>
+	<time>0.75</time>
+</anim>
+<anim name="human_og_midnight_type_left">
+	<sheet>human_og_midnight</sheet>
+	<desc length="4" x="4" y="5"/>
+	<time>0.75</time>
+</anim>
+<anim name="human_og_midnight_type_up">
+	<sheet>human_og_midnight</sheet>
+	<desc length="4" x="0" y="4"/>
+	<time>0.75</time>
+</anim>
+<anim name="human_og_midnight_type_down">
+	<sheet>human_og_midnight</sheet>
+	<desc length="4" x="4" y="4"/>
+	<time>0.75</time>
+</anim>
+<anim name="human_og_midnight_portrait">
+	<sheet>human_og_midnight</sheet>
 	<desc length="1" x="0" y="0"/>
 	<time>1</time>
 </anim>

@@ -49,6 +49,7 @@ table.insert(turretBlueprintsList, "OG_TURRET_FOCUS_DAWN")
 table.insert(turretBlueprintsList, "OG_TURRET_LASER_MINI_DAWN_1")
 table.insert(turretBlueprintsList, "OG_TURRET_LASER_MINI_DAWN_2")
 table.insert(turretBlueprintsList, "OG_TURRET_FOCUS_MINI_DAWN")
+table.insert(turretBlueprintsList, "OG_TURRET_NEUTRON_BEAM")
 
 table.insert(turretBlueprintsList, "OG_TURRET_LOOT_SLUG_1")
 table.insert(turretBlueprintsList, "OG_TURRET_LOOT_CLAN_1")
@@ -371,7 +372,7 @@ turrets["OG_TURRET_ION_1"] = {
 	defence_type = defence_types.DRONES,
 	blueprint_type = 1,
 	blueprint = "OG_ION_PROJECTILE_BASE",
-	charges = 1,
+	charges = 2,
 	charges_per_charge = 1,
 	rotation_speed = 180,
 	charge_time = {[0] = 9, 9, 7.5, 6, 5, 4.5, 4, 3.75, 3.5},
@@ -896,6 +897,25 @@ turrets["OG_TURRET_FOCUS_MINI_DAWN"] = {
 	charges_per_charge = 1,
 	rotation_speed = 240,
 	charge_time = turrets["OG_TURRET_FOCUS_MINI_1"].charge_time,
+}
+turrets["OG_TURRET_NEUTRON_BEAM"] = {
+	enemy_burst = 1,
+	hold_time = 1,
+	stealth = true,
+	speed_reduction = 0.5,
+	image = "og_turret_focus_1",
+	glow = "og_turret_focus_1_glow",
+	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_focus_1_charge.png", -24, -8, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
+	fire_points = {{x = 0, y = -7, fire_delay = 9}},
+	defence_type = defence_types.NONE,
+	blueprint_type = 5,
+	neutron_damage = 40,
+	neutron_width = 24,
+	neutron_duration = 8,
+	charges = 1,
+	charges_per_charge = 1,
+	rotation_speed = 60,
+	charge_time = {[0] = 24, 24, 22, 19, 17, 16, 15, 14, 13},
 }
 
 turrets["OG_TURRET_LOOT_SLUG_1"] = {

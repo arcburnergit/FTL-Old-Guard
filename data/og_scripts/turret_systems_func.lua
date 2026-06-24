@@ -84,6 +84,7 @@ local turret_directions = mods.og.turret_directions
 
 --1 = MISSILES, 2 = FLAK, 3 = DRONES, 4 = PROJECTILES, 5 = HACKING 
 mods.og.defence_types = {
+	NONE = {name = Hyperspace.Text:GetText("og_lua_turret_type_none")},
 	DRONES = {[3] = true, [7] = true, name = Hyperspace.Text:GetText("og_lua_turret_type_drones")},
 	MISSILES = {[1] = true, [2] = true, [7] = true, name = Hyperspace.Text:GetText("og_lua_turret_type_missiles")},
 	DRONES_MISSILES = {[1] = true, [2] = true, [3] = true, [7] = true, name = Hyperspace.Text:GetText("og_lua_turret_type_drones_missiles")},
@@ -200,6 +201,9 @@ local statsText = {
 	effect = Hyperspace.Text:GetText("og_lua_turret_stats_effect"),
 	stealth = Hyperspace.Text:GetText("stat_stealth"),
 
+	neutron_damage = Hyperspace.Text:GetText("og_lua_turret_stats_neutron_damage"),
+	neutron_duration = Hyperspace.Text:GetText("og_lua_turret_stats_neutron_duration"),
+
 	price = Hyperspace.Text:GetText("og_lua_turret_stats_price"),
 	price_short = Hyperspace.Text:GetText("og_lua_turret_stats_price_short"),
 }
@@ -229,69 +233,75 @@ function mods.og.add_stat_text(desc, currentTurret, chargeMax)
 	if currentTurret.shot_radius then
 		desc = desc..string.format(statsText.radius, math.floor(currentTurret.shot_radius))
 	end
-	desc = desc..statsText.rate
+	--[[desc = desc..statsText.rate
 	for i, t in ipairs(currentTurret.fire_points) do
 		desc = desc..t.fire_delay
 		if i < #currentTurret.fire_points then
 			desc = desc.."/"
 		end
-	end
+	end]]
 	if currentTurret.autofire then
 		local offence_s = (currentTurret.autofire.offence == true and "All") or tostring(math.floor(currentTurret.autofire.offence or 1))
 		local defence_s = (currentTurret.autofire.defence == true and "All") or tostring(math.floor(currentTurret.autofire.defence or 1))
 		desc = desc..string.format(statsText.autofire, offence_s, defence_s)
 	end
 	desc = desc..string.format(statsText.target, currentTurret.defence_type.name)
-	local shotBlueprint = Hyperspace.Blueprints:GetWeaponBlueprint(currentTurret.blueprint)
-	local damage = shotBlueprint.damage
-	desc = desc.."\n"
-	local tempDamage = {iDamage = damage.iDamage, iSystemDamage = damage.iSystemDamage, iPersDamage = damage.iPersDamage, iIonDamage = damage.iIonDamage}
-	if currentTurret.fake_damage then
-		if currentTurret.fake_damage.iDamage then tempDamage.iDamage = tempDamage.iDamage + currentTurret.fake_damage.iDamage end
-		if currentTurret.fake_damage.iSystemDamage then tempDamage.iSystemDamage = tempDamage.iSystemDamage + currentTurret.fake_damage.iSystemDamage end
-		if currentTurret.fake_damage.iPersDamage then tempDamage.iPersDamage = tempDamage.iPersDamage + currentTurret.fake_damage.iPersDamage end
-		if currentTurret.fake_damage.iIonDamage then tempDamage.iIonDamage = tempDamage.iIonDamage + currentTurret.fake_damage.iIonDamage end
-	end
-	if tempDamage.iDamage > 0 then
-		desc = desc..string.format(statsText.damage, math.floor(tempDamage.iDamage))
-	end
-	if tempDamage.iSystemDamage + tempDamage.iDamage > 0 then
-		desc = desc..string.format(statsText.sysDamage, math.floor(tempDamage.iDamage + tempDamage.iSystemDamage))
-	end
-	if tempDamage.iPersDamage + tempDamage.iDamage > 0 then
-		desc = desc..string.format(statsText.persDamage, math.floor((tempDamage.iDamage + tempDamage.iPersDamage) * 15))
-	end
-	if tempDamage.iIonDamage > 0 then
-		desc = desc..string.format(statsText.ionDamage, math.floor(tempDamage.iIonDamage))
-	end
-	if damage.iShieldPiercing ~= 0 then
-		local tempPiercing = damage.iShieldPiercing
-		if currentTurret.blueprint_type == 3 then 
-			tempPiercing = tempPiercing - 1 
-			if currentTurret.fake_damage and currentTurret.fake_damage.iDamage then
-				tempPiercing = tempPiercing - currentTurret.fake_damage.iDamage
-			end
+	if currentTurret.blueprint then
+		local shotBlueprint = Hyperspace.Blueprints:GetWeaponBlueprint(currentTurret.blueprint)
+		local damage = shotBlueprint.damage
+		desc = desc.."\n"
+		local tempDamage = {iDamage = damage.iDamage, iSystemDamage = damage.iSystemDamage, iPersDamage = damage.iPersDamage, iIonDamage = damage.iIonDamage}
+		if currentTurret.fake_damage then
+			if currentTurret.fake_damage.iDamage then tempDamage.iDamage = tempDamage.iDamage + currentTurret.fake_damage.iDamage end
+			if currentTurret.fake_damage.iSystemDamage then tempDamage.iSystemDamage = tempDamage.iSystemDamage + currentTurret.fake_damage.iSystemDamage end
+			if currentTurret.fake_damage.iPersDamage then tempDamage.iPersDamage = tempDamage.iPersDamage + currentTurret.fake_damage.iPersDamage end
+			if currentTurret.fake_damage.iIonDamage then tempDamage.iIonDamage = tempDamage.iIonDamage + currentTurret.fake_damage.iIonDamage end
 		end
-		desc = desc..string.format(statsText.pierce, math.floor(tempPiercing))
+		if tempDamage.iDamage > 0 then
+			desc = desc..string.format(statsText.damage, math.floor(tempDamage.iDamage))
+		end
+		if tempDamage.iSystemDamage + tempDamage.iDamage > 0 then
+			desc = desc..string.format(statsText.sysDamage, math.floor(tempDamage.iDamage + tempDamage.iSystemDamage))
+		end
+		if tempDamage.iPersDamage + tempDamage.iDamage > 0 then
+			desc = desc..string.format(statsText.persDamage, math.floor((tempDamage.iDamage + tempDamage.iPersDamage) * 15))
+		end
+		if tempDamage.iIonDamage > 0 then
+			desc = desc..string.format(statsText.ionDamage, math.floor(tempDamage.iIonDamage))
+		end
+		if damage.iShieldPiercing ~= 0 then
+			local tempPiercing = damage.iShieldPiercing
+			if currentTurret.blueprint_type == 3 then 
+				tempPiercing = tempPiercing - 1 
+				if currentTurret.fake_damage and currentTurret.fake_damage.iDamage then
+					tempPiercing = tempPiercing - currentTurret.fake_damage.iDamage
+				end
+			end
+			desc = desc..string.format(statsText.pierce, math.floor(tempPiercing))
+		end
+		if damage.bHullBuster then
+			desc = desc..statsText.hullBust
+		end
+		desc = desc.."\n"
+		if damage.bLockdown then
+			desc = desc..statsText.lockdown
+		end
+		if damage.fireChance > 0 then
+			desc = desc..string.format(statsText.fireChance, math.floor(damage.fireChance * 10))
+		end
+		if damage.breachChance > 0 then
+			desc = desc..string.format(statsText.breachChance, math.floor(damage.breachChance * 10), math.floor((100 - 10 * damage.fireChance) * (damage.breachChance/10)))
+		end
+		if damage.stunChance > 0 then
+			desc = desc..string.format(statsText.stunChance, math.floor(damage.stunChance * 10), math.floor((damage.iStun > 0 and damage.iStun) or 3))
+		end
+		if vunerable_weapons[currentTurret.blueprint] then
+			desc = desc..string.format(statsText.effect, math.floor(vunerable_weapons[currentTurret.blueprint]))
+		end
 	end
-	if damage.bHullBuster then
-		desc = desc..statsText.hullBust
-	end
-	desc = desc.."\n"
-	if damage.bLockdown then
-		desc = desc..statsText.lockdown
-	end
-	if damage.fireChance > 0 then
-		desc = desc..string.format(statsText.fireChance, math.floor(damage.fireChance * 10))
-	end
-	if damage.breachChance > 0 then
-		desc = desc..string.format(statsText.breachChance, math.floor(damage.breachChance * 10), math.floor((100 - 10 * damage.fireChance) * (damage.breachChance/10)))
-	end
-	if damage.stunChance > 0 then
-		desc = desc..string.format(statsText.stunChance, math.floor(damage.stunChance * 10), math.floor((damage.iStun > 0 and damage.iStun) or 3))
-	end
-	if vunerable_weapons[currentTurret.blueprint] then
-		desc = desc..string.format(statsText.effect, math.floor(vunerable_weapons[currentTurret.blueprint]))
+	if currentTurret.blueprint_type == 5 then
+		desc = desc.."\n"..string.format(statsText.neutron_damage, currentTurret.neutron_damage/100)
+		desc = desc..string.format(statsText.neutron_duration, currentTurret.neutron_duration)
 	end
 	if currentTurret.stealth then
 		desc = desc.."\n\n"..statsText.stealth
@@ -517,6 +527,8 @@ local function resetTurrets(shipManager)
 			system.table.currentlyTargetted = false
 
 			system.table.currentTarget = nil
+			system.table.currentTargetPoint = nil
+			system.table.currentTargetAngle = nil
 			system.table.currentTargetTemp = nil
 
 			system.table.autoFireInvert = false
@@ -527,6 +539,8 @@ end
 function mods.og.select_turret(system, shift)
 	local shipManager = Hyperspace.ships.player
 	system.table.currentTarget = nil
+	system.table.currentTargetPoint = nil
+	system.table.currentTargetAngle = nil
 	system.table.autoFireInvert = shift 
 	system.table.currentTargetTemp = nil
 	system.table.currentlyTargetted = false
@@ -743,6 +757,8 @@ local function system_construct_system_box(systemBox)
 
 		systemBox.pSystem.table.currentTarget = nil
 		systemBox.pSystem.table.currentTargetTemp = nil
+		systemBox.pSystem.table.currentTargetPoint = nil
+		systemBox.pSystem.table.currentTargetAngle = nil
 
 		systemBox.pSystem.table.autoFireInvert = false
 	elseif is_system_enemy(systemBox) then
@@ -773,6 +789,8 @@ local function system_construct_system_box(systemBox)
 		systemBox.pSystem.table.currentlyTargetted = false
 
 		systemBox.pSystem.table.currentTarget = nil
+		systemBox.pSystem.table.currentTargetPoint = nil
+		systemBox.pSystem.table.currentTargetAngle = nil
 	end
 end
 script.on_internal_event(Defines.InternalEvents.CONSTRUCT_SYSTEM_BOX, system_construct_system_box)
@@ -1028,7 +1046,20 @@ local function target_enemy_room_temp(systemBox, combatControl)
 	local roomShape = targetShipGraph:GetRoomShape(combatControl.selectedRoom)
 	local mousePosEnemy = worldToEnemyLocation(Hyperspace.Mouse.position)
 	local slotId = find_closest_slot(roomShape, mousePosEnemy)
-	systemBox.pSystem.table.currentTargetTemp = {roomId = combatControl.selectedRoom, slotId = slotId}
+	local currentTurret = turrets[ systemBox.pSystem.table.blueprint ]
+	if currentTurret.blueprint_type == 5 then
+		if systemBox.pSystem.table.currentTargetPoint then
+			systemBox.pSystem.table.currentTargetAngle = get_angle_between_points(systemBox.pSystem.table.currentTargetPoint, mousePosEnemy)
+		else
+			systemBox.pSystem.table.currentTargetAngle = nil
+			systemBox.pSystem.table.currentTargetPoint = mousePosEnemy
+			systemBox.pSystem.table.currentlyTargetting = true
+			Hyperspace.Mouse.validPointer = cursorValid
+			Hyperspace.Mouse.invalidPointer = cursorValid2
+		end
+	else
+		systemBox.pSystem.table.currentTargetTemp = {roomId = combatControl.selectedRoom, slotId = slotId}
+	end
 end
 
 local distance_cutoff = 20
@@ -1096,6 +1127,9 @@ local function end_targetting_all_systems()
 			if systemCacheList[shipManager.iShipId][sysName] then
 				local system = shipManager:GetSystem(systemIdMap[sysName])
 				if system.table.currentlyTargetting then
+					if system.table.currentTargetPoint and not system.table.currentTargetAngle then
+						system.table.currentTargetPoint = nil
+					end
 					end_targetting(system)
 				end
 			end
@@ -1317,6 +1351,7 @@ local function handleTurretBeams(system, blueprint, firingPos, beamMiss, shipMan
 end
 local function createTurretProjectile(currentTurret, system, blueprint, spawnPos, firingPos, shipManager, offensive)
 	local spaceManager = Hyperspace.App.world.space
+
 	if currentTurret.blueprint_type == 1 then
 		local projectile = spaceManager:CreateLaserBlast(
 			blueprint,
@@ -1359,7 +1394,6 @@ local function createTurretProjectile(currentTurret, system, blueprint, spawnPos
 end
 
 local function fireTurret(system, currentTurret, shipManager, otherManager, sysName, blueprint, offensive, targetPosition, manningCrew)
-
 	local currentShotNumber =(system.table.charges - 1) % #currentTurret.fire_points + 1
 	local currentShot = currentTurret.fire_points[currentShotNumber]
 
@@ -1369,6 +1403,30 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 	local projectile = createTurretProjectile(currentTurret, system, blueprint, spawnPos, firingPos, shipManager, offensive)
 	if currentTurret.blueprint_type == 3 then
 		handleTurretBeams(system, blueprint, firingPos, beamMiss, shipManager, offensive, projectile, targetPosition)
+	elseif currentTurret.blueprint_type == 5 then
+		--print(tostring(targetPosition))
+		--print(tostring(spawnPos))
+		mods.og.create_neutron_beam(
+			targetPosition,
+			system.table.currentTargetAngle,
+			currentTurret.neutron_width,
+			otherManager,
+			shipManager,
+			currentTurret.neutron_duration,
+			currentTurret.neutron_damage,
+			true
+			)
+		mods.og.create_neutron_beam(
+			spawnPos,
+			get_angle_between_points(spawnPos, firingPos),
+			currentTurret.neutron_width,
+			shipManager,
+			shipManager,
+			currentTurret.neutron_duration,
+			0,
+			false
+			)
+		return nil
 	end
 	--handle missile consumption
 	if currentTurret.ammo_consumption then
@@ -1381,7 +1439,7 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 	end
 
 	--handle sounds
-	if blueprint.effects.launchSounds:size() > 0 then
+	if blueprint and blueprint.effects.launchSounds:size() > 0 then
 		local randomSound = math.random(blueprint.effects.launchSounds:size()) - 1
 		Hyperspace.Sounds:PlaySoundMix(blueprint.effects.launchSounds[randomSound], -1, false)
 	end
@@ -1392,7 +1450,7 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 	end
 
 	--clone cannon
-	if blueprint.name == "OG_MISSILE_PROJECTILE_CLONE" then
+	if blueprint and blueprint.name == "OG_MISSILE_PROJECTILE_CLONE" then
 		local race = "human"
 		if manningCrew then
 			race = manningCrew.type
@@ -1410,7 +1468,7 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 	end
 
 	--handle targetting
-	if offensive and currentTurret.blueprint_type ~= 3 then
+	if offensive and currentTurret.blueprint_type < 3 then
 		local tempTargetPosition = targetPosition
 		if currentTurret.shot_radius then
 			tempTargetPosition = get_random_point_in_radius(targetPosition, currentTurret.shot_radius)
@@ -1418,7 +1476,7 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 		end
 		projectile.entryAngle = system.table.entryAngle
 		userdata_table(projectile, "mods.og").turret_projectile = {target = tempTargetPosition, destination_space = otherManager.iShipId}
-	elseif not offensive and currentTurret.blueprint_type ~= 3 then
+	elseif not offensive and currentTurret.blueprint_type < 3 then
 		userdata_table(projectile, "mods.og").targeted = system.table.currentTarget
 		if system.table.currentTarget and system.table.currentTarget.table then
 			system.table.currentTarget.table.og_targeted = (system.table.currentTarget.table.og_targeted or 0) + 1
@@ -1426,7 +1484,7 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 	end
 
 	--handle homing
-	if not offensive and currentTurret.homing then
+	if not offensive and currentTurret.homing and projectile then
 		local home_rate = currentTurret.homing
 		if shipManager:HasAugmentation("UPG_OG_TURRET_SPEED") > 0 then
 			home_rate = home_rate * (1.5 ^ shipManager:GetAugmentationValue("UPG_OG_TURRET_SPEED"))
@@ -1435,7 +1493,7 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 	end
 
 	--handle speed increase
-	if shipManager:HasAugmentation("UPG_OG_TURRET_SPEED") > 0 then
+	if shipManager:HasAugmentation("UPG_OG_TURRET_SPEED") > 0 and projectile then
 		projectile.speed_magnitude = projectile.speed_magnitude * (1.5 ^ shipManager:GetAugmentationValue("UPG_OG_TURRET_SPEED"))
 	end
 	
@@ -1443,6 +1501,7 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 	system.table.last_mode = (offensive and turret_states.offence) or turret_states.defence
 	system.table.last_target = system.table.currentTarget 
 	system.table.last_target_pos = Hyperspace.Pointf(targetPosition.x, targetPosition.y)
+	system.table.last_target_angle = system.table.currentTargetAngle
 	system.table.last_target_space = (offensive and otherManager.iShipId) or (1 - otherManager.iShipId)
 	if system.table.lock_firing then
 		system.table.lock_firing = system.table.lock_firing - 1
@@ -1468,6 +1527,8 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 		--reset turret target in defence mode
 		if (not offensive) and ((not currentShot.auto_burst) or system.table.charges == 1) then
 			system.table.currentTarget = nil
+			system.table.currentTargetPoint = nil
+			system.table.currentTargetAngle = nil
 			system.table.currentlyTargetted = false
 		end
 
@@ -1477,6 +1538,8 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 		local weapControl = combatControl.weapControl
 		if offensive and xor(mods.og.turret_autofire_setting == 0, system.table.autoFireInvert) and ((not currentShot.auto_burst) or system.table.charges == 1) then
 			system.table.currentTarget = nil
+			system.table.currentTargetPoint = nil
+			system.table.currentTargetAngle = nil
 			system.table.currentlyTargetted = false
 		end
 	end
@@ -1700,18 +1763,22 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 			system.table.firingTime = system.table.firingTime - time_increment(true)
 			updateTurretCharge(currentTurret, system, shipManager, otherManager, chargeTime)
 
-			local blueprint = Hyperspace.Blueprints:GetWeaponBlueprint(currentTurret.blueprint)
-			local speed = blueprint.speed
-			if speed == 0 then
-				local pType = blueprint.typeName
-				if pType == "MISSILES" then
-					speed = 35
-				else
-					speed = 60
+			local speed = math.huge
+			local blueprint = nil
+			if currentTurret.blueprint_type < 5 then
+				blueprint = Hyperspace.Blueprints:GetWeaponBlueprint(currentTurret.blueprint)
+				speed = blueprint.speed
+				if speed == 0 then
+					local pType = blueprint.typeName
+					if pType == "MISSILES" then
+						speed = 35
+					else
+						speed = 60
+					end
 				end
-			end
-			if shipManager:HasAugmentation("UPG_OG_TURRET_SPEED") > 0 then
-				speed = speed * (1.5 ^ shipManager:GetAugmentationValue("UPG_OG_TURRET_SPEED"))
+				if shipManager:HasAugmentation("UPG_OG_TURRET_SPEED") > 0 then
+					speed = speed * (1.5 ^ shipManager:GetAugmentationValue("UPG_OG_TURRET_SPEED"))
+				end
 			end
 
 			if currentTurret.custom_animations then
@@ -1756,6 +1823,8 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 				end
 				system.table.lock_firing = false
 				system.table.currentTarget = nil
+				system.table.currentTargetPoint = nil
+				system.table.currentTargetAngle = nil
 				goto END_SYSTEM_LOOP
 			elseif system.table.currentlyTargetting and not system.table.lock_firing then 
 				local mousePosPlayer = worldToPlayerLocation(Hyperspace.Mouse.position)
@@ -1801,14 +1870,21 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 
 				local aimedAheadPlayer = shipManager.iShipId == 0 and math.abs(angle_diff(system.table.currentAimingAngle, 0)) < (currentTurret.aim_cone or 1)
 				local aimedAheadEnemy = shipManager.iShipId == 1 and math.abs(angle_diff(system.table.currentAimingAngle, -90)) < (currentTurret.aim_cone or 1)
-				local shouldFire = hasTarget and readyFire and otherShipTargetable --and notCloaked
+				local shouldFire = hasTarget and readyFire and otherShipTargetable and currentTurret.blueprint_type ~= 5 --and notCloaked
+
+				local shouldFireBeam = readyFire and otherShipTargetable and currentTurret.blueprint_type == 5 and system.table.currentTargetPoint and system.table.currentTargetAngle
 
 				local shouldFireLocked = readyFire and system.table.lock_firing
 				if shouldFireLocked then
+					if system.table.last_target_angle then system.table.currentTargetAngle = system.table.last_target_angle end
 					fireTurret(system, currentTurret, shipManager, otherManager, sysName, blueprint, true, system.table.last_target_pos, manningCrew)
+				elseif (aimedAheadPlayer or aimedAheadEnemy) and shouldFireBeam then
+					--print("SHOULDFIREBEAM")
+					--print(tostring(system.table.currentTargetPoint))
+					fireTurret(system, currentTurret, shipManager, otherManager, sysName, blueprint, true, system.table.currentTargetPoint, manningCrew)
 				elseif (aimedAheadPlayer or aimedAheadEnemy) and shouldFire then
 					local roomPosition = (system.table.currentTarget and otherManager:GetRoomCenter(system.table.currentTarget.roomId)) or otherManager:GetRandomRoomCenter()
-					if currentTurret.blueprint_type == 3 and system.table.currentTarget then
+					if currentTurret.blueprint_type >= 3 and system.table.currentTarget then
 						local targetShipGraph = Hyperspace.ShipGraph.GetShipInfo(otherManager.iShipId)
 						local tempRoomPos = targetShipGraph:GetSlotWorldPosition(system.table.currentTarget.slotId, system.table.currentTarget.roomId)
 						roomPosition = Hyperspace.Pointf(tempRoomPos.x, tempRoomPos.y) 
@@ -1850,7 +1926,7 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 					
 					--Find Targetting Point
 					local target_angle, int_point, t
-					if currentTurret.blueprint_type ~= 3  then
+					if currentTurret.blueprint_type < 3  then
 						target_angle, int_point, t = find_intercept_angle(_pos, speed, targetPos, targetVelocity)
 						if target_angle then
 							local tempChargeShot = (system.table.charges - 1)
@@ -1928,6 +2004,10 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 			if shipManager.iShipId == 1 and (not system.table.currentTarget) and system.table.charges >= currentTurret.charges and (currentTurret.enemy_burst or 1) > 0 then
 				system.table.state = turret_states.offence
 				system.table.entryAngle = math.random(360)
+				if currentTurret.blueprint_type == 5 and otherManager then
+					system.table.currentTargetPoint = otherManager:GetRandomRoomCenter()
+					system.table.currentTargetAngle = get_angle_between_points(system.table.currentTargetPoint, otherManager:GetRandomRoomCenter())
+				end
 			elseif shipManager.iShipId == 1 and system.table.charges <= currentTurret.charges - (currentTurret.enemy_burst or 1) then
 				system.table.state = turret_states.defence
 			end

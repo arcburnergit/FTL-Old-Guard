@@ -327,46 +327,6 @@
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_cargo_crate</iconReplace>
 </weaponBlueprint>
-
-<weaponBlueprint name="LOOT_OG_DAWN_1"> <!--.14 DPS-->
-	<type>LASER</type>
-	<title>Pierce Laser MK I</title>
-	<short>Pierce I</short>
-	<tip>loot_og_dawn_1</tip>
-	<desc>Special loot weapon. See tooltip in the inventory to check the improvements over the base version.</desc>
-	<tooltip>Pierce laser; 1 damage, 2 shots, pierces 1 shield. 14 second cooldown.</tooltip>
-	<iconReplace>laser_pierce_og_dawn_icon</iconReplace>
-	<damage>1</damage>
-	<accuracyMod>10</accuracyMod>
-	<mv-stealth/>
-	<shots>2</shots>
-	<sp>1</sp>
-	<fireChance>0</fireChance>
-	<breachChance>3</breachChance>
-	<cooldown>12</cooldown>
-	<power>2</power>
-	<cost>60</cost>
-	<bp>2</bp>
-	<rarity>0</rarity>
-	<image>laser_burst</image>
-	<launchSounds>
-		<sound>laser_pierce</sound>
-	</launchSounds>
-	<hitShipSounds>
-		<sound>hitHull2</sound>
-		<sound>hitHull3</sound>
-	</hitShipSounds>
-	<hitShieldSounds>
-		<sound>hitShield1</sound>
-		<sound>hitShield2</sound>
-		<sound>hitShield3</sound>
-	</hitShieldSounds>
-	<missSounds>
-		<sound>miss</sound>
-	</missSounds>
-	<weaponArt>laser_pierce_og_dawn</weaponArt>
-	<iconImage>laser</iconImage>
-</weaponBlueprint>
 </FTL>
 
 <!--Crew-->
@@ -440,6 +400,22 @@
 			<color r="113" g="57" b="205" a="0.7" /> <!--purple-->
 		</layer>
 	</colorList>
+</crewBlueprint>
+<crewBlueprint name="human_og_midnight">
+	<desc>Super Elite Human Crew. An operative of the Midnight Sun, equiped with a miniaturized hacking device capable of intermittently disabling a system for an entire battle.
+
+	Inherited Human stats: minor suffocation resistance</desc>
+	<cost>130</cost>
+	<title>Midnight Sun Operative</title>
+	<short>Operative</short>
+	<rarity>0</rarity>
+	<powerList>
+		<power>Active Ability: Deploys an almost indestructible hacking device in the current room, which will repeatedly hack the current room for the rest of the fight, cannot target weapons, drones, or shields.</power>
+		<power>Inflicts 1.5x damage in crew combat</power>
+		<power>Sabotages systems at 1.5x speed</power>
+		<power>Takes 0.7x damage from crew combat and 0.6x from fires</power>
+		<power>Trained in lvl2 skills</power>
+	</powerList>
 </crewBlueprint>
 </FTL>
 
@@ -1611,6 +1587,27 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_focus_mini_dawn_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_NEUTRON_BEAM">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Neutron Turret</title>
+	<short>Neutron</short>
+	<desc>Neutron Turrets prove extremely effective against enemy missiles due to their almost instantaneous time to kill.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>65</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_focus_1_icon</iconReplace>
 </weaponBlueprint>
 </FTL>
 
@@ -5023,6 +5020,93 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<mv-mapImage>map_icon_og_dawn_big</mv-mapImage>
 </shipBlueprint>
 
+<shipBlueprint name="PLAYER_SHIP_OG_HUNTER" layout="ogp_hunter_a" img="ogp_hunter_a">
+	<class>Hunter-Class</class>
+	<name>Moonglow</name>
+	<desc>This sleek vessel is built around a prototype beam artillery which fires a powerful radiation beam capable of destroying crew and system alike.</desc>
+	<unlock id="ship_PLAYER_SHIP_OG_DAWN_BIG_3_unlock"/>
+	<systemList>
+		<artillery power="2" max="4" room="5" start="true" weapon="ARTILLERY_OG_NEUTRON_BEAM_1" img="room_artillery" />
+		<og_turret power="2" max="5" room="9" start="true" img="room_og_turret_5" turret="OG_TURRET_ION_1" >
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</og_turret>
+		<og_turret_2 power="2" max="5" room="8" start="true" img="room_og_turret_6" turret="OG_TURRET_ION_1" >
+			<slot>
+				<direction>right</direction>
+				<number>3</number>
+			</slot>
+		</og_turret_2>
+		<battery power="1" room="21" start="false" img="room_battery_13" />
+		<cloaking power="2" room="12" start="true" img="room_cloaking_11" />
+		<clonebay power="1" room="14" start="false">
+			<slot>
+				<number>0</number>
+			</slot>
+		</clonebay>
+		<doors power="1" room="24" start="false" img="room_doors_10">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</doors>
+		<drones power="2" max="8" room="17" start="false" img="room_drones_15" />
+		<engines power="3" room="6" start="true" img="room_engines">
+			<slot>
+				<direction>down</direction>
+				<number>2</number>
+			</slot>
+		</engines>
+		<hacking power="1" room="16" start="false" img="room_hacking_2" />
+		<medbay power="1" room="14" start="true" img="room_medbay_4">
+			<slot>
+				<number>0</number>
+			</slot>
+		</medbay>
+		<mind power="1" room="19" start="false" img="room_mind_5" />
+		<oxygen power="1" room="11" start="true" img="room_oxygen_2" />
+		<pilot power="1" room="0" start="true" img="room_pilot">
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</pilot>
+		<sensors power="1" room="25" start="false" img="room_sensors">
+			<slot>
+				<direction>down</direction>
+				<number>1</number>
+			</slot>
+		</sensors>
+		<shields power="2" max="8" room="10" start="false" img="room_shields_11">
+			<slot>
+				<direction>down</direction>
+				<number>1</number>
+			</slot>
+		</shields>
+		<teleporter power="1" room="18" start="false" />
+		<weapons power="2" max="8" room="20" start="false" img="room_weapons_12">
+			<slot>
+				<direction>right</direction>
+				<number>2</number>
+			</slot>
+		</weapons>
+	</systemList>
+	<weaponSlots>2</weaponSlots>
+	<droneSlots>2</droneSlots>
+	<weaponList missiles="6" count="2" />
+	<droneList drones="6" count="2" />
+	<health amount="30" />
+	<maxPower amount="12" />
+	<crewCount amount="1" class="human_engineer" />
+	<crewCount amount="1" class="human_engineer" />
+	<crewCount amount="1" class="human_soldier" />
+	<aug name="OG_NEUTRON_SHIELD_LOCKED" />
+	<shieldImage>mup_disk</shieldImage>
+	<mv-mapImage>map_icon_og_dawn_big</mv-mapImage>
+</shipBlueprint>
+
 <shipBlueprint name="PLAYER_SHIP_OG_KESTREL" layout="ogp_kestrel_a" img="ogp_kestrel_a">
 	<class>Iron Kestrel Cruiser</class>
 	<name>Supercausal</name>
@@ -5681,6 +5765,80 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 
 <!--WEAPONS-->
 <FTL>
+<weaponBlueprint name="ARTILLERY_OG_NEUTRON_BEAM_1">
+	<type>LASER</type>
+	<flavorType>Artillery</flavorType>
+	<title>Neutron Artillery</title>
+	<short>Artillery</short>
+	<desc>[Base cooldown: 20] Fires a concentrated beam of radiation through the enemy ship, damaging systems and crew.</desc>
+	<tooltip>Artillery: Fires a concentrated beam of radiation through the enemy ship, damaging systems and crew.</tooltip>
+	<damage>0</damage>
+	<shots>1</shots>
+	<sp>0</sp>
+	<fireChance>0</fireChance>
+	<breachChance>0</breachChance>
+	<cooldown>20</cooldown>
+	<rarity>0</rarity>
+    <image>laser_heavy</image>
+	<launchSounds>
+		<sound>heavyLaser1</sound>
+		<sound>heavyLaser2</sound>
+		<sound>heavyLaser3</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>hitHull2</sound>
+		<sound>hitHull3</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>og_neutron_beam_artillery</weaponArt>
+</weaponBlueprint>
+
+<weaponBlueprint name="LOOT_OG_DAWN_1"> <!--.14 DPS-->
+	<type>LASER</type>
+	<title>Pierce Laser MK I</title>
+	<short>Pierce I</short>
+	<tip>loot_og_dawn_1</tip>
+	<desc>Special loot weapon. See tooltip in the inventory to check the improvements over the base version.</desc>
+	<tooltip>Pierce laser; 1 damage, 2 shots, pierces 1 shield. 14 second cooldown.</tooltip>
+	<iconReplace>laser_pierce_og_dawn_icon</iconReplace>
+	<damage>1</damage>
+	<accuracyMod>10</accuracyMod>
+	<mv-stealth/>
+	<shots>2</shots>
+	<sp>1</sp>
+	<fireChance>0</fireChance>
+	<breachChance>3</breachChance>
+	<cooldown>12</cooldown>
+	<power>2</power>
+	<cost>60</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>laser_burst</image>
+	<launchSounds>
+		<sound>laser_pierce</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>hitHull2</sound>
+		<sound>hitHull3</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>laser_pierce_og_dawn</weaponArt>
+	<iconImage>laser</iconImage>
+</weaponBlueprint>
 </FTL>
 
 <!--EQUIPMENT-->

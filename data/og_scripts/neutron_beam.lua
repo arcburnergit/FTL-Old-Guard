@@ -177,15 +177,78 @@ script.on_internal_event(Defines.InternalEvents.POST_CREATE_CHOICEBOX, function(
 	end
 end)
 
+function beam_shield_entry_t(beam, shield)
+	local cx, cy, a, b = shield.center.x, shield.center.y, shield.a, shield.b
+	local angle = math.rad(beam.angle)
+	local dx = math.cos(angle)
+	local dy = math.sin(angle)
+
+	local ox = (beam.target.x - cx) / a
+	local oy = (beam.target.y - cy) / b
+	local vx = dx / a
+	local vy = dy / b
+
+	-- |O + t*V|² = 1
+	local A = vx*vx + vy*vy
+	local B = 2 * (ox*vx + oy*vy)
+	local C = ox*ox + oy*oy - 1
+
+	local disc = B*B - 4*A*C
+	if disc < 0 then return nil end
+
+	local sq = math.sqrt(disc)
+	local t1 = (-B - sq) / (2*A)
+	local t2 = (-B + sq) / (2*A)
+	if t2 < 0 then return nil end
+	return t1
+end
+
+local active_beams = {}
+
+function mods.og.create_neutron_beam(target, target_angle, width, shipManager, owner, time, damage, extend)
+	--local target_angle = get_angle_between_points(target1, target2)
+	if not target then print("NO TARGET") end
+	local shieldShape = shipManager._targetable:GetShieldShape()
+	local new_beam = {targetShip = shipManager.iShipId, ownerShip = owner.iShipId, target = target, angle = target_angle, width = width, time = time, damage = damage, extend = extend}
+	local t_shield = nil
+	if shipManager.iShipId ~= owner.iShipId then
+		t_shield = beam_shield_entry_t(new_beam, shieldShape)
+	end
+	new_beam.t_shield = t_shield
+	table.insert(active_beams, new_beam)
+end
+local create_neutron_beam = mods.og.create_neutron_beam
+
+function mods.og.test_cnb()
+	create_neutron_beam(Hyperspace.Point(100,100),45,20,Hyperspace.ships.player, Hyperspace.ships.enemy,10,5,true)
+end
+
+script.on_internal_event(Defines.InternalEvents.JUMP_LEAVE, function(shipManager)
+	if shipManager.iShipId == 0 then
+		active_beams = {}
+	end
+end)
+
+script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+	if shipManager.iShipId == 0 then
+		local remove_beam = nil
+		for i, beam_table in ipairs(active_beams) do
+			beam_table.time = beam_table.time - time_increment(true)
+			if beam_table.time <= 0 then
+				remove_beam = i
+			end
+		end
+		if remove_beam then
+			table.remove(active_beams, remove_beam)
+		end
+	end
+end)
 
 local has_shield = {[0] = false, [1] = false}
+local room_damage_active = {[0] = {}, [1] = {}}
 do --HAZARD DAMAGE TRACKING
 	local left_over_damage = {[0] = 0, [1] = 0}
 	local function damage_room(damage, system, room, shipManager)
-		if system and system.iSystemType == 1 then
-			damage = damage + left_over_damage[shipManager.iShipId]
-			left_over_damage[shipManager.iShipId] = 0
-		end
 		--print(damage.." sys:"..tostring(system).." room:"..tostring(room.iRoomId).." ship:"..tostring(shipManager.iShipId))
 		local damage_crew = false
 		if damage <= 0 then
@@ -225,7 +288,7 @@ do --HAZARD DAMAGE TRACKING
 				end
 			end
 
-			if damage > 0 then
+			if damage > 0 and room then
 				for crewmem in vter(shipManager.vCrewList) do
 					if crewmem:InsideRoom(room.iRoomId) then
 						crewmem.health.first = crewmem.health.first - damage
@@ -239,57 +302,152 @@ do --HAZARD DAMAGE TRACKING
 		return damage_crew
 	end
 
+	function room_protected_by_shield(room, shield)
+		local cx, cy, a, b = shield.center.x, shield.center.y, shield.a, shield.b
+		local corners = {
+			{ room.x, room.y },
+			{ room.x + room.w, room.y },
+			{ room.x, room.y + room.h },
+			{ room.x + room.w, room.y + room.h },
+		}
+		for _, c in ipairs(corners) do
+			local ex = (c[1] - cx) / a
+			local ey = (c[2] - cy) / b
+			if ex*ex + ey*ey > 1 then
+				return false
+			end
+		end
+		return true
+	end
+
+	function beam_intersects_room(beam, room)
+		local angle = math.rad(beam.angle)
+		local dx =  math.cos(angle)
+		local dy =  math.sin(angle)
+		local nx = -dy
+		local ny =  dx
+
+		local half_w = beam.width / 2
+
+		local corners = {
+			{ room.x,		  room.y		  },
+			{ room.x + room.w, room.y		  },
+			{ room.x,		  room.y + room.h },
+			{ room.x + room.w, room.y + room.h },
+		}
+		local min_proj =  math.huge
+		local max_proj = -math.huge
+		for _, c in ipairs(corners) do
+			local proj = (c[1] - beam.target.x) * nx + (c[2] - beam.target.y) * ny
+			if proj < min_proj then min_proj = proj end
+			if proj > max_proj then max_proj = proj end
+		end
+
+		if min_proj > half_w or max_proj < -half_w then
+			return false
+		end
+
+		return true
+	end
+
+	local function beam_room_t_range(beam, room)
+		local angle = math.rad(beam.angle)
+		local dx = math.cos(angle)
+		local dy = math.sin(angle)
+
+		local corners = {
+			{ room.x,		  room.y		  },
+			{ room.x + room.w, room.y		  },
+			{ room.x,		  room.y + room.h },
+			{ room.x + room.w, room.y + room.h },
+		}
+
+		if not beam_intersects_room(beam, room) then return nil end
+
+		local t_min =  math.huge
+		local t_max = -math.huge
+		for _, c in ipairs(corners) do
+			local t = (c[1] - beam.target.x) * dx + (c[2] - beam.target.y) * dy
+			if t < t_min then t_min = t end
+			if t > t_max then t_max = t end
+		end
+
+		return t_min, t_max
+	end
+
 	local room_status = {[0] = {}, [1] = {}}
 	local ignore_room_status = {[0] = false, [1] = false}
 	script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 		if Hyperspace.App.menu.shipBuilder.bOpen then return end
+
+		has_shield[shipManager.iShipId] = false
+		local enginesOnline = shipManager:GetSystem(1):GetEffectivePower() > ((shipManager.iShipId == 0 and 1) or 0)
+		if shipManager:HasAugmentation("OG_NEUTRON_SHIELD") > 0 and enginesOnline then
+			has_shield[shipManager.iShipId] = true
+		end
+
+		local has_check_damage = false
 		for system in vter(shipManager.vSystemList) do
 			if system.table.og_keep_damage then
 				system.table.og_keep_damage = false
 				system.table.check_damage = true
+				has_check_damage = true
 			end
 		end
-		has_shield[shipManager.iShipId] = false
-		ignore_room_status[shipManager.iShipId] = false
-		local damage = damage_speed * time_increment(true)
-		local enginesOnline = shipManager:GetSystem(1):GetEffectivePower() > ((shipManager.iShipId == 0 and 1) or 0)
-		if shipManager:HasAugmentation("OG_NEUTRON_SHIELD") > 0 and enginesOnline then
-			damage = damage * neutron_shield_damage_mult
-			has_shield[shipManager.iShipId] = true
-			local system = shipManager:GetSystem(1)
-			if Hyperspace.playerVariables[active_var] > 0 or left_over_damage[shipManager.iShipId] > 0 then
-				if Hyperspace.playerVariables[active_var] <= 0 then
-					damage = 0
+
+		local shieldShape = shipManager._targetable:GetShieldShape()
+		for room in vter(shipManager.ship.vRoomList) do
+			local damage = 0
+			local system = shipManager:GetSystemInRoom(room.iRoomId)
+			local room_protected = room.table.og_neutron_protected
+			if room_protected == nil then
+				room.table.og_neutron_protected = room_protected_by_shield(room.rect, shieldShape)
+				room_protected = room.table.og_neutron_protected
+			end
+			room_protected_full = room_protected and has_shield[shipManager.iShipId]
+			if Hyperspace.playerVariables[active_var] > 0 then
+				if not room_protected_full then
+					damage = damage + damage_speed * time_increment(true)
 				end
-				for room in vter(shipManager.ship.vRoomList) do
-					if room.iRoomId == system.roomId then
-						damage_room(damage, system, room, shipManager)
-						ignore_room_status[shipManager.iShipId] = true
-						break
+				if has_shield[shipManager.iShipId] and system and system.iSystemType == 1 then
+					damage = damage + damage_speed * time_increment(true) * neutron_shield_damage_mult
+				end
+			end
+			if left_over_damage[shipManager.iShipId] > 0 and system and system.iSystemType == 1 then
+				damage = damage + left_over_damage[shipManager.iShipId]
+				left_over_damage[shipManager.iShipId] = 0
+			end
+			for _, beam_table in ipairs(active_beams) do
+				if beam_table.targetShip == shipManager.iShipId and beam_table.damage > 0 then
+					local t_limit = (has_shield[shipManager.iShipId] and beam_table.t_shield) or math.huge
+					if not room_protected_full then
+						local t_min, t_max = beam_room_t_range(beam_table, room.rect)
+						if t_min and t_min < t_limit then
+							damage = damage + beam_table.damage * time_increment(true)
+						end
+					end
+					if beam_table.t_shield and has_shield[shipManager.iShipId] and system and system.iSystemType == 1 then
+						damage = damage + beam_table.damage * time_increment(true) * neutron_shield_damage_mult
 					end
 				end
 			end
-		elseif Hyperspace.playerVariables[active_var] > 0 then
-			local mult_shield_damage = false
-			if shipManager:HasSystem(0) and shipManager:GetShieldPower().first > 0 then
-				damage = damage / shield_damage_reduction
-				mult_shield_damage = true
-			end
-			for room in vter(shipManager.ship.vRoomList) do
-				local system = shipManager:GetSystemInRoom(room.iRoomId)
-				local temp_damage = damage
-				if system and system.iSystemType == 0 and mult_shield_damage then
-					temp_damage = temp_damage * shield_damage_reduction * shield_damage_mult
-				end
-				local damage_crew = damage_room(temp_damage, system, room, shipManager)
+			if damage > 0 then
+				local damage_crew = damage_room(damage, system, room, shipManager)
+				room_damage_active[shipManager.iShipId][room.iRoomId] = true
 				room_status[shipManager.iShipId][room.iRoomId] = damage_crew
+			else
+				room_damage_active[shipManager.iShipId][room.iRoomId] = false
+				room_status[shipManager.iShipId][room.iRoomId] = false
 			end
 		end
-		for system in vter(shipManager.vSystemList) do
-			if system.table.check_damage then
-				system.table.check_damage = false
-				if not system.table.og_keep_damage then
-					damage_room(damage_loss * time_increment(true), system, room, shipManager)
+
+		if has_check_damage then
+			for system in vter(shipManager.vSystemList) do
+				if system.table.check_damage then
+					system.table.check_damage = false
+					if not system.table.og_keep_damage then
+						damage_room(damage_loss * time_increment(true), system, nil, shipManager)
+					end
 				end
 			end
 		end
@@ -348,7 +506,7 @@ do --HAZARD DAMAGE TRACKING
 		end
 		return Defines.Chain.CONTINUE
 	end)
-	script.on_internal_event(Defines.InternalEvents.DAMAGE_BEAM, function(ship, projectile, location, damage, realNewTile, beamHitType)
+	script.on_internal_event(Defines.InternalEvents.DAMAGE_BEAM, function(shipManager, projectile, location, damage, realNewTile, beamHitType)
 		if beamHitType == Defines.BeamHit.NEW_ROOM then
 			if has_shield[shipManager.iShipId] and damage.iIonDamage > 0 then
 				left_over_damage[shipManager.iShipId] = left_over_damage[shipManager.iShipId] + 33.4 * damage.iIonDamage
@@ -410,12 +568,15 @@ local function get_location_beam_status(target_x, target_y, current_angle_A)
 end
 
 script.on_internal_event(Defines.InternalEvents.GET_BEACON_HAZARD, function(location)
-	local relative_x = location.loc.x + starMap_properties.loc_offset.x - starMap_properties.w/2
-	local relative_y = location.loc.y + starMap_properties.loc_offset.y - starMap_properties.h/2
-	local isNeutronBeamEvent = string_starts(location.event.eventName, event_string)
-	--print(location.event.eventName.." GET_BEACON_HAZARD")
-	if get_location_beam_status(relative_x, relative_y, Hyperspace.playerVariables[rotation_var]) == "WARNING" or isNeutronBeamEvent then
-		return hazard_text
+	local map = Hyperspace.App.world.starMap
+	if map.currentSector.description.type == sector_name then
+		local relative_x = location.loc.x + starMap_properties.loc_offset.x - starMap_properties.w/2
+		local relative_y = location.loc.y + starMap_properties.loc_offset.y - starMap_properties.h/2
+		local isNeutronBeamEvent = string_starts(location.event.eventName, event_string)
+		--print(location.event.eventName.." GET_BEACON_HAZARD")
+		if get_location_beam_status(relative_x, relative_y, Hyperspace.playerVariables[rotation_var]) == "WARNING" or isNeutronBeamEvent then
+			return hazard_text
+		end
 	end
 end)
 
@@ -454,10 +615,10 @@ script.on_internal_event(Defines.InternalEvents.PRE_CREATE_CHOICEBOX, function(e
 end)
 
 local iron_watch_ship_list = {}
-iron_watch_ship_list["LIST_SHIPS_OG_IRON_ALL"] = true
-iron_watch_ship_list["LIST_SHIPS_OG_IRON_GENERIC"] = true
-iron_watch_ship_list["LIST_SHIPS_OG_IRON_FIGHT"] = true
 for item in vter(Hyperspace.Blueprints:GetBlueprintList("LIST_SHIPS_OG_IRON_ALL")) do
+	iron_watch_ship_list[item] = true
+end
+for item in vter(Hyperspace.Blueprints:GetBlueprintList("LIST_SHIPS_OG_MIDNIGHT_ALL")) do
 	iron_watch_ship_list[item] = true
 end
 script.on_internal_event(Defines.InternalEvents.GENERATOR_CREATE_SHIP, function(name, sector, event, blueprint, ret)
@@ -484,6 +645,32 @@ script.on_internal_event(Defines.InternalEvents.GET_DODGE_FACTOR, function(shipM
 		value = value - 5
 	end
 	return Defines.Chain.CONTINUE, value
+end)
+
+local bar_outline = Hyperspace.Resources:CreateImagePrimitiveString("systemUi/og_neutron_shield_outline.png", 0, 0, 0, COLOUR_WHITE, 1.0, false)
+local bar_position = {x = 24, y = 16}
+script.on_render_event(Defines.RenderEvents.SYSTEM_BOX, function(systemBox, ignoreStatus) return Defines.Chain.CONTINUE end, function(systemBox, ignoreStatus) 
+	local shipId = (systemBox.bPlayerUI and 0) or 1
+	local shipManager = Hyperspace.ships(shipId)
+	local system = systemBox.pSystem
+	if has_shield[shipId] and system.iSystemType == 1 then
+		if systemBox.bPlayerUI and system:GetEffectivePower() >= 2 then
+			for i = 2, system:GetEffectivePower() do
+				Graphics.CSurface.GL_PushMatrix()
+				Graphics.CSurface.GL_Translate(bar_position.x, bar_position.y - i * 8, 0)
+				Graphics.CSurface.GL_RenderPrimitive(bar_outline)
+				Graphics.CSurface.GL_PopMatrix()
+			end
+		elseif (not systemBox.bPlayerUI) and system:GetEffectivePower() >= 2 then
+			for i = 2, system:GetEffectivePower() do
+				Graphics.CSurface.GL_PushMatrix()
+				Graphics.CSurface.GL_Translate(bar_position.x, bar_position.y - i * 8, 0)
+				Graphics.CSurface.GL_RenderPrimitive(bar_outline)
+				Graphics.CSurface.GL_PopMatrix()
+			end
+		end
+	end
+	return Defines.Chain.CONTINUE 
 end)
 
 local warning_stripe_colour = Graphics.GL_Color(0.8, 0.8, 0.8, 0.25)
@@ -601,9 +788,9 @@ script.on_render_event(Defines.RenderEvents.GUI_CONTAINER, function() end, funct
 		Graphics.CSurface.GL_PushMatrix()
 		Graphics.CSurface.GL_Translate(starMap_properties.x, starMap_properties.y, 0) -- move to map location
 
-		Graphics.CSurface.GL_SetStencilMode(stencil_mode.set, 1, 1)
+		Graphics.CSurface.GL_SetStencilMode(stencil_mode.set, 1, 16)
 		Graphics.CSurface.GL_RenderPrimitive(map_stencil_warning)
-		Graphics.CSurface.GL_SetStencilMode(stencil_mode.use, 1, 1)
+		Graphics.CSurface.GL_SetStencilMode(stencil_mode.use, 1, 16)
 
 		Graphics.CSurface.GL_PushMatrix()
 		Graphics.CSurface.GL_Translate(mid_x, mid_y, 0)
@@ -611,9 +798,9 @@ script.on_render_event(Defines.RenderEvents.GUI_CONTAINER, function() end, funct
 		draw_spiral_fill(next_angle_B, next_back_angle_B, warning_stripe_colour)
 		Graphics.CSurface.GL_PopMatrix()
 
-		Graphics.CSurface.GL_SetStencilMode(stencil_mode.set, 1, 1)
+		Graphics.CSurface.GL_SetStencilMode(stencil_mode.set, 1, 16)
 		Graphics.CSurface.GL_RenderPrimitive(map_stencil)
-		Graphics.CSurface.GL_SetStencilMode(stencil_mode.use, 1, 1)
+		Graphics.CSurface.GL_SetStencilMode(stencil_mode.use, 1, 17)
 
 		Graphics.CSurface.GL_PushMatrix()
 		Graphics.CSurface.GL_Translate(mid_x, mid_y, 0) -- move to center
@@ -640,7 +827,7 @@ script.on_render_event(Defines.RenderEvents.GUI_CONTAINER, function() end, funct
 		Graphics.CSurface.GL_PopMatrix()
 
 		Graphics.CSurface.GL_PopMatrix()
-		reset_stencil_buffer(1)
+		reset_stencil_buffer(16)
 	end
 end)
 
@@ -653,6 +840,10 @@ local colour_list = {
 	Graphics.GL_Color(5/255, 55/255, 205/255, 0.2),
 	Graphics.GL_Color(5/255, 25/255, 155/255, 0.2),
 }
+local colour_list_high_alpha = {}
+for _, colour in ipairs(colour_list) do
+	table.insert(colour_list_high_alpha, Graphics.GL_Color(colour.r,colour.g,colour.b, 0.6))
+end
 
 local flash_timer = 0
 local flash_timer_max = 0.4
@@ -786,6 +977,67 @@ end, function(ship)
 			Graphics.CSurface.GL_PopMatrix()
 		end
 	end
+
+	for _, beam_table in ipairs(active_beams) do
+		if beam_table.targetShip == ship.iShipId then
+			local t_limit = (has_shield[ship.iShipId] and beam_table.t_shield) or 2000
+			local origin = offset_point_in_direction(beam_table.target, beam_table.angle, 0, 2000)
+			local impact = offset_point_in_direction(beam_table.target, beam_table.angle, 0, -t_limit -10)
+			if not beam_table.extend then
+				origin = beam_table.target
+				impact = offset_point_in_direction(beam_table.target, beam_table.angle, 0, -2000)
+			end
+			local mask_hide = 1
+			local mask_show = -1
+			if ship.iShipId == 0 then
+				mask_hide = -1
+				mask_show = 1
+			end
+			Graphics.CSurface.GL_PushStencilMode()
+			Graphics.CSurface.GL_SetStencilMode(stencil_mode.set, mask_hide, 16)
+			Graphics.CSurface.GL_DrawRect(
+				-1280,-720,
+				1280*3,720*3,
+				COLOUR_WHITE)
+			Graphics.CSurface.GL_SetStencilMode(stencil_mode.set, mask_show, 16)
+			local new_width = beam_table.width + (math.floor(beam_table.time*3)%3 - 1)
+			Graphics.CSurface.GL_DrawLine(origin.x, origin.y, impact.x, impact.y, new_width, COLOUR_WHITE)
+
+			local shipManager = Hyperspace.ships(ship.iShipId)
+			local ellipse = shipManager._targetable:GetShieldShape()
+			local center = ellipse.center
+			if has_shield[ship.iShipId] then
+				Graphics.CSurface.GL_SetStencilMode(stencil_mode.set, mask_hide, 16)
+				Graphics.CSurface.GL_PushMatrix()
+				Graphics.CSurface.GL_Translate(center.x, center.y, 0)
+				Graphics.CSurface.GL_Scale((ellipse.a*2) / shield_image_size.w, (ellipse.b*2) / shield_image_size.h, 1)
+				Graphics.CSurface.GL_RenderPrimitiveWithColor(shield_image, shield_image_colour)
+				Graphics.CSurface.GL_PopMatrix()
+			end
+
+			Graphics.CSurface.GL_SetStencilMode(stencil_mode.use, mask_show, 48)
+			if new_width > 2 then
+				for i=1, math.floor(new_width/2) - 1 do
+					local n = i*2
+					Graphics.CSurface.GL_DrawLine(origin.x, origin.y, impact.x, impact.y, new_width - n, colour_list_high_alpha[1])
+				end
+			end
+			for i = 1, 50 do
+				local particle = particle_list_front[i]
+				Graphics.CSurface.GL_PushMatrix()
+				Graphics.CSurface.GL_Translate(beam_table.target.x, beam_table.target.y, 0)
+				Graphics.CSurface.GL_Rotate(beam_table.angle+180, 0, 0, 1)
+				Graphics.CSurface.GL_Scale(1.25, (beam_table.width * 2) / 720, 1)
+				Graphics.CSurface.GL_Translate(-640, -360, 0)
+				Graphics.CSurface.GL_Translate(particle.x, particle.y, 0)
+				Graphics.CSurface.GL_Scale(particle.w / particle_image_size.w, 4*particle.h / particle_image_size.h, 1)
+				Graphics.CSurface.GL_RenderPrimitiveWithColor(particle_image, colour_list_high_alpha[particle.colour])
+				Graphics.CSurface.GL_PopMatrix()
+			end
+			reset_stencil_buffer(16)
+			Graphics.CSurface.GL_PopStencilMode()
+		end
+	end
 end)
 
 script.on_render_event(Defines.RenderEvents.FTL_BUTTON, function() 
@@ -801,7 +1053,7 @@ script.on_render_event(Defines.RenderEvents.FTL_BUTTON, function()
 end, function() return Defines.Chain.CONTINUE end)
 
 script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
-	if Hyperspace.playerVariables[active_var] ~= 1 then return end
+	if Hyperspace.playerVariables[active_var] ~= 1 and #active_beams <= 0 then return end
 	local commandGui = Hyperspace.App.gui
 	if commandGui.bPaused or commandGui.event_pause or commandGui.menu_pause then return end
 
@@ -899,22 +1151,24 @@ local function render_beam_damage(room)
 end
 
 script.on_render_event(Defines.RenderEvents.SHIP_SPARKS, function(ship) end, function(ship)
-	if Hyperspace.playerVariables[active_var] ~= 1 then return end
-	local shipManager = Hyperspace.ships(ship.iShipId)
-	if has_shield[ship.iShipId] then
-		local system = shipManager:GetSystem(1)
-		if system then
-			for room in vter(shipManager.ship.vRoomList) do
-				if room.iRoomId == system.roomId then
-					render_beam_damage(room)
-					break
-				end
-			end
-		end
-	else
-		for room in vter(shipManager.ship.vRoomList) do
+	for room in vter(ship.vRoomList) do
+		if room_damage_active[ship.iShipId][room.iRoomId] then
 			render_beam_damage(room)
 		end
 	end
 	return Defines.Chain.CONTINUE
 end)
+
+mods.og.test_stencil = nil
+mods.og.test_stencil_value = 1
+script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
+	if not mods.og.test_stencil then return Defines.Chain.CONTINUE end
+	Graphics.CSurface.GL_PushStencilMode()
+	Graphics.CSurface.GL_SetStencilMode(stencil_mode.use, mods.og.test_stencil_value, mods.og.test_stencil)
+	Graphics.CSurface.GL_DrawRect(
+		0,0,
+		1280,720,
+		Graphics.GL_Color(1,0,0,0.5))
+	Graphics.CSurface.GL_PopStencilMode()
+	return Defines.Chain.CONTINUE
+end, function() return Defines.Chain.CONTINUE end)

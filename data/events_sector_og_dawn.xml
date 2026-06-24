@@ -1915,7 +1915,11 @@ You quickly return to your ship and prepare for your next jump.</text>
 		<text>Contact the ships.</text>
 		<event>
 			<text>Just as you were initiating contact with the Iron Watch vessel, alarms go off on your consoles, another pair of ships have arrived, and this time it's not the Iron Watch. The new comers, a pair of New Dawn vessels immediately opens fire on the larger of the two Iron Watch ships. The Iron watch ships which were previously neutral immediately move to defend from the attack.</text>
-			<ship load="SHIP_OG_DAWN_HEIST_DAWN_ESCORT" hostile="false"/> 
+			<ship load="SHIP_OG_DAWN_HEIST_DAWN_ESCORT" hostile="false"/>
+			<choice hidden="true">
+				<text>The New Dawn won't accept your help.</text>
+				<event load="OPTION_INVALID"/>
+			</choice>
 			<choice>
 				<text>Aid the Iron Watch.</text>
 				<event>

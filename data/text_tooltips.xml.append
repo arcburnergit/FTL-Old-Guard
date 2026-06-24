@@ -75,6 +75,9 @@
 <text name="og_lua_turret_stats_stunChance">\nStun Chance: %d%% (%d seconds long)</text>
 <text name="og_lua_turret_stats_effect">\nEffect Duration: %d seconds long</text>
 
+<text name="og_lua_turret_stats_neutron_damage">\nBeam Damage: %.1f per second</text>
+<text name="og_lua_turret_stats_neutron_duration">\nBeam Duration: %.1f seconds</text>
+
 <text name="og_lua_turret_stats_price">\n\nDefault Price: %d~   -   Selling Price: %d~</text>
 <text name="og_lua_turret_stats_price_short">\n\n%d~   -   %d~</text>
 
@@ -87,6 +90,7 @@
 <text name="og_lua_turret_hover_charges">Charges: %d/%d</text>
 <text name="og_lua_turret_hover_time">\nCharge Time: %.1f/%.1f</text>
 
+<text name="og_lua_turret_type_none">None</text>
 <text name="og_lua_turret_type_drones">Drones</text>
 <text name="og_lua_turret_type_missiles">All Solid Projectiles</text>
 <text name="og_lua_turret_type_drones_missiles">All Solid Projectiles and Drones</text>
@@ -127,6 +131,8 @@
 <text name="og_lua_turret_ach_invalid">\nRebel Allegiance Achievement: Invalid Run</text>
 
 <text name="og_lua_turret_clone_cannon">Clone</text>
+<text name="og_lua_midnight_hacking_name">Hacking Drone</text>
+<text name="og_lua_midnight_hacking_text">Hacking Drone\nRemoved on jump, or when system is fully damaged.\n\nCurrent Time:%.1f seconds\nCooldown:%d seconds\nHack Duration:%d seconds</text>
 
 <text name="og_lua_turret_rep_iron">Iron Watch Reputation</text>
 <text name="og_lua_turret_rep_dawn">New Dawn Reputation</text>

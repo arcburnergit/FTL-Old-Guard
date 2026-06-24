@@ -176,18 +176,18 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<mod-append:ship>PLAYER_SHIP_OG_PEACEKEEPER</mod-append:ship>
 		<mod-append:ship>PLAYER_SHIP_OG_KNIGHT</mod-append:ship>
 
-		<mod-append:ship>PLAYER_SHIP_OG_RAIDER</mod-append:ship>
-		<mod-append:ship>PLAYER_SHIP_OG_EXECUTOR</mod-append:ship>
+		<mod-append:empty/>
+		<mod-append:empty/>
 
+		<mod-append:ship>PLAYER_SHIP_OG_RAIDER</mod-append:ship>
 		<mod-append:ship>PLAYER_SHIP_OG_DAWN_SPEAR</mod-append:ship>
+		<mod-append:ship>PLAYER_SHIP_OG_HUNTER</mod-append:ship>
 		<mod-append:empty/>
-		<mod-append:empty/>
-		<mod-append:empty/>
-		
-		<mod-append:empty/>
+
 		<mod-append:empty/>
 		<mod-append:empty/>
 		<mod-append:ship>PLAYER_SHIP_OG_DAWN_BIG</mod-append:ship>
+		<mod-append:ship>PLAYER_SHIP_OG_EXECUTOR</mod-append:ship>
 		
 		<mod-append:empty/>
 		<mod-append:empty/>
@@ -584,6 +584,19 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<customReactor maxLevel="40"/>
 	</mod-append:customShip>
 
+	<mod-append:ship name="PLAYER_SHIP_OG_HUNTER" b="false" c="false" >
+		<unlock variant="a" silent="false">
+			<type>4</type>
+		</unlock>
+	</mod-append:ship>
+	<mod-append:customShip name="PLAYER_SHIP_OG_HUNTER">
+		<hiddenAug>SHIP_OG_DAWN</hiddenAug>
+		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
+		<crewLimit>8</crewLimit>
+		<systemLimit>10</systemLimit>
+		<customReactor maxLevel="30"/>
+	</mod-append:customShip>
+
 	<mod-append:ship name="PLAYER_SHIP_OG_KESTREL" b="false" c="false" >
 		<arrow variant="a" direction="right" tooltip="ship_unlock_sector5" image="arrow_5_right.png" unlockedImage="arrow_5_right_on.png">PLAYER_SHIP_OG_REBEL</arrow>
 	</mod-append:ship>
@@ -815,6 +828,142 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 			<shipIcon>icon_og_turret_dawn</shipIcon>
 		</shipIcons>
 	</mod-append:customShip>
+	<mod-append:customShip name="OG_MIDNIGHT_SCOUT">
+		<shipIcons>
+			<shipIcon>icon_resist</shipIcon>
+		</shipIcons>
+		<crew>
+			<human_og_midnight room="2"/> <!--teleporter-->
+		</crew>
+		<rooms>
+			<room id="1"> <!--cloaking-->
+				<roomAnim renderLayer="0">resist_1x2</roomAnim>
+                <roomAnim renderLayer="3">resist_icon</roomAnim>
+				<sysDamageResistChance>100</sysDamageResistChance>
+			</room>
+		</rooms>
+	</mod-append:customShip>
+	<mod-append:customShip name="OG_MIDNIGHT_INFILTRATOR">
+		<shipIcons>
+			<shipIcon>icon_resist</shipIcon>
+		</shipIcons>
+		<crew>
+			<human_og_midnight room="5"/> <!--teleporter-->
+		</crew>
+		<rooms>
+			<room id="3"> <!--cloaking-->
+				<roomAnim renderLayer="0">resist_1x2</roomAnim>
+                <roomAnim renderLayer="3">resist_icon</roomAnim>
+				<sysDamageResistChance>100</sysDamageResistChance>
+			</room>
+		</rooms>
+	</mod-append:customShip>
+	<mod-append:customShip name="OG_MIDNIGHT_OUTRIDER">
+		<shipIcons>
+			<shipIcon>icon_resist</shipIcon>
+		</shipIcons>
+		<crew>
+			<human_og_midnight room="7"/> <!--teleporter-->
+		</crew>
+		<rooms>
+			<room id="6"> <!--cloaking-->
+				<roomAnim renderLayer="0">resist_1x2</roomAnim>
+                <roomAnim renderLayer="3">resist_icon</roomAnim>
+				<sysDamageResistChance>100</sysDamageResistChance>
+			</room>
+		</rooms>
+	</mod-append:customShip>
+	<mod-append:customShip name="OG_MIDNIGHT_BOMBER">
+		<shipIcons>
+			<shipIcon>icon_resist</shipIcon>
+		</shipIcons>
+		<crew>
+			<human_og_midnight room="3"/> <!--teleporter-->
+		</crew>
+		<rooms>
+			<room id="9"> <!--cloaking-->
+				<roomAnim renderLayer="0">resist_2x1</roomAnim>
+                <roomAnim renderLayer="3">resist_icon</roomAnim>
+				<sysDamageResistChance>100</sysDamageResistChance>
+			</room>
+		</rooms>
+	</mod-append:customShip>
+	<mod-append:customShip name="OG_MIDNIGHT_CORVETTE">
+		<shipIcons>
+			<shipIcon>icon_resist</shipIcon>
+		</shipIcons>
+		<crew>
+			<human_og_midnight room="5"/> <!--teleporter-->
+		</crew>
+		<rooms>
+			<room id="0"> <!--cloaking-->
+				<roomAnim renderLayer="0">resist_2x2</roomAnim>
+                <roomAnim renderLayer="3">resist_icon</roomAnim>
+				<sysDamageResistChance>100</sysDamageResistChance>
+			</room>
+		</rooms>
+	</mod-append:customShip>
+	<mod-append:customShip name="OG_MIDNIGHT_FIGHTER">
+		<shipIcons>
+			<shipIcon>icon_resist</shipIcon>
+		</shipIcons>
+		<crew>
+			<human_og_midnight room="10"/> <!--teleporter-->
+		</crew>
+		<rooms>
+			<room id="5"> <!--cloaking-->
+				<roomAnim renderLayer="0">resist_1x2</roomAnim>
+                <roomAnim renderLayer="3">resist_icon</roomAnim>
+				<sysDamageResistChance>100</sysDamageResistChance>
+			</room>
+		</rooms>
+	</mod-append:customShip>
+	<mod-append:customShip name="OG_MIDNIGHT_TRANSPORT">
+		<shipIcons>
+			<shipIcon>icon_resist</shipIcon>
+		</shipIcons>
+		<crew>
+			<human_og_midnight room="13"/> <!--teleporter-->
+		</crew>
+		<rooms>
+			<room id="7"> <!--cloaking-->
+				<roomAnim renderLayer="0">resist_2x2</roomAnim>
+                <roomAnim renderLayer="3">resist_icon</roomAnim>
+				<sysDamageResistChance>100</sysDamageResistChance>
+			</room>
+		</rooms>
+	</mod-append:customShip>
+	<mod-append:customShip name="OG_MIDNIGHT_GUARD">
+		<shipIcons>
+			<shipIcon>icon_resist</shipIcon>
+		</shipIcons>
+		<crew>
+			<human_og_midnight room="6"/> <!--teleporter-->
+		</crew>
+		<rooms>
+			<room id="13"> <!--cloaking-->
+				<roomAnim renderLayer="0">resist_2x2</roomAnim>
+                <roomAnim renderLayer="3">resist_icon</roomAnim>
+				<sysDamageResistChance>100</sysDamageResistChance>
+			</room>
+		</rooms>
+	</mod-append:customShip>
+	<mod-append:customShip name="OG_MIDNIGHT_HUNTER">
+		<shipIcons>
+			<shipIcon>icon_threat</shipIcon>
+			<shipIcon>icon_resist</shipIcon>
+		</shipIcons>
+		<crew>
+			<human_og_midnight room="21"/> <!--teleporter-->
+		</crew>
+		<rooms>
+			<room id="14"> <!--cloaking-->
+				<roomAnim renderLayer="0">resist_2x2</roomAnim>
+                <roomAnim renderLayer="3">resist_icon</roomAnim>
+				<sysDamageResistChance>100</sysDamageResistChance>
+			</room>
+		</rooms>
+	</mod-append:customShip>
 	<mod-append:customShip name="OG_LEGION_ASSAULT_TURRET">
 		<shipIcons>
 			<shipIcon>icon_threat</shipIcon>
@@ -843,6 +992,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<icon>icon_og_neutron_shield</icon>
 	</mod-append:aug>
 	<mod-append:aug name="OG_NEUTRON_SHIELD_LOCKED">
+		<locked/>
 		<function name="OG_NEUTRON_SHIELD" value="1" useForReqs="true" warning="false"/>
 	</mod-append:aug>
 	<mod-append:aug name="OG_REFLECTIVE_PLATING">
@@ -1071,6 +1221,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 	<bossShip>OG_IRON_RAIDER</bossShip>
 	<bossShip>OG_DAWN_RAIDER</bossShip>
 	<bossShip>OG_IRON_EXECUTOR</bossShip>
+	<bossShip>OG_MIDNIGHT_HUNTER</bossShip>
 
 	<bossShip yOffset="210">OG_LEGION_ASSAULT_TURRET</bossShip>
 </events>
@@ -1144,6 +1295,111 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 			<repair req="16"/>
 			<combat req="7"/>
 		</skills>
+	</race>
+	<race name="human_og_midnight">
+		<damageMultiplier>1.5</damageMultiplier>
+		<sabotageSpeedMultiplier>1.5</sabotageSpeedMultiplier>
+		<damageTakenMultiplier>0.7</damageTakenMultiplier>
+		<fireDamageMultiplier>0.6</fireDamageMultiplier>
+		<suffocationModifier>0.83</suffocationModifier>
+		<animBase>human</animBase>
+		<defaultSkillLevel>2</defaultSkillLevel>
+		<cloneLoseSkills>false</cloneLoseSkills>
+		<deathSounds>
+			<deathSound>death1</deathSound>
+			<deathSound>death2</deathSound>
+			<deathSound>death1</deathSound>
+			<deathSound>death2</deathSound>
+			<deathSound>death1</deathSound>
+			<deathSound>death2</deathSound>
+			<deathSound>death1</deathSound>
+			<deathSound>death2</deathSound>
+			<deathSound>death1</deathSound>
+			<deathSound>death2</deathSound>
+			<deathSound>death1</deathSound>
+			<deathSound>death2</deathSound>
+			<deathSound>death1</deathSound>
+			<deathSound>death2</deathSound>
+			<deathSound>death1</deathSound>
+			<deathSound>death2</deathSound>
+			<deathSound>death1</deathSound>
+			<deathSound>death2</deathSound>
+			<deathSound>death1</deathSound>
+			<deathSound>death2</deathSound>
+			<deathSound>death1</deathSound>
+			<deathSound>death2</deathSound>
+			<deathSound>death1</deathSound>
+			<deathSound>death2</deathSound>
+			<deathSound>death1</deathSound>
+			<deathSound>death2</deathSound>
+			<deathSound>death1</deathSound>
+			<deathSound>death2</deathSound>
+			<deathSound>death1</deathSound>
+			<deathSound>death2</deathSound>
+			<deathSound>death1</deathSound>
+			<deathSound>death2</deathSound>
+			<deathSound>death1</deathSound>
+			<deathSound>death2</deathSound>
+			<deathSound>death1</deathSound>
+			<deathSound>death2</deathSound>
+			<deathSound>death1</deathSound>
+			<deathSound>death2</deathSound>
+			<deathSound>death1</deathSound>
+			<deathSound>death2</deathSound>
+			<deathSound>death1</deathSound>
+			<deathSound>death2</deathSound>
+			<deathSound>death1</deathSound>
+			<deathSound>death2</deathSound>
+			<deathSound>death1</deathSound>
+			<deathSound>death2</deathSound>
+			<deathSound>humanDeathSpecial</deathSound>
+		</deathSounds>
+		<powerEffect name="og_midnight_main_power">
+			<cooldown>1</cooldown>
+			<jumpCooldown>full</jumpCooldown>
+			<powerSounds>
+				<powerSound>droneLaunch</powerSound>
+			</powerSounds>
+			<req>
+				<enemyShip/>
+                <systemInRoom/>
+			</req>
+			<buttonText>HACK</buttonText>
+			<tooltip>[COOLDOWN:N/A]
+				Deploys an almost indestructible hacking device in the current room, which will repeatedly hack the current room for the rest of the fight.
+				On use teleports Operative back to their home ship if possible.
+				Cannot target weapons, drones, or shields.
+				Hack lasts 10 seconds.
+				Drone Hack cooldown takes 20 seconds.</tooltip>
+			<cooldownColor r="207" g="175" b="0"/>
+			<activateWhenReady enemiesOnly="true">true</activateWhenReady>
+			<powerCharges>1</powerCharges>
+			<initialCharges>1</initialCharges>
+			<chargesPerJump>1</chargesPerJump>
+		</powerEffect>
+	</race>
+	<race name="human_og_midnight_hacking">
+		<lowHealthThreshold>-1</lowHealthThreshold>
+		<controllable>false</controllable>
+		<noWarning>true</noWarning>
+		<crewSlots>0</crewSlots>
+		<noClone>true</noClone>
+		<canRepair>false</canRepair>
+		<canFight>false</canFight>
+		<canSabotage>false</canSabotage>
+		<canMan>false</canMan>
+		<canMove>false</canMove>
+		<canBurn>false</canBurn>
+		<canSuffocate>false</canSuffocate>
+		<resistsMindControl>true</resistsMindControl>
+		<canPhaseThroughDoors>true</canPhaseThroughDoors>
+		<stunMultiplier>0.25</stunMultiplier>
+		<healSpeed>0</healSpeed>
+		<allDamageTakenMultiplier>0</allDamageTakenMultiplier>
+		<validTarget>false</validTarget>
+		<deathSounds>
+			<deathSound>sysExplosion</deathSound>
+		</deathSounds>
 	</race>
 </crew>
 

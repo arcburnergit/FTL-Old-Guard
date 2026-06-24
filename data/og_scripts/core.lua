@@ -457,11 +457,12 @@ script.on_internal_event(Defines.InternalEvents.CALCULATE_STAT_POST, function(cr
 	--[[if pulsar_power[crewmem.type] then 
 		print(stat.." "..Hyperspace.CrewStat[stat].." "..crewStatName[stat])
 	end]]
-	if pulsar_power[crewmem.type] and stat == Hyperspace.CrewStat.BONUS_POWER and (spaceManager.pulsarLevel or spaceManager.bStorm) then
+	local pulsar_active = spaceManager.pulsarLevel or spaceManager.bStorm or Hyperspace.playerVariables.loc_environment_og_neutron_beam > 0
+	if pulsar_power[crewmem.type] and stat == Hyperspace.CrewStat.BONUS_POWER and (pulsar_active) then
 		amount = amount + pulsar_power[crewmem.type]
-	elseif pulsar_power[crewmem.type] and (stat == Hyperspace.CrewStat.IS_TELEPATHIC) and (spaceManager.bNebula or spaceManager.bStorm or Hyperspace.playerVariables.loc_environment_lightnebula >= 1) then
+	elseif pulsar_power[crewmem.type] and (stat == Hyperspace.CrewStat.IS_TELEPATHIC) and (spaceManager.bNebula or spaceManager.bStorm or Hyperspace.playerVariables.loc_environment_lightnebula > 0) then
 		value = true
-	elseif pulsar_power[crewmem.type] and (stat == Hyperspace.CrewStat.DETECTS_LIFEFORMS or stat == Hyperspace.CrewStat.RESISTS_MIND_CONTROL) and (spaceManager.bNebula or spaceManager.bStorm or Hyperspace.playerVariables.loc_environment_lightnebula >= 1) then
+	elseif pulsar_power[crewmem.type] and (stat == Hyperspace.CrewStat.DETECTS_LIFEFORMS or stat == Hyperspace.CrewStat.RESISTS_MIND_CONTROL) and (pulsar_active or Hyperspace.playerVariables.loc_environment_lightnebula >= 1) then
 		value = false
 	end
 	return Defines.Chain.CONTINUE, amount, value
@@ -875,5 +876,321 @@ script.on_internal_event(Defines.InternalEvents.POST_CREATE_CHOICEBOX, function(
 				break
 			end
 		end
+	end
+end)
+
+local crewId = "human_og_midnight"
+local powerId = "og_midnight_main_power"
+local hackingId = "og_midnight_hacking_"
+local hackingDeviceName = Hyperspace.Text:GetText("og_lua_midnight_hacking_name")
+local hackingImage = Hyperspace.Resources:CreateImagePrimitiveString( "people/human_og_midnight_hacking_base.png", 0, 0, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false)
+local hackingText = Hyperspace.Text:GetText("og_lua_midnight_hacking_text")
+local hackingAvoidSystems = {
+	[0] = true,
+	[3] = true,
+	[4] = true,
+}
+
+local hackingCooldown = 20
+local droneHack = {
+	duration = 5,
+}
+
+local hackingDrones = {[0] = {}, [1] = {}}
+local function create_hacking_drone(slot, cooldown, shipManager)
+	local shipGraph = Hyperspace.ShipGraph.GetShipInfo(shipManager.iShipId)
+	local rect = shipGraph:GetRoomShape(slot.roomId)
+	local width = math.floor((rect.w+1)/35)
+	local render_pos = nil
+	if width > 0 then
+		local slot_number = slot.slotId
+		local xOff = (slot_number%width) * 35
+		local yOff = math.floor(slot_number/width) * 35
+		render_pos = Hyperspace.Point(rect.x + xOff, rect.y + yOff)
+	else
+		print("error creating hacking drone, width:"..tostring(width).." rect.w:"..tostring(rect.w))
+	end
+	local drone = {time = 0, cooldown = cooldown, room = slot.roomId, slot = slot.slotId, position = render_pos}
+	table.insert(hackingDrones[shipManager.iShipId], drone)
+	--print("save drone room:"..tostring(slot.roomId).." slot:"..tostring(slot.slotId).." ship"..tostring(shipManager.iShipId))
+	Hyperspace.playerVariables[hackingId..math.floor(shipManager.iShipId).."_"..math.floor(slot.roomId).."_"..math.floor(slot.slotId)] = cooldown
+end
+-- from MV hack.lua
+local function hack_start(system)
+	system:SetHackingLevel(2)
+	system.bUnderAttack = true
+end
+local function apply_hack(hack, system)
+	if system then
+		local sysHackData = userdata_table(system, "mods.mv.hackStuff")
+		if not sysHackData.immuneTime or sysHackData.immuneTime <= 0 then
+			local sysDuration = hack.systemDurations and hack.systemDurations[Hyperspace.ShipSystem.SystemIdToName(system:GetId())]
+
+			-- Set hacking time for system
+			if sysDuration then
+				sysHackData.time = math.max(sysDuration.duration, sysHackData.time or 0)
+				sysHackData.immuneTime = math.max(sysDuration.immuneAfterHack or hack.immuneAfterHack or 0, sysHackData.immuneTime or 0)
+			else
+				sysHackData.time = math.max(hack.duration, sysHackData.time or 0)
+				sysHackData.immuneTime = math.max(hack.immuneAfterHack or 0, sysHackData.immuneTime or 0)
+			end
+
+			-- Apply the actual hack effect
+			hack_start(system)
+		end
+	end
+end
+
+local needSetValues = false
+local needSetValuesEnemy = false
+script.on_init(function(newGame)
+	if not newGame then
+		needSetValues = true
+		needSetValuesEnemy = true
+	else
+		hackingDrones[0] = {}
+		hackingDrones[1] = {}
+	end
+end)
+
+local function load_hacking_drones(shipManager)
+	for room in vter(shipManager.ship.vRoomList) do
+		local w = math.floor(room.rect.w/35)
+		local h = math.floor(room.rect.h/35)
+		local slots = w*h
+		for slot = 0, slots - 1 do
+			local val = Hyperspace.playerVariables[hackingId..math.floor(shipManager.iShipId).."_"..math.floor(room.iRoomId).."_"..math.floor(slot)]
+			if val > 0 then
+				--print("load drone room:"..tostring(room.iRoomId).." slot:"..tostring(slot).." ship"..tostring(shipManager.iShipId))
+				create_hacking_drone({roomId = room.iRoomId, slotId = slot}, val, shipManager)
+			end
+		end
+	end
+end
+
+script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+	if shipManager.iShipId == 0 and needSetValues and Hyperspace.playerVariables.og_test_variable == 1 then
+		needSetValues = false
+		load_hacking_drones(shipManager)
+	elseif shipManager.iShipId == 1 and needSetValuesEnemy and Hyperspace.playerVariables.og_test_variable == 1 then
+		needSetValuesEnemy = false
+		load_hacking_drones(shipManager)
+	end
+end)
+
+script.on_internal_event(Defines.InternalEvents.JUMP_LEAVE, function(shipManager)
+	if needSetValuesEnemy then needSetValuesEnemy = false end
+	if shipManager.iShipId == 0 then
+		for _, drone_table in ipairs(hackingDrones[0]) do
+			Hyperspace.playerVariables[hackingId..math.floor(shipManager.iShipId).."_"..math.floor(drone_table.room).."_"..math.floor(drone_table.slot)] = 0
+		end
+		for _, drone_table in ipairs(hackingDrones[1]) do
+			Hyperspace.playerVariables[hackingId..math.floor(shipManager.iShipId).."_"..math.floor(drone_table.room).."_"..math.floor(drone_table.slot)] = 0
+		end
+		hackingDrones[0] = {}
+		hackingDrones[1] = {}
+	else
+		for _, drone_table in ipairs(hackingDrones[1]) do
+			Hyperspace.playerVariables[hackingId..math.floor(shipManager.iShipId).."_"..math.floor(drone_table.room).."_"..math.floor(drone_table.slot)] = 0
+		end
+		hackingDrones[1] = {}
+	end
+end)
+
+script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+	local remove = nil
+	for i, drone_table in ipairs(hackingDrones[shipManager.iShipId]) do
+		drone_table.time = drone_table.time - time_increment(true)
+		local system = shipManager:GetSystemInRoom(drone_table.room)
+		if drone_table.time <= 0 then
+			drone_table.time = drone_table.cooldown
+			if system then
+				apply_hack(droneHack, system)
+			end
+		end
+		if system and system.healthState.first <= 0 then
+			remove = i
+			Hyperspace.playerVariables[hackingId..math.floor(shipManager.iShipId).."_"..math.floor(drone_table.room).."_"..math.floor(drone_table.slot)] = 0
+		end
+	end
+	if remove then
+		table.remove(hackingDrones[shipManager.iShipId], remove)
+	end
+end)
+
+script.on_render_event(Defines.RenderEvents.SHIP_SPARKS, function(ship) 
+	if Hyperspace.App.menu.shipBuilder.bOpen then return end
+	for _, drone_table in ipairs(hackingDrones[ship.iShipId]) do
+		local pos = drone_table.position
+		Graphics.CSurface.GL_PushMatrix()
+		Graphics.CSurface.GL_Translate(pos.x, pos.y)
+		Graphics.CSurface.GL_RenderPrimitive(hackingImage)
+		Graphics.CSurface.GL_PopMatrix()
+		local mousePosition = worldToPlayerLocation(Hyperspace.Mouse.position)
+		if ship.iShipId == 1 then
+			mousePosition = worldToEnemyLocation(Hyperspace.Mouse.position)
+		end
+		if mousePosition.x > pos.x and mousePosition.y <= pos.x + 35 and mousePosition.y > pos.y and mousePosition.y <= pos.y + 35 then
+			Hyperspace.Mouse.tooltip = (Hyperspace.Mouse.tooltip or "")..string.format(hackingText, drone_table.time, (drone_table.cooldown - droneHack.duration), droneHack.duration)
+		end
+	end
+	return Defines.Chain.CONTINUE 
+end, function(ship) return Defines.Chain.CONTINUE end)
+
+script.on_internal_event(Defines.InternalEvents.ACTIVATE_POWER, function(power, shipManager)
+	local crewmem = power.crew
+	if crewmem.type == crewId and power.def.name == powerId then
+		local hackingDeviceSlot = crewmem.currentSlot
+		create_hacking_drone(hackingDeviceSlot, hackingCooldown + droneHack.duration, shipManager)
+		local homeShip = Hyperspace.ships(crewmem.iShipId)
+		local teleport_target_room = 0
+		local teleporter = homeShip:GetSystem(9)
+		if teleporter then
+			teleport_target_room = teleporter.roomId
+		end
+		crewmem.extend:InitiateTeleport(homeShip.iShipId, teleport_target_room, 0)
+		--print("teleport crew")
+	end
+	return Defines.Chain.CONTINUE
+end)
+
+local powerStates = {}
+local powerStatesInverse = {
+	[0] = "POWER_NOT_READY_COOLDOWN",
+	"POWER_READY",
+	"POWER_NOT_READY_ACTIVATED",
+	"POWER_NOT_READY_ENEMY_SHIP",
+	"POWER_NOT_READY_PLAYER_SHIP",
+	"POWER_NOT_READY_ENEMY_IN_ROOM",
+	"POWER_NOT_READY_FRIENDLY_IN_ROOM",
+	"POWER_NOT_READY_WHITELIST",
+	"POWER_NOT_READY_ENEMY_WHITELIST",
+	"POWER_NOT_READY_FRIENDLY_WHITELIST",
+	"POWER_NOT_READY_ENEMY_BLACKLIST",
+	"POWER_NOT_READY_FRIENDLY_BLACKLIST",
+	"POWER_NOT_READY_SYSTEM_IN_ROOM",
+	"POWER_NOT_READY_HAS_CLONEBAY",
+	"POWER_NOT_READY_AI_DISABLED",
+	"POWER_NOT_READY_OUT_OF_COMBAT",
+	"POWER_NOT_READY_IN_COMBAT",
+	"POWER_NOT_READY_SYSTEM",
+	"POWER_NOT_READY_SYSTEM_FUNCTIONAL",
+	"POWER_NOT_READY_MIN_HEALTH",
+	"POWER_NOT_READY_MAX_HEALTH",
+	"POWER_NOT_READY_SYSTEM_DAMAGED",
+	"POWER_NOT_READY_CHARGES",
+	"POWER_NOT_READY_SILENCED",
+	"POWER_NOT_READY_EXTRACONDITION_OR",
+	[16384] = "POWER_NOT_READY_EXTRACONDITION_TRUE",
+	[32768] = "POWER_NOT_READY_EXTRACONDITION_FALSE",
+	[65536] = "POWER_NOT_READY_CUSTOM",
+}
+for i, state in pairs(powerStatesInverse) do
+	powerStates[state] = i
+end
+
+script.on_internal_event(Defines.InternalEvents.POWER_REQ, function(power, req, state)
+	local crewmem = power.crew
+	if crewmem.type == crewId and power.def.name == powerId then
+		--print(tostring(state).." "..powerStatesInverse[state])
+		if state == powerStates.POWER_READY then
+			local shipManager = Hyperspace.ships(crewmem.currentShipId)
+			local system = shipManager:GetSystemInRoom(crewmem.iRoomId)
+			if (not system) or hackingAvoidSystems[system.iSystemType] then
+				state = powerStates.POWER_NOT_READY_SYSTEM_IN_ROOM
+			end
+		end
+	end
+	return Defines.Chain.CONTINUE, state
+end)
+
+script.on_internal_event(Defines.InternalEvents.POWER_ON_UPDATE, function(power)
+	local crewmem = power.crew
+	if crewmem.type == crewId and power.def.name == powerId and crewmem.iShipId == 1 and crewmem.currentShipId == 0 and power.powerCharges.first > 0 then
+		local shipManager = Hyperspace.ships(crewmem.currentShipId)
+		if not shipManager then return end
+		local goalSystem = nil
+		if crewmem:AtFinalGoal() then
+			goalSystem = shipManager:GetSystemInRoom(crewmem.iRoomId)
+		else
+			goalSystem = shipManager:GetSystemInRoom(crewmem.finalGoal.roomId)
+		end
+		if goalSystem and not hackingAvoidSystems[goalSystem.iSystemType] then return end
+		local crewPos = crewmem:GetPosition()
+		local closest = nil
+		local closest_dist
+		for system in vter(shipManager.vSystemList) do
+			if not hackingAvoidSystems[system.iSystemType] then
+				local sysPos = shipManager:GetRoomCenter(system.roomId)
+				local dist = get_distance(sysPos, crewPos)
+				if (not closest) or dist < closest_dist then
+					closest = system
+					closest_dist = dist
+				end
+			end
+		end
+		if closest then
+			local shipGraph = Hyperspace.ShipGraph.GetShipInfo(shipManager.iShipId)
+			local room_center = shipManager:GetRoomCenter(closest.roomId)
+			local move_slot = Hyperspace.Point(room_center.x, room_center.y)
+			local slot = shipGraph:GetClosestSlot(move_slot, 1, true)
+			crewmem:MoveToRoom(slot.roomId, slot.slotId, false)
+		end
+	end
+	return Defines.Chain.CONTINUE, state	
+end)
+
+local neutron_weapons = {}
+neutron_weapons["ARTILLERY_OG_NEUTRON_BEAM_1"] = {damage = 40, duration = 8, width = 22}
+script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projectile, weapon)
+	if weapon and neutron_weapons[weapon.blueprint.name] then
+		local weapon_data = neutron_weapons[weapon.blueprint.name]
+		local shipManager = Hyperspace.ships(weapon.iShipId)
+		local otherManager = Hyperspace.ships(1-weapon.iShipId)
+		mods.og.create_neutron_beam(
+			Hyperspace.Pointf(projectile.target.x, projectile.target.y),
+			math.random(0,360),
+			weapon_data.width,
+			otherManager,
+			shipManager,
+			weapon_data.duration,
+			weapon_data.damage,
+			true
+			)
+		mods.og.create_neutron_beam(
+			Hyperspace.Pointf(projectile.position.x, projectile.position.y),
+			(shipManager.iShipId == 0 and 0) or -90,
+			weapon_data.width,
+			shipManager,
+			shipManager,
+			weapon_data.duration,
+			0,
+			false
+			)
+		projectile:Kill()
+	end
+end)
+
+local c = Graphics.GL_Color(1, 1, 1, 1)
+local back_plates = {}
+back_plates["ogp_hunter_a"] = Hyperspace.Resources:CreateImagePrimitiveString("weapon_laser/og_neutron_beam_artillery_back_player.png", 236, 124, 0, c, 1, false)
+back_plates["og_midnight_hunter"] = Hyperspace.Resources:CreateImagePrimitiveString("weapon_laser/og_neutron_beam_artillery_back.png", 126, -2, 0, c, 1, false)
+script.on_render_event(Defines.RenderEvents.SHIP_MANAGER, function(shipManager, showInterior, doorControlMode)
+	--print(shipManager.ship.shipName)
+	if back_plates[shipManager.ship.shipName] then
+		Graphics.CSurface.GL_RenderPrimitive(back_plates[shipManager.ship.shipName])
+	end
+	return Defines.Chain.CONTINUE
+end, function(shipManager, showInterior, doorControlMode)
+	return Defines.Chain.CONTINUE 
+end)
+
+--add artillery mid fight
+script.on_internal_event(Defines.InternalEvents.GENERATOR_CREATE_SHIP_POST, function(name, sector, event, blueprint, shipManager)
+	return Defines.Chain.CONTINUE
+end)
+
+script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+	if shipManager.myBlueprint.name == "OG_MIDNIGHT_HUNTER" then
 	end
 end)

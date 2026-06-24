@@ -989,6 +989,327 @@
 	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
 </shipBlueprint>
 </FTL>
+
+<!--Midnight Sun Ships-->
+<FTL>
+<blueprintList name="LIST_WEAPONS_OG_MIDNIGHT">
+	<name>LASER_BURST_2</name>
+	<name>LASER_BURST_3</name>
+	<name>LASER_BURST_5</name>
+	<name>LASER_HEAVY_2</name>
+	<name>LASER_HULL_2</name>
+	<name>LASER_HULL_3</name>
+	<name>LASER_PIERCE</name>
+	<name>BEAM_2</name>
+	<name>BEAM_3</name>
+	<name>BEAM_ADAPT</name>
+	<name>BEAM_ADAPT_2</name>
+	<name>BEAM_LONG</name>
+	<name>BEAM_FIRE</name>
+	
+	<name>LASER_CHAINGUN_2</name>
+	<name>LASER_CHARGEGUN_2</name>
+	<name>LASER_CHARGEGUN_3</name>
+	<name>SHOTGUN_3</name>
+	<name>SHOTGUN_4</name>
+	<name>SHOTGUN_CHAIN</name>
+	<name>SHOTGUN_CHARGE</name>
+	<name>MISSILES_FIRE_ENEMY</name>
+	
+	<name>ION_CHAINGUN</name>
+	
+	<name>LASER_HEAVY_3</name>
+	<name>LASER_CHARGE_CHAIN</name>
+	<name>LASER_CHAINGUN_DAMAGE</name>
+	<name>BEAM_CHAIN</name>
+	<name>BEAM_LONG_2</name>
+</blueprintList>
+<blueprintList name="LIST_CREW_OG_MIDNIGHT_RANDOM">
+	<name>human_og_dawn</name>
+	<name>human_og_dawn</name>
+	<name>human_og_dawn</name>
+	<name>human_soldier</name>
+	<name>human_engineer</name>
+	<name>human_engineer</name>
+	<name>human_technician</name>
+	<name>human_technician</name>
+</blueprintList>
+<blueprintList name="LIST_SHIPS_OG_MIDNIGHT_ALL">
+	<name>OG_MIDNIGHT_SCOUT</name>
+	<name>OG_MIDNIGHT_INFILTRATOR</name>
+	<name>OG_MIDNIGHT_OUTRIDER</name>
+	<name>OG_MIDNIGHT_BOMBER</name>
+	<name>OG_MIDNIGHT_CORVETTE</name>
+	<name>OG_MIDNIGHT_FIGHTER</name>
+	<name>OG_MIDNIGHT_TRANSPORT</name>
+	<name>OG_MIDNIGHT_GUARD</name>
+	<name>OG_MIDNIGHT_HUNTER</name>
+</blueprintList>
+<blueprintList name="LIST_SHIPS_OG_MIDNIGHT_GENERIC">
+	<name>OG_MIDNIGHT_SCOUT</name>
+	<name>OG_MIDNIGHT_INFILTRATOR</name>
+	<name>OG_MIDNIGHT_OUTRIDER</name>
+	<name>OG_MIDNIGHT_BOMBER</name>
+	<name>OG_MIDNIGHT_CORVETTE</name>
+	<name>OG_MIDNIGHT_FIGHTER</name>
+	<name>OG_MIDNIGHT_GUARD</name>
+	<name>OG_MIDNIGHT_TRANSPORT</name>
+</blueprintList>
+<blueprintList name="LIST_SHIPS_OG_MIDNIGHT_FIGHT">
+	<name>OG_MIDNIGHT_SCOUT</name>
+	<name>OG_MIDNIGHT_INFILTRATOR</name>
+	<name>OG_MIDNIGHT_OUTRIDER</name>
+	<name>OG_MIDNIGHT_BOMBER</name>
+	<name>OG_MIDNIGHT_CORVETTE</name>
+	<name>OG_MIDNIGHT_FIGHTER</name>
+	<name>OG_MIDNIGHT_GUARD</name>
+</blueprintList>
+<shipBlueprint name="OG_MIDNIGHT_SCOUT" layout="og_midnight_scout" img="og_midnight_scout">
+	<class>Midnight Sun Scout</class>
+	<minSector>1</minSector>
+	<maxSector>4</maxSector>
+	<systemList>
+		<og_turret_mini power="2" max="4" room="3" start="true" turret="OG_TURRET_LASER_MINI_2" />
+		<cloaking power="3" max="3" room="1" start="true" />
+		<engines power="2" max="3" room="5" start="true" />
+		<oxygen power="1" max="1" room="4" start="true" />
+		<pilot power="1" max="2" room="0" start="true" />
+		<teleporter power="3" max="3" room="2" start="true" />
+		<weapons power="2" max="6" room="6" start="true" />
+	</systemList>
+	<weaponSlots>2</weaponSlots>
+	<droneSlots>2</droneSlots>
+	<weaponList missiles="8" count="2" load="LIST_WEAPONS_OG_MIDNIGHT" />
+	<droneList drones="20" count="0" />
+	<health amount="11" />
+	<maxPower amount="14" />
+	<crewCount amount="3" max="4" class="LIST_CREW_OG_MIDNIGHT_RANDOM" />
+	<boardingAI>sabotage</boardingAI>
+	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
+	<aug name="OG_REFLECTIVE_PLATING" />
+</shipBlueprint>
+<shipBlueprint name="OG_MIDNIGHT_INFILTRATOR" layout="og_midnight_infiltrator" img="og_midnight_infiltrator">
+	<class>Midnight Sun Infiltrator</class>
+	<minSector>1</minSector>
+	<maxSector>5</maxSector>
+	<systemList>
+		<og_turret_mini power="1" max="3" room="0" start="true" turret="OG_TURRET_ION_MINI_1" />
+		<og_turret_mini_2 power="1" max="3" room="2" start="false" turret="OG_TURRET_LASER_MINI_2" />
+		<og_turret_mini_3 power="1" max="3" room="1" start="false" turret="OG_TURRET_FOCUS_MINI_1" />
+		<cloaking power="3" max="3" room="3" start="true" />
+		<engines power="2" max="3" room="6" start="true" />
+		<oxygen power="1" max="1" room="7" start="true" />
+		<pilot power="2" max="2" room="4" start="true" />
+		<teleporter power="3" max="3" room="5" start="true" />
+	</systemList>
+	<weaponSlots>0</weaponSlots>
+	<droneSlots>0</droneSlots>
+	<weaponList missiles="2" count="0" />
+	<droneList drones="9" count="0" />
+	<health amount="12" />
+	<maxPower amount="14" />
+	<crewCount amount="3" max="4" class="LIST_CREW_OG_MIDNIGHT_RANDOM" />
+	<boardingAI>sabotage</boardingAI>
+	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
+	<aug name="OG_REFLECTIVE_PLATING" />
+</shipBlueprint>
+<shipBlueprint name="OG_MIDNIGHT_OUTRIDER" layout="og_midnight_outrider" img="og_midnight_outrider">
+	<class>Midnight Sun Outrider</class>
+	<minSector>1</minSector>
+	<maxSector>6</maxSector>
+	<systemList>
+		<og_turret_mini power="2" max="4" room="2" start="true" turret="OG_TURRET_LASER_MINI_1" />
+		<og_turret_mini_2 power="1" max="4" room="1" start="false" turret="OG_TURRET_LASER_MINI_2" />
+		<cloaking power="3" max="3" room="6" start="true" />
+		<engines power="2" max="2" room="4" start="true" />
+		<oxygen power="1" max="1" room="3" start="true" />
+		<pilot power="1" max="2" room="0" start="true" />
+		<teleporter power="3" max="3" room="7" start="true" />
+		<weapons power="1" max="7" room="5" start="true" />
+	</systemList>
+	<weaponSlots>3</weaponSlots>
+	<droneSlots>0</droneSlots>
+	<weaponList missiles="16" count="3" load="LIST_WEAPONS_OG_MIDNIGHT" />
+	<droneList drones="0" count="0" />
+	<health amount="12" />
+	<maxPower amount="14" />
+	<crewCount amount="3" max="5" class="LIST_CREW_OG_MIDNIGHT_RANDOM" />
+	<boardingAI>sabotage</boardingAI>
+	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
+	<aug name="OG_REFLECTIVE_PLATING" />
+</shipBlueprint>
+<shipBlueprint name="OG_MIDNIGHT_BOMBER" layout="og_midnight_bomber" img="og_midnight_bomber">
+	<class>Midnight Sun Bomber</class>
+	<minSector>1</minSector>
+	<maxSector>8</maxSector>
+	<systemList>
+		<og_turret power="2" max="5" room="0" start="true" turret="OG_TURRET_MISSILE_1" />
+		<cloaking power="3" max="3" room="9" start="true" />
+		<doors power="1" max="2" room="10" start="true" />
+		<drones power="2" max="6" room="8" start="false" />
+		<engines power="1" max="2" room="1" start="true" />
+		<medbay power="1" max="1" room="5" start="true" />
+		<oxygen power="1" max="1" room="6" start="true" />
+		<pilot power="1" max="2" room="2" start="true" />
+		<teleporter power="3" max="3" room="3" start="true" />
+		<weapons power="2" max="6" room="7" start="true" />
+	</systemList>
+	<weaponSlots>2</weaponSlots>
+	<droneSlots>3</droneSlots>
+	<weaponList missiles="25" count="2" load="LIST_WEAPONS_OG_MIDNIGHT" />
+	<droneList drones="6" count="3" load="LIST_DRONES_ENEMY_COMBAT" />
+	<health amount="15" />
+	<maxPower amount="15" />
+	<crewCount amount="3" max="6" class="LIST_CREW_OG_MIDNIGHT_RANDOM" />
+	<boardingAI>sabotage</boardingAI>
+	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
+	<aug name="OG_REFLECTIVE_PLATING" />
+</shipBlueprint>
+<shipBlueprint name="OG_MIDNIGHT_CORVETTE" layout="og_midnight_corvette" img="og_midnight_corvette">
+	<class>Midnight Sun Corvette</class>
+	<minSector>3</minSector>
+	<maxSector>8</maxSector>
+	<systemList>
+		<og_turret power="2" max="5" room="10" start="true" turret="LIST_TURRETS_BIG_ATTACK" />
+		<og_turret_mini power="1" max="4" room="3" start="false" turret="OG_TURRET_FOCUS_MINI_1" />
+		<og_turret_mini_2 power="1" max="4" room="2" start="false" turret="OG_TURRET_LASER_MINI_2" />
+		<cloaking power="3" max="3" room="0" start="true" />
+		<doors power="1" max="2" room="7" start="true" />
+		<engines power="1" max="2" room="4" start="true" />
+		<medbay power="1" max="1" room="11" start="true" />
+		<oxygen power="1" max="1" room="8" start="true" />
+		<pilot power="1" max="2" room="9" start="true" />
+		<teleporter power="3" max="3" room="5" start="true" />
+		<weapons power="2" max="8" room="1" start="true" />
+	</systemList>
+	<weaponSlots>3</weaponSlots>
+	<droneSlots>0</droneSlots>
+	<weaponList missiles="14" count="3" load="LIST_WEAPONS_OG_MIDNIGHT" />
+	<droneList drones="0" count="0" />
+	<health amount="17" />
+	<maxPower amount="15" />
+	<crewCount amount="3" max="7" class="LIST_CREW_OG_MIDNIGHT_RANDOM" />
+	<boardingAI>sabotage</boardingAI>
+	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
+	<aug name="OG_REFLECTIVE_PLATING" />
+</shipBlueprint>
+<shipBlueprint name="OG_MIDNIGHT_FIGHTER" layout="og_midnight_fighter" img="og_midnight_fighter">
+	<class>Midnight Sun Fighter</class>
+	<minSector>1</minSector>
+	<maxSector>8</maxSector>
+	<systemList>
+		<og_turret power="2" max="5" room="2" start="true" turret="LIST_TURRETS_BIG_ATTACK" />
+		<og_turret_mini power="1" max="4" room="4" start="false" turret="OG_TURRET_LASER_MINI_1" />
+		<og_turret_mini_2 power="1" max="4" room="0" start="false" turret="OG_TURRET_LASER_MINI_2" />
+		<cloaking power="3" max="3" room="5" start="true" />
+		<doors power="1" max="2" room="12" start="false" />
+		<drones power="2" max="6" room="6" start="false" />
+		<engines power="2" max="2" room="8" start="true" />
+		<medbay power="1" max="1" room="7" start="false" />
+		<oxygen power="1" max="1" room="9" start="true" />
+		<pilot power="1" max="1" room="1" start="true" />
+		<teleporter power="3" max="3" room="10" start="true" />
+		<weapons power="2" max="8" room="3" start="true" />
+	</systemList>
+	<weaponSlots>2</weaponSlots>
+	<droneSlots>3</droneSlots>
+	<weaponList missiles="12" count="2" load="LIST_WEAPONS_OG_MIDNIGHT" />
+	<droneList drones="12" count="3" load="LIST_DRONES_ENEMY_COMBAT" />
+	<health amount="15" />
+	<maxPower amount="14" />
+	<crewCount amount="3" max="7" class="LIST_CREW_OG_MIDNIGHT_RANDOM" />
+	<boardingAI>sabotage</boardingAI>
+	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
+	<aug name="OG_REFLECTIVE_PLATING" />
+</shipBlueprint>
+<shipBlueprint name="OG_MIDNIGHT_TRANSPORT" layout="og_midnight_transport" img="og_midnight_transport">
+	<class>Midnight Sun Transport</class>
+	<minSector>1</minSector>
+	<maxSector>8</maxSector>
+	<systemList>
+		<og_turret_mini power="1" max="4" room="1" start="true" turret="OG_TURRET_LASER_MINI_1" />
+		<og_turret_mini_2 power="1" max="4" room="2" start="true" turret="OG_TURRET_LASER_MINI_1" />
+		<og_turret_mini_3 power="1" max="4" room="3" start="false" turret="OG_TURRET_LASER_MINI_2" />
+		<og_turret_mini_4 power="1" max="4" room="4" start="false" turret="OG_TURRET_LASER_MINI_2" />
+		<cloaking power="3" max="3" room="7" start="true" />
+		<doors power="2" max="2" room="14" start="true" />
+		<engines power="2" max="2" room="5" start="true" />
+		<medbay power="2" max="2" room="6" start="true" />
+		<oxygen power="1" max="1" room="12" start="true" />
+		<pilot power="1" max="2" room="0" start="true" />
+		<teleporter power="3" max="3" room="13" start="true" />
+		<weapons power="2" max="7" room="8" start="true" />
+	</systemList>
+	<weaponSlots>3</weaponSlots>
+	<droneSlots>2</droneSlots>
+	<weaponList missiles="12" count="3" load="LIST_WEAPONS_OG_MIDNIGHT" />
+	<droneList drones="9" count="2" load="LIST_DRONES_ENEMY_COMBAT" />
+	<health amount="17" />
+	<maxPower amount="17" />
+	<crewCount amount="6" max="9" class="LIST_CREW_OG_MIDNIGHT_RANDOM" />
+	<boardingAI>sabotage</boardingAI>
+	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
+	<aug name="OG_REFLECTIVE_PLATING" />
+</shipBlueprint>
+<shipBlueprint name="OG_MIDNIGHT_GUARD" layout="og_midnight_guard" img="og_midnight_guard">
+	<class>Midnight Sun Battleship</class>
+	<minSector>1</minSector>
+	<maxSector>8</maxSector>
+	<systemList>
+		<og_turret power="2" max="5" room="2" start="false" turret="LIST_TURRETS_BIG_ATTACK" />
+		<og_turret_2 power="1" max="5" room="1" start="true" turret="OG_TURRET_MISSILE_1" />
+		<og_turret_mini power="1" max="4" room="0" start="false" turret="OG_TURRET_ION_MINI_1" />
+		<cloaking power="3" max="3" room="13" start="true" />
+		<doors power="1" max="2" room="16" start="false" />
+		<drones power="1" max="6" room="7" start="false" />
+		<engines power="2" max="2" room="9" start="true" />
+		<medbay power="1" max="1" room="5" start="true" />
+		<oxygen power="1" max="1" room="4" start="true" />
+		<pilot power="1" max="2" room="8" start="true" />
+		<teleporter power="3" max="3" room="6" start="true" />
+		<weapons power="1" max="8" room="10" start="true" />
+	</systemList>
+	<weaponSlots>3</weaponSlots>
+	<droneSlots>2</droneSlots>
+	<weaponList missiles="22" count="3" load="LIST_WEAPONS_OG_MIDNIGHT" />
+	<droneList drones="8" count="2" load="LIST_DRONES_ENEMY_COMBAT" />
+	<health amount="19" />
+	<maxPower amount="15" />
+	<crewCount amount="4" max="8" class="LIST_CREW_OG_MIDNIGHT_RANDOM" />
+	<boardingAI>sabotage</boardingAI>
+	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
+	<aug name="OG_REFLECTIVE_PLATING" />
+</shipBlueprint>
+<shipBlueprint name="OG_MIDNIGHT_HUNTER" layout="og_midnight_hunter" img="og_midnight_hunter">
+	<class>Hunter-Class</class>
+	<minSector>1</minSector>
+	<maxSector>8</maxSector>
+	<systemList>
+		<!--artillery power="3" max="3" room="1" start="true" weapon="ARTILLERY_OG_NEUTRON_BEAM_1" /-->
+		<og_turret power="2" max="2" room="7" start="true" turret="OG_TURRET_FOCUS_CHAIN" />
+		<og_turret_2 power="2" max="2" room="6" start="true" turret="OG_TURRET_LASER_FROST" />
+		<cloaking power="3" max="3" room="14" start="true" />
+		<doors power="2" max="2" room="13" start="true" />
+		<drones power="3" max="6" room="19" start="true" />
+		<engines power="2" max="4" room="9" start="true" />
+		<medbay power="3" max="3" room="15" start="true" />
+		<oxygen power="2" max="2" room="12" start="true" />
+		<pilot power="3" max="3" room="0" start="true" />
+		<teleporter power="2" max="2" room="21" start="true" />
+	</systemList>
+	<weaponSlots>0</weaponSlots>
+	<droneSlots>4</droneSlots>
+	<weaponList missiles="9" count="0" />
+	<droneList drones="20" count="4" load="LIST_DRONES_ENEMY_STANDARD" />
+	<health amount="35" />
+	<maxPower amount="19" />
+	<crewCount amount="5" max="8" class="LIST_CREW_OG_MIDNIGHT_RANDOM" />
+	<boardingAI>sabotage</boardingAI>
+	<aug name="UPG_OG_TURRET_ROTATION_ENEMY" />
+	<aug name="OG_REFLECTIVE_PLATING" />
+</shipBlueprint>
+</FTL>
+
 <!--MV Crew Blueprint Lists-->
 <FTL>
 <mod:findName type="blueprintList" name="LIST_CREW_UNIQUE">

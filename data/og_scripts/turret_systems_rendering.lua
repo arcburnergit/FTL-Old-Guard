@@ -152,7 +152,13 @@ script.on_render_event(Defines.RenderEvents.SHIP_SPARKS, function(ship) return D
 			local system = otherManager:GetSystem(systemIdMap[sysName])
 			if system then
 				local currentTurret = turrets[ system.table.blueprint ]
-				if system.table.currentlyTargetting then
+				if system.table.currentTargetPoint then
+					local targetPoint = system.table.currentTargetPoint
+					local angle = system.table.currentTargetAngle or get_angle_between_points(targetPoint, worldToEnemyLocation(Hyperspace.Mouse.position))
+					local origin = offset_point_in_direction(targetPoint, angle, 0, 2000)
+					local dest = offset_point_in_direction(targetPoint, angle, 0, -2000)
+					Graphics.CSurface.GL_DrawLine(origin.x, origin.y, dest.x, dest.y, currentTurret.neutron_width, COLOUR_RED_25)
+				elseif system.table.currentlyTargetting then
 					render_active_targeting(shipManager, otherManager, combatControl, system, currentTurret, ship)
 				elseif system.table.currentTarget and system.table.state == turret_states.offence and not system.table.currentlyTargetted then
 					render_targeting(shipManager, otherManager, system, currentTurret, system.table.currentTarget, false)

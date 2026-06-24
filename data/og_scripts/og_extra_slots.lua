@@ -41,7 +41,7 @@ end)
 
 script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 	--local benchmark_start = os.clock()
-	if shipManager and shipManager.iShipId == 0 then
+	if shipManager and Hyperspace.ships.player and shipManager.iShipId == 0 then
 		local ok = Hyperspace.playerVariables and Hyperspace.playerVariables["og_test_variable"] == 1
 		--print("OKL: ", ok and true or false)
 

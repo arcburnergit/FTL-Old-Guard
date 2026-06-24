@@ -303,6 +303,20 @@ When I originally requested your assistance, the intention was to have you fight
 	</loadEventList>
 </event>
 
+<event name="OG_NEUTRON_HAZARD_RESEARCH_STATION_RETURN">
+	<revisitEvent>OG_NEUTRON_HAZARD_RESEARCH_STATION_RETURN</revisitEvent>
+	<changeBackground>BACK_SECTOR_OG_NEUTRON_STATION</changeBackground>
+	<text>You have a moment to do something onboard your ship.</text>
+	<choice hidden="true">
+		<text>Do something onboard the ship.</text>
+		<event load="STORAGE_CHECK"/>
+	</choice>
+	<choice hidden="true">
+		<text>Do nothing.</text>
+		<event/>
+	</choice>
+</event>
+
 <event name="OG_NEUTRON_RESEARCH_STATION_IRON">
 	<text>You arrive at research station. stuff happens, you fight a new dawn ship, you find out they appear to just be here to finish the job, the real ship was almost invisible, painted almost entire black except for a small golden emblem. who could they be? (The Midnight Sun)</text>
 	<ship load="SHIP_OG_IRON_RESEARCH_STATION_DAMAGED" hostile="false"/>
