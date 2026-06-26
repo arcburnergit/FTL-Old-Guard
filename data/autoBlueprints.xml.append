@@ -1281,7 +1281,7 @@
 	<aug name="OG_REFLECTIVE_PLATING" />
 </shipBlueprint>
 <shipBlueprint name="OG_MIDNIGHT_HUNTER" layout="og_midnight_hunter" img="og_midnight_hunter">
-	<class>Hunter-Class</class>
+	<class>Midnight Sun Hunter</class>
 	<minSector>1</minSector>
 	<maxSector>8</maxSector>
 	<systemList>

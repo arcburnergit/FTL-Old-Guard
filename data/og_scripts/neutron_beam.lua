@@ -1006,7 +1006,7 @@ end, function(ship)
 			local shipManager = Hyperspace.ships(ship.iShipId)
 			local ellipse = shipManager._targetable:GetShieldShape()
 			local center = ellipse.center
-			if has_shield[ship.iShipId] then
+			if has_shield[ship.iShipId] and beam_table.damage > 0 then
 				Graphics.CSurface.GL_SetStencilMode(stencil_mode.set, mask_hide, 16)
 				Graphics.CSurface.GL_PushMatrix()
 				Graphics.CSurface.GL_Translate(center.x, center.y, 0)

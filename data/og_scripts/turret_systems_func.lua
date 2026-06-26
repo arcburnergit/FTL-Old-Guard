@@ -239,7 +239,7 @@ function mods.og.add_stat_text(desc, currentTurret, chargeMax)
 		if i < #currentTurret.fire_points then
 			desc = desc.."/"
 		end
-	end]]
+	end]]	
 	if currentTurret.autofire then
 		local offence_s = (currentTurret.autofire.offence == true and "All") or tostring(math.floor(currentTurret.autofire.offence or 1))
 		local defence_s = (currentTurret.autofire.defence == true and "All") or tostring(math.floor(currentTurret.autofire.defence or 1))
@@ -1391,6 +1391,7 @@ local function createTurretProjectile(currentTurret, system, blueprint, spawnPos
 		projectile:ComputeHeading()
 		return projectile
 	end
+	return nil
 end
 
 local function fireTurret(system, currentTurret, shipManager, otherManager, sysName, blueprint, offensive, targetPosition, manningCrew)
@@ -1426,7 +1427,6 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 			0,
 			false
 			)
-		return nil
 	end
 	--handle missile consumption
 	if currentTurret.ammo_consumption then
@@ -2050,7 +2050,7 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(s)
 		end
 
 		if userdata_table(projectile, "mods.og").targeted and projectile.passedTarget then
-			userdata_table(projectile, "mods.og").targeted.table.og_targeted = math.max(0, (userdata_table(projectile, "mods.og").targeted.table.og_targeted - 1 or 1))
+			userdata_table(projectile, "mods.og").targeted.table.og_targeted = math.max(0, (userdata_table(projectile, "mods.og").targeted.table.og_targeted or 1) - 1)
 			userdata_table(projectile, "mods.og").targeted = nil
 		end
 

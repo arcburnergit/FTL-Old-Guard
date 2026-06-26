@@ -368,10 +368,10 @@
 	</colorList>
 </crewBlueprint>
 <crewBlueprint name="human_og_dawn">
-	<desc>A New Dawn Soldier, equiped with a personal cloaking device that has it's charge drained by performing actions.
+	<desc>Elite Human Crew. A New Dawn Soldier, equiped with a personal cloaking device that has it's charge drained by performing actions.
 
 	Inherited Human stats: minor suffocation resistance, learns skills faster</desc>
-	<cost>75</cost>
+	<cost>65</cost>
 	<title>New Dawn Soldier</title>
 	<short>Dawn Soldier</short>
 	<rarity>0</rarity>
@@ -5024,7 +5024,7 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<class>Hunter-Class</class>
 	<name>Moonglow</name>
 	<desc>This sleek vessel is built around a prototype beam artillery which fires a powerful radiation beam capable of destroying crew and system alike.</desc>
-	<unlock id="ship_PLAYER_SHIP_OG_DAWN_BIG_3_unlock"/>
+	<unlock id="ship_PLAYER_SHIP_OG_HUNTER_unlock"/>
 	<systemList>
 		<artillery power="2" max="4" room="5" start="true" weapon="ARTILLERY_OG_NEUTRON_BEAM_1" img="room_artillery" />
 		<og_turret power="2" max="5" room="9" start="true" img="room_og_turret_5" turret="OG_TURRET_ION_1" >
@@ -5104,7 +5104,183 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<crewCount amount="1" class="human_soldier" />
 	<aug name="OG_NEUTRON_SHIELD_LOCKED" />
 	<shieldImage>mup_disk</shieldImage>
-	<mv-mapImage>map_icon_og_dawn_big</mv-mapImage>
+	<mv-mapImage>map_icon_og_hunter</mv-mapImage>
+</shipBlueprint>
+
+<shipBlueprint name="PLAYER_SHIP_OG_HUNTER_2" layout="ogp_hunter_b" img="ogp_hunter_b">
+	<class>Hunter-Class</class>
+	<name>Moonglow</name>
+	<desc>An export varient of the Hunter class, sent to the rebellion alongside one of the new dawn's, but rebellion trained, operatives.</desc>
+	<unlock id="ship_PLAYER_SHIP_OG_HUNTER_2_unlock"/>
+	<systemList>
+		<og_turret power="2" room="9" start="true" img="room_og_turret_6" turret="OG_TURRET_FOCUS_BIO">
+			<slot>
+				<direction>right</direction>
+				<number>3</number>
+			</slot>
+		</og_turret>
+		<og_turret_2 power="2" room="10" start="true" img="room_og_turret_5" turret="OG_TURRET_LASER_1">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</og_turret_2>
+		<battery power="1" room="3" start="false" img="room_battery_19" />
+		<cloaking power="1" room="23" start="false" img="room_cloaking_3" />
+		<clonebay power="1" room="21" start="true">
+			<slot>
+				<number>3</number>
+			</slot>
+		</clonebay>
+		<doors power="1" room="28" start="true" img="room_doors_2">
+			<slot>
+				<direction>down</direction>
+				<number>0</number>
+			</slot>
+		</doors>
+		<drones power="2" max="8" room="16" start="false" img="room_drones_9" />
+		<engines power="2" room="8" start="true" img="room_engines_9">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</engines>
+		<hacking power="1" room="24" start="false" img="room_hacking_2" />
+		<medbay power="1" room="21" start="false" img="room_medbay_3">
+			<slot>
+				<number>3</number>
+			</slot>
+		</medbay>
+		<mind power="1" room="15" start="false" img="room_mind_4" />
+		<oxygen power="1" room="4" start="true" img="room_oxygen_19" />
+		<pilot power="1" room="0" start="true" img="room_pilot">
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</pilot>
+		<sensors power="1" room="27" start="true" img="room_sensors_2">
+			<slot>
+				<direction>up</direction>
+				<number>0</number>
+			</slot>
+		</sensors>
+		<shields power="2" max="8" room="22" start="true" img="room_shields_3">
+			<slot>
+				<direction>left</direction>
+				<number>2</number>
+			</slot>
+		</shields>
+		<teleporter power="1" room="2" start="true" />
+		<weapons power="2" room="6" start="false" img="room_weapons">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</weapons>
+	</systemList>
+	<weaponSlots>2</weaponSlots>
+	<droneSlots>2</droneSlots>
+	<weaponList missiles="6" count="2" />
+	<droneList drones="6" count="2" />
+	<health amount="30" />
+	<maxPower amount="12" />
+	<crewCount amount="1" class="human_og_midnight" />
+	<crewCount amount="1" class="human_mfk" />
+	<aug name="DISTRACTION_BUOY" />
+	<shieldImage>mup_disk</shieldImage>
+	<mv-mapImage>map_icon_og_hunter</mv-mapImage>
+</shipBlueprint>
+
+<shipBlueprint name="PLAYER_SHIP_OG_HUNTER_3" layout="ogp_hunter_c" img="ogp_hunter_c">
+	<class>Hunter-Class</class>
+	<name>Moonglow</name>
+	<desc>add later</desc>
+	<unlock id="ship_PLAYER_SHIP_OG_HUNTER_3_unlock"/>
+	<systemList>
+		<og_turret power="3" room="1" start="true" img="room_og_turret_5" turret="OG_TURRET_NEUTRON_BEAM" >
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</og_turret>
+		<og_turret_2 power="1" max="5" room="2" start="true" img="room_og_turret_5" turret="OG_TURRET_LASER_PIERCE" >
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</og_turret_2>
+		<og_turret_3 power="1" max="5" room="3" start="true" img="room_og_turret_6" turret="OG_TURRET_ION_2" >
+			<slot>
+				<direction>right</direction>
+				<number>3</number>
+			</slot>
+		</og_turret_3>
+		<battery power="1" room="25" start="false" img="room_battery" />
+		<cloaking power="1" room="7" start="false" img="room_cloaking_13" />
+		<clonebay power="1" room="5" start="false">
+			<slot>
+				<number>1</number>
+			</slot>
+		</clonebay>
+		<doors power="1" room="19" start="true" img="room_doors_6">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</doors>
+		<drones power="2" max="8" room="15" start="false" img="room_drones_18" />
+		<engines power="2" room="6" start="true" img="room_engines_2">
+			<slot>
+				<direction>down</direction>
+				<number>2</number>
+			</slot>
+		</engines>
+		<hacking power="1" room="16" start="false" img="room_hacking_2" />
+		<medbay power="1" room="5" start="true" img="room_medbay">
+			<slot>
+				<number>1</number>
+			</slot>
+		</medbay>
+		<mind power="1" room="17" start="false" img="room_mind_12" />
+		<oxygen power="1" room="26" start="true" img="room_oxygen_17" />
+		<pilot power="1" room="0" start="true" img="room_pilot">
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</pilot>
+		<sensors power="1" room="21" start="true" img="room_sensors_9">
+			<slot>
+				<direction>up</direction>
+				<number>0</number>
+			</slot>
+		</sensors>
+		<shields power="2" max="8" room="4" start="true" img="room_shields">
+			<slot>
+				<direction>left</direction>
+				<number>0</number>
+			</slot>
+		</shields>
+		<teleporter power="1" room="18" start="false" />
+		<weapons power="2" room="8" start="false" img="room_weapons_12">
+			<slot>
+				<direction>right</direction>
+				<number>2</number>
+			</slot>
+		</weapons>
+	</systemList>
+	<weaponSlots>2</weaponSlots>
+	<droneSlots>1</droneSlots>
+	<weaponList missiles="6" count="2" />
+	<droneList drones="6" count="1" />
+	<health amount="30" />
+	<maxPower amount="12" />
+	<crewCount amount="1" class="human_og_midnight" />
+	<crewCount amount="1" class="human_og_dawn" />
+	<crewCount amount="1" class="human_og_dawn" />
+	<shieldImage>mup_disk</shieldImage>
+	<mv-mapImage>map_icon_og_hunter</mv-mapImage>
 </shipBlueprint>
 
 <shipBlueprint name="PLAYER_SHIP_OG_KESTREL" layout="ogp_kestrel_a" img="ogp_kestrel_a">
