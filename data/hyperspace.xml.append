@@ -250,18 +250,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 	<mod-append:ship name="PLAYER_SHIP_OG_EXECUTOR" b="true" c="true" >
 		<unlock variant="a">
 			<type>2</type>
-			<shipReq>PLAYER_SHIP_OG_RAIDER_2</shipReq>
-			<shipReq>PLAYER_SHIP_OG_RAIDER_3</shipReq>
-		</unlock>
-		<unlock variant="a">
-			<type>2</type>
-			<shipReq>PLAYER_SHIP_OG_RAIDER</shipReq>
-			<shipReq>PLAYER_SHIP_OG_RAIDER_3</shipReq>
-		</unlock>
-		<unlock variant="a">
-			<type>2</type>
-			<shipReq>PLAYER_SHIP_OG_RAIDER</shipReq>
-			<shipReq>PLAYER_SHIP_OG_RAIDER_2</shipReq>
+			<shipReq>PLAYER_SHIP_OG_EXECUTOR</shipReq>
 		</unlock>
 		<unlock variant="b" silent="false">
 			<type>1</type>
@@ -519,18 +508,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 	<mod-append:ship name="PLAYER_SHIP_OG_DAWN_BIG" b="true" c="true" >
 		<unlock variant="a">
 			<type>2</type>
-			<shipReq>PLAYER_SHIP_OG_DAWN_SPEAR_2</shipReq>
-			<shipReq>PLAYER_SHIP_OG_DAWN_SPEAR_3</shipReq>
-		</unlock>
-		<unlock variant="a">
-			<type>2</type>
-			<shipReq>PLAYER_SHIP_OG_DAWN_SPEAR</shipReq>
-			<shipReq>PLAYER_SHIP_OG_DAWN_SPEAR_3</shipReq>
-		</unlock>
-		<unlock variant="a">
-			<type>2</type>
-			<shipReq>PLAYER_SHIP_OG_DAWN_SPEAR</shipReq>
-			<shipReq>PLAYER_SHIP_OG_DAWN_SPEAR_2</shipReq>
+			<shipReq>PLAYER_SHIP_OG_DAWN_BIG</shipReq>
 		</unlock>
 		<unlock variant="b" silent="false">
 			<type>1</type>
@@ -601,20 +579,20 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 			</otherUnlocks>
 		</unlock>
 		<achievement name="SHIP_ACH_OG_HUNTER_1" layout="all">
-			<name>Trojan Horse</name>
-			<description>As a Colossus-Class vessel, fill all of your crew slots.</description>
+			<name>Silent Fangs</name>
+			<description>Win a battle without firing a weapon, turret, or drone at the enemy ship as a Hunter-Class Vessel.</description>
 			<icon>ogp_hunter_1_icon</icon>
 			<lockImage>ogp_hunter_1_icon_locked</lockImage>
 		</achievement>
 		<achievement name="SHIP_ACH_OG_HUNTER_2" layout="all">
-			<name>Synchronized Assault</name>
-			<description>As a Colossus-Class vessel: Equip the same turret in all of your turret slots.</description>
+			<name>Insulated</name>
+			<description>As a Hunter-Class vessel: Avoid taking any ion damage to your shields, engines, turrets, weapons, or drones for an entire sector.</description>
 			<icon>ogp_hunter_2_icon</icon>
 			<lockImage>ogp_hunter_2_icon_locked</lockImage>
 		</achievement>
 		<achievement name="SHIP_ACH_OG_HUNTER_3" layout="all">
-			<name>This is my rifle, these are my Guns!</name>
-			<description>Upgrade all of your large turrets to 5 power as a Colossus-Class vessel.</description>
+			<name>Exterminator</name>
+			<description>As a Hunter-Class vessel: destroy the Iron Watch Research Station in the Neutron Star Exclusion Zone.</description>
 			<icon>ogp_hunter_3_icon</icon>
 			<lockImage>ogp_hunter_3_icon_locked</lockImage>
 		</achievement>
@@ -644,18 +622,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 	<mod-append:ship name="PLAYER_SHIP_OG_DRIFTER" b="true" c="true" >
 		<unlock variant="a">
 			<type>2</type>
-			<shipReq>PLAYER_SHIP_OG_HUNTER_2</shipReq>
-			<shipReq>PLAYER_SHIP_OG_HUNTER_3</shipReq>
-		</unlock>
-		<unlock variant="a">
-			<type>2</type>
-			<shipReq>PLAYER_SHIP_OG_HUNTER</shipReq>
-			<shipReq>PLAYER_SHIP_OG_HUNTER_3</shipReq>
-		</unlock>
-		<unlock variant="a">
-			<type>2</type>
-			<shipReq>PLAYER_SHIP_OG_HUNTER</shipReq>
-			<shipReq>PLAYER_SHIP_OG_HUNTER_2</shipReq>
+			<shipReq>PLAYER_SHIP_OG_DRIFTER</shipReq>
 		</unlock>
 		<unlock variant="b" silent="false">
 			<type>1</type>
@@ -669,20 +636,20 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 			</otherUnlocks>
 		</unlock>
 		<achievement name="SHIP_ACH_OG_DRIFTER_1" layout="all">
-			<name>Trojan Horse</name>
-			<description>As a Colossus-Class vessel, fill all of your crew slots.</description>
+			<name>All Hands on Deck</name>
+			<description>As a Drifter-Class vessel, have both of your Micro Turret Control systems manned at max level.</description>
 			<icon>ogp_hunter_1_icon</icon>
 			<lockImage>ogp_hunter_1_icon_locked</lockImage>
 		</achievement>
 		<achievement name="SHIP_ACH_OG_DRIFTER_2" layout="all">
-			<name>Synchronized Assault</name>
-			<description>As a Colossus-Class vessel: Equip the same turret in all of your turret slots.</description>
+			<name>Ghost Ship</name>
+			<description>As a Drifter-Class vessel: Win a battle while all of your crew are alive and are on the enemy ship.</description>
 			<icon>ogp_hunter_2_icon</icon>
 			<lockImage>ogp_hunter_2_icon_locked</lockImage>
 		</achievement>
 		<achievement name="SHIP_ACH_OG_DRIFTER_3" layout="all">
-			<name>This is my rifle, these are my Guns!</name>
-			<description>Upgrade all of your large turrets to 5 power as a Colossus-Class vessel.</description>
+			<name>Armed to the Teeth</name>
+			<description>Have all offensive systems (Weapons, Drones, and Turrets) upgraded to max power as a Drifter-Class vessel.</description>
 			<icon>ogp_hunter_3_icon</icon>
 			<lockImage>ogp_hunter_3_icon_locked</lockImage>
 		</achievement>

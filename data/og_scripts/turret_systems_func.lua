@@ -573,7 +573,6 @@ end
 local checkValidTarget = mods.og.checkValidTarget
 
 function mods.og.get_charge_time(currentTurret, system, shipManager, shipId)
-	local hasMannedBonus = (system.iActiveManned > 0 and 0.05) or 0
 	local chargeTime = currentTurret.charge_time[system:GetEffectivePower()]
 	if currentTurret.enemy_charge_time and shipId == 1 then
 		chargeTime = currentTurret.enemy_charge_time[system:GetEffectivePower()]
@@ -586,7 +585,7 @@ function mods.og.get_charge_time(currentTurret, system, shipManager, shipId)
 		end
 	end
 	chargeTime = chargeTime - chargeTimeReduction
-	chargeTime = (chargeTime * (1 - (hasMannedBonus + system.iActiveManned * 0.05)))/(1 + shipManager:GetAugmentationValue("AUTO_COOLDOWN")/2)
+	chargeTime = (chargeTime * (1 - (system.iActiveManned * 0.1)))/(1 + shipManager:GetAugmentationValue("AUTO_COOLDOWN")/2)
 	return chargeTime
 end
 local get_charge_time = mods.og.get_charge_time
@@ -1343,11 +1342,13 @@ local function handleTurretBeams(system, blueprint, firingPos, beamMiss, shipMan
 		system.table.currentTarget.death_animation:Start(true)
 		if mods.og.defended_ach and shipManager.iShipId == 0 then
 			mods.og.defended_ach = mods.og.defended_ach + 1
+			mods.og.ach_check_dawn_spear_1()
 		end
 	elseif system.table.currentTarget.BlowUp and not beamMiss then
 		system.table.currentTarget:BlowUp(false)
 		if mods.og.defended_ach and shipManager.iShipId == 0 then
 			mods.og.defended_ach = mods.og.defended_ach + 1
+			mods.og.ach_check_dawn_spear_1()
 		end
 	end
 end
@@ -1571,6 +1572,8 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 	--update turret values
 	system.table.firingTime = currentShot.fire_delay
 	system.table.charges = system.table.charges - 1
+
+	mods.og.firedAnything = mods.og.firedAnything + 1
 end
 
 local function findTurretTarget(system, currentTurret, shipManager, speed)

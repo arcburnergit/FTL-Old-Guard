@@ -166,11 +166,12 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(ship)
 end)
 
 mods.og.defended_ach = 0
-local function ach_check_dawn_spear_1()
+function mods.og.ach_check_dawn_spear_1()
 	if should_track_achievement("SHIP_ACH_OG_DAWN_SPEAR_1", Hyperspace.ships.player, "PLAYER_SHIP_OG_DAWN_SPEAR") and mods.og.defended_ach >= 5 then
 		Hyperspace.CustomAchievementTracker.instance:SetAchievement("SHIP_ACH_OG_DAWN_SPEAR_1", false)
 	end
 end
+local ach_check_dawn_spear_1 = mods.og.ach_check_dawn_spear_1
 
 script.on_internal_event(Defines.InternalEvents.JUMP_LEAVE, function(shipManager)
 	if shipManager.iShipId == 0 then
@@ -357,6 +358,122 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 
 end)
 
+mods.og.firedAnything = 0
+local wasEnemyShip = false
+local function ach_check_hunter_1()
+	if should_track_achievement("SHIP_ACH_OG_HUNTER_1", Hyperspace.ships.player, "PLAYER_SHIP_OG_HUNTER") and mods.og.firedAnything <= 0 and wasEnemyShip and 
+		Hyperspace.ships.enemy and ((Hyperspace.ships.enemy.ship.hullIntegrity.first <= 0 and Hyperspace.ships.enemy._targetable.hostile) or (not Hyperspace.ships.enemy._targetable.hostile)) then
+		Hyperspace.CustomAchievementTracker.instance:SetAchievement("SHIP_ACH_OG_HUNTER_1", false)
+	end
+end
+
+script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+	if shipManager.iShipId == 0 then
+		local enemyShip = Hyperspace.ships.enemy
+		if enemyShip and enemyShip._targetable.hostile then
+			wasEnemyShip = true
+		end
+		ach_check_hunter_1()
+	end
+end)
+
+script.on_internal_event(Defines.InternalEvents.JUMP_LEAVE, function(shipManager)
+	if shipManager.iShipId == 0 then
+		mods.og.firedAnything = 0
+		wasEnemyShip = false
+	end
+end)
+
+script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projectile, weapon)
+	if weapon.iShipId == 0 and not weapon.isArtillery then
+		mods.og.firedAnything = mods.og.firedAnything + 1
+	end
+end)
+
+script.on_internal_event(Defines.InternalEvents.DRONE_FIRE, function(projectile, spaceDrone)
+	if spaceDrone.currentSpace == 1 and spaceDrone.iShipId == 0 then
+		mods.og.firedAnything = mods.og.firedAnything + 1
+	end
+	return Defines.Chain.CONTINUE
+end)
+
+local takenIonDamage = false
+local avoidIonDamageSystemsHunter2 = {[0] = true, [1] = true, [3] = true, [4] = true}
+for _, sysName in ipairs(systemNameList) do
+	avoidIonDamageSystemsHunter2[Hyperspace.ShipSystem.NameToSystemId(sysName)] = true
+end
+script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+	if shipManager.iShipId == 0 then
+		for system in vter(shipManager.vSystemList) do
+			if avoidIonDamageSystemsHunter2[system.iSystemType] and system:GetLocked() then
+				takenIonDamage = true
+			end
+		end
+	end
+end)
+
+function mods.og.testh2()
+	print(tostring(takenIonDamage))
+end
+
+script.on_game_event("ATLAS_MENU", false, function()
+	if (not takenIonDamage) and should_track_achievement("SHIP_ACH_OG_HUNTER_2", Hyperspace.ships.player, "PLAYER_SHIP_OG_HUNTER") then
+		Hyperspace.CustomAchievementTracker.instance:SetAchievement("SHIP_ACH_OG_HUNTER_2", false)
+	end
+	takenIonDamage = false
+end)
+
+local function ach_check_hunter_3()
+	if should_track_achievement("SHIP_ACH_OG_HUNTER_3", Hyperspace.ships.player, "PLAYER_SHIP_OG_HUNTER") then
+		Hyperspace.CustomAchievementTracker.instance:SetAchievement("SHIP_ACH_OG_HUNTER_3", false)
+	end
+end
+
+script.on_game_event("FIXME_DESTROY_RESEARCH_STATION", false, ach_check_hunter_3)
+script.on_game_event("FIXME_DEADCREW_RESEARCH_STATION", false, ach_check_hunter_3)
+
+script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+	if shipManager.iShipId == 0 and should_track_achievement("SHIP_ACH_OG_DRIFTER_1", Hyperspace.ships.player, "PLAYER_SHIP_OG_DRIFTER") then
+		local all_manned = true
+		local has_system = false
+		for _, sysName in ipairs(systemNameList) do
+			if shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) then
+				has_system = true
+				local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
+				if system.iActiveManned < 3 then
+					all_manned = false
+				end
+			end
+		end
+		if has_system and all_manned then
+			Hyperspace.CustomAchievementTracker.instance:SetAchievement("SHIP_ACH_OG_DRIFTER_1", false)
+		end
+	end
+end)
+
+script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+	if shipManager.iShipId == 1 and should_track_achievement("SHIP_ACH_OG_DRIFTER_2", Hyperspace.ships.player, "PLAYER_SHIP_OG_DRIFTER") and not shipManager._targetable.hostile then
+		local crew_test = true
+		for crewmem in vter(Hyperspace.ships.player.vCrewList) do
+			if crewmem.iShipId == 0 and not crewmem:IsDrone() then
+				crew_test = false
+			end
+		end
+		if crew_test then
+			Hyperspace.CustomAchievementTracker.instance:SetAchievement("SHIP_ACH_OG_DRIFTER_2", false)
+		end
+	end
+	if shipManager.iShipId == 0 and should_track_achievement("SHIP_ACH_OG_DRIFTER_3", Hyperspace.ships.player, "PLAYER_SHIP_OG_DRIFTER") then
+		local weapons = shipManager:GetSystem(3)
+		local drones = shipManager:GetSystem(4)
+		local turret1 = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId("og_turret_mini"))
+		local turret2 = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId("og_turret_mini_2"))
+		local turretMax = (shipManager.myBlueprint.blueprintName == "PLAYER_SHIP_OG_DRIFTER" and 5) or 4
+		if weapons and drones and turret1 and turret2 and weapons:GetMaxPower() >= 8 and drones:GetMaxPower() >= 8 and turret1:GetMaxPower() >= turretMax and turret2:GetMaxPower() >= turretMax then
+			Hyperspace.CustomAchievementTracker.instance:SetAchievement("SHIP_ACH_OG_DRIFTER_3", false)
+		end
+	end
+end)
 
 
 local achLayoutUnlocks = {
@@ -376,6 +493,14 @@ local achLayoutUnlocks = {
 		achPrefix = "SHIP_ACH_OG_DAWN_BIG",
 		unlockShip = "PLAYER_SHIP_OG_DAWN_BIG_3",
 	},
+	{
+		achPrefix = "SHIP_ACH_OG_HUNTER",
+		unlockShip = "PLAYER_SHIP_OG_HUNTER_3",
+	},
+	{
+		achPrefix = "SHIP_ACH_OG_DRIFTER",
+		unlockShip = "PLAYER_SHIP_OG_DRIFTER_3",
+	},
 }
 
 script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
@@ -386,6 +511,38 @@ script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
 		--print("unlocked:"..tostring(count_ship_achievements(unlockData.achPrefix)))
 		if not unlockTracker:GetCustomShipUnlocked(unlockData.unlockShip) and count_ship_achievements(unlockData.achPrefix) >= 2 then
 			unlockTracker:UnlockShip(unlockData.unlockShip, false)
+		end
+	end
+end)
+
+local multiWinUnlocks ={
+	{
+		shipReq = {"PLAYER_SHIP_OG_RAIDER", "PLAYER_SHIP_OG_RAIDER_2", "PLAYER_SHIP_OG_RAIDER_3"},
+		unlockShip = "PLAYER_SHIP_OG_EXECUTOR",
+	},
+	{
+		shipReq = {"PLAYER_SHIP_OG_DAWN_SPEAR", "PLAYER_SHIP_OG_DAWN_SPEAR_2", "PLAYER_SHIP_OG_DAWN_SPEAR_3"},
+		unlockShip = "PLAYER_SHIP_OG_DAWN_BIG",
+	},
+	{
+		shipReq = {"PLAYER_SHIP_OG_HUNTER", "PLAYER_SHIP_OG_HUNTER_2", "PLAYER_SHIP_OG_HUNTER_3"},
+		unlockShip = "PLAYER_SHIP_OG_DRIFTER",
+	},
+}
+
+script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
+	local unlockTracker = Hyperspace.CustomShipUnlocks.instance
+	for _, unlockData in ipairs(multiWinUnlocks) do
+		if not unlockTracker:GetCustomShipUnlocked(unlockData.unlockShip) then
+			local shipReqCount = 0
+			for _, shipReq in ipairs(unlockData.shipReq) do
+				if unlockTracker:GetCustomShipUnlocked(shipReq) then
+					shipReqCount = shipReqCount + 1
+				end
+			end
+			if shipReqCount >= 2 then
+				unlockTracker:UnlockShip(unlockData.unlockShip, false)
+			end
 		end
 	end
 end)

@@ -701,7 +701,7 @@ turrets["OG_TURRET_ION_MINI_1"] = {
 	defence_type = defence_types.DRONES,
 	blueprint_type = 1,
 	blueprint = "OG_ION_PROJECTILE_WEAK",
-	charges = 1,
+	charges = 2,
 	charges_per_charge = 1,
 	rotation_speed = 240,
 	charge_time = {[0] = 7, 7, 6, 5, 4, 3.5, 3, 2.75, 2.5},

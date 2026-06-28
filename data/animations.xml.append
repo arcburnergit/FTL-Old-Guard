@@ -696,10 +696,10 @@
 	<desc length="1" x="0" y="0" />
 	<time>1</time>
 </anim>
-<animSheet name="og_turret_ion_mini_1_glow" w="34" h="12" fw="34" fh="12">og_turrets/turret_ion_mini_1_glow.png</animSheet>
+<animSheet name="og_turret_ion_mini_1_glow" w="68" h="12" fw="34" fh="12">og_turrets/turret_ion_mini_1_glow.png</animSheet>
 <anim name="og_turret_ion_mini_1_glow">
 	<sheet>og_turret_ion_mini_1_glow</sheet>
-	<desc length="1" x="0" y="0" />
+	<desc length="2" x="0" y="0" />
 	<time>1</time>
 </anim>
 

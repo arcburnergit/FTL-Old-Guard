@@ -5141,9 +5141,9 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<droneList drones="6" count="2" />
 	<health amount="30" />
 	<maxPower amount="12" />
-	<crewCount amount="1" class="human_engineer" />
-	<crewCount amount="1" class="human_engineer" />
 	<crewCount amount="1" class="human_soldier" />
+	<crewCount amount="1" class="human_engineer" />
+	<crewCount amount="1" class="human_engineer" />
 	<aug name="OG_NEUTRON_SHIELD_LOCKED" />
 	<shieldImage>mup_disk</shieldImage>
 	<mv-mapImage>map_icon_og_hunter</mv-mapImage>
@@ -5412,7 +5412,7 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<crewCount amount="1" class="human_soldier" />
 	<aug name="COMBAT_SHIELDS_JAMMER" />
 	<shieldImage>mup_orb1</shieldImage>
-	<mv-mapImage>map_icon_og_hunter</mv-mapImage>
+	<mv-mapImage>map_icon_og_drifter</mv-mapImage>
 </shipBlueprint>
 
 <shipBlueprint name="PLAYER_SHIP_OG_DRIFTER_2" layout="ogp_drifter_b" img="ogp_drifter_b">
@@ -5497,7 +5497,7 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<crewCount amount="1" class="human_mfk" />
 	<aug name="DISTRACTION_BUOY" />
 	<shieldImage>mup_orb1</shieldImage>
-	<mv-mapImage>map_icon_og_hunter</mv-mapImage>
+	<mv-mapImage>map_icon_og_drifter</mv-mapImage>
 </shipBlueprint>
 
 <shipBlueprint name="PLAYER_SHIP_OG_DRIFTER_3" layout="ogp_drifter_c" img="ogp_drifter_c">
@@ -5585,7 +5585,7 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<crewCount amount="1" class="human_og_midnight" />
 	<aug name="EX_TELEPORT_HEAL" />
 	<shieldImage>mup_orb1</shieldImage>
-	<mv-mapImage>map_icon_og_hunter</mv-mapImage>
+	<mv-mapImage>map_icon_og_drifter</mv-mapImage>
 </shipBlueprint>
 
 <shipBlueprint name="PLAYER_SHIP_OG_KESTREL" layout="ogp_kestrel_a" img="ogp_kestrel_a">
