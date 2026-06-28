@@ -185,7 +185,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<mod-append:empty/>
 
 		<mod-append:empty/>
-		<mod-append:empty/>
+		<mod-append:ship>PLAYER_SHIP_OG_DRIFTER</mod-append:ship>
 		<mod-append:ship>PLAYER_SHIP_OG_DAWN_BIG</mod-append:ship>
 		<mod-append:ship>PLAYER_SHIP_OG_EXECUTOR</mod-append:ship>
 		
@@ -585,6 +585,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 	</mod-append:customShip>
 
 	<mod-append:ship name="PLAYER_SHIP_OG_HUNTER" b="true" c="true" >
+		<arrow variant="a" direction="down" tooltip="ship_unlock_og_two_wins" image="arrow_v_down.png" unlockedImage="arrow_v_down_on.png">PLAYER_SHIP_OG_DRIFTER</arrow>
 		<unlock variant="a" silent="false">
 			<type>4</type>
 		</unlock>
@@ -638,6 +639,74 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<crewLimit>8</crewLimit>
 		<systemLimit>10</systemLimit>
 		<customReactor maxLevel="30"/>
+	</mod-append:customShip>
+	
+	<mod-append:ship name="PLAYER_SHIP_OG_DRIFTER" b="true" c="true" >
+		<unlock variant="a">
+			<type>2</type>
+			<shipReq>PLAYER_SHIP_OG_HUNTER_2</shipReq>
+			<shipReq>PLAYER_SHIP_OG_HUNTER_3</shipReq>
+		</unlock>
+		<unlock variant="a">
+			<type>2</type>
+			<shipReq>PLAYER_SHIP_OG_HUNTER</shipReq>
+			<shipReq>PLAYER_SHIP_OG_HUNTER_3</shipReq>
+		</unlock>
+		<unlock variant="a">
+			<type>2</type>
+			<shipReq>PLAYER_SHIP_OG_HUNTER</shipReq>
+			<shipReq>PLAYER_SHIP_OG_HUNTER_2</shipReq>
+		</unlock>
+		<unlock variant="b" silent="false">
+			<type>1</type>
+			<shipReq>PLAYER_SHIP_OG_DRIFTER</shipReq>
+			<value>8</value>
+		</unlock>
+		<unlock variant="c" silent="false">
+			<type>3</type>
+            <otherUnlocks>
+				<ship>PLAYER_SHIP_OG_DRIFTER_3</ship>
+			</otherUnlocks>
+		</unlock>
+		<achievement name="SHIP_ACH_OG_DRIFTER_1" layout="all">
+			<name>Trojan Horse</name>
+			<description>As a Colossus-Class vessel, fill all of your crew slots.</description>
+			<icon>ogp_hunter_1_icon</icon>
+			<lockImage>ogp_hunter_1_icon_locked</lockImage>
+		</achievement>
+		<achievement name="SHIP_ACH_OG_DRIFTER_2" layout="all">
+			<name>Synchronized Assault</name>
+			<description>As a Colossus-Class vessel: Equip the same turret in all of your turret slots.</description>
+			<icon>ogp_hunter_2_icon</icon>
+			<lockImage>ogp_hunter_2_icon_locked</lockImage>
+		</achievement>
+		<achievement name="SHIP_ACH_OG_DRIFTER_3" layout="all">
+			<name>This is my rifle, these are my Guns!</name>
+			<description>Upgrade all of your large turrets to 5 power as a Colossus-Class vessel.</description>
+			<icon>ogp_hunter_3_icon</icon>
+			<lockImage>ogp_hunter_3_icon_locked</lockImage>
+		</achievement>
+	</mod-append:ship>
+	<mod-append:customShip name="PLAYER_SHIP_OG_DRIFTER">
+		<hiddenAug>SHIP_OG_DAWN</hiddenAug>
+		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
+		<hiddenAug>OG_TURRET_MANNABLE_MICRO</hiddenAug>
+		<crewLimit>8</crewLimit>
+		<systemLimit>10</systemLimit>
+	</mod-append:customShip>
+	<mod-append:customShip name="PLAYER_SHIP_OG_DRIFTER_2">
+		<hiddenAug>SHIP_OG_DAWN</hiddenAug>
+		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
+		<hiddenAug>OG_TURRET_MANNABLE_MICRO</hiddenAug>
+		<crewLimit>8</crewLimit>
+		<systemLimit>10</systemLimit>
+	</mod-append:customShip>
+	<mod-append:customShip name="PLAYER_SHIP_OG_DRIFTER_3">
+		<hiddenAug>SHIP_OG_DAWN</hiddenAug>
+		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
+		<hiddenAug>OG_TURRET_MANNABLE_MICRO</hiddenAug>
+		<crewLimit>8</crewLimit>
+		<systemLimit>10</systemLimit>
 	</mod-append:customShip>
 
 	<mod-append:ship name="PLAYER_SHIP_OG_KESTREL" b="false" c="false" >

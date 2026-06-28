@@ -1589,12 +1589,12 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<iconReplace>og_turret_focus_mini_dawn_icon</iconReplace>
 </weaponBlueprint>
 
-<weaponBlueprint name="OG_TURRET_NEUTRON_BEAM">
+<weaponBlueprint name="OG_TURRET_BEAM_NEUTRON_1">
 	<type>BEAM</type>
 	<flavorType>Turret</flavorType>
 	<tip>tip_og_turret</tip>
-	<title>Neutron Turret</title>
-	<short>Neutron</short>
+	<title>Neutron Turret MK I</title>
+	<short>Neutron I</short>
 	<desc>Neutron Turrets prove extremely effective against enemy missiles due to their almost instantaneous time to kill.</desc>
 	<tooltip>Turret</tooltip>
 	<damage>0</damage>
@@ -1604,10 +1604,52 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>65</cost>
+	<cost>80</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
-	<iconReplace>og_turret_focus_1_icon</iconReplace>
+	<iconReplace>og_turret_beam_neutron_1_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_BEAM_NEUTRON_2">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Neutron Turret MK II</title>
+	<short>Neutron II</short>
+	<desc>Neutron Turrets prove extremely effective against enemy missiles due to their almost instantaneous time to kill.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>120</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_beam_neutron_2_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_BEAM_NEUTRON_3">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Neutron Turret MK III</title>
+	<short>Neutron III</short>
+	<desc>Neutron Turrets prove extremely effective against enemy missiles due to their almost instantaneous time to kill.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>200</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_beam_neutron_3_icon</iconReplace>
 </weaponBlueprint>
 </FTL>
 
@@ -5110,7 +5152,7 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 <shipBlueprint name="PLAYER_SHIP_OG_HUNTER_2" layout="ogp_hunter_b" img="ogp_hunter_b">
 	<class>Hunter-Class</class>
 	<name>Moonglow</name>
-	<desc>An export varient of the Hunter class, sent to the rebellion alongside one of the new dawn's, but rebellion trained, operatives.</desc>
+	<desc>An export varient of the Hunter-Class cruiser, sent to the rebellion alongside one of the new dawn's rebellion trained operatives.</desc>
 	<unlock id="ship_PLAYER_SHIP_OG_HUNTER_2_unlock"/>
 	<systemList>
 		<og_turret power="2" room="9" start="true" img="room_og_turret_6" turret="OG_TURRET_FOCUS_BIO">
@@ -5186,7 +5228,9 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<health amount="30" />
 	<maxPower amount="12" />
 	<crewCount amount="1" class="human_og_midnight" />
-	<crewCount amount="1" class="human_mfk" />
+	<crewCount amount="1" class="human_technician" />
+	<crewCount amount="1" class="human_medic" />
+	<crewCount amount="1" class="human" />
 	<aug name="DISTRACTION_BUOY" />
 	<shieldImage>mup_disk</shieldImage>
 	<mv-mapImage>map_icon_og_hunter</mv-mapImage>
@@ -5198,7 +5242,7 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<desc>add later</desc>
 	<unlock id="ship_PLAYER_SHIP_OG_HUNTER_3_unlock"/>
 	<systemList>
-		<og_turret power="3" room="1" start="true" img="room_og_turret_5" turret="OG_TURRET_NEUTRON_BEAM" >
+		<og_turret power="3" room="1" start="true" img="room_og_turret_5" turret="OG_TURRET_BEAM_NEUTRON_1" >
 			<slot>
 				<direction>right</direction>
 				<number>1</number>
@@ -5280,6 +5324,267 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<crewCount amount="1" class="human_og_dawn" />
 	<crewCount amount="1" class="human_og_dawn" />
 	<shieldImage>mup_disk</shieldImage>
+	<mv-mapImage>map_icon_og_hunter</mv-mapImage>
+</shipBlueprint>
+
+<shipBlueprint name="PLAYER_SHIP_OG_DRIFTER" layout="ogp_drifter_a" img="ogp_drifter_a">
+	<class>Drifter-Class</class>
+	<name>The Nameless One</name>
+	<desc>A light assault craft built to be quick and stealthy, perfect for covert operations under the cover of darkness. The small size of the vessel prevented the installation of large turrets, instead the engineers overclocked the micro turret systems to increase their lethality.</desc>
+	<unlock id="ship_PLAYER_SHIP_OG_DRIFTER_unlock"/>
+	<systemList>
+		<og_turret_mini power="2" max="5" room="4" start="true" turret="OG_TURRET_LASER_MINI_2" img="room_og_turret_7" >
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</og_turret_mini>
+		<og_turret_mini_2 power="2" max="5" room="5" start="true" turret="OG_TURRET_LASER_MINI_BIO" img="room_og_turret_9" >
+			<slot>
+				<direction>down</direction>
+				<number>1</number>
+			</slot>
+		</og_turret_mini_2>
+		<battery power="1" room="3" start="false" img="room_battery_3" />
+		<cloaking power="1" room="11" start="false" img="room_cloaking_13" />
+		<clonebay power="1" room="1" start="false">
+			<slot>
+				<number>0</number>
+			</slot>
+		</clonebay>
+		<doors power="1" room="13" start="true" img="room_doors_7">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</doors>
+		<drones power="2" max="8" room="14" start="false" img="room_drones_18" />
+		<engines power="2" room="8" start="true" img="room_engines_2">
+			<slot>
+				<direction>down</direction>
+				<number>2</number>
+			</slot>
+		</engines>
+		<hacking power="1" room="18" start="false" img="room_hacking_2" />
+		<medbay power="1" room="1" start="true" img="room_medbay_4">
+			<slot>
+				<number>0</number>
+			</slot>
+		</medbay>
+		<mind power="1" room="6" start="false" img="room_mind_2" />
+		<oxygen power="1" room="7" start="true" img="room_oxygen_14" />
+		<pilot power="1" room="0" start="true" img="room_pilot">
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</pilot>
+		<sensors power="1" room="12" start="true" img="room_sensors_3">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</sensors>
+		<shields power="2" max="8" room="15" start="true" img="room_shields_11">
+			<slot>
+				<direction>down</direction>
+				<number>1</number>
+			</slot>
+		</shields>
+		<teleporter power="1" room="17" start="false" />
+		<weapons power="2" room="16" start="true" img="room_weapons_8">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</weapons>
+	</systemList>
+	<weaponSlots>3</weaponSlots>
+	<droneSlots>2</droneSlots>
+	<weaponList missiles="4" count="3">
+		<weapon name="FOCUS_2" />
+	</weaponList>
+	<droneList drones="4" count="2" />
+	<health amount="15" />
+	<maxPower amount="11" />
+	<crewCount amount="1" class="human_og_midnight" />
+	<crewCount amount="1" class="human_soldier" />
+	<crewCount amount="1" class="human_soldier" />
+	<aug name="COMBAT_SHIELDS_JAMMER" />
+	<shieldImage>mup_orb1</shieldImage>
+	<mv-mapImage>map_icon_og_hunter</mv-mapImage>
+</shipBlueprint>
+
+<shipBlueprint name="PLAYER_SHIP_OG_DRIFTER_2" layout="ogp_drifter_b" img="ogp_drifter_b">
+	<class>Drifter-Class</class>
+	<name>The Nameless One</name>
+	<desc>A Midnight Sun Operative and an MFK Ace have betrayed the New Dawn and Rebellion and made off with this quick vessel.</desc>
+	<unlock id="ship_PLAYER_SHIP_OG_DRIFTER_2_unlock"/>
+	<systemList>
+		<og_turret_mini power="1" max="4" room="7" start="true" turret="OG_TURRET_FOCUS_MINI_1" img="room_og_turret_7" >
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</og_turret_mini>
+		<og_turret_mini_2 power="1" max="4" room="8" start="true" turret="OG_TURRET_LASER_MINI_2" img="room_og_turret_9" >
+			<slot>
+				<direction>down</direction>
+				<number>1</number>
+			</slot>
+		</og_turret_mini_2>
+		<battery power="1" room="10" start="false" img="room_battery_3" />
+		<cloaking power="1" room="6" start="true" img="room_cloaking_7" />
+		<clonebay power="1" room="2" start="false">
+			<slot>
+				<number>0</number>
+			</slot>
+		</clonebay>
+		<doors power="1" room="9" start="false" img="room_doors_3">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</doors>
+		<drones power="2" max="8" room="12" start="false" img="room_drones_19" />
+		<engines power="2" room="3" start="true" img="room_engines_2">
+			<slot>
+				<direction>down</direction>
+				<number>2</number>
+			</slot>
+		</engines>
+		<hacking power="1" room="5" start="false" img="room_hacking_4" />
+		<medbay power="1" room="2" start="true" img="room_medbay_4">
+			<slot>
+				<number>0</number>
+			</slot>
+		</medbay>
+		<mind power="1" room="17" start="false" img="room_mind_6" />
+		<oxygen power="1" room="18" start="true" img="room_oxygen_13" />
+		<pilot power="1" room="0" start="true" img="room_pilot">
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</pilot>
+		<sensors power="2" room="15" start="true" img="room_sensors">
+			<slot>
+				<direction>down</direction>
+				<number>1</number>
+			</slot>
+		</sensors>
+		<shields power="3" max="8" room="4" start="true" img="room_shields_4">
+			<slot>
+				<direction>left</direction>
+				<number>0</number>
+			</slot>
+		</shields>
+		<teleporter power="2" room="1" start="true" />
+		<weapons power="2" room="13" start="false" img="room_weapons_8">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</weapons>
+	</systemList>
+	<weaponSlots>2</weaponSlots>
+	<droneSlots>2</droneSlots>
+	<weaponList missiles="4" count="2" />
+	<droneList drones="5" count="2" />
+	<health amount="15" />
+	<maxPower amount="10" />
+	<crewCount amount="1" class="human_og_midnight" />
+	<crewCount amount="1" class="human_mfk" />
+	<aug name="DISTRACTION_BUOY" />
+	<shieldImage>mup_orb1</shieldImage>
+	<mv-mapImage>map_icon_og_hunter</mv-mapImage>
+</shipBlueprint>
+
+<shipBlueprint name="PLAYER_SHIP_OG_DRIFTER_3" layout="ogp_drifter_c" img="ogp_drifter_c">
+	<class>Drifter-Class</class>
+	<name>The Nameless One</name>
+	<desc>Once elite intelligence operatives for the Midnight Sun, this crew found themselves stranded in an unknown multiverse with no way home. Left with few options, they turned to street racing, and proved just as ruthless on the track as they had been in the field.</desc>
+	<unlock id="ship_PLAYER_SHIP_OG_DRIFTER_3_unlock"/>
+	<systemList>
+		<og_turret_mini power="1" max="4" room="1" start="true" turret="OG_TURRET_FLAK_MINI_1" img="room_og_turret_7" >
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</og_turret_mini>
+		<og_turret_mini_2 power="1" max="4" room="2" start="true" turret="OG_TURRET_LASER_RUSTY_MINI_1" img="room_og_turret_9" >
+			<slot>
+				<direction>down</direction>
+				<number>1</number>
+			</slot>
+		</og_turret_mini_2>
+		<battery power="1" room="14" start="false" img="room_battery_2" />
+		<cloaking power="2" room="16" start="true" img="room_cloaking_13" />
+		<clonebay power="1" room="6" start="true">
+			<slot>
+				<number>0</number>
+			</slot>
+		</clonebay>
+		<doors power="1" room="9" start="false" img="room_doors_6">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</doors>
+		<drones power="3" max="8" room="3" start="true" img="room_drones_15" />
+		<engines power="4" room="8" start="true" img="room_engines_3">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</engines>
+		<hacking power="1" room="4" start="false" img="room_hacking_2" />
+		<medbay power="1" room="6" start="false" img="room_medbay_15">
+			<slot>
+				<number>-2</number>
+			</slot>
+		</medbay>
+		<mind power="1" room="5" start="false" img="room_mind_12" />
+		<oxygen power="1" room="7" start="true" img="room_oxygen_23" />
+		<pilot power="2" room="0" start="true" img="room_pilot_4">
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</pilot>
+		<sensors power="2" room="11" start="true" img="room_sensors_9">
+			<slot>
+				<direction>up</direction>
+				<number>0</number>
+			</slot>
+		</sensors>
+		<shields power="2" room="18" start="false" img="room_shields_13">
+			<slot>
+				<direction>down</direction>
+				<number>3</number>
+			</slot>
+		</shields>
+		<teleporter power="1" room="19" start="true" />
+		<weapons power="2" room="15" start="false" img="room_weapons_12">
+			<slot>
+				<direction>right</direction>
+				<number>2</number>
+			</slot>
+		</weapons>
+	</systemList>
+	<weaponSlots>2</weaponSlots>
+	<droneSlots>3</droneSlots>
+	<weaponList missiles="0" count="2" />
+	<droneList drones="11" count="3">
+		<drone name="HELLRAISER_FIRE" />
+	</droneList>
+	<health amount="15" />
+	<maxPower amount="13" />
+	<crewCount amount="1" class="human_og_midnight" />
+	<crewCount amount="1" class="human_og_midnight" />
+	<crewCount amount="1" class="human_og_midnight" />
+	<aug name="EX_TELEPORT_HEAL" />
+	<shieldImage>mup_orb1</shieldImage>
 	<mv-mapImage>map_icon_og_hunter</mv-mapImage>
 </shipBlueprint>
 
@@ -6040,6 +6345,14 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<title>Turret Pre-igniter</title>
 	<desc>Turrets are made immediately available after an FTL jump.</desc>
 	<cost>120</cost>
+	<rarity>0</rarity>
+	<stackable>false</stackable>
+</augBlueprint>
+
+<augBlueprint name="OG_TURRET_MANNABLE_MICRO">
+	<title>Mannable Micro Turrets</title>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<cost>0</cost>
 	<rarity>0</rarity>
 	<stackable>false</stackable>
 </augBlueprint>

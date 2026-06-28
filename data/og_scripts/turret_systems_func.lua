@@ -722,6 +722,7 @@ local function system_construct_system_box(systemBox)
 
 		systemBox.extend.xOffset = 113
 		setup_system_buttons(systemBox)
+		local shipManager = Hyperspace.ships(systemBox.pSystem._shipObj.iShipId)
 
 		local systemId = Hyperspace.ShipSystem.SystemIdToName(systemBox.pSystem.iSystemType)
 		--print("construct player turret system "..systemId)
@@ -729,11 +730,12 @@ local function system_construct_system_box(systemBox)
 			setup_adaptive_system(systemBox, systemId)
 		elseif microTurrets[systemId] then
 			systemBox.pSystem.table.micro = true
-			systemBox.pSystem.bBoostable = false
+			if shipManager:HasAugmentation("OG_TURRET_MANNABLE_MICRO") <= 0 then
+				systemBox.pSystem.bBoostable = false
+			end
 		end
 
 		systemBox.pSystem.table.index = -1
-		local shipManager = Hyperspace.ships(systemBox.pSystem._shipObj.iShipId)
 		if shipManager and ((not systemBox.pSystem.table.blueprint) or systemBox.pSystem.table.blueprint == "OG_EMPTY_TURRET") then
 			local id, i = findStartingTurret(shipManager, systemId)
 			systemBox.pSystem.table.blueprint = id

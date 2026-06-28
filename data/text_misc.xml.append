@@ -26,6 +26,10 @@
 <text name="ship_PLAYER_SHIP_OG_HUNTER_2_unlock">Get to Sector 8 with The Type A to unlock this ship.</text>
 <text name="ship_PLAYER_SHIP_OG_HUNTER_3_unlock">Complete 2/3 of this ship class's Achievements to unlock this ship.</text>
 
+<text name="ship_PLAYER_SHIP_OG_DRIFTER_unlock">Win with any 2 Hunter-Class ships.</text>
+<text name="ship_PLAYER_SHIP_OG_DRIFTER_2_unlock">Get to Sector 8 with The Type A to unlock this ship.</text>
+<text name="ship_PLAYER_SHIP_OG_DRIFTER_3_unlock">Complete 2/3 of this ship class's Achievements to unlock this ship.</text>
+
 <text name="ship_PLAYER_SHIP_OG_REBEL_unlock">Get to Sector 5 with the Iron Kestrel Cruiser to unlock this ship.</text>
 <text name="ship_PLAYER_SHIP_OG_CURA_unlock">Get to Sector 5 with the Iron Rebel Cruiser to unlock this ship.</text>
 <text name="ship_PLAYER_SHIP_OG_SEPARATIST_unlock">Get to Sector 5 with the Iron Innovation Cruiser to unlock this ship.</text>

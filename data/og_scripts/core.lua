@@ -1141,7 +1141,7 @@ script.on_internal_event(Defines.InternalEvents.POWER_ON_UPDATE, function(power)
 end)
 
 local neutron_weapons = {}
-neutron_weapons["ARTILLERY_OG_NEUTRON_BEAM_1"] = {damage = 40, duration = 8, width = 22}
+neutron_weapons["ARTILLERY_OG_NEUTRON_BEAM_1"] = {damage = 25, duration = 8, width = 22}
 script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projectile, weapon)
 	if weapon and neutron_weapons[weapon.blueprint.name] then
 		local weapon_data = neutron_weapons[weapon.blueprint.name]

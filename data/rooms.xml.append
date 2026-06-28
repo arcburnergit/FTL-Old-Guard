@@ -21,7 +21,7 @@
 </roomLayout>
 
 <roomLayout name="og_turret_7">
-	<computerGlow name="computer1_glow" x="32" y="-2" dir="UP"/>
+	<computerGlow name="computer1_glow" x="31" y="-2" dir="UP"/>
 </roomLayout>
 <roomLayout name="og_turret_8">
 	<computerGlow name="computer1_glow" x="2" y="31" dir="RIGHT"/>

@@ -49,7 +49,9 @@ table.insert(turretBlueprintsList, "OG_TURRET_FOCUS_DAWN")
 table.insert(turretBlueprintsList, "OG_TURRET_LASER_MINI_DAWN_1")
 table.insert(turretBlueprintsList, "OG_TURRET_LASER_MINI_DAWN_2")
 table.insert(turretBlueprintsList, "OG_TURRET_FOCUS_MINI_DAWN")
-table.insert(turretBlueprintsList, "OG_TURRET_NEUTRON_BEAM")
+table.insert(turretBlueprintsList, "OG_TURRET_BEAM_NEUTRON_1")
+table.insert(turretBlueprintsList, "OG_TURRET_BEAM_NEUTRON_2")
+table.insert(turretBlueprintsList, "OG_TURRET_BEAM_NEUTRON_3")
 
 table.insert(turretBlueprintsList, "OG_TURRET_LOOT_SLUG_1")
 table.insert(turretBlueprintsList, "OG_TURRET_LOOT_CLAN_1")
@@ -898,20 +900,70 @@ turrets["OG_TURRET_FOCUS_MINI_DAWN"] = {
 	rotation_speed = 240,
 	charge_time = turrets["OG_TURRET_FOCUS_MINI_1"].charge_time,
 }
-turrets["OG_TURRET_NEUTRON_BEAM"] = {
+turrets["OG_TURRET_BEAM_NEUTRON_1"] = {
 	enemy_burst = 1,
 	hold_time = 1,
 	stealth = true,
 	speed_reduction = 0.5,
-	image = "og_turret_focus_1",
-	glow = "og_turret_focus_1_glow",
-	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_focus_1_charge.png", -24, -8, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
-	fire_points = {{x = 0, y = -7, fire_delay = 9}},
+	image = "og_turret_beam_neutron_1",
+	glow = "og_turret_beam_neutron_glow",
+	custom_animations = {
+		og_turret_beam_neutron_1_flash = {charging = true, charged = true, looping = true},
+	},
+	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/neutron/turret_beam_neutron_charge.png", -80, -80, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
+	fire_points = {{x = 0, y = -22, fire_delay = 5}},
 	defence_type = defence_types.NONE,
 	blueprint_type = 5,
-	neutron_damage = 40,
-	neutron_width = 24,
-	neutron_duration = 8,
+	neutron_damage = 25,
+	neutron_width = 8,
+	neutron_duration = 4,
+	charges = 1,
+	charges_per_charge = 1,
+	rotation_speed = 60,
+	charge_time = {[0] = 24, 24, 22, 19, 17, 16, 15, 14, 13},
+}
+turrets["OG_TURRET_BEAM_NEUTRON_2"] = {
+	enemy_burst = 1,
+	hold_time = 1,
+	stealth = true,
+	speed_reduction = 0.5,
+	image = "og_turret_beam_neutron_2",
+	glow = "og_turret_beam_neutron_glow",
+	custom_animations = {
+		og_turret_beam_neutron_1_flash = {charging = true, charged = true, looping = true},
+		og_turret_beam_neutron_2_flash = {charging = true, charged = true, looping = true},
+	},
+	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/neutron/turret_beam_neutron_charge.png", -80, -80, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
+	fire_points = {{x = 0, y = -22, fire_delay = 5}},
+	defence_type = defence_types.NONE,
+	blueprint_type = 5,
+	neutron_damage = 50,
+	neutron_width = 10,
+	neutron_duration = 4,
+	charges = 1,
+	charges_per_charge = 1,
+	rotation_speed = 60,
+	charge_time = {[0] = 24, 24, 22, 19, 17, 16, 15, 14, 13},
+}
+turrets["OG_TURRET_BEAM_NEUTRON_3"] = {
+	enemy_burst = 1,
+	hold_time = 1,
+	stealth = true,
+	speed_reduction = 0.5,
+	image = "og_turret_beam_neutron_3",
+	glow = "og_turret_beam_neutron_glow",
+	custom_animations = {
+		og_turret_beam_neutron_1_flash = {charging = true, charged = true, looping = true},
+		og_turret_beam_neutron_2_flash = {charging = true, charged = true, looping = true},
+		og_turret_beam_neutron_3_flash = {charging = true, charged = true, looping = true},
+	},
+	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/neutron/turret_beam_neutron_charge.png", -80, -80, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
+	fire_points = {{x = 0, y = -22, fire_delay = 5}},
+	defence_type = defence_types.NONE,
+	blueprint_type = 5,
+	neutron_damage = 100,
+	neutron_width = 12,
+	neutron_duration = 4,
 	charges = 1,
 	charges_per_charge = 1,
 	rotation_speed = 60,

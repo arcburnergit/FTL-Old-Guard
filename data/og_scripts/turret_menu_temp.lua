@@ -292,6 +292,10 @@ hideName["LASER_DISPARITY_LOOT"] = ""
 mods.og.craftedCategories = {}
 local craftedCategories = mods.og.craftedCategories
 
+mods.og.craftedNeutronBeam = {name = "Neutron Beam", id = "NEUTRON", items = {}, var = "og_neutron_turret_acquired"}
+table.insert(craftedCategories, mods.og.craftedNeutronBeam)
+local craftedNeutronBeam = mods.og.craftedNeutronBeam
+
 mods.og.craftedLasers = {name = "Lasers", id = "LASER", items = {}}
 table.insert(craftedCategories, mods.og.craftedLasers)
 local craftedLasers = mods.og.craftedLasers
@@ -376,6 +380,16 @@ table.insert(craftedSpecial.items, {weapon = "OG_TURRET_LASER_ANCIENT", match_co
 table.insert(craftedSpecial.items, {weapon = "OG_TURRET_LASER_CEL_1", match_cost = true, component_amounts = {1}, components = {{"PRIME_LASER", "COMBAT_PRIME", "BEAM_HARDSCIFI", "DEFENSE_PRIME"}}} )
 table.insert(craftedSpecial.items, {weapon = "OG_TURRET_LASER_GATLING", match_cost = true, component_amounts = {1}, components = {{"GATLING"}}} )
 table.insert(craftedSpecial.items, {weapon = "OG_TURRET_LASER_RIFTWAKER", match_cost = true, component_amounts = {1}, components = {{"GATLING_SYLVAN", "GATLING_SYLVAN_HONOR"}}} )
+
+table.insert(craftedNeutronBeam.items, {weapon = "OG_TURRET_BEAM_NEUTRON_2", match_cost = true, component_amounts = {1}, components = {{"OG_TURRET_BEAM_NEUTRON_1"}}} )
+table.insert(craftedNeutronBeam.items, {weapon = "OG_TURRET_BEAM_NEUTRON_3", match_cost = true, component_amounts = {1}, components = {{"OG_TURRET_BEAM_NEUTRON_2"}}} )
+script.on_internal_event(Defines.InternalEvents.JUMP_LEAVE, function(shipManager)
+	if shipManager.iShipId == 0 and (shipManager:HasEquipment("OG_TURRET_BEAM_NEUTRON_1") > 0 or shipManager:HasEquipment("OG_TURRET_BEAM_NEUTRON_2") > 0 or shipManager:HasEquipment("OG_TURRET_BEAM_NEUTRON_3") > 0) then
+		Hyperspace.metaVariables[craftedNeutronBeam.var] = 1
+	elseif shipManager.iShipId == 1 then
+		Hyperspace.metaVariables[craftedNeutronBeam.var] = 0
+	end
+end)
 
 -- DARKEST DESIRE
 

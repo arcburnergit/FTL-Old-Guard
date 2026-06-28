@@ -901,6 +901,68 @@
 </anim>
 
 
+<animSheet name="og_turret_beam_neutron_1_icon" w="117" h="52" fw="117" fh="52">og_turrets/neutron/turret_beam_neutron_1_icon.png</animSheet>
+<anim name="og_turret_beam_neutron_1_icon">
+	<sheet>og_turret_beam_neutron_1_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_beam_neutron_1" w="5440" h="160" fw="160" fh="160">og_turrets/neutron/turret_beam_neutron_1.png</animSheet>
+<anim name="og_turret_beam_neutron_1">
+	<sheet>og_turret_beam_neutron_1</sheet>
+	<desc length="34" x="0" y="0" />
+	<time>4</time>
+</anim>
+<animSheet name="og_turret_beam_neutron_1_flash" w="3040" h="160" fw="160" fh="160">og_turrets/neutron/turret_beam_neutron_1_flash.png</animSheet>
+<anim name="og_turret_beam_neutron_1_flash">
+	<sheet>og_turret_beam_neutron_1_flash</sheet>
+	<desc length="19" x="0" y="0" />
+	<time>2</time>
+</anim>
+<animSheet name="og_turret_beam_neutron_2_icon" w="117" h="52" fw="117" fh="52">og_turrets/neutron/turret_beam_neutron_2_icon.png</animSheet>
+<anim name="og_turret_beam_neutron_2_icon">
+	<sheet>og_turret_beam_neutron_2_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_beam_neutron_2" w="5440" h="160" fw="160" fh="160">og_turrets/neutron/turret_beam_neutron_2.png</animSheet>
+<anim name="og_turret_beam_neutron_2">
+	<sheet>og_turret_beam_neutron_2</sheet>
+	<desc length="34" x="0" y="0" />
+	<time>4</time>
+</anim>
+<animSheet name="og_turret_beam_neutron_2_flash" w="3040" h="160" fw="160" fh="160">og_turrets/neutron/turret_beam_neutron_2_flash.png</animSheet>
+<anim name="og_turret_beam_neutron_2_flash">
+	<sheet>og_turret_beam_neutron_2_flash</sheet>
+	<desc length="19" x="0" y="0" />
+	<time>2</time>
+</anim>
+<animSheet name="og_turret_beam_neutron_3_icon" w="117" h="52" fw="117" fh="52">og_turrets/neutron/turret_beam_neutron_3_icon.png</animSheet>
+<anim name="og_turret_beam_neutron_3_icon">
+	<sheet>og_turret_beam_neutron_3_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_beam_neutron_3" w="5440" h="160" fw="160" fh="160">og_turrets/neutron/turret_beam_neutron_3.png</animSheet>
+<anim name="og_turret_beam_neutron_3">
+	<sheet>og_turret_beam_neutron_3</sheet>
+	<desc length="34" x="0" y="0" />
+	<time>4</time>
+</anim>
+<animSheet name="og_turret_beam_neutron_3_flash" w="3040" h="160" fw="160" fh="160">og_turrets/neutron/turret_beam_neutron_3_flash.png</animSheet>
+<anim name="og_turret_beam_neutron_3_flash">
+	<sheet>og_turret_beam_neutron_3_flash</sheet>
+	<desc length="19" x="0" y="0" />
+	<time>2</time>
+</anim>
+<animSheet name="og_turret_beam_neutron_glow" w="160" h="160" fw="160" fh="160">og_turrets/neutron/turret_beam_neutron_glow.png</animSheet>
+<anim name="og_turret_beam_neutron_glow">
+	<sheet>og_turret_beam_neutron_glow</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+
+
 <animSheet name="og_turret_loot_slug_1_icon" w="82" h="34" fw="82" fh="34">og_turrets/turret_loot_slug_1_icon.png</animSheet>
 <anim name="og_turret_loot_slug_1_icon">
 	<sheet>og_turret_loot_slug_1_icon</sheet>
