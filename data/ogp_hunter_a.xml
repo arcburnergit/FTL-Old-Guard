@@ -14,8 +14,8 @@
 	<mount x="512" y="238" rotate="true" mirror="false" gib="-1" slide="no" />
 </weaponMounts>
 <ogTurretMounts>
-	<og_turret x="216" y="96" direction="right"/>
-	<og_turret_2 x="216" y="380" direction="right"/>
+	<og_turret x="216" y="380" direction="right"/>
+	<og_turret_2 x="216" y="96" direction="right"/>
 </ogTurretMounts>
 <explosion />
 

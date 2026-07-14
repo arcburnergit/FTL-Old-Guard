@@ -381,7 +381,7 @@ do --HAZARD DAMAGE TRACKING
 		if Hyperspace.App.menu.shipBuilder.bOpen then return end
 
 		has_shield[shipManager.iShipId] = false
-		local enginesOnline = shipManager:GetSystem(1):GetEffectivePower() > ((shipManager.iShipId == 0 and 1) or 0)
+		local enginesOnline = shipManager:HasSystem(1) and shipManager:GetSystem(1):GetEffectivePower() > ((shipManager.iShipId == 0 and 1) or 0)
 		if shipManager:HasAugmentation("OG_NEUTRON_SHIELD") > 0 and enginesOnline then
 			has_shield[shipManager.iShipId] = true
 		end

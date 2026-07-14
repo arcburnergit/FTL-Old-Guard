@@ -15,8 +15,8 @@
 </weaponMounts>
 <ogTurretMounts>
 	<og_turret x="433" y="238" direction="right"/>
-	<og_turret_2 x="216" y="96" direction="right"/>
-	<og_turret_3 x="216" y="380" direction="right"/>
+	<og_turret_2 x="216" y="380" direction="right"/>
+	<og_turret_3 x="216" y="96" direction="right"/>
 </ogTurretMounts>
 <explosion />
 

@@ -1686,7 +1686,11 @@ local function updateTurretCharge(currentTurret, system, shipManager, otherManag
 				local maxWithAmmo = ((not currentTurret.ammo_consumption) and math.huge) or ((shipManager:GetMissileCount() - system.table.ammo_consumed - currentTurret.ammo_consumption * system.table.charges)/currentTurret.ammo_consumption) 
 				system.table.charges = math.min(system.table.charges + maxWithAmmo , currentTurret.charges, system.table.charges + currentTurret.charges_per_charge)
 				if currentTurret.chain then
-					system.table.chain_level = math.min(currentTurret.chain.count, system.table.chain_level + 1)
+					if currentTurret.chain.reset_on_max and system.table.chain_level >= currentTurret.chain.count then
+						system.table.chain_level = 0
+					else
+						system.table.chain_level = math.min(currentTurret.chain.count, system.table.chain_level + 1)
+					end
 				end
 				system.table.time = 0
 			end

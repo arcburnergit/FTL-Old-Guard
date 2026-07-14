@@ -29,6 +29,30 @@ systemsToAppend[1] = {id_name = "og_turret_adaptive", attributes = {power = 1, s
 systemsToAppend[2] = {id_name = "og_turret_adaptive_2", alt_name = "og_turret_adaptive_single", depends_on = "og_turret_adaptive", replace_sys = "drones", only_replace = true, attributes = {power = 1, start = "false", turret = "OG_TURRET_LASER_RUSTY_MINI_1"}, manning = true, avoid = {"og_turret", "og_turret_2", "og_turret_3", "og_turret_4", "og_turret_mini", "og_turret_mini_2", "og_turret_mini_3", "og_turret_mini_4"},
 	image_list = turret_image_list
 }
+systemsToAppend[3] = {id_name = "og_equaliser", attributes = {power = 1, start = "false"}, manning = false, replace_sys = "battery", only_replace = true,
+	image_list = {
+		{room_image = "room_og_equaliser_4", w = 2, h = 2, top = "10", bottom = "10", left="00", right="11"},
+		{room_image = "room_og_equaliser", w = 2, h = 1, top = "11", bottom = "00", left="0", right="1"},
+		{room_image = "room_og_equaliser_3", w = 2, h = 1, top = "11", bottom = "00", left="0", right="0"},
+		{room_image = "room_og_equaliser_5", w = 1, h = 2, top = "1", bottom = "0", left="00", right="11"},
+		{room_image = "room_og_equaliser_6", w = 1, h = 2, top = "0", bottom = "0", left="11", right="00"},
+		{room_image = "room_og_equaliser_7", w = 2, h = 1, top = "00", bottom = "00", left="1", right="1"},
+		{room_image = "room_og_equaliser_8", w = 1, h = 2, top = "0", bottom = "0", left="01", right="10"},
+		{room_image = "room_og_equaliser_9", w = 2, h = 1, top = "00", bottom = "11", left="1", right="0"},
+		{room_image = "room_og_equaliser_10", w = 2, h = 2, top = "0", bottom = "0", left="00", right="11"},
+		{room_image = "room_og_equaliser_11", w = 1, h = 2, top = "0", bottom = "1", left="01", right="00"},
+		{room_image = "room_og_equaliser_12", w = 2, h = 1, top = "01", bottom = "00", left="0", right="1"},
+		{room_image = "room_og_equaliser_13", w = 2, h = 1, top = "01", bottom = "01", left="0", right="0"},
+		{room_image = "room_og_equaliser_14", w = 2, h = 1, top = "00", bottom = "11", left="0", right="0"},
+		{room_image = "room_og_equaliser_15", w = 1, h = 2, top = "0", bottom = "0", left="00", right="01"},
+		{room_image = "room_og_equaliser_16", w = 1, h = 2, top = "0", bottom = "0", left="11", right="00"},
+		{room_image = "room_og_equaliser_17", w = 1, h = 2, top = "0", bottom = "0", left="10", right="10"},
+		{room_image = "room_og_equaliser_18", w = 1, h = 2, top = "0", bottom = "0", left="10", right="01"},
+		{room_image = "room_og_equaliser_19", w = 2, h = 1, top = "10", bottom = "00", left="1", right="0"},
+		{room_image = "room_og_equaliser_20", w = 1, h = 2, top = "1", bottom = "1", left="00", right="00"},
+		{room_image = "room_og_equaliser_2", w = 1, h = 1, top = "0", bottom = "0", left="1", right="0"},
+	}
+}
 
 local function noDoorOverlap(rT, rB, rL, rR, iT, iB, iL, iR, shipName)
 	local room = table.concat({rT,rB,rL,rR},"")

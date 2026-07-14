@@ -1,6 +1,6 @@
 local version = {major = 1, minor = 20}
 if not (Hyperspace.version and Hyperspace.version.major == version.major and Hyperspace.version.minor >= version.minor) then
-	error("Incorrect Hyperspace version detected! The Outer Expansion requires Hyperspace "..version.major.."."..version.minor.."+")
+	error("Incorrect Hyperspace version detected! The Old Guard requires Hyperspace "..version.major.."."..version.minor.."+")
 end
 mods.og = {}
 local time_increment = mods.multiverse.time_increment
@@ -1185,12 +1185,66 @@ end, function(shipManager, showInterior, doorControlMode)
 	return Defines.Chain.CONTINUE 
 end)
 
---add artillery mid fight
-script.on_internal_event(Defines.InternalEvents.GENERATOR_CREATE_SHIP_POST, function(name, sector, event, blueprint, shipManager)
-	return Defines.Chain.CONTINUE
+mods.og.triplet_weapons = {}
+local triplet_weapons = mods.og.triplet_weapons
+triplet_weapons["LASER_OG_TRIPLET_1"] = true
+triplet_weapons["LASER_OG_TRIPLET_2"] = true
+
+
+local is_first_shot = mods.multiverse.is_first_shot
+
+script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projectile, weapon)
+	if triplet_weapons[weapon.blueprint.name] and is_first_shot(weapon, true) and weapon.boostLevel >= weapon.blueprint.boostPower.count then
+		if weapon.table.og_triplet_shot then
+			weapon.boostLevel = 0
+			weapon.table.og_triplet_shot = false
+		else
+			weapon.table.og_triplet_shot = true
+		end
+	elseif weapon.table.og_triplet_shot then
+		weapon.table.og_triplet_shot = true
+	end
+end)
+
+
+local update_enemy_hunter = false
+script.on_internal_event(Defines.InternalEvents.CONSTRUCT_SHIP_MANAGER, function(shipManager)
+	if shipManager.iShipId == 1 and shipManager.myBlueprint.blueprintName == "OG_MIDNIGHT_HUNTER" then
+		update_enemy_hunter = true
+	end
+end)
+
+script.on_internal_event(Defines.InternalEvents.JUMP_LEAVE, function(shipManager)
+	if update_enemy_hunter then update_enemy_hunter = false end
 end)
 
 script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
-	if shipManager.myBlueprint.name == "OG_MIDNIGHT_HUNTER" then
+	if shipManager.iShipId == 1 and update_enemy_hunter then
+		update_enemy_hunter = false
+		shipManager:RemoveSystem(11)
 	end
 end)
+
+script.on_game_event("SHIP_OG_MIDNIGHT_HUNTER_MIDFIGHT_RESET", false, function()
+	local shipManager = Hyperspace.ships.enemy
+	if shipManager then
+		for system in vter(shipManager.vSystemList) do
+			system.healthState.first = system.healthState.second
+		end
+	end
+end)
+script.on_game_event("SHIP_OG_MIDNIGHT_HUNTER_RESUME", false, function()
+	local shipManager = Hyperspace.ships.enemy
+	if shipManager then
+		shipManager:AddSystem(11)
+	end
+end)
+
+local function create_defense_drone(bp, shipManager)
+	local drone = shipManager:CreateSpaceDrone(bp)
+	drone.powerRequired = 0
+	drone.powered = true
+	drone:SetDeployed(true)
+	drone.bDead = false
+	return drone
+end

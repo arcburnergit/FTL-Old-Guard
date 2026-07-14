@@ -41,6 +41,7 @@ Safety varies within Iron Watch space, you'll find a wide range of groups here. 
 <text name="map_icon_og_dawn_ship">SHIP [!]</text>
 <text name="map_icon_og_dawn_base">HIDDEN BASE [!]</text>
 <text name="map_icon_og_dawn_vault">DATA_VAULT [!]</text>
+<text name="map_icon_og_ghost">GHOST [!]</text>
 
 <text name="map_icon_og_neutron_station">RESEARCH STATION [!]</text>
 

@@ -103,13 +103,6 @@
 	<removeHazards/>
 	<clearCustomFleet/>
 	<text>By killing the Iron Watch guard, you have no doubt caused them to dispatch reinforcements to track you down. Watch your step as you explore the sector.</text>
-	<quest event="REINFORCEMENTS_OG_IRON">
-		<nebulaBeacon>true</nebulaBeacon>
-		<nextSector>false</nextSector>
-		<nebulaEvent>NEBULA_LIGHT_REINFORCEMENTS_OG_IRON</nebulaEvent>
-		<createNebula>false</createNebula>
-		<aggressive>2</aggressive>
-	</quest>
 	<choice>
 		<text>Do something onboard the ship.</text>
 		<event load="STORAGE_CHECK"/>
@@ -119,45 +112,7 @@
 		<event/>
 	</choice>
 </event>
-<event name="REINFORCEMENTS_OG_IRON">
-	<preventQuest/>
-	<beaconType id="map_icon_reinforcements" global="true" req="LOOT_COMPASS">
-		<color r="200" g="55" b="82" a="1"/>
-		<unvisitedTooltip>An unvisited location.</unvisitedTooltip>
-		<visitedTooltip>Explored location. Nothing left of interest.</visitedTooltip>
-		<undiscoveredTooltip>An unvisited location.</undiscoveredTooltip>
-	</beaconType>
-	<text>An Iron Watch ship moves in to attack! Based on the vengeful look in their captain's eye, this is no doubt the ship dispatched by the guard to hunt you down!</text>
-	<ship load="SHIP_OG_IRON_REINFORCEMENTS" hostile="true"/>
-	<environment type="PDS" target="player"/>
-	<choice hidden="true">
-		<text>Continue...</text>
-		<event load="COMBAT_CHECK"/>
-	</choice>
-</event>
-<event name="NEBULA_LIGHT_REINFORCEMENTS_OG_IRON">
-	<preventQuest/>
-	<beaconType id="map_icon_reinforcements" global="true" req="LOOT_COMPASS">
-		<color r="200" g="55" b="82" a="1"/>
-		<unvisitedTooltip>An unvisited location.</unvisitedTooltip>
-		<visitedTooltip>Explored location. Nothing left of interest.</visitedTooltip>
-		<undiscoveredTooltip>An unvisited location.</undiscoveredTooltip>
-	</beaconType>
-	<text>An Iron Watch ship moves in to attack! Based on the vengeful look in their captain's eye, this is no doubt the ship dispatched by the guard to hunt you down!</text>
-	<ship load="SHIP_OG_IRON_REINFORCEMENTS" hostile="true"/>
-	<img back="BACK_EVENT_STARS_SPARSE"/>
-	<status type="loss" target="player" system="sensors" amount="1"/>
-	<environment type="PDS" target="player"/>
-	<choice hidden="true">
-		<text>Continue...</text>
-		<event load="COMBAT_CHECK"/>
-	</choice>
-</event>
 
-<textList name="TEXT_START_OG_IRON">
-	<text>The Iron Watch are a collective of explorers, scientists, and pirates who ventured out into unexplored space. This is one of their rare settlements, now no longer so out of the way as it once was.</text>
-	<text>This somewhat isolated region was thrown into chaos at the start of the Rebellion. One of the rare homes of the Iron Watch, it's become far more populated in recent times.</text>
-</textList>
 <event name="START_OG_NEUTRON">
 	<metaVariable name="juke_og_iron_neutron" op="set" val="1" />
 	<environment type="pulsar"/>
@@ -167,17 +122,17 @@
 	</beaconType>
 	<text>The arrival beacon lands you in the middle of the Iron Watch's fleet. The fleet pays no attention to you, you observe most ships are preoccupied with preparing for the approaching rebel fleet, engineering ships attend to a number of vessels undergoing repairs.
 
-Your sensors pickup a massive energy signature in the sector, a neutron star, visable even from here. You're unsure how the iron watch have managed to survive with a thing like that around, if you get caught in it's beam it's sure to rip your ship apart.</text>
+Your sensors pickup a massive energy signature in the sector, a neutron star, visible even from here. You're unsure how the iron watch have managed to survive with a thing like that around, if you get caught in it's beam it's sure to rip your ship apart.</text>
 	<ship load="SHIP_GUARD_EXECUTOR_OG_IRON" hostile="false" />
 	<customFleet right="false" firing="true" autoDarkening="true">CUSTOM_FLEET_OG_IRON</customFleet>
 	<changeBackground>BACK_SECTOR_OG_NEUTRON</changeBackground>
 	<modifyPursuit amount="-2"/>
 	<playSound>lightspeed</playSound>
-	<choice hidden="true" req="rep_og_dawn" lvl="1" max_lvl="999" max_group="0" blue="false">
+	<choice hidden="true" req="og_neutron_dawn_aligned" lvl="1" blue="false">
 		<text>Continue...</text>
 		<event load="OG_NEUTRON_START_DAWN" />
 	</choice>
-	<choice hidden="true" req="rep_og_dawn" lvl="-999" max_lvl="0" max_group="0" blue="false">
+	<choice hidden="true" req="og_neutron_dawn_aligned" lvl="0" max_lvl="0" blue="false">
 		<text>Continue...</text>
 		<event load="OG_NEUTRON_START_IRON" />
 	</choice>
@@ -190,7 +145,7 @@ When I originally requested your assistance, the intention was to have you fight
 	<choice hidden="true">
 		<text>Continue...</text>
 		<event>
-			<text>"That plan has changed, two hours ago we recieved a distress call coming our research base, the one positioned right next to the neutron star you may have noticed in the sector. The signal cut out before we could get a clear read on what was happening, it might just be equipment failure, but I fear the worst."
+			<text>"That plan has changed, two hours ago we received a distress call coming our research base, the one positioned right next to the neutron star you may have noticed in the sector. The signal cut out before we could get a clear read on what was happening, it might just be equipment failure, but I fear the worst."
 			
 "I can't pull any of my ships from the front line to follow up on the distress signal, not with the Rebel fleet so close. But that research base is part of why we're even here in the first place, I can't disclose details but it's important, and so I can't just ignore the distress call."</text>
 			<choice hidden="true">
@@ -229,7 +184,7 @@ When I originally requested your assistance, the intention was to have you fight
 	<choice hidden="true">
 		<text>Fuel.</text>
 		<event>
-			<text>A refueling drone is dispatched to refuel your ship.</text>
+			<text>A refuelling drone is dispatched to refuel your ship.</text>
 			<item_modify>
 				<item type="fuel" min="3" max="3"/>
 			</item_modify>
@@ -254,8 +209,54 @@ When I originally requested your assistance, the intention was to have you fight
 		</event>
 	</choice>
 </event>
+
 <event name="OG_NEUTRON_START_DAWN">
-	<variable name="og_neutron_dawn_aligned" op="set" val="1"/>
+	<ship load="SHIP_OG_DAWN_FIGHT" hostile="false" />
+	<text>Before you're able to interact with any of the Iron Watch fleet, you're contacted by a New Dawn ship hidden inside a nearby asteroid field.
+
+"Excellent, you made it here and the Iron Watch don't suspect a thing. As you may remember, this sector is home to that neutron star your sensor may detect in the distance. The Iron Watch didn't establish the research base here, instead this sector was incorporated as the Neutron Star Exclusion Zone when the original scientists joined the Iron Watch."</text>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event>
+			<text>"Their work here has resulted in many new technologies, you may have noticed that many of the Iron Watch shields are equipped with shielding designed to protect them from the radiation of the neutron star. This is what we're after, we've managed to steal or loot many copies of the shielding device from Iron Watch ships, but its not enough to equip more than our intelligence operatives, we need the schematics and designs for the technology."</text>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event>
+					<text>"This is where you come in, we believe that the schematics for this technology are contained on original research station in orbit around the neutron star. Our intelligence operatives have prepared their ship for a raid on the station, but with the rebel fleet on the way they've stepped up the protection around the facility. We need you to provide the distraction that lets our intelligence operatives get close enough to the facility to initiate the raid."</text>
+					<choice hidden="true">
+						<text>Agree to the mission.</text>
+						<event>
+							<text>"Excellent, I'll upload our scans of the sector, which includes the location of the research base, not that it's hard to find being in orbit of the Neutron Star, to your ship. Our operatives will be ready to move in once you distract the guards, good luck."</text>
+							<reveal_map/>
+							<choice>
+								<text>Do something onboard the ship.</text>
+								<event load="STORAGE_CHECK"/>
+							</choice>
+							<choice>
+								<text>Do nothing.</text>
+								<event/>
+							</choice>
+						</event>
+					</choice>
+					<choice hidden="true">
+						<text>Refuse the mission.</text>
+						<event>
+							<text>"Well the raid is happening regardless of your participation, I'll upload our scans of the sector, as well as the location of the research base, not that it's hard to find, to your ship. If you show up, we'll assume you're onboard."</text>
+							<reveal_map/>
+							<choice>
+								<text>Do something onboard the ship.</text>
+								<event load="STORAGE_CHECK"/>
+							</choice>
+							<choice>
+								<text>Do nothing.</text>
+								<event/>
+							</choice>
+						</event>
+					</choice>
+				</event>
+			</choice>
+		</event>
+	</choice>
 </event>
 
 
@@ -277,18 +278,6 @@ When I originally requested your assistance, the intention was to have you fight
 </event>
 
 <!--RESEARCH STATION-->
-<ship name="SHIP_OG_IRON_RESEARCH_STATION_DAMAGED" auto_blueprint="OG_IRON_STATION_DAMAGED">
-	<surrender  chance="0.4" min="2" max="3" load="SURRENDER_OG_IRON"/>
-	<destroyed load="DESTROYED_OG_IRON"/>
-	<deadCrew load="DEAD_CREW_OG_IRON"/>
-</ship>
-<ship name="SHIP_OG_IRON_RESEARCH_STATION" auto_blueprint="OG_IRON_STATION">
-	<surrender  chance="0.4" min="2" max="3" load="SURRENDER_OG_IRON"/>
-	<destroyed load="DESTROYED_OG_IRON"/>
-	<deadCrew load="DEAD_CREW_OG_IRON"/>
-</ship>
-
-
 <event name="OG_NEUTRON_HAZARD_RESEARCH_STATION">
 	<preventFleet/>
 	<preventQuest/>
@@ -296,6 +285,7 @@ When I originally requested your assistance, the intention was to have you fight
 		<color r="255" g="156" b="113" a="1"/>
 		<unvisitedTooltip>Location of the Iron Watch Research Station.</unvisitedTooltip>
 	</beaconType>
+	<revisitEvent>OG_NEUTRON_HAZARD_RESEARCH_STATION_RETURN</revisitEvent>
 	<changeBackground>BACK_SECTOR_OG_NEUTRON_STATION</changeBackground>
 	<loadEventList seeded="false" first="true" generate="false">
 		<event name="OG_NEUTRON_RESEARCH_STATION_DAWN" req="og_neutron_dawn_aligned" lvl="1"/>
@@ -317,39 +307,243 @@ When I originally requested your assistance, the intention was to have you fight
 	</choice>
 </event>
 
+<ship name="SHIP_OG_IRON_RESEARCH_STATION_DAMAGED" auto_blueprint="OG_IRON_STATION_DAMAGED">
+	<surrender  chance="0.4" min="2" max="3" load="SURRENDER_OG_IRON"/>
+	<destroyed load="DESTROYED_OG_IRON"/>
+	<deadCrew load="DEAD_CREW_OG_IRON"/>
+</ship>
+<ship name="SHIP_OG_DAWN_RESEARCH_FINISHER" auto_blueprint="LIST_SHIPS_OG_DAWN_FIGHT">
+	<destroyed>
+		<text>One of the turrets is launched off into empty space as the ship explodes, throwing valuable debris in every direction.</text>
+		<autoReward level="MED">standard_no_item</autoReward>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event load="OG_NEUTRON_RESEARCH_STATION_SAVED"/>
+		</choice>
+	</destroyed>
+	<deadCrew>
+		<text>"You will regret this! Karma always comes back to people like you. Damn you Renegades... the New Dawn will..." They die before they can finish this last remark.</text>
+		<autoReward level="HIGH">standard_no_item</autoReward>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event load="OG_NEUTRON_RESEARCH_STATION_SAVED"/>
+		</choice>
+	</deadCrew>
+</ship>
 <event name="OG_NEUTRON_RESEARCH_STATION_IRON">
-	<text>You arrive at research station. stuff happens, you fight a new dawn ship, you find out they appear to just be here to finish the job, the real ship was almost invisible, painted almost entire black except for a small golden emblem. who could they be? (The Midnight Sun)</text>
 	<ship load="SHIP_OG_IRON_RESEARCH_STATION_DAMAGED" hostile="false"/>
+	<text>The research station hangs in orbit above the neutron star, close enough that the radiation in unavoidable, you'll want to avoid spending too long here.
+
+As you bring your ship alongside the station and begin docking procedures, its immediately clear something's gone wrong, the hull of the station is scored with damage, half the solar panels are completely missing.</text>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event>
+			<text>The airlock opens into the station, thankfully these part has stayed pressurised despite the damage.
+You're immediately face to face with a figuring in the white coat of a scientist. "You're from the Iron Watch? Close enough, come in quickly."</text>
+			<choice>
+				<text>Continue...</text>
+				<event>
+					<text>You're ushered towards a nearby meeting room, a large screen is cycling through various images of dangerous looking ship, stealth in design, it must be what attacked the station.
+
+"We were attacked, that ship," they gesture to the one on the screen, "is unlike anything we've seen before. We've heard stories of 'ghost' ships like this but no one had seriously considered them. We barely saw it coming, it came from the direction of the neutron star, shielded from our sensors by the radiation. They were shielded by one of our own Synchrotron Barriers, developed here on this station to shield our ships against the radiation of the neutron star."</text>
+				<choice hidden="true">
+					<text>Alarms activate throughout the station.</text>
+					<event>
+						<text>Alarms blaring across the station, the screen on the wall switches to show a new ship, painted in New Dawn colours. With the station as defenceless as it is, you're have the only thing capable of preventing the New Dawn vessel from finishing the station off. You rush back to your ship and disengage from the station, now clear of the station's protection you'll have to survive both the enemy and the force of the radiation.</text>
+						<ship load="SHIP_OG_DAWN_RESEARCH_FINISHER" hostile="true"/>
+						<choice hidden="true">
+							<text>Continue...</text>
+							<event load="COMBAT_CHECK"/>
+						</choice>
+					</event>
+				</choice>
+				</event>
+			</choice>
+		</event>
+	</choice>
 </event>
+<event name="OG_NEUTRON_RESEARCH_STATION_SAVED">
+	<text>You quickly return to the safety of the station's Synchrotron Barrier. Docking with the station, you head back to the meeting room with the scientist, who is now pacing back and forth across the room.
+
+"That won't be the last of them. The stealth ship, 'ghost' ship as some have been calling it, it wasn't just here to destroy us. No, it was here to steal our stock of Synchrotron Barriers, but worse, they've stolen the schematics, previously they've only been able to get their hands on the devices by stealing them off of our own ships, but now they could begin manufacturing the devices themselves."</text>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event>
+			<text>"The good news however is that we began placing tracking devices in the barriers, we should be able to track the ones stolen by the 'ghost' ship itself, and if we're quick enough we may be able to prevent the schematics from escaping the sector."
+
+"I'm humbly requesting your help here, we need to recover the schematics. I hope it's not too much to ask, but I'd like to come with you, I assure you I'll be no hindrance onboard the ship."</text>
+			<choice hidden="true">
+				<text>Accept them onboard.</text>
+				<event>
+					<text>"I realise I forgot to introduce myself. Dr. Silas at your service."
+"There's one more thing, this station is done, it's in no condition to be repaired this close to the neutron star. If you can get everyone onboard to safety we can transfer the only Synchrotron Barrier remaining to your ship, the one currently hooked up to the station."
+					
+You're able to load the remaining station staff onto your ship, before Dr. Silas has the Synchrotron Barrier carefully moved onto your ship, and integrated into your engines system.</text>
+					<crewMember amount="1" repair="2" class="unique_og_silas">Dr. Silas</crewMember>
+					<aug name="OG_NEUTRON_SHIELD"/>
+					<quest event="OG_NEUTRON_GHOST_IRON_QUEST"/>
+					<choice>
+						<text>Continue...</text>
+						<event>
+							<text>You're able to deliver the station's staff to a nearby outpost, as you leave, you watch the station disintegrate under the full force of the radiation.</text>
+						</event>
+					</choice>
+				</event>
+			</choice>
+			<choice hidden="true">
+				<text>Refuse the offer.</text>
+				<event>
+					<text>"I will stay with the rest of the station's staff then, good luck with the rest of the mission then, Captain."
+"There's one more thing, this station is done, it's in no condition to be repaired this close to the neutron star. If you can get everyone onboard to safety we can transfer the only Synchrotron Barrier remaining to your ship, the one currently hooked up to the station."
+					
+You're able to load the remaining station staff onto your ship, before the scientist has the Synchrotron Barrier carefully moved onto your ship, and integrated into your engines system.</text>
+					<aug name="OG_NEUTRON_SHIELD"/>
+					<quest event="OG_NEUTRON_GHOST_IRON_QUEST"/>
+					<choice>
+						<text>Continue...</text>
+						<event>
+							<text>You're able to deliver the station's staff to a nearby outpost, as you leave, you watch the station disintegrate under the full force of the radiation.</text>
+						</event>
+					</choice>
+				</event>
+			</choice>
+		</event>
+	</choice>		
+</event>
+
+<ship name="SHIP_OG_MIDNIGHT_HUNTER_FIGHT" auto_blueprint="OG_MIDNIGHT_HUNTER">
+	<surrender min="15" max="15" load="SHIP_OG_MIDNIGHT_HUNTER_MIDFIGHT_RESET" />
+	<destroyed load="SHIP_OG_MIDNIGHT_HUNTER_DESTROYED" />
+	<deadCrew load="SHIP_OG_MIDNIGHT_HUNTER_DEADCREW" />
+</ship>
+<event name="OG_NEUTRON_GHOST_IRON_QUEST">
+	<preventFleet/>
+	<preventQuest/>
+	<beaconType id="map_icon_og_ghost" global="true">
+		<color r="255" g="156" b="113" a="1"/>
+		<unvisitedTooltip>The Location of the 'Ghost' ship with the stolen Synchrotron Barriers.</unvisitedTooltip>
+	</beaconType>
+	<environment type="pulsar"/>
+	<ship load="SHIP_OG_MIDNIGHT_HUNTER_FIGHT" hostile="true"/>
+	<text>You arrive face to face with 'Ghost' ship, it's even more dangerous looking in person. Sleek and armed to the teeth, this is sure to be a tough fight. You're given no chance to avoid the fight as you're immediately within range of their weapons.</text>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="COMBAT_CHECK"/>
+	</choice>
+</event>
+<event name="OG_NEUTRON_GHOST_DAWN_QUEST">
+	<preventFleet/>
+	<preventQuest/>
+	<beaconType id="map_icon_og_ghost" global="true">
+		<color r="255" g="156" b="113" a="1"/>
+		<unvisitedTooltip>The Location of the 'Ghost' ship with the stolen Synchrotron Barriers.</unvisitedTooltip>
+	</beaconType>
+	<environment type="pulsar"/>
+	<ship load="SHIP_OG_MIDNIGHT_HUNTER_FIGHT" hostile="true"/>
+	<text>You arrive face to face with 'Ghost' ship, it's even more dangerous looking in person. Sleek and armed to the teeth, this is sure to be a tough fight. You're given no chance to avoid the fight as you're immediately within range of their weapons.</text>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="COMBAT_CHECK"/>
+	</choice>
+</event>
+
+
+<event name="SHIP_OG_MIDNIGHT_HUNTER_MIDFIGHT_RESET">
+	<text>The enemy vessel engages it's emergency thrusters and flies directly into the pulsar, as you turn to chase the pulsar launches a mass of magnetised plasma and solar particles into your path, preventing you from following.
+
+Your computers calculate that based on the trajectory they were on, you have about 30 seconds before the ship will come back around to your side again.</text>
+	<ship hostile="false"/>
+	<variable name="og_neutron_hunter_deadcrew" op="set" val="1"/>
+	<recallBoarders force="true" ship="both"/>
+	<triggeredEvent event="SHIP_OG_MIDNIGHT_HUNTER_RESUME" time="30" thisFight="false" clearOnJump="true">
+		<triggeredEventBox load="DEFAULT_TIMER" pos="combat">
+			<warning time="10.0" flash="true"/>
+			<tooltip>The 'Ghost' ship will come around the pulsar and back into combat range in this time!</tooltip>
+		</triggeredEventBox>
+		<timerSounds load="DEFAULT_TIMER_SOUNDS"/>
+	</triggeredEvent>
+	<choice hidden="true">
+		<text>Do something onboard the ship.</text>
+		<event load="STORAGE_CHECK"/>
+	</choice>
+	<choice hidden="true">
+		<text>Do nothing.</text>
+		<event/>
+	</choice>
+</event>
+<event name="SHIP_OG_MIDNIGHT_HUNTER_DEADCREW">
+	<loadEventList seeded="false" first="true" generate="false" default="SHIP_OG_MIDNIGHT_HUNTER_DEADCREW_RESET">
+		<event req="og_neutron_hunter_deadcrew" lvl="1">
+			<text> </text>
+			<autoReward level="MED">standard_no_item</autoReward>
+			<choice>
+				<text>Continue...</text>
+				<event load="REPUTATION_UPDATE_OG_DAWN"/>
+			</choice>
+		</event>
+	</loadEventList>
+</event>
+<event name="SHIP_OG_MIDNIGHT_HUNTER_DEADCREW_RESET">
+	<text>Just as you thought you were done, a serious of panels in the enemy vessel's cockpit pop open, ungracefully dumping a number of cloned soldiers onto the deck.</text>
+	<boarders min="6" max="6" class="human_og_dawn"/>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="SHIP_OG_MIDNIGHT_HUNTER_MIDFIGHT_RESET"/>
+	</choice>
+</event>
+
+<event name="SHIP_OG_MIDNIGHT_HUNTER_RESUME">
+	<ship hostile="true"/>
+	<text>The battle resumes, however something is different this time, it appears they had some kind of super weapon hidden in the bowls of their ship, and its finally online!</text>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="COMBAT_CHECK"/>
+	</choice>
+</event>
+
+<event name="SHIP_OG_MIDNIGHT_HUNTER_DESTROYED">
+	<text> </text>
+	<autoReward level="MED">standard_no_item</autoReward>
+	<choice>
+		<text>Continue...</text>
+		<event load="REPUTATION_UPDATE_OG_DAWN"/>
+	</choice>
+</event>
+
+<ship name="SHIP_OG_IRON_RESEARCH_STATION" auto_blueprint="OG_IRON_STATION">
+	<surrender  chance="0.4" min="2" max="3" load="SURRENDER_OG_IRON"/>
+	<destroyed load="DESTROYED_OG_IRON"/>
+	<deadCrew load="DEAD_CREW_OG_IRON"/>
+</ship>
 <event name="OG_NEUTRON_RESEARCH_STATION_DAWN">
 	<text>You arrive at research station.</text>
 	<ship load="SHIP_OG_IRON_RESEARCH_STATION" hostile="false"/>
 </event>
 
 <!--SHIP STUFF-->
-<event name="DESTROYED_OG_IRON">
-	<text load="TEXT_DESTROYED_OG_IRON"/>
+<event name="DESTROYED_OG_MIDNIGHT">
+	<text load="TEXT_DESTROYED_OG_MIDNIGHT"/>
 	<autoReward level="MED">standard</autoReward>
 </event>
-<textList name="TEXT_DESTROYED_OG_IRON">
-	<text>The Iron Watch captain lets out one final expletive as the ship is obliterated.</text>
-	<text>The hull of the Iron Watch vessel is dispersed out into space. You swoop in to salvage the remains.</text>
-	<text>The Iron Watch ship explodes, extinguishing all lives within. Your crew avoids their remains as they salvage the ship pieces.</text>
+<textList name="TEXT_DESTROYED_OG_MIDNIGHT">
+	<text>The MIDNIGHT Watch captain lets out one final expletive as the ship is obliterated.</text>
+	<text>The hull of the MIDNIGHT Watch vessel is dispersed out into space. You swoop in to salvage the remains.</text>
+	<text>The MIDNIGHT Watch ship explodes, extinguishing all lives within. Your crew avoids their remains as they salvage the ship pieces.</text>
 	<text>One of the turrets is launched off into empty space as the ship explodes, throwing valuable debris in every direction.</text>
 </textList>
 
-<event name="DEAD_CREW_OG_IRON">
-	<text load="TEXT_DEAD_CREW_OG_IRON"/>
+<event name="DEAD_CREW_OG_MIDNIGHT">
+	<text load="TEXT_DEAD_CREW_OG_MIDNIGHT"/>
 	<autoReward level="HIGH">standard</autoReward>
 </event>
-<textList name="TEXT_DEAD_CREW_OG_IRON">
+<textList name="TEXT_DEAD_CREW_OG_MIDNIGHT">
 	<text>"Your bloodlust... will be your downfall someday, Renegade. You are only proof... the Federation... is no better than the Rebellion..."</text>
-	<text>Without a word, the Iron Watch captain falls to the ground, gasping for air as the life is extinguished from their eyes. You salvage the hull of their ship.</text>
-	<text>"You will regret this! Karma always comes back to people like you. Damn you Renegades... the Iron Watch would have been better off with the Rebellion..."</text>
+	<text>Without a word, the MIDNIGHT Watch captain falls to the ground, gasping for air as the life is extinguished from their eyes. You salvage the hull of their ship.</text>
+	<text>"You will regret this! Karma always comes back to people like you. Damn you Renegades... the MIDNIGHT Watch would have been better off with the Rebellion..."</text>
 </textList>
 
-<event name="SURRENDER_OG_IRON">
-	<text load="TEXT_SURRENDER_OG_IRON"/>
+<event name="SURRENDER_OG_MIDNIGHT">
+	<text load="TEXT_SURRENDER_OG_MIDNIGHT"/>
 	<choice>
 		<text>Accept their surrender.</text>
 		<event load="SURRENDER_ACCEPT"/>
@@ -359,7 +553,7 @@ When I originally requested your assistance, the intention was to have you fight
 		<event/>
 	</choice>
 </event>
-<textList name="TEXT_SURRENDER_OG_IRON">
+<textList name="TEXT_SURRENDER_OG_MIDNIGHT">
 	<text>"Alright, you win! Here's some equipment from our stores. Leave us alone!"</text>
 	<text>The ship repeatedly hails you. It looks like they want to surrender.</text>
 	<text>"You are considerably more well-armed than I would have thought. We surrender."</text>
@@ -373,51 +567,51 @@ When I originally requested your assistance, the intention was to have you fight
 	<text>"Take everything we have and let's both forget this happened."</text>
 </textList>
 
-<event name="ESCAPE_OG_IRON">
-	<text>Scans show that the Iron Watch ship is trying to escape. Destroy it before it can get away!</text>
+<event name="ESCAPE_OG_MIDNIGHT">
+	<text>Scans show that the MIDNIGHT Watch ship is trying to escape. Destroy it before it can get away!</text>
 </event>
 
-<eventList name="GOTAWAY_OG_IRON">
-	<event load="GOTAWAY_OG_IRON_GENERIC"/>
-	<event load="GOTAWAY_OG_IRON_GENERIC"/>
+<eventList name="GOTAWAY_OG_MIDNIGHT">
+	<event load="GOTAWAY_OG_MIDNIGHT_GENERIC"/>
+	<event load="GOTAWAY_OG_MIDNIGHT_GENERIC"/>
 	
-	<event load="GOTAWAY_OG_IRON_REMAINS"/>
+	<event load="GOTAWAY_OG_MIDNIGHT_REMAINS"/>
 </eventList>
-<event name="GOTAWAY_OG_IRON_GENERIC">
-	<text load="TEXT_GOTAWAY_OG_IRON"/>
+<event name="GOTAWAY_OG_MIDNIGHT_GENERIC">
+	<text load="TEXT_GOTAWAY_OG_MIDNIGHT"/>
 </event>
-<textList name="TEXT_GOTAWAY_OG_IRON">
-	<text>The Iron Watch vessel has slipped from your grasp, abandoning you at the beacon.</text>
-	<text>Your attempts at destroying the Iron Watch vessel have failed, and the ship has escaped.</text>
+<textList name="TEXT_GOTAWAY_OG_MIDNIGHT">
+	<text>The MIDNIGHT Watch vessel has slipped from your grasp, abandoning you at the beacon.</text>
+	<text>Your attempts at destroying the MIDNIGHT Watch vessel have failed, and the ship has escaped.</text>
 </textList>
-<event name="GOTAWAY_OG_IRON_REMAINS">
-	<text>The Iron Watch vessel may have escaped, but not everything has gone wrong. A trail of scrap from the wreckage has been left behind, which you collect.</text>
+<event name="GOTAWAY_OG_MIDNIGHT_REMAINS">
+	<text>The MIDNIGHT Watch vessel may have escaped, but not everything has gone wrong. A trail of scrap from the wreckage has been left behind, which you collect.</text>
 	<autoReward level="LOW">scrap_only</autoReward>
 </event>
 
-<ship name="SHIP_OG_IRON_ALL" auto_blueprint="LIST_SHIPS_OG_IRON_ALL">
-	<surrender  chance="0.4" min="2" max="3" load="SURRENDER_OG_IRON"/>
-	<escape  chance="0.3" min="3" max="4" load="ESCAPE_OG_IRON"/>
-	<gotaway load="GOTAWAY_OG_IRON"/>
-	<destroyed load="DESTROYED_OG_IRON"/>
-	<deadCrew load="DEAD_CREW_OG_IRON"/>
+<ship name="SHIP_OG_MIDNIGHT_ALL" auto_blueprint="LIST_SHIPS_OG_MIDNIGHT_ALL">
+	<surrender  chance="0.4" min="2" max="3" load="SURRENDER_OG_MIDNIGHT"/>
+	<escape  chance="0.3" min="3" max="4" load="ESCAPE_OG_MIDNIGHT"/>
+	<gotaway load="GOTAWAY_OG_MIDNIGHT"/>
+	<destroyed load="DESTROYED_OG_MIDNIGHT"/>
+	<deadCrew load="DEAD_CREW_OG_MIDNIGHT"/>
 </ship>
-<ship name="SHIP_OG_IRON_GENERIC" auto_blueprint="LIST_SHIPS_OG_IRON_GENERIC">
-	<surrender  chance="0.4" min="2" max="3" load="SURRENDER_OG_IRON"/>
-	<escape  chance="0.3" min="3" max="4" load="ESCAPE_OG_IRON"/>
-	<gotaway load="GOTAWAY_OG_IRON"/>
-	<destroyed load="DESTROYED_OG_IRON"/>
-	<deadCrew load="DEAD_CREW_OG_IRON"/>
+<ship name="SHIP_OG_MIDNIGHT_GENERIC" auto_blueprint="LIST_SHIPS_OG_MIDNIGHT_GENERIC">
+	<surrender  chance="0.4" min="2" max="3" load="SURRENDER_OG_MIDNIGHT"/>
+	<escape  chance="0.3" min="3" max="4" load="ESCAPE_OG_MIDNIGHT"/>
+	<gotaway load="GOTAWAY_OG_MIDNIGHT"/>
+	<destroyed load="DESTROYED_OG_MIDNIGHT"/>
+	<deadCrew load="DEAD_CREW_OG_MIDNIGHT"/>
 </ship>
-<ship name="SHIP_OG_IRON_FIGHT" auto_blueprint="LIST_SHIPS_OG_IRON_FIGHT">
-	<escape  chance="0.3" min="3" max="4" load="ESCAPE_OG_IRON"/>
-	<gotaway load="GOTAWAY_OG_IRON"/>
-	<destroyed load="DESTROYED_OG_IRON"/>
-	<deadCrew load="DEAD_CREW_OG_IRON"/>
+<ship name="SHIP_OG_MIDNIGHT_FIGHT" auto_blueprint="LIST_SHIPS_OG_MIDNIGHT_FIGHT">
+	<escape  chance="0.3" min="3" max="4" load="ESCAPE_OG_MIDNIGHT"/>
+	<gotaway load="GOTAWAY_OG_MIDNIGHT"/>
+	<destroyed load="DESTROYED_OG_MIDNIGHT"/>
+	<deadCrew load="DEAD_CREW_OG_MIDNIGHT"/>
 </ship>
 
 <!--STORELIST-->
-<eventList name="STORELIST_OG_IRON">
+<eventList name="STORELIST_OG_NEUTRON">
 	<event load="STOREEVENT_ALIENS"/>
 	<event load="STOREEVENT_DAMAGED"/>
 	<event load="STOREEVENT_OG_IRON_TURRETS_STATION"/>
@@ -453,7 +647,7 @@ When I originally requested your assistance, the intention was to have you fight
 	<beaconType id="map_icon_store_generic" global="false">
 		<color r="215" g="255" b="200" a="1"/>
 	</beaconType>
-	<text>A large market surrounds this refueling station.</text>
+	<text>A large market surrounds this refuelling station.</text>
 	<ship load="SHIP_OG_IRON_TURRET_STATION_STORE" hostile="false"/>
 	<choice hidden="false">
 		<text>Purchase a discounted turret.</text>
@@ -531,7 +725,7 @@ When I originally requested your assistance, the intention was to have you fight
 	<ship load="SHIP_OG_IRON_GENERIC" hostile="false"/>
 	<text>You arrive at the beacon to discover an Iron Watch ship. The captain is seemingly quite distressed as you can hear yelling over the public channels.
 	"What do you mean it's not a turret?" You can hear the faint noise of one of their crew trying to explain something the captain clearly doesn't understand.
-	"So we were SCAMMED? That kniving merchant, ohhh if I see him again he's dead!"</text>
+	"So we were SCAMMED? That conniving merchant, ohhh if I see him again he's dead!"</text>
 	<choice hidden="true">
 		<text>Continue Listening.</text>
 		<event>
@@ -885,7 +1079,7 @@ When I originally requested your assistance, the intention was to have you fight
 	<choice hidden="true">
 		<text>Politely decline.</text>
 		<event>
-			<text>The Iron Watch ship eventually disapears from view as it searches the asteroid field.</text>
+			<text>The Iron Watch ship eventually disappears from view as it searches the asteroid field.</text>
 			<choice>
 				<text>Do something onboard the ship.</text>
 				<event load="STORAGE_CHECK"/>
@@ -905,7 +1099,7 @@ When I originally requested your assistance, the intention was to have you fight
 		<choice hidden="true">
 			<text>Attack the ship to claim the wreck for yourself.</text>
 			<event>
-				<text>As you power on your weapons the Iron Watch vessel seems to notice what your doing, their captain sputters out a few explitives but turns on her own weapons in response.</text>
+				<text>As you power on your weapons the Iron Watch vessel seems to notice what your doing, their captain sputters out a few expletives but turns on her own weapons in response.</text>
 				<ship hostile="true"/>
 				<choice hidden="true">
 					<text>Continue...</text>
@@ -934,7 +1128,7 @@ When I originally requested your assistance, the intention was to have you fight
 		<choice hidden="true">
 			<text>Attack the ship to claim the wreck for yourself.</text>
 			<event>
-				<text>As you power on your weapons the Iron Watch vessel seems to notice what your doing, their captain sputters out a few explitives but turns on her own weapons in response.</text>
+				<text>As you power on your weapons the Iron Watch vessel seems to notice what your doing, their captain sputters out a few expletives but turns on her own weapons in response.</text>
 				<ship hostile="true"/>
 				<choice hidden="true">
 					<text>Continue...</text>
@@ -1036,7 +1230,7 @@ When I originally requested your assistance, the intention was to have you fight
 	<enemyDamage amount="0" system="og_turret_mini_2" effect="fire"/>
 	<text>The Iron Watch has partially recovered from the fight earlier, they thank you for rescuing them.</text>
 	<choice hidden="true">
-		<text>Capitalize on the damage and attack them.</text>
+		<text>Capitalise on the damage and attack them.</text>
 		<event>
 			<text>The crew of the Iron Watch look in horror as you power up your weapons and prepare to attack them.</text>
 			<ship hostile="true"/>
@@ -1109,7 +1303,7 @@ When I originally requested your assistance, the intention was to have you fight
 		</event>
 	</choice>
 	<choice>
-		<text>Apologize and say you can't help.</text>
+		<text>Apologise and say you can't help.</text>
 		<event>
 			<text>The Captain of the ship sighs. "Send someone our way if you can."</text>
 			<choice>
@@ -1306,7 +1500,7 @@ They don't immediately respond and they keep their jump drive ready.</text>
 			<choice hidden="true">
 				<text>Continue...</text>
 				<event>
-					<text>Eventually they respond, "Renegade, if you want to know anything you're going to have to prove yourself to us. Theres a nearby Iron Watch supply depot, go there and take it out, then we'll talk." With that they jump away.</text>
+					<text>Eventually they respond, "Renegade, if you want to know anything you're going to have to prove yourself to us. There's a nearby Iron Watch supply depot, go there and take it out, then we'll talk." With that they jump away.</text>
 					<quest event="OG_IRON_DAWN_HIDEOUT_QUEST"/>
 					<instantEscape/>
 				</event>
@@ -1488,7 +1682,7 @@ They don't immediately respond and they keep their jump drive ready.</text>
 </textList>
 <event name="ENCOUNTER_OG_IRON_PULSAR">
 	<img back="BG_DARK"/>
-	<text>This beacon has been placed too close to a neutron star! The radiation field will temporarily ionize your systems. Iron Watch ships have apparently been designed to remain quite effective in the presence of pulsars, you're in for a bad time.</text>
+	<text>This beacon has been placed too close to a neutron star! The radiation field will temporarily ionise your systems. Iron Watch ships have apparently been designed to remain quite effective in the presence of pulsars, you're in for a bad time.</text>
 	<ship load="SHIP_OG_IRON_FIGHT" hostile="true"/>
 	<environment type="pulsar"/>
 	<choice hidden="true">
@@ -1498,7 +1692,7 @@ They don't immediately respond and they keep their jump drive ready.</text>
 </event>
 <event name="ENCOUNTER_OG_PIRATE_PULSAR">
 	<img back="BG_DARK"/>
-	<text>This beacon has been placed too close to a neutron star! The radiation field will temporarily ionize your systems. A pirate, apparently oblivious to the danger of the pulsar, moves in to engage.</text>
+	<text>This beacon has been placed too close to a neutron star! The radiation field will temporarily ionise your systems. A pirate, apparently oblivious to the danger of the pulsar, moves in to engage.</text>
 	<ship load="SHIP_PIRATE_ALL" hostile="true"/>
 	<environment type="pulsar"/>
 	<choice hidden="true">
@@ -1600,14 +1794,14 @@ They don't immediately respond and they keep their jump drive ready.</text>
 			<item_modify>
 				<item type="scrap" min="-10" max="-10" />
 			</item_modify>
-			<text>The outpost recieves your scrap, "While your donation is very kind, we still can't tell you anything about that ship."</text>
+			<text>The outpost receives your scrap, "While your donation is very kind, we still can't tell you anything about that ship."</text>
 			<choice hidden="false">
 				<text>Offer a larger bribe.</text>
 				<event>
 					<item_modify>
 						<item type="scrap" min="-30" max="-30" />
 					</item_modify>
-					<text>The outpost recieves your scrap, "Now that's something, we can't tell you, but recently our communications have actually been malfunctioning and sending secure information on public channels, it really needs to be looked into..." A moment later your crew pickups the location of a ship being broadcast on one of the public channels.</text>
+					<text>The outpost receives your scrap, "Now that's something, we can't tell you, but recently our communications have actually been malfunctioning and sending secure information on public channels, it really needs to be looked into..." A moment later your crew pickups the location of a ship being broadcast on one of the public channels.</text>
 					<quest event="OG_IRON_PROTOTYPE_DESTINATION"/>
 				</event>
 			</choice>
@@ -1647,7 +1841,7 @@ They don't immediately respond and they keep their jump drive ready.</text>
 			<item_modify>
 				<item type="scrap" min="-40" max="-40" />
 			</item_modify>
-			<text>The outpost recieves your scrap, "Now that's something, we can't tell you, but recently our communications have actually been malfunctioning and sending secure information on public channels, it really needs to be looked into..." A moment later your crew pickups the location of a ship being broadcast on one of the public channels.</text>
+			<text>The outpost receives your scrap, "Now that's something, we can't tell you, but recently our communications have actually been malfunctioning and sending secure information on public channels, it really needs to be looked into..." A moment later your crew pickups the location of a ship being broadcast on one of the public channels.</text>
 			<quest event="OG_IRON_PROTOTYPE_DESTINATION"/>
 		</event>
 	</choice>
@@ -1826,7 +2020,7 @@ If that's not bad enough a new ship reveals itself from behind a nearby asteroid
 <event name="OG_IRON_PROTOTYPE_DAWN_WIN">
 	<loadEventList seeded="false" first="true" generate="false" default="OG_IRON_PROTOTYPE_DAWN_WIN_INITIATE">
 		<event req="OG_DAWN_INITIATE" lvl="1">
-			<text>The New Dawn ship is still wary of you even after the fight. You watch as they move up to the wreck and carefully extract a single component, you're not what it is, but with that done they back away from the wreck, uninterested in the rest of it. You recieve a simple thank you before they leave.</text>
+			<text>The New Dawn ship is still wary of you even after the fight. You watch as they move up to the wreck and carefully extract a single component, you're not what it is, but with that done they back away from the wreck, uninterested in the rest of it. You receive a simple thank you before they leave.</text>
 			<autoReward level="MED">standard_no_item</autoReward>
 			<choice>
 				<text>Continue...</text>

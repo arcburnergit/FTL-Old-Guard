@@ -93,6 +93,8 @@
 		<blueprint name="phantom_mare" rarity="5"/>
 		<blueprint name="phantom_wraith" rarity="3"/>
 		<blueprint name="phantom_wraith_alpha" rarity="5"/>
+		<blueprint name="LASER_OG_TRIPLET_1" rarity="3"/>
+		<blueprint name="LASER_OG_TRIPLET_2" rarity="4"/>
 	</rarityList>
 	<startEvent>ENTER_OG_IRON</startEvent>
 	<removeFirstBeaconNebula/>
@@ -172,6 +174,8 @@
 		<blueprint name="phantom_mare" rarity="5"/>
 		<blueprint name="phantom_wraith" rarity="3"/>
 		<blueprint name="phantom_wraith_alpha" rarity="5"/>
+		<blueprint name="LASER_OG_TRIPLET_1" rarity="3"/>
+		<blueprint name="LASER_OG_TRIPLET_2" rarity="4"/>
 	</rarityList>
 	<startEvent>ENTER_SALE_OG_IRON</startEvent>
 	<removeFirstBeaconNebula/>
@@ -242,6 +246,8 @@
 		<blueprint name="phantom_mare" rarity="0"/>
 		<blueprint name="phantom_wraith" rarity="0"/>
 		<blueprint name="OG_TURRET_PREIGNITE_WEAK" rarity="3"/>
+		<blueprint name="LASER_OG_TRIPLET_1" rarity="2"/>
+		<blueprint name="LASER_OG_TRIPLET_2" rarity="3"/>
 	</rarityList>
 	<startEvent>ENTER_OG_DAWN_UNIQUE</startEvent>
 	<removeFirstBeaconNebula/>
@@ -251,7 +257,7 @@
 	<event name="MV_TRAVELER" min="1" max="2"/>
 	<priorityEvent name="NEMESIS_ENCOUNTER" min="0" max="1" req="prof_finalsector" lvl="1"/>
 	
-	<!--event name="NEBULA_ANURAK" min="1" max="1"/> <!--REROUTE EVENT FOR IRON UNIQUE COMING SOON USES INITATE HIDDEN AUG-->
+	<event name="STOREEVENT_OG_DAWN_REROUTE_NEUTRON" min="1" max="1"/> <!--REROUTE EVENT FOR IRON UNIQUE COMING SOON USES INITATE HIDDEN AUG-->
 	<event name="OG_DAWN_HEIST_START" min="1" max="1"/> <!--SHIP UNLOCK QUEST-->
 	
 	<event name="TRANSPORT_OG_DAWN_LOOT" min="1" max="1"/>
@@ -314,6 +320,8 @@
 		<blueprint name="phantom_mare" rarity="5"/>
 		<blueprint name="phantom_wraith" rarity="3"/>
 		<blueprint name="phantom_wraith_alpha" rarity="5"/>
+		<blueprint name="LASER_OG_TRIPLET_1" rarity="3"/>
+		<blueprint name="LASER_OG_TRIPLET_2" rarity="4"/>
 	</rarityList>
 	<startEvent>START_OG_NEUTRON</startEvent>
 	<removeFirstBeaconNebula/>
@@ -490,8 +498,16 @@
 <mod:findName type="sectorDescription" name="SECRET_ORIGINS_RUWEN">
 </mod:findName>
 <mod:findName type="sectorDescription" name="SECRET_ANCIENT">
+	<mod:findLike type="rarityList">
+		<mod-append:blueprint name="LASER_OG_TRIPLET_1" rarity="0"/>
+		<mod-append:blueprint name="LASER_OG_TRIPLET_2" rarity="0"/>
+	</mod:findLike>
 </mod:findName>
 <mod:findName type="sectorDescription" name="SECRET_ROYAL">
+	<mod:findLike type="rarityList">
+		<mod-append:blueprint name="LASER_OG_TRIPLET_1" rarity="0"/>
+		<mod-append:blueprint name="LASER_OG_TRIPLET_2" rarity="0"/>
+	</mod:findLike>
 </mod:findName>
 <mod:findName type="sectorDescription" name="SECRET_SYLVAN">
 </mod:findName>

@@ -285,6 +285,30 @@
 	<desc length="6" x="0" y="0" />
 	<time>1</time>
 </anim>
+<animSheet name="og_turret_laser_triplet_icon" w="95" h="52" fw="95" fh="52">og_turrets/turret_laser_triplet_icon.png</animSheet>
+<anim name="og_turret_laser_triplet_icon">
+	<sheet>og_turret_laser_triplet_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_laser_triplet" w="854" h="122" fw="122" fh="122">og_turrets/turret_laser_triplet.png</animSheet>
+<anim name="og_turret_laser_triplet">
+	<sheet>og_turret_laser_triplet</sheet>
+	<desc length="7" x="0" y="0" />
+	<time>0.45</time>
+</anim>
+<animSheet name="og_turret_laser_triplet_glow" w="732" h="122" fw="122" fh="122">og_turrets/turret_laser_triplet_glow.png</animSheet>
+<anim name="og_turret_laser_triplet_glow">
+	<sheet>og_turret_laser_triplet_glow</sheet>
+	<desc length="6" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_laser_triplet_chain" w="244" h="122" fw="122" fh="122">og_turrets/turret_laser_triplet_chain.png</animSheet>
+<anim name="og_turret_laser_triplet_chain">
+	<sheet>og_turret_laser_triplet_chain</sheet>
+	<desc length="2" x="0" y="0" />
+	<time>1</time>
+</anim>
 
 <animSheet name="og_turret_laser_gatling_icon" w="115" h="66" fw="115" fh="66">og_turrets/turret_laser_gatling_icon.png</animSheet>
 <anim name="og_turret_laser_gatling_icon">
@@ -1062,6 +1086,43 @@
 </anim>
 </FTL>
 
+<!--Weapons-->
+<FTL>
+<animSheet name="laser_og_triplet_1_chain" w="56" h="85" fw="28" fh="85">weapon_laser/laser_og_triplet_1_chain.png</animSheet>
+<anim name="laser_og_triplet_1_chain">
+	<sheet>laser_og_triplet_1_chain</sheet>
+	<desc length="2" x="0" y="0"/>
+	<time>1.0</time>
+</anim>
+<animSheet name="laser_og_triplet_1" w="336" h="85" fw="28" fh="85">weapon_laser/laser_og_triplet_1.png</animSheet>
+<weaponAnim name="laser_og_triplet_1">
+	<sheet>laser_og_triplet_1</sheet>
+	<desc length="12" x="0" y="0"/>
+	<chargedFrame>5</chargedFrame>
+	<fireFrame>8</fireFrame>
+	<firePoint  x="16" y="12"/>
+	<mountPoint x="5" y="56"/>
+	<boost>laser_og_triplet_1_chain</boost>
+</weaponAnim>
+
+<animSheet name="laser_og_triplet_2_chain" w="68" h="92" fw="34" fh="92">weapon_laser/laser_og_triplet_2_chain.png</animSheet>
+<anim name="laser_og_triplet_2_chain">
+	<sheet>laser_og_triplet_2_chain</sheet>
+	<desc length="2" x="0" y="0"/>
+	<time>1.0</time>
+</anim>
+<animSheet name="laser_og_triplet_2" w="442" h="92" fw="34" fh="92">weapon_laser/laser_og_triplet_2.png</animSheet>
+<weaponAnim name="laser_og_triplet_2">
+	<sheet>laser_og_triplet_2</sheet>
+	<desc length="13" x="0" y="0"/>
+	<chargedFrame>6</chargedFrame>
+	<fireFrame>9</fireFrame>
+	<firePoint  x="20" y="12"/>
+	<mountPoint x="6" y="61"/>
+	<boost>laser_og_triplet_2_chain</boost>
+</weaponAnim>
+</FTL>
+
 <!--Crew-->
 <FTL>
 <animSheet name="og_neutron_beam_crew" w="352" h="32" fw="32" fh="32">people/og_neutron_beam_strip11.png</animSheet>
@@ -1562,6 +1623,129 @@
 </anim>
 <anim name="human_og_midnight_portrait">
 	<sheet>human_og_midnight</sheet>
+	<desc length="1" x="0" y="0"/>
+	<time>1</time>
+</anim>
+
+
+<animSheet name="unique_og_silas" w="385" h="595" fw="35" fh="35">people/unique_og_silas_base.png</animSheet>
+<anim name="unique_og_silas_clone">
+	<sheet>unique_og_silas</sheet>
+	<desc length="6" x="0" y="2"/>
+	<time>0.75</time>
+</anim>
+<anim name="unique_og_silas_death_right">
+	<sheet>unique_og_silas</sheet>
+	<desc length="5" x="3" y="0"/>
+	<time>0.75</time>
+</anim>
+<anim name="unique_og_silas_death_left">
+	<sheet>unique_og_silas</sheet>
+	<desc length="5" x="0" y="2"/>
+	<time>0.75</time>
+</anim>
+<anim name="unique_og_silas_walk_down">
+	<sheet>unique_og_silas</sheet>
+	<desc length="4" x="0" y="16"/>
+	<time>1.0</time>
+</anim>
+<anim name="unique_og_silas_walk_right">
+	<sheet>unique_og_silas</sheet>
+	<desc length="4" x="4" y="16"/>
+	<time>1.0</time>
+</anim>
+<anim name="unique_og_silas_walk_up">
+	<sheet>unique_og_silas</sheet>
+	<desc length="4" x="0" y="15"/>
+	<time>1.0</time>
+</anim>
+<anim name="unique_og_silas_walk_left">
+	<sheet>unique_og_silas</sheet>
+	<desc length="4" x="4" y="15"/>
+	<time>1.0</time>
+</anim>
+<anim name="unique_og_silas_shoot_down">
+	<sheet>unique_og_silas</sheet>
+	<desc length="11" x="0" y="6"/>
+	<time>1.0</time>
+</anim>
+<anim name="unique_og_silas_shoot_right">
+	<sheet>unique_og_silas</sheet>
+	<desc length="11" x="0" y="5"/>
+	<time>1.0</time>
+</anim>
+<anim name="unique_og_silas_shoot_up">
+	<sheet>unique_og_silas</sheet>
+	<desc length="11" x="0" y="7"/>
+	<time>1.0</time>
+</anim>
+<anim name="unique_og_silas_shoot_left">
+	<sheet>unique_og_silas</sheet>
+	<desc length="11" x="0" y="4"/>
+	<time>1.0</time>
+</anim>
+<anim name="unique_og_silas_fire_down">
+	<sheet>unique_og_silas</sheet>
+	<desc length="4" x="0" y="13"/>
+	<time>1.0</time>
+</anim>
+<anim name="unique_og_silas_fire_right">
+	<sheet>unique_og_silas</sheet>
+	<desc length="4" x="4" y="13"/>
+	<time>1.0</time>
+</anim>
+<anim name="unique_og_silas_fire_up">
+	<sheet>unique_og_silas</sheet>
+	<desc length="4" x="0" y="12"/>
+	<time>1.0</time>
+</anim>
+<anim name="unique_og_silas_fire_left">
+	<sheet>unique_og_silas</sheet>
+	<desc length="4" x="4" y="12"/>
+	<time>1.0</time>
+</anim>
+<anim name="unique_og_silas_repair">
+	<sheet>unique_og_silas</sheet>
+	<desc length="9" x="0" y="11"/>
+	<time>1.0</time>
+</anim>
+<anim name="unique_og_silas_punch_up">
+	<sheet>unique_og_silas</sheet>
+	<desc length="6" x="4" y="1"/>
+	<time>1.0</time>
+</anim>
+<anim name="unique_og_silas_punch_down">
+	<sheet>unique_og_silas</sheet>
+	<desc length="6" x="0" y="10"/>
+	<time>1.0</time>
+</anim>
+<anim name="unique_og_silas_teleport">
+	<sheet>unique_og_silas</sheet>
+	<desc length="9" x="0" y="3"/>
+	<time>0.5</time>
+</anim>
+<anim name="unique_og_silas_type_right">
+	<sheet>unique_og_silas</sheet>
+	<desc length="4" x="0" y="9"/>
+	<time>0.75</time>
+</anim>
+<anim name="unique_og_silas_type_left">
+	<sheet>unique_og_silas</sheet>
+	<desc length="4" x="4" y="9"/>
+	<time>0.75</time>
+</anim>
+<anim name="unique_og_silas_type_up">
+	<sheet>unique_og_silas</sheet>
+	<desc length="4" x="0" y="8"/>
+	<time>0.75</time>
+</anim>
+<anim name="unique_og_silas_type_down">
+	<sheet>unique_og_silas</sheet>
+	<desc length="4" x="4" y="8"/>
+	<time>0.75</time>
+</anim>
+<anim name="unique_og_silas_portrait">
+	<sheet>unique_og_silas</sheet>
 	<desc length="1" x="0" y="0"/>
 	<time>1</time>
 </anim>

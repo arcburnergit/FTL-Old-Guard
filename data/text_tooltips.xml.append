@@ -1,6 +1,6 @@
 <FTL>
-<text name="tip_og_turret">Tip: Turrets have to be equiped to the Turret Control system.</text>
-<text name="tip_og_turret_mini">Tip: Turrets have to be equiped to the Turret Control system. Micro turrets can be equiped on both small and large turret slots.</text>
+<text name="tip_og_turret">Tip: Turrets have to be equipped to the Turret Control system.</text>
+<text name="tip_og_turret_mini">Tip: Turrets have to be equipped to the Turret Control system. Micro turrets can be equipped on both small and large turret slots.</text>
 <text name="tip_og_turret_base">Tip: Turret bases can be used in place of a defence drone during turret manufacturing.</text>
 
 <text name="tooltip_og_turret">Turret Control: Click on the turret to set its mode, or target it. Manning reduces charge time.</text>
@@ -25,6 +25,8 @@
 <text name="tooltip_og_turret_adaptive_2_enemy">Turret Control: Powers the enemy turret.</text>
 <text name="tooltip_og_turret_adaptive_single">Turret Control: Click on the turret to set its mode, or target it. Manning reduces charge time.</text>
 <text name="tooltip_og_turret_adaptive_single_enemy">Turret Control: Powers the enemy turret.</text>
+<text name="tooltip_og_equaliser">System Equaliser: Equalise damage across selected ship systems.</text>
+<text name="tooltip_og_equaliser_enemy">Turret Control: Powers the enemy turret.</text>
 
 <text name="hack_og_turret">Temporarily drain charge from the enemy turret.</text>
 <text name="hack_og_turret_2">Temporarily drain charge from the enemy turret.</text>
@@ -37,6 +39,7 @@
 <text name="hack_og_turret_adaptive">Temporarily drain charge from the enemy turret.</text>
 <text name="hack_og_turret_adaptive_2">Temporarily drain charge from the enemy turret.</text>
 <text name="hack_og_turret_adaptive_single">Temporarily drain charge from the enemy turret.</text>
+<text name="hack_og_equaliser">Prevent the system from activating.</text>
 
 <text name="hack_og_turret_player">SYSTEM HACKED: TURRET LOSING CHARGE.</text>
 <text name="hack_og_turret_2_player">SYSTEM HACKED: TURRET LOSING CHARGE.</text>
@@ -49,6 +52,7 @@
 <text name="hack_og_turret_adaptive_player">SYSTEM HACKED: TURRET LOSING CHARGE.</text>
 <text name="hack_og_turret_adaptive_2_player">SYSTEM HACKED: TURRET LOSING CHARGE.</text>
 <text name="hack_og_turret_adaptive_single_player">SYSTEM HACKED: TURRET LOSING CHARGE.</text>
+<text name="hack_og_equaliser_player">SYSTEM HACKED: SYSTEM FROZEN.</text>
 
 <text name="og_lua_turret_stats_time">Stats:\nCharge Time: </text>
 <text name="og_lua_turret_stats_charges">\nMaximum Charges: %d</text>
@@ -105,13 +109,13 @@
 <text name="og_lua_turret_craft_blueprint">Blueprint:</text>
 <text name="og_lua_turret_craft_mystery">???</text>
 <text name="og_lua_turret_craft_requires">%s Requires:</text>
-<text name="og_lua_turret_craft_atleast">\n  Atleast %d:</text>
+<text name="og_lua_turret_craft_atleast">\n  At least %d:</text>
 <text name="og_lua_turret_craft_list">\n    %s</text>
 <text name="og_lua_turret_craft_list_scrap">\n    %s + %d~</text>
 <text name="og_lua_turret_craft_craft">Craft this item.</text>
 <text name="og_lua_turret_craft_unknown">Unknown Turret</text>
 
-<text name="og_lua_turret_manage_nevermind">Nevermind.</text>
+<text name="og_lua_turret_manage_nevermind">Never mind.</text>
 <text name="og_lua_turret_manage_uninstall">Uninstall Turret:</text>
 <text name="og_lua_turret_manage_empty">Manage Empty Turret.</text>
 <text name="og_lua_turret_manage_leave">Leave it empty.</text>

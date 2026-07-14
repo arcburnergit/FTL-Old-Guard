@@ -10,6 +10,7 @@
 	<name>og_turret_mini_3</name>
 	<name>og_turret_mini_4</name>
 	<name>og_turret_adaptive</name>
+	<name>og_equaliser</name>
 </blueprintList>
 <blueprintList name="LIST_CREW_OG_IRON">
 	<name>human_og_raider</name>
@@ -510,6 +511,8 @@
 	<name>OG_TURRET_FOCUS_MINI_DAWN</name>
 </blueprintList>
 <blueprintList name="LIST_WEAPONS_OG_DAWN">
+	<name>LASER_OG_TRIPLET_1</name>
+	<name>LASER_OG_TRIPLET_2</name>
 	<name>LASER_BURST_2</name>
 	<name>LASER_BURST_3</name>
 	<name>LASER_BURST_5</name>
@@ -993,6 +996,12 @@
 <!--Midnight Sun Ships-->
 <FTL>
 <blueprintList name="LIST_WEAPONS_OG_MIDNIGHT">
+	<name>LASER_OG_TRIPLET_1</name>
+	<name>LASER_OG_TRIPLET_1</name>
+	<name>LASER_OG_TRIPLET_1</name>
+	<name>LASER_OG_TRIPLET_2</name>
+	<name>LASER_OG_TRIPLET_2</name>
+	<name>LASER_OG_TRIPLET_2</name>
 	<name>LASER_BURST_2</name>
 	<name>LASER_BURST_3</name>
 	<name>LASER_BURST_5</name>
@@ -1075,6 +1084,7 @@
 		<oxygen power="1" max="1" room="4" start="true" />
 		<pilot power="1" max="2" room="0" start="true" />
 		<teleporter power="3" max="3" room="2" start="true" />
+		<og_equaliser power="2" max="2" room="2" start="true" />
 		<weapons power="2" max="6" room="6" start="true" />
 	</systemList>
 	<weaponSlots>2</weaponSlots>
@@ -1094,13 +1104,14 @@
 	<maxSector>5</maxSector>
 	<systemList>
 		<og_turret_mini power="1" max="3" room="0" start="true" turret="OG_TURRET_ION_MINI_1" />
-		<og_turret_mini_2 power="1" max="3" room="2" start="false" turret="OG_TURRET_LASER_MINI_2" />
-		<og_turret_mini_3 power="1" max="3" room="1" start="false" turret="OG_TURRET_FOCUS_MINI_1" />
+		<og_turret_mini_2 power="1" max="3" room="2" start="true" turret="OG_TURRET_LASER_MINI_2" />
+		<og_turret_mini_3 power="1" max="3" room="1" start="true" turret="OG_TURRET_FOCUS_MINI_1" />
 		<cloaking power="3" max="3" room="3" start="true" />
 		<engines power="2" max="3" room="6" start="true" />
 		<oxygen power="1" max="1" room="7" start="true" />
 		<pilot power="2" max="2" room="4" start="true" />
 		<teleporter power="3" max="3" room="5" start="true" />
+		<og_equaliser power="2" max="2" room="5" start="true" />
 	</systemList>
 	<weaponSlots>0</weaponSlots>
 	<droneSlots>0</droneSlots>
@@ -1119,12 +1130,13 @@
 	<maxSector>6</maxSector>
 	<systemList>
 		<og_turret_mini power="2" max="4" room="2" start="true" turret="OG_TURRET_LASER_MINI_1" />
-		<og_turret_mini_2 power="1" max="4" room="1" start="false" turret="OG_TURRET_LASER_MINI_2" />
+		<og_turret_mini_2 power="1" max="4" room="1" start="true" turret="OG_TURRET_LASER_MINI_2" />
 		<cloaking power="3" max="3" room="6" start="true" />
 		<engines power="2" max="2" room="4" start="true" />
 		<oxygen power="1" max="1" room="3" start="true" />
 		<pilot power="1" max="2" room="0" start="true" />
 		<teleporter power="3" max="3" room="7" start="true" />
+		<og_equaliser power="2" max="2" room="7" start="true" />
 		<weapons power="1" max="7" room="5" start="true" />
 	</systemList>
 	<weaponSlots>3</weaponSlots>
@@ -1152,6 +1164,7 @@
 		<oxygen power="1" max="1" room="6" start="true" />
 		<pilot power="1" max="2" room="2" start="true" />
 		<teleporter power="3" max="3" room="3" start="true" />
+		<og_equaliser power="2" max="2" room="3" start="true" />
 		<weapons power="2" max="6" room="7" start="true" />
 	</systemList>
 	<weaponSlots>2</weaponSlots>
@@ -1171,8 +1184,8 @@
 	<maxSector>8</maxSector>
 	<systemList>
 		<og_turret power="2" max="5" room="10" start="true" turret="LIST_TURRETS_BIG_ATTACK" />
-		<og_turret_mini power="1" max="4" room="3" start="false" turret="OG_TURRET_FOCUS_MINI_1" />
-		<og_turret_mini_2 power="1" max="4" room="2" start="false" turret="OG_TURRET_LASER_MINI_2" />
+		<og_turret_mini power="1" max="4" room="3" start="true" turret="OG_TURRET_FOCUS_MINI_1" />
+		<og_turret_mini_2 power="1" max="4" room="2" start="true" turret="OG_TURRET_LASER_MINI_2" />
 		<cloaking power="3" max="3" room="0" start="true" />
 		<doors power="1" max="2" room="7" start="true" />
 		<engines power="1" max="2" room="4" start="true" />
@@ -1180,6 +1193,7 @@
 		<oxygen power="1" max="1" room="8" start="true" />
 		<pilot power="1" max="2" room="9" start="true" />
 		<teleporter power="3" max="3" room="5" start="true" />
+		<og_equaliser power="2" max="2" room="5" start="true" />
 		<weapons power="2" max="8" room="1" start="true" />
 	</systemList>
 	<weaponSlots>3</weaponSlots>
@@ -1199,16 +1213,17 @@
 	<maxSector>8</maxSector>
 	<systemList>
 		<og_turret power="2" max="5" room="2" start="true" turret="LIST_TURRETS_BIG_ATTACK" />
-		<og_turret_mini power="1" max="4" room="4" start="false" turret="OG_TURRET_LASER_MINI_1" />
-		<og_turret_mini_2 power="1" max="4" room="0" start="false" turret="OG_TURRET_LASER_MINI_2" />
+		<og_turret_mini power="1" max="4" room="4" start="true" turret="OG_TURRET_LASER_MINI_1" />
+		<og_turret_mini_2 power="1" max="4" room="0" start="true" turret="OG_TURRET_LASER_MINI_2" />
 		<cloaking power="3" max="3" room="5" start="true" />
-		<doors power="1" max="2" room="12" start="false" />
+		<doors power="1" max="2" room="12" start="true" />
 		<drones power="2" max="6" room="6" start="false" />
 		<engines power="2" max="2" room="8" start="true" />
 		<medbay power="1" max="1" room="7" start="false" />
 		<oxygen power="1" max="1" room="9" start="true" />
 		<pilot power="1" max="1" room="1" start="true" />
 		<teleporter power="3" max="3" room="10" start="true" />
+		<og_equaliser power="2" max="2" room="10" start="true" />
 		<weapons power="2" max="8" room="3" start="true" />
 	</systemList>
 	<weaponSlots>2</weaponSlots>
@@ -1229,8 +1244,8 @@
 	<systemList>
 		<og_turret_mini power="1" max="4" room="1" start="true" turret="OG_TURRET_LASER_MINI_1" />
 		<og_turret_mini_2 power="1" max="4" room="2" start="true" turret="OG_TURRET_LASER_MINI_1" />
-		<og_turret_mini_3 power="1" max="4" room="3" start="false" turret="OG_TURRET_LASER_MINI_2" />
-		<og_turret_mini_4 power="1" max="4" room="4" start="false" turret="OG_TURRET_LASER_MINI_2" />
+		<og_turret_mini_3 power="1" max="4" room="3" start="true" turret="OG_TURRET_LASER_MINI_2" />
+		<og_turret_mini_4 power="1" max="4" room="4" start="true" turret="OG_TURRET_LASER_MINI_2" />
 		<cloaking power="3" max="3" room="7" start="true" />
 		<doors power="2" max="2" room="14" start="true" />
 		<engines power="2" max="2" room="5" start="true" />
@@ -1238,6 +1253,7 @@
 		<oxygen power="1" max="1" room="12" start="true" />
 		<pilot power="1" max="2" room="0" start="true" />
 		<teleporter power="3" max="3" room="13" start="true" />
+		<og_equaliser power="2" max="2" room="13" start="true" />
 		<weapons power="2" max="7" room="8" start="true" />
 	</systemList>
 	<weaponSlots>3</weaponSlots>
@@ -1256,17 +1272,18 @@
 	<minSector>1</minSector>
 	<maxSector>8</maxSector>
 	<systemList>
-		<og_turret power="2" max="5" room="2" start="false" turret="LIST_TURRETS_BIG_ATTACK" />
+		<og_turret power="2" max="5" room="2" start="true" turret="LIST_TURRETS_BIG_ATTACK" />
 		<og_turret_2 power="1" max="5" room="1" start="true" turret="OG_TURRET_MISSILE_1" />
-		<og_turret_mini power="1" max="4" room="0" start="false" turret="OG_TURRET_ION_MINI_1" />
+		<og_turret_mini power="1" max="4" room="0" start="true" turret="OG_TURRET_ION_MINI_1" />
 		<cloaking power="3" max="3" room="13" start="true" />
-		<doors power="1" max="2" room="16" start="false" />
+		<doors power="1" max="2" room="16" start="true" />
 		<drones power="1" max="6" room="7" start="false" />
 		<engines power="2" max="2" room="9" start="true" />
 		<medbay power="1" max="1" room="5" start="true" />
 		<oxygen power="1" max="1" room="4" start="true" />
 		<pilot power="1" max="2" room="8" start="true" />
 		<teleporter power="3" max="3" room="6" start="true" />
+		<og_equaliser power="2" max="2" room="6" start="true" />
 		<weapons power="1" max="8" room="10" start="true" />
 	</systemList>
 	<weaponSlots>3</weaponSlots>
@@ -1285,9 +1302,9 @@
 	<minSector>1</minSector>
 	<maxSector>8</maxSector>
 	<systemList>
-		<!--artillery power="3" max="3" room="1" start="true" weapon="ARTILLERY_OG_NEUTRON_BEAM_1" /-->
-		<og_turret power="2" max="2" room="7" start="true" turret="OG_TURRET_FOCUS_CHAIN" />
-		<og_turret_2 power="2" max="2" room="6" start="true" turret="OG_TURRET_LASER_FROST" />
+		<artillery power="3" max="3" room="1" start="true" weapon="ARTILLERY_OG_NEUTRON_BEAM_1" />
+		<og_turret power="2" max="4" room="7" start="true" turret="OG_TURRET_FOCUS_CHAIN" />
+		<og_turret_2 power="2" max="4" room="6" start="true" turret="OG_TURRET_LASER_FROST" />
 		<cloaking power="3" max="3" room="14" start="true" />
 		<doors power="2" max="2" room="13" start="true" />
 		<drones power="3" max="6" room="19" start="true" />
@@ -1296,6 +1313,7 @@
 		<oxygen power="2" max="2" room="12" start="true" />
 		<pilot power="3" max="3" room="0" start="true" />
 		<teleporter power="2" max="2" room="21" start="true" />
+		<og_equaliser power="2" max="2" room="20" start="true" />
 	</systemList>
 	<weaponSlots>0</weaponSlots>
 	<droneSlots>4</droneSlots>

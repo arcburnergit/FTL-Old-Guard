@@ -7,6 +7,7 @@
 	<mod-append:script>data/og_scripts/turret_systems_rendering.lua</mod-append:script>
 	<mod-append:script>data/og_scripts/turret_systems_stats.lua</mod-append:script>
 	<mod-append:script>data/og_scripts/turret_menu_temp.lua</mod-append:script>
+	<mod-append:script>data/og_scripts/equaliser_func.lua</mod-append:script>
 	<mod-append:script>data/og_scripts/neutron_beam.lua</mod-append:script>
 	<mod-append:script>data/og_scripts/og_extra_slots.lua</mod-append:script>
 	<mod-append:script>data/og_scripts/ship_ach.lua</mod-append:script>
@@ -24,6 +25,7 @@
 	<mod-append:customSystem id="og_turret_adaptive"/>
 	<mod-append:customSystem id="og_turret_adaptive_2"/>
 	<mod-append:customSystem id="og_turret_adaptive_single"/>
+    <mod-append:customSystem id="og_equaliser" subSystem="true"/>
 
 	<mod-append:exclusivityGroup>
 		<og_turret/>
@@ -56,6 +58,9 @@
 		<mod-append:og_turret_adaptive_2/>
 		<mod-append:og_turret_adaptive_single/>
 	</mod:findWithChildLike>
+	<mod:findWithChildLike type="exclusivityGroup" child-type="battery">
+        <mod-append:og_equaliser/>
+	</mod:findWithChildLike>
 
 	<mod:findLike type="systemPositions" reverse="false">
 		<mod-append:og_turret position="7"/>
@@ -69,6 +74,7 @@
 		<mod-append:og_turret_adaptive position="7"/>
 		<mod-append:og_turret_adaptive_2 position="7"/>
 		<mod-append:og_turret_adaptive_single position="7"/>
+		<mod-append:og_equaliser staticOffset="123"/>
 	</mod:findLike>
 
 	<mod-append:systemPositions subSystemOffset="1015"> 
@@ -101,6 +107,7 @@
 		<sensors staticOffset="36"/>
 		<doors staticOffset="72"/>
 		<battery staticOffset="123"/>
+		<og_equaliser staticOffset="123"/>
 	</mod-append:systemPositions>
 
 	<mod:findLike type="systemPositions" start="1" reverse="false">
@@ -118,12 +125,22 @@
 				<mod-append:og_turret_adaptive_2/>
 				<mod-append:og_turret_adaptive_single/>
 			</mod:findWithChildLike>
+			<mod:findWithChildLike type="exclusivityGroup" child-type="battery">
+				<mod-append:og_equaliser/>
+			</mod:findWithChildLike>
 			<mod-append:exclusivityGroup>
 				<drones/>
 				<og_turret_adaptive_2/>
 				<og_turret_adaptive_single/>
 			</mod-append:exclusivityGroup>
+			<mod-append:exclusivityGroup>
+				<battery/>
+				<og_equaliser/>
+			</mod-append:exclusivityGroup>
 			<mod:findWithChildLike type="exclusivityGroup" child-type="drones" start="1">
+				<mod:removeTag />
+			</mod:findWithChildLike>
+			<mod:findWithChildLike type="exclusivityGroup" child-type="battery" start="1">
 				<mod:removeTag />
 			</mod:findWithChildLike>
 		</mod:findLike>
@@ -1151,6 +1168,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 
 	<variable name="og_iron_neutron_coords_given" op="set" val="0"/>
 	<variable name="og_neutron_dawn_aligned" op="set" val="0"/>
+	<variable name="og_neutron_hunter_deadcrew" op="set" val="0"/>
 
 	<req name="OG_IRON_FINISH_POSITIVE" type="all">
 		<req lvl="2" max_lvl="999">
@@ -1164,6 +1182,42 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 	<req name="OG_IRON_FINISH_NEGATIVE" type="all">
 		<req lvl="-999" max_lvl="1">
 			<name>rep_comb_og_iron</name>
+		</req>
+		<req lvl="0" max_lvl="0">
+			<name>og_iron_neutron_coords_given</name>
+		</req>
+	</req>
+
+	<req name="OG_DAWN_NEUTRON_REROUTE_INITIATE" type="all">
+		<req lvl="1">
+			<name>OG_DAWN_INITIATE</name>
+		</req>
+		<req lvl="1" max_lvl="999">
+			<name>rep_og_dawn</name>
+		</req>
+		<req lvl="0" max_lvl="0">
+			<name>og_iron_neutron_coords_given</name>
+		</req>
+	</req>
+
+	<req name="OG_DAWN_NEUTRON_REROUTE_FRIENDLY" type="all">
+		<req lvl="0" max_lvl="0">
+			<name>OG_DAWN_INITIATE</name>
+		</req>
+		<req lvl="1" max_lvl="999">
+			<name>rep_og_dawn</name>
+		</req>
+		<req lvl="0" max_lvl="0">
+			<name>og_iron_neutron_coords_given</name>
+		</req>
+	</req>
+
+	<req name="OG_DAWN_NEUTRON_REROUTE_NEGATIVE" type="all">
+		<req lvl="0" max_lvl="0">
+			<name>OG_DAWN_INITIATE</name>
+		</req>
+		<req lvl="-999" max_lvl="1">
+			<name>rep_og_dawn</name>
 		</req>
 		<req lvl="0" max_lvl="0">
 			<name>og_iron_neutron_coords_given</name>
@@ -1480,6 +1534,30 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 			<deathSound>sysExplosion</deathSound>
 		</deathSounds>
 	</race>
+	<race name="unique_og_silas">
+		<essential>1</essential>
+		<repairSpeed>1.5</repairSpeed>
+		<rangedDamageMultiplier>2</rangedDamageMultiplier>
+		<suffocationModifier>0.83</suffocationModifier>
+		<fireDamageMultiplier>0.60</fireDamageMultiplier>
+		<deathSounds>
+			<deathSound>death1</deathSound>
+			<deathSound>death2</deathSound>
+		</deathSounds>
+		<shootingSounds>
+			<shootingSound>detectiveShoot1</shootingSound>
+			<shootingSound>detectiveShoot2</shootingSound>
+			<shootingSound>detectiveShoot3</shootingSound>
+		</shootingSounds>
+		<skills>
+			<piloting req="13"/>
+			<engines req="13"/>
+			<shields req="50"/>
+			<weapons req="58"/>
+			<repair req="16"/>
+			<combat req="7"/>
+		</skills>
+	</race>
 </crew>
 
 <mod:findLike type="achievements" limit="1">
@@ -1587,6 +1665,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 				<og_turret_2/>
 				<og_turret_adaptive/>
 				<og_turret_adaptive_single/>
+				<og_equaliser/>
 			</guaranteedSystems>
 			<item>
 				<blueprint>OG_SHOP_ITEM_TURRET_SYSTEMS</blueprint>
@@ -1599,7 +1678,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 			</item>
 			<chance>65</chance>
 		</mod-append:category>
-		<mod:removeAttributes aea="" />
+		<mod:removeAttributes og="" />
 	</mod:findLike>
 </mod:findLike>
 <mod:findLike type="store" reverse="false" limit="1">
@@ -1752,6 +1831,26 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 				<blueprint>SHOP_ITEM_SYSTEMS_BONUS</blueprint>
 			</item>
 			<chance>65</chance>
+		</category>
+		<category type="SYSTEMS">
+			<customTitle>TURRET SYSTEMS</customTitle>
+			<guaranteedSystems>
+				<og_turret/>
+				<og_turret_2/>
+				<og_turret_adaptive/>
+				<og_turret_adaptive_single/>
+				<og_equaliser/>
+			</guaranteedSystems>
+			<item>
+				<blueprint>OG_SHOP_ITEM_TURRET_SYSTEMS</blueprint>
+			</item>
+			<item>
+				<blueprint>OG_SHOP_ITEM_TURRET_SYSTEMS</blueprint>
+			</item>
+			<item>
+				<blueprint>OG_SHOP_ITEM_TURRET_SYSTEMS</blueprint>
+			</item>
+			<chance>100</chance>
 		</category>
 	</mod-append:customStore>
 </mod:findLike>

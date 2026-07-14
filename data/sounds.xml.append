@@ -21,4 +21,7 @@
 		<combat>og_MUS_NeutronIrradiatedBattle.ogg</combat>
 	</track>
 </music>
+
+<og_equalise volume="18">explosions/og_equalise.ogg</og_equalise>
+<og_equalise_enemy volume="12">explosions/og_equalise.ogg</og_equalise_enemy>
 </FTL>

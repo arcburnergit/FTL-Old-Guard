@@ -358,7 +358,7 @@ For your extra egregious actions, your reputation was decreased twice.</text>
 <textList name="TEXT_DEAD_CREW_OG_DAWN">
 	<text>"Your bloodlust... will be your downfall someday, Renegade. You are only proof... the Federation... is no better than the Rebellion..."</text>
 	<text>Without a word, the New Dawn captain falls to the ground, gasping for air as the life is extinguished from their eyes. You salvage the hull of their ship.</text>
-	<text>"You will regret this! Karma always comes back to people like you. Damn you Renegades... the New Dawn would have been better off with the Rebellion..."</text>
+	<text>"You will regret this! Karma always comes back to people like you. Damn you Renegades... the New Dawn will..." They die before they can finish this last remark.</text>
 </textList>
 
 <event name="ESCAPE_OG_DAWN">
@@ -503,7 +503,7 @@ For your extra egregious actions, your reputation was decreased twice.</text>
 </event>
 
 <event name="STOREEVENT_OG_DAWN_TURRET_COVERUP">
-	<text>The merchant now sweating nervously continues, "As I was saying, That there ISN'T a genuine New Dawn Turret, rather its a uhm. a, Replica, yes a replica, it doesn't function at all. It's meerly a collectors piece, you wouldn't be interested in it."</text>
+	<text>The merchant now sweating nervously continues, "As I was saying, That there ISN'T a genuine New Dawn Turret, rather its a uhm. a, Replica, yes a replica, it doesn't function at all. It's merely a collectors piece, you wouldn't be interested in it."</text>
 	<choice hidden="true">
 		<text>The merchant steers the conversation away from the turret, you'll need extra information to push it any further.</text>
 		<event load="OPTION_INVALID"/>
@@ -549,7 +549,7 @@ For your extra egregious actions, your reputation was decreased twice.</text>
 					<choice>
 						<text>Threaten to report him if he doesn't lower the price again.</text>
 						<event>
-							<text>You take a harsh tone and threaten the merchant again, but this time the merchant is even less concerned. Eventually you look over at the Turret to realize its gone, the merchant managed to hide it without you realizing, with nothing to report your threats fall flat.</text>
+							<text>You take a harsh tone and threaten the merchant again, but this time the merchant is even less concerned. Eventually you look over at the Turret to realise its gone, the merchant managed to hide it without you realising, with nothing to report your threats fall flat.</text>
 						</event>
 					</choice>
 					<choice>
@@ -621,7 +621,7 @@ For your extra egregious actions, your reputation was decreased twice.</text>
 </eventList>
 
 <event name="OG_DAWN_DEBRIS_FIELD" unique="true">
-	<text>You've arrived at the beacon to discover the wreck of a New Dawn vessel. Theres nothing in the area that indicates a battle took place here, instead it appears the wreck was created by the asteroid field here, if you want to search the debris you'll need to enter the asteroid field.</text>
+	<text>You've arrived at the beacon to discover the wreck of a New Dawn vessel. There's nothing in the area that indicates a battle took place here, instead it appears the wreck was created by the asteroid field here, if you want to search the debris you'll need to enter the asteroid field.</text>
 	<choice hidden="true">
 		<text>Search the debris field.</text>
 		<event load="OG_DAWN_DEBRIS_FIELD_SEARCH"/>
@@ -690,9 +690,9 @@ For your extra egregious actions, your reputation was decreased twice.</text>
 	<choice req="rep_og_dawn" lvl="1" blue="false">
 		<text>Contact the transport.</text>
 		<event>
-			<text>"A Federation Renagade? I didn't think I'd see your kind around here, worry not there are no rebels around, we do not have to be enemies."
+			<text>"A Federation Renegade? I didn't think I'd see your kind around here, worry not there are no rebels around, we do not have to be enemies."
 The Captain of the transport pauses, thinking on something.
-"Say, you don't have any spare supplies on you, we were meant to collect supplies from this outpost, but apparently they never recieved any from the last transport."
+"Say, you don't have any spare supplies on you, we were meant to collect supplies from this outpost, but apparently they never received any from the last transport."
 "We'd be happy to pay you with some surplus equipment or personnel."</text>
 			<choice hidden="false">
 				<text>Request one of their soldiers in exchange for supplies.</text>
@@ -911,7 +911,7 @@ The Captain of the transport pauses, thinking on something.
 	<choice hidden="true">
 		<text>Wreck it for scrap and supplies.</text>
 		<event>
-			<text>You open fire on the outpost, it quickly disintergrates under your weapons, it's underpowered turrets only landing a few hits on you. Unfortunately it was able to alert the rebel fleet to your position before it was destroyed.</text>
+			<text>You open fire on the outpost, it quickly disintegrates under your weapons, it's underpowered turrets only landing a few hits on you. Unfortunately it was able to alert the rebel fleet to your position before it was destroyed.</text>
 			<modifyPursuit amount="1"/>
 			<autoReward level="MED">standard</autoReward>
 			<choice>
@@ -988,7 +988,7 @@ The Captain of the transport pauses, thinking on something.
 </ship>
 
 <event name="OG_DAWN_REBEL_DAWN_INFIGHT" unique="true">
-	<text>You arrive at the beacon face to face with both a New Dawn vessel and Rebel ship, you immediately prepare yourself for the coming battle before realizing that the ships aren't interested in you, instead they've actually got their weapons trained on each other.
+	<text>You arrive at the beacon face to face with both a New Dawn vessel and Rebel ship, you immediately prepare yourself for the coming battle before realising that the ships aren't interested in you, instead they've actually got their weapons trained on each other.
 From what you can hear over public communications you get the sense that the New Dawn Captain is sick of having to listen to the commands of these "stupid rebel captains who couldn't tell the arse end of a slug from their own mother." And the Rebel Captain is quite displeased with insubordination of the New Dawn ship.</text>
 	<choice>
 		<text>Engage the New Dawn vessel.</text>
@@ -1126,7 +1126,7 @@ The Captain pauses for a moment thinking.
 				<text>Agree to help.</text>
 				<event>
 					<ship load="SHIP_OG_IRON_FIGHT" hostile="true"/>
-					<text>You agree to help and split off from the New Dawn ship, after a few minutes of searching the New Dawn ship disapears off into the distance, beyond the range of your sensors. It's only a few minutes later that the Iron Watch vessel appears, revealed behind a large but slow asteroid. They correctly deduce you're a part of the hunting team and don't give you a chance, prepare to fight.</text>
+					<text>You agree to help and split off from the New Dawn ship, after a few minutes of searching the New Dawn ship disappears off into the distance, beyond the range of your sensors. It's only a few minutes later that the Iron Watch vessel appears, revealed behind a large but slow asteroid. They correctly deduce you're a part of the hunting team and don't give you a chance, prepare to fight.</text>
 					<choice>
 						<text>Continue...</text>
 						<event load="REPUTATION_UPDATE_OG_DAWN_COMBAT"/>
@@ -1232,7 +1232,7 @@ The Captain pauses for a moment thinking.
 			<choice>
 				<text>Agree to the exchange.</text>
 				<event>
-					<text>You transfer them the supplies and recieve their scrap, a good old fashion exchange of resources.</text>
+					<text>You transfer them the supplies and receive their scrap, a good old fashion exchange of resources.</text>
 					<item_modify>
 						<item type="scrap" min="30" max="40"/>
 						<item type="fuel" min="-5" max="-4"/>
@@ -1358,12 +1358,12 @@ The Captain pauses for a moment thinking.
 		<event>
 			<ship load="SHIP_OG_DAWN_DISTRESS_SCOUT" hostile="false"/>
 			<enemyDamage amount="1" system="engines" effect="fire"/>
-			<text>You pull up close to the wreckage, there are several cargo containers in amongst the debris but they all appear openned, someone's been here already.
+			<text>You pull up close to the wreckage, there are several cargo containers in amongst the debris but they all appear opened, someone's been here already.
 A moment later you find out who that is, a New Dawn scout reveals themselves from behind some asteroids, it's apparent they've taken some damage to their engines by the thin line of oil and other fluids leaking behind them.</text>
 			<choice>
 				<text>Contact the ship.</text>
 				<event>
-					<text>The Captain of the ship sounds frantic, "Please, Captain, you've got to help us, I've rescued everyone I could find but our ship isn't going to last much longer, I beg you to take us and our cargo onboard and out of the asteroid field, theres an outpost nearby."</text>
+					<text>The Captain of the ship sounds frantic, "Please, Captain, you've got to help us, I've rescued everyone I could find but our ship isn't going to last much longer, I beg you to take us and our cargo onboard and out of the asteroid field, there's an outpost nearby."</text>
 					<choice>
 						<text>Agree to help.</text>
 						<event>
@@ -1446,7 +1446,7 @@ A moment later you find out who that is, a New Dawn scout reveals themselves fro
 </event>
 
 <event name="OG_DAWN_DISTRESS_ASTEROID_OUTPOST">
-	<text>You've made it, you dock with the outpost and everyone makes it off successfully. The crew of the ship are very thankful, One of the New Dawn Soldier comes up to you, "Do you think I could join your ship as one of your crew, it was pretty boring working on the transport escort, atleast up until I thought we were going to die."</text>
+	<text>You've made it, you dock with the outpost and everyone makes it off successfully. The crew of the ship are very thankful, One of the New Dawn Soldier comes up to you, "Do you think I could join your ship as one of your crew, it was pretty boring working on the transport escort, at least up until I thought we were going to die."</text>
 	<autoReward level="LOW">standard</autoReward>
 	<choice>
 		<text>Accept them onboard.</text>
@@ -1540,7 +1540,7 @@ A moment later you find out who that is, a New Dawn scout reveals themselves fro
 		</event>
 	</choice>
 	<choice hidden="true" req="rep_og_dawn" lvl="-999" max_lvl="2" blue="false">
-		<text>Your attempts to make contact are immediately cut off when they realize who you are, it appears they were hoping for one of their own to come to the rescue.</text>
+		<text>Your attempts to make contact are immediately cut off when they realise who you are, it appears they were hoping for one of their own to come to the rescue.</text>
 		<event load="OPTION_INVALID"/>
 	</choice>
 	<choice hidden="true">
@@ -1598,7 +1598,7 @@ A moment later you find out who that is, a New Dawn scout reveals themselves fro
 						<event>
 							<text>"Oh you weren't lying, there it is, please bring it and follow me, its not far from here."
 
-A moment later you find yourself in an odd looking labratory, there are several unattended tables around the room, but you're directed to a slightly larger one in the middle.</text>
+A moment later you find yourself in an odd looking laboratory, there are several unattended tables around the room, but you're directed to a slightly larger one in the middle.</text>
 							<choice>
 								<text>Continue...</text>
 								<event>
@@ -1608,13 +1608,13 @@ A moment later you find yourself in an odd looking labratory, there are several 
 									<choice>
 										<text>Continue...</text>
 										<event>
-											<text>He turns his attention to you, not appearing to actually care who he's talking to. "I present the Turret PRE-IGNITER, an enhanced version of our successful Pre-energiser. I suppose putting this together wasn't neccessary, but I like to have a final prototype, it makes it feel complete.</text>
+											<text>He turns his attention to you, not appearing to actually care who he's talking to. "I present the Turret PRE-IGNITER, an enhanced version of our successful Pre-energiser. I suppose putting this together wasn't necessary, but I like to have a final prototype, it makes it feel complete.</text>
 											<choice hidden="true">
 												<text>Continue...</text>
 												<event>
 													<playSound>smallExplosion</playSound>
 													<text>Not a moment later the entire station is rocked by a large explosion, sirens and alarms start blaring and people start rushing through, the engineer turns to a nearby console, quickly bringing up the station's exterior camera's.
-On the vid screen you can makeout a strange looking ship silhouetted against the nearby star. "It's just as I suspected." The engineer turns towards you. "Captain, what kind of ship do you have?" "A cruiser, excellent! Take the Turret Pre-igniter, I've saved the designs to a secure datacenter. The physical prototype I cannot, however, risk falling into their hands, please take it with you and get out of here. Whatever you do, do not let it fall into the Rebellion's hands."</text>
+On the vid screen you can make out a strange looking ship silhouetted against the nearby star. "It's just as I suspected." The engineer turns towards you. "Captain, what kind of ship do you have?" "A cruiser, excellent! Take the Turret Pre-igniter, I've saved the designs to a secure datacenter. The physical prototype I cannot, however, risk falling into their hands, please take it with you and get out of here. Whatever you do, do not let it fall into the Rebellion's hands."</text>
 													<augment name="OG_TURRET_PREIGNITE"/>
 													<choice>
 														<text>Continue...</text>
@@ -1855,7 +1855,7 @@ You quickly return to your ship and prepare for your next jump.</text>
 		<color r="165" g="173" b="184" a="1"/>
 		<unvisitedTooltip>You've heard reports of Iron Watch ships nearby.</unvisitedTooltip>
 	</beaconType>
-	<text>You've arrived at the beacon face to face with a pair of Iron Watch ships, one of them is just a common figher, but the other is an unusual design, a larger cruiser sized ship. An unusual sight in this sector, most of the Iron Watch were either forced out, or joined their leaders in turning to the New Dawn.</text>
+	<text>You've arrived at the beacon face to face with a pair of Iron Watch ships, one of them is just a common fighter, but the other is an unusual design, a larger cruiser sized ship. An unusual sight in this sector, most of the Iron Watch were either forced out, or joined their leaders in turning to the New Dawn.</text>
 	<ship load="SHIP_OG_DAWN_HEIST_IRON_ESCORT" hostile="false"/> 
 	<choice hidden="true" req="rep_og_dawn" lvl="2" blue="false">
 		<text>Contact the ships.</text>
@@ -1999,7 +1999,7 @@ The New Dawn cruiser contacts you, "Please Captain, we can't last much longer, s
 			<choice>
 				<text>Agree to help, and direct them to the Iron Watch escort you defeated earlier.</text>
 				<event>
-					<text>You direct the cruiser to investigate the escort you destroyed, they begin scavenging the wreck searching for any intact consoles or systems. It's only a few minutes later when you recieve contact from them, "Aha, Captain we've found it, they actually setup inside of a large asteroid in the same system as the Data-vault, unfortunately from the cargo transcript we found it appears they're quite close to being ready, we need to get there as quick as possible, we'll send you the location now."</text>
+					<text>You direct the cruiser to investigate the escort you destroyed, they begin scavenging the wreck searching for any intact consoles or systems. It's only a few minutes later when you receive contact from them, "Aha, Captain we've found it, they actually setup inside of a large asteroid in the same system as the Data-vault, unfortunately from the cargo transcript we found it appears they're quite close to being ready, we need to get there as quick as possible, we'll send you the location now."</text>
 					<quest event="OG_DAWN_HEIST_QUEST_DAWN"/>
 				</event> 
 			</choice>
@@ -2068,16 +2068,16 @@ The Iron Watch cruiser contacts you, "Please Captain, we can't last much longer,
 		<unvisitedTooltip>The location of the Iron Watch's secret base.</unvisitedTooltip>
 	</beaconType>
 	<img back="BACKGROUND" planet="PLANET_POPULATED"/>
-	<text>You've arrived at the rendevouz point, the New Dawn cruiser is there already. "You're here Captain, we can set-off then, follow me and prepare for combat."</text>
+	<text>You've arrived at the rendezvous point, the New Dawn cruiser is there already. "You're here Captain, we can set-off then, follow me and prepare for combat."</text>
 	<choice>
 		<text>Follow the cruiser.</text>
 		<event>
-			<text>You follow the cruiser, passing by several large asteroids floating in the void. You don't even realize when you get to the Iron Watch base until you're right up against it, you pickup the faintest blip on your sensors in the center of a large asteroid, protected from detection by the thick layer of rock.
+			<text>You follow the cruiser, passing by several large asteroids floating in the void. You don't even realise when you get to the Iron Watch base until you're right up against it, you pickup the faintest blip on your sensors in the centre of a large asteroid, protected from detection by the thick layer of rock.
 Now that you know where their base is it doesn't take you long to locate the entrance, a natural cave in the asteroid that leads inwards.</text>
 			<choice>
 				<text>Follow the cruiser inside.</text>
 				<event>
-					<text>You eventually make it out into a cavernous space, smaller than you expected but packed with cargo containers and a few temporary structures. However a quick scan indicates that the base is empty, abandoned. The New Dawn ship realizing this aswell quickly turns back the way you came, with full power to their engines. "Captain, we've made a mistake, they've already moved on the data-vault, I need to get back there now!"</text>
+					<text>You eventually make it out into a cavernous space, smaller than you expected but packed with cargo containers and a few temporary structures. However a quick scan indicates that the base is empty, abandoned. The New Dawn ship realising this as well quickly turns back the way you came, with full power to their engines. "Captain, we've made a mistake, they've already moved on the data-vault, I need to get back there now!"</text>
 					<choice>
 						<text>Continue...</text>
 						<event>
@@ -2111,7 +2111,7 @@ Upon seeing you they also activate their weapons, preparing to attack. You notic
 	<choice>
 		<text>"Actually, we've had second thought's, we'd rather avoid this conflict."</text>
 		<event>
-			<text>The New Dawn Captain is disapointed and goes off on his own, hopefully their ship will be powerful enough on their own.</text>
+			<text>The New Dawn Captain is disappointed and goes off on his own, hopefully their ship will be powerful enough on their own.</text>
 			<choice>
 				<text>Do something onboard the ship.</text>
 				<event load="STORAGE_CHECK"/>
@@ -2180,7 +2180,7 @@ Upon seeing you they also activate their weapons, preparing to attack. You notic
 		<unvisitedTooltip>The location of the New Dawn data-vault to be raided.</unvisitedTooltip>
 	</beaconType>
 	<img back="BACKGROUND" planet="PLANET_POPULATED"/>
-	<text>You've arrived at the rendevouz point, the Iron Watch cruiser is already there, alongside a small fleet of smaller military vessels. "You're here Captain, we can set-off then, follow me and prepare for combat."</text>
+	<text>You've arrived at the rendezvous point, the Iron Watch cruiser is already there, alongside a small fleet of smaller military vessels. "You're here Captain, we can set-off then, follow me and prepare for combat."</text>
 	<choice>
 		<text>Follow the cruiser.</text>
 		<event>
@@ -2189,7 +2189,7 @@ The Iron Watch cruiser contacts you, "Stick with me, I have the main raid force 
 			<choice>
 				<text>"Aye, we'll be there."</text>
 				<event>
-					<text>The smaller ships engage first, pulling defenders away from the station, aswell as laying into and disabling many of the turrets built onto the station. It all appears to be going well until a large New Dawn vessel reveals its self from behind the station, heading straight towards you and the Iron Watch cruiser. "You need to stop that ship, we're heavy on crew and equipment, we're not actually outfitted for ship to ship combat. You need to prevent them from making it to us."</text>
+					<text>The smaller ships engage first, pulling defenders away from the station, as well as laying into and disabling many of the turrets built onto the station. It all appears to be going well until a large New Dawn vessel reveals its self from behind the station, heading straight towards you and the Iron Watch cruiser. "You need to stop that ship, we're heavy on crew and equipment, we're not actually outfitted for ship to ship combat. You need to prevent them from making it to us."</text>
 					<ship load="SHIP_OG_DAWN_HEIST_DAWN" hostile="true"/>
 					<triggeredEvent name="OG_DAWN_HEIST_IRON_TIMER" event="OG_DAWN_HEIST_IRON_FAIL" time="150" clearOnJump="true" thisFight="false">
 						<triggeredEventBox load="DEFAULT_TIMER" pos="default">
@@ -2209,7 +2209,7 @@ The Iron Watch cruiser contacts you, "Stick with me, I have the main raid force 
 	<choice>
 		<text>"Actually, we've had second thought's, we'd rather avoid this conflict."</text>
 		<event>
-			<text>The New Dawn Captain is disapointed and goes off on his own, hopefully their ship will be powerful enough on their own.</text>
+			<text>The New Dawn Captain is disappointed and goes off on his own, hopefully their ship will be powerful enough on their own.</text>
 			<choice>
 				<text>Do something onboard the ship.</text>
 				<event load="STORAGE_CHECK"/>
@@ -2224,7 +2224,7 @@ The Iron Watch cruiser contacts you, "Stick with me, I have the main raid force 
 <event name="OG_DAWN_HEIST_IRON_FAIL">
 	<recallBoarders force="true" ship="both"/>
 	<ship hostile="false"/>
-	<text>The New Dawn vessel turns away from you and begins firing on the Iron Watch vessel, you watch as it disintergrates under the continuous fire, eventually breaking apart, dashing any hopes of a successful raid. The rest of the Iron Watch force falls around you, the New Dawn defences turning towards you, forcing you back, eventually you're forced to run, or else be destroyed.</text>
+	<text>The New Dawn vessel turns away from you and begins firing on the Iron Watch vessel, you watch as it disintegrates under the continuous fire, eventually breaking apart, dashing any hopes of a successful raid. The rest of the Iron Watch force falls around you, the New Dawn defences turning towards you, forcing you back, eventually you're forced to run, or else be destroyed.</text>
 </event>
 <event name="OG_DAWN_HEIST_IRON_WIN_FOLLOWUP">
 	<clearTriggeredEvent name="OG_DAWN_HEIST_IRON_TIMER"/>
@@ -2321,5 +2321,85 @@ The Iron Watch cruiser contacts you, "Stick with me, I have the main raid force 
 	<achievement>ACH_TRANS_OG_DAWN</achievement>
 	<weapon name="LOOT_OG_DAWN_1"/>
 	<variable name="ach_trans_og_dawn" op="set" val="1"/>
+</event>
+
+<event name="STOREEVENT_OG_DAWN_REROUTE_NEUTRON" unique="true">
+	<preventQuest/>
+	<beaconType id="map_icon_store_og_dawn" global="false">
+		<color r="155" g="111" b="167" a="1"/>
+	</beaconType>
+	<text>You find a large New Dawn settlement here, a number of stations sit in orbit around the planet. The store catches your eye and sensors first due to the beacon it's emitting, but alongside that sits a large New Dawn military outpost, several armed ships are docked to the outpost.</text>
+	<choice hidden="true" blue="true" req="OG_DAWN_NEUTRON_REROUTE_INITIATE">
+		<text>You recognise the New Dawn ship you met in the Iron Watch sector.</text>
+		<event load="OG_DAWN_REROUTE_STORE_INITIATE"/>
+	</choice>
+	<choice hidden="false" req="OG_DAWN_NEUTRON_REROUTE_FRIENDLY" lvl="1" blue="false">
+		<text>(Positive Reputation) Pay to enter the outpost.</text>
+		<event load="OG_DAWN_REROUTE_STORE_FRIENDLY"/>
+	</choice>
+	<choice hidden="true" req="OG_DAWN_NEUTRON_REROUTE_NEGATIVE" lvl="1" blue="false" >
+		<text>(Negative/Neutral Reputation) The outpost bars your entry.</text>
+		<event load="OPTION_INVALID" />
+	</choice>
+	<choice hidden="true" max_group="1">
+		<text>Just explore the store.</text>
+		<event name="STOREEVENT_OG_DAWN_REROUTE_STORE_REAL">
+			<text>You have some time to do something onboard your ship while you're here.</text>
+			<store>STORE_STANDARD_OG_TURRETS</store>
+			<choice>
+				<text>Do something onboard the ship.</text>
+				<event load="STORAGE_CHECK"/>
+			</choice>
+			<choice>
+				<text>Do nothing.</text>
+				<event/>
+			</choice>
+		</event>
+	</choice>
+</event>
+
+<event name="OG_DAWN_REROUTE_STORE_INITIATE">
+	<text>You enter into a lounge area, several New Dawn officers are present. One of the officers recognises you, "Ah, Captain, I see you've made it here safely. I was hoping to speak with you, if you have a moment."</text>
+	<choice>
+		<text>Continue...</text>
+		<event load="OG_DAWN_REROUTE_STORE_QUEST"/>
+	</choice>
+</event>
+<event name="OG_DAWN_REROUTE_STORE_FRIENDLY">
+	<text>You enter into a lounge area, several New Dawn officers are present. One of the officers recognises you, "Ah, Captain, I've heard of your exploits. I was actually hoping to speak with you, if you have a moment."</text>
+	<item_modify>
+		<item type="scrap" min="-40" max="-40" />
+	</item_modify>
+	<choice>
+		<text>Continue...</text>
+		<event load="OG_DAWN_REROUTE_STORE_QUEST"/>
+	</choice>
+</event>
+
+<event name="OG_DAWN_REROUTE_STORE_QUEST">
+	<text>"Captain. Word of your actions in New Dawn space has travelled fast, the higher-ups are impressed.
+We're aware of your standing agreement with the Federation, and we have no intention of pulling you from your mission.
+However as the Iron Watch isn't a part of the federation, it shouldn't be a problem for you to help us against them, in exchange for a large sum of money of course."</text>
+	<variable name="og_iron_neutron_coords_given" op="set" val="1"/>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event>
+			<text>"Our Intelligence forces have operating a mission in a secret Iron Watch stronghold, deep in unexplored space. As a result the Iron Watch have been contacting their allies in the region for support."</text>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event>
+					<text>"With an attack imminent, and allies flooding to the sector, you should be able to blend in seamlessly. Once you're in place our members in the sector will seek you out.
+						
+						You've been cleared for access to the sector coordinates. If you choose to make your way there, there will be a member of the New Dawn ready to inform you of the mission. Good Luck, Captain."</text>
+					<variable name="coords_og_neutron" op="set" val="1"/>
+					<variable name="og_neutron_dawn_aligned" op="set" val="1"/>
+					<choice>
+						<text>Continue...</text>
+						<event load="STOREEVENT_OG_DAWN_REROUTE_STORE_REAL"/>
+					</choice>
+				</event>
+			</choice>
+		</event>
+	</choice>
 </event>
 </FTL>
