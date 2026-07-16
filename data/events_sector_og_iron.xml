@@ -332,6 +332,11 @@
 		<event load="COMBAT_CHECK"/>
 	</choice>
 </event>
+<event name="REPUTATION_UPDATE_DOUBLE_OG_IRON">
+	<text>[REPUTATION INCREASED X2 - IRON WATCH]
+	You have done a good deed here in the eyes of the Iron Watch. Continuously perform actions like this and you might start to see positive support from the Iron Watch and its allies.</text>
+	<variable name="rep_og_iron" op="add" val="1"/>
+</event>
 <event name="REPUTATION_DECREASE_OG_IRON">
 	<text>[REPUTATION DECREASED - IRON WATCH]
 	Your actions here, justifiable or not, will not reflect well in the eyes of the Iron Watch or its citizens. Continuously perform actions like this and you might start to see negative reactions from the Iron Watch and its allies.</text>
@@ -1093,6 +1098,7 @@ What we do have, however, is a proposition, one we believe serves your interests
 	</destroyed>
 	<deadCrew>
 		<text load="TEXT_DEAD_CREW_PIRATE"/>
+		<recallBoarders force="true" ship="player"/>
 		<autoReward level="HIGH">standard</autoReward>
 		<choice hidden="true">
 			<text>Continue...</text>

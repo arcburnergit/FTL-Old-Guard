@@ -641,8 +641,8 @@ script.on_internal_event(Defines.InternalEvents.GENERATOR_CREATE_SHIP, function(
 	return Defines.Chain.CONTINUE, sector, event, blueprint, ret
 end)
 script.on_internal_event(Defines.InternalEvents.GET_DODGE_FACTOR, function(shipManager, value)
-	if value > 5 and shipManager:HasAugmentation("OG_NEUTRON_SHIELD") > 0 then
-		value = value - 5
+	if value > 10 and shipManager:HasAugmentation("OG_NEUTRON_SHIELD") > 0 then
+		value = value - 10
 	end
 	return Defines.Chain.CONTINUE, value
 end)
@@ -783,14 +783,14 @@ script.on_render_event(Defines.RenderEvents.GUI_CONTAINER, function() end, funct
 		local future_angle_A = (next_angle_A + deg_per_jump) % 360
 		local future_angle_B = (future_angle_A + 180) % 360
 
-		reset_stencil_buffer(1)
+		reset_stencil_buffer(16)
 
 		Graphics.CSurface.GL_PushMatrix()
 		Graphics.CSurface.GL_Translate(starMap_properties.x, starMap_properties.y, 0) -- move to map location
 
-		Graphics.CSurface.GL_SetStencilMode(stencil_mode.set, 1, 16)
+		Graphics.CSurface.GL_SetStencilMode(stencil_mode.set, 16, 16)
 		Graphics.CSurface.GL_RenderPrimitive(map_stencil_warning)
-		Graphics.CSurface.GL_SetStencilMode(stencil_mode.use, 1, 16)
+		Graphics.CSurface.GL_SetStencilMode(stencil_mode.use, 16, 16)
 
 		Graphics.CSurface.GL_PushMatrix()
 		Graphics.CSurface.GL_Translate(mid_x, mid_y, 0)
@@ -798,9 +798,9 @@ script.on_render_event(Defines.RenderEvents.GUI_CONTAINER, function() end, funct
 		draw_spiral_fill(next_angle_B, next_back_angle_B, warning_stripe_colour)
 		Graphics.CSurface.GL_PopMatrix()
 
-		Graphics.CSurface.GL_SetStencilMode(stencil_mode.set, 1, 16)
+		Graphics.CSurface.GL_SetStencilMode(stencil_mode.set, 16, 16)
 		Graphics.CSurface.GL_RenderPrimitive(map_stencil)
-		Graphics.CSurface.GL_SetStencilMode(stencil_mode.use, 1, 17)
+		Graphics.CSurface.GL_SetStencilMode(stencil_mode.use, 16, 16)
 
 		Graphics.CSurface.GL_PushMatrix()
 		Graphics.CSurface.GL_Translate(mid_x, mid_y, 0) -- move to center

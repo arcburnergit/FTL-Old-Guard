@@ -206,7 +206,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<mod-append:ship>PLAYER_SHIP_OG_DAWN_BIG</mod-append:ship>
 		<mod-append:ship>PLAYER_SHIP_OG_EXECUTOR</mod-append:ship>
 		
-		<mod-append:empty/>
+		<mod-append:ship>CREW_SHIP_OG_CREW1</mod-append:ship>
 		<mod-append:empty/>
 	</mod:findLike>
 
@@ -807,6 +807,24 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<crewLimit>8</crewLimit>
 		<systemLimit>9</systemLimit>
 	</mod-append:customShip>
+
+	<mod-append:ship name="CREW_SHIP_OG_CREW1" b="false" c="false" >
+		<unlock variant="a" silent="false">
+			<type>4</type>
+		</unlock>
+	</mod-append:ship>
+	<mod-append:customShip name="CREW_SHIP_OG_CREW1">
+		<hiddenAug>SHIP_OG_GUARD</hiddenAug>
+		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
+		<hiddenAug>OG_TURRET_MANNABLE_MICRO</hiddenAug>
+		<crewLimit>8</crewLimit>
+		<systemLimit>10</systemLimit>
+		<crew>
+			<unique_og_silas room="0" name="Dr. Silas"/>
+			<human_og_raider room="2"/>
+			<human_og_raider room="10"/>
+		</crew>
+	</mod-append:customShip>
 </mod:findLike>
 
 <mod:findLike type="ships" limit="1" reverse="false">
@@ -903,6 +921,12 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<shipIcons>
 			<shipIcon>icon_og_turret_dawn</shipIcon>
 		</shipIcons>
+	</mod-append:customShip>
+	<mod-append:customShip name="OG_DAWN_SYNCHROTRON">
+		<shipIcons>
+			<shipIcon>icon_og_turret_dawn</shipIcon>
+		</shipIcons>
+		<hiddenAug>OG_NEUTRON_SHIELD</hiddenAug>
 	</mod-append:customShip>
 	<mod-append:customShip name="OG_DAWN_FIGHTER">
 		<shipIcons>
@@ -1557,6 +1581,49 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 			<repair req="16"/>
 			<combat req="7"/>
 		</skills>
+		<powerEffect name="OG_SILAS_DRONE">
+			<cooldown>10</cooldown>
+			<jumpCooldown>full</jumpCooldown>
+			<powerSounds>
+				<powerSound>droneLaunch</powerSound>
+			</powerSounds>
+			<buttonText>DRONE</buttonText>
+			<tooltip>[COOLDOWN:10s  DURATION:10s]
+				Deploys a defence drone capable of targeting all types of projectiles and drones, will destroy projectiles but only stun drones.</tooltip>
+			<cooldownColor r="246" g="75" b="45"/>
+			<activateWhenReady enemiesOnly="true">true</activateWhenReady>
+			<temporaryEffect>
+				<duration>10</duration>
+				<cooldownColor r="91" g="33" b="28"/>
+			</temporaryEffect>
+		</powerEffect>
+	</race>
+	<race name="human_og_civilian">
+		<essential>1</essential>
+		<crewSlots>0</crewSlots>
+		<canMan>false</canMan>
+		<controllable>false</controllable>
+		<canRepair>false</canRepair>
+		<canFight>false</canFight>
+		<canSabotage>false</canSabotage>
+		<resistsMindControl>true</resistsMindControl>
+		<repairSpeed>0.25</repairSpeed>
+		<fireRepairMultiplier>4</fireRepairMultiplier>
+		<suffocationModifier>0.83</suffocationModifier>
+		<fireDamageMultiplier>0.83</fireDamageMultiplier>
+		<animBase>human</animBase>
+		<deathSounds>
+			<deathSound>death1</deathSound>
+			<deathSound>death2</deathSound>
+		</deathSounds>
+		<skills>
+			<piloting req="13"/>
+			<engines req="13"/>
+			<shields req="50"/>
+			<weapons req="58"/>
+			<repair req="16"/>
+			<combat req="7"/>
+		</skills>
 	</race>
 </crew>
 
@@ -1763,7 +1830,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<category type="WEAPONS">
 			<customTitle>TURRETS</customTitle>
 			<item>
-				<blueprint>SHOP_TURRETS_ALL</blueprint>
+				<blueprint>SHOP_TURRETS_ALL_BALANCED</blueprint>
 			</item>
 			<item>
 				<blueprint>SHOP_TURRETS_LARGE</blueprint>
@@ -1853,12 +1920,92 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 			<chance>100</chance>
 		</category>
 	</mod-append:customStore>
+	<mod-append:customStore id="STORE_WEAK_OG_TURRETS">
+		<hullRepair>
+			<price min="3" max="5"/>
+			<sectorScaled/>
+		</hullRepair>
+		<resource>
+			<type>fuel</type>
+			<count min="4" max="8"/>
+		</resource>
+		<resource>
+			<type>missiles</type>
+			<count min="2" max="5"/>
+		</resource>
+		<resource>
+			<type>drones</type>
+			<count min="2" max="5"/>
+		</resource>
+		<category type="WEAPONS">
+			<customTitle>TURRETS</customTitle>
+			<item>
+				<blueprint>SHOP_TURRETS_LARGE</blueprint>
+			</item>
+			<item>
+				<blueprint>SHOP_TURRETS_MINI</blueprint>
+			</item>
+			<item>
+				<blueprint>SHOP_TURRETS_MINI</blueprint>
+			</item>
+			<chance>100</chance>
+		</category>
+		<category type="WEAPONS">
+			<item/>
+			<item/>
+			<item/>
+			<chance>50</chance>
+		</category>
+		<category type="DRONES" group="0">
+			<item/>
+			<item/>
+			<item/>
+			<chance>50</chance>
+			<groupChance>50</groupChance>
+		</category>
+		<category type="AUGMENTS" group="0">
+			<item/>
+			<item/>
+			<item/>
+			<chance>50</chance>
+			<groupChance>50</groupChance>
+		</category>
+		<category type="CREW">
+			<customTitle>DECKHANDS</customTitle>
+			<allowDuplicates/>
+			<item/>
+			<item/>
+			<item/>
+			<chance>50</chance>
+		</category>
+		<category type="SYSTEMS">
+			<customTitle>TURRET SYSTEMS</customTitle>
+			<guaranteedSystems>
+				<og_turret/>
+				<og_turret_2/>
+				<og_turret_adaptive/>
+				<og_turret_adaptive_single/>
+				<og_equaliser/>
+			</guaranteedSystems>
+			<item>
+				<blueprint>OG_SHOP_ITEM_TURRET_SYSTEMS</blueprint>
+			</item>
+			<item>
+				<blueprint>OG_SHOP_ITEM_TURRET_SYSTEMS</blueprint>
+			</item>
+			<item>
+				<blueprint>OG_SHOP_ITEM_TURRET_SYSTEMS</blueprint>
+			</item>
+			<chance>100</chance>
+		</category>
+	</mod-append:customStore>
 </mod:findLike>
 
 
 <mod:findLike type="events" limit="1" reverse="false">
-	<mod:findName type="req" name="LIST_CHECK_ANY_CREW">
-		<mod-append:req type="any" load="LIST_CREW_DEEPONES"/>
+	<mod:findName type="req" name="LIST_START_CRATE_CHECK">
+	</mod:findName>
+	<mod:findName type="req" name="LIST_START_AUG_CHECK">
 	</mod:findName>
 	<mod:findName type="req" name="COORDS">
 		<mod-append:name>coords_og_neutron</mod-append:name>
@@ -1872,6 +2019,79 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<mod:findLike type="req" start="0" limit="1">
 			<mod-append:name>coords_og_neutron</mod-append:name>
 		</mod:findLike>
+	</mod:findName>
+	<mod:findName type="req" name="OUTLIER_SECTOR">
+	</mod:findName>
+	<mod:findName type="req" name="LIST_UPG_ARMS">
+	</mod:findName>
+	<mod:findName type="req" name="LIST_UPG_ALL">
+	</mod:findName>
+	<mod:findName type="req" name="LIST_LAB_ALL">
+	</mod:findName>
+	<mod:findName type="req" name="LIST_UPG_SEALANT">
+	</mod:findName>
+	<mod:findName type="req" name="LIST_UPG_EXTINGUISHERS">
+	</mod:findName>
+	<mod:findName type="req" name="LIST_UPG_ION">
+	</mod:findName>
+	<mod:findName type="req" name="HS_LIST_HUMANS">
+		<mod-append:name>human_og_raider</mod-append:name>
+		<mod-append:name>human_og_dawn</mod-append:name>
+		<mod-append:name>human_og_midnight</mod-append:name>
+		<mod-append:name>unique_og_silas</mod-append:name>
+	</mod:findName>
+	<mod:findName type="req" name="HS_LIST_ENGI">
+	</mod:findName>
+	<mod:findName type="req" name="HS_LIST_ZOLTAN">
+	</mod:findName>
+	<mod:findName type="req" name="HS_LIST_ORCHID">
+	</mod:findName>
+	<mod:findName type="req" name="HS_LIST_ROCK">
+	</mod:findName>
+	<mod:findName type="req" name="HS_LIST_CRYSTAL">
+	</mod:findName>
+	<mod:findName type="req" name="HS_LIST_MANTIS">
+	</mod:findName>
+	<mod:findName type="req" name="HS_LIST_FREEMANTIS">
+	</mod:findName>
+	<mod:findName type="req" name="HS_LIST_SLUG">
+	</mod:findName>
+	<mod:findName type="req" name="HS_LIST_SHELL">
+	</mod:findName>
+	<mod:findName type="req" name="HS_LIST_LEECH">
+	</mod:findName>
+	<mod:findName type="req" name="HS_LIST_LANIUS">
+	</mod:findName>
+	<mod:findName type="req" name="LIST_CREW_INTERACTIBLE">
+	</mod:findName>
+	<mod:findName type="req" name="BLUELIST_CREW_NO2">
+	</mod:findName>
+	<mod:findName type="req" name="BLUELIST_CREW_NO2_CONSTANT">
+	</mod:findName>
+	<mod:findName type="req" name="BLUELIST_CREW_NOFIRE">
+	</mod:findName>
+	<mod:findName type="req" name="BLUELIST_CREW_STRONG">
+	</mod:findName>
+	<mod:findName type="req" name="BLUELIST_CREW_NODOORS">
+	</mod:findName>
+	<mod:findName type="req" name="REBEL_SHIP">
+		<mod-append:name>SHIP_OG_DAWN</mod-append:name>
+	</mod:findName>
+	<mod:findName type="req" name="LIST_CHECK_ANY_CREW">
+		<mod-append:req type="any" load="LIST_CREW_OG_IRON"/>
+		<mod-append:req type="any" load="LIST_CREW_OG_DAWN"/>
+	</mod:findName>
+	<mod:findName type="req" name="COUNT_ALL_CREW">
+	</mod:findName>
+	<mod:findName type="req" name="LIST_CHECK_AUGMENTS">
+	</mod:findName>
+	<mod:findName type="req" name="LIST_CHECK_TOGGLES_AND_AMPS">
+	</mod:findName>
+	<mod:findName type="req" name="LIST_CHECK_ENERGY_SHIELD">
+	</mod:findName>
+	<mod:findName type="req" name="ANY_BOON">
+	</mod:findName>
+	<mod:findName type="req" name="ALL_BOON">
 	</mod:findName>
 </mod:findLike>
 </FTL>

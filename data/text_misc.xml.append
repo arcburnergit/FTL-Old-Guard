@@ -40,9 +40,14 @@
 <text name="ship_PLAYER_SHIP_OG_PEACEKEEPER_unlock">Get to Sector 5 with the Iron Rock Cruiser to unlock this ship.</text>
 <text name="ship_PLAYER_SHIP_OG_KNIGHT_unlock">Get to Sector 5 with the Iron Peacekeeper Cruiser to unlock this ship.</text>
 
+<text name="ship_CREW_SHIP_OG_SILAS_unlock">Consult the advice of a certain Human scientist about a certain artifact to unlock this ship.</text>
+
 <text name="loot_og_dawn_1">NEW DAWN LOOT
 Applies vulnerability to hit rooms for 5 seconds
 -1 second cooldown</text>
+<text name="loot_og_midnight_1">MIDNIGHT SUN LOOT
+Hacks hit rooms for 2 seconds
+-1 second cooldown per chain</text>
 
 <text name="og_turret_loot_slug_1">SLUG LOOT
 +1 system damage, +15 crew damage

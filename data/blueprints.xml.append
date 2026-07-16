@@ -435,16 +435,66 @@
 	<desc>An important Iron Watch scientist, previously the head of the Iron Watch Neutron Star Research Station (NSRS) before it was destroyed by the Midnight Sun.
 
 	Inherited Human stats: minor suffocation resistance, learns skills faster</desc>
-	<cost>50</cost>
-	<title>Iron Watch Raider</title>
-	<short>Raider</short>
+	<cost>100</cost>
+	<title>Researcher</title>
+	<short>Researcher</short>
 	<rarity>0</rarity>
 	<powerList>
+		<power>Active Ability: Deploys a defence drone capable of targeting all types of projectiles and drones, will destroy projectiles but only stun drones.</power>
 		<power>Provides 2 power to the occupied system while in the presence of a pulsar or ion storm</power>
 		<power>Reveals adjacent rooms while in a nebula</power>
-		<power>1.25x repair speed</power>
+		<power>2x ranged damage multiplier</power>
+		<power>1.5x repair speed</power>
 		<power>Takes 0.6x damage from fires</power>
 	</powerList>
+</crewBlueprint>
+
+<crewBlueprint name="human_og_civilian">
+	<desc>A human civilian, will reward you with 25 scrap upon opening a store or choosing a new sector.</desc>
+	<cost>20</cost>
+	<title>Human Civilian</title>
+	<short>Civilian</short>
+	<rarity>0</rarity>
+	<powerList>
+		<power>Does not consume a crew slot</power>
+		<power>Cannot be controlled</power>
+		<power>Cannot fight or man systems</power>
+		<power>0.25x repair speed, 1.0x extinguish speed</power>
+		<power>Resilience and determination makes them take less damage from the environment</power>
+	</powerList>
+	<colorList>
+		<layer><!--clothes-->
+			<color r="255" g="0" b="174" a="1" /> <!--pink-->
+			<color r="63" g="19" b="16" a="1"/> <!--maroon-->
+			<color r="217" g="0" b="0" a="1" /> <!--red-->
+			<color r="255" g="170" b="0" a="1" /> <!--orange-->
+			<color r="255" g="241" b="0" a="1" /> <!--yellow-->
+			<color r="51" g="241" b="0" a="1" /> <!--green-->
+			<color r="34" g="94" b="42" a="1"/> <!--forest-->
+			<color r="111" g="241" b="207" a="1" /> <!--aqua-->
+			<color r="27" g="69" b="255" a="1"/> <!--blue-->
+			<color r="113" g="57" b="205" a="1" /> <!--purple-->
+		</layer>
+		<layer> <!--skin-->
+			<color r="255" g="150" b="150" a="0.4" /> <!--white-->
+			<color r="90" g="60" b="40" a="0.7" /> <!--black-->
+			<color r="255" g="124" b="89" a="0" /> <!--other white-->
+			<color r="255" g="255" b="255" a="0.2" /> <!--yellow-->
+		</layer>
+		<layer> <!--hair-->
+			<color r="224" g="180" b="5" a="0.6" /> <!--blond-->
+			<color r="61" g="59" b="53" a="0.9" /> <!--black-->
+			<color r="189" g="187" b="178" a="0.6" /> <!--grey-->
+			<color r="121" g="96" b="56" a="0.2" /> <!--brown-->
+			<color r="109" g="70" b="65" a="0.8" /> <!--reddish-brown-->
+			<color r="201" g="127" b="11" a="0.7" /> <!--orange-->
+			
+			<color r="217" g="0" b="0" a="0.8" /> <!--red-->
+			<color r="46" g="147" b="60" a="0.7" /> <!--green-->
+			<color r="255" g="0" b="174" a="0.9" /> <!--pink-->
+			<color r="113" g="57" b="205" a="0.7" /> <!--purple-->
+		</layer>
+	</colorList>
 </crewBlueprint>
 </FTL>
 
@@ -1637,6 +1687,27 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_focus_mini_dawn_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_BEAM_NEUTRON_0">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Neutron Core</title>
+	<short>Neutron</short>
+	<desc>The core of the Midnight Sun Hunter artillery weapon, can be made functional and equiped into a turret slot. Has to be upgraded via turret manufacturing.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>40</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_beam_neutron_0_icon</iconReplace>
 </weaponBlueprint>
 
 <weaponBlueprint name="OG_TURRET_BEAM_NEUTRON_1">
@@ -6318,6 +6389,92 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<shieldImage>mup_orb1</shieldImage>
 	<mv-mapImage>map_icon_mup_knight_a</mv-mapImage>
 </shipBlueprint>
+
+<shipBlueprint name="CREW_SHIP_OG_CREW1" layout="ogpc_silas" img="ogpc_silas">
+	<class>Silas' Crewser</class>
+	<name>The Nameless One</name>
+	<unlock id="ship_CREW_SHIP_OG_SILAS_unlock"/>
+	<desc>A light assault craft built to be quick and stealthy, perfect for covert operations under the cover of darkness. The small size of the vessel prevented the installation of large turrets, instead the engineers overclocked the micro turret systems to increase their lethality.</desc>
+	<systemList>
+		<og_turret_mini power="2" max="5" room="4" start="true" turret="OG_TURRET_LASER_MINI_BIO" img="room_og_turret_7" >
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</og_turret_mini>
+		<og_turret_mini_2 power="2" max="5" room="5" start="true" turret="OG_TURRET_LASER_MINI_BIO" img="room_og_turret_9" >
+			<slot>
+				<direction>down</direction>
+				<number>1</number>
+			</slot>
+		</og_turret_mini_2>
+		<og_equaliser power="1" room="8" start="true" img="room_og_equaliser_14" />
+		<battery power="1" room="8" start="false" img="room_battery_14" />
+		<cloaking power="1" room="9" start="false" img="room_cloaking_3" />
+		<clonebay power="1" room="1" start="false">
+			<slot>
+				<number>0</number>
+			</slot>
+		</clonebay>
+		<doors power="1" room="15" start="true" img="room_doors_7">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</doors>
+		<drones power="2" max="8" room="13" start="false" img="room_drones_15" />
+		<engines power="2" room="2" start="true" img="room_engines_3">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</engines>
+		<hacking power="1" room="18" start="false" img="room_hacking_7" />
+		<medbay power="2" room="1" start="true" img="room_medbay_4">
+			<slot>
+				<number>0</number>
+			</slot>
+		</medbay>
+		<mind power="1" room="12" start="false" img="room_mind_7" />
+		<oxygen power="1" room="17" start="true" img="room_oxygen_6" />
+		<pilot power="1" room="0" start="true" img="room_pilot">
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</pilot>
+		<sensors power="1" room="14" start="true" img="room_sensors_3">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</sensors>
+		<shields power="1" max="8" room="11" start="true" img="room_shields_4">
+			<slot>
+				<direction>left</direction>
+				<number>0</number>
+			</slot>
+		</shields>
+		<teleporter power="1" room="6" start="false" />
+		<weapons power="3" room="10" start="true" img="room_weapons">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</weapons>
+	</systemList>
+	<weaponSlots>3</weaponSlots>
+	<droneSlots>2</droneSlots>
+	<weaponList missiles="4" count="3">
+		<weapon name="LASER_OG_TRIPLET_2" />
+	</weaponList>
+	<droneList drones="4" count="2" />
+	<health amount="15" />
+	<maxPower amount="11" />
+	<aug name="EX_MEDBAY_NANO" />
+	<shieldImage>mup_orb1</shieldImage>
+	<mv-mapImage>map_icon_og_drifter</mv-mapImage>
+</shipBlueprint>
 </FTL>
 
 <!--WEAPONS-->
@@ -6338,9 +6495,7 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<rarity>0</rarity>
     <image>laser_heavy</image>
 	<launchSounds>
-		<sound>heavyLaser1</sound>
-		<sound>heavyLaser2</sound>
-		<sound>heavyLaser3</sound>
+		<sound>beam3</sound>
 	</launchSounds>
 	<hitShipSounds>
 		<sound>hitHull2</sound>
@@ -6395,6 +6550,50 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	</missSounds>
 	<weaponArt>laser_pierce_og_dawn</weaponArt>
 	<iconImage>laser</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="LOOT_OG_MIDNIGHT_1">
+	<type>LASER</type>
+	<title>Triplet Laser MK II</title>
+	<short>Triplet II</short>
+	<tip>loot_og_midnight_1</tip>
+	<desc>Special loot weapon. See tooltip in the inventory to check the improvements over the base version.</desc>
+	<tooltip>Fires two lasers that deal 1 damage each. Cooldown drops the more it fires.</tooltip>
+	<damage>1</damage>
+	<mv-hack duration="2"/>
+	<shots>3</shots>
+	<sp>0</sp>
+	<fireChance>1</fireChance>
+	<breachChance>0</breachChance>
+	<cooldown>13</cooldown>
+	<power>3</power>
+	<cost>75</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>laser_hull</image>
+	<boost>
+		<type>cooldown</type>
+		<amount>5</amount>
+		<count>2</count>
+	</boost>
+	<launchSounds>
+		<sound>lightLaser1</sound>
+		<sound>lightLaser2</sound>
+		<sound>lightLaser3</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>hitHull2</sound>
+		<sound>hitHull3</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>laser_og_triplet_2_midnight</weaponArt> 
+	<iconImage>laser_chain</iconImage>
 </weaponBlueprint>
 
 <weaponBlueprint name="LASER_OG_TRIPLET_1">
@@ -6545,4 +6744,69 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<stackable>true</stackable>
 	<value>1</value>
 </augBlueprint>
+
+
+<weaponBlueprint name="DRONE_FOCUS_OG_SILAS">
+	<type>BEAM</type>
+	<tip>tip_beams</tip>
+	<title>Drone Focus</title>
+	<short>Drone Focus</short>
+	<damage>0</damage>
+	<sp>10</sp>
+	<fireChance>0</fireChance>
+	<breachChance>0</breachChance>
+	<speed>1</speed>
+	<rarity>0</rarity>
+	<image>beam_contact</image>
+	<length>1</length>
+	<launchSounds>
+		<sound>focus_weak</sound>
+	</launchSounds>
+	<weaponArt>focus_1</weaponArt>
+</weaponBlueprint>
+<weaponBlueprint name="DRONE_LASER_OG_SILAS">
+	<type>LASER</type>
+	<title>Drone Laser</title>
+	<damage>1</damage>
+	<shots>1</shots>
+	<fireChance>0</fireChance>
+	<breachChance>0</breachChance>
+	<speed>100</speed>
+	<rarity>0</rarity>
+	<image>laser_light</image>
+	<launchSounds>
+		<sound>focus_weak</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>hitHull2</sound>
+		<sound>hitHull3</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>laser_burst_1</weaponArt>
+</weaponBlueprint>
+<droneBlueprint name="OG_SILAS_DRONE">
+	<type>DEFENSE</type>
+	<target>ALL</target>
+	<tip>tip_defense</tip>
+	<title>Silas's Drone</title>
+	<short>Silas's Drone</short>
+	<desc>Reload: 1000 MS</desc>
+	<power>1</power>
+	<cooldown>1000</cooldown>
+	<dodge>0</dodge>
+	<speed>15</speed>
+	<cost>0</cost>
+	<bp>2</bp>
+	<droneImage>drone_og_silas</droneImage>
+	<weaponBlueprint>DRONE_LASER_OG_SILAS</weaponBlueprint>
+	<iconImage>defense</iconImage>
+	<rarity>0</rarity>
+</droneBlueprint>
 </FTL>

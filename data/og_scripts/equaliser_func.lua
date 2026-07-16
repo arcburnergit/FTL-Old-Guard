@@ -80,7 +80,7 @@ local system_icon_hitbox = {
 		w = 20, h = 10,
 	},
 	[false] = {
-		x = 11, y = 22,
+		x = 11, y = 19,
 		w = 10, h = 20,
 	}
 }
@@ -320,14 +320,16 @@ end)
 local function repair_reactor_power(shipManager)
 	local system_sum = 0
 	for system in vter(shipManager.vSystemList) do
+		--log("OG - repair reactor check system:"..tostring(system.iSystemType).." name:"..Hyperspace.ShipSystem.SystemIdToName(system.iSystemType).." bNeedsPower:"..tostring(system.bNeedsPower))
 		if system.bNeedsPower then
+			--log("OG - repair reactor add power:"..tostring(system.powerState.first))
 			system_sum = system_sum + system.powerState.first
 		end
 	end
-	local powerManager = Hyperspace.PowerManager.GetPowerManager(0)
+	local powerManager = Hyperspace.PowerManager.GetPowerManager(shipManager.iShipId)
 	local reactor_sum = powerManager.currentPower.first
 	if reactor_sum > system_sum then
-		log("OG - repair reactor power:"..tostring(shipManager.iShipId))
+		log("OG - repair reactor power shipId:"..tostring(shipManager.iShipId).." system_sum:"..tostring(system_sum).." reactor_sum:"..tostring(reactor_sum))
 		--print("system_sum:"..tostring(system_sum).." reactor_sum:"..tostring(reactor_sum))
 		powerManager.currentPower.first = system_sum
 	end
@@ -353,17 +355,11 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 		if shipManager:GetSystem(9).roomId == shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(systemName)).roomId then
 			if math.random(2) == 1 then
 				shipManager:RemoveSystem(Hyperspace.ShipSystem.NameToSystemId(systemName))
-				print("remove equaliser")
+				--print("remove equaliser")
 			else
 				shipManager:RemoveSystem(9)
-				print("remove teleporter")
+				--print("remove teleporter")
 			end
 		end
 	end
-end)
-
-script.on_internal_event(Defines.InternalEvents.GENERATOR_CREATE_SHIP_POST, function(name, sector, event, bp, shipManager)
-	print("test")
-	print(bp.blueprintName)
-	return Defines.Chain.CONTINUE
 end)

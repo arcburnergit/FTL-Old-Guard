@@ -924,17 +924,23 @@
 	<time>1</time>
 </anim>
 
+<animSheet name="og_turret_beam_neutron_0_icon" w="100" h="32" fw="100" fh="32">og_turrets/neutron/turret_beam_neutron_0_icon.png</animSheet>
+<anim name="og_turret_beam_neutron_0_icon">
+	<sheet>og_turret_beam_neutron_0_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
 
-<animSheet name="og_turret_beam_neutron_1_icon" w="117" h="52" fw="117" fh="52">og_turrets/neutron/turret_beam_neutron_1_icon.png</animSheet>
+<animSheet name="og_turret_beam_neutron_1_icon" w="117" h="42" fw="117" fh="42">og_turrets/neutron/turret_beam_neutron_1_icon.png</animSheet>
 <anim name="og_turret_beam_neutron_1_icon">
 	<sheet>og_turret_beam_neutron_1_icon</sheet>
 	<desc length="1" x="0" y="0" />
 	<time>1</time>
 </anim>
-<animSheet name="og_turret_beam_neutron_1" w="5440" h="160" fw="160" fh="160">og_turrets/neutron/turret_beam_neutron_1.png</animSheet>
+<animSheet name="og_turret_beam_neutron_1" w="160" h="160" fw="160" fh="160">og_turrets/neutron/turret_beam_neutron_1.png</animSheet>
 <anim name="og_turret_beam_neutron_1">
 	<sheet>og_turret_beam_neutron_1</sheet>
-	<desc length="34" x="0" y="0" />
+	<desc length="1" x="0" y="0" />
 	<time>4</time>
 </anim>
 <animSheet name="og_turret_beam_neutron_1_flash" w="3040" h="160" fw="160" fh="160">og_turrets/neutron/turret_beam_neutron_1_flash.png</animSheet>
@@ -949,10 +955,10 @@
 	<desc length="1" x="0" y="0" />
 	<time>1</time>
 </anim>
-<animSheet name="og_turret_beam_neutron_2" w="5440" h="160" fw="160" fh="160">og_turrets/neutron/turret_beam_neutron_2.png</animSheet>
+<animSheet name="og_turret_beam_neutron_2" w="160" h="160" fw="160" fh="160">og_turrets/neutron/turret_beam_neutron_2.png</animSheet>
 <anim name="og_turret_beam_neutron_2">
 	<sheet>og_turret_beam_neutron_2</sheet>
-	<desc length="34" x="0" y="0" />
+	<desc length="1" x="0" y="0" />
 	<time>4</time>
 </anim>
 <animSheet name="og_turret_beam_neutron_2_flash" w="3040" h="160" fw="160" fh="160">og_turrets/neutron/turret_beam_neutron_2_flash.png</animSheet>
@@ -967,10 +973,10 @@
 	<desc length="1" x="0" y="0" />
 	<time>1</time>
 </anim>
-<animSheet name="og_turret_beam_neutron_3" w="5440" h="160" fw="160" fh="160">og_turrets/neutron/turret_beam_neutron_3.png</animSheet>
+<animSheet name="og_turret_beam_neutron_3" w="160" h="160" fw="160" fh="160">og_turrets/neutron/turret_beam_neutron_3.png</animSheet>
 <anim name="og_turret_beam_neutron_3">
 	<sheet>og_turret_beam_neutron_3</sheet>
-	<desc length="34" x="0" y="0" />
+	<desc length="1" x="0" y="0" />
 	<time>4</time>
 </anim>
 <animSheet name="og_turret_beam_neutron_3_flash" w="3040" h="160" fw="160" fh="160">og_turrets/neutron/turret_beam_neutron_3_flash.png</animSheet>
@@ -982,6 +988,50 @@
 <animSheet name="og_turret_beam_neutron_glow" w="160" h="160" fw="160" fh="160">og_turrets/neutron/turret_beam_neutron_glow.png</animSheet>
 <anim name="og_turret_beam_neutron_glow">
 	<sheet>og_turret_beam_neutron_glow</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+
+
+<animSheet name="og_turret_beam_neutron_1_old_icon" w="117" h="52" fw="117" fh="52">og_turrets/neutron/turret_beam_neutron_1_old_icon.png</animSheet>
+<anim name="og_turret_beam_neutron_1_old_icon">
+	<sheet>og_turret_beam_neutron_1_old_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_beam_neutron_1_old" w="5440" h="160" fw="160" fh="160">og_turrets/neutron/turret_beam_neutron_1_old.png</animSheet>
+<anim name="og_turret_beam_neutron_1_old">
+	<sheet>og_turret_beam_neutron_1_old</sheet>
+	<desc length="34" x="0" y="0" />
+	<time>4</time>
+</anim>
+<animSheet name="og_turret_beam_neutron_2_old_icon" w="117" h="52" fw="117" fh="52">og_turrets/neutron/turret_beam_neutron_2_old_icon.png</animSheet>
+<anim name="og_turret_beam_neutron_2_old_icon">
+	<sheet>og_turret_beam_neutron_2_old_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_beam_neutron_2_old" w="5440" h="160" fw="160" fh="160">og_turrets/neutron/turret_beam_neutron_2_old.png</animSheet>
+<anim name="og_turret_beam_neutron_2_old">
+	<sheet>og_turret_beam_neutron_2_old</sheet>
+	<desc length="34" x="0" y="0" />
+	<time>4</time>
+</anim>
+<animSheet name="og_turret_beam_neutron_3_old_icon" w="117" h="52" fw="117" fh="52">og_turrets/neutron/turret_beam_neutron_3_old_icon.png</animSheet>
+<anim name="og_turret_beam_neutron_3_old_icon">
+	<sheet>og_turret_beam_neutron_3_old_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_beam_neutron_3_old" w="5440" h="160" fw="160" fh="160">og_turrets/neutron/turret_beam_neutron_3_old.png</animSheet>
+<anim name="og_turret_beam_neutron_3_old">
+	<sheet>og_turret_beam_neutron_3_old</sheet>
+	<desc length="34" x="0" y="0" />
+	<time>4</time>
+</anim>
+<animSheet name="og_turret_beam_neutron_glow_old" w="160" h="160" fw="160" fh="160">og_turrets/neutron/turret_beam_neutron_glow_old.png</animSheet>
+<anim name="og_turret_beam_neutron_glow_old">
+	<sheet>og_turret_beam_neutron_glow_old</sheet>
 	<desc length="1" x="0" y="0" />
 	<time>1</time>
 </anim>
@@ -1120,6 +1170,23 @@
 	<firePoint  x="20" y="12"/>
 	<mountPoint x="6" y="61"/>
 	<boost>laser_og_triplet_2_chain</boost>
+</weaponAnim>
+
+<animSheet name="laser_og_triplet_2_midnight_chain" w="68" h="92" fw="34" fh="92">weapon_laser/laser_og_triplet_2_midnight_chain.png</animSheet>
+<anim name="laser_og_triplet_2_midnight_chain">
+	<sheet>laser_og_triplet_2_midnight_chain</sheet>
+	<desc length="2" x="0" y="0"/>
+	<time>1.0</time>
+</anim>
+<animSheet name="laser_og_triplet_2_midnight" w="442" h="92" fw="34" fh="92">weapon_laser/laser_og_triplet_2_midnight.png</animSheet>
+<weaponAnim name="laser_og_triplet_2_midnight">
+	<sheet>laser_og_triplet_2_midnight</sheet>
+	<desc length="13" x="0" y="0"/>
+	<chargedFrame>6</chargedFrame>
+	<fireFrame>9</fireFrame>
+	<firePoint  x="20" y="12"/>
+	<mountPoint x="6" y="61"/>
+	<boost>laser_og_triplet_2_midnight_chain</boost>
 </weaponAnim>
 </FTL>
 
@@ -1746,6 +1813,131 @@
 </anim>
 <anim name="unique_og_silas_portrait">
 	<sheet>unique_og_silas</sheet>
+	<desc length="1" x="0" y="0"/>
+	<time>1</time>
+</anim>
+</FTL>
+
+<!--Civilian-->
+<FTL>
+<animSheet fh="35" fw="35" h="455" name="human_og_civilian" w="315">people/human_og_civilian_base.png</animSheet>
+<anim name="human_og_civilian_clone">
+	<sheet>human_og_civilian</sheet>
+	<desc length="6" x="0" y="2"/>
+	<time>0.75</time>
+</anim>
+<anim name="human_og_civilian_death_right">
+	<sheet>human_og_civilian</sheet>
+	<desc length="5" x="3" y="0"/>
+	<time>0.75</time>
+</anim>
+<anim name="human_og_civilian_death_left">
+	<sheet>human_og_civilian</sheet>
+	<desc length="5" x="0" y="2"/>
+	<time>0.75</time>
+</anim>
+<anim name="human_og_civilian_walk_down">
+	<sheet>human_og_civilian</sheet>
+	<desc length="4" x="0" y="12"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_civilian_walk_right">
+	<sheet>human_og_civilian</sheet>
+	<desc length="4" x="4" y="12"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_civilian_walk_up">
+	<sheet>human_og_civilian</sheet>
+	<desc length="4" x="0" y="11"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_civilian_walk_left">
+	<sheet>human_og_civilian</sheet>
+	<desc length="4" x="4" y="11"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_civilian_shoot_down">
+	<sheet>human_og_civilian</sheet>
+	<desc length="3" x="0" y="10"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_civilian_shoot_right">
+	<sheet>human_og_civilian</sheet>
+	<desc length="3" x="3" y="10"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_civilian_shoot_up">
+	<sheet>human_og_civilian</sheet>
+	<desc length="3" x="6" y="10"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_civilian_shoot_left">
+	<sheet>human_og_civilian</sheet>
+	<desc length="3" x="0" y="1"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_civilian_fire_down">
+	<sheet>human_og_civilian</sheet>
+	<desc length="4" x="0" y="9"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_civilian_fire_right">
+	<sheet>human_og_civilian</sheet>
+	<desc length="4" x="4" y="9"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_civilian_fire_up">
+	<sheet>human_og_civilian</sheet>
+	<desc length="4" x="0" y="8"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_civilian_fire_left">
+	<sheet>human_og_civilian</sheet>
+	<desc length="4" x="4" y="8"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_civilian_repair">
+	<sheet>human_og_civilian</sheet>
+	<desc length="9" x="0" y="7"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_civilian_punch_up">
+	<sheet>human_og_civilian</sheet>
+	<desc length="6" x="3" y="1"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_civilian_punch_down">
+	<sheet>human_og_civilian</sheet>
+	<desc length="6" x="0" y="6"/>
+	<time>1.0</time>
+</anim>
+<anim name="human_og_civilian_teleport">
+	<sheet>human_og_civilian</sheet>
+	<desc length="9" x="0" y="3"/>
+	<time>0.5</time>
+</anim>
+<anim name="human_og_civilian_type_right">
+	<sheet>human_og_civilian</sheet>
+	<desc length="4" x="0" y="5"/>
+	<time>0.75</time>
+</anim>
+<anim name="human_og_civilian_type_left">
+	<sheet>human_og_civilian</sheet>
+	<desc length="4" x="4" y="5"/>
+	<time>0.75</time>
+</anim>
+<anim name="human_og_civilian_type_up">
+	<sheet>human_og_civilian</sheet>
+	<desc length="4" x="0" y="4"/>
+	<time>0.75</time>
+</anim>
+<anim name="human_og_civilian_type_down">
+	<sheet>human_og_civilian</sheet>
+	<desc length="4" x="4" y="4"/>
+	<time>0.75</time>
+</anim>
+<anim name="human_og_civilian_portrait">
+	<sheet>human_og_civilian</sheet>
 	<desc length="1" x="0" y="0"/>
 	<time>1</time>
 </anim>

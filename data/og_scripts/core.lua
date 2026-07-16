@@ -384,6 +384,7 @@ repCombos.rep_comb_all.rep_og_iron = {buffer = 0}
 
 local pulsar_power = {}
 pulsar_power["human_og_raider"] = 2
+pulsar_power["unique_og_silas"] = 2
 
 local crewStatName = {
 	[0] = "MAX_HEALTH",
@@ -1189,7 +1190,7 @@ mods.og.triplet_weapons = {}
 local triplet_weapons = mods.og.triplet_weapons
 triplet_weapons["LASER_OG_TRIPLET_1"] = true
 triplet_weapons["LASER_OG_TRIPLET_2"] = true
-
+triplet_weapons["LOOT_OG_MIDNIGHT_1"] = true
 
 local is_first_shot = mods.multiverse.is_first_shot
 
@@ -1201,7 +1202,7 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
 		else
 			weapon.table.og_triplet_shot = true
 		end
-	elseif weapon.table.og_triplet_shot then
+	elseif triplet_weapons[weapon.blueprint.name] and is_first_shot(weapon, true) and weapon.table.og_triplet_shot then
 		weapon.table.og_triplet_shot = true
 	end
 end)
@@ -1209,7 +1210,7 @@ end)
 
 local update_enemy_hunter = false
 script.on_internal_event(Defines.InternalEvents.CONSTRUCT_SHIP_MANAGER, function(shipManager)
-	if shipManager.iShipId == 1 and shipManager.myBlueprint.blueprintName == "OG_MIDNIGHT_HUNTER" then
+	if shipManager.iShipId == 1 then--and shipManager.myBlueprint.blueprintName == "OG_MIDNIGHT_HUNTER" then
 		update_enemy_hunter = true
 	end
 end)
@@ -1221,7 +1222,10 @@ end)
 script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 	if shipManager.iShipId == 1 and update_enemy_hunter then
 		update_enemy_hunter = false
-		shipManager:RemoveSystem(11)
+		if shipManager.myBlueprint.blueprintName == "OG_MIDNIGHT_HUNTER" and Hyperspace.playerVariables.og_neutron_hunter_deadcrew == 0 then
+			shipManager:RemoveSystem(11)
+			--log("OG - removed artillery from Midnight Hunter")
+		end
 	end
 end)
 
@@ -1235,8 +1239,11 @@ script.on_game_event("SHIP_OG_MIDNIGHT_HUNTER_MIDFIGHT_RESET", false, function()
 end)
 script.on_game_event("SHIP_OG_MIDNIGHT_HUNTER_RESUME", false, function()
 	local shipManager = Hyperspace.ships.enemy
-	if shipManager then
+	if shipManager and not shipManager:HasSystem(11) then
 		shipManager:AddSystem(11)
+		shipManager.artillerySystems[0].target = Hyperspace.ships.player._targetable
+	else
+		log("OG - Failed to install artillery on Midnight Hunter")
 	end
 end)
 
@@ -1248,3 +1255,149 @@ local function create_defense_drone(bp, shipManager)
 	drone.bDead = false
 	return drone
 end
+
+local haltWeapons = {}
+haltWeapons["DRONE_FOCUS_OG_SILAS"] = true
+
+script.on_internal_event(Defines.InternalEvents.DAMAGE_BEAM, function(ship, projectile, location, damage, realNewTile, beamHitType)
+	if haltWeapons[projectile.extend.name] then
+		return Defines.Chain.HALT, Defines.BeamHit.SAME_TILE
+	end
+	return Defines.Chain.CONTINUE, beamHitType
+end)
+
+
+local focusDrones = {}
+focusDrones["DRONE_LASER_OG_SILAS"] = Hyperspace.Blueprints:GetWeaponBlueprint("DRONE_FOCUS_OG_SILAS")
+
+local ionBlueprint = Hyperspace.Blueprints:GetWeaponBlueprint("ION_1")
+script.on_internal_event(Defines.InternalEvents.DRONE_FIRE, function(projectile, drone)
+	if focusDrones[projectile.extend.name] then
+		local target_id = drone.shotAtTargetId
+		--print("TARGET:"..tostring(target_id))
+		local spaceManager = Hyperspace.App.world.space
+		local found_target = false
+		for target_projectile in vter(spaceManager.projectiles) do
+			if target_projectile:GetSelfId() == target_id then
+				--print("KILL PROJECTILE:"..tostring(target_projectile:GetSelfId()))
+				target_projectile:Kill()
+				found_target = target_projectile._targetable:GetRandomTargettingPoint(true)
+				break
+			end
+		end
+		if not found_target then
+			for target_drone in vter(spaceManager.drones) do
+				if target_drone:GetSelfId() == target_id then
+					--print("STUN DRONE:"..tostring(target_drone:GetSelfId()))
+					found_target = target_drone._targetable:GetRandomTargettingPoint(true)
+					local drone_up = Hyperspace.Pointf(found_target.x, found_target.y + 1)
+					spaceManager:CreateLaserBlast(ionBlueprint, found_target, projectile.currentSpace, projectile.currentSpace, drone_up, projectile.currentSpace, projectile.heading)
+					break
+				end
+			end
+		end
+		if found_target then
+			local target_pos = found_target
+			local beam = spaceManager:CreateBeam(
+				focusDrones[projectile.extend.name],
+				projectile.position,
+				projectile.currentSpace,
+				1 - projectile.currentSpace,
+				target_pos,
+				Hyperspace.Pointf(target_pos.x, target_pos.y + 1),
+				projectile.currentSpace,
+				1,
+				0
+				)
+		end
+		projectile:Kill()
+	end
+	return Defines.Chain.CONTINUE
+end)
+
+local droneCrew = {}
+droneCrew["unique_og_silas"] = Hyperspace.Blueprints:GetDroneBlueprint("OG_SILAS_DRONE")
+
+script.on_internal_event(Defines.InternalEvents.ACTIVATE_POWER, function(power)
+	local crewmem = power.crew
+	if droneCrew[crewmem.type] and power.def.name == droneCrew[crewmem.type].name then
+		if crewmem.table.og_droneCrew_current_drone then
+			crewmem.table.og_droneCrew_current_drone:SetDestroyed(true, true)
+			crewmem.table.og_droneCrew_current_drone.lifespan = 0
+			crewmem.table.og_droneCrew_current_drone.powered = false
+		end
+		local shipManager = Hyperspace.ships(crewmem.iShipId)
+		local drone = create_defense_drone(droneCrew[crewmem.type], shipManager)
+		crewmem.table.og_droneCrew_current_drone = drone
+		drone.table.og_droneCrew_current_has_crew = true
+		drone.table.og_droneCrew_current_crew = crewmem
+	end
+	return Defines.Chain.CONTINUE
+end)
+
+script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
+	for drone in vter(Hyperspace.App.world.space.drones) do
+		if drone.table and drone.table.og_droneCrew_current_has_crew then
+			local crewmem = drone.table.og_droneCrew_current_crew
+			if not crewmem or crewmem:OutOfGame() or crewmem:IsDead() then
+				drone:SetDestroyed(true, true)
+				drone.lifespan = 0
+				drone.powered = false
+				crewmem.table.og_droneCrew_current_drone = nil
+			end
+		end
+	end
+end)
+
+script.on_internal_event(Defines.InternalEvents.CREW_LOOP, function(crewmem)
+	if droneCrew[crewmem.type] then
+		for power in vter(crewmem.extend.crewPowers) do
+			if power.def.name == droneCrew[crewmem.type].name then
+				if crewmem.table.og_droneCrew_current_drone and not power.temporaryPowerActive then
+					crewmem.table.og_droneCrew_current_drone:SetDestroyed(true, true)
+					crewmem.table.og_droneCrew_current_drone.lifespan = 0
+					crewmem.table.og_droneCrew_current_drone.powered = false
+					crewmem.table.og_droneCrew_current_drone = nil
+				end
+			end
+		end
+	end
+end)
+
+
+
+local civilianCrew = {}
+civilianCrew["human_og_civilian"] = 25
+
+script.on_internal_event(Defines.InternalEvents.CREW_LOOP, function(crewmem)
+	if civilianCrew[crewmem.type] and crewmem.table.og_civilian_leave and not crewmem:IsDead() then
+		Hyperspace.ships.player:ModifyScrapCount(civilianCrew[crewmem.type], true)
+		crewmem.table.og_civilian_leave = false
+		crewmem:Kill(true)
+	end
+end)
+
+local crew_check = true
+cript.on_internal_event(Defines.InternalEvents.ON_TICK, function()
+	local map = Hyperspace.App.world.starMap
+	if map.bOpen and map.bChoosingNewSector and crew_check then
+		crew_check = false
+		for crewmem in vter(Hyperspace.ships.player.vCrewList) do
+			if civilianCrew[crewmem.type] then
+				crewmem.table.og_civilian_leave = true
+			end
+		end
+	elseif not crew_check then
+		crew_check = true
+	end
+end
+
+script.on_internal_event(Defines.InternalEvents.POST_CREATE_CHOICEBOX, function(choiceBox, event)
+	if event.store then
+		for crewmem in vter(Hyperspace.ships.player.vCrewList) do
+			if civilianCrew[crewmem.type] then
+				crewmem.table.og_civilian_leave = true
+			end
+		end
+	end
+end)

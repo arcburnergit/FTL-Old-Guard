@@ -347,7 +347,7 @@ table.insert(craftedLasers.items, {weapon = "OG_TURRET_LASER_BIO", match_cost = 
 table.insert(craftedLasers.items, {weapon = "OG_TURRET_LASER_HULL", match_cost = true, component_amounts = {1}, components = {{"LASER_HULL_1", "LASER_HULL_2", "LASER_HULL_3", "LASER_HULL_3_PLAYER", "LASER_HULL_CHAINGUN"}}} )
 table.insert(craftedLasers.items, {weapon = "OG_TURRET_LASER_PARTICLE", match_cost = true, component_amounts = {1}, components = {{"LASER_PARTICLE", "LASER_PARTICLE_2", "BEAM_PARTICLE", "MISSILES_PARTICLE", "MISSILES_PARTICLE_PLAYER"}}} )
 table.insert(craftedLasers.items, {weapon = "OG_TURRET_LASER_FROST", match_cost = true, component_amounts = {1}, components = {{"LASER_FROST_1", "LASER_FROST_2", "LASER_FROST_2_PLAYER", "SENTRY_FROST", "FROST_CHARGEGUN"}}} )
-table.insert(craftedLasers.items, {weapon = "OG_TURRET_LASER_TRIPLET", match_cost = true, component_amounts = {1}, components = {{ "LASER_OG_TRIPLET_1", "LASER_OG_TRIPLET_1", "LASER_HEAVY_CHAINGUN", "LASER_CHAINGUN_DAMAGE", "LASER_CHARGE_CHAIN", "LASER_HULL_CHAINGUN"}}} )
+table.insert(craftedLasers.items, {weapon = "OG_TURRET_LASER_TRIPLET", match_cost = true, component_amounts = {1}, components = {{ "LASER_OG_TRIPLET_1", "LASER_OG_TRIPLET_2", "LASER_HEAVY_CHAINGUN", "LASER_CHAINGUN_DAMAGE", "LASER_CHARGE_CHAIN", "LASER_HULL_CHAINGUN"}}} )
 
 table.insert(craftedIons.items, {weapon = "OG_TURRET_ION_1", match_cost = true, component_amounts = {1}, components = {{"ION_1", "ION_2", "ION_3", "ION_4", "ION_CHAINGUN", "ION_CHARGEGUN", "ION_CHARGEGUN_2"}}} )
 table.insert(craftedIons.items, {weapon = "OG_TURRET_ION_2", match_cost = true, component_amounts = {1}, components = {{"ION_FIRE", "ION_FIRE_PLAYER", "ION_BIO", "ION_TRI", "ION_STUN", "ION_STUN_2", "ION_STUN_HEAVY", "ION_STUN_CHARGEGUN", "ION_STUN_CHARGEGUN_PLAYER"}}} )
@@ -382,12 +382,13 @@ table.insert(craftedSpecial.items, {weapon = "OG_TURRET_LASER_CEL_1", match_cost
 table.insert(craftedSpecial.items, {weapon = "OG_TURRET_LASER_GATLING", match_cost = true, component_amounts = {1}, components = {{"GATLING"}}} )
 table.insert(craftedSpecial.items, {weapon = "OG_TURRET_LASER_RIFTWAKER", match_cost = true, component_amounts = {1}, components = {{"GATLING_SYLVAN", "GATLING_SYLVAN_HONOR"}}} )
 
+table.insert(craftedNeutronBeam.items, {weapon = "OG_TURRET_BEAM_NEUTRON_1", match_cost = true, component_amounts = {1, 1}, components = {{"OG_TURRET_BEAM_NEUTRON_0"}, {"LASER_BURST_5", "LASER_BURST_8", "LASER_HEAVY_3", "LASER_PIERCE_2", "LASER_CHAINGUN_2", "LASER_HULL_3", "LASER_OG_TRIPLET_2", "ION_4", "MISSILES_3", "MISSILES_4", "ENERGY_3", "SHOTGUN_3", "SHOTGUN_4", "FOCUS_3", "BEAM_3"}}} )
 table.insert(craftedNeutronBeam.items, {weapon = "OG_TURRET_BEAM_NEUTRON_2", match_cost = true, component_amounts = {1}, components = {{"OG_TURRET_BEAM_NEUTRON_1"}}} )
 table.insert(craftedNeutronBeam.items, {weapon = "OG_TURRET_BEAM_NEUTRON_3", match_cost = true, component_amounts = {1}, components = {{"OG_TURRET_BEAM_NEUTRON_2"}}} )
 script.on_internal_event(Defines.InternalEvents.JUMP_LEAVE, function(shipManager)
-	if shipManager.iShipId == 0 and (shipManager:HasEquipment("OG_TURRET_BEAM_NEUTRON_1") > 0 or shipManager:HasEquipment("OG_TURRET_BEAM_NEUTRON_2") > 0 or shipManager:HasEquipment("OG_TURRET_BEAM_NEUTRON_3") > 0) then
+	if shipManager.iShipId == 0 and (shipManager:HasEquipment("OG_TURRET_BEAM_NEUTRON_0") > 0 or shipManager:HasEquipment("OG_TURRET_BEAM_NEUTRON_1") > 0 or shipManager:HasEquipment("OG_TURRET_BEAM_NEUTRON_2") > 0 or shipManager:HasEquipment("OG_TURRET_BEAM_NEUTRON_3") > 0) then
 		Hyperspace.metaVariables[craftedNeutronBeam.var] = 1
-	elseif shipManager.iShipId == 1 then
+	elseif shipManager.iShipId == 0 then
 		Hyperspace.metaVariables[craftedNeutronBeam.var] = 0
 	end
 end)
