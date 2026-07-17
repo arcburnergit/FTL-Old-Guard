@@ -640,6 +640,13 @@ script.on_internal_event(Defines.InternalEvents.GENERATOR_CREATE_SHIP, function(
 	end
 	return Defines.Chain.CONTINUE, sector, event, blueprint, ret
 end)
+script.on_internal_event(Defines.InternalEvents.GET_AUGMENTATION_VALUE, function(shipManager, augment, value)
+	if augment == "ER_EVASION_REDUCTION" --[[and shipManager.iShipId == 1]] and shipManager:HasAugmentation("OG_NEUTRON_SHIELD") > 0 then
+		--print("MAKE ADJUSTMENT: ER_EVASION_REDUCTION")
+		value = value + 10
+	end
+	return Defines.Chain.CONTINUE, value
+end)
 script.on_internal_event(Defines.InternalEvents.GET_DODGE_FACTOR, function(shipManager, value)
 	if value > 10 and shipManager:HasAugmentation("OG_NEUTRON_SHIELD") > 0 then
 		value = value - 10
