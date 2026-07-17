@@ -1436,3 +1436,30 @@ script.on_internal_event(Defines.InternalEvents.ON_WAIT, function(shipManager)
 		added_choice = false
 	end
 end)
+
+
+local midnight_sun_ship = {}
+for item in vter(Hyperspace.Blueprints:GetBlueprintList("LIST_SHIPS_OG_MIDNIGHT_ALL")) do
+	midnight_sun_ship[item] = true
+end
+midnight_sun_ship["OG_MIDNIGHT_HUNTER"] = false
+
+local update_enemy_midnight = false
+script.on_internal_event(Defines.InternalEvents.CONSTRUCT_SHIP_MANAGER, function(shipManager)
+	if shipManager.iShipId == 1 then--and shipManager.myBlueprint.blueprintName == "OG_MIDNIGHT_HUNTER" then
+		update_enemy_midnight = true
+	end
+end)
+
+script.on_internal_event(Defines.InternalEvents.JUMP_LEAVE, function(shipManager)
+	if update_enemy_hunter then update_enemy_hunter = false end
+end)
+
+script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+	if shipManager.iShipId == 1 and update_enemy_midnight then
+		update_enemy_midnight = false
+		if midnight_sun_ship[shipManager.myBlueprint.blueprintName] then
+			print("downgrade system")
+		end
+	end
+end)

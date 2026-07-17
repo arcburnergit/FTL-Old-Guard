@@ -75,7 +75,7 @@ local function turret_install_event(installEvent, sysName, shipManager, eventMan
 					script.on_game_event(removeEvent.eventName, false, function()
 						--Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] = index
 						system.table.blueprint = weapon.blueprint.name
-						system.table.custom_animations = {}
+						system.table.custom_animations = nil
 						shipManager:RemoveItem(weapon.blueprint.name, true)
 						if toAddBlueprint then
 							Hyperspace.App.gui.equipScreen:AddWeapon(toAddBlueprint, true, false)
@@ -111,7 +111,7 @@ local function turret_install_event(installEvent, sysName, shipManager, eventMan
 				script.on_game_event(removeEvent.eventName, false, function()
 					--Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] = index
 					system.table.blueprint = item
-					system.table.custom_animations = {}
+					system.table.custom_animations = nil
 					shipManager:RemoveItem(item, true)
 					if toAddBlueprint then
 						Hyperspace.App.gui.equipScreen:AddWeapon(toAddBlueprint, true, false)
@@ -169,7 +169,7 @@ script.on_internal_event(Defines.InternalEvents.PRE_CREATE_CHOICEBOX, function(e
 							local sys = Hyperspace.ships.player:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
 							if sys.table then
 								sys.table.blueprint = ""
-								sys.table.custom_animations = {}
+								sys.table.custom_animations = nil
 								sys.table.charges = 0
 								sys.table.time = 0
 								sys.table.firingTime = 0
@@ -291,13 +291,14 @@ hideName["DDDEEP_ONE_SHOTGUN"] = ""
 hideName["DDDEEP_ONE_SHOTGUN_CHAOS"] = ""
 hideName["LASER_DISPARITY_LOOT"] = ""
 
+hideName["OG_TURRET_BEAM_NEUTRON_0"] = "A powerful weapon inspired by a dangerous star."
+hideName["OG_TURRET_BEAM_NEUTRON_1"] = "A powerful weapon inspired by a dangerous star."
+hideName["OG_TURRET_BEAM_NEUTRON_2"] = "A powerful weapon inspired by a dangerous star."
+hideName["OG_TURRET_BEAM_NEUTRON_3"] = "A powerful weapon inspired by a dangerous star."
+
 --
 mods.og.craftedCategories = {}
 local craftedCategories = mods.og.craftedCategories
-
-mods.og.craftedNeutronBeam = {name = "Neutron Beam", id = "NEUTRON", items = {}, var = "og_neutron_turret_acquired"}
-table.insert(craftedCategories, mods.og.craftedNeutronBeam)
-local craftedNeutronBeam = mods.og.craftedNeutronBeam
 
 mods.og.craftedLasers = {name = "Lasers", id = "LASER", items = {}}
 table.insert(craftedCategories, mods.og.craftedLasers)
@@ -385,16 +386,10 @@ table.insert(craftedSpecial.items, {weapon = "OG_TURRET_LASER_CEL_1", match_cost
 table.insert(craftedSpecial.items, {weapon = "OG_TURRET_LASER_GATLING", match_cost = true, component_amounts = {1}, components = {{"GATLING"}}} )
 table.insert(craftedSpecial.items, {weapon = "OG_TURRET_LASER_RIFTWAKER", match_cost = true, component_amounts = {1}, components = {{"GATLING_SYLVAN", "GATLING_SYLVAN_HONOR"}}} )
 
-table.insert(craftedNeutronBeam.items, {weapon = "OG_TURRET_BEAM_NEUTRON_1", match_cost = true, component_amounts = {1, 1}, components = {{"OG_TURRET_BEAM_NEUTRON_0"}, {"LASER_BURST_5", "LASER_BURST_8", "LASER_HEAVY_3", "LASER_PIERCE_2", "LASER_CHAINGUN_2", "LASER_HULL_3", "LASER_OG_TRIPLET_2", "ION_4", "MISSILES_3", "MISSILES_4", "ENERGY_3", "SHOTGUN_3", "SHOTGUN_4", "FOCUS_3", "BEAM_3"}}} )
-table.insert(craftedNeutronBeam.items, {weapon = "OG_TURRET_BEAM_NEUTRON_2", match_cost = true, component_amounts = {1}, components = {{"OG_TURRET_BEAM_NEUTRON_1"}}} )
-table.insert(craftedNeutronBeam.items, {weapon = "OG_TURRET_BEAM_NEUTRON_3", match_cost = true, component_amounts = {1}, components = {{"OG_TURRET_BEAM_NEUTRON_2"}}} )
-script.on_internal_event(Defines.InternalEvents.JUMP_LEAVE, function(shipManager)
-	if shipManager.iShipId == 0 and (shipManager:HasEquipment("OG_TURRET_BEAM_NEUTRON_0") > 0 or shipManager:HasEquipment("OG_TURRET_BEAM_NEUTRON_1") > 0 or shipManager:HasEquipment("OG_TURRET_BEAM_NEUTRON_2") > 0 or shipManager:HasEquipment("OG_TURRET_BEAM_NEUTRON_3") > 0) then
-		Hyperspace.metaVariables[craftedNeutronBeam.var] = 1
-	elseif shipManager.iShipId == 0 then
-		Hyperspace.metaVariables[craftedNeutronBeam.var] = 0
-	end
-end)
+table.insert(craftedSpecial.items, {weapon = "OG_TURRET_BEAM_NEUTRON_1", match_cost = true, component_amounts = {1, 1}, components = {{"OG_TURRET_BEAM_NEUTRON_0"}, {"LASER_BURST_5", "LASER_BURST_8", "LASER_HEAVY_3", "LASER_PIERCE_2", "LASER_CHAINGUN_2", "LASER_HULL_3", "LASER_OG_TRIPLET_2", "ION_4", "MISSILES_3", "MISSILES_4", "ENERGY_3", "SHOTGUN_3", "SHOTGUN_4", "FOCUS_3", "BEAM_3"}}} )
+table.insert(craftedSpecial.items, {weapon = "OG_TURRET_BEAM_NEUTRON_2", match_cost = true, component_amounts = {1}, components = {{"OG_TURRET_BEAM_NEUTRON_1"}}} )
+table.insert(craftedSpecial.items, {weapon = "OG_TURRET_BEAM_NEUTRON_3", match_cost = true, component_amounts = {1}, components = {{"OG_TURRET_BEAM_NEUTRON_2"}}} )
+
 
 -- DARKEST DESIRE
 

@@ -580,7 +580,6 @@ The station appears well defended, with a few turrets and weapons mounted, addit
 			<text>Not a moment later your comms crackle with an incoming signal. The signal is a tight-beam, encrypted, you're sensors aren't able to locate it's source.
 
 "So you're who they sent, I hope you're good enough. But enough with the pleasantries..." A ship uncloaks itself almost on top of you, the source of the signal, painted almost entirely black, the only source of colour a tiny golden sun insignia near the cockpit.</text>
-			<ship load="SHIP_OG_MIDNIGHT_HUNTER_FIGHT" hostile="false"/>
 			<choice hidden="true">
 				<text>Continue...</text>
 				<event>
@@ -657,6 +656,7 @@ It's not more than a few moments later that the operative receives an encrypted 
 <event name="OG_NEUTRON_RESEARCH_STATION_WON">
 	<ship hostile="false"/>
 	<recallBoarders force="true" ship="player"/>
+	<variable name="og_neutron_hunter_deadcrew" op="set" val="0"/>
 	<text>Your sensors detect the Midnight Sun ship disengage from the station, it quickly retreats to safety, it appears that your job here is done. You begin disengaging from the station yourself.
 
 The Midnight Sun operative rushes over to you, "What are you doing Captain? I haven't received the signal, we shouldn't disengage yet."</text>
