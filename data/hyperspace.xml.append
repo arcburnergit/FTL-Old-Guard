@@ -1175,6 +1175,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 	<variable name="rep_og_dawn" op="set" val="0"/>
 	<variable name="rep_comb_og_iron" op="set" val="0"/>
 	<variable name="ach_trans_og_dawn" op="set" val="0"/>
+	<variable name="ach_trans_og_midnight" op="set" val="0"/>
 	
 	<variable name="ach_og_battlecruiser_slug" op="set" val="0"/>
 	<variable name="ach_og_battlecruiser_clan" op="set" val="0"/>
@@ -1818,6 +1819,14 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 				<secretDescription>Obtain the loot from the New Dawn loot transport.</secretDescription>
 				<description>Obtain the Pierce Laser I from the New Dawn loot transport.</description>
 				<icon>ach_trans_og_dawn</icon>
+				<header>Loot Acquired</header>
+				<sound>achievement</sound>
+			</achievement>
+			<achievement name="ACH_TRANS_OG_MIDNIGHT">
+				<name>Midnight Sun Transport</name>
+				<secretDescription>Obtain the loot from the Midnight Sun loot transport.</secretDescription>
+				<description>Obtain the Triplet Laser II from the Midnight Sun loot transport.</description>
+				<icon>ach_trans_og_midnight</icon>
 				<header>Loot Acquired</header>
 				<sound>achievement</sound>
 			</achievement>
