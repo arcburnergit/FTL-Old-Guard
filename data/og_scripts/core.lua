@@ -1168,6 +1168,7 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
 			0,
 			false
 			)
+		Hyperspace.Sounds:PlaySoundMix("og_neutron_beam_8", -1, false)
 		projectile:Kill()
 	end
 end)

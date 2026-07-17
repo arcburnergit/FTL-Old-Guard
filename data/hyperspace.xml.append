@@ -25,7 +25,7 @@
 	<mod-append:customSystem id="og_turret_adaptive"/>
 	<mod-append:customSystem id="og_turret_adaptive_2"/>
 	<mod-append:customSystem id="og_turret_adaptive_single"/>
-    <mod-append:customSystem id="og_equaliser" subSystem="true"/>
+	<mod-append:customSystem id="og_equaliser" subSystem="true"/>
 
 	<mod-append:exclusivityGroup>
 		<og_turret/>
@@ -59,7 +59,7 @@
 		<mod-append:og_turret_adaptive_single/>
 	</mod:findWithChildLike>
 	<mod:findWithChildLike type="exclusivityGroup" child-type="battery">
-        <mod-append:og_equaliser/>
+		<mod-append:og_equaliser/>
 	</mod:findWithChildLike>
 
 	<mod:findLike type="systemPositions" reverse="false">
@@ -222,7 +222,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		</unlock>
 		<unlock variant="c" silent="false">
 			<type>3</type>
-            <otherUnlocks>
+			<otherUnlocks>
 				<ship>PLAYER_SHIP_OG_RAIDER_3</ship>
 			</otherUnlocks>
 		</unlock>
@@ -276,7 +276,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		</unlock>
 		<unlock variant="c" silent="false">
 			<type>3</type>
-            <otherUnlocks>
+			<otherUnlocks>
 				<ship>PLAYER_SHIP_OG_EXECUTOR_3</ship>
 			</otherUnlocks>
 		</unlock>
@@ -479,7 +479,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		</unlock>
 		<unlock variant="c" silent="false">
 			<type>3</type>
-            <otherUnlocks>
+			<otherUnlocks>
 				<ship>PLAYER_SHIP_OG_DAWN_SPEAR_3</ship>
 			</otherUnlocks>
 		</unlock>
@@ -534,7 +534,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		</unlock>
 		<unlock variant="c" silent="false">
 			<type>3</type>
-            <otherUnlocks>
+			<otherUnlocks>
 				<ship>PLAYER_SHIP_OG_DAWN_BIG_3</ship>
 			</otherUnlocks>
 		</unlock>
@@ -591,7 +591,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		</unlock>
 		<unlock variant="c" silent="false">
 			<type>3</type>
-            <otherUnlocks>
+			<otherUnlocks>
 				<ship>PLAYER_SHIP_OG_HUNTER_3</ship>
 			</otherUnlocks>
 		</unlock>
@@ -648,7 +648,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		</unlock>
 		<unlock variant="c" silent="false">
 			<type>3</type>
-            <otherUnlocks>
+			<otherUnlocks>
 				<ship>PLAYER_SHIP_OG_DRIFTER_3</ship>
 			</otherUnlocks>
 		</unlock>
@@ -974,7 +974,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<rooms>
 			<room id="1"> <!--cloaking-->
 				<roomAnim renderLayer="0">resist_1x2</roomAnim>
-                <roomAnim renderLayer="3">resist_icon</roomAnim>
+				<roomAnim renderLayer="3">resist_icon</roomAnim>
 				<sysDamageResistChance>100</sysDamageResistChance>
 			</room>
 		</rooms>
@@ -989,7 +989,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<rooms>
 			<room id="3"> <!--cloaking-->
 				<roomAnim renderLayer="0">resist_1x2</roomAnim>
-                <roomAnim renderLayer="3">resist_icon</roomAnim>
+				<roomAnim renderLayer="3">resist_icon</roomAnim>
 				<sysDamageResistChance>100</sysDamageResistChance>
 			</room>
 		</rooms>
@@ -1004,7 +1004,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<rooms>
 			<room id="6"> <!--cloaking-->
 				<roomAnim renderLayer="0">resist_1x2</roomAnim>
-                <roomAnim renderLayer="3">resist_icon</roomAnim>
+				<roomAnim renderLayer="3">resist_icon</roomAnim>
 				<sysDamageResistChance>100</sysDamageResistChance>
 			</room>
 		</rooms>
@@ -1019,7 +1019,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<rooms>
 			<room id="9"> <!--cloaking-->
 				<roomAnim renderLayer="0">resist_2x1</roomAnim>
-                <roomAnim renderLayer="3">resist_icon</roomAnim>
+				<roomAnim renderLayer="3">resist_icon</roomAnim>
 				<sysDamageResistChance>100</sysDamageResistChance>
 			</room>
 		</rooms>
@@ -1034,7 +1034,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<rooms>
 			<room id="0"> <!--cloaking-->
 				<roomAnim renderLayer="0">resist_2x2</roomAnim>
-                <roomAnim renderLayer="3">resist_icon</roomAnim>
+				<roomAnim renderLayer="3">resist_icon</roomAnim>
 				<sysDamageResistChance>100</sysDamageResistChance>
 			</room>
 		</rooms>
@@ -1049,7 +1049,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<rooms>
 			<room id="5"> <!--cloaking-->
 				<roomAnim renderLayer="0">resist_1x2</roomAnim>
-                <roomAnim renderLayer="3">resist_icon</roomAnim>
+				<roomAnim renderLayer="3">resist_icon</roomAnim>
 				<sysDamageResistChance>100</sysDamageResistChance>
 			</room>
 		</rooms>
@@ -1064,7 +1064,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<rooms>
 			<room id="7"> <!--cloaking-->
 				<roomAnim renderLayer="0">resist_2x2</roomAnim>
-                <roomAnim renderLayer="3">resist_icon</roomAnim>
+				<roomAnim renderLayer="3">resist_icon</roomAnim>
 				<sysDamageResistChance>100</sysDamageResistChance>
 			</room>
 		</rooms>
@@ -1079,7 +1079,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<rooms>
 			<room id="13"> <!--cloaking-->
 				<roomAnim renderLayer="0">resist_2x2</roomAnim>
-                <roomAnim renderLayer="3">resist_icon</roomAnim>
+				<roomAnim renderLayer="3">resist_icon</roomAnim>
 				<sysDamageResistChance>100</sysDamageResistChance>
 			</room>
 		</rooms>
@@ -1095,7 +1095,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<rooms>
 			<room id="14"> <!--cloaking-->
 				<roomAnim renderLayer="0">resist_2x2</roomAnim>
-                <roomAnim renderLayer="3">resist_icon</roomAnim>
+				<roomAnim renderLayer="3">resist_icon</roomAnim>
 				<sysDamageResistChance>100</sysDamageResistChance>
 			</room>
 		</rooms>
@@ -1373,17 +1373,17 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 	<metaVariable name="prof_hotkey_og_turret_8" op="set" val="-1"/>
 
 	<fleetDef name="CUSTOM_FLEET_OG_IRON">
-        <ship layer="0">fleet_og_iron_1_small</ship>
+		<ship layer="0">fleet_og_iron_1_small</ship>
 		<ship layer="0">fleet_og_iron_2_small</ship>
 		<ship layer="1">fleet_og_iron_1_med</ship>
-        <ship layer="1">fleet_og_iron_2_med</ship>
-        <ship layer="2">fleet_og_iron_1_big</ship>
-        <ship layer="2">fleet_og_iron_2_big</ship>
-        <bigShip>fleet_og_iron_1_big</bigShip>
-        <numShips layer="2">1</numShips>
-        <numShips layer="1">4</numShips>
+		<ship layer="1">fleet_og_iron_2_med</ship>
+		<ship layer="2">fleet_og_iron_1_big</ship>
+		<ship layer="2">fleet_og_iron_2_big</ship>
+		<bigShip>fleet_og_iron_1_big</bigShip>
+		<numShips layer="2">1</numShips>
+		<numShips layer="1">4</numShips>
 		<numShips layer="0">6</numShips>
-    </fleetDef>
+	</fleetDef>
 
 	<bossShip>OGT_BOSS_IRON_NORMAL</bossShip>
 	<bossShip>OGT_BOSS_IRON_CHALLENGE</bossShip>
@@ -1536,7 +1536,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 			</powerSounds>
 			<req>
 				<enemyShip/>
-                <systemInRoom/>
+				<systemInRoom/>
 			</req>
 			<buttonText>HACK</buttonText>
 			<tooltip>[COOLDOWN:N/A]
@@ -1648,7 +1648,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 					</whiteList>
 				</statBoost>
 				<shipTarget>CURRENT_ROOM</shipTarget>
-                <crewTarget>ALLIES</crewTarget>
+				<crewTarget>ALLIES</crewTarget>
 				<droneTarget>CREW</droneTarget>
 				<blackList>
 					<unique_og_iron_diplomat/>
@@ -1714,7 +1714,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 					</whiteList>
 				</statBoost>
 				<shipTarget>CURRENT_ROOM</shipTarget>
-                <crewTarget>ALLIES</crewTarget>
+				<crewTarget>ALLIES</crewTarget>
 				<droneTarget>CREW</droneTarget>
 				<blackList>
 					<unique_og_iron_diplomat/>
@@ -1760,7 +1760,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 					</whiteList>
 				</statBoost>
 				<shipTarget>CURRENT_ROOM</shipTarget>
-                <crewTarget>ALLIES</crewTarget>
+				<crewTarget>ALLIES</crewTarget>
 				<droneTarget>CREW</droneTarget>
 				<blackList>
 					<unique_og_iron_diplomat/>
@@ -2142,6 +2142,68 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 				<blueprint>OG_SHOP_ITEM_TURRET_SYSTEMS</blueprint>
 			</item>
 			<chance>100</chance>
+		</category>
+	</mod-append:customStore>
+	<mod-append:customStore id="STORE_SYLVAN_OG_TURRETS">
+		<itemPurchaseLimit>2</itemPurchaseLimit>
+		<category type="SYSTEMS">
+			<customTitle>TURRET SYSTEMS</customTitle>
+			<guaranteedSystems>
+				<og_turret/>
+				<og_turret_2/>
+				<og_turret_adaptive/>
+				<og_turret_adaptive_single/>
+				<og_equaliser/>
+			</guaranteedSystems>
+			<item>
+				<blueprint>OG_SHOP_ITEM_TURRET_SYSTEMS</blueprint>
+				<modifier min="0.8" max="1" flat="false"/>
+				<price>-1</price>
+			</item>
+			<item>
+				<blueprint>OG_SHOP_ITEM_TURRET_SYSTEMS</blueprint>
+				<modifier min="0.8" max="1" flat="false"/>
+				<price>-1</price>
+			</item>
+			<item>
+				<blueprint>OG_SHOP_ITEM_TURRET_SYSTEMS</blueprint>
+				<modifier min="0.8" max="1" flat="false"/>
+				<price>-1</price>
+			</item>
+		</category>
+		<category type="WEAPONS">
+			<item>
+				<blueprint>SHOP_TURRETS_ALL_BALANCED</blueprint>
+			   	<modifier min="0.8" max="1.1" flat="false"/>
+				<price>-1</price>
+			</item>
+			<item>
+				<blueprint>SHOP_TURRETS_ALL_BALANCED</blueprint>
+			   	<modifier min="0.8" max="1.1" flat="false"/>
+				<price>-1</price>
+			</item>	
+			<item>
+				<blueprint>SHOP_TURRETS_ALL_BALANCED</blueprint>
+			   	<modifier min="0.8" max="1.1" flat="false"/>
+				<price>-1</price>
+			</item>	
+		</category>
+		<category type="WEAPONS">
+			<item>
+				<blueprint>SHOP_TURRETS_LARGE</blueprint>
+				<modifier min="0.8" max="0.9" flat="false"/>
+				<price>-1</price>
+			</item>
+			<item>
+				<blueprint>SHOP_TURRETS_LARGE</blueprint>
+				<modifier min="0.8" max="0.9" flat="false"/>
+				<price>-1</price>
+			</item>	
+			<item>
+				<blueprint>SHOP_TURRETS_MINI</blueprint>
+				<modifier min="0.8" max="0.9" flat="false"/>
+				<price>-1</price>
+			</item>	
 		</category>
 	</mod-append:customStore>
 </mod:findLike>

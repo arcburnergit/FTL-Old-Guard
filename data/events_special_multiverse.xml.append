@@ -1,5 +1,26 @@
 <FTL>
 
+<event name="SYLVAN_OG_TURRETS">
+	<text>"Aaaaah. Ssstranger ssstranger, I might normally sssell gunssss, but I've gathered quite the ssstock of turretsss lately. Maybe you could ussse one?"</text>
+	<store>STORE_SYLVAN_OG_TURRETS</store>
+</event>
+<mod:findName type="event" name="SYLVAN_TRADES_LASTSTAND">
+	<mod:findLike type="loadEventList">
+		<mod-append:event name="SYLVAN_OG_TURRETS"/>
+	</mod:findLike>
+</mod:findName>
+<mod:findName type="event" name="SYLVAN_TRADES">
+	<mod:findLike type="loadEventList">
+		<mod-append:event name="SYLVAN_OG_TURRETS"/>
+	</mod:findLike>
+</mod:findName>
+<mod:findName type="event" name="SYLVAN_TRADES_CHOICE_1">
+	<mod-append:choice hidden="true">
+		<text>Shop for Turrets.</text>
+		<event load="SYLVAN_OG_TURRETS"/>
+	</mod-append:choice>
+</mod:findName>
+
 <ship name="SHIP_OGT_BOSS_IRON_NORMAL" auto_blueprint="OGT_BOSS_IRON_NORMAL">
 	<destroyed load="OGT_BOSS_IRON_DESTROYED" />
 	<deadCrew load="OGT_BOSS_IRON_DEADCREW" />
@@ -206,4 +227,6 @@
 	<autoReward level="LOW">stuff</autoReward>
 	<weapon name="OG_TURRET_LASER_BOSS_LIGHT_CHAOS" />
 </event>
+
+
 </FTL>

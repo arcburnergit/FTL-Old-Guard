@@ -1766,7 +1766,7 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<tip>tip_og_turret</tip>
 	<title>Neutron Turret MK I</title>
 	<short>Neutron I</short>
-	<desc>Neutron Turrets prove extremely effective against enemy missiles due to their almost instantaneous time to kill.</desc>
+	<desc>Fires a mighty beam which harnesses the power of a neutron star to eviscerate enemy ships.</desc>
 	<tooltip>Turret</tooltip>
 	<damage>0</damage>
 	<sp>0</sp>
@@ -1787,7 +1787,7 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<tip>tip_og_turret</tip>
 	<title>Neutron Turret MK II</title>
 	<short>Neutron II</short>
-	<desc>Neutron Turrets prove extremely effective against enemy missiles due to their almost instantaneous time to kill.</desc>
+	<desc>Fires a mighty beam which harnesses the power of a neutron star to eviscerate enemy ships.</desc>
 	<tooltip>Turret</tooltip>
 	<damage>0</damage>
 	<sp>0</sp>
@@ -1808,7 +1808,7 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<tip>tip_og_turret</tip>
 	<title>Neutron Turret MK III</title>
 	<short>Neutron III</short>
-	<desc>Neutron Turrets prove extremely effective against enemy missiles due to their almost instantaneous time to kill.</desc>
+	<desc>Fires a mighty beam which harnesses the power of a neutron star to eviscerate enemy ships.</desc>
 	<tooltip>Turret</tooltip>
 	<damage>0</damage>
 	<sp>0</sp>

@@ -24,4 +24,7 @@
 
 <og_equalise volume="18">explosions/og_equalise.ogg</og_equalise>
 <og_equalise_enemy volume="12">explosions/og_equalise.ogg</og_equalise_enemy>
+
+<og_neutron_beam_4 volume="10">weapons/og_neutron_beam_4.ogg</og_neutron_beam_4>
+<og_neutron_beam_8 volume="10">weapons/og_neutron_beam_8.ogg</og_neutron_beam_8>
 </FTL>

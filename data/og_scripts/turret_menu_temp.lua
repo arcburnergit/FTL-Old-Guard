@@ -75,6 +75,7 @@ local function turret_install_event(installEvent, sysName, shipManager, eventMan
 					script.on_game_event(removeEvent.eventName, false, function()
 						--Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] = index
 						system.table.blueprint = weapon.blueprint.name
+						system.table.custom_animations = {}
 						shipManager:RemoveItem(weapon.blueprint.name, true)
 						if toAddBlueprint then
 							Hyperspace.App.gui.equipScreen:AddWeapon(toAddBlueprint, true, false)
@@ -110,6 +111,7 @@ local function turret_install_event(installEvent, sysName, shipManager, eventMan
 				script.on_game_event(removeEvent.eventName, false, function()
 					--Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] = index
 					system.table.blueprint = item
+					system.table.custom_animations = {}
 					shipManager:RemoveItem(item, true)
 					if toAddBlueprint then
 						Hyperspace.App.gui.equipScreen:AddWeapon(toAddBlueprint, true, false)
@@ -167,6 +169,7 @@ script.on_internal_event(Defines.InternalEvents.PRE_CREATE_CHOICEBOX, function(e
 							local sys = Hyperspace.ships.player:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
 							if sys.table then
 								sys.table.blueprint = ""
+								sys.table.custom_animations = {}
 								sys.table.charges = 0
 								sys.table.time = 0
 								sys.table.firingTime = 0

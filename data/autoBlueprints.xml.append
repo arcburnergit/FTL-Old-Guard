@@ -2084,19 +2084,144 @@
 	<mod-append:name>LASER_OG_TRIPLET_1</mod-append:name>
 	<mod-append:name>LASER_OG_TRIPLET_2</mod-append:name>
 	<mod-append:name>LOOT_OG_DAWN_1</mod-append:name>
+	<mod-append:name>LOOT_OG_MIDNIGHT_1</mod-append:name>
+
+	<mod-append:name>OG_TURRET_LASER_1</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_RUSTY_1</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_2</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_BOSS_LIGHT</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_BOSS_LIGHT_CHAOS</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_ANCIENT</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_CEL_1</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_ZENITH</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_BIO</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_PIERCE</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_HULL</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_CHAINGUN</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_PARTICLE</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_FROST</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_TRIPLET</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_GATLING</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_RIFTWAKER</mod-append:name>
+	<mod-append:name>OG_TURRET_ION_1</mod-append:name>
+	<mod-append:name>OG_TURRET_ION_2</mod-append:name>
+	<mod-append:name>OG_TURRET_ENERGY_1</mod-append:name>
+	<mod-append:name>OG_TURRET_CRYSTAL_1</mod-append:name>
+	<mod-append:name>OG_TURRET_CRYSTAL_1_ELITE</mod-append:name>
+	<mod-append:name>OG_TURRET_MISSILE_1</mod-append:name>
+	<mod-append:name>OG_TURRET_MISSILE_2</mod-append:name>
+	<mod-append:name>OG_TURRET_KERNEL_HEAVY</mod-append:name>
+	<mod-append:name>OG_TURRET_KERNEL_FIRE</mod-append:name>
+	<mod-append:name>OG_TURRET_MISSILE_CLONE_CANNON</mod-append:name>
+	<mod-append:name>OG_TURRET_FLAK_1</mod-append:name>
+	<mod-append:name>OG_TURRET_FLAK_BIO</mod-append:name>
+	<mod-append:name>OG_TURRET_FOCUS_1</mod-append:name>
+	<mod-append:name>OG_TURRET_FOCUS_BIO</mod-append:name>
+	<mod-append:name>OG_TURRET_FOCUS_CHAIN</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_MINI_1</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_MINI_2</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_MINI_BIO</mod-append:name>
+	<mod-append:name>OG_TURRET_ION_MINI_1</mod-append:name>
+	<mod-append:name>OG_TURRET_FOCUS_MINI_1</mod-append:name>
+	<mod-append:name>OG_TURRET_FLAK_MINI_1</mod-append:name>
+	<mod-append:name>OG_TURRET_MISSILE_MINI_1</mod-append:name>
+
+	<mod-append:name>OG_TURRET_LASER_DAWN</mod-append:name>
+	<mod-append:name>OG_TURRET_ION_DAWN</mod-append:name>
+	<mod-append:name>OG_TURRET_MISSILE_DAWN</mod-append:name>
+	<mod-append:name>OG_TURRET_FLAK_DAWN</mod-append:name>
+	<mod-append:name>OG_TURRET_FOCUS_DAWN</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_MINI_DAWN_1</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_MINI_DAWN_2</mod-append:name>
+	<mod-append:name>OG_TURRET_FOCUS_MINI_DAWN</mod-append:name>
+	<mod-append:name>OG_TURRET_BEAM_NEUTRON_1</mod-append:name>
+	<mod-append:name>OG_TURRET_BEAM_NEUTRON_2</mod-append:name>
+	<mod-append:name>OG_TURRET_BEAM_NEUTRON_3</mod-append:name>
+
+	<mod-append:name>OG_TURRET_LOOT_SLUG_1</mod-append:name>
+	<mod-append:name>OG_TURRET_LOOT_CLAN_1</mod-append:name>
+	<mod-append:name>OG_TURRET_LOOT_CRYSTAL_1</mod-append:name>
+	<mod-append:name>OG_TURRET_LOOT_FEDERATION_1</mod-append:name>
 </mod:findName>
 <mod:findName type="blueprintList" name="LIST_WEAPONS_ALL_CRAPBUCKET"> <!--doesnt include enemy weapons, god killer, or alternative variants of weapons with multiple kinds-->
 	<mod-append:name>LASER_OG_TRIPLET_1</mod-append:name>
 	<mod-append:name>LASER_OG_TRIPLET_2</mod-append:name>
 	<mod-append:name>LOOT_OG_DAWN_1</mod-append:name>
+	<mod-append:name>LOOT_OG_MIDNIGHT_1</mod-append:name>
+
+	<mod-append:name>OG_TURRET_LASER_1</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_RUSTY_1</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_2</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_BOSS_LIGHT</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_BOSS_LIGHT_CHAOS</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_ANCIENT</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_CEL_1</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_ZENITH</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_BIO</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_PIERCE</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_HULL</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_CHAINGUN</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_PARTICLE</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_FROST</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_TRIPLET</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_GATLING</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_RIFTWAKER</mod-append:name>
+	<mod-append:name>OG_TURRET_ION_1</mod-append:name>
+	<mod-append:name>OG_TURRET_ION_2</mod-append:name>
+	<mod-append:name>OG_TURRET_ENERGY_1</mod-append:name>
+	<mod-append:name>OG_TURRET_CRYSTAL_1</mod-append:name>
+	<mod-append:name>OG_TURRET_CRYSTAL_1_ELITE</mod-append:name>
+	<mod-append:name>OG_TURRET_MISSILE_1</mod-append:name>
+	<mod-append:name>OG_TURRET_MISSILE_2</mod-append:name>
+	<mod-append:name>OG_TURRET_KERNEL_HEAVY</mod-append:name>
+	<mod-append:name>OG_TURRET_KERNEL_FIRE</mod-append:name>
+	<mod-append:name>OG_TURRET_MISSILE_CLONE_CANNON</mod-append:name>
+	<mod-append:name>OG_TURRET_FLAK_1</mod-append:name>
+	<mod-append:name>OG_TURRET_FLAK_BIO</mod-append:name>
+	<mod-append:name>OG_TURRET_FOCUS_1</mod-append:name>
+	<mod-append:name>OG_TURRET_FOCUS_BIO</mod-append:name>
+	<mod-append:name>OG_TURRET_FOCUS_CHAIN</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_MINI_1</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_MINI_2</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_MINI_BIO</mod-append:name>
+	<mod-append:name>OG_TURRET_ION_MINI_1</mod-append:name>
+	<mod-append:name>OG_TURRET_FOCUS_MINI_1</mod-append:name>
+	<mod-append:name>OG_TURRET_FLAK_MINI_1</mod-append:name>
+	<mod-append:name>OG_TURRET_MISSILE_MINI_1</mod-append:name>
+
+	<mod-append:name>OG_TURRET_LASER_DAWN</mod-append:name>
+	<mod-append:name>OG_TURRET_ION_DAWN</mod-append:name>
+	<mod-append:name>OG_TURRET_MISSILE_DAWN</mod-append:name>
+	<mod-append:name>OG_TURRET_FLAK_DAWN</mod-append:name>
+	<mod-append:name>OG_TURRET_FOCUS_DAWN</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_MINI_DAWN_1</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_MINI_DAWN_2</mod-append:name>
+	<mod-append:name>OG_TURRET_FOCUS_MINI_DAWN</mod-append:name>
+	<mod-append:name>OG_TURRET_BEAM_NEUTRON_1</mod-append:name>
+	<mod-append:name>OG_TURRET_BEAM_NEUTRON_2</mod-append:name>
+	<mod-append:name>OG_TURRET_BEAM_NEUTRON_3</mod-append:name>
+
+	<mod-append:name>OG_TURRET_LOOT_SLUG_1</mod-append:name>
+	<mod-append:name>OG_TURRET_LOOT_CLAN_1</mod-append:name>
+	<mod-append:name>OG_TURRET_LOOT_CRYSTAL_1</mod-append:name>
+	<mod-append:name>OG_TURRET_LOOT_FEDERATION_1</mod-append:name>
 </mod:findName>
 
 <mod:findName type="blueprintList" name="LIST_WEAPONS_MISSILES"> <!-- blast proof augment -->
+	<mod-append:name>OG_TURRET_MISSILE_1</mod-append:name>
+	<mod-append:name>OG_TURRET_MISSILE_2</mod-append:name>
+	<mod-append:name>OG_TURRET_MISSILE_DAWN</mod-append:name>
+	<mod-append:name>OG_TURRET_MISSILE_MINI_1</mod-append:name>
 </mod:findName>
 
 <mod:findName type="blueprintList" name="BLUELIST_KERNEL">
+	<mod-append:name>OG_TURRET_KERNEL_HEAVY</mod-append:name>
+	<mod-append:name>OG_TURRET_KERNEL_FIRE</mod-append:name>
 </mod:findName>
 <mod:findName type="blueprintList" name="BLUELIST_CRYSTAL">
+	<mod-append:name>OG_TURRET_CRYSTAL_1</mod-append:name>
+	<mod-append:name>OG_TURRET_CRYSTAL_1_ELITE</mod-append:name>
+	<mod-append:name>OG_TURRET_LOOT_CRYSTAL_1</mod-append:name>
 </mod:findName>
 
 <mod:findName type="blueprintList" name="LIST_DRONES_ALL">
@@ -2204,28 +2329,45 @@ WEAPONS
 </mod:findName>
 
 <mod:findName type="blueprintList" name="BLUELIST_GATLINGS">
+	<mod-append:name>OG_TURRET_LASER_GATLING</mod-append:name>
 </mod:findName>
 
 <mod:findName type="blueprintList" name="BLUELIST_RIFT">
+	<mod-append:name>OG_TURRET_LASER_RIFTWAKER</mod-append:name>
 </mod:findName>
 
 <mod:findName type="blueprintList" name="BLUELIST_ION">
+	<mod-append:name>OG_TURRET_ION_1</mod-append:name>
+	<mod-append:name>OG_TURRET_ION_2</mod-append:name>
+	<mod-append:name>OG_TURRET_ION_DAWN</mod-append:name>
+	<mod-append:name>OG_TURRET_ION_MINI_1</mod-append:name>
 </mod:findName>
 <mod:findName type="blueprintList" name="BLUELIST_ENERGY">
+	<mod-append:name>OG_TURRET_ENERGY_1</mod-append:name>
 </mod:findName>
 
 <mod:findName type="blueprintList" name="BLUELIST_MISSILES_ALL">
+	<mod-append:name>OG_TURRET_MISSILE_1</mod-append:name>
+	<mod-append:name>OG_TURRET_MISSILE_2</mod-append:name>
+	<mod-append:name>OG_TURRET_MISSILE_MINI_1</mod-append:name>
 </mod:findName>
 <mod:findName type="blueprintList" name="BLUELIST_MISSILES_DAMAGE">
+	<mod-append:name>OG_TURRET_MISSILE_1</mod-append:name>
+	<mod-append:name>OG_TURRET_MISSILE_2</mod-append:name>
+	<mod-append:name>OG_TURRET_MISSILE_DAWN</mod-append:name>
+	<mod-append:name>OG_TURRET_MISSILE_MINI_1</mod-append:name>
 </mod:findName>
 
 <mod:findName type="blueprintList" name="BLUELIST_MISSILES_POWERFUL">
+	<mod-append:name>OG_TURRET_MISSILE_2</mod-append:name>
+	<mod-append:name>OG_TURRET_MISSILE_DAWN</mod-append:name>
 </mod:findName>
 
 <mod:findName type="blueprintList" name="BLUELIST_ACCURATE_BALLISTIC">
 </mod:findName>
 
 <mod:findName type="blueprintList" name="BLUELIST_MINELAUNCHERS_ALL">
+	<mod-append:name>OG_TURRET_LOOT_CRYSTAL_1</mod-append:name>
 </mod:findName>
 
 <mod:findName type="blueprintList" name="BLUELIST_BOMBS"> <!-- only used by miners event, commented out bombs make no sense for it-->
@@ -2242,50 +2384,108 @@ WEAPONS
 </mod:findName>
 
 <mod:findName type="blueprintList" name="BLUELIST_BEAMS_ALL"> <!--does not include pinpoints-->
+	<mod-append:name>OG_TURRET_BEAM_NEUTRON_1</mod-append:name>
+	<mod-append:name>OG_TURRET_BEAM_NEUTRON_2</mod-append:name>
+	<mod-append:name>OG_TURRET_BEAM_NEUTRON_3</mod-append:name>
 </mod:findName>
 <mod:findName type="blueprintList" name="BLUELIST_BEAMS_DAMAGE">
+	<mod-append:name>OG_TURRET_BEAM_NEUTRON_1</mod-append:name>
+	<mod-append:name>OG_TURRET_BEAM_NEUTRON_2</mod-append:name>
+	<mod-append:name>OG_TURRET_BEAM_NEUTRON_3</mod-append:name>
 </mod:findName>
 
 <mod:findName type="blueprintList" name="BLUELIST_FOCUS_ALL">
+	<mod-append:name>OG_TURRET_FOCUS_1</mod-append:name>
+	<mod-append:name>OG_TURRET_LOOT_SLUG_1</mod-append:name>
+	<mod-append:name>OG_TURRET_FOCUS_BIO</mod-append:name>
+	<mod-append:name>OG_TURRET_FOCUS_CHAIN</mod-append:name>
+	<mod-append:name>OG_TURRET_FOCUS_DAWN</mod-append:name>
+	<mod-append:name>OG_TURRET_FOCUS_MINI_1</mod-append:name>
+	<mod-append:name>OG_TURRET_FOCUS_MINI_DAWN</mod-append:name>
 </mod:findName>
 <mod:findName type="blueprintList" name="BLUELIST_FOCUS_DAMAGE">
+	<mod-append:name>OG_TURRET_FOCUS_1</mod-append:name>
+	<mod-append:name>OG_TURRET_FOCUS_CHAIN</mod-append:name>
+	<mod-append:name>OG_TURRET_FOCUS_DAWN</mod-append:name>
+	<mod-append:name>OG_TURRET_FOCUS_MINI_1</mod-append:name>
+	<mod-append:name>OG_TURRET_FOCUS_MINI_DAWN</mod-append:name>
 </mod:findName>
 
 <mod:findName type="blueprintList" name="BLUELIST_WEAPONS_BEAM_POWERFUL">
+	<mod-append:name>OG_TURRET_BEAM_NEUTRON_1</mod-append:name>
+	<mod-append:name>OG_TURRET_BEAM_NEUTRON_2</mod-append:name>
+	<mod-append:name>OG_TURRET_BEAM_NEUTRON_3</mod-append:name>
 </mod:findName>
 
 <mod:findName type="blueprintList" name="BLUELIST_WEAPONS_HEAVY">
+	<mod-append:name>OG_TURRET_LASER_2</mod-append:name>
+	<mod-append:name>OG_TURRET_LOOT_FEDERATION_1</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_DAWN</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_ANCIENT</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_CEL_1</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_ZENITH</mod-append:name>
+	<mod-append:name>OG_TURRET_MISSILE_2</mod-append:name>
+	<mod-append:name>OG_TURRET_MISSILE_DAWN</mod-append:name>
 </mod:findName>
 
 <mod:findName type="blueprintList" name="BLUELIST_WEAPONS_FIRE_ALL">
+	<mod-append:name>OG_TURRET_ION_2</mod-append:name>
+	<mod-append:name>OG_TURRET_KERNEL_FIRE</mod-append:name>
 </mod:findName>
 <mod:findName type="blueprintList" name="BLUELIST_WEAPONS_FIRE_NODAMAGE">
+	<mod-append:name>OG_TURRET_ION_2</mod-append:name>
 </mod:findName>
 
 <mod:findName type="blueprintList" name="BLUELIST_ANTIBIO">
+	<mod-append:name>OG_TURRET_LASER_BIO</mod-append:name>
+	<mod-append:name>OG_TURRET_FLAK_BIO</mod-append:name>
+	<mod-append:name>OG_TURRET_FOCUS_BIO</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_MINI_BIO</mod-append:name>
+	<mod-append:name>OG_TURRET_LOOT_SLUG_1</mod-append:name>
+	<mod-append:name>OG_TURRET_LOOT_CLAN_1</mod-append:name>
 </mod:findName>
 <mod:findName type="blueprintList" name="BLUELIST_ANTIBIO_NOMISSILE">
+	<mod-append:name>OG_TURRET_LASER_BIO</mod-append:name>
+	<mod-append:name>OG_TURRET_FLAK_BIO</mod-append:name>
+	<mod-append:name>OG_TURRET_FOCUS_BIO</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_MINI_BIO</mod-append:name>
+	<mod-append:name>OG_TURRET_LOOT_SLUG_1</mod-append:name>
+	<mod-append:name>OG_TURRET_LOOT_CLAN_1</mod-append:name>
 </mod:findName>
 <mod:findName type="blueprintList" name="BLUELIST_ANTIBIO_NODAMAGE">
+	<mod-append:name>OG_TURRET_LASER_BIO</mod-append:name>
+	<mod-append:name>OG_TURRET_FOCUS_BIO</mod-append:name>
+	<mod-append:name>OG_TURRET_LASER_MINI_BIO</mod-append:name>
+	<mod-append:name>OG_TURRET_LOOT_SLUG_1</mod-append:name>
+	<mod-append:name>OG_TURRET_LOOT_CLAN_1</mod-append:name>
 </mod:findName>
 
 <mod:findName type="blueprintList" name="BLUELIST_BOMB_REPAIR">
 </mod:findName>
 
 <mod:findName type="blueprintList" name="BLUELIST_PARTICLE">
+	<mod-append:name>OG_TURRET_LASER_PARTICLE</mod-append:name>
 </mod:findName>
 
 <mod:findName type="blueprintList" name="BLUELIST_FIRE_ALL">
+	<mod-append:name>OG_TURRET_ION_2</mod-append:name>
+	<mod-append:name>OG_TURRET_KERNEL_FIRE</mod-append:name>
 </mod:findName>
 <mod:findName type="blueprintList" name="BLUELIST_FIRE_NONBALLISTIC">
+	<mod-append:name>OG_TURRET_ION_2</mod-append:name>
 </mod:findName>
 <mod:findName type="blueprintList" name="BLUELIST_FIRE_BALLISTIC">
+	<mod-append:name>OG_TURRET_KERNEL_FIRE</mod-append:name>
 </mod:findName>
 
 <mod:findName type="blueprintList" name="BLUELIST_WEAPONS_CRYSTAL">
+	<mod-append:name>OG_TURRET_CRYSTAL_1</mod-append:name>
+	<mod-append:name>OG_TURRET_CRYSTAL_1_ELITE</mod-append:name>
+	<mod-append:name>OG_TURRET_LOOT_CRYSTAL_1</mod-append:name>
 </mod:findName>
 
 <mod:findName type="blueprintList" name="BLUELIST_WEAPONS_HACK">
+	<mod-append:name>LOOT_OG_MIDNIGHT_1</mod-append:name>
 </mod:findName>
 
 
@@ -2371,6 +2571,8 @@ AUGMENTS
 </mod:findName>
 
 <mod:findName type="blueprintList" name="SHOP_ITEM_WEAPONS_LASERS">
+	<mod-append:name>LASER_OG_TRIPLET_1</mod-append:name>
+	<mod-append:name>LASER_OG_TRIPLET_2</mod-append:name>
 </mod:findName>
 <mod:findName type="blueprintList" name="SHOP_WEAPONS_BALLISTICS">
 </mod:findName>
@@ -2421,8 +2623,11 @@ AUGMENTS
 </mod:findName>
 
 <mod:findName type="blueprintList" name="SHOP_REBEL_ITEM_WEAPONS_LASERS">
+	<mod-append:name>LASER_OG_TRIPLET_1</mod-append:name>
+	<mod-append:name>LASER_OG_TRIPLET_2</mod-append:name>
 </mod:findName>
 <mod:findName type="blueprintList" name="SHOP_REBEL_ITEM_CREW">
+	<mod-append:name>human_og_dawn</mod-append:name>
 </mod:findName>
 
 <mod:findName type="blueprintList" name="SHOP_COALITION_ITEM_CREW">

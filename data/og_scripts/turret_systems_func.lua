@@ -1446,7 +1446,7 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 		local randomSound = math.random(blueprint.effects.launchSounds:size()) - 1
 		Hyperspace.Sounds:PlaySoundMix(blueprint.effects.launchSounds[randomSound], -1, false)
 	elseif currentTurret.blueprint_type == 5 then
-		Hyperspace.Sounds:PlaySoundMix("beam_3", -1, false)
+		Hyperspace.Sounds:PlaySoundMix("og_neutron_beam_4", -1, false)
 	end
 
 	--manning crew
