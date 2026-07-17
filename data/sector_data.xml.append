@@ -339,13 +339,13 @@
 	<event name="STOREVENT_OG_NEUTRON_MIDNIGHT_ATTACK" min="1" max="1"/>
 	
 	<event name="ITEMS_OG_NEUTRON" min="3" max="4"/>
-	<event name="NEUTRAL_OG_IRON" min="3" max="4"/>
-	<event name="DISTRESS_OG_IRON" min="2" max="3"/>
-	<event name="QUESTS_OG_IRON" min="1" max="1"/>
+	<event name="NEUTRAL_OG_NEUTRON" min="3" max="4"/>
+	<event name="DISTRESS_OG_NEUTRON" min="2" max="3"/>
+	<event name="QUESTS_OG_NEUTRON" min="1" max="1"/>
 	
-	<event name="HOSTILE_OG_IRON" min="5" max="7"/>
+	<event name="HOSTILE_OG_NEUTRON" min="7" max="9"/>
 	
-	<event name="PIRACY_LIST" min="5" max="6"/>
+	<event name="PIRACY_LIST" min="3" max="4"/>
 </sectorDescription>
 </FTL>
 <!--MV SECTORS-->

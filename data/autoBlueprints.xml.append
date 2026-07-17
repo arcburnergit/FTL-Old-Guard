@@ -15,6 +15,7 @@
 <blueprintList name="LIST_CREW_OG_IRON">
 	<name>human_og_raider</name>
 	<name>unique_og_silas</name>
+	<name>unique_og_iron_diplomat</name>
 </blueprintList>
 <blueprintList name="LIST_CREW_OG_DAWN">
 	<name>human_og_dawn</name>
@@ -22,6 +23,7 @@
 </blueprintList>
 <blueprintList name="LIST_CREW_OG_CIVILIAN_RANDOM">
 	<name>human_og_civilian</name>
+	<name>mantis_og_civilian</name>
 </blueprintList>
 
 <blueprintList name="SHOP_TURRETS_ALL">
@@ -1187,7 +1189,7 @@
 		<engines power="2" max="3" room="5" start="true" />
 		<oxygen power="1" max="1" room="4" start="true" />
 		<pilot power="1" max="2" room="0" start="true" />
-		<teleporter power="3" max="3" room="2" start="true" />
+		<teleporter power="1" max="1" room="2" start="true" />
 		<og_equaliser power="2" max="2" room="2" start="true" />
 		<weapons power="2" max="6" room="6" start="true" />
 	</systemList>
@@ -1214,7 +1216,7 @@
 		<engines power="2" max="3" room="6" start="true" />
 		<oxygen power="1" max="1" room="7" start="true" />
 		<pilot power="2" max="2" room="4" start="true" />
-		<teleporter power="3" max="3" room="5" start="true" />
+		<teleporter power="1" max="1" room="5" start="true" />
 		<og_equaliser power="2" max="2" room="5" start="true" />
 	</systemList>
 	<weaponSlots>0</weaponSlots>
@@ -1239,7 +1241,7 @@
 		<engines power="2" max="2" room="4" start="true" />
 		<oxygen power="1" max="1" room="3" start="true" />
 		<pilot power="1" max="2" room="0" start="true" />
-		<teleporter power="3" max="3" room="7" start="true" />
+		<teleporter power="1" max="1" room="7" start="true" />
 		<og_equaliser power="2" max="2" room="7" start="true" />
 		<weapons power="1" max="7" room="5" start="true" />
 	</systemList>
@@ -1267,7 +1269,7 @@
 		<medbay power="1" max="1" room="5" start="true" />
 		<oxygen power="1" max="1" room="6" start="true" />
 		<pilot power="1" max="2" room="2" start="true" />
-		<teleporter power="3" max="3" room="3" start="true" />
+		<teleporter power="1" max="1" room="3" start="true" />
 		<og_equaliser power="2" max="2" room="3" start="true" />
 		<weapons power="2" max="6" room="7" start="true" />
 	</systemList>
@@ -1296,7 +1298,7 @@
 		<medbay power="1" max="1" room="11" start="true" />
 		<oxygen power="1" max="1" room="8" start="true" />
 		<pilot power="1" max="2" room="9" start="true" />
-		<teleporter power="3" max="3" room="5" start="true" />
+		<teleporter power="1" max="1" room="5" start="true" />
 		<og_equaliser power="2" max="2" room="5" start="true" />
 		<weapons power="2" max="8" room="1" start="true" />
 	</systemList>
@@ -1326,7 +1328,7 @@
 		<medbay power="1" max="1" room="7" start="false" />
 		<oxygen power="1" max="1" room="9" start="true" />
 		<pilot power="1" max="1" room="1" start="true" />
-		<teleporter power="3" max="3" room="10" start="true" />
+		<teleporter power="1" max="1" room="10" start="true" />
 		<og_equaliser power="2" max="2" room="10" start="true" />
 		<weapons power="2" max="8" room="3" start="true" />
 	</systemList>
@@ -1356,7 +1358,7 @@
 		<medbay power="2" max="2" room="6" start="true" />
 		<oxygen power="1" max="1" room="12" start="true" />
 		<pilot power="1" max="2" room="0" start="true" />
-		<teleporter power="3" max="3" room="13" start="true" />
+		<teleporter power="1" max="1" room="13" start="true" />
 		<og_equaliser power="2" max="2" room="13" start="true" />
 		<weapons power="2" max="7" room="8" start="true" />
 	</systemList>
@@ -1386,7 +1388,7 @@
 		<medbay power="1" max="1" room="5" start="true" />
 		<oxygen power="1" max="1" room="4" start="true" />
 		<pilot power="1" max="2" room="8" start="true" />
-		<teleporter power="3" max="3" room="6" start="true" />
+		<teleporter power="1" max="1" room="6" start="true" />
 		<og_equaliser power="2" max="2" room="6" start="true" />
 		<weapons power="1" max="8" room="10" start="true" />
 	</systemList>
@@ -1436,9 +1438,11 @@
 <FTL>
 <mod:findName type="blueprintList" name="LIST_CREW_UNIQUE">
 	<mod-append:name>unique_og_silas</mod-append:name>
+	<mod-append:name>unique_og_iron_diplomat</mod-append:name>
 </mod:findName>
 <mod:findName type="blueprintList" name="LIST_CREW_PARAGON_UNIQUE">
 	<mod-append:name>unique_og_silas</mod-append:name>
+	<mod-append:name>unique_og_iron_diplomat</mod-append:name>
 </mod:findName>
 
 <mod:findName type="blueprintList" name="LIST_CREW_GAS"> <!-- Shell Gas whitelist-->
@@ -1501,6 +1505,7 @@
 	<mod-append:name>human_og_dawn</mod-append:name>
 	<mod-append:name>human_og_midnight</mod-append:name>
 	<mod-append:name>unique_og_silas</mod-append:name>
+	<mod-append:name>unique_og_iron_diplomat</mod-append:name>
 </mod:findName>
 
 <mod:findName type="blueprintList" name="LIST_CREW_ENGINEER">
@@ -2105,9 +2110,11 @@
 	<mod-append:name>human_og_dawn</mod-append:name>
 	<mod-append:name>human_og_midnight</mod-append:name>
 	<mod-append:name>unique_og_silas</mod-append:name>
+	<mod-append:name>unique_og_iron_diplomat</mod-append:name>
 </mod:findName>
 <mod:findName type="blueprintList" name="LIST_CREW_UNIQUE_CRAPBUCKET">
 	<mod-append:name>unique_og_silas</mod-append:name>
+	<mod-append:name>unique_og_iron_diplomat</mod-append:name>
 </mod:findName>
 
 <mod:findName type="blueprintList" name="LIST_CREW_HOLODRONE_CHAOS">
@@ -2132,6 +2139,7 @@ JUDGE LISTS
 -->
 <mod:findName type="blueprintList" name="JUDGELIST_ZOLTAN_UNIQUE">
 	<mod-append:name>unique_og_silas</mod-append:name>
+	<mod-append:name>unique_og_iron_diplomat</mod-append:name>
 </mod:findName>
 
 <mod:findName type="blueprintList" name="JUDGELIST_ZOLTAN_UNIQUEMECH">

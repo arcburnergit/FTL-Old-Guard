@@ -1445,6 +1445,8 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 	if blueprint and blueprint.effects.launchSounds:size() > 0 then
 		local randomSound = math.random(blueprint.effects.launchSounds:size()) - 1
 		Hyperspace.Sounds:PlaySoundMix(blueprint.effects.launchSounds[randomSound], -1, false)
+	elseif currentTurret.blueprint_type == 5 then
+		Hyperspace.Sounds:PlaySoundMix("beam_3", -1, false)
 	end
 
 	--manning crew
@@ -1726,20 +1728,22 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 	_shipCorner.y = ship.shipImage.y + shipGraph.shipBox.y
 	local otherManager = Hyperspace.ships(1 - shipManager.iShipId)
 	for _, sysName in ipairs(systemNameList) do
-		if sysName == "og_turret_adaptive" and shipManager:HasAugmentation("UPG_OG_TURRET_ADAPTIVE_LARGE") > 0 then
-			microTurrets["og_turret_adaptive"] = false
-		elseif sysName == "og_turret_adaptive" then
-			microTurrets["og_turret_adaptive"] = true
-		end
-		if sysName == "og_turret_adaptive_2" and shipManager:HasAugmentation("UPG_OG_TURRET_ADAPTIVE_2_LARGE") > 0 then
-			microTurrets["og_turret_adaptive_2"] = false
-		elseif sysName == "og_turret_adaptive_2" then
-			microTurrets["og_turret_adaptive_2"] = true
-		end
-		if sysName == "og_turret_adaptive_single" and shipManager:HasAugmentation("UPG_OG_TURRET_ADAPTIVE_LARGE") > 0 then
-			microTurrets["og_turret_adaptive_single"] = false
-		elseif sysName == "og_turret_adaptive_single" then
-			microTurrets["og_turret_adaptive_single"] = true
+		if shipManager.iShipId == 0 then
+			if sysName == "og_turret_adaptive" and shipManager:HasAugmentation("UPG_OG_TURRET_ADAPTIVE_LARGE") > 0 then
+				microTurrets["og_turret_adaptive"] = false
+			elseif sysName == "og_turret_adaptive" then
+				microTurrets["og_turret_adaptive"] = true
+			end
+			if sysName == "og_turret_adaptive_2" and shipManager:HasAugmentation("UPG_OG_TURRET_ADAPTIVE_2_LARGE") > 0 then
+				microTurrets["og_turret_adaptive_2"] = false
+			elseif sysName == "og_turret_adaptive_2" then
+				microTurrets["og_turret_adaptive_2"] = true
+			end
+			if sysName == "og_turret_adaptive_single" and shipManager:HasAugmentation("UPG_OG_TURRET_ADAPTIVE_LARGE") > 0 then
+				microTurrets["og_turret_adaptive_single"] = false
+			elseif sysName == "og_turret_adaptive_single" then
+				microTurrets["og_turret_adaptive_single"] = true
+			end
 		end
 		if systemCacheList[shipManager.iShipId][sysName] then
 			local system = shipManager:GetSystem(systemIdMap[sysName])

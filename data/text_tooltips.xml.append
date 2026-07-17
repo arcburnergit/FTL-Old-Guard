@@ -79,7 +79,7 @@
 <text name="og_lua_turret_stats_stunChance">\nStun Chance: %d%% (%d seconds long)</text>
 <text name="og_lua_turret_stats_effect">\nEffect Duration: %d seconds long</text>
 
-<text name="og_lua_turret_stats_neutron_damage">\nBeam Damage: %.1f per second</text>
+<text name="og_lua_turret_stats_neutron_damage">\nBeam Damage: %g per second</text>
 <text name="og_lua_turret_stats_neutron_duration">\nBeam Duration: %.1f seconds</text>
 
 <text name="og_lua_turret_stats_price">\n\nDefault Price: %d~   -   Selling Price: %d~</text>

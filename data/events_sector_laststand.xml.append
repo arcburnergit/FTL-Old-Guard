@@ -5,7 +5,7 @@
 			<mod-append:choice hidden="true" max_group="1" req="SHIP_OG_GUARD" blue="false">
 				<text>Contact Federation command.</text>
 				<event>
-					<text>On the vidscreen appears several Federation and Engi officers, as well as Admiral Tully in the center. "I have not often seen how those turrets perform, it will be interesting to see the true effectiveness of such a weapon."</text>
+					<text>On the vidscreen appears several Federation and Engi officers, as well as Admiral Tully in the centre. "I have not often seen how those turrets perform, it will be interesting to see the true effectiveness of such a weapon."</text>
 					<choice hidden="true">
 						<text>Continue...</text>
 						<event load="LAST_STAND_START_2" />
@@ -15,7 +15,7 @@
 			<mod-append:choice hidden="true" max_group="1" req="SHIP_OG_DAWN" blue="false">
 				<text>Contact Federation command.</text>
 				<event>
-					<text>On the vidscreen appears several Federation and Engi officers, as well as Admiral Tully in the center. "I have not often seen how those turrets perform, it will be interesting to see the true effectiveness of such a weapon."</text>
+					<text>On the vidscreen appears several Federation and Engi officers, as well as Admiral Tully in the centre. "I have not often seen how those turrets perform, it will be interesting to see the true effectiveness of such a weapon."</text>
 					<choice hidden="true">
 						<text>Continue...</text>
 						<event load="LAST_STAND_START_2" />
@@ -25,4 +25,51 @@
 		</mod:findLike>
 	</mod:findLike>
 </mod:findName>
+
+<event name="OG_FEDERATION_BASE_DIPLOMAT_CHOICE">
+	<text>"Thank you for delivering me here safely, I will try to request help for you personally from Federation Command as a thank you, good luck out there, Captain."
+
+[You can now order the Federation Fleet to unleash a salvo against the flagship, use the new button located under the "Toggle Equipment" one.]</text>
+	<eventButton name="UI_OG_DIPLOMAT_FIRE_SUPPORT_BUTTON">
+		<event load="OG_DIPLOMAT_FIRE_SUPPORT_CHECK"/>
+		<image>statusUI/top_og_diplomat_support</image>
+		<customLocation x="105" y="170"/>
+		<tooltip>Call in fire support.</tooltip>
+		<inactiveTooltip>The Federation Fleet cannot provide fire support at this time.</inactiveTooltip>
+		<req lvl="1">og_diplomat_fire_support_ready</req>
+		<noDanger>false</noDanger>
+	</eventButton>
+	<removeCrew class="unique_og_iron_diplomat">
+		<clone>false</clone>
+		<text> </text>
+	</removeCrew>
+	<damage amount="-7"/>
+	<autoReward level="LOW">stuff</autoReward>
+	<variable name="og_diplomat_fire_support_ready" op="set" val="1"/>
+</event>
+<event name="OG_DIPLOMAT_FIRE_SUPPORT_READY">
+	<variable name="og_diplomat_fire_support_ready" op="set" val="1"/>
+</event>
+
+<event name="OG_DIPLOMAT_FIRE_SUPPORT_CHECK">
+	<loadEventList first="false" generate="false">
+		<event name="OG_DIPLOMAT_FIRE_SUPPORT" req="SEC FINAL" lvl="1"/>
+		<event name="OG_DIPLOMAT_FIRE_SUPPORT_END" req="SEC FINAL" lvl="0" max_lvl="0"/>
+	</loadEventList>
+</event>
+<event name="OG_DIPLOMAT_FIRE_SUPPORT">
+	<variable name="og_diplomat_fire_support_ready" op="set" val="0"/>
+	<triggeredEvent event="OG_DIPLOMAT_FIRE_SUPPORT_READY" thisFight="true" time="16.0">
+		<triggeredEventBox load="DEFAULT_TIMER" pos="default">
+			<warning time="0" flash="false"/>
+			<tooltip>Time until the Federation Fleet's fire support is ready again.</tooltip>
+		</triggeredEventBox>
+		<timerSounds load="DEFAULT_TIMER_SOUNDS"/>
+	</triggeredEvent>
+	<superBarrage player="true" name="OG_DIPLOMAT_FIRE_SUPPORT"/>
+</event>
+<event name="OG_DIPLOMAT_FIRE_SUPPORT_END">
+	<variable name="og_diplomat_fire_support_ready" op="set" val="0"/>
+</event>
+
 </FTL>

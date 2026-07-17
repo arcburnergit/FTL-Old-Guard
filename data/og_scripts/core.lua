@@ -1368,6 +1368,7 @@ end)
 
 local civilianCrew = {}
 civilianCrew["human_og_civilian"] = 25
+civilianCrew["mantis_og_civilian"] = 5
 
 script.on_internal_event(Defines.InternalEvents.CREW_LOOP, function(crewmem)
 	if civilianCrew[crewmem.type] and crewmem.table.og_civilian_leave and not crewmem:IsDead() then
@@ -1378,7 +1379,7 @@ script.on_internal_event(Defines.InternalEvents.CREW_LOOP, function(crewmem)
 end)
 
 local crew_check = true
-cript.on_internal_event(Defines.InternalEvents.ON_TICK, function()
+script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
 	local map = Hyperspace.App.world.starMap
 	if map.bOpen and map.bChoosingNewSector and crew_check then
 		crew_check = false
@@ -1390,7 +1391,7 @@ cript.on_internal_event(Defines.InternalEvents.ON_TICK, function()
 	elseif not crew_check then
 		crew_check = true
 	end
-end
+end)
 
 script.on_internal_event(Defines.InternalEvents.POST_CREATE_CHOICEBOX, function(choiceBox, event)
 	if event.store then
@@ -1399,5 +1400,38 @@ script.on_internal_event(Defines.InternalEvents.POST_CREATE_CHOICEBOX, function(
 				crewmem.table.og_civilian_leave = true
 			end
 		end
+	end
+end)
+
+local diplomat_choice_text = Hyperspace.Text:GetText("og_federation_base_diplomat_choice")
+local diplomat_choice_event = "OG_FEDERATION_BASE_DIPLOMAT_CHOICE"
+
+
+
+local added_choice = false
+script.on_internal_event(Defines.InternalEvents.PRE_CREATE_CHOICEBOX, function(event)
+	local map = Hyperspace.App.world.starMap
+	if map.currentLoc.event.eventName == "FEDERATION_BASE" and not added_choice then
+		local diplomat_req = Hyperspace.ChoiceReq()
+		diplomat_req.object = "unique_og_iron_diplomat"
+		diplomat_req.blue = true
+		diplomat_req.min_level = 1
+		diplomat_req.max_level = mods.multiverse.INT_MAX
+		diplomat_req.max_group = -1
+		local diplomat_event = Hyperspace.Event:CreateEvent(diplomat_choice_event, 0, false)
+		event:AddChoice(diplomat_event, diplomat_choice_text, diplomat_req, true)
+		added_choice = true
+	end
+end)
+
+script.on_internal_event(Defines.InternalEvents.JUMP_LEAVE, function(shipManager)
+	if shipManager.iShipId == 0 then
+		added_choice = false
+	end
+end)
+
+script.on_internal_event(Defines.InternalEvents.ON_WAIT, function(shipManager)
+	if shipManager.iShipId == 0 then
+		added_choice = false
 	end
 end)

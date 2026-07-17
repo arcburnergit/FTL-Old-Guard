@@ -52,3 +52,6 @@ Safety varies within Iron Watch space, you'll find a wide range of groups here. 
 <text name="storage_choice_og_eatmote_1_drone">I desire... Turret Control. (will replace Drone Control)</text>
 <text name="storage_choice_og_eatmote_2">I desire... to upgrade my Turret Control.</text>
 <text name="storage_choice_og_eatmote_3">You cannot upgrade your Turret Control any further.</text>
+
+
+<text name="og_federation_base_diplomat_choice">(Diplomat Horus) Deliver the diplomat to Federation Command.</text>

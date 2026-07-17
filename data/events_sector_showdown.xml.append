@@ -1,0 +1,31 @@
+<FTL>
+<mod:findName type="event" name="TRUE_VICTORY_CREW">
+	<mod-append:choice hidden="true" req="unique_og_silas">
+		<text>Ask Dr. Silas about this.</text>
+		<event load="TRUE_VICTORY_CREW_OG_SILAS" />
+	</mod-append:choice>
+	<mod-append:choice hidden="true" req="unique_og_iron_diplomat">
+		<text>Ask Diplomat Horus about this.</text>
+		<event load="TRUE_VICTORY_CREW_OG_HORUS" />
+	</mod-append:choice>
+</mod:findName>
+
+<event name="TRUE_VICTORY_CREW_OG_SILAS">
+	<text>"Multiverse Drive technology is too valuable to destroy like this, we've already struck an incredible blow to the rebellion, blowing up the bomb would be dooming an uncountable number of universes to forever be under rebel control."</text>
+	<text-aea-alternative>"What a fascinating people, I wish I had more time to study their technology."</text-aea-alternative>
+	<unlockCustomShip silent="false">CREW_SHIP_OG_CREW1</unlockCustomShip>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="TRUE_VICTORY_LOAD" />
+	</choice>
+</event>
+<event name="TRUE_VICTORY_CREW_OG_HORUS">
+	<text>"When I asked to be delivered to the FEDERATION BASE, and you AGREED, why did you then think it was a good idea to take me here? I didn't want to be apart of all this, and I certainly don't want to be blown up!"</text>
+	<text-aea-alternative>"When I asked to be delivered to the FEDERATION BASE, and you AGREED, why did you then think it was a good idea to take me here? I didn't want to be apart of all this!"</text-aea-alternative>
+	<unlockCustomShip silent="false">CREW_SHIP_OG_CREW1_2</unlockCustomShip>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="TRUE_VICTORY_LOAD" />
+	</choice>
+</event>
+</FTL>

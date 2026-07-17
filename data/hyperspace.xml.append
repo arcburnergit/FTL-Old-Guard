@@ -808,8 +808,11 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<systemLimit>9</systemLimit>
 	</mod-append:customShip>
 
-	<mod-append:ship name="CREW_SHIP_OG_CREW1" b="false" c="false" >
+	<mod-append:ship name="CREW_SHIP_OG_CREW1" b="true" c="false" >
 		<unlock variant="a" silent="false">
+			<type>4</type>
+		</unlock>
+		<unlock variant="b" silent="false">
 			<type>4</type>
 		</unlock>
 	</mod-append:ship>
@@ -823,6 +826,19 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 			<unique_og_silas room="0" name="Dr. Silas"/>
 			<human_og_raider room="2"/>
 			<human_og_raider room="10"/>
+		</crew>
+	</mod-append:customShip>
+	<mod-append:customShip name="CREW_SHIP_OG_CREW1_2">
+		<hiddenAug>SHIP_OG_GUARD</hiddenAug>
+		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
+		<crewLimit>11</crewLimit>
+		<systemLimit>10</systemLimit>
+		<crew>
+			<unique_og_iron_diplomat room="0" name="Horus Weber"/>
+			<human_og_raider room="5"/>
+			<human_og_raider room="8"/>
+			<human_og_raider room="1"/>
+			<human_og_raider room="0"/>
 		</crew>
 	</mod-append:customShip>
 </mod:findLike>
@@ -1193,6 +1209,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 	<variable name="og_iron_neutron_coords_given" op="set" val="0"/>
 	<variable name="og_neutron_dawn_aligned" op="set" val="0"/>
 	<variable name="og_neutron_hunter_deadcrew" op="set" val="0"/>
+	<variable name="og_diplomat_fire_support_ready" op="set" val="0"/>
 
 	<req name="OG_IRON_FINISH_POSITIVE" type="all">
 		<req lvl="2" max_lvl="999">
@@ -1598,12 +1615,77 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 			</temporaryEffect>
 		</powerEffect>
 	</race>
+	<race name="unique_og_iron_diplomat">
+		<essential>1</essential>
+		<canMan>false</canMan>
+		<controllable>false</controllable>
+		<canRepair>true</canRepair>
+		<canFight>false</canFight>
+		<canSabotage>false</canSabotage>
+		<resistsMindControl>true</resistsMindControl>
+		<repairSpeed>0.5</repairSpeed>
+		<fireRepairMultiplier>2</fireRepairMultiplier>
+		<suffocationModifier>0.83</suffocationModifier>
+		<fireDamageMultiplier>0.83</fireDamageMultiplier>
+		<animBase>human</animBase>
+		<deathSounds>
+			<deathSound>death1</deathSound>
+			<deathSound>death2</deathSound>
+		</deathSounds>
+		<passiveStatBoosts>
+			<statBoost name="statBoost">
+				<statBoost name="controllable">
+					<boostType>SET</boostType>
+					<value>true</value>
+					<shipTarget>CURRENT_ROOM</shipTarget>
+					<crewTarget>ALLIES</crewTarget>
+					<affectsSelf>false</affectsSelf>
+					<priority>1000</priority>
+					<whiteList>
+						<unique_og_iron_diplomat/>
+						<human_og_civilian/>
+						<mantis_og_civilian/>
+					</whiteList>
+				</statBoost>
+				<shipTarget>CURRENT_ROOM</shipTarget>
+                <crewTarget>ALLIES</crewTarget>
+				<droneTarget>CREW</droneTarget>
+				<blackList>
+					<unique_og_iron_diplomat/>
+					<human_og_civilian/>
+					<mantis_og_civilian/>
+				</blackList>
+			</statBoost>
+		</passiveStatBoosts>
+		<powerEffect>
+			<req>
+				<maxHealth>25</maxHealth>
+			</req>
+			<cooldown>5</cooldown>
+			<jumpCooldown>full</jumpCooldown>
+			<buttonText>PANIC</buttonText>
+			<tooltip>[COOLDOWN:5s  DURATION:20s]
+				Becomes controllable, able to fight, repair and man at normal rates.
+				Activates when below 25 health.</tooltip>
+			<cooldownColor r="246" g="75" b="45"/>
+			<activateWhenReady>true</activateWhenReady>
+			<temporaryEffect>
+				<duration>20</duration>
+				<cooldownColor r="91" g="33" b="28"/>
+				<controllable>true</controllable>
+				<canMan>true</canMan>
+				<canFight>true</canFight>
+				<repairSpeed>1</repairSpeed>
+				<fireRepairMultiplier>1</fireRepairMultiplier>
+			</temporaryEffect>
+		</powerEffect>
+	</race>
 	<race name="human_og_civilian">
 		<essential>1</essential>
 		<crewSlots>0</crewSlots>
 		<canMan>false</canMan>
 		<controllable>false</controllable>
-		<canRepair>false</canRepair>
+		<canRepair>true</canRepair>
 		<canFight>false</canFight>
 		<canSabotage>false</canSabotage>
 		<resistsMindControl>true</resistsMindControl>
@@ -1616,14 +1698,77 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 			<deathSound>death1</deathSound>
 			<deathSound>death2</deathSound>
 		</deathSounds>
-		<skills>
-			<piloting req="13"/>
-			<engines req="13"/>
-			<shields req="50"/>
-			<weapons req="58"/>
-			<repair req="16"/>
-			<combat req="7"/>
-		</skills>
+		<passiveStatBoosts>
+			<statBoost name="statBoost">
+				<statBoost name="controllable">
+					<boostType>SET</boostType>
+					<value>true</value>
+					<shipTarget>CURRENT_ROOM</shipTarget>
+					<crewTarget>ALLIES</crewTarget>
+					<affectsSelf>false</affectsSelf>
+					<priority>1000</priority>
+					<whiteList>
+						<unique_og_iron_diplomat/>
+						<human_og_civilian/>
+						<mantis_og_civilian/>
+					</whiteList>
+				</statBoost>
+				<shipTarget>CURRENT_ROOM</shipTarget>
+                <crewTarget>ALLIES</crewTarget>
+				<droneTarget>CREW</droneTarget>
+				<blackList>
+					<unique_og_iron_diplomat/>
+					<human_og_civilian/>
+					<mantis_og_civilian/>
+				</blackList>
+			</statBoost>
+		</passiveStatBoosts>
+	</race>
+	<race name="mantis_og_civilian">
+		<essential>1</essential>
+		<crewSlots>0</crewSlots>
+		<canMan>false</canMan>
+		<controllable>false</controllable>
+		<canRepair>false</canRepair>
+		<canFight>true</canFight>
+		<canSabotage>true</canSabotage>
+		<resistsMindControl>false</resistsMindControl>
+		<moveSpeedMultiplier>1.2</moveSpeedMultiplier>
+		<damageMultiplier>1.25</damageMultiplier>
+		<animBase>mantis</animBase>
+		<deathSounds>
+			<deathSound>mantisDeath</deathSound>
+		</deathSounds>
+		<shootingSounds>
+			<shootingSound>mantisSpit1</shootingSound>
+			<shootingSound>mantisSpit2</shootingSound>
+			<shootingSound>mantisSpit3</shootingSound>
+		</shootingSounds>
+		<passiveStatBoosts>
+			<statBoost name="statBoost">
+				<statBoost name="controllable">
+					<boostType>SET</boostType>
+					<value>true</value>
+					<shipTarget>CURRENT_ROOM</shipTarget>
+					<crewTarget>ALLIES</crewTarget>
+					<affectsSelf>false</affectsSelf>
+					<priority>1000</priority>
+					<whiteList>
+						<unique_og_iron_diplomat/>
+						<human_og_civilian/>
+						<mantis_og_civilian/>
+					</whiteList>
+				</statBoost>
+				<shipTarget>CURRENT_ROOM</shipTarget>
+                <crewTarget>ALLIES</crewTarget>
+				<droneTarget>CREW</droneTarget>
+				<blackList>
+					<unique_og_iron_diplomat/>
+					<human_og_civilian/>
+					<mantis_og_civilian/>
+				</blackList>
+			</statBoost>
+		</passiveStatBoosts>
 	</race>
 </crew>
 
@@ -2001,7 +2146,11 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 	</mod-append:customStore>
 </mod:findLike>
 
-
+<mod:findLike type="boss" limit="1" reverse="false">
+	<mod-append:surgeBarrage name="OG_DIPLOMAT_FIRE_SUPPORT">
+		<weapon name="LASER_HEAVY_PIERCE" count="3"/>
+	</mod-append:surgeBarrage>
+</mod:findLike>
 <mod:findLike type="events" limit="1" reverse="false">
 	<mod:findName type="req" name="LIST_START_CRATE_CHECK">
 	</mod:findName>

@@ -1820,6 +1820,129 @@
 
 <!--Civilian-->
 <FTL>
+<animSheet fh="35" fw="35" h="455" name="unique_og_iron_diplomat" w="315">people/unique_og_iron_diplomat_base.png</animSheet>
+<anim name="unique_og_iron_diplomat_clone">
+	<sheet>unique_og_iron_diplomat</sheet>
+	<desc length="6" x="0" y="2"/>
+	<time>0.75</time>
+</anim>
+<anim name="unique_og_iron_diplomat_death_right">
+	<sheet>unique_og_iron_diplomat</sheet>
+	<desc length="5" x="3" y="0"/>
+	<time>0.75</time>
+</anim>
+<anim name="unique_og_iron_diplomat_death_left">
+	<sheet>unique_og_iron_diplomat</sheet>
+	<desc length="5" x="0" y="2"/>
+	<time>0.75</time>
+</anim>
+<anim name="unique_og_iron_diplomat_walk_down">
+	<sheet>unique_og_iron_diplomat</sheet>
+	<desc length="4" x="0" y="12"/>
+	<time>1.0</time>
+</anim>
+<anim name="unique_og_iron_diplomat_walk_right">
+	<sheet>unique_og_iron_diplomat</sheet>
+	<desc length="4" x="4" y="12"/>
+	<time>1.0</time>
+</anim>
+<anim name="unique_og_iron_diplomat_walk_up">
+	<sheet>unique_og_iron_diplomat</sheet>
+	<desc length="4" x="0" y="11"/>
+	<time>1.0</time>
+</anim>
+<anim name="unique_og_iron_diplomat_walk_left">
+	<sheet>unique_og_iron_diplomat</sheet>
+	<desc length="4" x="4" y="11"/>
+	<time>1.0</time>
+</anim>
+<anim name="unique_og_iron_diplomat_shoot_down">
+	<sheet>unique_og_iron_diplomat</sheet>
+	<desc length="3" x="0" y="10"/>
+	<time>1.0</time>
+</anim>
+<anim name="unique_og_iron_diplomat_shoot_right">
+	<sheet>unique_og_iron_diplomat</sheet>
+	<desc length="3" x="3" y="10"/>
+	<time>1.0</time>
+</anim>
+<anim name="unique_og_iron_diplomat_shoot_up">
+	<sheet>unique_og_iron_diplomat</sheet>
+	<desc length="3" x="6" y="10"/>
+	<time>1.0</time>
+</anim>
+<anim name="unique_og_iron_diplomat_shoot_left">
+	<sheet>unique_og_iron_diplomat</sheet>
+	<desc length="3" x="0" y="1"/>
+	<time>1.0</time>
+</anim>
+<anim name="unique_og_iron_diplomat_fire_down">
+	<sheet>unique_og_iron_diplomat</sheet>
+	<desc length="4" x="0" y="9"/>
+	<time>1.0</time>
+</anim>
+<anim name="unique_og_iron_diplomat_fire_right">
+	<sheet>unique_og_iron_diplomat</sheet>
+	<desc length="4" x="4" y="9"/>
+	<time>1.0</time>
+</anim>
+<anim name="unique_og_iron_diplomat_fire_up">
+	<sheet>unique_og_iron_diplomat</sheet>
+	<desc length="4" x="0" y="8"/>
+	<time>1.0</time>
+</anim>
+<anim name="unique_og_iron_diplomat_fire_left">
+	<sheet>unique_og_iron_diplomat</sheet>
+	<desc length="4" x="4" y="8"/>
+	<time>1.0</time>
+</anim>
+<anim name="unique_og_iron_diplomat_repair">
+	<sheet>unique_og_iron_diplomat</sheet>
+	<desc length="9" x="0" y="7"/>
+	<time>1.0</time>
+</anim>
+<anim name="unique_og_iron_diplomat_punch_up">
+	<sheet>unique_og_iron_diplomat</sheet>
+	<desc length="6" x="3" y="1"/>
+	<time>1.0</time>
+</anim>
+<anim name="unique_og_iron_diplomat_punch_down">
+	<sheet>unique_og_iron_diplomat</sheet>
+	<desc length="6" x="0" y="6"/>
+	<time>1.0</time>
+</anim>
+<anim name="unique_og_iron_diplomat_teleport">
+	<sheet>unique_og_iron_diplomat</sheet>
+	<desc length="9" x="0" y="3"/>
+	<time>0.5</time>
+</anim>
+<anim name="unique_og_iron_diplomat_type_right">
+	<sheet>unique_og_iron_diplomat</sheet>
+	<desc length="4" x="0" y="5"/>
+	<time>0.75</time>
+</anim>
+<anim name="unique_og_iron_diplomat_type_left">
+	<sheet>unique_og_iron_diplomat</sheet>
+	<desc length="4" x="4" y="5"/>
+	<time>0.75</time>
+</anim>
+<anim name="unique_og_iron_diplomat_type_up">
+	<sheet>unique_og_iron_diplomat</sheet>
+	<desc length="4" x="0" y="4"/>
+	<time>0.75</time>
+</anim>
+<anim name="unique_og_iron_diplomat_type_down">
+	<sheet>unique_og_iron_diplomat</sheet>
+	<desc length="4" x="4" y="4"/>
+	<time>0.75</time>
+</anim>
+<anim name="unique_og_iron_diplomat_portrait">
+	<sheet>unique_og_iron_diplomat</sheet>
+	<desc length="1" x="0" y="0"/>
+	<time>1</time>
+</anim>
+
+
 <animSheet fh="35" fw="35" h="455" name="human_og_civilian" w="315">people/human_og_civilian_base.png</animSheet>
 <anim name="human_og_civilian_clone">
 	<sheet>human_og_civilian</sheet>
@@ -1938,6 +2061,129 @@
 </anim>
 <anim name="human_og_civilian_portrait">
 	<sheet>human_og_civilian</sheet>
+	<desc length="1" x="0" y="0"/>
+	<time>1</time>
+</anim>
+
+
+<animSheet fh="35" fw="35" h="490" name="mantis_og_civilian" w="350">people/mantis_og_civilian_base.png</animSheet>
+<anim name="mantis_og_civilian_clone">
+	<sheet>mantis_og_civilian</sheet>
+	<desc length="6" x="0" y="2"/>
+	<time>0.7</time>
+</anim>
+<anim name="mantis_og_civilian_death_left">
+	<sheet>mantis_og_civilian</sheet>
+	<desc length="7" x="0" y="1"/>
+	<time>0.7</time>
+</anim>
+<anim name="mantis_og_civilian_death_right">
+	<sheet>mantis_og_civilian</sheet>
+	<desc length="7" x="0" y="1"/>
+	<time>0.7</time>
+</anim>
+<anim name="mantis_og_civilian_walk_down">
+	<sheet>mantis_og_civilian</sheet>
+	<desc length="5" x="0" y="13"/>
+	<time>1.0</time>
+</anim>
+<anim name="mantis_og_civilian_walk_right">
+	<sheet>mantis_og_civilian</sheet>
+	<desc length="5" x="5" y="13"/>
+	<time>1.0</time>
+</anim>
+<anim name="mantis_og_civilian_walk_up">
+	<sheet>mantis_og_civilian</sheet>
+	<desc length="5" x="0" y="12"/>
+	<time>1.0</time>
+</anim>
+<anim name="mantis_og_civilian_walk_left">
+	<sheet>mantis_og_civilian</sheet>
+	<desc length="5" x="5" y="12"/>
+	<time>1.0</time>
+</anim>
+<anim name="mantis_og_civilian_shoot_down">
+	<sheet>mantis_og_civilian</sheet>
+	<desc length="4" x="0" y="11"/>
+	<time>1.0</time>
+</anim>
+<anim name="mantis_og_civilian_shoot_right">
+	<sheet>mantis_og_civilian</sheet>
+	<desc length="4" x="4" y="11"/>
+	<time>1.0</time>
+</anim>
+<anim name="mantis_og_civilian_shoot_up">
+	<sheet>mantis_og_civilian</sheet>
+	<desc length="4" x="2" y="0"/>
+	<time>1.0</time>
+</anim>
+<anim name="mantis_og_civilian_shoot_left">
+	<sheet>mantis_og_civilian</sheet>
+	<desc length="4" x="6" y="0"/>
+	<time>1.0</time>
+</anim>
+<anim name="mantis_og_civilian_fire_down">
+	<sheet>mantis_og_civilian</sheet>
+	<desc length="4" x="0" y="10"/>
+	<time>1.0</time>
+</anim>
+<anim name="mantis_og_civilian_fire_right">
+	<sheet>mantis_og_civilian</sheet>
+	<desc length="4" x="4" y="10"/>
+	<time>1.0</time>
+</anim>
+<anim name="mantis_og_civilian_fire_up">
+	<sheet>mantis_og_civilian</sheet>
+	<desc length="4" x="0" y="9"/>
+	<time>1.0</time>
+</anim>
+<anim name="mantis_og_civilian_fire_left">
+	<sheet>mantis_og_civilian</sheet>
+	<desc length="4" x="4" y="9"/>
+	<time>1.0</time>
+</anim>
+<anim name="mantis_og_civilian_repair">
+	<sheet>mantis_og_civilian</sheet>
+	<desc length="9" x="0" y="8"/>
+	<time>1.0</time>
+</anim>
+<anim name="mantis_og_civilian_punch_up">
+	<sheet>mantis_og_civilian</sheet>
+	<desc length="10" x="0" y="7"/>
+	<time>1.0</time>
+</anim>
+<anim name="mantis_og_civilian_punch_down">
+	<sheet>mantis_og_civilian</sheet>
+	<desc length="10" x="0" y="6"/>
+	<time>1.0</time>
+</anim>
+<anim name="mantis_og_civilian_teleport">
+	<sheet>mantis_og_civilian</sheet>
+	<desc length="9" x="0" y="3"/>
+	<time>0.5</time>
+</anim>
+<anim name="mantis_og_civilian_type_right">
+	<sheet>mantis_og_civilian</sheet>
+	<desc length="4" x="0" y="5"/>
+	<time>1</time>
+</anim>
+<anim name="mantis_og_civilian_type_left">
+	<sheet>mantis_og_civilian</sheet>
+	<desc length="4" x="4" y="5"/>
+	<time>1</time>
+</anim>
+<anim name="mantis_og_civilian_type_up">
+	<sheet>mantis_og_civilian</sheet>
+	<desc length="4" x="0" y="4"/>
+	<time>1</time>
+</anim>
+<anim name="mantis_og_civilian_type_down">
+	<sheet>mantis_og_civilian</sheet>
+	<desc length="4" x="4" y="4"/>
+	<time>1</time>
+</anim>
+<anim name="mantis_og_civilian_portrait">
+	<sheet>mantis_og_civilian</sheet>
 	<desc length="1" x="0" y="0"/>
 	<time>1</time>
 </anim>
