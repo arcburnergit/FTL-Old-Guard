@@ -59,7 +59,7 @@
 </event>
 <event name="OG_DIPLOMAT_FIRE_SUPPORT">
 	<variable name="og_diplomat_fire_support_ready" op="set" val="0"/>
-	<triggeredEvent event="OG_DIPLOMAT_FIRE_SUPPORT_READY" thisFight="true" time="16.0">
+	<triggeredEvent event="OG_DIPLOMAT_FIRE_SUPPORT_READY" thisFight="false" clearOnJump="false" time="20.0">
 		<triggeredEventBox load="DEFAULT_TIMER" pos="default">
 			<warning time="0" flash="false"/>
 			<tooltip>Time until the Federation Fleet's fire support is ready again.</tooltip>

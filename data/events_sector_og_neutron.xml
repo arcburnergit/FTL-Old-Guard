@@ -568,6 +568,7 @@ Your computers calculate that based on the trajectory they were on, you have abo
 		</choice>
 	</deadCrew>
 </ship>
+
 <event name="OG_NEUTRON_RESEARCH_STATION_DAWN">
 	<text>The research station hangs in orbit above the neutron star, close enough that the radiation in unavoidable, you'll want to avoid spending too long here.
 
@@ -866,6 +867,10 @@ The operative has gone very still beside you. When they finally speak, their voi
 				</triggeredEventBox>
 				<timerSounds load="DEFAULT_TIMER_SOUNDS"/>
 			</triggeredEvent>
+			<choice>
+				<text>Continue...</text>
+				<event/>
+			</choice>
 		</event>
 	</choice>
 	<choice>
@@ -1080,6 +1085,10 @@ The only upside is that because of how dangerous this place is, no one has been 
 		</triggeredEventBox>
 		<timerSounds load="DEFAULT_TIMER_SOUNDS"/>
 	</triggeredEvent>
+	<choice>
+		<text>Continue...</text>
+		<event/>
+	</choice>
 </event>
 <event name="OG_NEUTRON_ASTEROID_FIELD_START_45">
 	<text>You begin cutting into some nearby asteroids where your sensors indicate useful minerals.</text>
@@ -1090,6 +1099,10 @@ The only upside is that because of how dangerous this place is, no one has been 
 		</triggeredEventBox>
 		<timerSounds load="DEFAULT_TIMER_SOUNDS"/>
 	</triggeredEvent>
+	<choice>
+		<text>Continue...</text>
+		<event/>
+	</choice>
 </event>
 <event name="OG_NEUTRON_ASTEROID_FIELD_START_30">
 	<text>You begin cutting into some nearby asteroids where your sensors indicate useful minerals.</text>
@@ -1100,6 +1113,10 @@ The only upside is that because of how dangerous this place is, no one has been 
 		</triggeredEventBox>
 		<timerSounds load="DEFAULT_TIMER_SOUNDS"/>
 	</triggeredEvent>
+	<choice>
+		<text>Continue...</text>
+		<event/>
+	</choice>
 </event>
 <event name="OG_NEUTRON_ASTEROID_FIELD_START_15">
 	<text>You begin cutting into some nearby asteroids where your sensors indicate useful minerals.</text>
@@ -1110,6 +1127,10 @@ The only upside is that because of how dangerous this place is, no one has been 
 		</triggeredEventBox>
 		<timerSounds load="DEFAULT_TIMER_SOUNDS"/>
 	</triggeredEvent>
+	<choice>
+		<text>Continue...</text>
+		<event/>
+	</choice>
 </event>
 <event name="OG_NEUTRON_ASTEROID_FIELD_FINISH">
 	<text>You carefully extract as much usable material as possible from the nearest asteroids.</text>

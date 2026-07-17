@@ -609,7 +609,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		</achievement>
 		<achievement name="SHIP_ACH_OG_HUNTER_3" layout="all">
 			<name>Exterminator</name>
-			<description>As a Hunter-Class vessel: destroy the Iron Watch Research Station in the Neutron Star Exclusion Zone.</description>
+			<description>As a Hunter-Class vessel: Destroy the Iron Watch Research Station before the raid is completed in the Neutron Star Exclusion Zone.</description>
 			<icon>ogp_hunter_3_icon</icon>
 			<lockImage>ogp_hunter_3_icon_locked</lockImage>
 		</achievement>

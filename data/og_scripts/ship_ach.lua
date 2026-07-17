@@ -475,6 +475,11 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 	end
 end)
 
+script.on_game_event("OG_NEUTRON_RESEARCH_STATION_FAILED", false, function()
+	if should_track_achievement("SHIP_ACH_OG_HUNTER_3", Hyperspace.ships.player, "PLAYER_SHIP_OG_HUNTER") then
+		Hyperspace.CustomAchievementTracker.instance:SetAchievement("SHIP_ACH_OG_HUNTER_3", false)
+	end
+end)
 
 local achLayoutUnlocks = {
 	{
