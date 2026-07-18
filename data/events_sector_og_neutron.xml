@@ -427,6 +427,7 @@ You're able to load the remaining station staff onto your ship, before the scien
 	</beaconType>
 	<environment type="pulsar"/>
 	<ship load="SHIP_OG_MIDNIGHT_HUNTER_FIGHT" hostile="true"/>
+	<status type="limit" target="enemy" system="artillery" amount="0"/>
 	<variable name="og_neutron_hunter_deadcrew" op="set" val="0"/>
 	<text>You arrive face to face with 'Ghost' ship, it's even more dangerous looking in person. Sleek and armed to the teeth, this is sure to be a tough fight. You're given no chance to avoid the fight as you're immediately within range of their weapons.</text>
 	<choice hidden="true">
@@ -443,6 +444,7 @@ You're able to load the remaining station staff onto your ship, before the scien
 	</beaconType>
 	<environment type="pulsar"/>
 	<ship load="SHIP_OG_MIDNIGHT_HUNTER_FIGHT" hostile="true"/>
+	<status type="limit" target="enemy" system="artillery" amount="0"/>
 	<variable name="og_neutron_hunter_deadcrew" op="set" val="0"/>
 	<text>You arrive face to face with Midnight Sun ship. Sleek and armed to the teeth, this is sure to be a tough fight. You're given no chance to avoid the fight as you're immediately within range of their weapons.</text>
 	<choice hidden="true">
@@ -502,6 +504,7 @@ Your computers calculate that based on the trajectory they were on, you have abo
 
 <event name="SHIP_OG_MIDNIGHT_HUNTER_RESUME">
 	<ship hostile="true"/>
+	<status type="clear" target="enemy" system="artillery" amount="100"/>
 	<text>The battle resumes, however something is different this time, it appears they had some kind of super weapon hidden in the bowls of their ship, and its finally online!</text>
 	<choice hidden="true">
 		<text>Continue...</text>

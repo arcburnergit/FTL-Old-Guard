@@ -1208,7 +1208,7 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
 	end
 end)
 
-
+--[[
 local update_enemy_hunter = false
 script.on_internal_event(Defines.InternalEvents.CONSTRUCT_SHIP_MANAGER, function(shipManager)
 	if shipManager.iShipId == 1 then--and shipManager.myBlueprint.blueprintName == "OG_MIDNIGHT_HUNTER" then
@@ -1233,14 +1233,6 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 	end
 end)
 
-script.on_game_event("SHIP_OG_MIDNIGHT_HUNTER_MIDFIGHT_RESET", false, function()
-	local shipManager = Hyperspace.ships.enemy
-	if shipManager then
-		for system in vter(shipManager.vSystemList) do
-			system.healthState.first = system.healthState.second
-		end
-	end
-end)
 script.on_game_event("SHIP_OG_MIDNIGHT_HUNTER_RESUME", false, function()
 	local shipManager = Hyperspace.ships.enemy
 	if shipManager and not shipManager:HasSystem(11) then
@@ -1248,6 +1240,17 @@ script.on_game_event("SHIP_OG_MIDNIGHT_HUNTER_RESUME", false, function()
 		shipManager.artillerySystems[0].target = Hyperspace.ships.player._targetable
 	else
 		log("OG - Failed to install artillery on Midnight Hunter")
+	end
+end)
+]]
+
+script.on_game_event("SHIP_OG_MIDNIGHT_HUNTER_MIDFIGHT_RESET", false, function()
+	local shipManager = Hyperspace.ships.enemy
+	if shipManager then
+		shipManager.ship.hullIntegrity.first = math.min(shipManager.ship.hullIntegrity.second, shipManager.ship.hullIntegrity.first + 8)
+		for system in vter(shipManager.vSystemList) do
+			system.healthState.first = system.healthState.second
+		end
 	end
 end)
 
