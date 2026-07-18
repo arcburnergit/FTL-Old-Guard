@@ -748,7 +748,7 @@ script.on_init(function()
 		for _, craftingData in ipairs(craftingTable.items) do
 			local weaponBlueprint = Hyperspace.Blueprints:GetWeaponBlueprint(craftingData.weapon)
 			local name = weaponBlueprint.desc.title:GetText()
-			local hidden_tooltip = craftingData.hiddenTooltip
+			local hidden_tooltip = craftingData.hidden_tooltip
 			for _, components in ipairs(craftingData.components) do
 				for _, needed in ipairs(components) do
 					if hideName[needed] or hidden_tooltip then
