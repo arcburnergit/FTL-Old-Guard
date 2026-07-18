@@ -124,6 +124,7 @@ local function render_active_targeting(shipManager, otherManager, combatControl,
 end
 
 local function render_targeting(shipManager, otherManager, system, currentTurret, currentTarget, temp)
+	if (not currentTarget) or (not currentTarget.roomId) then return end
 	local targetPos = shipManager:GetRoomCenter(currentTarget.roomId)
 	if currentTurret.blueprint_type == 3 then
 		local targetShipGraph = Hyperspace.ShipGraph.GetShipInfo(shipManager.iShipId)
@@ -141,7 +142,7 @@ local function render_targeting(shipManager, otherManager, system, currentTurret
 	end
 	Graphics.CSurface.GL_PopMatrix()
 end
-
+ 
 script.on_render_event(Defines.RenderEvents.SHIP_SPARKS, function(ship) return Defines.Chain.CONTINUE end, function(ship) 
 	--local benchmark_start = os.clock()
 	local shipManager = Hyperspace.ships(ship.iShipId)

@@ -665,17 +665,16 @@ The Midnight Sun operative rushes over to you, "What are you doing Captain? I ha
 	<choice>
 		<text>Show them that the Midnight Sun ship has already disengaged to safety.</text>
 		<event>
-			<ship load="SHIP_OG_MIDNIGHT_HUNTER_FIGHT" hostile="false"/>
 			<text>"But then why hav-" They cut off, you cannot see their face beneath the helmet, but their body language gives you the impression that something that something is very wrong. They appear to be interacting with some sort of internal system within their armour.</text>
 			<choice>
 				<text>Continue...</text>
 				<event>
 					<text>The Midnight Sun vessel begins charging it's jump drive, "We hoped that the station would do the job for us, you unfortunately exceeded our expectations Captain. Good bye."</text>\
 					<playSound>lightspeed</playSound>
-					<ship load="SHIP_OG_DAWN_RESEARCH_SYNCHROTRON" hostile="true"/>
 					<choice>
 						<text>Continue...</text>
 						<event>
+							<ship load="SHIP_OG_DAWN_RESEARCH_SYNCHROTRON" hostile="true"/>
 							<text>Not a moment later a new ship uncloaks, this one a more traditional New Dawn vessel. One of your crew turn to you, "Captain, that ship, they're refusing our hails, scans indicate they're bringing their weapons online."
 
 The operative has gone very still beside you. When they finally speak, their voice is quiet. "This wasn't apart of any briefing I received."</text>

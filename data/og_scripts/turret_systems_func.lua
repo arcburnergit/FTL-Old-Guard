@@ -1507,7 +1507,7 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 	system.table.last_target = system.table.currentTarget 
 	system.table.last_target_pos = Hyperspace.Pointf(targetPosition.x, targetPosition.y)
 	system.table.last_target_angle = system.table.currentTargetAngle
-	system.table.last_target_space = (offensive and otherManager.iShipId) or (1 - otherManager.iShipId)
+	system.table.last_target_space = (otherManager and ((offensive and otherManager.iShipId) or (1 - otherManager.iShipId))) or (shipManager and shipManager.iShipId) or 0
 	if system.table.lock_firing then
 		system.table.lock_firing = system.table.lock_firing - 1
 		if system.table.lock_firing <= 0 or system.table.charges <= 1 then
@@ -2063,7 +2063,9 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(s)
 		end
 
 		if userdata_table(projectile, "mods.og").targeted and projectile.passedTarget then
-			userdata_table(projectile, "mods.og").targeted.table.og_targeted = math.max(0, (userdata_table(projectile, "mods.og").targeted.table.og_targeted or 1) - 1)
+			if userdata_table(projectile, "mods.og").targeted.table then
+				userdata_table(projectile, "mods.og").targeted.table.og_targeted = math.max(0, (userdata_table(projectile, "mods.og").targeted.table.og_targeted or 1) - 1)
+			end
 			userdata_table(projectile, "mods.og").targeted = nil
 		end
 

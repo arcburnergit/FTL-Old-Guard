@@ -1224,8 +1224,9 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 	if shipManager.iShipId == 1 and update_enemy_hunter then
 		update_enemy_hunter = false
 		if shipManager.myBlueprint.blueprintName == "OG_MIDNIGHT_HUNTER" and Hyperspace.playerVariables.og_neutron_hunter_deadcrew == 0 and shipManager:HasSystem(11) then
+			log("OG - before removing artillery from Midnight Hunter")
 			shipManager:RemoveSystem(11)
-			--log("OG - removed artillery from Midnight Hunter")\
+			log("OG - removed artillery from Midnight Hunter")
 		elseif shipManager.myBlueprint.blueprintName == "OG_MIDNIGHT_HUNTER" and Hyperspace.playerVariables.og_neutron_hunter_deadcrew == 0 then
 			log("NO ARTILLERY TO REMOVE")
 		end

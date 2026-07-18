@@ -621,8 +621,8 @@ end
 for item in vter(Hyperspace.Blueprints:GetBlueprintList("LIST_SHIPS_OG_MIDNIGHT_ALL")) do
 	iron_watch_ship_list[item] = true
 end
-local original_engines = {}
-local original_power = {}
+local original_engines_table = {}
+local original_reactor_table = {}
 script.on_internal_event(Defines.InternalEvents.GENERATOR_CREATE_SHIP, function(name, sector, event, blueprint, ret)
 	local map = Hyperspace.App.world.starMap
 	--print(name)
@@ -637,16 +637,16 @@ script.on_internal_event(Defines.InternalEvents.GENERATOR_CREATE_SHIP, function(
 		if not has_shield then
 			blueprint.augments:push_back("OG_NEUTRON_SHIELD")
 		end
-		if not original_engines[blueprint.blueprintName] then
-			original_engines[blueprint.blueprintName] = {power = blueprint.systemInfo[1].powerLevel, max = blueprint.systemInfo[1].maxPower}
+		if not original_engines_table[blueprint.blueprintName] then
+			original_engines_table[blueprint.blueprintName] = {power = blueprint.systemInfo[1].powerLevel, max = blueprint.systemInfo[1].maxPower}
 		end
-		local original_power, original_max = original_engines[blueprint.blueprintName].power, original_engines[blueprint.blueprintName].max
+		local original_power, original_max = original_engines_table[blueprint.blueprintName].power, original_engines_table[blueprint.blueprintName].max
 		blueprint.systemInfo[1].powerLevel = math.min(8, original_power + 2)
 		blueprint.systemInfo[1].maxPower = math.min(8, original_max + 2)
-		if not original_power[blueprint.blueprintName] then
-			original_power[blueprint.blueprintName] = blueprint.maxPower
+		if not original_reactor_table[blueprint.blueprintName] then
+			original_reactor_table[blueprint.blueprintName] = blueprint.maxPower
 		end
-		local original_reactor = original_power[blueprint.blueprintName]
+		local original_reactor = original_reactor_table[blueprint.blueprintName]
 		blueprint.maxPower = original_reactor + 2
 	end
 	return Defines.Chain.CONTINUE, sector, event, blueprint, ret
