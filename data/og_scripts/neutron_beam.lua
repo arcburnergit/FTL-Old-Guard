@@ -496,20 +496,20 @@ do --HAZARD DAMAGE TRACKING
 	end)
 	script.on_internal_event(Defines.InternalEvents.SHIELD_COLLISION, function(shipManager, projectile, damage, responce)
 		if has_shield[shipManager.iShipId] and damage.iIonDamage > 0 then
-			left_over_damage[shipManager.iShipId] = left_over_damage[shipManager.iShipId] + 33.4 * damage.iIonDamage
+			left_over_damage[shipManager.iShipId] = left_over_damage[shipManager.iShipId] + 100 * math.ceil(damage.iIonDamage/2)
 		end
 		return Defines.Chain.CONTINUE
 	end)
 	script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA_HIT, function(shipManager, projectile, location, damage, shipFriendlyFire)
 		if has_shield[shipManager.iShipId] and damage.iIonDamage > 0 then
-			left_over_damage[shipManager.iShipId] = left_over_damage[shipManager.iShipId] + 33.4 * damage.iIonDamage
+			left_over_damage[shipManager.iShipId] = left_over_damage[shipManager.iShipId] + 100 * math.ceil(damage.iIonDamage/2)
 		end
 		return Defines.Chain.CONTINUE
 	end)
 	script.on_internal_event(Defines.InternalEvents.DAMAGE_BEAM, function(shipManager, projectile, location, damage, realNewTile, beamHitType)
 		if beamHitType == Defines.BeamHit.NEW_ROOM then
 			if has_shield[shipManager.iShipId] and damage.iIonDamage > 0 then
-				left_over_damage[shipManager.iShipId] = left_over_damage[shipManager.iShipId] + 33.4 * damage.iIonDamage
+				left_over_damage[shipManager.iShipId] = left_over_damage[shipManager.iShipId] + 100 * math.ceil(damage.iIonDamage/2)
 			end
 		end
 		return Defines.Chain.CONTINUE, beamHitType
@@ -621,6 +621,8 @@ end
 for item in vter(Hyperspace.Blueprints:GetBlueprintList("LIST_SHIPS_OG_MIDNIGHT_ALL")) do
 	iron_watch_ship_list[item] = true
 end
+local original_engines = {}
+local original_power = {}
 script.on_internal_event(Defines.InternalEvents.GENERATOR_CREATE_SHIP, function(name, sector, event, blueprint, ret)
 	local map = Hyperspace.App.world.starMap
 	--print(name)
@@ -635,20 +637,29 @@ script.on_internal_event(Defines.InternalEvents.GENERATOR_CREATE_SHIP, function(
 		if not has_shield then
 			blueprint.augments:push_back("OG_NEUTRON_SHIELD")
 		end
-		blueprint.systemInfo[1].powerLevel = math.min(8, blueprint.systemInfo[1].powerLevel + 2)
-		blueprint.systemInfo[1].maxPower = math.min(8, blueprint.systemInfo[1].maxPower + 2)
+		if not original_engines[blueprint.blueprintName] then
+			original_engines[blueprint.blueprintName] = {power = blueprint.systemInfo[1].powerLevel, max = blueprint.systemInfo[1].maxPower}
+		end
+		local original_power, original_max = original_engines[blueprint.blueprintName].power, original_engines[blueprint.blueprintName].max
+		blueprint.systemInfo[1].powerLevel = math.min(8, original_power + 2)
+		blueprint.systemInfo[1].maxPower = math.min(8, original_max + 2)
+		if not original_power[blueprint.blueprintName] then
+			original_power[blueprint.blueprintName] = blueprint.maxPower
+		end
+		local original_reactor = original_power[blueprint.blueprintName]
+		blueprint.maxPower = original_reactor + 2
 	end
 	return Defines.Chain.CONTINUE, sector, event, blueprint, ret
 end)
 script.on_internal_event(Defines.InternalEvents.GET_AUGMENTATION_VALUE, function(shipManager, augment, value)
-	if augment == "ER_EVASION_REDUCTION" --[[and shipManager.iShipId == 1]] and shipManager:HasAugmentation("OG_NEUTRON_SHIELD") > 0 then
+	if augment == "ER_EVASION_REDUCTION" and shipManager.iShipId == 1 and shipManager:HasAugmentation("OG_NEUTRON_SHIELD") > 0 then
 		--print("MAKE ADJUSTMENT: ER_EVASION_REDUCTION")
 		value = value + 10
 	end
 	return Defines.Chain.CONTINUE, value
 end)
 script.on_internal_event(Defines.InternalEvents.GET_DODGE_FACTOR, function(shipManager, value)
-	if value > 10 and shipManager:HasAugmentation("OG_NEUTRON_SHIELD") > 0 then
+	if value > 10 and shipManager.iShipId == 1 and shipManager:HasAugmentation("OG_NEUTRON_SHIELD") > 0 then
 		value = value - 10
 	end
 	return Defines.Chain.CONTINUE, value
@@ -660,6 +671,7 @@ script.on_render_event(Defines.RenderEvents.SYSTEM_BOX, function(systemBox, igno
 	local shipId = (systemBox.bPlayerUI and 0) or 1
 	local shipManager = Hyperspace.ships(shipId)
 	local system = systemBox.pSystem
+	local visible_to_player = Hyperspace.ships.player:HasSystem(7) and Hyperspace.ships.player:GetSystem(7):GetEffectivePower() >= 3 and Hyperspace.ships.player:GetSystem(7).bManned 
 	if has_shield[shipId] and system.iSystemType == 1 then
 		if systemBox.bPlayerUI and system:GetEffectivePower() >= 2 then
 			for i = 2, system:GetEffectivePower() do
@@ -668,8 +680,8 @@ script.on_render_event(Defines.RenderEvents.SYSTEM_BOX, function(systemBox, igno
 				Graphics.CSurface.GL_RenderPrimitive(bar_outline)
 				Graphics.CSurface.GL_PopMatrix()
 			end
-		elseif (not systemBox.bPlayerUI) and system:GetEffectivePower() >= 2 then
-			for i = 2, system:GetEffectivePower() do
+		elseif (not systemBox.bPlayerUI) and system:GetEffectivePower() >= 1 and visible_to_player then
+			for i = 1, system:GetEffectivePower() do
 				Graphics.CSurface.GL_PushMatrix()
 				Graphics.CSurface.GL_Translate(bar_position.x, bar_position.y - i * 8, 0)
 				Graphics.CSurface.GL_RenderPrimitive(bar_outline)
@@ -875,7 +887,8 @@ shield_anim_up:Start(true)
 
 
 local shield_image_size = {w = 1000, h = 1000}
-local shield_image_colour = Graphics.GL_Color(150/255, 25/255, 255/255, 0.8)
+local shield_image_colour = Graphics.GL_Color(150/255, 25/255, 255/255, 0.5)
+local shield_image_base_colour = Graphics.GL_Color(150/255, 25/255, 255/255, 0.1)
 
 local function reset_particle(particle)
 	particle.w = math.random(256, 1280)
@@ -960,7 +973,12 @@ script.on_render_event(Defines.RenderEvents.SHIP, function(ship)
 		Graphics.CSurface.GL_Translate(center.x, center.y, 0)
 		Graphics.CSurface.GL_Scale((ellipse.a*2) / shield_image_size.w, (ellipse.b*2) / shield_image_size.h, 1)
 		
-		Graphics.CSurface.GL_RenderPrimitiveWithColor(shield_image, shield_image_colour)
+		Graphics.CSurface.GL_RenderPrimitiveWithColor(shield_image, shield_image_base_colour)
+		if ship.iShipId == 0 then
+			Graphics.CSurface.GL_RenderPrimitiveWithColor(shield_image_front, shield_image_colour)
+		else
+			Graphics.CSurface.GL_RenderPrimitiveWithColor(shield_image_top, shield_image_colour)
+		end
 		if Hyperspace.playerVariables[active_var] == 1 then
 			local alpha = 1 - (flash_timer_max * 3) + (flash_timer * 3)
 			if ship.iShipId == 0 then

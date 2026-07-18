@@ -380,6 +380,7 @@ You're immediately face to face with a figuring in the white coat of a scientist
 You're able to load the remaining station staff onto your ship, before Dr. Silas has the Synchrotron Barrier carefully moved onto your ship, and integrated into your engines system.</text>
 					<crewMember amount="1" repair="2" class="unique_og_silas">Dr. Silas</crewMember>
 					<quest event="OG_NEUTRON_GHOST_IRON_QUEST"/>
+					<variable name="og_neutron_hunter_deadcrew" op="set" val="0"/>
 					<augment name="OG_NEUTRON_SHIELD"/>
 					<choice>
 						<text>Continue...</text>
@@ -397,6 +398,7 @@ You're able to load the remaining station staff onto your ship, before Dr. Silas
 					
 You're able to load the remaining station staff onto your ship, before the scientist has the Synchrotron Barrier carefully moved onto your ship, and integrated into your engines system.</text>
 					<quest event="OG_NEUTRON_GHOST_IRON_QUEST"/>
+					<variable name="og_neutron_hunter_deadcrew" op="set" val="0"/>
 					<augment name="OG_NEUTRON_SHIELD"/>
 					<choice>
 						<text>Continue...</text>
@@ -689,6 +691,7 @@ The operative has gone very still beside you. When they finally speak, their voi
 
 "I'd like to join your crew officially, it's clear that the Midnight Sun is done with me, and you're my best bet for revenge."</text>
 											<quest event="OG_NEUTRON_GHOST_DAWN_QUEST"/>
+											<variable name="og_neutron_hunter_deadcrew" op="set" val="0"/>
 											<choice>
 												<text>Prepare for combat.</text>
 												<event load="COMBAT_CHECK"/>
@@ -1360,7 +1363,7 @@ Nearby you detect an Iron Watch vessel, they appear to be scavenging the wrecks,
 				<event load="OG_NEUTRON_SCIENTIST_GOOD"/>
 			</choice>
 			<choice hidden="true" req="LIST_CREW_LANIUS">
-				<text>(Lanius Crew) Have your engi take a look at it.</text>
+				<text>(Lanius Crew) Have your lanius take a look at it.</text>
 				<event load="OG_NEUTRON_SCIENTIST_BAD"/>
 			</choice>
 			<choice hidden="true" req="weapons" lvl="5">

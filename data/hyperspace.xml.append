@@ -154,7 +154,7 @@ Enemy Turrets rotate 100% faster.</tooltip>
 		<mod-append:shipIcon>
 			<name>icon_og_neutron_shield</name>
 			<tooltip>Synchrotron Barrier:
-This enemy is protected from Ion Damage and radiation which is absorbed by the engines system, however enemies lose 5% evasion.</tooltip>
+This enemy is protected from Ion Damage and radiation. Instead this damage is absorbed by the engines system as system damage, this enemy has a higher maximum engine level but loses 10% evasion.</tooltip>
 		</mod-append:shipIcon>
 		<mod-append:shipIcon>
 			<name>icon_og_reflective_plating</name>

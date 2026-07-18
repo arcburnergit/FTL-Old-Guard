@@ -26,7 +26,7 @@
 <text name="tooltip_og_turret_adaptive_single">Turret Control: Click on the turret to set its mode, or target it. Manning reduces charge time.</text>
 <text name="tooltip_og_turret_adaptive_single_enemy">Turret Control: Powers the enemy turret.</text>
 <text name="tooltip_og_equaliser">System Equaliser: Equalise damage across selected ship systems.</text>
-<text name="tooltip_og_equaliser_enemy">Turret Control: Powers the enemy turret.</text>
+<text name="tooltip_og_equaliser_enemy">System Equaliser: Equalises damage across the ship systems.</text>
 
 <text name="hack_og_turret">Temporarily drain charge from the enemy turret.</text>
 <text name="hack_og_turret_2">Temporarily drain charge from the enemy turret.</text>
