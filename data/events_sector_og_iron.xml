@@ -646,7 +646,7 @@ What we do have, however, is a proposition, one we believe serves your interests
 	<choice hidden="true">
 		<text>Continue Listening.</text>
 		<event>
-			<text>Eventually the captain's angry reaches a crescendo and orders the would-be turret thrown out the airlock. "I want it out of sight, get us OUT OF HERE!" With that the Iron Watch ship jumps away. Now on you're on you have time to scoop up the "turret" and examine it yourself, it turns out it was just a simple defence drone.</text>
+			<text>Eventually the captain's anger reaches a crescendo and orders the would-be turret thrown out the airlock. "I want it out of sight, get us OUT OF HERE!" With that the Iron Watch ship jumps away. Now that you're on your own, you have time to scoop up the "turret" and examine it yourself, it turns out it was just a simple defence drone.</text>
 			<instantEscape/>
 			<drone name="DEFENSE_1"/>
 			<choice>
