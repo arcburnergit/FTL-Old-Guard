@@ -346,6 +346,24 @@
 	<desc length="1" x="0" y="0" />
 	<time>1</time>
 </anim>
+<animSheet name="og_turret_laser_chaingun_gold_icon" w="70" h="30" fw="70" fh="30">og_turrets/turret_laser_chaingun_gold_icon.png</animSheet>
+<anim name="og_turret_laser_chaingun_gold_icon">
+	<sheet>og_turret_laser_chaingun_gold_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_laser_chaingun_gold" w="800" h="100" fw="100" fh="100">og_turrets/turret_laser_chaingun_gold.png</animSheet>
+<anim name="og_turret_laser_chaingun_gold">
+	<sheet>og_turret_laser_chaingun_gold</sheet>
+	<desc length="8" x="0" y="0" />
+	<time>0.4</time>
+</anim>
+<animSheet name="og_turret_laser_chaingun_gold_glow" w="300" h="100" fw="100" fh="100">og_turrets/turret_laser_chaingun_gold_glow.png</animSheet>
+<anim name="og_turret_laser_chaingun_gold_glow">
+	<sheet>og_turret_laser_chaingun_gold_glow</sheet>
+	<desc length="3" x="0" y="0" />
+	<time>1</time>
+</anim>
 
 
 

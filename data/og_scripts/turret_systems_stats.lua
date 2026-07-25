@@ -18,6 +18,7 @@ table.insert(turretBlueprintsList, "OG_TURRET_LASER_FROST")
 table.insert(turretBlueprintsList, "OG_TURRET_LASER_TRIPLET")
 table.insert(turretBlueprintsList, "OG_TURRET_LASER_GATLING")
 table.insert(turretBlueprintsList, "OG_TURRET_LASER_RIFTWAKER")
+table.insert(turretBlueprintsList, "OG_TURRET_LASER_CHAINGUN_GOLD")
 table.insert(turretBlueprintsList, "OG_TURRET_ION_1")
 table.insert(turretBlueprintsList, "OG_TURRET_ION_2")
 table.insert(turretBlueprintsList, "OG_TURRET_ENERGY_1")
@@ -390,6 +391,25 @@ turrets["OG_TURRET_LASER_RIFTWAKER"] = {
 	charges_per_charge = 1,
 	rotation_speed = 180,
 	charge_time = {[0] = 28, 28, 24, 20, 18, 16, 14, 12, 10},
+}
+turrets["OG_TURRET_LASER_CHAINGUN_GOLD"] = {
+	enemy_burst = 1,
+	image = "og_turret_laser_chaingun_gold",
+	glow = "og_turret_laser_chaingun_gold_glow",
+	chain = {
+		image = Hyperspace.Animations:GetAnimation("og_turret_laser_chaingun_chain"),
+		type = chain_types.cooldown,
+		amount = 0.24,
+		count = 4,
+	},
+	fire_points = {{x = 0, y = -50, fire_delay = 0.325}},
+	defence_type = defence_types.PROJECTILES_MISSILES,
+	blueprint_type = 1,
+	blueprint = "OG_LASER_PROJECTILE_BASE",
+	charges = 3,
+	charges_per_charge = 1,
+	rotation_speed = 180,
+	charge_time = {[0] = 14, 14, 12, 9, 7, 6, 5, 4, 3},
 }
 turrets["OG_TURRET_ION_1"] = {
 	enemy_burst = 1,

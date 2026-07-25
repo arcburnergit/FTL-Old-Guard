@@ -150,6 +150,7 @@
 <text name="og_lua_turret_hidename_scifi">REAL SCIENCE!</text>
 <text name="og_lua_turret_hidename_sylvan">You greedy, murdering traitor you.</text>
 <text name="og_lua_turret_hidename_sylvan_honor">Go kick some Rebel asses.</text>
+<text name="og_lua_turret_hidename_chaingun_gold">A recreation of an infamous gatling gun</text>
 
 <text name="og_lua_turret_hidename_dd_soulplague">You're hungry for more turrets - the turrets are hungry for more... well, everything.</text>
 <text name="og_lua_turret_hidename_dd_falseradiance">And then, upon the eighth day... your enemies cried out, with an ardent voice - pleading for salvation. It would never come.</text>

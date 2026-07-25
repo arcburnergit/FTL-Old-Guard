@@ -1065,6 +1065,27 @@ Chaotic variant rotates 5x as fast and can target any projectile.</desc>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_laser_riftwaker_icon</iconReplace>
 </weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_LASER_CHAINGUN_GOLD">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>'Rift Waker' MK 0.5</title>
+	<short>'Waker 0.5'</short>
+	<desc>A recreation of Sylvan's infamous 'Rift Waker' Gatling gun turret, using a Chain Vulcan Turret.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>65</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_laser_chaingun_gold_icon</iconReplace>
+</weaponBlueprint>
 </FTL>
 
 <!--IONS-->
@@ -5553,7 +5574,7 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 		<og_equaliser power="1" room="3" start="true" img="room_og_equaliser_3" />
 		<battery power="1" room="3" start="false" img="room_battery_3" />
 		<cloaking power="1" room="11" start="true" img="room_cloaking_13" />
-		<clonebay power="2" room="2" start="false">
+		<clonebay power="2" room="1" start="false">
 			<slot>
 				<number>0</number>
 			</slot>
@@ -5565,7 +5586,7 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 			</slot>
 		</doors>
 		<drones power="2" max="8" room="14" start="false" img="room_drones_18" />
-		<engines power="2" room="8" start="true" img="room_engines_2">
+		<engines power="3" room="8" start="true" img="room_engines_2">
 			<slot>
 				<direction>down</direction>
 				<number>2</number>

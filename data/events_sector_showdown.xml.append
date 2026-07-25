@@ -21,7 +21,7 @@
 </event>
 <event name="TRUE_VICTORY_CREW_OG_HORUS">
 	<text>"When I asked to be delivered to the FEDERATION BASE, and you AGREED, why did you then think it was a good idea to take me here? I didn't want to be apart of all this, and I certainly don't want to be blown up!"</text>
-	<text-aea-alternative>"When I asked to be delivered to the FEDERATION BASE, and you AGREED, why did you then think it was a good idea to take me here? I didn't want to be apart of all this!"</text-aea-alternative>
+	<text-aea-alternative>"Maybe now I can finally get back to the federation base..."</text-aea-alternative>
 	<unlockCustomShip silent="false">CREW_SHIP_OG_CREW1_2</unlockCustomShip>
 	<choice hidden="true">
 		<text>Continue...</text>

@@ -262,6 +262,7 @@ hideName["COMBAT_PRIME"] = Hyperspace.Text:GetText("og_lua_turret_hidename_prime
 hideName["BEAM_HARDSCIFI"] = Hyperspace.Text:GetText("og_lua_turret_hidename_scifi")
 hideName["GATLING_SYLVAN"] = Hyperspace.Text:GetText("og_lua_turret_hidename_sylvan")
 hideName["GATLING_SYLVAN_HONOR"] = Hyperspace.Text:GetText("og_lua_turret_hidename_sylvan_honor")
+hideName["LASER_CHAINGUN_GOLD"] = Hyperspace.Text:GetText("og_lua_turret_hidename_chaingun_gold")
 
 hideName["DDSHOTGUN_SOULPLAGUE"] = Hyperspace.Text:GetText("og_lua_turret_hidename_dd_soulplague")
 hideName["DDFOCUS_SOULPLAGUE"] = ""
@@ -384,6 +385,7 @@ table.insert(craftedSpecial.items, {weapon = "OG_TURRET_MISSILE_CLONE_CANNON", m
 table.insert(craftedSpecial.items, {weapon = "OG_TURRET_LASER_ANCIENT", match_cost = true, component_amounts = {1}, components = {{"ANCIENT_LASER", "ANCIENT_LASER_2", "ANCIENT_LASER_3", "ANCIENT_BEAM", "ANCIENT_BEAM_2", "ANCIENT_BEAM_3", "ANCIENT_DEFENSE_1"}}} )
 table.insert(craftedSpecial.items, {weapon = "OG_TURRET_LASER_CEL_1", match_cost = true, component_amounts = {1}, components = {{"PRIME_LASER", "COMBAT_PRIME", "BEAM_HARDSCIFI", "DEFENSE_PRIME"}}} )
 table.insert(craftedSpecial.items, {weapon = "OG_TURRET_LASER_GATLING", match_cost = true, component_amounts = {1}, components = {{"GATLING"}}} )
+table.insert(craftedSpecial.items, {weapon = "OG_TURRET_LASER_CHAINGUN_GOLD", match_cost = true, component_amounts = {1}, components = {{"LASER_CHAINGUN_GOLD"}}} )
 table.insert(craftedSpecial.items, {weapon = "OG_TURRET_LASER_RIFTWAKER", match_cost = true, component_amounts = {1}, components = {{"GATLING_SYLVAN", "GATLING_SYLVAN_HONOR"}}} )
 
 table.insert(craftedSpecial.items, {weapon = "OG_TURRET_BEAM_NEUTRON_1", match_cost = true, component_amounts = {1, 1}, hidden_tooltip = true, components = {{"OG_TURRET_BEAM_NEUTRON_0"}, {"LASER_BURST_5", "LASER_BURST_8", "LASER_HEAVY_3", "LASER_PIERCE_2", "LASER_CHAINGUN_2", "LASER_HULL_3", "LASER_OG_TRIPLET_2", "ION_4", "MISSILES_3", "MISSILES_4", "ENERGY_3", "SHOTGUN_3", "SHOTGUN_4", "FOCUS_3", "BEAM_3"}}} )
