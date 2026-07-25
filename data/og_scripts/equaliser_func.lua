@@ -157,7 +157,7 @@ local function activate_equalizer(system, shipManager)
 	end
 	Hyperspace.Sounds:PlaySoundMix(system_sound_name[shipManager.iShipId], -1, false)
 
-	system:LockSystem(system_cooldown)
+	system:LockSystem( math.ceil(system_cooldown * (1 - shipManager:GetAugmentationValue("UPG_OG_EQUALISER_PERFORMANCE")) ) )
 end
 
 local stencil_mode = {ignore = 0, set = 1, use = 2}

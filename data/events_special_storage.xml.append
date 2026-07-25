@@ -169,6 +169,10 @@
 		<text>Turret Control.</text>
 		<event load="STORAGE_CHECK_SYSTEM_OG_TURRET" />
 	</mod-append:choice>
+	<mod-append:choice req="og_equaliser" blue="false" hidden="true">
+		<text>System Equaliser.</text>
+		<event load="STORAGE_CHECK_SYSTEM_OG_EQUALISER" />
+	</mod-append:choice>
 </mod:findName>
 
 <event name="STORAGE_CHECK_SYSTEM_OG_TURRET">
@@ -474,6 +478,117 @@
 		</event>
 	</choice>
 </event>
+
+
+<!--
+\\\\\\\\\\
+EQUALISER
+\\\\\\\\\\
+-->
+<event name="STORAGE_CHECK_SYSTEM_OG_EQUALISER">
+	<text>What upgrade do you want to install?</text>
+	<choice req="UPG_OG_EQUALISER_BOOSTER" lvl="1" max_group="1" blue="false" hidden="true">
+		<text>Performance Upgrade. [UNAVAILABLE: You already have the max of this upgrade]</text>
+		<event load="OPTION_INVALID"/>
+	</choice>
+	<choice req="UPG_OG_EQUALISER_BOOSTER" lvl="0" max_lvl="1" max_group="1" blue="false" hidden="true">
+		<text>Performance Upgrade. [Cost: 35~, 2{]</text>
+		<event load="STORAGE_CHECK_SYSTEM_OG_EQUALISER_PERFORMANCE"/>
+	</choice>
+	<choice req="UPG_BATTERY_GENERATOR" lvl="1" max_group="2" blue="false" hidden="true">
+		<text>Emergency Generator. [ALREADY INSTALLED]</text>
+		<event load="OPTION_INVALID"/>
+	</choice>
+	<choice req="UPG_BATTERY_GENERATOR" lvl="0" max_lvl="1" max_group="2" blue="false" hidden="true">
+		<text>Emergency Generator. [Cost: 55~, 7{]</text>
+		<event load="STORAGE_CHECK_SYSTEM_OG_EQUALISER_GENERATOR"/>
+	</choice>
+	<choice>
+		<text>Nevermind.</text>
+		<event load="STORAGE_CHECK_SYSTEM_LOAD"/>
+	</choice>
+</event>
+<event name="STORAGE_CHECK_SYSTEM_OG_EQUALISER_PERFORMANCE">
+	<text>You are about to install a equaliser performance upgrade.
+	[Effects: System Equaliser cooldown is reduced by 50%]</text>
+	<choice req="og_equaliser" lvl="1" max_group="0" blue="false" hidden="true">
+		<text>Perform the upgrade. [Cost: 35~, 2{]</text>
+		<event>
+			<text>You install the upgrade.</text>
+			<item_modify>
+				<item type="fuel" min="-2" max="-2"/>
+				<item type="scrap" min="-35" max="-35"/>
+			</item_modify>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="INSTALL_OG_EQUALISER_PERFORMANCE"/>
+			</choice>
+		</event>
+	</choice>
+	<choice req="EX_OG_EQUALISER_PERFORMANCE" max_group="1" blue="false" hidden="true">
+		<text>Install the External Augment internally.</text>
+		<event>
+			<text>You install the upgrade.</text>
+			<remove name="EX_OG_EQUALISER_PERFORMANCE"/>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="INSTALL_OG_EQUALISER_PERFORMANCE"/>
+			</choice>
+		</event>
+	</choice>
+	<choice req="pilot" lvl="1" max_group="2" blue="false" hidden="true">
+		<text>Nevermind.</text>
+		<event load="STORAGE_CHECK_SYSTEM_LOAD"/>
+	</choice>
+</event>
+<event name="INSTALL_OG_EQUALISER_PERFORMANCE">
+	<variable name="loc_internal_upgrades" op="add" val="1"/>
+	<hiddenAug>UPG_OG_EQUALISER_PERFORMANCE</hiddenAug>
+	<loadEvent>STORAGE_CHECK_SYSTEM</loadEvent>
+</event>
+<event name="STORAGE_CHECK_SYSTEM_OG_EQUALISER_GENERATOR">
+	<text>You are about to install the Emergency Generator upgrade.
+	[Effects: Allows you to ignore the power and fuel costs of combat augments.]</text>
+	<choice req="og_equaliser" lvl="2" max_group="0" blue="false" hidden="true">
+		<text>Perform the upgrade. [Cost: 55~, 7{]</text>
+		<event>
+			<text>You install the upgrade.</text>
+			<item_modify>
+				<item type="fuel" min="-7" max="-7"/>
+				<item type="scrap" min="-55" max="-55"/>
+			</item_modify>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="INSTALL_OG_EQUALISER_GENERATOR"/>
+			</choice>
+		</event>
+	</choice>
+	<choice req="og_equaliser" lvl="1" max_lvl="1" max_group="0" blue="false" hidden="true">
+		<text>This upgrade is unavailable. You need Backup Battery level 2.</text>
+		<event load="OPTION_INVALID"/>
+	</choice>
+	<choice req="EX_BATTERY_GENERATOR" max_group="1" blue="false" hidden="true">
+		<text>Install the External Augment internally.</text>
+		<event>
+			<text>You install the upgrade.</text>
+			<remove name="EX_BATTERY_GENERATOR"/>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="INSTALL_OG_EQUALISER_GENERATOR"/>
+			</choice>
+		</event>
+	</choice>
+	<choice req="pilot" lvl="1" max_group="2" blue="false" hidden="true">
+		<text>Nevermind.</text>
+		<event load="STORAGE_CHECK_SYSTEM_LOAD"/>
+	</choice>
+</event>
+<event name="INSTALL_OG_EQUALISER_GENERATOR">
+	<variable name="loc_internal_upgrades" op="add" val="1"/>
+	<hiddenAug>UPG_BATTERY_GENERATOR</hiddenAug>
+	<loadEvent>STORAGE_CHECK_SYSTEM</loadEvent>
+</event>
+
 
 <mod:findName type="event" name="COMBAT_CHECK_HOTKEYS">
 	<mod-append:choice blue="false" req="og_turret_count" lvl="1" hidden="true">

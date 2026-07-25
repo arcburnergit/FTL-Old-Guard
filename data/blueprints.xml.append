@@ -328,6 +328,24 @@
 	<iconReplace>og_cargo_crate</iconReplace>
 </weaponBlueprint>
 
+<augBlueprint name="UPG_OG_EQUALISER_PERFORMANCE">
+	<title>Performance Upgrade</title>
+	<desc></desc>
+	<cost>0</cost>
+	<rarity>0</rarity>
+    <value>0.5</value>
+	<stackable>true</stackable>
+</augBlueprint>
+<augBlueprint name="EX_OG_EQUALISER_PERFORMANCE"> 
+    <title>Equaliser Charger [X]</title>
+    <desc>System Equaliser's lock time is reduced by 50%.
+    
+[X] - As an external system upgrade, this augment will provide its normal effect but take up an augment slot. Can be converted for free to the internal version under the internal upgrade menu if you have the System Equaliser subsystem.</desc>
+    <cost>40</cost>
+    <bp>8</bp>
+    <rarity>0</rarity>
+    <stackable>false</stackable>
+</augBlueprint>
 <systemBlueprint name="og_equaliser">
 	<type>og_equaliser</type>
 	<title>System Equaliser</title>
@@ -4283,6 +4301,7 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<weaponList missiles="5" count="3">
 		<weapon name="FOCUS_1" />
 		<weapon name="LASER_BURST_2" />
+		<weapon name="SHOTGUN_1" />
 	</weaponList>
 	<droneList drones="5" count="2" />
 	<health amount="30" />

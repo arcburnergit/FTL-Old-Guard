@@ -1172,6 +1172,9 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 	<mod-append:aug name="EX_OG_TURRET_ADAPTIVE_SECONDARY">
 		<function name="UPG_OG_TURRET_ADAPTIVE_SECONDARY" value="1" useForReqs="false" warning="true"/>
 	</mod-append:aug>
+	<mod-append:aug name="EX_OG_EQUALISER_PERFORMANCE">
+		<function name="UPG_OG_EQUALISER_PERFORMANCE" value="0.5" useForReqs="false" warning="false"/>
+	</mod-append:aug>
 </mod:findLike>
 <events>
 	<eventFile>special_og_battlecruisers</eventFile>
