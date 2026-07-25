@@ -564,7 +564,7 @@ EQUALISER
 		</event>
 	</choice>
 	<choice req="og_equaliser" lvl="1" max_lvl="1" max_group="0" blue="false" hidden="true">
-		<text>This upgrade is unavailable. You need Backup Battery level 2.</text>
+		<text>This upgrade is unavailable. You need System Equaliser level 2.</text>
 		<event load="OPTION_INVALID"/>
 	</choice>
 	<choice req="EX_BATTERY_GENERATOR" max_group="1" blue="false" hidden="true">

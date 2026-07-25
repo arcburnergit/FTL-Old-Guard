@@ -5654,7 +5654,7 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 			</slot>
 		</doors>
 		<drones power="2" max="8" room="12" start="false" img="room_drones_19" />
-		<engines power="2" room="3" start="true" img="room_engines_2">
+		<engines power="3" room="3" start="true" img="room_engines_2">
 			<slot>
 				<direction>down</direction>
 				<number>2</number>
