@@ -2333,11 +2333,11 @@ The Iron Watch cruiser contacts you, "Stick with me, I have the main raid force 
 		<text>You recognise the New Dawn ship you met in the Iron Watch sector.</text>
 		<event load="OG_DAWN_REROUTE_STORE_INITIATE"/>
 	</choice>
-	<choice hidden="false" req="OG_DAWN_NEUTRON_REROUTE_FRIENDLY" lvl="1" blue="false">
+	<choice hidden="false" req="OG_DAWN_NEUTRON_REROUTE_FRIENDLY" lvl="1" blue="true">
 		<text>(Positive Reputation) Pay to enter the outpost.</text>
 		<event load="OG_DAWN_REROUTE_STORE_FRIENDLY"/>
 	</choice>
-	<choice hidden="true" req="OG_DAWN_NEUTRON_REROUTE_NEGATIVE" lvl="1" blue="false" >
+	<choice hidden="true" req="OG_DAWN_NEUTRON_REROUTE_NEGATIVE" lvl="1" blue="true" >
 		<text>(Negative/Neutral Reputation) The outpost bars your entry.</text>
 		<event load="OPTION_INVALID" />
 	</choice>

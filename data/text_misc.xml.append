@@ -2,6 +2,7 @@
 
 <FTL>
 <text name="map_og_neutron_beam_loc">Beacon coordinates will be within the beam of the neutron star next jump.</text>
+<text name="map_og_neutron_beam_static_loc">Beacon coordinates are in close proximity to a pulsar, will be under the effects of the neutron beam.</text>
 <text name="tooltip_og_neutron_beam">You're within the beam of the neutron star. Radiation will damage all systems and crew across the ship. Crew will be protected while in rooms with operational systems that absorb the damage instead.</text>
 
 <text name="tip_og_triplet">Tip: Triplet weapons chain twice before then resetting on the third volley.</text>

@@ -54,6 +54,7 @@ local max_radius = 500
 
 mods.multiverse.register_environment("og_neutron_beam", active_var, "warnings/danger_og_neutron_beam.png")
 local hazard_text = Hyperspace.Text:GetText("map_og_neutron_beam_loc")
+local hazard_text_static = Hyperspace.Text:GetText("map_og_neutron_beam_static_loc")
 
 local damage_speed = 5
 local damage_loss = -10
@@ -574,7 +575,9 @@ script.on_internal_event(Defines.InternalEvents.GET_BEACON_HAZARD, function(loca
 		local relative_y = location.loc.y + starMap_properties.loc_offset.y - starMap_properties.h/2
 		local isNeutronBeamEvent = string_starts(location.event.eventName, event_string)
 		--print(location.event.eventName.." GET_BEACON_HAZARD")
-		if get_location_beam_status(relative_x, relative_y, Hyperspace.playerVariables[rotation_var]) == "WARNING" or isNeutronBeamEvent then
+		if isNeutronBeamEvent then
+			return hazard_text_static
+		elseif get_location_beam_status(relative_x, relative_y, Hyperspace.playerVariables[rotation_var]) == "WARNING" then
 			return hazard_text
 		end
 	end

@@ -381,11 +381,11 @@
 An Iron Watch station protects the beacon from any ne'er-do-wells as well as monitoring traffic out of the Sector.</text>
 	<ship load="SHIP_OG_IRON_EXIT_STATION" hostile="false"/>
 	<choice hidden="true" req="OG_IRON_FINISH_POSITIVE" lvl="1" blue="false">
-		<text>(Positive Reputation) The station is attempting to hail you.</text>
+		<text>(&gt;1 Reputation) The station is attempting to hail you.</text>
 		<event load="OG_IRON_FINISH_STATION" />
 	</choice>
 	<choice hidden="true" req="OG_IRON_FINISH_NEGATIVE" lvl="1" blue="false">
-		<text>(Negative/Neutral Reputation) The station ignores you.</text>
+		<text>(&lt;2 Reputation) The station ignores you.</text>
 		<event load="OPTION_INVALID" />
 	</choice>
 	<choice hidden="true">

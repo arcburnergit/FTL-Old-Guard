@@ -619,21 +619,21 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 		<crewLimit>8</crewLimit>
 		<systemLimit>10</systemLimit>
-		<customReactor maxLevel="30"/>
+		<customReactor maxLevel="35"/>
 	</mod-append:customShip>
 	<mod-append:customShip name="PLAYER_SHIP_OG_HUNTER_2">
 		<hiddenAug>SHIP_OG_DAWN</hiddenAug>
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 		<crewLimit>8</crewLimit>
 		<systemLimit>10</systemLimit>
-		<customReactor maxLevel="30"/>
+		<customReactor maxLevel="35"/>
 	</mod-append:customShip>
 	<mod-append:customShip name="PLAYER_SHIP_OG_HUNTER_3">
 		<hiddenAug>SHIP_OG_DAWN</hiddenAug>
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 		<crewLimit>8</crewLimit>
 		<systemLimit>10</systemLimit>
-		<customReactor maxLevel="30"/>
+		<customReactor maxLevel="35"/>
 	</mod-append:customShip>
 	
 	<mod-append:ship name="PLAYER_SHIP_OG_DRIFTER" b="true" c="true" >
@@ -677,6 +677,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<hiddenAug>OG_TURRET_MANNABLE_MICRO</hiddenAug>
 		<crewLimit>8</crewLimit>
 		<systemLimit>10</systemLimit>
+		<customReactor maxLevel="30"/>
 	</mod-append:customShip>
 	<mod-append:customShip name="PLAYER_SHIP_OG_DRIFTER_2">
 		<hiddenAug>SHIP_OG_DAWN</hiddenAug>
@@ -684,6 +685,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<hiddenAug>OG_TURRET_MANNABLE_MICRO</hiddenAug>
 		<crewLimit>8</crewLimit>
 		<systemLimit>10</systemLimit>
+		<customReactor maxLevel="30"/>
 	</mod-append:customShip>
 	<mod-append:customShip name="PLAYER_SHIP_OG_DRIFTER_3">
 		<hiddenAug>SHIP_OG_DAWN</hiddenAug>
@@ -691,6 +693,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<hiddenAug>OG_TURRET_MANNABLE_MICRO</hiddenAug>
 		<crewLimit>8</crewLimit>
 		<systemLimit>10</systemLimit>
+		<customReactor maxLevel="30"/>
 	</mod-append:customShip>
 
 	<mod-append:ship name="PLAYER_SHIP_OG_KESTREL" b="false" c="false" >
@@ -833,6 +836,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 		<crewLimit>11</crewLimit>
 		<systemLimit>10</systemLimit>
+		<customReactor maxLevel="40"/>
 		<crew>
 			<unique_og_iron_diplomat room="0" name="Horus Weber"/>
 			<human_og_raider room="5"/>
