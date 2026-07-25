@@ -388,7 +388,7 @@ table.insert(craftedSpecial.items, {weapon = "OG_TURRET_LASER_GATLING", match_co
 table.insert(craftedSpecial.items, {weapon = "OG_TURRET_LASER_CHAINGUN_GOLD", match_cost = true, component_amounts = {1}, components = {{"LASER_CHAINGUN_GOLD"}}} )
 table.insert(craftedSpecial.items, {weapon = "OG_TURRET_LASER_RIFTWAKER", match_cost = true, component_amounts = {1}, components = {{"GATLING_SYLVAN", "GATLING_SYLVAN_HONOR"}}} )
 
-table.insert(craftedSpecial.items, {weapon = "OG_TURRET_BEAM_NEUTRON_1", match_cost = true, component_amounts = {1, 1}, hidden_tooltip = true, components = {{"OG_TURRET_BEAM_NEUTRON_0"}, {"LASER_BURST_5", "LASER_BURST_8", "LASER_HEAVY_3", "LASER_PIERCE_2", "LASER_CHAINGUN_2", "LASER_HULL_3", "LASER_OG_TRIPLET_2", "ION_4", "MISSILES_3", "MISSILES_4", "ENERGY_3", "SHOTGUN_3", "SHOTGUN_4", "FOCUS_3", "BEAM_3"}}} )
+table.insert(craftedSpecial.items, {weapon = "OG_TURRET_BEAM_NEUTRON_1", match_cost = true, component_amounts = {1, 1}, hidden_tooltip = true, components = {{"OG_TURRET_BEAM_NEUTRON_0"}, {"LASER_BURST_5", "LASER_BURST_8", "LASER_HEAVY_3", "LASER_PIERCE_2", "LASER_CHAINGUN_2", "LASER_HULL_3", "LASER_OG_TRIPLET_2", "ION_4", "MISSILES_3", "MISSILES_4", "ENERGY_3", "SHOTGUN_3", "SHOTGUN_4", "MINELAUNCHER_3", "FOCUS_3", "BEAM_LONG_2", "BEAM_HULL_2", "BEAM_3", "BEAM_4"}}} )
 table.insert(craftedSpecial.items, {weapon = "OG_TURRET_BEAM_NEUTRON_2", match_cost = true, component_amounts = {1}, hidden_tooltip = true, components = {{"OG_TURRET_BEAM_NEUTRON_1"}}} )
 table.insert(craftedSpecial.items, {weapon = "OG_TURRET_BEAM_NEUTRON_3", match_cost = true, component_amounts = {1}, hidden_tooltip = true, components = {{"OG_TURRET_BEAM_NEUTRON_2"}}} )
 

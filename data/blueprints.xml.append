@@ -1081,7 +1081,7 @@ Chaotic variant rotates 5x as fast and can target any projectile.</desc>
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>65</cost>
+	<cost>80</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_laser_chaingun_gold_icon</iconReplace>
