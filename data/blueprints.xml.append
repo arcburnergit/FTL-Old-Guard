@@ -4217,7 +4217,7 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<desc>Raider-Class vessels are defined by their centrally mounted Turrets, however the turret on this ship has seen some better days. With an improved turret in place, this ship will pose a serious threat to the rebel fleet.</desc>
 	<unlock id="ship_PLAYER_SHIP_OG_RAIDER_unlock"/>
 	<systemList>
-		<og_turret power="2" room="1" start="true" img="room_og_turret" turret="OG_TURRET_LASER_RUSTY_1">
+		<og_turret power="2" room="1" max="6" start="true" img="room_og_turret" turret="OG_TURRET_LASER_RUSTY_1">
 			<slot>
 				<direction>right</direction>
 				<number>1</number>
@@ -4231,7 +4231,7 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 				<number>3</number>
 			</slot>
 		</clonebay>
-		<doors power="1" room="19" start="false" img="room_doors_3">
+		<doors power="1" room="19" start="true" img="room_doors_3">
 			<slot>
 				<direction>right</direction>
 				<number>1</number>
@@ -4299,7 +4299,7 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<desc>This Raider-Class vessel packs a powerful laser cannon alongside a fast drone, allowing it to tear into enemy ships, however it's defensive capabilities are rather limited compared to other ships of it's class.</desc>
 	<unlock id="ship_PLAYER_SHIP_OG_RAIDER_2_unlock"/>
 	<systemList>
-		<og_turret power="2" room="4" start="true" img="room_og_turret_2" turret="OG_TURRET_LASER_2">
+		<og_turret power="2" room="4" max="6" start="true" img="room_og_turret_2" turret="OG_TURRET_LASER_2">
 			<slot>
 				<direction>right</direction>
 				<number>1</number>
@@ -4381,7 +4381,7 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<desc>With a powerful boarding crew and a turret deadly to both systems and crew alike, this vessel specializes in leaving the enemy's hull intact.</desc>
 	<unlock id="ship_PLAYER_SHIP_OG_RAIDER_3_unlock"/>
 	<systemList>
-		<og_turret power="2" room="6" start="true" img="room_og_turret_4" turret="OG_TURRET_ION_2" >
+		<og_turret power="2" room="6" max="6" start="true" img="room_og_turret_4" turret="OG_TURRET_ION_2" >
 			<slot>
 				<direction>up</direction>
 				<number>0</number>
@@ -4726,7 +4726,7 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<unlock id="ship_PLAYER_SHIP_OG_DAWN_SPEAR_unlock"/>
 	<desc>An advanced cruiser designed by the New Dawn in their alliance with the rebellion. It's main offensive power is the powerful turret at the center of the ship.</desc>
 	<systemList>
-		<og_turret power="3" max="6" room="4" start="true" turret="OG_TURRET_FOCUS_DAWN" img="room_og_turret_5" >
+		<og_turret power="3" room="4" start="true" turret="OG_TURRET_FOCUS_DAWN" img="room_og_turret_5" >
 			<slot>
 				<direction>right</direction>
 				<number>1</number>
@@ -5533,8 +5533,8 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 		</og_turret_mini_2>
 		<og_equaliser power="1" room="3" start="true" img="room_og_equaliser_3" />
 		<battery power="1" room="3" start="false" img="room_battery_3" />
-		<cloaking power="1" room="11" start="false" img="room_cloaking_13" />
-		<clonebay power="1" room="1" start="false">
+		<cloaking power="1" room="11" start="true" img="room_cloaking_13" />
+		<clonebay power="2" room="2" start="false">
 			<slot>
 				<number>0</number>
 			</slot>
@@ -5572,7 +5572,7 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 				<number>1</number>
 			</slot>
 		</sensors>
-		<shields power="2" max="8" room="15" start="true" img="room_shields_11">
+		<shields power="2" max="8" room="15" start="false" img="room_shields_11">
 			<slot>
 				<direction>down</direction>
 				<number>1</number>
@@ -6444,7 +6444,7 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<class>Silas' Crewser</class>
 	<name>The Surveyor</name>
 	<unlock id="ship_CREW_SHIP_OG_SILAS_unlock"/>
-	<desc>A light assault craft built to be quick and stealthy, perfect for covert operations under the cover of darkness. The small size of the vessel prevented the installation of large turrets, instead the engineers overclocked the micro turret systems to increase their lethality.</desc>
+	<desc>Silas' personal vessel relies on turrets and defence drones for survival until it can get it's shields online.</desc>
 	<systemList>
 		<og_turret_mini power="2" max="5" room="4" start="true" turret="OG_TURRET_LASER_MINI_BIO" img="room_og_turret_7" >
 			<slot>
@@ -6627,35 +6627,24 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 <!--WEAPONS-->
 <FTL>
 <weaponBlueprint name="ARTILLERY_OG_NEUTRON_BEAM_1">
-	<type>LASER</type>
+	<type>BEAM</type>
 	<flavorType>Artillery</flavorType>
 	<title>Neutron Artillery</title>
 	<short>Artillery</short>
 	<desc>[Base cooldown: 20] Fires a concentrated beam of radiation through the enemy ship, damaging systems and crew.</desc>
 	<tooltip>Artillery: Fires a concentrated beam of radiation through the enemy ship, damaging systems and crew.</tooltip>
 	<damage>0</damage>
-	<shots>1</shots>
 	<sp>0</sp>
 	<fireChance>0</fireChance>
 	<breachChance>0</breachChance>
+	<speed>15</speed>
 	<cooldown>20</cooldown>
 	<rarity>0</rarity>
-    <image>laser_heavy</image>
+    <image>beam_contact</image>
+	<length>500</length>
 	<launchSounds>
 		<sound>beam3</sound>
 	</launchSounds>
-	<hitShipSounds>
-		<sound>hitHull2</sound>
-		<sound>hitHull3</sound>
-	</hitShipSounds>
-	<hitShieldSounds>
-		<sound>hitShield1</sound>
-		<sound>hitShield2</sound>
-		<sound>hitShield3</sound>
-	</hitShieldSounds>
-	<missSounds>
-		<sound>miss</sound>
-	</missSounds>
 	<weaponArt>og_neutron_beam_artillery</weaponArt>
 </weaponBlueprint>
 

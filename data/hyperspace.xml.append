@@ -508,18 +508,21 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 		<crewLimit>6</crewLimit>
 		<systemLimit>9</systemLimit>
+		<customReactor maxLevel="30"/>
 	</mod-append:customShip>
 	<mod-append:customShip name="PLAYER_SHIP_OG_DAWN_SPEAR_2">
 		<hiddenAug>SHIP_OG_DAWN</hiddenAug>
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 		<crewLimit>6</crewLimit>
 		<systemLimit>9</systemLimit>
+		<customReactor maxLevel="30"/>
 	</mod-append:customShip>
 	<mod-append:customShip name="PLAYER_SHIP_OG_DAWN_SPEAR_3">
 		<hiddenAug>SHIP_OG_DAWN</hiddenAug>
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 		<crewLimit>8</crewLimit>
 		<systemLimit>9</systemLimit>
+		<customReactor maxLevel="30"/>
 	</mod-append:customShip>
 
 	<mod-append:ship name="PLAYER_SHIP_OG_DAWN_BIG" b="true" c="true" >
@@ -655,20 +658,20 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<achievement name="SHIP_ACH_OG_DRIFTER_1" layout="all">
 			<name>All Hands on Deck</name>
 			<description>As a Drifter-Class vessel, have both of your Micro Turret Control systems manned at max level.</description>
-			<icon>ogp_hunter_1_icon</icon>
-			<lockImage>ogp_hunter_1_icon_locked</lockImage>
+			<icon>ogp_drifter_1_icon</icon>
+			<lockImage>ogp_drifter_1_icon_locked</lockImage>
 		</achievement>
 		<achievement name="SHIP_ACH_OG_DRIFTER_2" layout="all">
 			<name>Ghost Ship</name>
 			<description>As a Drifter-Class vessel: Win a battle while all of your crew are alive and are on the enemy ship.</description>
-			<icon>ogp_hunter_2_icon</icon>
-			<lockImage>ogp_hunter_2_icon_locked</lockImage>
+			<icon>ogp_drifter_2_icon</icon>
+			<lockImage>ogp_drifter_2_icon_locked</lockImage>
 		</achievement>
 		<achievement name="SHIP_ACH_OG_DRIFTER_3" layout="all">
 			<name>Armed to the Teeth</name>
 			<description>Have all offensive systems (Weapons, Drones, and Turrets) upgraded to max power as a Drifter-Class vessel.</description>
-			<icon>ogp_hunter_3_icon</icon>
-			<lockImage>ogp_hunter_3_icon_locked</lockImage>
+			<icon>ogp_drifter_3_icon</icon>
+			<lockImage>ogp_drifter_3_icon_locked</lockImage>
 		</achievement>
 	</mod-append:ship>
 	<mod-append:customShip name="PLAYER_SHIP_OG_DRIFTER">
@@ -719,6 +722,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 		<crewLimit>8</crewLimit>
 		<systemLimit>10</systemLimit>
+		<customReactor maxLevel="30"/>
 	</mod-append:customShip>
 
 	<mod-append:ship name="PLAYER_SHIP_OG_CURA" b="false" c="false" >
@@ -795,6 +799,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 		<crewLimit>8</crewLimit>
 		<systemLimit>10</systemLimit>
+		<customReactor maxLevel="30"/>
 	</mod-append:customShip>
 
 	<mod-append:ship name="PLAYER_SHIP_OG_KNIGHT" b="false" c="false" >
@@ -825,6 +830,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<hiddenAug>OG_TURRET_MANNABLE_MICRO</hiddenAug>
 		<crewLimit>8</crewLimit>
 		<systemLimit>10</systemLimit>
+		<customReactor maxLevel="30"/>
 		<crew>
 			<unique_og_silas room="0" name="Dr. Silas"/>
 			<human_og_raider room="2"/>

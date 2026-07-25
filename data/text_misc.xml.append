@@ -7,13 +7,13 @@
 
 <text name="tip_og_triplet">Tip: Triplet weapons chain twice before then resetting on the third volley.</text>
 
-<text name="ship_unlock_og_two_wins">Win with any two layouts of the \1 to unlock the \2</text>  
+<text name="ship_unlock_og_two_wins">Unlock any two layouts of the \1 to unlock the \2</text>  
 
 <text name="ship_PLAYER_SHIP_OG_RAIDER_unlock">Rescue an Iron Watch prototype under attack at a pulsar.</text>
 <text name="ship_PLAYER_SHIP_OG_RAIDER_2_unlock">Get to Sector 8 with The Type A to unlock this ship.</text>
 <text name="ship_PLAYER_SHIP_OG_RAIDER_3_unlock">Complete 2/3 of this ship class's Achievements to unlock this ship.</text>
 	
-<text name="ship_PLAYER_SHIP_OG_EXECUTOR_unlock">Win with any 2 Raider-Class ships.</text>
+<text name="ship_PLAYER_SHIP_OG_EXECUTOR_unlock">Unlock any 2 Raider-Class ships.</text>
 <text name="ship_PLAYER_SHIP_OG_EXECUTOR_2_unlock">Get to Sector 8 with The Type A to unlock this ship.</text>
 <text name="ship_PLAYER_SHIP_OG_EXECUTOR_3_unlock">Complete 2/3 of this ship class's Achievements to unlock this ship.</text>
 
@@ -21,7 +21,7 @@
 <text name="ship_PLAYER_SHIP_OG_DAWN_SPEAR_2_unlock">Get to Sector 8 with The Type A to unlock this ship.</text>
 <text name="ship_PLAYER_SHIP_OG_DAWN_SPEAR_3_unlock">Complete 2/3 of this ship class's Achievements to unlock this ship.</text>
 
-<text name="ship_PLAYER_SHIP_OG_DAWN_BIG_unlock">Win with any 2 Spearhead-Class ships.</text>
+<text name="ship_PLAYER_SHIP_OG_DAWN_BIG_unlock">Unlock any 2 Spearhead-Class ships.</text>
 <text name="ship_PLAYER_SHIP_OG_DAWN_BIG_2_unlock">Get to Sector 8 with The Type A to unlock this ship.</text>
 <text name="ship_PLAYER_SHIP_OG_DAWN_BIG_3_unlock">Complete 2/3 of this ship class's Achievements to unlock this ship.</text>
 
@@ -29,7 +29,7 @@
 <text name="ship_PLAYER_SHIP_OG_HUNTER_2_unlock">Get to Sector 8 with The Type A to unlock this ship.</text>
 <text name="ship_PLAYER_SHIP_OG_HUNTER_3_unlock">Complete 2/3 of this ship class's Achievements to unlock this ship.</text>
 
-<text name="ship_PLAYER_SHIP_OG_DRIFTER_unlock">Win with any 2 Hunter-Class ships.</text>
+<text name="ship_PLAYER_SHIP_OG_DRIFTER_unlock">Unlock any 2 Hunter-Class ships.</text>
 <text name="ship_PLAYER_SHIP_OG_DRIFTER_2_unlock">Get to Sector 8 with The Type A to unlock this ship.</text>
 <text name="ship_PLAYER_SHIP_OG_DRIFTER_3_unlock">Complete 2/3 of this ship class's Achievements to unlock this ship.</text>
 

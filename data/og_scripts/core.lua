@@ -520,6 +520,9 @@ local function handle_reduction_armor(ship, projectile, location, damage, immedi
 		if damage.breachChance > 0 then
 			damage.breachChance = math.max(1, math.floor(damage.breachChance * ship:GetAugmentationValue("OG_REFLECTIVE_PLATING")))
 		end
+		if damage.bHullBuster then
+			damage.bHullBuster = false
+		end
 	end
 end
 script.on_internal_event(Defines.InternalEvents.DAMAGE_BEAM, function(ship, projectile, location, damage, realNewTile, beamHitType)
@@ -1148,9 +1151,10 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
 		local weapon_data = neutron_weapons[weapon.blueprint.name]
 		local shipManager = Hyperspace.ships(weapon.iShipId)
 		local otherManager = Hyperspace.ships(1-weapon.iShipId)
+		local target_angle = get_angle_between_points(projectile.target1, projectile.target2)
 		mods.og.create_neutron_beam(
-			Hyperspace.Pointf(projectile.target.x, projectile.target.y),
-			math.random(0,360),
+			Hyperspace.Pointf(projectile.target1.x, projectile.target1.y),
+			target_angle,
 			weapon_data.width,
 			otherManager,
 			shipManager,

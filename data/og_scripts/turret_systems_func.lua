@@ -494,7 +494,6 @@ local function resetTurrets(shipManager)
 	for _, sysName in ipairs(systemNameList) do
 		if systemCacheList[shipManager.iShipId][sysName] then
 			local system = shipManager:GetSystem(systemIdMap[sysName])
-
 			system.table.time = 0
 			local currentTurret = turrets[ system.table.blueprint ]
 			if shipManager:HasAugmentation("OG_TURRET_PREIGNITE") > 0 and currentTurret then
@@ -1288,11 +1287,14 @@ script.on_internal_event(Defines.InternalEvents.GENERATOR_CREATE_SHIP_POST, func
 	--print(shipManager.myBlueprint.blueprintName)
 	for _, sysName in ipairs(systemNameList) do
 		if shipManager:HasSystem(systemIdMap[sysName]) then
+			systemCacheList[shipManager.iShipId][sysName] = true
 			local id, i = findStartingTurret(shipManager, sysName)
 			--print(sysName.." "..tostring(id).." "..tostring(i))
 			local system = shipManager:GetSystem(systemIdMap[sysName])
 			system.table.blueprint = id
 			system.table.currentAimingAngle = -90
+		else
+			systemCacheList[shipManager.iShipId][sysName] = false
 		end
 	end
 	resetTurrets(shipManager)

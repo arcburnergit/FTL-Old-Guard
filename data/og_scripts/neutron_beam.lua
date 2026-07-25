@@ -170,6 +170,13 @@ script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
 	end
 end)
 
+script.on_init(function(newGame)
+	local map = Hyperspace.App.world.starMap
+	if (not newGame) and map.currentSector and map.currentSector.description.type == sector_name then
+		map_updated = false
+	end
+end)
+
 script.on_internal_event(Defines.InternalEvents.POST_CREATE_CHOICEBOX, function(choiceBox, event)
 	local map = Hyperspace.App.world.starMap
 	if event.eventName == map.currentLoc.event.eventName then
@@ -226,7 +233,8 @@ end
 
 script.on_internal_event(Defines.InternalEvents.JUMP_LEAVE, function(shipManager)
 	if shipManager.iShipId == 0 then
-		active_beams = {}
+		--active_beams = {}
+		for i = 1, #active_beams do active_beams[i] = nil end
 	end
 end)
 
@@ -290,8 +298,9 @@ do --HAZARD DAMAGE TRACKING
 			end
 
 			if damage > 0 and room then
+				damage = damage/2
 				for crewmem in vter(shipManager.vCrewList) do
-					if crewmem:InsideRoom(room.iRoomId) then
+					if crewmem:InsideRoom(room.iRoomId) and crewmem.health.first > 0 then
 						crewmem.health.first = crewmem.health.first - damage
 						crewmem:ApplyDamage(0)
 						damage_crew = true
@@ -584,34 +593,55 @@ script.on_internal_event(Defines.InternalEvents.GET_BEACON_HAZARD, function(loca
 end)
 
 local last_hover_warning = false
-script.on_internal_event(Defines.InternalEvents.JUMP_ARRIVE, function(ship)
+local queue_neutron_beam_music = false
+script.on_internal_event(Defines.InternalEvents.JUMP_LEAVE, function(ship)
 	if ship.iShipId ~= 0 then return end
 	local stop_music = false
 	if Hyperspace.playerVariables[active_var] == 1 then
-		Hyperspace.playerVariables[active_var] = 0
 		stop_music = true
+	end
+	local map = Hyperspace.App.world.starMap
+	if map.currentSector.description.type == sector_name then
+		if (not stop_music) and last_hover_warning then
+			local worldManager = Hyperspace.App.world
+			Hyperspace.CustomEventsParser.GetInstance():LoadEvent(worldManager,"OG_ARRIVE_NEUTRON_BEAM",false,-1)
+		end
+	end
+
+	if stop_music and not last_hover_warning then
+		local worldManager = Hyperspace.App.world
+		Hyperspace.CustomEventsParser.GetInstance():LoadEvent(worldManager,"OG_LEAVE_NEUTRON_BEAM",false,-1)
+	end
+end)
+
+script.on_internal_event(Defines.InternalEvents.JUMP_ARRIVE, function(ship)
+	if ship.iShipId ~= 0 then return end
+
+	if Hyperspace.playerVariables[active_var] == 1 then
+		Hyperspace.playerVariables[active_var] = 0
 	end
 	local map = Hyperspace.App.world.starMap
 	if map.currentSector.description.type == sector_name then
 		Hyperspace.playerVariables[rotation_var] = (Hyperspace.playerVariables[rotation_var] + 360/jumps_per_rotation) % 360
 		if last_hover_warning then
 			Hyperspace.playerVariables[active_var] = 1
-			if not stop_music then
-				local worldManager = Hyperspace.App.world
-				Hyperspace.CustomEventsParser.GetInstance():LoadEvent(worldManager,"OG_ARRIVE_NEUTRON_BEAM",false,-1)
-			end
 		end
-	end
-
-	if stop_music and Hyperspace.playerVariables[active_var] == 0 then
-		local worldManager = Hyperspace.App.world
-		Hyperspace.CustomEventsParser.GetInstance():LoadEvent(worldManager,"OG_LEAVE_NEUTRON_BEAM",false,-1)
 	end
 end)
 script.on_internal_event(Defines.InternalEvents.PRE_CREATE_CHOICEBOX, function(event)
 	local isNeutronBeamEvent = string_starts(event.eventName, event_string)
 	if isNeutronBeamEvent and Hyperspace.playerVariables[active_var] == 0 then
 		Hyperspace.playerVariables[active_var] = 1
+		queue_neutron_beam_music = true
+		--local worldManager = Hyperspace.App.world
+		--Hyperspace.CustomEventsParser.GetInstance():LoadEvent(worldManager,"OG_ARRIVE_NEUTRON_BEAM",false,-1)
+	end
+end)
+
+script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
+	local cmdGui = Hyperspace.App.gui
+	if queue_neutron_beam_music and not (cmdGui.event_pause) then
+		queue_neutron_beam_music = false
 		local worldManager = Hyperspace.App.world
 		Hyperspace.CustomEventsParser.GetInstance():LoadEvent(worldManager,"OG_ARRIVE_NEUTRON_BEAM",false,-1)
 	end
