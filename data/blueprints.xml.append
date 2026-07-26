@@ -1111,7 +1111,7 @@ Chaotic variant rotates 5x as fast and can target any projectile.</desc>
 	<iconReplace>og_turret_ion_1_icon</iconReplace>
 </weaponBlueprint>
 
-<weaponBlueprint name="OG_TURRET_ION_2">
+<weaponBlueprint name="OG_TURRET_ION_FIRE">
 	<type>BEAM</type>
 	<flavorType>Turret</flavorType>
 	<tip>tip_og_turret</tip>
@@ -1129,7 +1129,70 @@ Chaotic variant rotates 5x as fast and can target any projectile.</desc>
 	<cost>65</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
-	<iconReplace>og_turret_ion_2_icon</iconReplace>
+	<iconReplace>og_turret_ion_fire_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_ION_PIERCE">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Phaser Turret</title>
+	<short>Phaser</short>
+	<desc>Phasers pierce all shield layers, dealing ion damage for the first layer of shields, as well as additional damage to whatever system hit.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>65</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_ion_pierce_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_ION_STUN">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Stunner Turret</title>
+	<short>Stunner</short>
+	<desc>Stun weapons function much like normal ions, but also temporarily paralyze crew in the same room that they hit.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>65</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_ion_stun_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_ION_BIO">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Radion Turret</title>
+	<short>Radion</short>
+	<desc>What's a radion you ask? Well, it's an ion, but with radiation. Something like that. Very useful for asphyxiation kills.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>65</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_ion_bio_icon</iconReplace>
 </weaponBlueprint>
 
 <weaponBlueprint name="OG_TURRET_ENERGY_1">
@@ -1160,9 +1223,9 @@ Chaotic variant rotates 5x as fast and can target any projectile.</desc>
 	<type>BEAM</type>
 	<flavorType>Turret</flavorType>
 	<tip>tip_og_turret</tip>
-	<title>Crystal Burst Turret</title>
+	<title>Heavy Crystal Turret</title>
 	<short>Crystal</short>
-	<desc>Modified projectile turret that fires 2 shield piercing crystals.</desc>
+	<desc>Modified projectile turret that fires a heavy shield piercing crystal.</desc>
 	<tooltip>Turret</tooltip>
 	<damage>0</damage>
 	<sp>0</sp>
@@ -1181,9 +1244,9 @@ Chaotic variant rotates 5x as fast and can target any projectile.</desc>
 	<type>BEAM</type>
 	<flavorType>Turret</flavorType>
 	<tip>tip_og_turret</tip>
-	<title>Elite Crystal Burst Turret</title>
+	<title>Elite Heavy Crystal Turret</title>
 	<short>€ Crystal</short>
-	<desc>Modified projectile turret that fires 2 shield piercing crystals. Elite variant that always applies lockdown and pierces 2 shields.</desc>
+	<desc>Modified projectile turret that fires a heavy shield piercing crystal. Elite variant that always applies lockdown and pierces 2 shields.</desc>
 	<tooltip>Turret</tooltip>
 	<damage>0</damage>
 	<sp>0</sp>
@@ -1192,10 +1255,52 @@ Chaotic variant rotates 5x as fast and can target any projectile.</desc>
 	<length>0</length>
 	<rarity>0</rarity>
 	<power>0</power>
-	<cost>65</cost>
+	<cost>80</cost>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_crystal_1_elite_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_CRYSTAL_SHOTGUN">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Crystal Scatter Turret</title>
+	<short>Crystal S.</short>
+	<desc>Fires a cluster of 4 crystalline projectiles that pierce 1 shield layer each.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>75</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_crystal_shotgun_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_CRYSTAL_SHOTGUN_ELITE">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Elite Crystal Scatter Turret</title>
+	<short>€ Crystal S.</short>
+	<desc>Fires a cluster of 4 crystalline projectiles. Elite variant that always applies lockdown and pierces 2 shields.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>90</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_crystal_shotgun_elite_icon</iconReplace>
 </weaponBlueprint>
 </FTL>
 
@@ -1226,8 +1331,8 @@ Chaotic variant rotates 5x as fast and can target any projectile.</desc>
 	<type>BEAM</type>
 	<flavorType>Turret</flavorType>
 	<tip>tip_og_turret</tip>
-	<title>Quad Missile Turret</title>
-	<short>Quad M.</short>
+	<title>Dual Missile Turret</title>
+	<short>Dual M.</short>
 	<desc>Slow to charge but capable of delivering high damage to the enemy ship, decent against enemy drones and solid projectiles.</desc>
 	<tooltip>Turret</tooltip>
 	<damage>0</damage>
@@ -1282,6 +1387,47 @@ Chaotic variant rotates 5x as fast and can target any projectile.</desc>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_kernel_fire_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_KERNEL_HEAVY_ELITE">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Elite Heavy Kernel Turret</title>
+	<short>€ Heavy K.</short>
+	<desc>This weapon uses kernels of giant plants from the Orchid home planet as ammunition. Kernels behave like missiles, but also have halved ammunition cost. Powerful Elite version with a guaranteed stun and lower ammo cost.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>65</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_kernel_heavy_elite_icon</iconReplace>
+</weaponBlueprint>
+<weaponBlueprint name="OG_TURRET_KERNEL_FIRE_ELITE">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Elite Solar Kernel Turret</title>
+	<short>€ Solar K.</short>
+	<desc>This weapon uses kernels of giant plants from the Orchid home planet as ammunition. This modified Kernel weapon creates fires instead of breaches. Powerful Elite version with a guaranteed stun and lower ammo cost.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>65</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_kernel_fire_elite_icon</iconReplace>
 </weaponBlueprint>
 
 <weaponBlueprint name="OG_TURRET_MISSILE_CLONE_CANNON">
@@ -1347,6 +1493,27 @@ Chaotic variant rotates 5x as fast and can target any projectile.</desc>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_flak_rad_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_FLAK_FIRE">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Ignited Flak Turret</title>
+	<short>Fire Flak</short>
+	<desc>Fires 4 flaming projectiles that have an increased chance to start a fire.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>65</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_flak_fire_icon</iconReplace>
 </weaponBlueprint>
 </FTL>
 
@@ -1502,6 +1669,93 @@ Chaotic variant rotates 5x as fast and can target any projectile.</desc>
 	<iconReplace>og_turret_laser_mini_rad_icon</iconReplace>
 </weaponBlueprint>
 
+<weaponBlueprint name="OG_TURRET_LASER_MINI_CHAIN">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret_mini</tip>
+	<title>Micro Chain Laser Turret</title>
+	<short>Micro C.L.</short>
+	<desc>This dual charge Laser decreases in cooldown the more it fires.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>45</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_laser_mini_chain_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_LASER_MINI_PARTICLE">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret_mini</tip>
+	<title>Micro Particle Accelerator Turret</title>
+	<short>Micro Part.</short>
+	<desc>Shoots streamlined bolts which do heavy system damage. Does not harm crew or hull, and cannot lower shields.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>45</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_laser_mini_particle_icon</iconReplace>
+</weaponBlueprint>
+
+</FTL>
+
+<!--MICRO ION-->
+<FTL>
+<weaponBlueprint name="OG_TURRET_CRYSTAL_MINI">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Micro Crystal Turret</title>
+	<short>Micro C.</short>
+	<desc>Modified projectile turret that fires a shield piercing crystal.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>45</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_crystal_mini_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_CRYSTAL_MINI_ELITE">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret</tip>
+	<title>Elite Micro Crystal Turret</title>
+	<short>€ Micro C.</short>
+	<desc>Modified projectile turret that fires a shield piercing crystal. Elite variant that always applies lockdown and pierces 2 shields.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>55</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_crystal_mini_elite_icon</iconReplace>
+</weaponBlueprint>
 </FTL>
 
 <!--MICRO ION-->
@@ -1525,6 +1779,27 @@ Chaotic variant rotates 5x as fast and can target any projectile.</desc>
 	<image>beam_contact</image>
 	<weaponArt>invisible</weaponArt>
 	<iconReplace>og_turret_ion_mini_1_icon</iconReplace>
+</weaponBlueprint>
+
+<weaponBlueprint name="OG_TURRET_ION_MINI_FIRE">
+	<type>BEAM</type>
+	<flavorType>Turret</flavorType>
+	<tip>tip_og_turret_mini</tip>
+	<title>Micro Fire Ion Turret</title>
+	<short>Micro F.I.</short>
+	<desc>This Ion Turret is effective drone defence while still being able to support the ships offence. This one starts fires in the system it hits.</desc>
+	<tooltip>Turret</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<cooldown>-1</cooldown>
+	<speed>0</speed>
+	<length>0</length>
+	<rarity>0</rarity>
+	<power>0</power>
+	<cost>45</cost>
+	<image>beam_contact</image>
+	<weaponArt>invisible</weaponArt>
+	<iconReplace>og_turret_ion_mini_fire_icon</iconReplace>
 </weaponBlueprint>
 </FTL>
 
@@ -3163,6 +3438,137 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<weaponArt>ion_1</weaponArt>
 	<iconImage>ion</iconImage>
 </weaponBlueprint>
+<weaponBlueprint name="OG_ION_PROJECTILE_PIERCE">
+	<type>LASER</type>
+	<title>Ion</title>
+	<short>Ion</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>0</damage>
+	<ion>1</ion>
+	<speed>30</speed>
+	<shots>1</shots>
+	<sp>10</sp>
+	<fireChance>0</fireChance>
+	<breachChance>0</breachChance>
+	<stunChance>0</stunChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>ion_phase</image>
+	<explosion>explosion_small_phase</explosion>
+	<launchSounds>
+		<sound>ionShoot1</sound>
+		<sound>ionShoot2</sound>
+		<sound>ionShoot3</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>ionHit1</sound>
+		<sound>ionHit2</sound>
+		<sound>ionHit3</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>ionShields1</sound>
+		<sound>ionShields2</sound>
+		<sound>ionShields3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>ion_1</weaponArt>
+	<iconImage>ion</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_ION_PROJECTILE_STUN">
+	<type>LASER</type>
+	<title>Ion</title>
+	<short>Ion</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>0</damage>
+	<stun>4</stun>
+	<ion>1</ion>
+	<speed>35</speed>
+	<shots>1</shots>
+	<sp>0</sp>
+	<fireChance>0</fireChance>
+	<breachChance>0</breachChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>ion_stun_shot</image>
+	<explosion>explosion_stun_ion</explosion>
+	<launchSounds>
+		<sound>ionShoot1</sound>
+		<sound>ionShoot2</sound>
+		<sound>ionShoot3</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>ionHit1</sound>
+		<sound>ionHit2</sound>
+		<sound>ionHit3</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>ionShields1</sound>
+		<sound>ionShields2</sound>
+		<sound>ionShields3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>ion_1</weaponArt>
+	<iconImage>ion</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_ION_PROJECTILE_BIO">
+	<type>LASER</type>
+	<title>Ion</title>
+	<short>Ion</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>0</damage>
+	<persDamage>2</persDamage>
+	<ion>2</ion>
+	<statBoosts>
+        <statBoost name="moveSpeedMultiplier" load="RAD_MOVE"/>
+		<statBoost name="stunMultiplier" load="RAD_STUN"/>
+        <statBoost name="repairSpeed" load="RAD_REPAIR"/>
+    </statBoosts>
+	<speed>35</speed>
+	<shots>1</shots>
+	<sp>0</sp>
+	<fireChance>0</fireChance>
+	<breachChance>3</breachChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>ion_bio</image>
+	<explosion>explosion_small_ion_bio</explosion>
+	<launchSounds>
+		<sound>ionShoot1</sound>
+		<sound>ionShoot2</sound>
+		<sound>ionShoot3</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>ionHit1</sound>
+		<sound>ionHit2</sound>
+		<sound>ionHit3</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>ionShields1</sound>
+		<sound>ionShields2</sound>
+		<sound>ionShields3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>ion_1</weaponArt>
+	<iconImage>ion</iconImage>
+</weaponBlueprint>
 <weaponBlueprint name="OG_ION_PROJECTILE_WEAK">
 	<type>LASER</type>
 	<title>Ion</title>
@@ -3215,7 +3621,6 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<damage>1</damage>
 	<noSysDamage>true</noSysDamage>
 	<noPersDamage>true</noPersDamage>
-	<spin>720</spin>
 	<ion>1</ion>
 	<speed>45</speed>
 	<shots>1</shots>
@@ -3256,6 +3661,85 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<short>Laser</short>
 	<desc>YOU SHOULD NEVER SEE THIS</desc>
 	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>2</damage>
+	<missiles>0</missiles>
+	<speed>50</speed>
+	<shots>1</shots>
+	<sp>1</sp>
+	<fireChance>0</fireChance>
+	<breachChance>2</breachChance>
+	<stunChance>4</stunChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>crystal_shard3</image>
+	<explosion>explosion_crystal</explosion>
+	<launchSounds>
+		<sound>smallMissile1</sound>
+		<sound>smallMissile2</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>crystalExplosion_small</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>missiles_1</weaponArt>
+	<iconImage>missile</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_CRYSTAL_PROJECTILE_ELITE">
+	<type>MISSILE</type>
+	<title>Laser</title>
+	<short>Laser</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>2</damage>
+	<missiles>0</missiles>
+	<speed>50</speed>
+	<shots>1</shots>
+	<sp>2</sp>
+	<lockdown>1</lockdown>
+	<fireChance>0</fireChance>
+	<breachChance>2</breachChance>
+	<stunChance>4</stunChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>crystal_shard_red</image>
+	<explosion>explosion_crystal</explosion>
+	<launchSounds>
+		<sound>smallMissile1</sound>
+		<sound>smallMissile2</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>crystalExplosion_small</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>missiles_1</weaponArt>
+	<iconImage>missile</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_CRYSTAL_PROJECTILE_LIGHT">
+	<type>MISSILE</type>
+	<title>Laser</title>
+	<short>Laser</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
 	<damage>1</damage>
 	<missiles>0</missiles>
 	<speed>50</speed>
@@ -3290,7 +3774,7 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<weaponArt>missiles_1</weaponArt>
 	<iconImage>missile</iconImage>
 </weaponBlueprint>
-<weaponBlueprint name="OG_CRYSTAL_PROJECTILE_ELITE">
+<weaponBlueprint name="OG_CRYSTAL_PROJECTILE_LIGHT_ELITE">
 	<type>MISSILE</type>
 	<title>Laser</title>
 	<short>Laser</short>
@@ -3316,6 +3800,85 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 		<sound>lightLaser1</sound>
 		<sound>lightLaser2</sound>
 		<sound>lightLaser3</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>crystalExplosion_small</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>missiles_1</weaponArt>
+	<iconImage>missile</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_CRYSTAL_PROJECTILE_SHOTGUN">
+	<type>MISSILE</type>
+	<title>Laser</title>
+	<short>Laser</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>1</damage>
+	<missiles>0</missiles>
+	<speed>50</speed>
+	<shots>1</shots>
+	<sp>1</sp>
+	<fireChance>0</fireChance>
+	<breachChance>4</breachChance>
+	<stunChance>4</stunChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>crystal_shard3</image>
+	<explosion>explosion_crystal_2</explosion>
+	<launchSounds>
+		<sound>smallMissile1</sound>
+		<sound>smallMissile2</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>crystalExplosion_small</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>missiles_1</weaponArt>
+	<iconImage>missile</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_CRYSTAL_PROJECTILE_SHOTGUN_ELITE">
+	<type>MISSILE</type>
+	<title>Laser</title>
+	<short>Laser</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>1</damage>
+	<missiles>0</missiles>
+	<speed>50</speed>
+	<shots>1</shots>
+	<sp>2</sp>
+	<lockdown>1</lockdown>
+	<fireChance>0</fireChance>
+	<breachChance>4</breachChance>
+	<stunChance>4</stunChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>crystal_shard_red</image>
+	<explosion>explosion_crystal_2</explosion>
+	<launchSounds>
+		<sound>smallMissile1</sound>
+		<sound>smallMissile2</sound>
 	</launchSounds>
 	<hitShipSounds>
 		<sound>crystalExplosion_small</sound>
@@ -3378,7 +3941,7 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<short>Laser</short>
 	<desc>YOU SHOULD NEVER SEE THIS</desc>
 	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
-	<damage>3</damage>
+	<damage>4</damage>
 	<missiles>0</missiles>
 	<accuracyMod>10</accuracyMod>
 	<speed>50</speed>
@@ -3531,6 +4094,88 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<weaponArt>kernel_heavy</weaponArt>
 	<iconImage>missile</iconImage>
 </weaponBlueprint>
+<weaponBlueprint name="OG_KERNEL_PROJECTILE_HEAVY_ELITE">
+	<type>LASER</type>
+	<title>Laser</title>
+	<short>Laser</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>3</damage>
+	<missiles>0</missiles>
+	<stun>9</stun>
+	<accuracyMod>10</accuracyMod>
+	<speed>70</speed>
+	<shots>1</shots>
+	<sp>10</sp>
+	<fireChance>0</fireChance>
+	<breachChance>10</breachChance>
+	<stunChance>10</stunChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>kernel_projectile_elite</image>
+	<launchSounds>
+		<sound>kernel_launch1</sound>
+		<sound>kernel_launch2</sound>
+		<sound>kernel_launch3</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>smallExplosion</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>kernel_heavy</weaponArt>
+	<iconImage>missile</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_KERNEL_PROJECTILE_FIRE_ELITE">
+	<type>LASER</type>
+	<title>Laser</title>
+	<short>Laser</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>2</damage>
+	<missiles>0</missiles>
+	<stun>7</stun>
+	<accuracyMod>10</accuracyMod>
+	<speed>70</speed>
+	<shots>1</shots>
+	<sp>10</sp>
+	<fireChance>5</fireChance>
+	<breachChance>0</breachChance>
+	<stunChance>10</stunChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>kernel_projectile_elite</image>
+	<launchSounds>
+		<sound>kernel_launch1</sound>
+		<sound>kernel_launch2</sound>
+		<sound>kernel_launch3</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>smallExplosion</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>kernel_heavy</weaponArt>
+	<iconImage>missile</iconImage>
+</weaponBlueprint>
 <weaponBlueprint name="OG_MISSILE_PROJECTILE_CLONE">
 	<type>MISSILE</type>
 	<title>Laser</title>
@@ -3657,6 +4302,46 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 		<sound>miss</sound>
 	</missSounds>
 	<weaponArt>shotgun_toxic</weaponArt>
+	<iconImage>laser</iconImage>
+</weaponBlueprint>
+<weaponBlueprint name="OG_FLAK_PROJECTILE_FIRE">
+	<type>LASER</type>
+	<drone_targetable>1</drone_targetable>
+	<title>Flak</title>
+	<short>Flak</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Defense laser; 1 damage, 1 shot. 9 second cooldown.</tooltip>
+	<damage>1</damage>
+	<spin>720</spin>
+	<shots>1</shots>
+	<sp>0</sp>
+	<fireChance>8</fireChance>
+	<breachChance>0</breachChance>
+	<cooldown>10</cooldown>
+	<power>1</power>
+	<cost>0</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<speed>26</speed>
+	<image>debris_large_fire</image>
+	<launchSounds>
+		<sound>flak</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>flakImpact1</sound>
+		<sound>flakImpact2</sound>
+		<sound>flakImpact3</sound>
+		<sound>flakImpact4</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>laser_burst_1</weaponArt>
 	<iconImage>laser</iconImage>
 </weaponBlueprint>
 
@@ -4421,7 +5106,7 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<desc>With a powerful boarding crew and a turret deadly to both systems and crew alike, this vessel specializes in leaving the enemy's hull intact.</desc>
 	<unlock id="ship_PLAYER_SHIP_OG_RAIDER_3_unlock"/>
 	<systemList>
-		<og_turret power="2" room="6" max="6" start="true" img="room_og_turret_4" turret="OG_TURRET_ION_2" >
+		<og_turret power="2" room="6" max="6" start="true" img="room_og_turret_4" turret="OG_TURRET_ION_FIRE" >
 			<slot>
 				<direction>up</direction>
 				<number>0</number>
@@ -5479,7 +6164,7 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 				<number>1</number>
 			</slot>
 		</og_turret_2>
-		<og_turret_3 power="1" max="5" room="3" start="true" img="room_og_turret_6" turret="OG_TURRET_ION_2" >
+		<og_turret_3 power="1" max="5" room="3" start="true" img="room_og_turret_6" turret="OG_TURRET_ION_FIRE" >
 			<slot>
 				<direction>right</direction>
 				<number>3</number>

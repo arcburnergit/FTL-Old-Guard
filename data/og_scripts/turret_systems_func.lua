@@ -282,7 +282,9 @@ function mods.og.add_stat_text(desc, currentTurret, chargeMax)
 		if damage.bHullBuster then
 			desc = desc..statsText.hullBust
 		end
-		desc = desc.."\n"
+		if damage.bLockdown or damage.fireChance > 0 or damage.breachChance > 0 or damage.stunChance > 0 or damage.iStun > 0 or vunerable_weapons[currentTurret.blueprint] then
+			desc = desc.."\n"
+		end
 		if damage.bLockdown then
 			desc = desc..statsText.lockdown
 		end
@@ -292,8 +294,9 @@ function mods.og.add_stat_text(desc, currentTurret, chargeMax)
 		if damage.breachChance > 0 then
 			desc = desc..string.format(statsText.breachChance, math.floor(damage.breachChance * 10), math.floor((100 - 10 * damage.fireChance) * (damage.breachChance/10)))
 		end
-		if damage.stunChance > 0 then
-			desc = desc..string.format(statsText.stunChance, math.floor(damage.stunChance * 10), math.floor((damage.iStun > 0 and damage.iStun) or 3))
+		if damage.stunChance > 0 or damage.iStun > 0 then
+			local stunChanceTemp = (damage.stunChance > 0 and damage.stunChance) or 10
+			desc = desc..string.format(statsText.stunChance, math.floor(stunChanceTemp * 10), math.floor((damage.iStun > 0 and damage.iStun) or 3))
 		end
 		if vunerable_weapons[currentTurret.blueprint] then
 			desc = desc..string.format(statsText.effect, math.floor(vunerable_weapons[currentTurret.blueprint]))

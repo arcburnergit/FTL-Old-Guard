@@ -762,7 +762,7 @@ local function renderTurret(shipManager, ship, spaceManager, shipGraph, sysName)
 				system.table.charging_anim.tracker.loop = false
 			end
 		end
-		if currentTurret.charge_image then
+		if currentTurret.charge_image and (not currentTurret.hide_charge_firing or system.table.image.currentFrame <= 0) then
 			Graphics.CSurface.GL_RenderPrimitiveWithAlpha(currentTurret.charge_image, system.table.time or 1)
 		end
 		local chains = Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemChainVarName]

@@ -386,22 +386,78 @@
 	<desc length="2" x="0" y="0" />
 	<time>1</time>
 </anim>
-<animSheet name="og_turret_ion_2_icon" w="60" h="34" fw="60" fh="34">og_turrets/turret_ion_2_icon.png</animSheet>
-<anim name="og_turret_ion_2_icon">
-	<sheet>og_turret_ion_2_icon</sheet>
+<animSheet name="og_turret_ion_fire_icon" w="60" h="34" fw="60" fh="34">og_turrets/turret_ion_fire_icon.png</animSheet>
+<anim name="og_turret_ion_fire_icon">
+	<sheet>og_turret_ion_fire_icon</sheet>
 	<desc length="1" x="0" y="0" />
 	<time>1</time>
 </anim>
-<animSheet name="og_turret_ion_2" w="74" h="74" fw="74" fh="74">og_turrets/turret_ion_2.png</animSheet>
-<anim name="og_turret_ion_2">
-	<sheet>og_turret_ion_2</sheet>
+<animSheet name="og_turret_ion_fire" w="74" h="74" fw="74" fh="74">og_turrets/turret_ion_fire.png</animSheet>
+<anim name="og_turret_ion_fire">
+	<sheet>og_turret_ion_fire</sheet>
 	<desc length="1" x="0" y="0" />
 	<time>1</time>
 </anim>
-<animSheet name="og_turret_ion_2_glow" w="240" h="22" fw="60" fh="22">og_turrets/turret_ion_2_glow.png</animSheet>
-<anim name="og_turret_ion_2_glow">
-	<sheet>og_turret_ion_2_glow</sheet>
+<animSheet name="og_turret_ion_fire_glow" w="240" h="22" fw="60" fh="22">og_turrets/turret_ion_fire_glow.png</animSheet>
+<anim name="og_turret_ion_fire_glow">
+	<sheet>og_turret_ion_fire_glow</sheet>
 	<desc length="4" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_ion_pierce_icon" w="69" h="36" fw="69" fh="36">og_turrets/turret_ion_pierce_icon.png</animSheet>
+<anim name="og_turret_ion_pierce_icon">
+	<sheet>og_turret_ion_pierce_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_ion_pierce" w="76" h="76" fw="76" fh="76">og_turrets/turret_ion_pierce.png</animSheet>
+<anim name="og_turret_ion_pierce">
+	<sheet>og_turret_ion_pierce</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_ion_pierce_glow" w="304" h="76" fw="76" fh="76">og_turrets/turret_ion_pierce_glow.png</animSheet>
+<anim name="og_turret_ion_pierce_glow">
+	<sheet>og_turret_ion_pierce_glow</sheet>
+	<desc length="4" x="0" y="0" />
+	<time>1</time>
+</anim>
+
+<animSheet name="og_turret_ion_stun_icon" w="49" h="28" fw="49" fh="28">og_turrets/turret_ion_stun_icon.png</animSheet>
+<anim name="og_turret_ion_stun_icon">
+	<sheet>og_turret_ion_stun_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_ion_stun" w="62" h="62" fw="62" fh="62">og_turrets/turret_ion_stun.png</animSheet>
+<anim name="og_turret_ion_stun">
+	<sheet>og_turret_ion_stun</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_ion_stun_glow" w="124" h="62" fw="62" fh="62">og_turrets/turret_ion_stun_glow.png</animSheet>
+<anim name="og_turret_ion_stun_glow">
+	<sheet>og_turret_ion_stun_glow</sheet>
+	<desc length="2" x="0" y="0" />
+	<time>1</time>
+</anim>
+
+<animSheet name="og_turret_ion_bio_icon" w="64" h="26" fw="64" fh="26">og_turrets/turret_ion_bio_icon.png</animSheet>
+<anim name="og_turret_ion_bio_icon">
+	<sheet>og_turret_ion_bio_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_ion_bio" w="78" h="78" fw="78" fh="78">og_turrets/turret_ion_bio.png</animSheet>
+<anim name="og_turret_ion_bio">
+	<sheet>og_turret_ion_bio</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_ion_bio_glow" w="156" h="78" fw="78" fh="78">og_turrets/turret_ion_bio_glow.png</animSheet>
+<anim name="og_turret_ion_bio_glow">
+	<sheet>og_turret_ion_bio_glow</sheet>
+	<desc length="2" x="0" y="0" />
 	<time>1</time>
 </anim>
 
@@ -423,6 +479,7 @@
 	<desc length="5" x="0" y="0" />
 	<time>1</time>
 </anim>
+
 
 
 <!--CRYSTAL-->
@@ -457,6 +514,37 @@
 	<time>0.4</time>
 </anim>
 
+<animSheet name="og_turret_crystal_shotgun_icon" w="58" h="48" fw="58" fh="48">og_turrets/turret_crystal_shotgun_icon.png</animSheet>
+<anim name="og_turret_crystal_shotgun_icon">
+	<sheet>og_turret_crystal_shotgun_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_crystal_shotgun" w="468" h="78" fw="78" fh="78">og_turrets/turret_crystal_shotgun.png</animSheet>
+<anim name="og_turret_crystal_shotgun">
+	<sheet>og_turret_crystal_shotgun</sheet>
+	<desc length="6" x="0" y="0" />
+	<time>0.6</time>
+</anim>
+<animSheet name="og_turret_crystal_shotgun_glow" w="624" h="78" fw="78" fh="78">og_turrets/turret_crystal_shotgun_glow.png</animSheet>
+<anim name="og_turret_crystal_shotgun_glow">
+	<sheet>og_turret_crystal_shotgun_glow</sheet>
+	<desc length="8" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_crystal_shotgun_elite_icon" w="58" h="48" fw="58" fh="48">og_turrets/turret_crystal_shotgun_elite_icon.png</animSheet>
+<anim name="og_turret_crystal_shotgun_elite_icon">
+	<sheet>og_turret_crystal_shotgun_elite_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_crystal_shotgun_elite" w="468" h="78" fw="78" fh="78">og_turrets/turret_crystal_shotgun_elite.png</animSheet>
+<anim name="og_turret_crystal_shotgun_elite">
+	<sheet>og_turret_crystal_shotgun_elite</sheet>
+	<desc length="6" x="0" y="0" />
+	<time>0.6</time>
+</anim>
+
 <!--MISSILES-->
 <animSheet name="og_turret_missile_1_icon" w="46" h="38" fw="46" fh="38">og_turrets/turret_missile_1_icon.png</animSheet>
 <anim name="og_turret_missile_1_icon">
@@ -476,7 +564,7 @@
 	<desc length="7" x="0" y="0" />
 	<time>1</time>
 </anim>
-<animSheet name="og_turret_missile_2_icon" w="56" h="62" fw="56" fh="62">og_turrets/turret_missile_2_icon.png</animSheet>
+<animSheet name="og_turret_missile_2_icon" w="56" h="40" fw="56" fh="40">og_turrets/turret_missile_2_icon.png</animSheet>
 <anim name="og_turret_missile_2_icon">
 	<sheet>og_turret_missile_2_icon</sheet>
 	<desc length="1" x="0" y="0" />
@@ -488,10 +576,10 @@
 	<desc length="1" x="0" y="0" />
 	<time>1</time>
 </anim>
-<animSheet name="og_turret_missile_2_glow" w="248" h="62" fw="62" fh="62">og_turrets/turret_missile_2_glow.png</animSheet>
+<animSheet name="og_turret_missile_2_glow" w="124" h="62" fw="62" fh="62">og_turrets/turret_missile_2_glow.png</animSheet>
 <anim name="og_turret_missile_2_glow">
 	<sheet>og_turret_missile_2_glow</sheet>
-	<desc length="4" x="0" y="0" />
+	<desc length="2" x="0" y="0" />
 	<time>1</time>
 </anim>
 
@@ -523,6 +611,38 @@
 <animSheet name="og_turret_kernel_fire" w="420" h="70" fw="70" fh="70">og_turrets/turret_kernel_fire.png</animSheet>
 <anim name="og_turret_kernel_fire">
 	<sheet>og_turret_kernel_fire</sheet>
+	<desc length="6" x="0" y="0" />
+	<time>0.6</time>
+</anim>
+
+<animSheet name="og_turret_kernel_heavy_elite_icon" w="62" h="33" fw="62" fh="33">og_turrets/turret_kernel_heavy_elite_icon.png</animSheet>
+<anim name="og_turret_kernel_heavy_elite_icon">
+	<sheet>og_turret_kernel_heavy_elite_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_kernel_heavy_elite" w="420" h="70" fw="70" fh="70">og_turrets/turret_kernel_heavy_elite.png</animSheet>
+<anim name="og_turret_kernel_heavy_elite">
+	<sheet>og_turret_kernel_heavy_elite</sheet>
+	<desc length="6" x="0" y="0" />
+	<time>0.6</time>
+</anim>
+<animSheet name="og_turret_kernel_heavy_elite_glow" w="210" h="70" fw="70" fh="70">og_turrets/turret_kernel_heavy_elite_glow.png</animSheet>
+<anim name="og_turret_kernel_heavy_elite_glow">
+	<sheet>og_turret_kernel_heavy_elite_glow</sheet>
+	<desc length="3" x="0" y="0" />
+	<time>1</time>
+</anim>
+
+<animSheet name="og_turret_kernel_fire_elite_icon" w="62" h="33" fw="62" fh="33">og_turrets/turret_kernel_fire_elite_icon.png</animSheet>
+<anim name="og_turret_kernel_fire_elite_icon">
+	<sheet>og_turret_kernel_fire_elite_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_kernel_fire_elite" w="420" h="70" fw="70" fh="70">og_turrets/turret_kernel_fire_elite.png</animSheet>
+<anim name="og_turret_kernel_fire_elite">
+	<sheet>og_turret_kernel_fire_elite</sheet>
 	<desc length="6" x="0" y="0" />
 	<time>0.6</time>
 </anim>
@@ -584,6 +704,25 @@
 <anim name="og_turret_flak_rad_glow">
 	<sheet>og_turret_flak_rad_glow</sheet>
 	<desc length="8" x="0" y="0" />
+	<time>1</time>
+</anim>
+
+<animSheet name="og_turret_flak_fire_icon" w="48" h="50" fw="48" fh="50">og_turrets/turret_flak_fire_icon.png</animSheet>
+<anim name="og_turret_flak_fire_icon">
+	<sheet>og_turret_flak_fire_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_flak_fire" w="546" h="78" fw="78" fh="78">og_turrets/turret_flak_fire.png</animSheet>
+<anim name="og_turret_flak_fire">
+	<sheet>og_turret_flak_fire</sheet>
+	<desc length="7" x="0" y="0" />
+	<time>0.7</time>
+</anim>
+<animSheet name="og_turret_flak_fire_glow" w="312" h="78" fw="78" fh="78">og_turrets/turret_flak_fire_glow.png</animSheet>
+<anim name="og_turret_flak_fire_glow">
+	<sheet>og_turret_flak_fire_glow</sheet>
+	<desc length="4" x="0" y="0" />
 	<time>1</time>
 </anim>
 
@@ -722,6 +861,49 @@
 	<time>1</time>
 </anim>
 
+<animSheet name="og_turret_laser_mini_chain_icon" w="40" h="16" fw="40" fh="16">og_turrets/turret_laser_mini_chain_icon.png</animSheet>
+<anim name="og_turret_laser_mini_chain_icon">
+	<sheet>og_turret_laser_mini_chain_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_laser_mini_chain" w="448" h="56" fw="56" fh="56">og_turrets/turret_laser_mini_chain.png</animSheet>
+<anim name="og_turret_laser_mini_chain">
+	<sheet>og_turret_laser_mini_chain</sheet>
+	<desc length="8" x="0" y="0" />
+	<time>0.6</time>
+</anim>
+<animSheet name="og_turret_laser_mini_chain_glow" w="112" h="56" fw="56" fh="56">og_turrets/turret_laser_mini_chain_glow.png</animSheet>
+<anim name="og_turret_laser_mini_chain_glow">
+	<sheet>og_turret_laser_mini_chain_glow</sheet>
+	<desc length="2" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_laser_mini_chain_chain" w="112" h="56" fw="56" fh="56">og_turrets/turret_laser_mini_chain_chain.png</animSheet>
+<anim name="og_turret_laser_mini_chain_chain">
+	<sheet>og_turret_laser_mini_chain_chain</sheet>
+	<desc length="2" x="0" y="0" />
+	<time>1</time>
+</anim>
+
+<animSheet name="og_turret_laser_mini_particle_icon" w="37" h="16" fw="37" fh="16">og_turrets/turret_laser_mini_particle_icon.png</animSheet>
+<anim name="og_turret_laser_mini_particle_icon">
+	<sheet>og_turret_laser_mini_particle_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_laser_mini_particle" w="324" h="54" fw="54" fh="54">og_turrets/turret_laser_mini_particle.png</animSheet>
+<anim name="og_turret_laser_mini_particle">
+	<sheet>og_turret_laser_mini_particle</sheet>
+	<desc length="6" x="0" y="0" />
+	<time>0.45</time>
+</anim>
+<animSheet name="og_turret_laser_mini_particle_glow" w="108" h="54" fw="54" fh="54">og_turrets/turret_laser_mini_particle_glow.png</animSheet>
+<anim name="og_turret_laser_mini_particle_glow">
+	<sheet>og_turret_laser_mini_particle_glow</sheet>
+	<desc length="2" x="0" y="0" />
+	<time>1</time>
+</anim>
 
 
 <!--MICRO ION-->
@@ -745,7 +927,56 @@
 	<time>1</time>
 </anim>
 
+<animSheet name="og_turret_ion_mini_fire_icon" w="32" h="22" fw="32" fh="22">og_turrets/turret_ion_mini_fire_icon.png</animSheet>
+<anim name="og_turret_ion_mini_fire_icon">
+	<sheet>og_turret_ion_mini_fire_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_ion_mini_fire" w="42" h="42" fw="42" fh="42">og_turrets/turret_ion_mini_fire.png</animSheet>
+<anim name="og_turret_ion_mini_fire">
+	<sheet>og_turret_ion_mini_fire</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_ion_mini_fire_glow" w="84" h="42" fw="42" fh="42">og_turrets/turret_ion_mini_fire_glow.png</animSheet>
+<anim name="og_turret_ion_mini_fire_glow">
+	<sheet>og_turret_ion_mini_fire_glow</sheet>
+	<desc length="2" x="0" y="0" />
+	<time>1</time>
+</anim>
 
+
+<animSheet name="og_turret_crystal_mini_icon" w="50" h="19" fw="50" fh="19">og_turrets/turret_crystal_mini_icon.png</animSheet>
+<anim name="og_turret_crystal_mini_icon">
+	<sheet>og_turret_crystal_mini_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_crystal_mini" w="66" h="66" fw="66" fh="66">og_turrets/turret_crystal_mini.png</animSheet>
+<anim name="og_turret_crystal_mini">
+	<sheet>og_turret_crystal_mini</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>0.4</time>
+</anim>
+<animSheet name="og_turret_crystal_mini_glow" w="66" h="66" fw="66" fh="66">og_turrets/turret_crystal_mini_glow.png</animSheet>
+<anim name="og_turret_crystal_mini_glow">
+	<sheet>og_turret_crystal_mini_glow</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_crystal_mini_elite_icon" w="50" h="19" fw="50" fh="19">og_turrets/turret_crystal_mini_elite_icon.png</animSheet>
+<anim name="og_turret_crystal_mini_elite_icon">
+	<sheet>og_turret_crystal_mini_elite_icon</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+<animSheet name="og_turret_crystal_mini_elite" w="66" h="66" fw="66" fh="66">og_turrets/turret_crystal_mini_elite.png</animSheet>
+<anim name="og_turret_crystal_mini_elite">
+	<sheet>og_turret_crystal_mini_elite</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>0.4</time>
+</anim>
 
 <!--MICRO BEAM-->
 

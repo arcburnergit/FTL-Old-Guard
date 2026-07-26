@@ -145,7 +145,7 @@ When I originally requested your assistance, the intention was to have you fight
 	<choice hidden="true">
 		<text>Continue...</text>
 		<event>
-			<text>"That plan has changed, two hours ago we received a distress call coming our research base, the one positioned right next to the neutron star you may have noticed in the sector. The signal cut out before we could get a clear read on what was happening, it might just be equipment failure, but I fear the worst."
+			<text>"That plan has changed, two hours ago we received a distress call coming from our research base, the one positioned right next to the neutron star you may have noticed in the sector. The signal cut out before we could get a clear read on what was happening, it might just be equipment failure, but I fear the worst."
 			
 "I can't pull any of my ships from the front line to follow up on the distress signal, not with the Rebel fleet so close. But that research base is part of why we're even here in the first place, I can't disclose details but it's important, and so I can't just ignore the distress call."</text>
 			<choice hidden="true">
@@ -337,7 +337,7 @@ As you bring your ship alongside the station and begin docking procedures, its i
 		<text>Continue...</text>
 		<event>
 			<text>The airlock opens into the station, thankfully these part has stayed pressurised despite the damage.
-You're immediately face to face with a figuring in the white coat of a scientist. "You're from the Iron Watch? Close enough, come in quickly."</text>
+You're immediately face to face with a figure in the white coat of a scientist. "You're from the Iron Watch? Close enough, come in quickly."</text>
 			<choice>
 				<text>Continue...</text>
 				<event>
@@ -347,7 +347,7 @@ You're immediately face to face with a figuring in the white coat of a scientist
 				<choice hidden="true">
 					<text>Alarms activate throughout the station.</text>
 					<event>
-						<text>Alarms blaring across the station, the screen on the wall switches to show a new ship, painted in New Dawn colours. With the station as defenceless as it is, you're have the only thing capable of preventing the New Dawn vessel from finishing the station off. You rush back to your ship and disengage from the station, now clear of the station's protection you'll have to survive both the enemy and the force of the radiation.</text>
+						<text>Alarms blaring across the station, the screen on the wall switches to show a new ship, painted in New Dawn colours. With the station as defenceless as it is, you have the only thing capable of preventing the New Dawn vessel from finishing the station off. You rush back to your ship and disengage from the station, now clear of the station's protection you'll have to survive both the enemy and the force of the radiation.</text>
 						<ship load="SHIP_OG_DAWN_RESEARCH_FINISHER" hostile="true"/>
 						<choice hidden="true">
 							<text>Continue...</text>
