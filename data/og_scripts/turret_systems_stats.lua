@@ -618,7 +618,7 @@ turrets["OG_TURRET_MISSILE_2"] = {
 	charges = 2,
 	charges_per_charge = 1,
 	rotation_speed = 120,
-	charge_time = {[0] = 14, 14, 12, 9, 7, 6, 5, 4, 3},
+	charge_time = {[0] = 16, 16, 13, 10.5, 8, 7, 6, 5, 4},
 	enemy_charge_time = {[0] = 20, 20, 17, 14, 12, 10, 8.5, 7, 6},
 }
 turrets["OG_TURRET_KERNEL_HEAVY"] = {
@@ -745,6 +745,7 @@ turrets["OG_TURRET_FLAK_FIRE"] = {
 	enemy_burst = 4,
 	shot_radius = 55,
 	aim_cone = 1,
+	hide_charge_firing = true,
 	image = "og_turret_flak_fire",
 	glow = "og_turret_flak_fire_glow",
 	charge_image = Hyperspace.Resources:CreateImagePrimitiveString( "og_turrets/turret_flak_fire_charge.png", -39, -39, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false),
@@ -759,7 +760,7 @@ turrets["OG_TURRET_FLAK_FIRE"] = {
 	charges = 4,
 	charges_per_charge = 1,
 	rotation_speed = 180,
-	charge_time = {[0] = 5, 5, 3.5, 2.5, 2, 1.75, 1.5, 1.25, 1},
+	charge_time = {[0] = 5, 5, 4, 3.5, 3, 2.5, 2.25, 2, 1.75},
 }
 turrets["OG_TURRET_FOCUS_1"] = {
 	enemy_burst = 1,
