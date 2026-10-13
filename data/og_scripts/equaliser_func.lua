@@ -25,7 +25,7 @@ local vunerable_weapons = mods.og.vunerable_weapons
 --TURRET DEFINITIONS
 local systemName = "og_equaliser"
 local damage_reduction_base = 0.1
-local damage_reduction_level = 0.4
+local damage_reduction_level = 0.3
 local system_cooldown = 4
 local system_active = false
 
