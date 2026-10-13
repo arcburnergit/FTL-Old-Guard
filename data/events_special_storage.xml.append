@@ -487,11 +487,11 @@ EQUALISER
 -->
 <event name="STORAGE_CHECK_SYSTEM_OG_EQUALISER">
 	<text>What upgrade do you want to install?</text>
-	<choice req="UPG_OG_EQUALISER_BOOSTER" lvl="1" max_group="1" blue="false" hidden="true">
+	<choice req="UPG_OG_EQUALISER_PERFORMANCE" lvl="1" max_group="1" blue="false" hidden="true">
 		<text>Performance Upgrade. [UNAVAILABLE: You already have the max of this upgrade]</text>
 		<event load="OPTION_INVALID"/>
 	</choice>
-	<choice req="UPG_OG_EQUALISER_BOOSTER" lvl="0" max_lvl="1" max_group="1" blue="false" hidden="true">
+	<choice req="UPG_OG_EQUALISER_PERFORMANCE" lvl="0" max_lvl="1" max_group="1" blue="false" hidden="true">
 		<text>Performance Upgrade. [Cost: 35~, 2{]</text>
 		<event load="STORAGE_CHECK_SYSTEM_OG_EQUALISER_PERFORMANCE"/>
 	</choice>
