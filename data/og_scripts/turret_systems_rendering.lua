@@ -367,6 +367,9 @@ end
 
 --SYSTEM UI RENDER
 
+local bar_outline = Hyperspace.Resources:CreateImagePrimitiveString("systemUi/og_power_outline.png", 0, 0, 0, COLOUR_WHITE, 1.0, false)
+local bar_position = {x = 24, y = 16}
+
 local function system_render(systemBox, ignoreStatus)
 	--local benchmark_start = os.clock()
 	local systemId = Hyperspace.ShipSystem.SystemIdToName(systemBox.pSystem.iSystemType)
@@ -375,14 +378,15 @@ local function system_render(systemBox, ignoreStatus)
 		local shipManager = Hyperspace.ships.player
 		local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(systemId))
 
-		local targetButton = systemBox.table.targetButton
-		targetButton.bActive = system_ready(system) and not system.table.currentlyTargetting
-		local offenceButton = systemBox.table.offenceButton
-		offenceButton.bActive = system_ready(system) and system.table.state == turret_states.offence
-		local defenceButton = systemBox.table.defenceButton
-		defenceButton.bActive = system_ready(system) and system.table.state == turret_states.defence
-
 		local currentTurret = turrets[ system.table.blueprint ]
+
+		local targetButton = systemBox.table.targetButton
+		targetButton.bActive = system:GetEffectivePower() - currentTurret.required_power >= 0 and system_ready(system) and not system.table.currentlyTargetting
+		local offenceButton = systemBox.table.offenceButton
+		offenceButton.bActive = system:GetEffectivePower() - currentTurret.required_power >= 0 and system_ready(system) and system.table.state == turret_states.offence
+		local defenceButton = systemBox.table.defenceButton
+		defenceButton.bActive = system:GetEffectivePower() - currentTurret.required_power >= 0 and system_ready(system) and system.table.state == turret_states.defence
+
 		local maxCharges = currentTurret.charges
 		local charges = system.table.charges
 		
@@ -397,12 +401,25 @@ local function system_render(systemBox, ignoreStatus)
 		Graphics.CSurface.GL_SetColor(COLOUR_WHITE)
 		Graphics.CSurface.GL_RenderPrimitive(turretBoxInnerBack)
 
+		if currentTurret.required_power >= 0 then
+			for i = 1, math.min(system.healthState.second, currentTurret.required_power) do
+				Graphics.CSurface.GL_PushMatrix()
+				Graphics.CSurface.GL_Translate(bar_position.x, bar_position.y - i * 8, 0)
+				if i <= system:GetEffectivePower() then
+					Graphics.CSurface.GL_RenderPrimitiveWithColor(bar_outline, COLOUR_SINGLE)
+				else
+					Graphics.CSurface.GL_RenderPrimitiveWithColor(bar_outline, COLOUR_AUTO)
+				end
+				Graphics.CSurface.GL_PopMatrix()
+			end
+		end
+
 		local cApp = Hyperspace.App
 		local combatControl = cApp.gui.combatControl
 		local weapControl = combatControl.weapControl
 
 		local renderColour = COLOUR_ON
-		if not system_ready(system) then
+		if system:GetEffectivePower() - currentTurret.required_power < 0 or not system_ready(system) then
 			renderColour = COLOUR_OFF
 		elseif system.table.currentlyTargetting and xor(mods.og.turret_autofire_setting == 0, system.table.autoFireInvert) then
 			renderColour = COLOUR_AUTO
@@ -458,7 +475,7 @@ local function system_render(systemBox, ignoreStatus)
 		end
 		Graphics.freetype.easy_printAutoNewlines(6, 40, 19, 43, blueprint.desc.shortTitle:GetText())
 
-		if system_ready(system) and not system.table.currentlyTargetting and (system.table.currentTarget or system.table.currentTargetTemp) then
+		if system:GetEffectivePower() - currentTurret.required_power >= 0 and system_ready(system) and not system.table.currentlyTargetting and (system.table.currentTarget or system.table.currentTargetTemp) then
 			if xor(mods.og.turret_autofire_setting == 0, system.table.autoFireInvert) then
 				barColour = COLOUR_AUTO
 				--Graphics.CSurface.GL_SetColorTint(COLOUR_AUTO)

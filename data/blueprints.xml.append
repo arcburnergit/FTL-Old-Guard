@@ -198,12 +198,12 @@
 	<maxPower>3</maxPower>
 	<rarity>0</rarity>
 	<upgradeCost>
-		<level>45</level>
-		<level>65</level>
-		<level>80</level>
-		<level>100</level>
+		<level>25</level>
+		<level>35</level>
+		<level>50</level>
+		<level>70</level>
 	</upgradeCost>
-	<cost>45</cost>
+	<cost>25</cost>
 </systemBlueprint>
 <systemBlueprint name="og_turret_mini_2">
 	<type>og_turret_mini_2</type>
@@ -213,12 +213,12 @@
 	<maxPower>3</maxPower>
 	<rarity>0</rarity>
 	<upgradeCost>
-		<level>45</level>
-		<level>65</level>
-		<level>80</level>
-		<level>100</level>
+		<level>25</level>
+		<level>35</level>
+		<level>50</level>
+		<level>70</level>
 	</upgradeCost>
-	<cost>45</cost>
+	<cost>25</cost>
 </systemBlueprint>
 <systemBlueprint name="og_turret_mini_3">
 	<type>og_turret_mini_3</type>
@@ -228,12 +228,12 @@
 	<maxPower>3</maxPower>
 	<rarity>0</rarity>
 	<upgradeCost>
-		<level>45</level>
-		<level>65</level>
-		<level>80</level>
-		<level>100</level>
+		<level>25</level>
+		<level>35</level>
+		<level>50</level>
+		<level>70</level>
 	</upgradeCost>
-	<cost>45</cost>
+	<cost>25</cost>
 </systemBlueprint>
 <systemBlueprint name="og_turret_mini_4">
 	<type>og_turret_mini_4</type>
@@ -243,19 +243,19 @@
 	<maxPower>3</maxPower>
 	<rarity>0</rarity>
 	<upgradeCost>
-		<level>45</level>
-		<level>65</level>
-		<level>80</level>
-		<level>100</level>
+		<level>25</level>
+		<level>35</level>
+		<level>50</level>
+		<level>70</level>
 	</upgradeCost>
-	<cost>45</cost>
+	<cost>25</cost>
 </systemBlueprint>
 <systemBlueprint name="og_turret_adaptive">
 	<type>og_turret_adaptive</type>
 	<title>Adaptive Turret Control</title>
 	<desc>Can be Internally upgraded to add a secondary turret system alongside this one in place of drone control, secondary system does not consume a system slot. Powers your ship's turret. Upgrading lowers the charge time of the turret. Turret position can be altered outside of combat to best fit the ship, can be upgraded to a large turret slot in the internal upgrade menu.</desc>
 	<startPower>1</startPower>
-	<maxPower>4</maxPower>
+	<maxPower>3</maxPower>
 	<rarity>0</rarity>
 	<upgradeCost>
 		<level>35</level>
@@ -274,7 +274,7 @@
 	<title>Secondary Turret Control</title>
 	<desc>Powers your ship's turret. Upgrading lowers the charge time of the turret. Turret position can be altered outside of combat to best fit the ship, can be upgraded to a large turret slot in the internal upgrade menu.</desc>
 	<startPower>1</startPower>
-	<maxPower>4</maxPower>
+	<maxPower>3</maxPower>
 	<rarity>0</rarity>
 	<upgradeCost>
 		<level>35</level>
@@ -4623,7 +4623,7 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	<weaponArt>laser_burst_1</weaponArt>
 	<iconImage>laser</iconImage>
 </weaponBlueprint>
-<weaponBlueprint name="OG_ION_PROJECTILE_BASE_DAWN">
+<weaponBlueprint name="OG_ION_PROJECTILE_FIRE_DAWN">
 	<type>LASER</type>
 	<title>Ion</title>
 	<short>Ion</short>
@@ -6577,7 +6577,7 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	</weaponList>
 	<droneList drones="5" count="2" />
 	<health amount="30" />
-	<maxPower amount="7" />
+	<maxPower amount="10" />
 	<crewCount amount="1" class="human" />
 	<crewCount amount="1" class="orchid_vampweed" />
 	<crewCount amount="1" class="engi_separatist" />

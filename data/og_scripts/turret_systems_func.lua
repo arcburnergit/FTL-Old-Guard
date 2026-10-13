@@ -25,6 +25,9 @@ local vunerable_weapons = mods.og.vunerable_weapons
 --TURRET DEFINITIONS
 local systemName = "og_turret"
 
+local turretReductionPerPower = 0.2
+local turretReductionPerPowerMicro = 0.15
+
 mods.og.microTurrets = {
 ["og_turret_mini"] = true, ["og_turret_mini_2"] = true, 
 ["og_turret_mini_3"] = true, ["og_turret_mini_4"] = true
@@ -175,6 +178,9 @@ local turrets = mods.og.turrets
 
 --GENERATE TURRET STATS TEXT
 local statsText = {
+	stats = Hyperspace.Text:GetText("og_lua_turret_stats_stats"),
+	power = Hyperspace.Text:GetText("og_lua_turret_stats_power"),
+	power_reduction = Hyperspace.Text:GetText("og_lua_turret_stats_power_reduction"),
 	time = Hyperspace.Text:GetText("og_lua_turret_stats_time"),
 	charges = Hyperspace.Text:GetText("og_lua_turret_stats_charges"),
 	amount = Hyperspace.Text:GetText("og_lua_turret_stats_amount"),
@@ -208,7 +214,7 @@ local statsText = {
 	price_short = Hyperspace.Text:GetText("og_lua_turret_stats_price_short"),
 }
 function mods.og.add_stat_text(desc, currentTurret, chargeMax)
-	desc = desc..statsText.time
+	--[[desc = desc..statsText.time
 	for i, t in ipairs(currentTurret.charge_time) do
 		if i <= chargeMax then
 			desc = desc..string.format("%g", t)
@@ -216,7 +222,10 @@ function mods.og.add_stat_text(desc, currentTurret, chargeMax)
 		if i < #currentTurret.charge_time and i < chargeMax then
 			desc = desc.."/"
 		end
-	end
+	end]]
+	desc = desc..string.format(statsText.power, math.floor(currentTurret.required_power))
+	desc = desc..string.format(statsText.time, math.floor(currentTurret.charge_time))
+	desc = desc..string.format(statsText.power_reduction, math.floor((currentTurret.power_reduction or (currentTurret.mini and turretReductionPerPowerMicro) or turretReductionPerPower)*100))
 	desc = desc..string.format(statsText.charges, math.floor(currentTurret.charges))
 	desc = desc..string.format(statsText.amount, math.floor(currentTurret.charges_per_charge))
 	if currentTurret.ammo_consumption then
@@ -316,7 +325,7 @@ local add_stat_text = mods.og.add_stat_text
 script.on_internal_event(Defines.InternalEvents.WEAPON_DESCBOX, function(blueprint, desc)
 	if turrets[blueprint.name] then
 		local currentTurret = turrets[blueprint.name]
-		desc = add_stat_text((blueprint.desc.description:GetText().."\n\n"), currentTurret, 8)
+		desc = add_stat_text((blueprint.desc.description:GetText().."\n\n"..statsText.stats), currentTurret, 8)
 		desc = desc..string.format(statsText.price, math.floor(blueprint.desc.cost), math.floor(blueprint.desc.cost/2))
 	end
 	return Defines.Chain.CONTINUE, desc
@@ -575,9 +584,13 @@ end
 local checkValidTarget = mods.og.checkValidTarget
 
 function mods.og.get_charge_time(currentTurret, system, shipManager, shipId)
-	local chargeTime = currentTurret.charge_time[system:GetEffectivePower()]
+	local power = system:GetEffectivePower()
+	local reductionPerPower = (currentTurret.power_reduction or (currentTurret.mini and turretReductionPerPowerMicro) or turretReductionPerPower)
+	local extraPower = power - currentTurret.required_power
+	if extraPower < 0 then extraPower = 0 end
+	local chargeTime = currentTurret.charge_time * (1 - reductionPerPower) ^ extraPower
 	if currentTurret.enemy_charge_time and shipId == 1 then
-		chargeTime = currentTurret.enemy_charge_time[system:GetEffectivePower()]
+		chargeTime = currentTurret.enemy_charge_time * (1 - reductionPerPower) ^ extraPower
 	end
 	local chargeTimeReduction = 0
 	local chainAmount = system.table.chain_level
@@ -622,7 +635,7 @@ local function get_level_description_system(currentId, level, tooltip)
 				if id then 
 					local currentTurret = turrets[id] 
 					local blueprint = Hyperspace.Blueprints:GetWeaponBlueprint(id)
-					local desc = add_stat_text((blueprint.desc.title:GetText().."\n\n"), currentTurret, 8)
+					local desc = add_stat_text((blueprint.desc.title:GetText().."\n\n"..statsText.stats), currentTurret, 8)
 					desc = desc..string.format(statsText.price_short, math.floor(blueprint.desc.cost), math.floor(blueprint.desc.cost/2))
 					
 					Hyperspace.Mouse.tooltip = desc
@@ -1309,6 +1322,7 @@ end)
 local function findFiringPosition(targetPosition, shipManager, otherManager, currentTurret, offensive)
 	local firingPosition = targetPosition
 	local beamMiss = false
+	local updateTarget = true
 	if offensive and shipManager.iShipId == 0 then
 		firingPosition = Hyperspace.Pointf(10000, _pos.y)
 	elseif offensive and shipManager.iShipId == 1 then
@@ -1322,8 +1336,9 @@ local function findFiringPosition(targetPosition, shipManager, otherManager, cur
 		local newFiringPosition = get_random_point_in_radius(firingPosition, rad)
 		if get_distance(newFiringPosition, firingPosition) > 10 then beamMiss = true end
 		firingPosition = newFiringPosition
+		updateTarget = false
 	end
-	return firingPosition, beamMiss
+	return firingPosition, beamMiss, updateTarget
 end
 local function handleTurretBeams(system, blueprint, firingPos, beamMiss, shipManager, offensive, projectile, targetPosition)
 	local spaceManager = Hyperspace.App.world.space
@@ -1406,7 +1421,7 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 	local currentShotNumber =(system.table.charges - 1) % #currentTurret.fire_points + 1
 	local currentShot = currentTurret.fire_points[currentShotNumber]
 
-	local firingPos, beamMiss = findFiringPosition(targetPosition, shipManager, otherManager, currentTurret, offensive)
+	local firingPos, beamMiss, updateTarget = findFiringPosition(targetPosition, shipManager, otherManager, currentTurret, offensive)
 	local spawnPos = offset_point_in_direction(_pos, system.table.currentAimingAngle, currentShot.x, currentShot.y)
 
 	local projectile = createTurretProjectile(currentTurret, system, blueprint, spawnPos, firingPos, shipManager, offensive)
@@ -1488,12 +1503,7 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 		userdata_table(projectile, "mods.og").turret_projectile = {target = tempTargetPosition, destination_space = otherManager.iShipId}
 	elseif not offensive and currentTurret.blueprint_type < 3 and system.table.currentTarget then
 		userdata_table(projectile, "mods.og").targeted = system.table.currentTarget
-		if (not currentTurret.shot_radius) and (not currentTurret.aim_cone) and aim_diff <= 1 then
-			--local targetVelocity = system.table.currentTarget._targetable:GetSpeed()
-			--local projVelocity = projectile._targetable:GetSpeed()
-			--local targetSpeed = math.sqrt(targetVelocity.x^2 + targetVelocity.y^2)
-			--local projSpeed = math.sqrt(projVelocity.x^2 + projVelocity.y^2)
-			--print(string.format("target speed:%g projectile speed:%g", targetSpeed, projSpeed))
+		if updateTarget and aim_diff <= 1 then
 			userdata_table(projectile, "mods.og").update_target = true
 		end
 		if system.table.currentTarget and system.table.currentTarget.table then
@@ -1559,6 +1569,15 @@ local function fireTurret(system, currentTurret, shipManager, otherManager, sysN
 			system.table.currentTargetPoint = nil
 			system.table.currentTargetAngle = nil
 			system.table.currentlyTargetted = false
+		end
+	end
+
+	--chain
+	if currentTurret.chain then
+		if currentTurret.chain.reset_on_max and system.table.chain_level >= currentTurret.chain.count then
+			system.table.chain_level = 0
+		else
+			system.table.chain_level = math.min(currentTurret.chain.count, system.table.chain_level + 1)
 		end
 	end
 
@@ -1700,26 +1719,19 @@ local function updateTurretCharge(currentTurret, system, shipManager, otherManag
 		system.table.charges = currentTurret.charges
 	else
 		local validAmmo = not currentTurret.ammo_consumption or shipManager:GetMissileCount() > system.table.ammo_consumed + currentTurret.ammo_consumption * system.table.charges
-		if system_ready(system) and system.table.charges < currentTurret.charges and validAmmo then
+		if system_ready(system) and system:GetEffectivePower() - currentTurret.required_power >= 0 and system.table.charges < currentTurret.charges and validAmmo then
 			local otherShipCloaking = otherManager and otherManager.ship.bCloaked
 			local cloak_mult = (otherShipCloaking and 0.5) or 1
 			system.table.time = system.table.time + cloak_mult * time_increment(true)/chargeTime
 			if system.table.time >= 1 then
 				local maxWithAmmo = ((not currentTurret.ammo_consumption) and math.huge) or ((shipManager:GetMissileCount() - system.table.ammo_consumed - currentTurret.ammo_consumption * system.table.charges)/currentTurret.ammo_consumption) 
 				system.table.charges = math.min(system.table.charges + maxWithAmmo , currentTurret.charges, system.table.charges + currentTurret.charges_per_charge)
-				if currentTurret.chain then
-					if currentTurret.chain.reset_on_max and system.table.chain_level >= currentTurret.chain.count then
-						system.table.chain_level = 0
-					else
-						system.table.chain_level = math.min(currentTurret.chain.count, system.table.chain_level + 1)
-					end
-				end
 				system.table.time = 0
 			end
 		elseif currentTurret.ammo_consumption and system.table.charges > 0 and shipManager:GetMissileCount() < system.table.ammo_consumed + currentTurret.ammo_consumption * system.table.charges then
 			local amountOver = math.ceil((system.table.ammo_consumed + currentTurret.ammo_consumption * system.table.charges - shipManager:GetMissileCount())/2)
 			system.table.charges = math.max(0, system.table.charges - amountOver)
-		elseif not system_ready(system) then
+		elseif system:GetEffectivePower() - currentTurret.required_power < 0 or not system_ready(system) then
 			system.table.time = math.max(0, system.table.time - 6 * time_increment(true)/chargeTime)
 			if system.table.time <= 0 and system.table.charges > 0 then
 				system.table.charges = math.max(0, system.table.charges - currentTurret.charges_per_charge)
@@ -1792,9 +1804,11 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 			local manningCrew = findTurretManning(system, shipManager)
 
 			local chargeTime = get_charge_time(currentTurret, system, shipManager, shipManager.iShipId)
+
 			
 			system.table.firingTime = system.table.firingTime - time_increment(true)
 			updateTurretCharge(currentTurret, system, shipManager, otherManager, chargeTime)
+
 
 			local speed = math.huge
 			local blueprint = nil

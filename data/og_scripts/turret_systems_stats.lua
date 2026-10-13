@@ -97,7 +97,8 @@ turrets["OG_EMPTY_TURRET"] = {
 	charges = 1,
 	charges_per_charge = 1,
 	rotation_speed = 360,
-	charge_time = {[0] = 9, 9, 8, 7, 6, 5, 4, 3, 2, 1},
+	charge_time = 10,
+	required_power = 2,
 }
 turrets["OG_TURRET_LASER_1"] = {
 	enemy_burst = 2,
@@ -115,7 +116,8 @@ turrets["OG_TURRET_LASER_1"] = {
 	charges = 6,
 	charges_per_charge = 2,
 	rotation_speed = 180,
-	charge_time = {[0] = 12, 12, 9, 7, 6, 5, 4, 3, 2.5},
+	charge_time = 10,
+	required_power = 2,
 }
 turrets["OG_TURRET_LASER_RUSTY_1"] = {
 	enemy_burst = 2,
@@ -134,7 +136,8 @@ turrets["OG_TURRET_LASER_RUSTY_1"] = {
 	charges = 6,
 	charges_per_charge = 2,
 	rotation_speed = 180,
-	charge_time = {[0] = 16, 16, 13, 11, 9, 7, 6, 5, 4},
+	charge_time = 14,
+	required_power = 1,
 }
 turrets["OG_TURRET_LASER_2"] = {
 	enemy_burst = 1,
@@ -147,7 +150,8 @@ turrets["OG_TURRET_LASER_2"] = {
 	charges = 3,
 	charges_per_charge = 1,
 	rotation_speed = 120,
-	charge_time = {[0] = 9, 9, 7.5, 6, 5, 4.5, 4, 3.75, 3.5},
+	charge_time = 7.5,
+	required_power = 2,
 }
 turrets["OG_TURRET_LASER_BOSS_LIGHT"] = {
 	enemy_burst = 4,
@@ -166,7 +170,8 @@ turrets["OG_TURRET_LASER_BOSS_LIGHT"] = {
 	charges = 8,
 	charges_per_charge = 2,
 	rotation_speed = 360,
-	charge_time = {[0] = 5, 5, 3.5, 2.5, 2, 1.75, 1.5, 1.25, 1},
+	charge_time = 3,
+	required_power = 3,
 }
 turrets["OG_TURRET_LASER_BOSS_LIGHT_CHAOS"] = {
 	enemy_burst = 4,
@@ -185,7 +190,8 @@ turrets["OG_TURRET_LASER_BOSS_LIGHT_CHAOS"] = {
 	charges = 8,
 	charges_per_charge = 2,
 	rotation_speed = 1800,
-	charge_time = {[0] = 5, 5, 3.5, 2.5, 2, 1.75, 1.5, 1.25, 1},
+	charge_time = 3,
+	required_power = 3,
 }
 turrets["OG_TURRET_LASER_ANCIENT"] = {
 	enemy_burst = 3,
@@ -203,7 +209,8 @@ turrets["OG_TURRET_LASER_ANCIENT"] = {
 	charges = 6,
 	charges_per_charge = 3,
 	rotation_speed = 180,
-	charge_time = {[0] = 17, 17, 14, 11, 9, 7, 6, 5, 4},
+	charge_time = 11,
+	required_power = 3,
 }
 turrets["OG_TURRET_LASER_CEL_1"] = {
 	enemy_burst = 4,
@@ -217,7 +224,8 @@ turrets["OG_TURRET_LASER_CEL_1"] = {
 	charges = 8,
 	charges_per_charge = 4,
 	rotation_speed = 240,
-	charge_time = {[0] = 20, 20, 17, 14, 12, 10, 8, 7, 6},
+	charge_time = 14,
+	required_power = 3,
 }
 turrets["OG_TURRET_LASER_ZENITH"] = {
 	enemy_burst = 1,
@@ -231,7 +239,8 @@ turrets["OG_TURRET_LASER_ZENITH"] = {
 	charges = 3,
 	charges_per_charge = 1,
 	rotation_speed = 180,
-	charge_time = {[0] = 17, 17, 14, 11, 9, 7, 6, 5, 4},
+	charge_time = 11,
+	required_power = 3,
 }
 turrets["OG_TURRET_LASER_BIO"] = {
 	enemy_burst = 1,
@@ -245,7 +254,8 @@ turrets["OG_TURRET_LASER_BIO"] = {
 	charges = 3,
 	charges_per_charge = 1,
 	rotation_speed = 270,
-	charge_time = {[0] = 5, 5, 3.5, 2.5, 2, 1.75, 1.5, 1.25, 1},
+	charge_time = 3.5,
+	required_power = 2,
 }
 turrets["OG_TURRET_LASER_PIERCE"] = {
 	enemy_burst = 2,
@@ -264,7 +274,8 @@ turrets["OG_TURRET_LASER_PIERCE"] = {
 	charges = 4,
 	charges_per_charge = 2,
 	rotation_speed = 180,
-	charge_time = {[0] = 14, 14, 12, 9, 7, 6, 5, 4, 3},
+	charge_time = 12,
+	required_power = 2,
 }
 turrets["OG_TURRET_LASER_HULL"] = {
 	enemy_burst = 3,
@@ -277,7 +288,8 @@ turrets["OG_TURRET_LASER_HULL"] = {
 	charges = 5,
 	charges_per_charge = 1,
 	rotation_speed = 180,
-	charge_time = {[0] = 8, 8, 6.5, 5, 4, 3.5, 3, 2.75, 2.5},
+	charge_time = 6,
+	required_power = 2,
 }
 turrets["OG_TURRET_LASER_CHAINGUN"] = {
 	enemy_burst = 1,
@@ -296,7 +308,8 @@ turrets["OG_TURRET_LASER_CHAINGUN"] = {
 	charges = 3,
 	charges_per_charge = 1,
 	rotation_speed = 180,
-	charge_time = {[0] = 14, 14, 12, 9, 7, 6, 5, 4, 3},
+	charge_time = 9,
+	required_power = 3,
 }
 turrets["OG_TURRET_LASER_PARTICLE"] = {
 	enemy_burst = 3,
@@ -315,7 +328,8 @@ turrets["OG_TURRET_LASER_PARTICLE"] = {
 	charges = 6,
 	charges_per_charge = 3,
 	rotation_speed = 180,
-	charge_time = {[0] = 14, 14, 12, 9, 7, 6, 5, 4, 3},
+	charge_time = 12,
+	required_power = 2,
 }
 turrets["OG_TURRET_LASER_FROST"] = {
 	enemy_burst = 4,
@@ -334,7 +348,8 @@ turrets["OG_TURRET_LASER_FROST"] = {
 	charges = 6,
 	charges_per_charge = 2,
 	rotation_speed = 180,
-	charge_time = {[0] = 13, 13, 10, 7, 6, 5, 4, 3.5, 3},
+	charge_time = 10,
+	required_power = 2,
 }
 turrets["OG_TURRET_LASER_TRIPLET"] = {
 	enemy_burst = 2,
@@ -360,7 +375,8 @@ turrets["OG_TURRET_LASER_TRIPLET"] = {
 	charges = 6,
 	charges_per_charge = 2,
 	rotation_speed = 180,
-	charge_time = {[0] = 14, 14, 12, 9, 7, 6, 5, 4, 3},
+	charge_time = 12,
+	required_power = 2,
 }
 turrets["OG_TURRET_LASER_GATLING"] = {
 	enemy_burst = 1,
@@ -384,7 +400,8 @@ turrets["OG_TURRET_LASER_GATLING"] = {
 	charges = 2,
 	charges_per_charge = 2,
 	rotation_speed = 180,
-	charge_time = {[0] = 38, 38, 34, 30, 28, 26, 24, 22, 20},
+	charge_time = 28,
+	required_power = 4,
 }
 turrets["OG_TURRET_LASER_RIFTWAKER"] = {
 	enemy_burst = 1,
@@ -403,7 +420,8 @@ turrets["OG_TURRET_LASER_RIFTWAKER"] = {
 	charges = 1,
 	charges_per_charge = 1,
 	rotation_speed = 180,
-	charge_time = {[0] = 28, 28, 24, 20, 18, 16, 14, 12, 10},
+	charge_time = 18,
+	required_power = 4,
 }
 turrets["OG_TURRET_LASER_CHAINGUN_GOLD"] = {
 	enemy_burst = 1,
@@ -422,7 +440,8 @@ turrets["OG_TURRET_LASER_CHAINGUN_GOLD"] = {
 	charges = 3,
 	charges_per_charge = 1,
 	rotation_speed = 180,
-	charge_time = {[0] = 14, 14, 12, 9, 7, 6, 5, 4, 3},
+	charge_time = 9,
+	required_power = 3,
 }
 turrets["OG_TURRET_ION_1"] = {
 	enemy_burst = 1,
@@ -437,7 +456,8 @@ turrets["OG_TURRET_ION_1"] = {
 	charges = 2,
 	charges_per_charge = 1,
 	rotation_speed = 180,
-	charge_time = {[0] = 9, 9, 7.5, 6, 5, 4.5, 4, 3.75, 3.5},
+	charge_time = 7.5,
+	required_power = 2,
 }
 turrets["OG_TURRET_ION_FIRE"] = {
 	enemy_burst = 2,
@@ -452,7 +472,8 @@ turrets["OG_TURRET_ION_FIRE"] = {
 	charges = 4,
 	charges_per_charge = 2,
 	rotation_speed = 180,
-	charge_time = {[0] = 14, 14, 12, 9, 7, 6, 5, 4, 3},
+	charge_time = 12,
+	required_power = 2,
 }
 turrets["OG_TURRET_ION_PIERCE"] = {
 	enemy_burst = 1,
@@ -467,7 +488,8 @@ turrets["OG_TURRET_ION_PIERCE"] = {
 	charges = 4,
 	charges_per_charge = 2,
 	rotation_speed = 180,
-	charge_time = {[0] = 18, 18, 15, 12, 10, 9, 8, 7.5, 7},
+	charge_time = 15,
+	required_power = 2,
 }
 turrets["OG_TURRET_ION_STUN"] = {
 	enemy_burst = 1,
@@ -482,7 +504,8 @@ turrets["OG_TURRET_ION_STUN"] = {
 	charges = 2,
 	charges_per_charge = 1,
 	rotation_speed = 180,
-	charge_time = {[0] = 6, 6, 5, 4, 3.5, 3, 2.5, 2.25, 2},
+	charge_time = 5,
+	required_power = 2,
 }
 turrets["OG_TURRET_ION_BIO"] = {
 	enemy_burst = 1,
@@ -497,7 +520,8 @@ turrets["OG_TURRET_ION_BIO"] = {
 	charges = 2,
 	charges_per_charge = 1,
 	rotation_speed = 180,
-	charge_time = {[0] = 11, 11, 9.75, 7.5, 6, 5.25, 4.5, 4.25, 4},
+	charge_time = 9.5,
+	required_power = 2,
 }
 turrets["OG_TURRET_ENERGY_1"] = {
 	enemy_burst = 3,
@@ -512,8 +536,9 @@ turrets["OG_TURRET_ENERGY_1"] = {
 	charges = 5,
 	charges_per_charge = 5,
 	rotation_speed = 180,
-	charge_time = {[0] = 24, 24, 20, 17, 14, 12, 10, 8.5, 7},
-	enemy_charge_time = {[0] = 24, 24, 20, 17, 14, 12, 10, 8.5, 7},
+	charge_time = 16,
+	enemy_charge_time = 18,
+	required_power = 3,
 }
 turrets["OG_TURRET_CRYSTAL_1"] = {
 	enemy_burst = 2,
@@ -528,7 +553,8 @@ turrets["OG_TURRET_CRYSTAL_1"] = {
 	charges = 4,
 	charges_per_charge = 1,
 	rotation_speed = 120,
-	charge_time = {[0] = 10, 10, 8.5, 7, 6, 5.5, 5, 4.75, 4.5},
+	charge_time = 8.5,
+	required_power = 2,
 }
 turrets["OG_TURRET_CRYSTAL_1_ELITE"] = {
 	enemy_burst = 2,
@@ -543,7 +569,8 @@ turrets["OG_TURRET_CRYSTAL_1_ELITE"] = {
 	charges = 4,
 	charges_per_charge = 1,
 	rotation_speed = 120,
-	charge_time = {[0] = 10, 10, 8.5, 7, 6, 5.5, 5, 4.75, 4.5},
+	charge_time = 8.5,
+	required_power = 2,
 }
 turrets["OG_TURRET_CRYSTAL_SHOTGUN"] = {
 	enemy_burst = 4,
@@ -563,7 +590,8 @@ turrets["OG_TURRET_CRYSTAL_SHOTGUN"] = {
 	charges = 8,
 	charges_per_charge = 4,
 	rotation_speed = 180,
-	charge_time = {[0] = 20, 20, 17, 14, 12, 10, 8.5, 7, 6},
+	charge_time = 14,
+	required_power = 3,
 }
 turrets["OG_TURRET_CRYSTAL_SHOTGUN_ELITE"] = {
 	enemy_burst = 4,
@@ -583,7 +611,8 @@ turrets["OG_TURRET_CRYSTAL_SHOTGUN_ELITE"] = {
 	charges = 8,
 	charges_per_charge = 4,
 	rotation_speed = 180,
-	charge_time = {[0] = 20, 20, 17, 14, 12, 10, 8.5, 7, 6},
+	charge_time = 14,
+	required_power = 3,
 }
 turrets["OG_TURRET_MISSILE_1"] = {
 	enemy_burst = 3,
@@ -600,7 +629,8 @@ turrets["OG_TURRET_MISSILE_1"] = {
 	charges = 7,
 	charges_per_charge = 1,
 	rotation_speed = 120,
-	charge_time = {[0] = 8.5, 8.5, 7, 6, 5, 4, 3.5, 3, 2.5},
+	charge_time = 7,
+	required_power = 2,
 }
 turrets["OG_TURRET_MISSILE_2"] = {
 	enemy_burst = 2,
@@ -618,8 +648,9 @@ turrets["OG_TURRET_MISSILE_2"] = {
 	charges = 2,
 	charges_per_charge = 1,
 	rotation_speed = 120,
-	charge_time = {[0] = 16, 16, 13, 10.5, 8, 7, 6, 5, 4},
-	enemy_charge_time = {[0] = 20, 20, 17, 14, 12, 10, 8.5, 7, 6},
+	charge_time = 11,
+	enemy_charge_time = 14,
+	required_power = 3,
 }
 turrets["OG_TURRET_KERNEL_HEAVY"] = {
 	enemy_burst = 1,
@@ -635,7 +666,8 @@ turrets["OG_TURRET_KERNEL_HEAVY"] = {
 	charges = 3,
 	charges_per_charge = 1,
 	rotation_speed = 180,
-	charge_time = {[0] = 20, 20, 17, 14, 12, 10, 8.5, 7, 6},
+	charge_time = 14,
+	required_power = 3,
 }
 turrets["OG_TURRET_KERNEL_FIRE"] = {
 	enemy_burst = 1,
@@ -651,7 +683,8 @@ turrets["OG_TURRET_KERNEL_FIRE"] = {
 	charges = 3,
 	charges_per_charge = 1,
 	rotation_speed = 180,
-	charge_time = {[0] = 17, 17, 14, 11, 9, 7, 6, 5, 4},
+	charge_time = 14,
+	required_power = 2,
 }
 turrets["OG_TURRET_KERNEL_HEAVY_ELITE"] = {
 	enemy_burst = 1,
@@ -667,7 +700,8 @@ turrets["OG_TURRET_KERNEL_HEAVY_ELITE"] = {
 	charges = 3,
 	charges_per_charge = 1,
 	rotation_speed = 180,
-	charge_time = {[0] = 20, 20, 17, 14, 12, 10, 8.5, 7, 6},
+	charge_time = 14,
+	required_power = 3,
 }
 turrets["OG_TURRET_KERNEL_FIRE_ELITE"] = {
 	enemy_burst = 1,
@@ -683,7 +717,8 @@ turrets["OG_TURRET_KERNEL_FIRE_ELITE"] = {
 	charges = 3,
 	charges_per_charge = 1,
 	rotation_speed = 180,
-	charge_time = {[0] = 17, 17, 14, 11, 9, 7, 6, 5, 4},
+	charge_time = 14,
+	required_power = 2,
 }
 turrets["OG_TURRET_MISSILE_CLONE_CANNON"] = {
 	enemy_burst = 1,
@@ -699,7 +734,8 @@ turrets["OG_TURRET_MISSILE_CLONE_CANNON"] = {
 	charges = 2,
 	charges_per_charge = 1,
 	rotation_speed = 120,
-	charge_time = {[0] = 12, 12, 10, 8, 6, 5, 4, 3.5, 3},
+	charge_time = 8,
+	required_power = 3,
 }
 turrets["OG_TURRET_FLAK_1"] = {
 	enemy_burst = 3,
@@ -719,7 +755,8 @@ turrets["OG_TURRET_FLAK_1"] = {
 	charges = 9,
 	charges_per_charge = 3,
 	rotation_speed = 180,
-	charge_time = {[0] = 14, 14, 12, 9, 7, 6, 5, 4, 3},
+	charge_time = 12,
+	required_power = 2,
 }
 turrets["OG_TURRET_FLAK_BIO"] = {
 	enemy_burst = 4,
@@ -739,7 +776,8 @@ turrets["OG_TURRET_FLAK_BIO"] = {
 	charges = 8,
 	charges_per_charge = 4,
 	rotation_speed = 180,
-	charge_time = {[0] = 20, 20, 17, 14, 12, 10, 8.5, 7, 6},
+	charge_time = 14,
+	required_power = 3,
 }
 turrets["OG_TURRET_FLAK_FIRE"] = {
 	enemy_burst = 4,
@@ -760,7 +798,8 @@ turrets["OG_TURRET_FLAK_FIRE"] = {
 	charges = 4,
 	charges_per_charge = 1,
 	rotation_speed = 180,
-	charge_time = {[0] = 5, 5, 4, 3.5, 3, 2.5, 2.25, 2, 1.75},
+	charge_time = 3.5,
+	required_power = 3,
 }
 turrets["OG_TURRET_FOCUS_1"] = {
 	enemy_burst = 1,
@@ -778,7 +817,8 @@ turrets["OG_TURRET_FOCUS_1"] = {
 	charges = 3,
 	charges_per_charge = 1,
 	rotation_speed = 240,
-	charge_time = {[0] = 14, 14, 12, 9, 7, 6, 5, 4, 3},
+	charge_time = 12,
+	required_power = 2,
 }
 turrets["OG_TURRET_FOCUS_BIO"] = {
 	enemy_burst = 1,
@@ -797,7 +837,8 @@ turrets["OG_TURRET_FOCUS_BIO"] = {
 	charges = 3,
 	charges_per_charge = 1,
 	rotation_speed = 240,
-	charge_time = {[0] = 9, 9, 7.5, 6, 5, 4.5, 4, 3.75, 3.5},
+	charge_time = 7.5,
+	required_power = 2,
 }
 turrets["OG_TURRET_FOCUS_CHAIN"] = {
 	enemy_burst = 1,
@@ -821,7 +862,8 @@ turrets["OG_TURRET_FOCUS_CHAIN"] = {
 	charges = 3,
 	charges_per_charge = 1,
 	rotation_speed = 240,
-	charge_time = {[0] = 16, 16, 13, 11, 9, 7, 6, 5, 4},
+	charge_time = 12,
+	required_power = 3,
 }
 turrets["OG_TURRET_LASER_MINI_1"] = {
 	mini = true,
@@ -835,7 +877,8 @@ turrets["OG_TURRET_LASER_MINI_1"] = {
 	charges = 2,
 	charges_per_charge = 2,
 	rotation_speed = 240,
-	charge_time = {[0] = 12, 12, 10, 8, 6, 5, 4, 3.5, 3},
+	charge_time = 12,
+	required_power = 1,
 }
 turrets["OG_TURRET_LASER_RUSTY_MINI_1"] = {
 	mini = true,
@@ -850,7 +893,8 @@ turrets["OG_TURRET_LASER_RUSTY_MINI_1"] = {
 	charges = 2,
 	charges_per_charge = 2,
 	rotation_speed = 240,
-	charge_time = {[0] = 15, 15, 12, 10, 8, 6, 5, 4, 3},
+	charge_time = 15,
+	required_power = 1,
 }
 turrets["OG_TURRET_LASER_MINI_2"] = {
 	enemy_burst = 1,
@@ -867,8 +911,9 @@ turrets["OG_TURRET_LASER_MINI_2"] = {
 	charges = 3,
 	charges_per_charge = 1,
 	rotation_speed = 240,
-	charge_time = {[0] = 5, 5, 3.5, 2.5, 2, 1.75, 1.5, 1.25, 1},
-	enemy_charge_time = {[0] = 7, 7, 6, 5, 4, 3.5, 3, 2.75, 2.5},
+	charge_time = 5,
+	enemy_charge_time = 7,
+	required_power = 1,
 }
 turrets["OG_TURRET_LASER_MINI_BIO"] = {
 	mini = true,
@@ -882,8 +927,9 @@ turrets["OG_TURRET_LASER_MINI_BIO"] = {
 	charges = 3,
 	charges_per_charge = 1,
 	rotation_speed = 240,
-	charge_time = {[0] = 4, 4, 3, 2, 1.5, 1.25, 1, 0.75, 0.5},
-	enemy_charge_time = {[0] = 5, 5, 3.5, 2.5, 2, 1.75, 1.5, 1.25, 1},
+	charge_time = 4,
+	enemy_charge_time = 5,
+	required_power = 1,
 }
 turrets["OG_TURRET_LASER_MINI_CHAIN"] = {
 	mini = true,
@@ -894,17 +940,18 @@ turrets["OG_TURRET_LASER_MINI_CHAIN"] = {
 	chain = {
 		image = Hyperspace.Animations:GetAnimation("og_turret_laser_mini_chain_chain"),
 		type = chain_types.cooldown,
-		amount = 0.25,
+		amount = 0.3,
 		count = 2,
 	},
-	fire_points = {{x = 5, y = -24, fire_delay = 0.5}},
+	fire_points = {{x = -5, y = -24, fire_delay = 0.5}},
 	defence_type = defence_types.PROJECTILES_MISSILES,
 	blueprint_type = 1,
 	blueprint = "OG_LASER_PROJECTILE_BASE",
 	charges = 2,
 	charges_per_charge = 1,
 	rotation_speed = 240,
-	charge_time = {[0] = 9, 9, 7.5, 6, 5, 4.5, 4, 3.75, 3.5},
+	charge_time = 10,
+	required_power = 1,
 }
 turrets["OG_TURRET_LASER_MINI_PARTICLE"] = {
 	enemy_burst = 2,
@@ -925,7 +972,8 @@ turrets["OG_TURRET_LASER_MINI_PARTICLE"] = {
 	charges = 2,
 	charges_per_charge = 2,
 	rotation_speed = 240,
-	charge_time = {[0] = 7, 7, 6, 5, 4, 3.5, 3, 2.75, 2.5},
+	charge_time = 7,
+	required_power = 1,
 }
 turrets["OG_TURRET_ION_MINI_1"] = {
 	enemy_burst = 1,
@@ -944,7 +992,8 @@ turrets["OG_TURRET_ION_MINI_1"] = {
 	charges = 2,
 	charges_per_charge = 1,
 	rotation_speed = 240,
-	charge_time = {[0] = 7, 7, 6, 5, 4, 3.5, 3, 2.75, 2.5},
+	charge_time = 7,
+	required_power = 1,
 }
 turrets["OG_TURRET_ION_MINI_FIRE"] = {
 	enemy_burst = 1,
@@ -960,7 +1009,8 @@ turrets["OG_TURRET_ION_MINI_FIRE"] = {
 	charges = 2,
 	charges_per_charge = 1,
 	rotation_speed = 240,
-	charge_time = {[0] = 8, 8, 6.5, 5, 4, 3.5, 3, 2.75, 2.5},
+	charge_time = 8,
+	required_power = 1,
 }
 turrets["OG_TURRET_CRYSTAL_MINI"] = {
 	mini = true,
@@ -974,7 +1024,8 @@ turrets["OG_TURRET_CRYSTAL_MINI"] = {
 	charges = 1,
 	charges_per_charge = 1,
 	rotation_speed = 240,
-	charge_time = {[0] = 9, 9, 7.5, 6, 5, 4.5, 4, 3.75, 3.5},
+	charge_time = 9,
+	required_power = 1,
 }
 turrets["OG_TURRET_CRYSTAL_MINI_ELITE"] = {
 	mini = true,
@@ -988,7 +1039,8 @@ turrets["OG_TURRET_CRYSTAL_MINI_ELITE"] = {
 	charges = 1,
 	charges_per_charge = 1,
 	rotation_speed = 240,
-	charge_time = {[0] = 9, 9, 7.5, 6, 5, 4.5, 4, 3.75, 3.5},
+	charge_time = 9,
+	required_power = 1,
 }
 turrets["OG_TURRET_FOCUS_MINI_1"] = {
 	enemy_burst = 1,
@@ -1006,7 +1058,8 @@ turrets["OG_TURRET_FOCUS_MINI_1"] = {
 	charges = 2,
 	charges_per_charge = 1,
 	rotation_speed = 240,
-	charge_time = {[0] = 7, 7, 6, 5, 4, 3.5, 3, 2.75, 2.5},
+	charge_time = 7,
+	required_power = 1,
 }
 turrets["OG_TURRET_FLAK_MINI_1"] = {
 	enemy_burst = 2,
@@ -1023,7 +1076,8 @@ turrets["OG_TURRET_FLAK_MINI_1"] = {
 	charges = 4,
 	charges_per_charge = 2,
 	rotation_speed = 240,
-	charge_time = {[0] = 11.5, 11.5, 9, 7, 6, 5, 4, 3, 2},
+	charge_time = 11,
+	required_power = 1,
 }
 turrets["OG_TURRET_MISSILE_MINI_1"] = {
 	enemy_burst = 1,
@@ -1041,7 +1095,8 @@ turrets["OG_TURRET_MISSILE_MINI_1"] = {
 	charges = 4,
 	charges_per_charge = 1,
 	rotation_speed = 240,
-	charge_time = {[0] = 11.5, 11.5, 9, 7, 6, 5, 4, 3, 2},
+	charge_time = 12,
+	required_power = 1,
 }
 
 
@@ -1058,6 +1113,7 @@ turrets["OG_TURRET_LASER_DAWN"] = {
 	charges_per_charge = 1,
 	rotation_speed = 120,
 	charge_time = turrets["OG_TURRET_LASER_2"].charge_time,
+	required_power = turrets["OG_TURRET_LASER_2"].required_power,
 }
 turrets["OG_TURRET_ION_DAWN"] = {
 	enemy_burst = 2,
@@ -1073,6 +1129,7 @@ turrets["OG_TURRET_ION_DAWN"] = {
 	charges_per_charge = 2,
 	rotation_speed = 180,
 	charge_time = turrets["OG_TURRET_ION_1"].charge_time,
+	required_power = turrets["OG_TURRET_ION_1"].required_power,
 }
 turrets["OG_TURRET_MISSILE_DAWN"] = {
 	enemy_burst = 2,
@@ -1090,7 +1147,8 @@ turrets["OG_TURRET_MISSILE_DAWN"] = {
 	charges = 2,
 	charges_per_charge = 1,
 	rotation_speed = 120,
-	charge_time = turrets["OG_TURRET_LASER_2"].charge_time,
+	charge_time = turrets["OG_TURRET_MISSILE_2"].charge_time,
+	required_power = turrets["OG_TURRET_MISSILE_2"].required_power,
 }
 turrets["OG_TURRET_FLAK_DAWN"] = {
 	enemy_burst = 3,
@@ -1112,6 +1170,7 @@ turrets["OG_TURRET_FLAK_DAWN"] = {
 	charges_per_charge = 3,
 	rotation_speed = 180,
 	charge_time = turrets["OG_TURRET_FLAK_1"].charge_time,
+	required_power = turrets["OG_TURRET_FLAK_1"].required_power,
 }
 turrets["OG_TURRET_FOCUS_DAWN"] = {
 	enemy_burst = 1,
@@ -1131,6 +1190,7 @@ turrets["OG_TURRET_FOCUS_DAWN"] = {
 	charges_per_charge = 1,
 	rotation_speed = 240,
 	charge_time = turrets["OG_TURRET_FOCUS_1"].charge_time,
+	required_power = turrets["OG_TURRET_FOCUS_1"].required_power,
 }
 turrets["OG_TURRET_LASER_MINI_DAWN_1"] = {
 	mini = true,
@@ -1146,6 +1206,7 @@ turrets["OG_TURRET_LASER_MINI_DAWN_1"] = {
 	charges_per_charge = 2,
 	rotation_speed = 240,
 	charge_time = turrets["OG_TURRET_LASER_MINI_1"].charge_time,
+	required_power = turrets["OG_TURRET_LASER_MINI_1"].required_power,
 }
 turrets["OG_TURRET_LASER_MINI_DAWN_2"] = {
 	enemy_burst = 1,
@@ -1164,6 +1225,7 @@ turrets["OG_TURRET_LASER_MINI_DAWN_2"] = {
 	charges_per_charge = 1,
 	rotation_speed = 240,
 	charge_time = turrets["OG_TURRET_LASER_MINI_2"].charge_time,
+	required_power = turrets["OG_TURRET_LASER_MINI_2"].required_power,
 }
 turrets["OG_TURRET_FOCUS_MINI_DAWN"] = {
 	enemy_burst = 1,
@@ -1183,6 +1245,7 @@ turrets["OG_TURRET_FOCUS_MINI_DAWN"] = {
 	charges_per_charge = 1,
 	rotation_speed = 240,
 	charge_time = turrets["OG_TURRET_FOCUS_MINI_1"].charge_time,
+	required_power = turrets["OG_TURRET_FOCUS_MINI_1"].required_power,
 }
 turrets["OG_TURRET_BEAM_NEUTRON_1"] = {
 	enemy_burst = 1,
@@ -1204,7 +1267,8 @@ turrets["OG_TURRET_BEAM_NEUTRON_1"] = {
 	charges = 1,
 	charges_per_charge = 1,
 	rotation_speed = 60,
-	charge_time = {[0] = 24, 24, 22, 19, 17, 16, 15, 14, 13},
+	charge_time = 20,
+	required_power = 2,
 }
 turrets["OG_TURRET_BEAM_NEUTRON_2"] = {
 	enemy_burst = 1,
@@ -1227,7 +1291,8 @@ turrets["OG_TURRET_BEAM_NEUTRON_2"] = {
 	charges = 1,
 	charges_per_charge = 1,
 	rotation_speed = 60,
-	charge_time = {[0] = 24, 24, 22, 19, 17, 16, 15, 14, 13},
+	charge_time = 22,
+	required_power = 3,
 }
 turrets["OG_TURRET_BEAM_NEUTRON_3"] = {
 	enemy_burst = 1,
@@ -1251,7 +1316,8 @@ turrets["OG_TURRET_BEAM_NEUTRON_3"] = {
 	charges = 1,
 	charges_per_charge = 1,
 	rotation_speed = 60,
-	charge_time = {[0] = 24, 24, 22, 19, 17, 16, 15, 14, 13},
+	charge_time = 24,
+	required_power = 4,
 }
 
 turrets["OG_TURRET_LOOT_SLUG_1"] = {
@@ -1271,7 +1337,8 @@ turrets["OG_TURRET_LOOT_SLUG_1"] = {
 	charges = 3,
 	charges_per_charge = 1,
 	rotation_speed = 240,
-	charge_time = {[0] = 9, 9, 7.5, 6, 5, 4.5, 4, 3.75, 3.5},
+	charge_time = 7.5,
+	required_power = 2,
 }
 turrets["OG_TURRET_LOOT_CLAN_1"] = {
 	enemy_burst = 1,
@@ -1287,7 +1354,8 @@ turrets["OG_TURRET_LOOT_CLAN_1"] = {
 	charges = 3,
 	charges_per_charge = 1,
 	rotation_speed = 270,
-	charge_time = {[0] = 4.5, 4.5, 3, 2.25, 1.75, 1.5, 1.25, 1, 0.75},
+	charge_time = 3,
+	required_power = 2,
 }
 turrets["OG_TURRET_LOOT_CRYSTAL_1"] = {
 	enemy_burst = 2,
@@ -1308,7 +1376,8 @@ turrets["OG_TURRET_LOOT_CRYSTAL_1"] = {
 	charges = 3,
 	charges_per_charge = 3,
 	rotation_speed = 120,
-	charge_time = {[0] = 15, 15, 13, 11, 9, 7, 6, 5, 4},
+	charge_time = 13,
+	required_power = 2,
 }
 turrets["OG_TURRET_LOOT_FEDERATION_1"] = {
 	enemy_burst = 1,
@@ -1321,7 +1390,8 @@ turrets["OG_TURRET_LOOT_FEDERATION_1"] = {
 	charges = 5,
 	charges_per_charge = 1,
 	rotation_speed = 120,
-	charge_time = {[0] = 8, 8, 6.5, 5, 4, 3.5, 3, 2.75, 2.5},
+	charge_time = 6.5,
+	required_power = 2,
 }
 
 
@@ -1342,7 +1412,8 @@ turrets["OG_TURRET_FOCUS_SOULPLAGUE"] = {
 	charges = 1,
 	charges_per_charge = 1,
 	rotation_speed = 240,
-	charge_time = {[0] = 8, 8, 6, 5, 4, 3.5, 3, 2.75, 2.5}
+	charge_time = 6,
+	required_power = 2,
 }
 turrets["OG_TURRET_MISSILE_FALSERADIANCE"] = {
 	enemy_burst = 8,
@@ -1361,8 +1432,9 @@ turrets["OG_TURRET_MISSILE_FALSERADIANCE"] = {
 	charges = 14,
 	charges_per_charge = 2,
 	rotation_speed = 120,
-	charge_time = {[0] = 5, 5, 3.5, 2.5, 2, 1.75, 1.5, 1.25, 1},
-	enemy_charge_time = {[0] = 6, 6, 4.5, 3.5, 3, 2.75, 2.5, 2.25, 2},
+	charge_time = 2,
+	enemy_charge_time = 3,
+	required_power = 4,
 }
 turrets["OG_TURRET_LASER_DARKNESS_MINI"] = {
 	mini = true,
@@ -1375,7 +1447,8 @@ turrets["OG_TURRET_LASER_DARKNESS_MINI"] = {
 	charges = 5,
 	charges_per_charge = 1,
 	rotation_speed = 240,
-	charge_time = {[0] = 6, 6, 4.5, 3.5, 3, 2.75, 2.5, 2.25, 2},
+	charge_time = 6,
+	required_power = 1,
 }
 
 

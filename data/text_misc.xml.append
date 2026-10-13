@@ -94,7 +94,7 @@ Can target all projectiles and drones
 
 <text name="og_equaliser">System Equaliser</text>
 <text name="og_equaliser_installed">System Equaliser installed</text>
-<text name="og_lua_equaliser_level">Equalises and reduces damage by: %d%%</text>
+<text name="og_lua_equaliser_level">%d%% Damage Reduction</text>
 <text name="og_lua_equaliser_button_hover">Equalise damage across selected ship systems.</text>
 <text name="og_lua_equaliser_system_hover_on">Will be Equalised. Press to exclude the system from being equalised.</text>
 <text name="og_lua_equaliser_system_hover_off">Won't be Equalised. Press to include the system in being equalised.</text>

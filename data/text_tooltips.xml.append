@@ -1,6 +1,6 @@
 <FTL>
-<text name="tip_og_turret">Tip: Turrets have to be equipped to the Turret Control system.</text>
-<text name="tip_og_turret_mini">Tip: Turrets have to be equipped to the Turret Control system. Micro turrets can be equipped on both small and large turret slots.</text>
+<text name="tip_og_turret">Tip: Turrets have to be equipped to the Turret Control system. Each power above the required power reduces charge time, stacking multiplicatively. This turret requires a large turret slots.</text>
+<text name="tip_og_turret_mini">Tip: Turrets have to be equipped to the Turret Control system. Each power above the required power reduces charge time, stacking multiplicatively. This turret can be equipped to both small and large turret slots.</text>
 <text name="tip_og_turret_base">Tip: Turret bases can be used in place of a defence drone during turret manufacturing.</text>
 
 <text name="tooltip_og_turret">Turret Control: Click on the turret to set its mode, or target it. Manning reduces charge time.</text>
@@ -54,7 +54,10 @@
 <text name="hack_og_turret_adaptive_single_player">SYSTEM HACKED: TURRET LOSING CHARGE.</text>
 <text name="hack_og_equaliser_player">SYSTEM HACKED: SYSTEM FROZEN.</text>
 
-<text name="og_lua_turret_stats_time">Stats:\nCharge Time: </text>
+<text name="og_lua_turret_stats_stats">Stats:\n</text>
+<text name="og_lua_turret_stats_power">Required Power: %d</text>
+<text name="og_lua_turret_stats_time">\nCharge Time: %g seconds</text>
+<text name="og_lua_turret_stats_power_reduction">\nReduction per Extra Power: %d%%</text>
 <text name="og_lua_turret_stats_charges">\nMaximum Charges: %d</text>
 <text name="og_lua_turret_stats_amount">\nCharge Amount: %d</text>
 <text name="og_lua_turret_stats_ammo">\nMissile Consumption: %g</text>
@@ -85,7 +88,7 @@
 <text name="og_lua_turret_stats_price">\n\nDefault Price: %d~   -   Selling Price: %d~</text>
 <text name="og_lua_turret_stats_price_short">\n\n%d~   -   %d~</text>
 
-<text name="og_lua_turret_power_increase">Faster Charge Time</text>
+<text name="og_lua_turret_power_increase">More System Power</text>
 
 <text name="og_lua_turret_button_offence">Set the turret to defensive mode.</text>
 <text name="og_lua_turret_button_defence">Set the turret to offensive mode.</text>

@@ -24,7 +24,8 @@ local find_closest_slot = mods.og.find_closest_slot
 local vunerable_weapons = mods.og.vunerable_weapons
 --TURRET DEFINITIONS
 local systemName = "og_equaliser"
-local damage_reduction_level = 0.1
+local damage_reduction_base = 0.1
+local damage_reduction_level = 0.4
 local system_cooldown = 4
 local system_active = false
 
@@ -36,7 +37,7 @@ local button_hover_string = Hyperspace.Text:GetText("og_lua_equaliser_button_hov
 local level_string = Hyperspace.Text:GetText("og_lua_equaliser_level")
 local function get_level_description(systemId, level, tooltip)
 	if systemId == Hyperspace.ShipSystem.NameToSystemId(systemName) then
-		return string.format( level_string, math.floor((damage_reduction_level * (level - 1)) * 100) )
+		return string.format( level_string, math.floor((damage_reduction_base + damage_reduction_level * (level - 1)) * 100) )
 	end
 end
 
@@ -110,7 +111,7 @@ local system_sound_name = {[0] = "og_equalise", [1] = "og_equalise_enemy"}
 
 local function activate_equalizer(system, shipManager)
 	--print("activate_equalizer")
-	local reduction = 0
+	local reduction = damage_reduction_base
 	if system:GetEffectivePower() > 1 then reduction = damage_reduction_level * (system:GetEffectivePower() - 1) end
 	local health_sum = 0
 	local max_sum = 0
