@@ -767,7 +767,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<hiddenAug>SHIP_PIRATE</hiddenAug>
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 		<crewLimit>6</crewLimit>
-		<systemLimit>12</systemLimit>
+		<systemLimit>11</systemLimit>
 		<customReactor maxLevel="30"/>
 	</mod-append:customShip>
 
