@@ -29,9 +29,9 @@
 		<text>Reposition your Advanced Adaptive Turret Slot.</text>
 		<event name="OG_TURRET_ADAPTIVE_SINGLE_POSITION" />
 	</choice>
-	<choice req="UPG_OG_TURRET_ADAPTIVE_SECONDARY_SHOW" lvl="1" blue="true" hidden="true">
-		<text>Secondary Turret Control Upgrade. [Cost: 50~, 5|]</text>
-		<event load="STORAGE_CHECK_SYSTEM_OG_TURRET_ADAPTIVE_SECONDARY" />
+	<choice req="UPG_OG_TURRET_INSTALL_STORAGE_ANY" blue="true" hidden="true">
+		<text>Install additional turret systems.</text>
+		<event load="STORAGE_CHECK_SYSTEM_OG_TURRET_INSTALL" />
 	</choice>
 </event>
 
@@ -225,13 +225,9 @@
 		<text>Secondary Hardpoint Retrofit. [Cost: 30~, 5|]</text>
 		<event load="STORAGE_CHECK_SYSTEM_OG_TURRET_ADAPTIVE_2_LARGE" />
 	</choice>
-	<choice req="UPG_OG_TURRET_ADAPTIVE_SECONDARY_BUY" lvl="1" max_group="5" blue="false" hidden="true">
-		<text>Secondary Turret Control. [ALREADY INSTALLED]</text>
-		<event load="OPTION_INVALID" />
-	</choice>
-	<choice req="UPG_OG_TURRET_ADAPTIVE_SECONDARY_SHOW" lvl="1" max_group="5" blue="true" hidden="true">
-		<text>Secondary Turret Control. [Cost: 50~, 5|]</text>
-		<event load="STORAGE_CHECK_SYSTEM_OG_TURRET_ADAPTIVE_SECONDARY" />
+	<choice req="UPG_OG_TURRET_INSTALL_STORAGE_ANY" max_group="5" blue="true" hidden="true">
+		<text>Install additional turret systems.</text>
+		<event load="STORAGE_CHECK_SYSTEM_OG_TURRET_INSTALL" />
 	</choice>
 	<choice>
 		<text>Nevermind.</text>
@@ -479,6 +475,189 @@
 	</choice>
 </event>
 
+<event name="STORAGE_CHECK_SYSTEM_OG_TURRET_INSTALL">
+	<text>What upgrade do you want to install?</text>
+	<choice>
+		<text>Nevermind.</text>
+		<event load="STORAGE_CHECK_SYSTEM_LOAD" />
+	</choice>
+	<choice req="UPG_OG_TURRET_ADAPTIVE_SECONDARY_BUY" lvl="1" blue="false" hidden="true">
+		<text>Secondary Turret Control. [ALREADY INSTALLED]</text>
+		<event load="OPTION_INVALID" />
+	</choice>
+	<choice req="UPG_OG_TURRET_ADAPTIVE_SECONDARY_SHOW" lvl="1" blue="false" hidden="true">
+		<text>Secondary Turret Control. [Cost: 50~, 5|]</text>
+		<event load="STORAGE_CHECK_SYSTEM_OG_TURRET_ADAPTIVE_SECONDARY" />
+	</choice>
+	<choice req="UPG_OG_TURRET_INSTALL_MINI_1_BUY" lvl="1" blue="false" hidden="true">
+		<text>Micro Turret Control 1. [ALREADY INSTALLED]</text>
+		<event load="OPTION_INVALID" />
+	</choice>
+	<choice req="UPG_OG_TURRET_INSTALL_MINI_1_SHOW" lvl="1" blue="false" hidden="true">
+		<text>Micro Turret Control 1. [Cost: 40~, 3|]</text>
+		<event load="STORAGE_CHECK_SYSTEM_OG_TURRET_INSTALL_MINI_1" />
+	</choice>
+	<choice req="UPG_OG_TURRET_INSTALL_MINI_2_BUY" lvl="1" blue="false" hidden="true">
+		<text>Micro Turret Control 2. [ALREADY INSTALLED]</text>
+		<event load="OPTION_INVALID" />
+	</choice>
+	<choice req="UPG_OG_TURRET_INSTALL_MINI_2_SHOW" lvl="1" blue="false" hidden="true">
+		<text>Micro Turret Control 2. [Cost: 40~, 3|]</text>
+		<event load="STORAGE_CHECK_SYSTEM_OG_TURRET_INSTALL_MINI_2" />
+	</choice>
+	<choice req="UPG_OG_TURRET_INSTALL_MINI_3_BUY" lvl="1" blue="false" hidden="true">
+		<text>Micro Turret Control 3. [ALREADY INSTALLED]</text>
+		<event load="OPTION_INVALID" />
+	</choice>
+	<choice req="UPG_OG_TURRET_INSTALL_MINI_3_SHOW" lvl="1" blue="false" hidden="true">
+		<text>Micro Turret Control 3. [Cost: 40~, 3|]</text>
+		<event load="STORAGE_CHECK_SYSTEM_OG_TURRET_INSTALL_MINI_3" />
+	</choice>
+	<choice req="UPG_OG_TURRET_INSTALL_MINI_4_BUY" lvl="1" blue="false" hidden="true">
+		<text>Micro Turret Control 4. [ALREADY INSTALLED]</text>
+		<event load="OPTION_INVALID" />
+	</choice>
+	<choice req="UPG_OG_TURRET_INSTALL_MINI_4_SHOW" lvl="1" blue="false" hidden="true">
+		<text>Micro Turret Control 4. [Cost: 40~, 3|]</text>
+		<event load="STORAGE_CHECK_SYSTEM_OG_TURRET_INSTALL_MINI_4" />
+	</choice>
+</event>
+
+<event name="STORAGE_CHECK_SYSTEM_OG_TURRET_INSTALL_MINI_1">
+	<text>You are about to install the Micro Turret Control 1 system.
+	[Effects: Installs a Micro Turret system, this system does not consume a system slot.]</text>
+	<choice max_group="0" blue="false" hidden="true">
+		<text>Perform the upgrade. [Cost: 40~, 3|]</text>
+		<event name="INSTALL_OG_TURRET_MINI_1_BEFORE">
+			<text>You install the upgrade.</text>
+			<item_modify>
+				<item type="drones" min="-3" max="-3" />
+				<item type="scrap" min="-40" max="-40" />
+			</item_modify>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="INSTALL_OG_TURRET_MINI_1" />
+			</choice>
+		</event>
+	</choice>
+	<choice req="pilot" lvl="1" max_group="2" blue="false" hidden="true">
+		<text>Nevermind.</text>
+		<event load="STORAGE_CHECK_SYSTEM_LOAD" />
+	</choice>
+</event>
+<event name="INSTALL_OG_TURRET_MINI_1">
+	<text>You install the system.</text>
+	<system name="og_turret_mini"/>
+	<variable name="loc_internal_upgrades" op="add" val="1" />
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event>
+			<loadEvent>STORAGE_CHECK_SYSTEM</loadEvent>
+		</event>
+	</choice>
+</event>
+
+<event name="STORAGE_CHECK_SYSTEM_OG_TURRET_INSTALL_MINI_2">
+	<text>You are about to install the Micro Turret Control 2 system.
+	[Effects: Installs a Micro Turret system, this system does not consume a system slot.]</text>
+	<choice max_group="0" blue="false" hidden="true">
+		<text>Perform the upgrade. [Cost: 40~, 3|]</text>
+		<event name="INSTALL_OG_TURRET_MINI_2_BEFORE">
+			<text>You install the upgrade.</text>
+			<item_modify>
+				<item type="drones" min="-3" max="-3" />
+				<item type="scrap" min="-40" max="-40" />
+			</item_modify>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="INSTALL_OG_TURRET_MINI_2" />
+			</choice>
+		</event>
+	</choice>
+	<choice req="pilot" lvl="1" max_group="2" blue="false" hidden="true">
+		<text>Nevermind.</text>
+		<event load="STORAGE_CHECK_SYSTEM_LOAD" />
+	</choice>
+</event>
+<event name="INSTALL_OG_TURRET_MINI_2">
+	<text>You install the system.</text>
+	<system name="og_turret_mini_2"/>
+	<variable name="loc_internal_upgrades" op="add" val="1" />
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event>
+			<loadEvent>STORAGE_CHECK_SYSTEM</loadEvent>
+		</event>
+	</choice>
+</event>
+
+<event name="STORAGE_CHECK_SYSTEM_OG_TURRET_INSTALL_MINI_3">
+	<text>You are about to install the Micro Turret Control 3 system.
+	[Effects: Installs a Micro Turret system, this system does not consume a system slot.]</text>
+	<choice max_group="0" blue="false" hidden="true">
+		<text>Perform the upgrade. [Cost: 40~, 3|]</text>
+		<event name="INSTALL_OG_TURRET_MINI_3_BEFORE">
+			<text>You install the upgrade.</text>
+			<item_modify>
+				<item type="drones" min="-3" max="-3" />
+				<item type="scrap" min="-40" max="-40" />
+			</item_modify>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="INSTALL_OG_TURRET_MINI_3" />
+			</choice>
+		</event>
+	</choice>
+	<choice req="pilot" lvl="1" max_group="2" blue="false" hidden="true">
+		<text>Nevermind.</text>
+		<event load="STORAGE_CHECK_SYSTEM_LOAD" />
+	</choice>
+</event>
+<event name="INSTALL_OG_TURRET_MINI_3">
+	<text>You install the system.</text>
+	<system name="og_turret_mini_3"/>
+	<variable name="loc_internal_upgrades" op="add" val="1" />
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event>
+			<loadEvent>STORAGE_CHECK_SYSTEM</loadEvent>
+		</event>
+	</choice>
+</event>
+
+<event name="STORAGE_CHECK_SYSTEM_OG_TURRET_INSTALL_MINI_4">
+	<text>You are about to install the Micro Turret Control 4 system.
+	[Effects: Installs a Micro Turret system, this system does not consume a system slot.]</text>
+	<choice max_group="0" blue="false" hidden="true">
+		<text>Perform the upgrade. [Cost: 20~, 3|]</text>
+		<event name="INSTALL_OG_TURRET_MINI_4_BEFORE">
+			<text>You install the upgrade.</text>
+			<item_modify>
+				<item type="drones" min="-3" max="-3" />
+				<item type="scrap" min="-40" max="-40" />
+			</item_modify>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="INSTALL_OG_TURRET_MINI_4" />
+			</choice>
+		</event>
+	</choice>
+	<choice req="pilot" lvl="1" max_group="2" blue="false" hidden="true">
+		<text>Nevermind.</text>
+		<event load="STORAGE_CHECK_SYSTEM_LOAD" />
+	</choice>
+</event>
+<event name="INSTALL_OG_TURRET_MINI_4">
+	<text>You install the system.</text>
+	<system name="og_turret_mini_4"/>
+	<variable name="loc_internal_upgrades" op="add" val="1" />
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event>
+			<loadEvent>STORAGE_CHECK_SYSTEM</loadEvent>
+		</event>
+	</choice>
+</event>
 
 <!--
 \\\\\\\\\\

@@ -291,14 +291,14 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 	if shipManager.iShipId == 0 and should_track_achievement("SHIP_ACH_OG_DAWN_BIG_1", shipManager, "PLAYER_SHIP_OG_DAWN_BIG") then
 		local crewCount = 0
 		for crewmem in vter(Hyperspace.ships.player.vCrewList) do
-			if crewmem.iShipId == 0 then
+			if crewmem.iShipId == 0 and not crewmem:IsDrone() then
 				local crewSlots = crewmem.extend:CalculateStat(Hyperspace.CrewStat.CREW_SLOTS)
 				crewCount = crewCount + crewSlots
 			end
 		end
 		if Hyperspace.ships.enemy then
 			for crewmem in vter(Hyperspace.ships.enemy.vCrewList) do
-				if crewmem.iShipId == 0 then
+				if crewmem.iShipId == 0 and not crewmem:IsDrone() then
 					local crewSlots = crewmem.extend:CalculateStat(Hyperspace.CrewStat.CREW_SLOTS)
 					crewCount = crewCount + crewSlots
 				end
@@ -309,20 +309,20 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 		end
 	end
 	if shipManager.iShipId == 0 and should_track_achievement("SHIP_ACH_OG_DAWN_BIG_2", shipManager, "PLAYER_SHIP_OG_DAWN_BIG") then
-		local lastTurret = nil
+		local lastTurret = "none"
 		local matchingTurrets = true
 		for _, sysName in ipairs(systemNameList) do
 			if shipManager:HasSystem(Hyperspace.ShipSystem.NameToSystemId(sysName)) then
 				local system = shipManager:GetSystem(Hyperspace.ShipSystem.NameToSystemId(sysName))
 				local currentTurretName = turretBlueprintsList[ Hyperspace.playerVariables[math.floor(shipManager.iShipId)..sysName..systemBlueprintVarName] ]
-				if not lastTurret then
+				if lastTurret == "none" then
 					lastTurret = currentTurretName
 				elseif currentTurretName ~= lastTurret then
 					matchingTurrets = false
 				end
 			end
 		end
-		if lastTurret and matchingTurrets then
+		if lastTurret and lastTurret ~= "none" and matchingTurrets then
 			Hyperspace.CustomAchievementTracker.instance:SetAchievement("SHIP_ACH_OG_DAWN_BIG_2", false)
 		end
 	end

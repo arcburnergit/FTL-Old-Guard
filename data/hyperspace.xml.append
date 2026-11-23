@@ -303,14 +303,14 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<hiddenAug>SHIP_OG_GUARD</hiddenAug>
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 		<crewLimit>11</crewLimit>
-		<systemLimit>10</systemLimit>
+		<systemLimit>11</systemLimit>
 		<customReactor maxLevel="35"/>
 	</mod-append:customShip>
 	<mod-append:customShip name="PLAYER_SHIP_OG_EXECUTOR_2">
 		<hiddenAug>SHIP_OG_GUARD</hiddenAug>
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 		<crewLimit>11</crewLimit>
-		<systemLimit>10</systemLimit>
+		<systemLimit>11</systemLimit>
 		<customReactor maxLevel="35"/>
 		<exclusivityOverride>
 			<exclusivityGroup>
@@ -514,7 +514,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<hiddenAug>SHIP_OG_DAWN</hiddenAug>
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 		<crewLimit>6</crewLimit>
-		<systemLimit>9</systemLimit>
+		<systemLimit>10</systemLimit>
 		<customReactor maxLevel="30"/>
 	</mod-append:customShip>
 	<mod-append:customShip name="PLAYER_SHIP_OG_DAWN_SPEAR_3">
@@ -706,7 +706,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<hiddenAug>SHIP_KESTREL</hiddenAug>
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 		<crewLimit>11</crewLimit>
-		<systemLimit>10</systemLimit>
+		<systemLimit>8</systemLimit>
 	</mod-append:customShip>
 
 	<mod-append:ship name="PLAYER_SHIP_OG_REBEL" b="false" c="false" >
@@ -721,7 +721,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<hiddenAug>SHIP_REBEL</hiddenAug>
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 		<crewLimit>8</crewLimit>
-		<systemLimit>10</systemLimit>
+		<systemLimit>9</systemLimit>
 		<customReactor maxLevel="30"/>
 	</mod-append:customShip>
 
@@ -767,7 +767,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<hiddenAug>SHIP_PIRATE</hiddenAug>
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 		<crewLimit>6</crewLimit>
-		<systemLimit>11</systemLimit>
+		<systemLimit>12</systemLimit>
 		<customReactor maxLevel="30"/>
 	</mod-append:customShip>
 
@@ -798,7 +798,7 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 		<hiddenAug>SHIP_DUSKBRINGER</hiddenAug>
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 		<crewLimit>8</crewLimit>
-		<systemLimit>10</systemLimit>
+		<systemLimit>11</systemLimit>
 		<customReactor maxLevel="30"/>
 	</mod-append:customShip>
 
@@ -1342,6 +1342,19 @@ This enemy is equiped with specialized turret tech, defeat them to take the spec
 			<name>UPG_OG_TURRET_ADAPTIVE_SECONDARY</name>
 		</req>
 	</req>
+
+	<req name="UPG_OG_TURRET_INSTALL_STORAGE_ANY" type="any">
+		<name>UPG_OG_TURRET_ADAPTIVE_SECONDARY_SHOW</name>
+		<name>UPG_OG_TURRET_ADAPTIVE_SECONDARY_BUY</name>
+		<name>UPG_OG_TURRET_INSTALL_MINI_1_SHOW</name>
+		<name>UPG_OG_TURRET_INSTALL_MINI_2_SHOW</name>
+		<name>UPG_OG_TURRET_INSTALL_MINI_3_SHOW</name>
+		<name>UPG_OG_TURRET_INSTALL_MINI_4_SHOW</name>
+		<name>UPG_OG_TURRET_INSTALL_MINI_1_BUY</name>
+		<name>UPG_OG_TURRET_INSTALL_MINI_2_BUY</name>
+		<name>UPG_OG_TURRET_INSTALL_MINI_3_BUY</name>
+		<name>UPG_OG_TURRET_INSTALL_MINI_4_BUY</name>
+	</req>	
 
 	<req name="OG_EATMOTE_SINGLE_TURRET_ADD" type="all">
 		<name>og_turret_adaptive_can_install_single</name>

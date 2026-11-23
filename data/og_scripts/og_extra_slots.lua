@@ -88,6 +88,41 @@ script.on_game_event("INSTALL_OG_TURRET_ADAPTIVE_SECONDARY_BEFORE", false, insta
 
 script.on_game_event("INSTALL_OG_TURRET_ADAPTIVE_SECONDARY_BEFORE_2", false, installSystemSlot)
 
+local function installSystemSlotMini()
+	applySystemBonus(Hyperspace.ships.player, 1, false)
+end
+
+script.on_game_event("INSTALL_OG_TURRET_MINI_1_BEFORE", false, installSystemSlotMini)
+script.on_game_event("INSTALL_OG_TURRET_MINI_2_BEFORE", false, installSystemSlotMini)
+script.on_game_event("INSTALL_OG_TURRET_MINI_3_BEFORE", false, installSystemSlotMini)
+script.on_game_event("INSTALL_OG_TURRET_MINI_4_BEFORE", false, installSystemSlotMini)
+
+local CheckInstallSystemsShow = {}
+CheckInstallSystemsShow["UPG_OG_TURRET_INSTALL_MINI_1_SHOW"] = "og_turret_mini"
+CheckInstallSystemsShow["UPG_OG_TURRET_INSTALL_MINI_2_SHOW"] = "og_turret_mini_2"
+CheckInstallSystemsShow["UPG_OG_TURRET_INSTALL_MINI_3_SHOW"] = "og_turret_mini_3"
+CheckInstallSystemsShow["UPG_OG_TURRET_INSTALL_MINI_4_SHOW"] = "og_turret_mini_4"
+local CheckInstallSystemsBuy = {}
+CheckInstallSystemsBuy["UPG_OG_TURRET_INSTALL_MINI_1_BUY"] = "og_turret_mini"
+CheckInstallSystemsBuy["UPG_OG_TURRET_INSTALL_MINI_2_BUY"] = "og_turret_mini_2"
+CheckInstallSystemsBuy["UPG_OG_TURRET_INSTALL_MINI_3_BUY"] = "og_turret_mini_3"
+CheckInstallSystemsBuy["UPG_OG_TURRET_INSTALL_MINI_4_BUY"] = "og_turret_mini_4"
+script.on_internal_event(Defines.InternalEvents.HAS_EQUIPMENT, function(shipManager, equipment, value)
+	if CheckInstallSystemsShow[equipment] then
+		local sysId = Hyperspace.ShipSystem.NameToSystemId(CheckInstallSystemsShow[equipment])
+		local sysInfo = shipManager.myBlueprint.systemInfo
+		if sysInfo:has_key(sysId) and not shipManager:HasSystem(sysId) then
+			value = value + 1
+		end
+	elseif CheckInstallSystemsBuy[equipment] then
+		local sysId = Hyperspace.ShipSystem.NameToSystemId(CheckInstallSystemsBuy[equipment])
+		if shipManager:HasSystem(sysId) then
+			value = value + 1
+		end
+	end
+	return Defines.Chain.CONTINUE, value
+end)
+
 local vter = mods.multiverse.vter
 
 script.on_internal_event(Defines.InternalEvents.JUMP_ARRIVE, function(shipManager)

@@ -193,7 +193,7 @@
 <systemBlueprint name="og_turret_mini">
 	<type>og_turret_mini</type>
 	<title>Micro Turret Control</title>
-	<desc>Powers your ship's turret. Upgrading lowers the charge time of the turret.</desc>
+	<desc>Powers your ship's turret. Upgrading lowers the charge time of the turret. Does not consume a system slot.</desc>
 	<startPower>1</startPower>
 	<maxPower>3</maxPower>
 	<rarity>0</rarity>
@@ -208,7 +208,7 @@
 <systemBlueprint name="og_turret_mini_2">
 	<type>og_turret_mini_2</type>
 	<title>Micro Turret Control</title>
-	<desc>Powers your ship's turret. Upgrading lowers the charge time of the turret.</desc>
+	<desc>Powers your ship's turret. Upgrading lowers the charge time of the turret. Does not consume a system slot.</desc>
 	<startPower>1</startPower>
 	<maxPower>3</maxPower>
 	<rarity>0</rarity>
@@ -223,7 +223,7 @@
 <systemBlueprint name="og_turret_mini_3">
 	<type>og_turret_mini_3</type>
 	<title>Micro Turret Control</title>
-	<desc>Powers your ship's turret. Upgrading lowers the charge time of the turret.</desc>
+	<desc>Powers your ship's turret. Upgrading lowers the charge time of the turret. Does not consume a system slot.</desc>
 	<startPower>1</startPower>
 	<maxPower>3</maxPower>
 	<rarity>0</rarity>
@@ -238,7 +238,7 @@
 <systemBlueprint name="og_turret_mini_4">
 	<type>og_turret_mini_4</type>
 	<title>Micro Turret Control</title>
-	<desc>Powers your ship's turret. Upgrading lowers the charge time of the turret.</desc>
+	<desc>Powers your ship's turret. Upgrading lowers the charge time of the turret. Does not consume a system slot.</desc>
 	<startPower>1</startPower>
 	<maxPower>3</maxPower>
 	<rarity>0</rarity>
