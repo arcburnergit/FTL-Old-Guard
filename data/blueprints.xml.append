@@ -6954,7 +6954,7 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 			</slot>
 		</doors>
 		<drones power="2" max="8" room="3" start="false" img="room_drones_7" />
-		<engines power="2" room="11" start="true" img="room_engines_5">
+		<engines power="4" room="11" start="true" img="room_engines_5">
 			<slot>
 				<direction>up</direction>
 				<number>0</number>
@@ -6996,10 +6996,10 @@ New Dawn variant applies a status effect to hit rooms that causes them to take +
 	</systemList>
 	<weaponSlots>2</weaponSlots>
 	<droneSlots>2</droneSlots>
-	<weaponList missiles="18" count="2" />
+	<weaponList missiles="38" count="2" />
 	<droneList drones="0" count="2" />
 	<health amount="30" />
-	<maxPower amount="8" />
+	<maxPower amount="9" />
 	<crewCount amount="1" class="rock" />
 	<crewCount amount="1" class="rock" />
 	<crewCount amount="1" class="rock" />
