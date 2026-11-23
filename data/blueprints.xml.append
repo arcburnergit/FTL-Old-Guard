@@ -255,7 +255,7 @@
 	<title>Adaptive Turret Control</title>
 	<desc>Can be Internally upgraded to add a secondary turret system alongside this one in place of drone control, secondary system does not consume a system slot. Powers your ship's turret. Upgrading lowers the charge time of the turret. Turret position can be altered outside of combat to best fit the ship, can be upgraded to a large turret slot in the internal upgrade menu.</desc>
 	<startPower>1</startPower>
-	<maxPower>3</maxPower>
+	<maxPower>4</maxPower>
 	<rarity>0</rarity>
 	<upgradeCost>
 		<level>35</level>
@@ -274,7 +274,7 @@
 	<title>Secondary Turret Control</title>
 	<desc>Powers your ship's turret. Upgrading lowers the charge time of the turret. Turret position can be altered outside of combat to best fit the ship, can be upgraded to a large turret slot in the internal upgrade menu.</desc>
 	<startPower>1</startPower>
-	<maxPower>3</maxPower>
+	<maxPower>4</maxPower>
 	<rarity>0</rarity>
 	<upgradeCost>
 		<level>35</level>
